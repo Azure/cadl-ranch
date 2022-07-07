@@ -1,0 +1,34 @@
+{
+  "name": "@azure-tools/cadl.testserver-utils",
+  "version": "0.1.0",
+  "description": "Cadl scenarios and server implementing a mock api",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "watch": "tsc -p ./tsconfig.build.json --watch",
+    "build": "tsc -p ./tsconfig.build.json",
+    "clean": "rimraf dist/ temp/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/cadl.testserver.git"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/cadl.testserver/issues"
+  },
+  "homepage": "https://github.com/Azure/cadl.testserver#readme",
+  "dependencies": {
+    "@cadl-lang/compiler": "^0.32.0"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
+  }
+}
