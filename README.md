@@ -3,6 +3,7 @@
 ## Requirements
 
 - Node 16+
+- npm 8.x+
 
 ## Develop
 
