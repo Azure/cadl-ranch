@@ -4,6 +4,32 @@
 
 - Node 16+
 
+## Develop
+
+This project uses [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) to manage multiple packages.
+
+```bash
+npm install
+```
+
+2. Build
+
+```bash
+npm run build --ws
+```
+
+3. Build TS in watch mode
+
+```bash
+npm run watch
+```
+
+4. Clean
+
+```bash
+npm run clean --ws
+```
+
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a

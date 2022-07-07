@@ -1,23 +1,18 @@
 {
   "name": "@azure-tools/cadl.testserver",
+  "private": true,
   "version": "0.1.0",
   "description": "Cadl scenarios and server implementing a mock api",
-  "main": "dist/index.js",
-  "type": "module",
-  "bin": {
-    "cadl-testserver": "./dist/cli/cli.js"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "npm run build && node ./dist/cli/cli.js",
-    "start:prod": "node ./dist/cli/cli.js",
-    "start:dev": "nodemon ./dist/cli/cli.js",
-    "watch": "tsc -p ./tsconfig.build.json --watch",
-    "build": "tsc -p ./tsconfig.build.json",
-    "clean": "rimraf dist/",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -p ./tsconfig.ws.json --watch",
+    "build": "npm run build --ws",
+    "clean": "npm run clean --ws",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run -s prettier -- --check",
-    "prettier": "prettier --config ./.prettierrc.yml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
+    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -32,16 +27,6 @@
     "url": "https://github.com/Azure/cadl.testserver/issues"
   },
   "homepage": "https://github.com/Azure/cadl.testserver#readme",
-  "dependencies": {
-    "@azure-tools/cadl-autorest": "^0.17.0",
-    "@azure-tools/cadl-azure-core": "^0.4.0",
-    "@cadl-lang/compiler": "^0.32.0",
-    "@cadl-lang/openapi3": "^0.12.0",
-    "@cadl-lang/rest": "^0.15.0",
-    "@cadl-lang/versioning": "^0.6.0",
-    "express": "^4.18.1",
-    "express-promise-router": "^4.1.1"
-  },
   "devDependencies": {
     "@cadl-lang/prettier-plugin-cadl": "^0.5.12",
     "eslint": "^8.19.0",
