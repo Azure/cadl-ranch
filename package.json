@@ -12,6 +12,7 @@
     "clean": "npm run clean --ws",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run -s prettier -- --check",
+    "validate-scenarios": "npm run validate-scenarios -w @azure-tools/cadl.testserver-scenarios",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
   },
   "engines": {

@@ -3,7 +3,7 @@
     "composite": true,
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "Node16",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noImplicitAny": true,
