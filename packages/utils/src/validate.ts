@@ -1,6 +1,6 @@
 import { navigateProgram, Program } from "@cadl-lang/compiler";
-import { getScenarioName } from "./decorators";
-import { reportDiagnostic } from "./lib";
+import { getScenarioName } from "./decorators.js";
+import { reportDiagnostic } from "./lib.js";
 
 export function $onValidate(program: Program) {
   navigateProgram(program, {

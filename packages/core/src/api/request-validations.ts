@@ -1,7 +1,7 @@
 import deepEqual from "deep-equal";
 import { parseStringPromise } from "xml2js";
-import { RequestExt } from "../server";
-import { ValidationError } from "./validation-error";
+import { RequestExt } from "../server/index.js";
+import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
 export const BODY_EMPTY_ERROR_MESSAGE = "Body should exists";

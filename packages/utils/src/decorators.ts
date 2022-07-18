@@ -6,7 +6,7 @@ import {
   Program,
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
-import { ScenarioCategory } from "./types";
+import { ScenarioCategory } from "./types.js";
 
 const AllowedCategories: Set<string> = new Set(["vanilla", "azure", "optional", "dpg"]);
 const CategoryKey = Symbol("Category");

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { AdminUrls } from "../constants";
-import { logger } from "../logger";
+import { AdminUrls } from "../constants.js";
+import { logger } from "../logger.js";
 
 const router = Router();
 

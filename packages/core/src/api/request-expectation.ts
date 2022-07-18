@@ -1,6 +1,6 @@
 import deepEqual from "deep-equal";
-import { ValidationError } from "../api";
-import { RequestExt } from "../server";
+import { ValidationError } from "../api/index.js";
+import { RequestExt } from "../server/index.js";
 import {
   validateRawBodyEquals,
   validateBodyEquals,
@@ -10,7 +10,7 @@ import {
   validateXMLBodyEquals,
   validateHeader,
   validateQueryParam,
-} from "./request-validations";
+} from "./request-validations.js";
 
 /**
  * Class containing all the expectations that can be run on the request.

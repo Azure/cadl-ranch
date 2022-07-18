@@ -1,8 +1,8 @@
 import fs from "fs";
 import { join } from "path";
-import { Category } from "../api";
-import { logger } from "../logger";
-import { ensureDir } from "../utils";
+import { Category } from "../api/index.js";
+import { logger } from "../logger.js";
+import { ensureDir } from "../utils/index.js";
 
 export interface CoverageMap {
   [name: string]: number;

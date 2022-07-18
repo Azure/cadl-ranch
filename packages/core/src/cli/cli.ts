@@ -1,5 +1,5 @@
 import yargs from "yargs";
-import { validateScenarios } from "../actions";
+import { validateScenarios } from "../actions/index.js";
 
 async function main() {
   await yargs(process.argv.slice(2))

@@ -1,4 +1,4 @@
-import { cleanupBody } from "./body-utils";
+import { cleanupBody } from "./body-utils.js";
 
 describe("BodyUtils", () => {
   describe("cleanupBody()", () => {

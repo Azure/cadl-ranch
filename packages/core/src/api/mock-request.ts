@@ -1,6 +1,6 @@
-import { RequestExt } from "../server";
-import { getRequestBaseUrl } from "../utils";
-import { RequestExpectation } from "./request-expectation";
+import { RequestExt } from "../server/index.js";
+import { getRequestBaseUrl } from "../utils/index.js";
+import { RequestExpectation } from "./request-expectation.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body.";
 
