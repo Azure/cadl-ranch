@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "watch": "tsc -p ./tsconfig.ws.json --watch",
+    "watch": "tsc --build ./tsconfig.ws.json --watch",
     "build": "npm run build --ws",
     "clean": "npm run clean --ws",
     "format": "npm run -s prettier -- --write",
