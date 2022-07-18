@@ -11,13 +11,15 @@ export interface ValidateScenarioConfig {
 
 export async function validateScenarios({ scenariosPath }: ValidateScenarioConfig) {
   await ensureScenariosPathExists(scenariosPath);
-  const scenarios = await findFilesFromPattern(`${scenariosPath}/**/main.cadl`);
+  const pattern = `${scenariosPath.replace(/\\/g, "/")}/*/main.cadl`;
+  logger.debug(`Looking for scenarios in ${pattern}`);
+  const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   for (const name of scenarios) {
     const scenarioPath = resolve(scenariosPath, name);
-    logger.debug("Found scenario", name, scenarioPath);
-    const { exitCode, out } = await execAsync("npx", [
+    logger.debug(`Found scenario ${name} at "${scenarioPath}"`);
+    const { exitCode, out } = await execAsync(process.platform === "win32" ? "npx.cmd" : "npx", [
       "cadl",
       "compile",
       scenarioPath,

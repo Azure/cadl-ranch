@@ -1,11 +1,13 @@
+import { resolve } from "path";
 import yargs from "yargs";
 import { validateScenarios } from "../actions/index.js";
+import { logger } from "../logger.js";
 
 async function main() {
   await yargs(process.argv.slice(2))
     .scriptName("cadl-testserver")
     .help()
-    .strict()
+    // .strict()
     .parserConfiguration({
       "greedy-arrays": false,
       "boolean-negation": false,
@@ -15,8 +17,14 @@ async function main() {
       description: "Output debug log messages.",
       default: false,
     })
+    .middleware((args) => {
+      console.log("Debug", args);
+      if (args.debug) {
+        logger.level = "debug";
+      }
+    })
     .command(
-      "validate-scenarios",
+      "validate-scenarios <scenariosPath>",
       "Compile and validate all the Cadl scenarios.",
       (cmd) => {
         return cmd.positional("scenariosPath", {
@@ -26,9 +34,13 @@ async function main() {
         });
       },
       async (args) => {
-        await validateScenarios(args);
+        await validateScenarios({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+        });
       },
-    ).argv;
+    )
+    .demandCommand(1, "You must use one of the supported commands.")
+    .parse();
 }
 
 main().catch((error) => {
