@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "cadl-testserver": "./cmd/cli.js"
+    "cadl-testserver": "./cmd/cli.mjs"
   },
   "scripts": {
     "watch": "tsc -p ./tsconfig.build.json --watch",
@@ -40,7 +40,6 @@
   "devDependencies": {
     "@types/deep-equal": "^1.0.1",
     "@types/express": "^4.17.13",
-    "@types/express-promise-router": "^3.0.0",
     "@types/glob": "^7.2.0",
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.0.6",
