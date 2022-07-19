@@ -3,6 +3,6 @@
   "compilerOptions": {
     "rootDir": "./src"
   },
-  "references": [{ "path": "../utils/tsconfig.build.json" }],
+  "references": [{ "path": "../cadl-ranch-expect/tsconfig.build.json" }],
   "exclude": ["**/*.test.*", "test/**/*"]
 }

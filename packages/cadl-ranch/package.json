@@ -1,11 +1,11 @@
 {
-  "name": "@azure-tools/cadl.testserver-core",
+  "name": "@azure-tools/cadl-ranch",
   "version": "0.1.0",
-  "description": "Cadl testserver core engine",
+  "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "cadl-testserver": "./cmd/cli.mjs"
+    "cadl-ranch": "./cmd/cli.mjs"
   },
   "scripts": {
     "watch": "tsc -p ./tsconfig.build.json --watch",
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/cadl.testserver.git"
+    "url": "git+https://github.com/Azure/cadl-ranch.git"
   },
   "author": "Microsoft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Azure/cadl.testserver/issues"
+    "url": "https://github.com/Azure/cadl-ranch/issues"
   },
-  "homepage": "https://github.com/Azure/cadl.testserver#readme",
+  "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
     "deep-equal": "^2.0.5",
     "express": "^4.18.1",

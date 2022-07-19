@@ -1,4 +1,4 @@
-## Cadl TestServer decorators
+## Cadl Ranch decorators
 
 ### `@scenario`
 

@@ -1,7 +1,7 @@
 {
-  "name": "@azure-tools/cadl.testserver-utils",
+  "name": "@azure-tools/cadl-ranch-expect",
   "version": "0.1.0",
-  "description": "Cadl scenarios and server implementing a mock api",
+  "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/cadl.testserver.git"
+    "url": "git+https://github.com/Azure/cadl-ranch.git"
   },
   "author": "Microsoft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Azure/cadl.testserver/issues"
+    "url": "https://github.com/Azure/cadl-ranch/issues"
   },
-  "homepage": "https://github.com/Azure/cadl.testserver#readme",
+  "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
     "@cadl-lang/compiler": "^0.32.0"
   },

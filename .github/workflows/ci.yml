@@ -32,7 +32,7 @@ jobs:
         name: Build
 
       - run: npm run validate-scenarios
-        name: Build
+        name: Validate Scenarios
 
       - run: npm run check-format
         name: Check formatting
