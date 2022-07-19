@@ -5,7 +5,7 @@ import { logger } from "../logger.js";
 
 async function main() {
   await yargs(process.argv.slice(2))
-    .scriptName("cadl-testserver")
+    .scriptName("cadl-ranch")
     .help()
     // .strict()
     .parserConfiguration({

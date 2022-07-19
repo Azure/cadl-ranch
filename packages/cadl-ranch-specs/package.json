@@ -1,7 +1,7 @@
 {
-  "name": "@azure-tools/cadl.testserver-utils",
+  "name": "@azure-tools/cadl-ranch-specs",
   "version": "0.1.0",
-  "description": "Cadl scenarios and server implementing a mock api",
+  "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "clean": "rimraf dist/ temp/",
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
+    "validate-scenarios": "cadl-ranch validate-scenarios ./http",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -26,7 +27,14 @@
   },
   "homepage": "https://github.com/Azure/cadl.testserver#readme",
   "dependencies": {
-    "@cadl-lang/compiler": "^0.32.0"
+    "@azure-tools/cadl-autorest": "^0.18.0",
+    "@azure-tools/cadl-azure-core": "^0.5.0",
+    "@azure-tools/cadl.testserver-core": "^0.1.0",
+    "@azure-tools/cadl.testserver-utils": "^0.1.0",
+    "@cadl-lang/compiler": "^0.33.0",
+    "@cadl-lang/openapi3": "^0.13.0",
+    "@cadl-lang/rest": "^0.15.1",
+    "@cadl-lang/versioning": "^0.6.0"
   },
   "devDependencies": {
     "@cadl-lang/eslint-config-cadl": "^0.3.0",
