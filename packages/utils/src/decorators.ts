@@ -4,34 +4,35 @@ import {
   NamespaceType,
   OperationType,
   Program,
+  Type,
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
-import { ScenarioCategory } from "./types.js";
+import { SupportedBy } from "./types.js";
 
-const AllowedCategories: Set<string> = new Set(["vanilla", "azure", "optional", "dpg"]);
-const CategoryKey = Symbol("Category");
+const SupportedByOptions: Set<string> = new Set(["arm", "dpg"]);
+const SupportedBy = Symbol("SupportedBy");
 const decoratorSignature = createDecoratorDefinition({
   name: "@scenario",
   target: "Namespace",
   args: [{ kind: "String" }],
 } as const);
-export function $category(context: DecoratorContext, target: NamespaceType, catgory: string) {
+export function $supportedBy(context: DecoratorContext, target: NamespaceType, catgory: string) {
   if (!decoratorSignature.validate(context, target, [catgory])) {
     return;
   }
 
-  if (!AllowedCategories.has(catgory)) {
+  if (!SupportedByOptions.has(catgory)) {
     reportDiagnostic(context.program, {
       code: "category-invalid",
-      format: { catgory, allowed: [...AllowedCategories].join(", ") },
+      format: { catgory, allowed: [...SupportedByOptions].join(", ") },
       target: context.getArgumentTarget(0)!,
     });
   }
-  context.program.stateMap(CategoryKey).set(target, catgory);
+  context.program.stateMap(SupportedBy).set(target, catgory);
 }
 
-export function getCategory(program: Program, target: NamespaceType): ScenarioCategory | undefined {
-  return program.stateMap(CategoryKey).get(target);
+export function getSupportedBy(program: Program, target: NamespaceType): SupportedBy | undefined {
+  return program.stateMap(SupportedBy).get(target);
 }
 
 const ScenarioDocKey = Symbol("ScenarioDoc");
@@ -51,19 +52,23 @@ export function getScenarioDoc(program: Program, target: OperationType): string 
   return program.stateMap(ScenarioDocKey).get(target);
 }
 
-const ScenarioNameKey = Symbol("ScenarioName");
-const scenarioNameSignature = createDecoratorDefinition({
+const ScenarioKey = Symbol("Scenario");
+const scenarioSignature = createDecoratorDefinition({
   name: "@scenario",
-  target: "Operation",
-  args: [{ kind: "String" }],
+  target: ["Operation", "Namespace"] as any,
+  args: [{ kind: "String", optional: true }],
 } as const);
-export function $scenarioName(context: DecoratorContext, target: OperationType, name: string) {
-  if (!scenarioNameSignature.validate(context, target, [name])) {
+export function $scenario(context: DecoratorContext, target: NamespaceType | OperationType, name?: string) {
+  if (!scenarioSignature.validate(context, target, [name])) {
     return;
   }
-  context.program.stateMap(ScenarioNameKey).set(target, name);
+  context.program.stateMap(ScenarioKey).set(target, name ?? target.name);
 }
 
-export function getScenarioName(program: Program, target: OperationType): string | undefined {
-  return program.stateMap(ScenarioNameKey).get(target);
+export function listScenarios(program: Program): [OperationType | NamespaceType, string][] {
+  return [...(program.stateMap(ScenarioKey).entries() as any)];
+}
+
+export function getScenarioName(program: Program, target: OperationType | NamespaceType): string | undefined {
+  return program.stateMap(ScenarioKey).get(target);
 }

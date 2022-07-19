@@ -16,6 +16,7 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
   const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
 
+  const invalidScenarios = [];
   for (const name of scenarios) {
     const scenarioPath = resolve(scenariosPath, name);
     logger.debug(`Found scenario ${name} at "${scenarioPath}"`);
@@ -25,6 +26,8 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
       scenarioPath,
       "--import",
       "@azure-tools/cadl.testserver-utils",
+      "--warn-as-error",
+      "--no-emit",
     ]);
 
     if (exitCode === 0) {
@@ -32,7 +35,12 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
     } else {
       logger.error(out);
       logger.error(`${pc.red("✘")} Scenario ${name} is invalid.`);
+      invalidScenarios.push(name);
     }
+  }
+
+  if (invalidScenarios.length > 0) {
+    process.exit(-1);
   }
 }
 

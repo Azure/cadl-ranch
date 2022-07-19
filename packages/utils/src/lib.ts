@@ -12,10 +12,10 @@ export const $lib = createCadlLibrary({
       },
     },
 
-    "missing-scenario-name": {
+    "missing-scenario": {
       severity: "warning",
       messages: {
-        default: `Operation is missing a scenario name. Use @scenarioName to provide the name of the scenario. See ${repoUrl}/blob/main/docs/decorators.md#scenarioname`,
+        default: `Operation doesn't belong to a scenario. Use @scenario(name?: string) to mark it as a scenario. See ${repoUrl}/blob/main/docs/decorators.md#scenario`,
       },
     },
     "missing-scenario-doc": {

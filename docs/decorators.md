@@ -1,8 +1,8 @@
 ## Cadl TestServer decorators
 
-### `@scenarioName`
+### `@scenario`
 
-Specify the name of the scenario that will show up in the compatibility table.
+Mark an operation or interface as a scenario. Optionally can provide the name of the scenario.
 
 ### `@scenarioDoc`
 

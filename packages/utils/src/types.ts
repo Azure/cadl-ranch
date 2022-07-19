@@ -1,1 +1,1 @@
-export type ScenarioCategory = "vanilla" | "azure" | "optional" | "dpg";
+export type SupportedBy = "arm" | "dpg";
