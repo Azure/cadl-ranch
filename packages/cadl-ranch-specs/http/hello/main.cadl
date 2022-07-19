@@ -1,4 +1,4 @@
-import "@azure-tools/cadl.testserver-utils";
+import "@azure-tools/cadl-ranch-expect";
 
 @supportedBy("dpg")
 namespace Hello;

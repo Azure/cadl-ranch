@@ -1,9 +1,9 @@
 import { createCadlLibrary, paramMessage } from "@cadl-lang/compiler";
 
-const repoUrl = `https://github.com/Azure/cadl.testserver`;
+const repoUrl = `https://github.com/Azure/cadl-ranch`;
 
 export const $lib = createCadlLibrary({
-  name: "@azure-tools/cadl.testserver-utils",
+  name: "@azure-tools/cadl-ranch-expect",
   diagnostics: {
     "category-invalid": {
       severity: "error",

@@ -1,4 +1,4 @@
-# Cadl TestServer
+# Cadl Ranch
 
 ## Requirements
 

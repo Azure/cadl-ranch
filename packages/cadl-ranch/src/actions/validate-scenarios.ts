@@ -25,7 +25,7 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
       "compile",
       scenarioPath,
       "--import",
-      "@azure-tools/cadl.testserver-utils",
+      "@azure-tools/cadl-ranch-expect",
       "--warn-as-error",
       "--no-emit",
     ]);

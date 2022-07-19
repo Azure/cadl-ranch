@@ -18,19 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/cadl.testserver.git"
+    "url": "git+https://github.com/Azure/cadl-ranch.git"
   },
   "author": "Microsoft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Azure/cadl.testserver/issues"
+    "url": "https://github.com/Azure/cadl-ranch/issues"
   },
-  "homepage": "https://github.com/Azure/cadl.testserver#readme",
+  "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
     "@azure-tools/cadl-autorest": "^0.18.0",
     "@azure-tools/cadl-azure-core": "^0.5.0",
-    "@azure-tools/cadl.testserver-core": "^0.1.0",
-    "@azure-tools/cadl.testserver-utils": "^0.1.0",
+    "@azure-tools/cadl-ranch": "^0.1.0",
+    "@azure-tools/cadl-ranch-expect": "^0.1.0",
     "@cadl-lang/compiler": "^0.33.0",
     "@cadl-lang/openapi3": "^0.13.0",
     "@cadl-lang/rest": "^0.15.1",
