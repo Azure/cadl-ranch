@@ -11,7 +11,7 @@ export interface ValidateScenarioConfig {
 
 export async function validateScenarios({ scenariosPath }: ValidateScenarioConfig) {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = `${scenariosPath.replace(/\\/g, "/")}/*/main.cadl`;
+  const pattern = `${scenariosPath.replace(/\\/g, "/")}/**/main.cadl`;
   logger.debug(`Looking for scenarios in ${pattern}`);
   const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
