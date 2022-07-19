@@ -1,8 +1,8 @@
 {
   "references": [
-    { "path": "packages/scenarios/tsconfig.build.json" },
-    { "path": "packages/core/tsconfig.build.json" },
-    { "path": "packages/utils/tsconfig.build.json" }
+    { "path": "packages/cadl-ranch-specs/tsconfig.build.json" },
+    { "path": "packages/cadl-ranch/tsconfig.build.json" },
+    { "path": "packages/cadl-ranch-expect/tsconfig.build.json" }
   ],
   "files": []
 }
