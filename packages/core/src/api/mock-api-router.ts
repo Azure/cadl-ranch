@@ -1,9 +1,9 @@
 import { Response, Router } from "express";
 import PromiseRouter from "express-promise-router";
-import { logger } from "../logger";
-import { RequestExt } from "../server";
-import { coverageService } from "../services";
-import { MockRequestHandler, processRequest } from "./request-processor";
+import { logger } from "../logger.js";
+import { RequestExt } from "../server/index.js";
+import { coverageService } from "../services/index.js";
+import { MockRequestHandler, processRequest } from "./request-processor.js";
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
 

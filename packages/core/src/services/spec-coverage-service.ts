@@ -1,6 +1,6 @@
 import fs from "fs";
-import { HttpMethod } from "../api";
-import { logger } from "../logger";
+import { HttpMethod } from "../api/index.js";
+import { logger } from "../logger.js";
 
 export interface SpecPath {
   /**

@@ -1,11 +1,11 @@
 import { Response } from "express";
-import { logger } from "../logger";
-import { RequestExt } from "../server";
-import { coverageService } from "../services";
-import { Category } from "./mock-api-router";
-import { MockRequest } from "./mock-request";
-import { MockResponse } from "./mock-response";
-import { ValidationError } from "./validation-error";
+import { logger } from "../logger.js";
+import { RequestExt } from "../server/index.js";
+import { coverageService } from "../services/index.js";
+import { Category } from "./mock-api-router.js";
+import { MockRequest } from "./mock-request.js";
+import { MockResponse } from "./mock-response.js";
+import { ValidationError } from "./validation-error.js";
 
 export type MockRequestHandler = (req: MockRequest) => MockResponse | Promise<MockResponse>;
 

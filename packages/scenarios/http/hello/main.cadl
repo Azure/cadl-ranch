@@ -1,1 +1,8 @@
-op test(): string;
+import "@azure-tools/cadl.testserver-utils";
+
+@supportedBy("dpg")
+namespace Hello;
+
+@scenario
+@scenarioDoc("This test is testing 'hello world' is being returned from the server")
+op world(): string;

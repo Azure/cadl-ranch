@@ -1,11 +1,11 @@
 import path from "path";
-import { app } from "../api";
-import { logger } from "../logger";
-import { internalRouter } from "../routes";
-import { MockApiServer } from "../server";
-import { coverageService } from "../services";
-import { findFilesFromPattern } from "../utils";
-import { ApiMockAppConfig } from "./config";
+import { app } from "../api/index.js";
+import { logger } from "../logger.js";
+import { internalRouter } from "../routes/index.js";
+import { MockApiServer } from "../server/index.js";
+import { coverageService } from "../services/index.js";
+import { findFilesFromPattern } from "../utils/index.js";
+import { ApiMockAppConfig } from "./config.js";
 
 export const ROUTE_FOLDER = path.join(__dirname, "../test-routes");
 

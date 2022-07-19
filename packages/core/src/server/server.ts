@@ -2,9 +2,9 @@ import { Server, ServerResponse } from "http";
 import bodyParser from "body-parser";
 import express, { ErrorRequestHandler, RequestHandler, Response } from "express";
 import morgan from "morgan";
-import { logger } from "../logger";
-import { cleanupBody } from "../utils";
-import { RequestExt } from "./request-ext";
+import { logger } from "../logger.js";
+import { cleanupBody } from "../utils/index.js";
+import { RequestExt } from "./request-ext.js";
 
 export interface MockApiServerConfig {
   port: number;

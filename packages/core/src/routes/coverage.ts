@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { coverageService } from "../services";
+import { coverageService } from "../services/index.js";
 
 const router = Router();
 export const coverageRouter = router;

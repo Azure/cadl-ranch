@@ -1,4 +1,4 @@
-import { MockResponseBody } from "./mock-response";
+import { MockResponseBody } from "./mock-response.js";
 
 /**
  * Serialize the provided content as json to use in a MockResponse body.
