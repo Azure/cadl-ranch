@@ -9,6 +9,9 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "watch": "tsc --build ./tsconfig.ws.json --watch",
+    "build": "pnpm run build",
+    "clean": "pnpm run build",
+    "lint": "pnpm run build",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run -s prettier -- --check",
     "validate-scenarios": "npm run validate-scenarios -w @azure-tools/cadl-ranch-specs",
