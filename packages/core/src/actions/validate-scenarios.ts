@@ -1,4 +1,4 @@
-import { stat, readdir } from "fs/promises";
+import { stat } from "fs/promises";
 import { resolve } from "path";
 import { logger } from "../logger.js";
 import { execAsync } from "../utils/exec.js";

@@ -4,7 +4,6 @@ import {
   NamespaceType,
   OperationType,
   Program,
-  Type,
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
@@ -41,7 +40,7 @@ const scenarioDocSignature = createDecoratorDefinition({
   target: "Operation",
   args: [{ kind: "String" }],
 } as const);
-export function $senarioDoc(context: DecoratorContext, target: OperationType, doc: string) {
+export function $scenarioDoc(context: DecoratorContext, target: OperationType, doc: string) {
   if (!scenarioDocSignature.validate(context, target, [doc])) {
     return;
   }

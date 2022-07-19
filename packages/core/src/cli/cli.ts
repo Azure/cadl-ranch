@@ -18,7 +18,6 @@ async function main() {
       default: false,
     })
     .middleware((args) => {
-      console.log("Debug", args);
       if (args.debug) {
         logger.level = "debug";
       }
@@ -44,6 +43,7 @@ async function main() {
 }
 
 main().catch((error) => {
+  // eslint-disable-next-line no-console
   console.log("Error", error);
   process.exit(1);
 });
