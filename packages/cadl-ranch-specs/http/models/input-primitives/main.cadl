@@ -25,7 +25,7 @@ model InputModel {
   requiredPlainTime: plainTime;
   requiredZonedDateTime: zonedDateTime;
   requiredDuration: duration;
-  requredBoolean: boolean;
+  requiredBoolean: boolean;
 }
 
 @scenario
