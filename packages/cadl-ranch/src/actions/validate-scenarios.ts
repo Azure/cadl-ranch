@@ -4,7 +4,6 @@ import { logger } from "../logger.js";
 import { execAsync } from "../utils/exec.js";
 import pc from "picocolors";
 import { findFilesFromPattern } from "../utils/file-utils.js";
-import { command } from "yargs";
 
 export interface ValidateScenarioConfig {
   scenariosPath: string;
@@ -31,9 +30,9 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
       "--warn-as-error",
       "--no-emit",
     ];
-    logger.debug(`Running: ${command} ${args.join(" ")}`);
+    logger.debug(`Running: ${cmd} ${args.join(" ")}`);
 
-    const { exitCode, out } = await execAsync(command, args);
+    const { exitCode, out } = await execAsync(cmd, args);
 
     if (exitCode === 0) {
       logger.info(`${pc.green("✓")} Scenario ${name} is valid.`);
