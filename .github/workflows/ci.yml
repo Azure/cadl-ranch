@@ -33,7 +33,10 @@ jobs:
       - run: pnpm run build
         name: Build
 
-      - run: pnpm run validate-scenarios
+      - run: ls ./packages/cadl-ranch-specs/node_modules/.bin
+        name: Test LS
+
+      - run: pnpm run validate-scenarios --debug
         name: Validate Scenarios
 
       - run: pnpm run check-format

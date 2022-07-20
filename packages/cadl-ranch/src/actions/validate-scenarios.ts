@@ -1,9 +1,10 @@
 import { stat } from "fs/promises";
-import { dirname, resolve } from "path";
+import { resolve } from "path";
 import { logger } from "../logger.js";
 import { execAsync } from "../utils/exec.js";
 import pc from "picocolors";
 import { findFilesFromPattern } from "../utils/file-utils.js";
+import { command } from "yargs";
 
 export interface ValidateScenarioConfig {
   scenariosPath: string;
@@ -20,21 +21,19 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
   for (const name of scenarios) {
     const scenarioPath = resolve(scenariosPath, name);
     logger.debug(`Found scenario ${name} at "${scenarioPath}"`);
-    const { exitCode, out } = await execAsync(
-      process.platform === "win32" ? "npx.cmd" : "npx",
-      [
-        "-p",
-        "@cadl-lang/compiler",
-        "cadl",
-        "compile",
-        ".",
-        "--import",
-        "@azure-tools/cadl-ranch-expect",
-        "--warn-as-error",
-        "--no-emit",
-      ],
-      { cwd: dirname(scenarioPath) },
-    );
+    const cmd = process.platform === "win32" ? "npx.cmd" : "npx";
+    const args = [
+      "cadl",
+      "compile",
+      scenarioPath,
+      "--import",
+      "@azure-tools/cadl-ranch-expect",
+      "--warn-as-error",
+      "--no-emit",
+    ];
+    logger.debug(`Running: ${command} ${args.join(" ")}`);
+
+    const { exitCode, out } = await execAsync(command, args);
 
     if (exitCode === 0) {
       logger.info(`${pc.green("✓")} Scenario ${name} is valid.`);
