@@ -22,7 +22,17 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
     logger.debug(`Found scenario ${name} at "${scenarioPath}"`);
     const { exitCode, out } = await execAsync(
       process.platform === "win32" ? "npx.cmd" : "npx",
-      ["cadl", "compile", ".", "--import", "@azure-tools/cadl-ranch-expect", "--warn-as-error", "--no-emit"],
+      [
+        "-p",
+        "@cadl-lang/compiler",
+        "cadl",
+        "compile",
+        ".",
+        "--import",
+        "@azure-tools/cadl-ranch-expect",
+        "--warn-as-error",
+        "--no-emit",
+      ],
       { cwd: dirname(scenarioPath) },
     );
 
