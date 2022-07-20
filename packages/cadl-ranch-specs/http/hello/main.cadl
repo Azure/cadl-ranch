@@ -1,4 +1,5 @@
 import "@azure-tools/cadl-autorest";
+import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
 
 using Autorest;
