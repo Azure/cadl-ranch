@@ -1,4 +1,7 @@
+import "@azure-tools/cadl-autorest";
 import "@azure-tools/cadl-ranch-expect";
+
+using Autorest;
 
 @supportedBy("dpg")
 namespace Hello;
