@@ -23,7 +23,6 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
     const base = join(process.cwd(), "node_modules", ".bin", "cadl");
     const cmd = process.platform === "win32" ? `${base}.cmd` : base;
     const args = [
-      "cadl",
       "compile",
       scenarioPath,
       "--import",
