@@ -9,12 +9,12 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "watch": "tsc --build ./tsconfig.ws.json --watch",
-    "build": "pnpm run -r build",
-    "clean": "pnpm run -r clean",
-    "lint": "pnpm run -r lint",
+    "build": "pnpm -r run build",
+    "clean": "pnpm -r run clean",
+    "lint": "pnpm -r run lint",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run -s prettier -- --check",
-    "validate-scenarios": "npm run validate-scenarios -w @azure-tools/cadl-ranch-specs",
+    "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios ",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
   },
   "engines": {
