@@ -33,14 +33,15 @@
     "@azure-tools/cadl-ranch-expect": "^0.1.0",
     "@cadl-lang/compiler": "^0.33.0",
     "@cadl-lang/openapi3": "^0.13.0",
+    "@cadl-lang/openapi": "^0.10.1",
     "@cadl-lang/rest": "^0.15.1",
     "@cadl-lang/versioning": "^0.6.0"
   },
   "devDependencies": {
     "@cadl-lang/eslint-config-cadl": "^0.3.0",
+    "prettier": "^2.7.1",
     "eslint": "^8.20.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.5",
     "typescript": "^4.7.4"
   }
 }
