@@ -1,10 +1,13 @@
-import { NamespaceType, navigateProgram, OperationType, Program } from "@cadl-lang/compiler";
+import { getSourceLocation, NamespaceType, navigateProgram, OperationType, Program } from "@cadl-lang/compiler";
 import { getScenarioDoc, getScenarioName } from "./decorators.js";
 import { reportDiagnostic } from "./lib.js";
 
 export function $onValidate(program: Program) {
   navigateProgram(program, {
     operation: (operation) => {
+      if (getSourceLocation(operation).file.path.includes("/node_modules/")) {
+        return;
+      }
       if (!checkIsInScenario(program, operation)) {
         reportDiagnostic(program, { code: "missing-scenario", target: operation });
       }
