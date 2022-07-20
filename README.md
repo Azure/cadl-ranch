@@ -3,32 +3,32 @@
 ## Requirements
 
 - Node 16+
-- npm 8.x+
+- pnpm 7.5.2+
 
 ## Develop
 
-This project uses [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) to manage multiple packages.
+This project uses [pnpm workspaces](https://pnpm.io/workspaces) to manage multiple packages.
 
 ```bash
-npm install
+pnpm install
 ```
 
 2. Build
 
 ```bash
-npm run build --ws
+pnpm build
 ```
 
 3. Build TS in watch mode
 
 ```bash
-npm run watch
+pnpm watch
 ```
 
 4. Clean
 
 ```bash
-npm run clean --ws
+pnpm clean
 ```
 
 ## Contributing
