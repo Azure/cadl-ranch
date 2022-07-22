@@ -1,0 +1,30 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("OutputBasicClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates an output-only model with required reference and value type properties.")
+
+namespace Cadl.TestServer.OutputBasic;
+
+@doc("Output Model")
+model OutputModel {
+
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+}
+
+@scenario
+@scenarioDoc("Generate and receive an output-only model with required reference and value type properties.")
+@route("/models")
+@get
+op getModel(): OkResponse<OutputModel> | ErrorResponse;
