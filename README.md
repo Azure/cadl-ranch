@@ -9,6 +9,8 @@
 
 This project uses [pnpm workspaces](https://pnpm.io/workspaces) to manage multiple packages.
 
+1. Install dependencies
+
 ```bash
 pnpm install
 ```
@@ -19,13 +21,15 @@ pnpm install
 pnpm build
 ```
 
-3. Build TS in watch mode
+3. Build in watch mode(rebuild automatically on save)
 
 ```bash
 pnpm watch
 ```
 
-4. Clean
+### Other helpful commands
+
+Clean
 
 ```bash
 pnpm clean
