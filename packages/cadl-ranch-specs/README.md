@@ -1,0 +1,22 @@
+# Cadl Ranch Specs
+
+This package contains all the scenarios that should be supported by a client generator.
+
+## Development
+
+1. [FOLLOW THE MONOREPO INSTRUCTION](https://github.com/Azure/cadl-ranch) to get the environment setup.
+2. Scenarios should be in `./http` folder
+
+#### Validate the scenarios are valid
+
+```
+pnpm run validate-scenarios
+```
+
+#### Start mock api server
+
+This will start the server using the mock apis. When writing a mock api use this command to start the server.
+
+```bash
+pnpm run serve
+```

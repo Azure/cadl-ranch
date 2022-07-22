@@ -24,7 +24,7 @@ model RoundTripModel {
 }
 
 @scenario
-@scenarioDoc("Generate and receive a round-trip model with required reference and value type properties.")
+@scenarioDoc("Generate, send, and receive a round-trip model with required reference and value type properties.")
 @route("/models")
 @get
 op getModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
