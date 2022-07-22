@@ -2,6 +2,10 @@ import { resolve } from "path";
 import yargs from "yargs";
 import { validateScenarios } from "../actions/index.js";
 import { logger } from "../logger.js";
+import "source-map-support/register.js";
+import { serve } from "../actions/serve.js";
+
+export const DEFAULT_PORT = 3000;
 
 async function main() {
   await yargs(process.argv.slice(2))
@@ -35,6 +39,30 @@ async function main() {
       async (args) => {
         await validateScenarios({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
+        });
+      },
+    )
+    .command(
+      "serve <scenariosPath>",
+      "Serve the mock api at the given paths.",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .option("port", {
+            alias: "p",
+            type: "number",
+            description: "Port where to host the server",
+            default: DEFAULT_PORT,
+          });
+      },
+      async (args) => {
+        await serve({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+          port: args.port,
         });
       },
     )

@@ -1,16 +1,15 @@
 import deepEqual from "deep-equal";
-import { ValidationError } from "../api/index.js";
-import { RequestExt } from "../server/index.js";
 import {
   validateRawBodyEquals,
   validateBodyEquals,
   validateBodyEmpty,
   validateBodyNotEmpty,
   validateCoercedDateBodyEquals,
-  validateXMLBodyEquals,
   validateHeader,
   validateQueryParam,
 } from "./request-validations.js";
+import { RequestExt } from "./types.js";
+import { ValidationError } from "./validation-error.js";
 
 /**
  * Class containing all the expectations that can be run on the request.
@@ -58,15 +57,6 @@ export class RequestExpectation {
    */
   public bodyNotEmpty(): void {
     validateBodyNotEmpty(this.originalRequest);
-  }
-
-  /**
-   * Expect the body of the request matches the XML body you expect
-   * @param expectedRawBody Raw request XML body expressed in a string.
-   * @throws {ValidationError} if there is an error.
-   */
-  public async xmlBodyEquals(expectedRawBody: string): Promise<void> {
-    await validateXMLBodyEquals(this.originalRequest, expectedRawBody);
   }
 
   /**
