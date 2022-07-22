@@ -1,15 +1,13 @@
-import path from "path";
-import { app } from "../api/index.js";
-import { logger } from "../logger.js";
+import { RequestExt, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import { Response, Router } from "express";
 import { internalRouter } from "../routes/index.js";
+import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { MockApiServer } from "../server/index.js";
-import { coverageService } from "../services/index.js";
-import { findFilesFromPattern } from "../utils/index.js";
 import { ApiMockAppConfig } from "./config.js";
+import { processRequest } from "./request-processor.js";
 
-export const ROUTE_FOLDER = path.join(__dirname, "../test-routes");
-
-export class ApiMockApp {
+export class MockApiApp {
+  private router = Router();
   private server: MockApiServer;
 
   constructor(private config: ApiMockAppConfig) {
@@ -19,20 +17,19 @@ export class ApiMockApp {
   public async start(): Promise<void> {
     this.server.use("/", internalRouter);
 
-    await requireMockRoutes(ROUTE_FOLDER);
-
-    // Need to init after registering the new routes but before the legacy routes.
-    coverageService.init(this.config.coverageDirectory, this.config.appendCoverage);
-    const apiRouter = app;
-    this.server.use("/", apiRouter.router);
+    const scenarios = await loadScenarioMockApis(this.config.scenarioPath);
+    for (const [name, scenario] of Object.entries(scenarios)) {
+      this.registerScenario(name, scenario);
+    }
+    this.server.use("/", this.router);
     this.server.start();
   }
-}
 
-export const requireMockRoutes = async (routesFolder: string): Promise<void> => {
-  const files = await findFilesFromPattern(path.join(routesFolder, "/**/*.js"));
-  logger.debug("Detected routes:", files);
-  for (const file of files) {
-    require(path.resolve(file));
+  private registerScenario(name: string, scenario: ScenarioMockApi) {
+    for (const endpoint of scenario.apis) {
+      this.router.route(endpoint.uri)[endpoint.method](async (req: RequestExt, res: Response) => {
+        await processRequest(name, req, res, endpoint.handler);
+      });
+    }
   }
-};
+}

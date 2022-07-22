@@ -31,6 +31,10 @@ pnpm watch
 pnpm clean
 ```
 
+## Links
+
+- [Cadl Ranch Specs](./packages/cadl-ranch-specs/) to work on scenarios and/or mock apis.
+
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a

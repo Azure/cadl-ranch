@@ -1,6 +1,5 @@
 import deepEqual from "deep-equal";
-import { parseStringPromise } from "xml2js";
-import { RequestExt } from "../server/index.js";
+import { RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
@@ -43,7 +42,7 @@ export const validateCoercedDateBodyEquals = (request: RequestExt, expectedBody:
     return;
   }
 
-  if (!deepEqual(coerceDate(request.body), expectedBody, { strict: true })) {
+  if (!deepEqual(request.body, expectedBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedBody, request.body);
   }
 };
@@ -78,31 +77,6 @@ export const validateBodyNotEmpty = (request: RequestExt): void => {
  */
 const isBodyEmpty = (body: string | undefined | null) => {
   return body == null || body === "";
-};
-
-const coerceDateXml = (xml: string): string => {
-  return xml.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d\.\d\d\d)\d{0,4}([Zz]|[+-]00:00)/g, "$1Z");
-};
-
-const coerceDate = (targetObject: Record<string, unknown>): Record<string, unknown> => {
-  let stringRep = JSON.stringify(targetObject);
-  stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)\.\d{3,7}([Zz]|[+-]00:00)/g, "$1Z");
-  return JSON.parse(stringRep);
-};
-
-/**
- * Check whether the XML request body is matching the given xml.
- */
-export const validateXMLBodyEquals = async (request: RequestExt, expectedBody: string): Promise<void> => {
-  const rawBody = request.body;
-  const actualBody = coerceDateXml(rawBody);
-
-  const actualParsedBody = await parseStringPromise(actualBody);
-  const expectedParsedBody = await parseStringPromise(expectedBody);
-
-  if (!deepEqual(actualParsedBody, expectedParsedBody, { strict: true })) {
-    throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedParsedBody, actualParsedBody);
-  }
 };
 
 /**
