@@ -1,34 +1,32 @@
 import { Response } from "express";
 import { logger } from "../logger.js";
-import { RequestExt } from "../server/index.js";
-import { coverageService } from "../services/index.js";
-import { Category } from "./mock-api-router.js";
-import { MockRequest } from "./mock-request.js";
-import { MockResponse } from "./mock-response.js";
-import { ValidationError } from "./validation-error.js";
+import {
+  MockRequest,
+  MockRequestHandler,
+  MockResponse,
+  RequestExt,
+  ValidationError,
+} from "@azure-tools/cadl-ranch-api";
 
-export type MockRequestHandler = (req: MockRequest) => MockResponse | Promise<MockResponse>;
-
-export const processRequest = async (
-  category: Category,
-  name: string | undefined,
+export async function processRequest(
+  scenarioName: string | undefined,
   request: RequestExt,
   response: Response,
   func: MockRequestHandler,
-): Promise<void> => {
+): Promise<void> {
   const mockRequest = new MockRequest(request);
   const mockResponse = await callHandler(mockRequest, response, func);
   if (mockResponse === undefined) {
     return;
   }
 
-  if ((mockResponse.status >= 200 && mockResponse.status < 300) || mockResponse.testSuccessful) {
-    if (name) {
-      await coverageService.track(category, name);
-    }
-  }
+  // if ((mockResponse.status >= 200 && mockResponse.status < 300) || mockResponse.testSuccessful) {
+  //   if (name) {
+  //     await coverageService.track(category, name);
+  //   }
+  // }
   processResponse(response, mockResponse);
-};
+}
 
 const processResponse = (response: Response, mockResponse: MockResponse) => {
   response.status(mockResponse.status);
