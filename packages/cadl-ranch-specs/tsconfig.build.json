@@ -1,9 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "rootDir": "./src"
-  },
   "references": [
+    { "path": "../cadl-ranch-api/tsconfig.build.json" },
     { "path": "../cadl-ranch-expect/tsconfig.build.json" },
     { "path": "../cadl-ranch/tsconfig.build.json" }
   ],
