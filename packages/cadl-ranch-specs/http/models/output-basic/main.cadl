@@ -6,15 +6,15 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Operations;
 
-@serviceTitle("InputBasicClient")
+@serviceTitle("OutputBasicClient")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
-@doc("Illustrates an input-only model with required reference and value type properties.")
+@doc("Illustrates an output-only model with required reference and value type properties.")
 
-namespace Cadl.TestServer.InputBasic;
+namespace Cadl.TestServer.OutputBasic;
 
-@doc("Input Model")
-model InputModel {
+@doc("Output Model")
+model OutputModel {
 
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
@@ -24,7 +24,7 @@ model InputModel {
 }
 
 @scenario
-@scenarioDoc("Generate and send an input-only model with required reference and value type properties.")
+@scenarioDoc("Generate and receive an output-only model with required reference and value type properties.")
 @route("/models")
 @get
-op getModel(@body input: InputModel): Response<200> | ErrorResponse ;
+op getModel(): OkResponse<OutputModel> | ErrorResponse;
