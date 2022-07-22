@@ -4,7 +4,7 @@ import express, { ErrorRequestHandler, RequestHandler, Response } from "express"
 import morgan from "morgan";
 import { logger } from "../logger.js";
 import { cleanupBody } from "../utils/index.js";
-import { RequestExt } from "./request-ext.js";
+import { RequestExt } from "@azure-tools/cadl-ranch-api";
 
 export interface MockApiServerConfig {
   port: number;

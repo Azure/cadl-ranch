@@ -1,8 +1,5 @@
-import { RequestExt } from "../server/index.js";
-import { getRequestBaseUrl } from "../utils/index.js";
-import { RequestExpectation } from "./request-expectation.js";
-
-export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body.";
+import { RequestExpectation } from "./request-expecation.js";
+import { RequestExt } from "./types.js";
 
 export class MockRequest {
   public readonly expect: RequestExpectation;
@@ -23,3 +20,5 @@ export class MockRequest {
     this.body = originalRequest.body;
   }
 }
+
+const getRequestBaseUrl = (request: RequestExt): string => `${request.protocol}://${request.get("host")}`;

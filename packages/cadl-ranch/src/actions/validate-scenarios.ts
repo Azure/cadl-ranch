@@ -1,9 +1,10 @@
-import { stat } from "fs/promises";
 import { join, resolve } from "path";
 import { logger } from "../logger.js";
 import { execAsync } from "../utils/exec.js";
 import pc from "picocolors";
 import { findFilesFromPattern } from "../utils/file-utils.js";
+import { ensureScenariosPathExists } from "../utils/index.js";
+import { normalizePath } from "../utils/path-utils.js";
 
 export interface ValidateScenarioConfig {
   scenariosPath: string;
@@ -11,7 +12,7 @@ export interface ValidateScenarioConfig {
 
 export async function validateScenarios({ scenariosPath }: ValidateScenarioConfig) {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = `${scenariosPath.replace(/\\/g, "/")}/**/main.cadl`;
+  const pattern = `${normalizePath(scenariosPath)}/**/main.cadl`;
   logger.debug(`Looking for scenarios in ${pattern}`);
   const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
@@ -45,16 +46,5 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
 
   if (invalidScenarios.length > 0) {
     process.exit(-1);
-  }
-}
-
-async function ensureScenariosPathExists(scenariosPath: string) {
-  try {
-    const stats = await stat(scenariosPath);
-    if (!stats.isDirectory()) {
-      throw new Error(`Scenarios path ${scenariosPath} is not a directory.`);
-    }
-  } catch (e) {
-    throw new Error(`Scenarios path ${scenariosPath} doesn't exists.`);
   }
 }

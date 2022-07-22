@@ -26,6 +26,7 @@ importers:
 
   packages/cadl-ranch:
     specifiers:
+      '@azure-tools/cadl-ranch-api': ^0.1.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
       '@types/body-parser': ^1.19.2
       '@types/deep-equal': ^1.0.1
@@ -45,11 +46,13 @@ importers:
       picocolors: ^1.0.0
       prettier: ^2.7.1
       rimraf: ^3.0.2
+      source-map-support: ^0.5.21
       typescript: ^4.7.4
       winston: ^3.8.1
       xml2js: ^0.4.23
       yargs: ^17.5.1
     dependencies:
+      '@azure-tools/cadl-ranch-api': link:../cadl-ranch-api
       body-parser: 1.20.0
       deep-equal: 2.0.5
       express: 4.18.1
@@ -57,6 +60,7 @@ importers:
       glob: 8.0.3
       morgan: 1.10.0
       picocolors: 1.0.0
+      source-map-support: 0.5.21
       winston: 3.8.1
       xml2js: 0.4.23
       yargs: 17.5.1
@@ -69,6 +73,53 @@ importers:
       '@types/morgan': 1.9.3
       '@types/node': 18.0.6
       '@types/xml2js': 0.4.11
+      '@types/yargs': 17.0.10
+      eslint: 8.20.0
+      prettier: 2.7.1
+      rimraf: 3.0.2
+      typescript: 4.7.4
+
+  packages/cadl-ranch-api:
+    specifiers:
+      '@cadl-lang/eslint-config-cadl': ^0.3.0
+      '@types/body-parser': ^1.19.2
+      '@types/deep-equal': ^1.0.1
+      '@types/express': ^4.17.13
+      '@types/glob': ^7.2.0
+      '@types/morgan': ^1.9.3
+      '@types/node': ^18.0.6
+      '@types/yargs': ^17.0.10
+      body-parser: ^1.20.0
+      deep-equal: ^2.0.5
+      eslint: ^8.20.0
+      express: ^4.18.1
+      express-promise-router: ^4.1.1
+      glob: ^8.0.3
+      morgan: ^1.10.0
+      picocolors: ^1.0.0
+      prettier: ^2.7.1
+      rimraf: ^3.0.2
+      typescript: ^4.7.4
+      winston: ^3.8.1
+      yargs: ^17.5.1
+    dependencies:
+      body-parser: 1.20.0
+      deep-equal: 2.0.5
+      express: 4.18.1
+      express-promise-router: 4.1.1_l7cefl7unkfq7qdzumszvxnyjy
+      glob: 8.0.3
+      morgan: 1.10.0
+      picocolors: 1.0.0
+      winston: 3.8.1
+      yargs: 17.5.1
+    devDependencies:
+      '@cadl-lang/eslint-config-cadl': 0.3.0_prettier@2.7.1
+      '@types/body-parser': 1.19.2
+      '@types/deep-equal': 1.0.1
+      '@types/express': 4.17.13
+      '@types/glob': 7.2.0
+      '@types/morgan': 1.9.3
+      '@types/node': 18.0.6
       '@types/yargs': 17.0.10
       eslint: 8.20.0
       prettier: 2.7.1
@@ -99,6 +150,7 @@ importers:
       '@azure-tools/cadl-autorest': ^0.18.0
       '@azure-tools/cadl-azure-core': ^0.5.0
       '@azure-tools/cadl-ranch': ^0.1.0
+      '@azure-tools/cadl-ranch-api': ^0.1.0
       '@azure-tools/cadl-ranch-expect': ^0.1.0
       '@cadl-lang/compiler': ^0.33.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
@@ -106,6 +158,7 @@ importers:
       '@cadl-lang/openapi3': ^0.13.0
       '@cadl-lang/rest': ^0.15.1
       '@cadl-lang/versioning': ^0.6.0
+      '@types/node': ^18.0.6
       eslint: ^8.20.0
       prettier: ^2.7.1
       rimraf: ^3.0.2
@@ -114,6 +167,7 @@ importers:
       '@azure-tools/cadl-autorest': 0.18.0_i5vhvievk3nshsgighj4tl2hra
       '@azure-tools/cadl-azure-core': 0.5.0_tepqwhitp36u6s6ztwc4s34d6m
       '@azure-tools/cadl-ranch': link:../cadl-ranch
+      '@azure-tools/cadl-ranch-api': link:../cadl-ranch-api
       '@azure-tools/cadl-ranch-expect': link:../cadl-ranch-expect
       '@cadl-lang/compiler': 0.33.0
       '@cadl-lang/openapi': 0.10.1_vyhze2bbi47xrojfxpnzwsryam
@@ -122,6 +176,7 @@ importers:
       '@cadl-lang/versioning': 0.6.1
     devDependencies:
       '@cadl-lang/eslint-config-cadl': 0.3.0_prettier@2.7.1
+      '@types/node': 18.0.6
       eslint: 8.20.0
       prettier: 2.7.1
       rimraf: 3.0.2
@@ -1494,7 +1549,6 @@ packages:
 
   /buffer-from/1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
-    dev: true
 
   /builtin-modules/3.3.0:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
@@ -4177,10 +4231,16 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /source-map-support/0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+    dev: false
+
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /spdx-correct/3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==}
