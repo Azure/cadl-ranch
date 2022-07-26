@@ -1,0 +1,94 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("NestedModelsBasicClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates input, output, and round-trip models with required properties of types that are also models.")
+
+namespace Cadl.TestServer.NestedModelsBasic;
+
+
+@doc("Model to illustrate a nested model that only appears on an input model.")
+model NestedInputOnlyModel {
+
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+
+  @doc("Required collection of strings, illustrating a collection of reference types.")
+  requiredStringList: string[];
+
+  @doc("Required collection of ints, illustrating a collection of value types.")
+  requiredIntList: int32[];
+}
+
+@doc("Model to illustrate a nested model that only appears on an output model.")
+model NestedOutputOnlyModel {
+  ...NestedInputOnlyModel
+}
+
+@doc("Model to illustrate a nested model that only appears on a nested model.")
+model NestedRoundTripOnlyModel {
+  ...NestedInputOnlyModel
+}
+
+@doc("Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models.")
+model NestedRoundTripSharedModel {
+  ...NestedInputOnlyModel
+}
+
+@doc("Input model with nested model properties.")
+model InputModel {
+
+  @doc("Required nested input model.")
+  NestedInputModel : NestedInputOnlyModel;
+
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
+}
+
+@doc("Output model with nested model properties")
+model OutputModel {
+
+  @doc("Required nested output model.")
+  NestedOutputModel : NestedOutputOnlyModel;
+
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
+}
+
+@doc("Round-trip model with nested model properties")
+model RoundTripModel {
+
+  @doc("Required nested round-trip model.")
+  NestedRoundTripModel : NestedRoundTripOnlyModel;
+
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
+}
+
+@scenario
+@scenarioDoc("Generate and send input model with required nested model properties.")
+@route("/models")
+@post
+op sendNestedModel(@body input: InputModel): Response<200> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate and receive output model with required nested model properties.")
+@route("/models")
+@get
+op getNestedModel(): OkResponse<OutputModel> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with required nested model properties.")
+@route("/models")
+@put
+op setNestedModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
