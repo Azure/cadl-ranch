@@ -74,18 +74,26 @@ Scenarios.DPGAddOptionalInput_OptionalParam = passOnSuccess(
 /**
  * A new body type is added (was JSON, and now JSON + JPEG).
  */
-// coverageService.register("dpg", "DPGNewBodyType.JSON");
-// coverageService.register("dpg", "DPGNewBodyType.JPEG");
-Scenarios.DPGNewBodyType = passOnSuccess(
-  mockapi.post("/servicedriven/parameters", (req) => {
+Scenarios.DPGNewBodyTypeJSON = passOnSuccess(
+  mockapi.post("/servicedriven/parameters/json", (req) => {
+    switch (req.headers["content-type"]) {
+      case "application/json":
+        req.expect.bodyEquals({ url: "http://example.org/myimage.jpeg" });
+        return { status: 200 };
+      default:
+        throw new ValidationError("Should be image/jpeg or application/json", {}, req.headers["content-type"]);
+    }
+  }),
+);
+
+/**
+ * A new body type is added (was JSON, and now JSON + JPEG).
+ */
+Scenarios.DPGNewBodyTypeJPEG = passOnSuccess(
+  mockapi.post("/servicedriven/parameters/jpeg", (req) => {
     switch (req.headers["content-type"]) {
       case "image/jpeg":
         // req.expect.rawBodyEquals("binary");
-        coverageService.track("dpg", "DPGNewBodyType.JPEG");
-        return { status: 200 };
-      case "application/json":
-        req.expect.bodyEquals({ url: "http://example.org/myimage.jpeg" });
-        coverageService.track("dpg", "DPGNewBodyType.JSON");
         return { status: 200 };
       default:
         throw new ValidationError("Should be image/jpeg or application/json", {}, req.headers["content-type"]);
