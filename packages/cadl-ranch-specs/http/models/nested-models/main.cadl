@@ -14,18 +14,14 @@ using Azure.Core.Operations;
 namespace Cadl.TestServer.NestedModelsBasic;
 
 
-@doc("Model to illustrate nesting, having properties of reference and value types.")
-model NestedBasicInputModel {
+@doc("Model to illustrate a nested model that only appears on an input model.")
+model NestedInputOnlyModel {
 
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 
   @doc("Required int, illustrating a value type property.")
   requiredInt: int32;
-}
-
-@doc("Model to illustrate nesting, having properties of collection types.")
-model NestedCollectionInputModel {
 
   @doc("Required collection of strings, illustrating a collection of reference types.")
   requiredStringList: string[];
@@ -34,54 +30,49 @@ model NestedCollectionInputModel {
   requiredIntList: int32[];
 }
 
-@doc("Model to illustrate nesting, having properties of reference and value types.")
-model NestedBasicModel {
-
-  @doc("Required string, illustrating a reference type property.")
-  requiredString: string;
-
-  @doc("Required int, illustrating a value type property.")
-  requiredInt: int32;
+@doc("Model to illustrate a nested model that only appears on an output model.")
+model NestedOutputOnlyModel {
+  ...NestedInputOnlyModel
 }
 
-@doc("Model to illustrate nesting, having properties of collection types.")
-model NestedCollectionModel {
+@doc("Model to illustrate a nested model that only appears on a nested model.")
+model NestedRoundTripOnlyModel {
+  ...NestedInputOnlyModel
+}
 
-  @doc("Required collection of strings, illustrating a collection of reference types.")
-  requiredStringList: string[];
-
-  @doc("Required collection of ints, illustrating a collection of value types.")
-  requiredIntList: int32[];
+@doc("Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models.")
+model NestedRoundTripSharedModel {
+  ...NestedInputOnlyModel
 }
 
 @doc("Input model with nested model properties.")
 model InputModel {
 
-  @doc("Required nested basic model.")
-  NestedModel : NestedBasicInputModel;
+  @doc("Required nested input model.")
+  NestedInputModel : NestedInputOnlyModel;
 
-  @doc("Required nested collection-property model.")
-  NestedCollectionModel : NestedCollectionInputModel;
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
 }
 
 @doc("Output model with nested model properties")
 model OutputModel {
 
-  @doc("Required nested basic model.")
-  NestedModel : NestedBasicModel;
+  @doc("Required nested output model.")
+  NestedOutputModel : NestedOutputOnlyModel;
 
-  @doc("Required nested collection-property model.")
-  NestedCollectionModel : NestedCollectionModel;
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
 }
 
 @doc("Round-trip model with nested model properties")
 model RoundTripModel {
 
-  @doc("Required nested basic model.")
-  NestedModel : NestedBasicModel;
+  @doc("Required nested round-trip model.")
+  NestedRoundTripModel : NestedRoundTripOnlyModel;
 
-  @doc("Required nested collection-property model.")
-  NestedCollectionModel : NestedCollectionModel;
+  @doc("Required nested shared model.")
+  NestedSharedModel : NestedRoundTripSharedModel;
 }
 
 @scenario
