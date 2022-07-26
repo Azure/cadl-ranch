@@ -1,0 +1,103 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("NestedModelsBasicClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates input, output, and round-trip models with required properties of types that are also models.")
+
+namespace Cadl.TestServer.NestedModelsBasic;
+
+
+@doc("Model to illustrate nesting, having properties of reference and value types.")
+model NestedBasicInputModel {
+
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+}
+
+@doc("Model to illustrate nesting, having properties of collection types.")
+model NestedCollectionInputModel {
+
+  @doc("Required collection of strings, illustrating a collection of reference types.")
+  requiredStringList: string[];
+
+  @doc("Required collection of ints, illustrating a collection of value types.")
+  requiredIntList: int32[];
+}
+
+@doc("Model to illustrate nesting, having properties of reference and value types.")
+model NestedBasicModel {
+
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+}
+
+@doc("Model to illustrate nesting, having properties of collection types.")
+model NestedCollectionModel {
+
+  @doc("Required collection of strings, illustrating a collection of reference types.")
+  requiredStringList: string[];
+
+  @doc("Required collection of ints, illustrating a collection of value types.")
+  requiredIntList: int32[];
+}
+
+@doc("Input model with nested model properties.")
+model InputModel {
+
+  @doc("Required nested basic model.")
+  NestedModel : NestedBasicInputModel;
+
+  @doc("Required nested collection-property model.")
+  NestedCollectionModel : NestedCollectionInputModel;
+}
+
+@doc("Output model with nested model properties")
+model OutputModel {
+
+  @doc("Required nested basic model.")
+  NestedModel : NestedBasicModel;
+
+  @doc("Required nested collection-property model.")
+  NestedCollectionModel : NestedCollectionModel;
+}
+
+@doc("Round-trip model with nested model properties")
+model RoundTripModel {
+
+  @doc("Required nested basic model.")
+  NestedModel : NestedBasicModel;
+
+  @doc("Required nested collection-property model.")
+  NestedCollectionModel : NestedCollectionModel;
+}
+
+@scenario
+@scenarioDoc("Generate and send input model with required nested model properties.")
+@route("/models")
+@post
+op sendNestedModel(@body input: InputModel): Response<200> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate and receive output model with required nested model properties.")
+@route("/models")
+@get
+op getNestedModel(): OkResponse<OutputModel> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with required nested model properties.")
+@route("/models")
+@put
+op setNestedModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
