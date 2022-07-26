@@ -1,0 +1,58 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("OptionalPropertiesClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates models with optional properties.")
+
+namespace Cadl.TestServer.OptionalProperties;
+
+@doc("Input model with optional properties.")
+model InputModel {
+
+  @doc("Optional string, illustrating an optional reference type property.")
+  optionalString?: string;
+
+  @doc("Optional int, illustrating an optional value type property.")
+  optionalInt?: int32;
+
+    @doc("Optional string collection.")
+  optionalStringList?: string[];
+
+  @doc("Optional int collection.")
+  optionalIntList?: int32[];
+}
+
+@doc("Output model with optional properties.")
+model OutputModel {
+  ...InputModel
+}
+
+@doc("Round-trip model with optional properties.")
+model RoundTripModel {
+  ...InputModel
+}
+
+@scenario
+@scenarioDoc("Generate and send input model with optional properties.")
+@route("/models")
+@post
+op sendOptionalPropertyModel(@body input: InputModel): Response<200> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate and receive output model with optional properties.")
+@route("/models")
+@get
+op getOptionalPropertyModel(): OkResponse<OutputModel> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with optional properties.")
+@route("/models")
+@put
+op setOptionalPropertyModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
