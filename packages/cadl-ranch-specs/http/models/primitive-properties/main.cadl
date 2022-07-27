@@ -21,7 +21,7 @@ model PrimitivePropertyModel {
   requiredSafeInt: safeint;
   requiredFloat: float32;
   requiredDouble: float64;
-  @doc("Illustrate a zonedDateTime body parameter, serialized as https://datatracker.ietf.org/doc/html/rfc7231#section-7.1.1.1")
+  @doc("Illustrate a zonedDateTime body parameter, serialized as (https://datatracker.ietf.org/doc/html/rfc3339)")
   requiredBodyDateTime: zonedDateTime;
   requiredDuration: duration;
   requiredBoolean: boolean;
@@ -31,12 +31,4 @@ model PrimitivePropertyModel {
 @scenarioDoc("Generate/send a round-trip model with basic Cadl primitive type properties.")
 @route("/models")
 @get
-op getModel(
-  @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
-  @header headerDateTime: zonedDateTime,
-  input: PrimitivePropertyModel): {
-    @statusCode statusCode: 200;
-    @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
-    @header headerDateTime: zonedDateTime;
-    @body body: PrimitivePropertyModel
-  } | ErrorResponse ;
+op getModel(input: PrimitivePropertyModel): OkResponse<PrimitivePropertyModel> | ErrorResponse;
