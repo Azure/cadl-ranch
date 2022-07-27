@@ -4,12 +4,14 @@ import { validateScenarios } from "../actions/index.js";
 import { logger } from "../logger.js";
 import "source-map-support/register.js";
 import { serve } from "../actions/serve.js";
+import { validateMockApis } from "../actions/validate-mock-apis.js";
 
 export const DEFAULT_PORT = 3000;
 
 async function main() {
   await yargs(process.argv.slice(2))
     .scriptName("cadl-ranch")
+    .strict()
     .help()
     // .strict()
     .parserConfiguration({
@@ -63,6 +65,22 @@ async function main() {
         await serve({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           port: args.port,
+        });
+      },
+    )
+    .command(
+      "validate-mock-apis <scenariosPath>",
+      "Validate mock apis have all the scenarios specified",
+      (cmd) => {
+        return cmd.positional("scenariosPath", {
+          description: "Path to the scenarios and mock apis",
+          type: "string",
+          demandOption: true,
+        });
+      },
+      async (args) => {
+        await validateMockApis({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
         });
       },
     )
