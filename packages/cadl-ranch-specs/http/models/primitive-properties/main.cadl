@@ -19,10 +19,9 @@ model InputModel {
   requiredBytes: bytes;
   requiredInt: int32;
   requiredLong: int64;
+  requiredSafeInt: safeint;
   requiredFloat: float32;
   requiredDouble: float64;
-  requiredPlainDate: plainDate;
-  requiredPlainTime: plainTime;
   requiredZonedDateTime: zonedDateTime;
   requiredDuration: duration;
   requiredBoolean: boolean;
