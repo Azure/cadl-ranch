@@ -39,5 +39,8 @@ jobs:
       - run: pnpm run validate-scenarios --debug
         name: Validate Scenarios
 
+      - run: pnpm run validate-scenarios --debug
+        name: Validate mock apis
+
       - run: pnpm run check-format
         name: Check formatting
