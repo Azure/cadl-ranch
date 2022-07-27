@@ -3,18 +3,17 @@ import "@cadl-lang/openapi";
 import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
+using Cadl.Http;
 using Azure.Core.Operations;
 
-@serviceTitle("DPGClient")
+@serviceTitle("PrimitivePropertyClient")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "Testserver endpoint")
-@doc("DPG Swagger that tests our ability to grow up.")
-@Cadl.Rest.produces("application/json")
-@Cadl.Rest.consumes("application/json")
-namespace Cadl.Testserver;
-using Cadl.Http;
+@doc("Illustrates model generation, as well as serialization and deserialization.")
+namespace Cadl.Testserver.PrimitiveProperties;
 
-model InputModel {
+@doc("Round-trip model with primitive properties to show serialization and deserialization of each.")
+model PrimitivePropertyBody {
   requiredString: string;
   requiredBytes: bytes;
   requiredInt: int32;
@@ -22,13 +21,29 @@ model InputModel {
   requiredSafeInt: safeint;
   requiredFloat: float32;
   requiredDouble: float64;
-  requiredZonedDateTime: zonedDateTime;
+  @doc("Illustrate a zonedDateTime body parameter, serialized as https://datatracker.ietf.org/doc/html/rfc7231#section-7.1.1.1")
+  requiredBodyDateTime: zonedDateTime;
   requiredDuration: duration;
   requiredBoolean: boolean;
 }
 
+model DateTimeHeader {
+  @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
+  @header headerDateTime: zonedDateTime
+}
+
+model PrimitivePropertyModel {
+  @body
+  body: PrimitivePropertyBody;
+  ...DateTimeHeader;
+}
+
+model PrimitivePropertyResponse is Response<200> {
+  ...PrimitivePropertyModel
+}
+
 @scenario
-@scenarioDoc("Generate/send an input model with basic Cadl primitive type properties.")
+@scenarioDoc("Generate/send a round-trip model with basic Cadl primitive type properties.")
 @route("/models")
 @get
-op getModel(@body input: InputModel): Response<200> | ErrorResponse ;
+op getModel(input: PrimitivePropertyModel): PrimitivePropertyResponse | ErrorResponse ;
