@@ -13,7 +13,7 @@ using Azure.Core.Operations;
 namespace Cadl.Testserver.PrimitiveProperties;
 
 @doc("Round-trip model with primitive properties to show serialization and deserialization of each.")
-model PrimitivePropertyBody {
+model PrimitivePropertyModel {
   requiredString: string;
   requiredBytes: bytes;
   requiredInt: int32;
@@ -27,23 +27,16 @@ model PrimitivePropertyBody {
   requiredBoolean: boolean;
 }
 
-model DateTimeHeader {
-  @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
-  @header headerDateTime: zonedDateTime
-}
-
-model PrimitivePropertyModel {
-  @body
-  body: PrimitivePropertyBody;
-  ...DateTimeHeader;
-}
-
-model PrimitivePropertyResponse is Response<200> {
-  ...PrimitivePropertyModel
-}
-
 @scenario
 @scenarioDoc("Generate/send a round-trip model with basic Cadl primitive type properties.")
 @route("/models")
 @get
-op getModel(input: PrimitivePropertyModel): PrimitivePropertyResponse | ErrorResponse ;
+op getModel(
+  @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
+  @header headerDateTime: zonedDateTime,
+  input: PrimitivePropertyModel): {
+    @statusCode statusCode: 200;
+    @doc("Illustrate a zonedDateTime header, serialized as https://datatracker.ietf.org/doc/html/rfc3339")
+    @header headerDateTime: zonedDateTime;
+    @body body: PrimitivePropertyModel
+  } | ErrorResponse ;
