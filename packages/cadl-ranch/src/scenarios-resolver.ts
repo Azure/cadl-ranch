@@ -1,13 +1,32 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { join } from "path";
+import { join, relative, resolve } from "path";
 import { pathToFileURL } from "url";
 import { logger } from "./logger.js";
 import { findFilesFromPattern } from "./utils/file-utils.js";
+import { ensureScenariosPathExists } from "./utils/index.js";
 import { normalizePath } from "./utils/path-utils.js";
 
 export interface MockApiFile {
   path: string;
   scenarios: Record<string, ScenarioMockApi>;
+}
+
+interface CadlScenario {
+  name: string;
+  cadlFilePath: string;
+}
+
+export async function findScenarioCadlFiles(scenariosPath: string): Promise<CadlScenario[]> {
+  await ensureScenariosPathExists(scenariosPath);
+  const pattern = `${normalizePath(scenariosPath)}/**/main.cadl`;
+  logger.debug(`Looking for scenarios in ${pattern}`);
+  const scenarios = await findFilesFromPattern(pattern);
+  logger.info(`Found ${scenarios.length} scenarios.`);
+
+  return scenarios.map((name) => ({
+    name: normalizePath(relative(scenariosPath, name)).replace("/main.cadl", ""),
+    cadlFilePath: resolve(scenariosPath, name),
+  }));
 }
 
 export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<MockApiFile[]> {

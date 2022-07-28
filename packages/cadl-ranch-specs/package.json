@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
+    "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "serve": "cadl-ranch serve ./http",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

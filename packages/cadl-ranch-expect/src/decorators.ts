@@ -64,8 +64,18 @@ export function $scenario(context: DecoratorContext, target: NamespaceType | Ope
   context.program.stateMap(ScenarioKey).set(target, name ?? target.name);
 }
 
-export function listScenarios(program: Program): [OperationType | NamespaceType, string][] {
-  return [...(program.stateMap(ScenarioKey).entries() as any)];
+export interface Scenario {
+  name: string;
+  target: OperationType | NamespaceType;
+}
+
+export function listScenarios(program: Program): Scenario[] {
+  return [...(program.stateMap(ScenarioKey).entries() as any)].map(([target, name]) => {
+    return {
+      target,
+      name: target.namespace ? `${target.namespace.name}_${name}` : name,
+    };
+  });
 }
 
 export function getScenarioName(program: Program, target: OperationType | NamespaceType): string | undefined {
