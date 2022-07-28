@@ -25,5 +25,5 @@ steps:
 
   - script: |
       pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-      NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish
-    displaydisplayName: Publish packages
+      NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public
+    displayName: Publish packages
