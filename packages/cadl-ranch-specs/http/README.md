@@ -1,6 +1,6 @@
 # HTTP Test Cadl scenarios
 
-Stucture:
+Structure:
 
 - one folder per scenario with entry point called `main.cadl`
 
@@ -17,4 +17,5 @@ The tests in the http/models directory describe scenarios for generating models 
 - [collections-basic](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/collections-basic) - Generate, send, and receive input, output, and round-trip models with required collection properties.
 - [optional-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/optional-properties) - Generate, send, and receive input, output, and round-trip models with optional properties.
 - [enum-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/enum-properties) - Generate, send, and receive input, output, and round-trip models with required enum properties.
-- [nested-models](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/nested-models) - Generate, send, and receive input, output, and round-trip model withs required nested model properties.
+- [nested-models](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/nested-models) - Generate, send, and receive input, output, and round-trip models with required nested model properties.
+- [readonly-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/readonly-properties) - Generate, send, and receive input, output, and round-trip models with readonly properties.
