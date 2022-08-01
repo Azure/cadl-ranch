@@ -32,21 +32,9 @@ model OutputModel {
   @visibility("read")
   requiredReadonlyInt: int32;
 
-  @doc("Optional string, illustrating a readonly reference type property.")
-  @visibility("read")
-  optionalReadonlyString?: string;
-
-  @doc("Optional int, illustrating a readonly value type property.")
-  @visibility("read")
-  optionalReadonlyInt?: int32;
-
   @doc("Required readonly model.")
   @visibility("read")
   requiredReadonlyModel: ReadonlyModel;
-
-  @doc("Optional readonly model.")
-  @visibility("read")
-  optionalReadonlyModel?: ReadonlyModel;
 
   @doc("Required readonly string collection.")
   @visibility("read")
@@ -55,14 +43,6 @@ model OutputModel {
   @doc("Required readonly int collection.")
   @visibility("read")
   readonlyIntList: int32[];
-
-  @doc("Optional readonly string collection.")
-  @visibility("read")
-  optionalReadonlyStringList?: string[];
-
-  @doc("Optional readonly int collection.")
-  @visibility("read")
-  optionalReadonlyIntList?: int32[];
 }
 
 @doc("Round-trip model with readonly properties.")
