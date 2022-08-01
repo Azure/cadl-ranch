@@ -1,0 +1,29 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - script: npm install -g pnpm
+    displayName: Install PNPM
+
+  - script: pnpm install
+    displayName: Install dependencies
+
+  - script: pnpm run build
+    displayName: Build
+
+  - script: ls ./packages/cadl-ranch-specs/node_modules/.bin
+    displayName: Test LS
+
+  - script: pnpm run validate-scenarios --debug
+    displayName: Validate Scenarios
+
+  - script: pnpm run validate-scenarios --debug
+    displayName: Validate mock apis
+
+  - script: |
+      pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+      NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public --no-git-checks
+    displayName: Publish packages
