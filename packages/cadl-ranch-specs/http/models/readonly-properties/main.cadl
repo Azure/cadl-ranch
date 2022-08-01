@@ -1,0 +1,83 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("ReadonlyPropertiesClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates models with readonly properties.")
+
+namespace Cadl.TestServer.ReadonlyProperties;
+
+// Note: input model with readonly properties doesn't make sense
+// because input models are for setting values.
+
+@doc("Readonly model")
+model ReadonlyModel {
+  @doc("Required string")
+  requiredString : string;
+}
+
+@doc("Output model with readonly properties.")
+model OutputModel {
+  @doc("Required string, illustrating a readonly reference type property.")
+  @visibility("read")
+  requiredReadonlyString: string;
+
+  @doc("Required int, illustrating a readonly value type property.")
+  @visibility("read")
+  requiredReadonlyInt: int32;
+
+  @doc("Optional string, illustrating a readonly reference type property.")
+  @visibility("read")
+  optionalReadonlyString?: string;
+
+  @doc("Optional int, illustrating a readonly value type property.")
+  @visibility("read")
+  optionalReadonlyInt?: int32;
+
+  @doc("Required readonly model.")
+  @visibility("read")
+  requiredReadonlyModel: ReadonlyModel;
+
+  @doc("Optional readonly model.")
+  @visibility("read")
+  optionalReadonlyModel?: ReadonlyModel;
+
+  @doc("Required readonly string collection.")
+  @visibility("read")
+  readonlyStringList: string[];
+
+  @doc("Required readonly int collection.")
+  @visibility("read")
+  readonlyIntList: int32[];
+
+  @doc("Optional readonly string collection.")
+  @visibility("read")
+  optionalReadonlyStringList?: string[];
+
+  @doc("Optional readonly int collection.")
+  @visibility("read")
+  optionalReadonlyIntList?: int32[];
+}
+
+@doc("Round-trip model with readonly properties.")
+model RoundTripModel {
+  ...OutputModel
+}
+
+@scenario
+@scenarioDoc("Generate and receive output model with readonly properties.")
+@route("/models")
+@get
+op getOptionalPropertyModel(): OkResponse<OutputModel> | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with readonly properties.")
+@route("/models")
+@put
+op setOptionalPropertyModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
