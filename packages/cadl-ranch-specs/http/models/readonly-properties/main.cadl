@@ -38,11 +38,11 @@ model OutputModel {
 
   @doc("Required readonly string collection.")
   @visibility("read")
-  readonlyStringList: string[];
+  requiredReadonlyStringList: string[];
 
   @doc("Required readonly int collection.")
   @visibility("read")
-  readonlyIntList: int32[];
+  requiredReadonlyIntList: int32[];
 }
 
 @doc("Round-trip model with readonly properties.")

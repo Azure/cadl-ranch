@@ -1,0 +1,53 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("RoundTripBasicClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates a round-trip model with required reference and value type properties.")
+
+namespace Cadl.TestServer.RoundTripBasic;
+
+model MyBaseType {
+  
+  @doc("Illustrate case: Base and derived models have properties with the same name, but different types")
+  namingConflict: int32;
+
+  @doc("Illustrate case: Base model property read/write; derived model property read-only")
+  basePropertyReadWrite: string;
+
+  @visibility("read")
+  basePropertyReadOnly: string;
+}
+
+model MyDerivedType extends MyBaseType {
+  
+  @doc("Illustrate case: Base and derived models have properties with the same name, but different types")
+  namingConflict: string;
+
+  @visibility("read")
+  basePropertyReadWrite: string;
+
+  basePropertyReadOnly: string;
+}
+
+@doc("Round-trip Model")
+model RoundTripModel {
+
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+}
+
+@scenario
+@scenarioDoc("Generate, send, and receive a round-trip model with required reference and value type properties.")
+@route("/models")
+@get
+op getModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
