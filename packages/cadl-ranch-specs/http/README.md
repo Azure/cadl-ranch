@@ -6,6 +6,10 @@ Structure:
 
 ## Tests
 
+### Clients
+
+- [interfaces](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/clients/interfaces) - Generate two service clients from operations defined in two different interfaces.
+
 ### Models
 
 The tests in the http/models directory describe scenarios for generating models with different model features.
