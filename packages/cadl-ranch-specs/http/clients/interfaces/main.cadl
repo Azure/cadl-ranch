@@ -1,0 +1,52 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("MultiInterfaceClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates clients generated from a Cadl with multiple interfaces.")
+
+namespace Cadl.TestServer.MultiInterfaceClient;
+
+@doc("Simple model.")
+model Dog {
+  @doc("Name")
+  name : string;
+}
+
+@doc("Simple model.")
+model Cat {
+  @doc("Name")
+  name : string;
+}
+
+@route("/dogs")
+interface dogs {
+  @scenario
+  @scenarioDoc("Illustrate grouping operations on subclient.")
+  @get
+  op getDogs(): Dog | ErrorResponse;
+
+  @scenario
+  @scenarioDoc("Illustrate grouping operations on subclient.")
+  @route("/models")
+  @put
+  op setDogs(@body input: Dog): Dog | ErrorResponse;
+}
+
+@route("/cats")
+interface cats {
+  @scenario
+  @scenarioDoc("Illustrate grouping operations on subclient.")
+  @get
+  op getCats(): Cat| ErrorResponse;
+
+  @scenario
+  @scenarioDoc("Illustrate grouping operations on subclient.")
+  @put
+  op setCats(@body input: Cat): Cat | ErrorResponse;
+}
