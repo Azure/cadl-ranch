@@ -1,13 +1,12 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
-@supportedBy("dpg")
-@route("/hello")
+@serviceTitle("HelloClient")
 namespace Hello;
 
-@scenario
-@scenarioDoc("This test is testing 'hello world' is being returned from the server")
-@route("/world")
-op world(): string;
+interface Hello {
+  @route("/hello/world")
+  @get
+  world(): string;
+}
