@@ -1,0 +1,92 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Rest;
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("InheritanceClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates input, output, and round-trip polymorphic models.")
+
+namespace Cadl.TestServer.BasicPolymorphicModels;
+
+@doc("Example base type.")
+@discriminator("discriminatorProperty")
+model BaseClass {
+  @doc("An example property.")
+  baseClassProperty: string;
+}
+
+@doc("Example base class that has a discriminator property.")
+model BaseClassWithDiscriminator extends BaseClass {
+  @doc("Example discriminator property.")
+  discriminatorProperty: "base";
+}
+
+@doc("Properties that use the spread operator")
+model SomeProperties {
+  someProperty: string;
+  someOtherProperty: string;
+}
+
+model ClassThatInheritsFromBaseClass extends BaseClass {
+  discriminatorProperty: "derivedFromBase";
+}
+
+model ClassThatInheritsFromBaseClassAndSomeProperties extends BaseClass {
+  discriminatorProperty: "derivedFromBaseWithProperties";
+  ...SomeProperties;
+}
+
+// TODO: Should this have the same compiler warning that it doesn't define the discriminator constant?
+model ClassThatInheritsFromBaseClassWithDiscriminator extends BaseClassWithDiscriminator {
+}
+
+model ClassThatInheritsFromBaseClassWithDiscriminatorAndSomeProperties extends BaseClassWithDiscriminator {
+  ...SomeProperties
+}
+
+enum BaseClassWithEnumDiscriminatorEnum {
+  derived,
+  other
+}
+
+@discriminator("discriminatorProperty")
+model BaseClassWithEnumDiscriminator {
+  // TODO: this isn't defined on the base type in Cadl, how do we restrict the values... is it the below?
+  // TODO: There are a bunch of discussions on this in the Cadl Discussion and Cadl Engineering channels.
+}
+
+model DerivedClassWithEnumDiscriminator extends BaseClassWithEnumDiscriminator {
+  discriminatorProperty: BaseClassWithEnumDiscriminatorEnum.derived;
+}
+
+enum BaseClassWithExtensibleEnumDiscriminatorEnumValues {
+  derived,
+  other
+}
+
+@knownValues(BaseClassWithExtensibleEnumDiscriminatorEnumValues)
+model BaseClassWithExtensibleEnumDiscriminatorEnum is string {
+}
+
+@discriminator("discriminatorProperty")
+model BaseClassWithExtensibleEnumDiscriminator {
+  discriminatorProperty: BaseClassWithExtensibleEnumDiscriminatorEnum;
+}
+
+model DerivedClassWithExtensibleEnumDiscriminator extends BaseClassWithExtensibleEnumDiscriminator {
+}
+
+model AnotherClassWithExtensibleEnumDiscriminator extends BaseClassWithExtensibleEnumDiscriminator {
+
+}
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip inherited model.")
+@route("/operation")
+@put
+op setValue(@body input: BaseClass): BaseClass | ErrorResponse;
