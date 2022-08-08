@@ -31,3 +31,4 @@ from hello import HelloClient
 def test_hello():
     client = HelloClient()
     assert client.world() == "Hello World!"
+    assert client.world2() == "Hello World!"
