@@ -1,0 +1,16 @@
+import "@cadl-lang/rest";
+
+using Cadl.Http;
+
+@serviceTitle("HelloClient")
+namespace Hello;
+
+interface Hello {
+  @route("/hello/world")
+  @get
+  world(): string;
+
+  @route("/hello/world-2")
+  @get
+  world2(): string;
+}

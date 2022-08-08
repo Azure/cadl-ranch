@@ -1,0 +1,6 @@
+{
+  "namespace": "hello",
+  "package-name": "hello",
+  "basic-setup-py": true,
+  "package-version": "1.0.0b1"
+}
