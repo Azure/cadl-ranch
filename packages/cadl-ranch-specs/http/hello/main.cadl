@@ -6,14 +6,17 @@ using Cadl.Http;
 @serviceTitle("HelloClient")
 namespace Hello;
 
-@scenario
-@scenarioDoc("This test is testing 'hello world' is being returned from the server")
-@route("/hello/world")
-@get
-op world(): string;
+interface Hello {
+  @scenario
+  @scenarioDoc("This test is testing 'hello world' is being returned from the server")
+  @route("/hello/world")
+  @get
+  op world(): string;
 
-@scenario
-@scenarioDoc("This test is testing 'hello world2' is being returned from the server")
-@route("/hello/world2")
-@get
-op world2(): string;
+  @scenario
+  @scenarioDoc("This test is testing 'hello world2' is being returned from the server")
+  @route("/hello/world-2")
+  @get
+  op world2(): string;
+}
+

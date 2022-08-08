@@ -15,12 +15,12 @@ Scenarios.Hello_world = passOnSuccess(
   }),
 );
 Scenarios.Hello_world2 = passOnSuccess(
-  mockapi.get("/hello/world2", () => {
+  mockapi.get("/hello/world-2", () => {
     return {
       status: 200,
       body: {
         contentType: "application/json",
-        rawContent: `"Hello World2!"`,
+        rawContent: `"Hello World-2!"`,
       },
     };
   }),
