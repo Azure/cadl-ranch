@@ -33,7 +33,7 @@ model IntEnum is string {}
 
 model PetModel {
   name?: string;
-  DaysOfWeek?: DaysOfWeekExtensibleEnum = "Friday";
+  DaysOfWeek?: DaysOfWeekExtensibleEnum;
   IntEnum: IntEnum;
 }
 
