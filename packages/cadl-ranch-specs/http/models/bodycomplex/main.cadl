@@ -1,0 +1,477 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-azure-core";
+
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core.Operations;
+using Cadl.Rest.Resource;
+using Cadl.Versioning;
+
+@serviceTitle("Complex Test Service")
+@serviceVersion("2016-02-29")
+@server("http://localhost:3000", "Testserver endpoint")
+@doc("Illustrates complex model generation, as well as serialization and deserialization.")
+namespace Cadl.Testserver.BodyComplex;
+
+@error
+model Error {
+  status: int32;
+  message: string;
+}
+
+@knownValues(CMYKColorsValues)
+model CMYKColors is string {}
+
+enum CMYKColorsValues
+{
+  cyan,
+  Magenta,
+  YELLOW,
+  blacK
+}
+
+model basic {
+  @doc("Basic Id")
+  id?: int32;
+  @doc("Name property with a very long description that does not fit on a single line and a line break.")
+  name?: string;
+  color?: CMYKColors;
+}
+
+model pet {
+  id?: int32;
+  name?: string;
+}
+
+model cat extends pet {
+  color?: string;
+  hates?: dog[];
+}
+
+model siamese extends cat {
+  breed?: string;
+}
+
+model dog extends pet {
+  food?: string;
+}
+
+//TODO: change "fish_type" to "fish.type" after dot can be handled correctly in codegen.
+@discriminator("fish_type")
+model DotFish {
+  species?: string;
+}
+
+model DotSalmon extends DotFish {
+  "fish_type": "DotSalmon";
+  location?: string;
+  iswild?: boolean;
+}
+
+model DotFishMarket {
+  sampleSalmon?: DotSalmon;
+  salmons?: DotSalmon[];
+  sampleFish?: DotFish;
+  fishes: DotFish[];
+}
+
+@discriminator("fishtype")
+model Fish {
+  species?: string;
+  length: float32;
+  siblings?:  Fish[];
+}
+
+model salmon extends Fish {
+  fishtype: "salmon";
+  location?: string;
+  iswild?: boolean;
+}
+
+model smart_salmon extends salmon {
+  // fishtype: "smart_salmon";
+  college_degree?: string;
+  // additionalProperties?: Record<unknown>;
+}
+
+@discriminator("sharktype")
+model shark extends Fish {
+  fishtype: "shark";
+  age?: int32;
+  birthday: zonedDateTime;
+}
+
+model sawshark extends shark {
+  sharktype: "sawshark";
+  picture?: bytes;
+}
+
+@doc("Colors possible")
+@knownValues(GoblinSharkColorValues)
+model GoblinSharkColor is string {}
+
+enum GoblinSharkColorValues
+{
+  pink,
+  gray,
+  brown,
+  @doc("Uppercase RED")
+  upperRed: "RED",
+  @doc("Lowercase RED")
+  lowerRed: "red"
+}
+
+model goblinshark extends shark {
+  sharktype: "goblinshark";
+  jawsize?: int32;
+  color?: GoblinSharkColor = "gray";
+}
+
+model cookiecuttershark extends shark {
+  sharktype: "cookiecuttershark";
+}
+
+// diff-with-swagger: CADL don't support special chars in model name such as "int-wrapper".
+model int_wrapper {
+  field1?: int32;
+  field2?: int32;
+}
+
+model long_wrapper {
+  field1?: int64;
+  field2?: int64;
+}
+
+model float_wrapper {
+  field1?: float32;
+  field2?: float32;
+}
+
+model double_wrapper {
+  field1?: float64;
+  field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose?: float64;
+}
+
+model boolean_wrapper {
+  field_true?: boolean;
+  field_false?: boolean;
+}
+
+model string_wrapper {
+  field?: string;
+  empty?: string;
+  null?: string;
+}
+
+model date_wrapper {
+  field?: plainDate;
+  leap?: plainDate;
+}
+
+model datetime_wrapper {
+  field?: zonedDateTime;
+  now?: zonedDateTime;
+}
+
+// diff-with-swagger: CADL don't has data type for date-time-rfc1123?
+model datetimerfc1123_wrapper {
+  field?: zonedDateTime;
+  now?: zonedDateTime;
+}
+
+model duration_wrapper {
+  field?: duration;
+}
+
+model byte_wrapper {
+  field?: bytes;
+}
+
+model array_wrapper {
+  array?: string[];
+}
+
+model dictionary_wrapper {
+  defaultProgram?: Record<string>;
+}
+
+model readonly_obj {
+  @visibility("read")
+  id?: string;
+
+  size: int32;
+}
+
+@knownValues(MyKindValues)
+model MyKind is string {}
+
+enum MyKindValues
+{
+  Kind1
+}
+
+model MyBaseHelperType {
+  propBH1?: string;
+}
+
+@discriminator("kind")
+model MyBaseType {
+  propB1?: string;
+  helper?: MyBaseHelperType
+}
+
+model MyDerivedType extends MyBaseType {
+  // TODO: do we support EnumMember type of discriminator MyKindValues.Kind1?
+  kind: "Kind1";
+  propD1?: string
+}
+
+
+enum Versions {
+  v10: "1.0.0",
+  v11: "1.1.0",
+}
+
+@versioned(Versions)
+@route("/complex/basic")
+namespace basicOps {
+  @route("/valid")
+  @doc("Get complex type {id: 2, name: 'abc', color: 'YELLOW'}")
+  @get op getValid(): OkResponse<basic> | Error;  // TODO: how to write response description
+
+  @route("/valid")
+  @doc("Please put {id: 2, name: 'abc', color: 'Magenta'}")
+  @put op putValid(@header "api-version": string, @body complexBody: basic):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/invalid")
+  @doc("Get a basic complex type that is invalid for the local strong type")
+  @get op getInvalid(): OkResponse<basic> | Error;
+
+  @route("/empty")
+  @doc("Get a basic complex type that is empty")
+  @get op getEmpty(): OkResponse<basic> | Error;
+
+  @route("/null")
+  @doc("Get a basic complex type whose properties are null")
+  @get op getNull(): OkResponse<basic> | Error;
+
+  @route("/notprovided")
+  @doc("Get a basic complex type whose properties are null")
+  @get op getNotProvided(): OkResponse<basic> | Error;
+}
+
+@route("/complex/primitive")
+namespace primitive {
+  @route("/integer")
+  @doc("Get complex types with integer properties")
+  @get op getInt(): OkResponse<int_wrapper> | Error;
+
+  @route("/integer")
+  @doc("Put complex types with integer properties")
+  @put op putInt(@doc("Please put -1 and 2") @body complexBody: int_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/long")
+  @doc("Get complex types with long properties")
+  @get op getLong(): OkResponse<long_wrapper> | Error;
+
+  @route("/long")
+  @doc("Put complex types with long properties")
+  @put op putLong(@doc("Please put 1099511627775 and -999511627788") @body complexBody: long_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/float")
+  @doc("Get complex types with float properties")
+  @get op getFloat(): OkResponse<float_wrapper> | Error;
+
+  @route("/float")
+  @doc("Put complex types with float properties")
+  @put op putFloat(@doc("Please put 1.05 and -0.003") @body complexBody: float_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/double")
+  @doc("Get complex types with double properties")
+  @get op getDouble(): OkResponse<double_wrapper> | Error;
+
+  @route("/double")
+  @doc("Put complex types with double properties")
+  @put op putDouble(@doc("Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005") @body complexBody: double_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/bool")
+  @doc("Get complex types with bool properties")
+  @get op getBool(): OkResponse<boolean_wrapper> | Error;
+
+  @route("/bool")
+  @doc("Put complex types with bool properties")
+  @put op putBool(@doc("Please put true and false") @body complexBody: boolean_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/string")
+  @doc("Get complex types with string properties")
+  @get op getString(): OkResponse<string_wrapper> | Error;
+
+  @route("/string")
+  @doc("Put complex types with string properties")
+  @put op putString(@doc("Please put 'goodrequest', '', and null") @body complexBody: string_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/date")
+  @doc("Get complex types with date properties")
+  @get op getDate(): OkResponse<date_wrapper> | Error;
+
+  @route("/date")
+  @doc("Put complex types with date properties")
+  @put op putDate(@doc("Please put '0001-01-01' and '2016-02-29'") @body complexBody: date_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/datetime")
+  @doc("Get complex types with datetime properties")
+  @get op getDateTime(): OkResponse<datetime_wrapper> | Error;
+
+  @route("/datetime")
+  @doc("Put complex types with datetime properties")
+  @put op putDateTime(@doc("Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'") @body complexBody: datetime_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/datetimerfc1123")
+  @doc("Get complex types with datetimerfc1123 properties")
+  @get op getDateTimeRfc1123(): OkResponse<datetimerfc1123_wrapper> | Error;
+
+  @route("/datetimerfc1123")
+  @doc("Put complex types with datetimerfc1123 properties")
+  @put op putDateTimeRfc1123(@doc("Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'") @body complexBody: datetimerfc1123_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/duration")
+  @doc("Get complex types with duration properties")
+  @get op getDuration(): OkResponse<duration_wrapper> | Error;
+
+  @route("/duration")
+  @doc("Put complex types with duration properties")
+  @put op putDuration(@doc("Please put 'P123DT22H14M12.011S'") @body complexBody: duration_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/byte")
+  @doc("Get complex types with byte properties")
+  @get op getByte(): OkResponse<byte_wrapper> | Error;
+
+  @route("/byte")
+  @doc("Put complex types with byte properties")
+  @put op putByte(@doc("Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)") @body complexBody: byte_wrapper):  {@statusCode statusCode: 200;} | Error;
+}
+
+@route("/complex/array")
+namespace array {
+  @route("/valid")
+  @doc("Get complex types with array properties")
+  @get op getValid(): OkResponse<array_wrapper> | Error;
+
+  @route("/valid")
+  @doc("Put complex types with array properties")
+  @put op putValid(@doc("Please put an array with 4 items: \"1, 2, 3, 4\", \"\", null, \"&S#$(*Y\", \"The quick brown fox jumps over the lazy dog\"") @body complexBody: array_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/empty")
+  @doc("Get complex types with array property which is empty")
+  @get op getEmpty(): OkResponse<array_wrapper> | Error;
+
+  @route("/empty")
+  @doc("Put complex types with array properties which is empty")
+  @put op putEmpty(@doc("Please put an empty array") @body complexBody: array_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/notprovided")
+  @doc("Get complex types with array property while server doesn't provide a response payload")
+  @get op getNotProvided(): OkResponse<array_wrapper> | Error;
+}
+
+@route("/complex/dictionary")
+namespace dictionary {
+  @route("/valid")
+  @doc("Get complex types with dictionary properties")
+  @get op getValid(): OkResponse<dictionary_wrapper> | Error;
+
+  @route("/valid")
+  @doc("Put complex types with dictionary properties")
+  @put op putValid(@doc("Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\", \"bmp\":\"mspaint\", \"xls\":\"excel\", \"exe\":\"\", \"\":null") @body complexBody: dictionary_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/empty")
+  @doc("Get complex types with dictionary property which is empty")
+  @get op getEmpty(): OkResponse<dictionary_wrapper> | Error;
+
+  @route("/empty")
+  @doc("Put complex types with dictionary properties which is empty")
+  @put op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/null")
+  @doc("Get complex types with dictionary property which is null")
+  @get op getNull(): OkResponse<dictionary_wrapper> | Error;
+
+  @route("/notprovided")
+  @doc("Get complex types with dictionary property while server doesn't provide a response payload")
+  @get op getNotProvided(): OkResponse<dictionary_wrapper> | Error;
+}
+
+@route("/complex/inheritance/valid")
+namespace inheritance {
+  @doc("Get complex types that extend others")
+  @get op getValid(): OkResponse<siamese> | Error;
+
+  @doc("Put complex types that extend others")
+  @put op putValid(@doc("Please put a siamese with id=2, name=\"Siameee\", color=green, breed=persion, which hates 2 dogs, the 1st one named \"Potato\" with id=1 and food=\"tomato\", and the 2nd one named \"Tomato\" with id=-1 and food=\"french fries\".") @body complexBody: siamese):  {@statusCode statusCode: 200;} | Error;
+}
+
+@route("/complex/polymorphism")
+namespace polymorphism {
+  @route("/valid")
+  @doc("Get complex types that are polymorphic")
+  @get op getValid(): OkResponse<Fish> | Error;
+
+  @route("/valid")
+  @doc("Put complex types that are polymorphic")
+  @put op putValid(@doc("Please put a salmon that looks like this:\n{\n        'fishtype':'Salmon',\n        'location':'alaska',\n        'iswild':true,\n        'species':'king',\n        'length':1.0,\n        'siblings':[\n          {\n            'fishtype':'Shark',\n            'age':6,\n            'birthday': '2012-01-05T01:00:00Z',\n            'length':20.0,\n            'species':'predator',\n          },\n          {\n            'fishtype':'Sawshark',\n            'age':105,\n            'birthday': '1900-01-05T01:00:00Z',\n            'length':10.0,\n            'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),\n            'species':'dangerous',\n          },\n          {\n            'fishtype': 'goblin',\n            'age': 1,\n            'birthday': '2015-08-08T00:00:00Z',\n            'length': 30.0,\n            'species': 'scary',\n            'jawsize': 5\n          }\n        ]\n      };") @body complexBody: Fish):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/dotsyntax")
+  @doc("Get complex types that are polymorphic, JSON key contains a dot")
+  @get op getDotSyntax(): OkResponse<DotFish> | Error;
+
+  @route("/composedWithDiscriminator")
+  @doc("Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.")
+  @get op getComposedWithDiscriminator(): OkResponse<DotFishMarket> | Error;
+
+  @route("/composedWithoutDiscriminator")
+  @doc("Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.")
+  @get op getComposedWithoutDiscriminator(): OkResponse<DotFishMarket> | Error;
+
+  @route("/complicated")
+  @doc("Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties")
+  @get op getComplicated(): OkResponse<salmon> | Error;
+
+  @route("/complicated")
+  @doc("Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties")
+  @put op putComplicated(@body complexBody: salmon):  {@statusCode statusCode: 200;} | Error;
+
+  @route("/missingdiscriminator")
+  @doc("Put complex types that are polymorphic, omitting the discriminator")
+  @put op putMissingDiscriminator(@body complexBody: salmon):  OkResponse<salmon> | Error;
+
+  @route("/missingrequired/invalid")
+  @doc("Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client")
+  @put op putValidMissingRequired(@doc("Please attempt put a sawshark that looks like this, the client should not allow this data to be sent:\n{\n    \"fishtype\": \"sawshark\",\n    \"species\": \"snaggle toothed\",\n    \"length\": 18.5,\n    \"age\": 2,\n    \"birthday\": \"2013-06-01T01:00:00Z\",\n    \"location\": \"alaska\",\n    \"picture\": base64(FF FF FF FF FE),\n    \"siblings\": [\n        {\n            \"fishtype\": \"shark\",\n            \"species\": \"predator\",\n            \"birthday\": \"2012-01-05T01:00:00Z\",\n            \"length\": 20,\n            \"age\": 6\n        },\n        {\n            \"fishtype\": \"sawshark\",\n            \"species\": \"dangerous\",\n            \"picture\": base64(FF FF FF FF FE),\n            \"length\": 10,\n            \"age\": 105\n        }\n    ]\n}") @body complexBody: Fish): {@statusCode statusCode: 200;} | Error;
+}
+
+@route("/complex/polymorphicrecursive/valid")
+namespace polymorphicrecursive {
+  @doc("Get complex types that are polymorphic and have recursive references")
+  @get op getValid(): OkResponse<Fish> | Error;
+
+  @doc("Put complex types that are polymorphic and have recursive references")
+  @put op putValid(@doc("Please put a salmon that looks like this:\n{\n    \"fishtype\": \"salmon\",\n    \"species\": \"king\",\n    \"length\": 1,\n    \"age\": 1,\n    \"location\": \"alaska\",\n    \"iswild\": true,\n    \"siblings\": [\n        {\n            \"fishtype\": \"shark\",\n            \"species\": \"predator\",\n            \"length\": 20,\n            \"age\": 6,\n            \"siblings\": [\n                {\n                    \"fishtype\": \"salmon\",\n                    \"species\": \"coho\",\n                    \"length\": 2,\n                    \"age\": 2,\n                    \"location\": \"atlantic\",\n                    \"iswild\": true,\n                    \"siblings\": [\n                        {\n                            \"fishtype\": \"shark\",\n                            \"species\": \"predator\",\n                            \"length\": 20,\n                            \"age\": 6\n                        },\n                        {\n                            \"fishtype\": \"sawshark\",\n                            \"species\": \"dangerous\",\n                            \"length\": 10,\n                            \"age\": 105\n                        }\n                    ]\n                },\n                {\n                    \"fishtype\": \"sawshark\",\n                    \"species\": \"dangerous\",\n                    \"length\": 10,\n                    \"age\": 105\n                }\n            ]\n        },\n        {\n            \"fishtype\": \"sawshark\",\n            \"species\": \"dangerous\",\n            \"length\": 10,\n            \"age\": 105\n        }\n    ]\n}") @body complexBody: Fish):  {@statusCode statusCode: 200;} | Error;
+}
+
+@route("/complex/readonlyproperty/valid")
+namespace readonlyproperty {
+  @doc("Get complex types that have readonly properties")
+  @get op getValid(): OkResponse<readonly_obj> | Error;
+
+  @doc("Put complex types that have readonly properties")
+  @put op putValid(@body complexBody: readonly_obj):  {@statusCode statusCode: 200;} | Error;
+}
+
+@route("/complex/flatten/valid")
+namespace flattencomplex {
+  @get op getValid(): OkResponse<MyBaseType>;
+}
+
+
