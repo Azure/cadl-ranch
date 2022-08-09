@@ -9,84 +9,54 @@ using Azure.Core.Operations;
 @serviceTitle("InheritanceClient")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
-@doc("Illustrates input, output, and round-trip polymorphic models.")
+@doc("Illustrates round-trip polymorphic models.")
 
 namespace Cadl.TestServer.BasicPolymorphicModels;
 
 @doc("Example base type.")
-@discriminator("discriminatorProperty")
 model BaseClass {
   @doc("An example property.")
   baseClassProperty: string;
 }
 
+model DerivedFromBaseClassA extends BaseClass {
+  @doc("An example property on a derived type")
+  derivedClassAProperty: string;
+}
+
+model DerivedFromBaseClassB extends BaseClass {
+  @doc("An example property on a derived type")
+  derivedClassBProperty: string;
+}
+
+@discriminator("discriminatorProperty")
 @doc("Example base class that has a discriminator property.")
 model BaseClassWithDiscriminator extends BaseClass {
-  @doc("Example discriminator property.")
-  discriminatorProperty: "base";
+  // Note: discriminator property is not defined on parent
 }
 
-@doc("Properties that use the spread operator")
-model SomeProperties {
-  someProperty: string;
-  someOtherProperty: string;
+model DerivedFromBaseClassWithDiscriminatorA extends BaseClassWithDiscriminator {
+  discriminatorProperty: "A";
 }
 
-model ClassThatInheritsFromBaseClass extends BaseClass {
-  discriminatorProperty: "derivedFromBase";
+model DerivedFromBaseClassWithDiscriminatorB extends BaseClassWithDiscriminator {
+  discriminatorProperty: "B";
 }
 
-model ClassThatInheritsFromBaseClassAndSomeProperties extends BaseClass {
-  discriminatorProperty: "derivedFromBaseWithProperties";
-  ...SomeProperties;
-}
-
-// TODO: Should this have the same compiler warning that it doesn't define the discriminator constant?
-model ClassThatInheritsFromBaseClassWithDiscriminator extends BaseClassWithDiscriminator {
-}
-
-model ClassThatInheritsFromBaseClassWithDiscriminatorAndSomeProperties extends BaseClassWithDiscriminator {
-  ...SomeProperties
-}
-
-enum BaseClassWithEnumDiscriminatorEnum {
-  derived,
-  other
-}
-
-@discriminator("discriminatorProperty")
-model BaseClassWithEnumDiscriminator {
-  // TODO: this isn't defined on the base type in Cadl, how do we restrict the values... is it the below?
-  // TODO: There are a bunch of discussions on this in the Cadl Discussion and Cadl Engineering channels.
-}
-
-model DerivedClassWithEnumDiscriminator extends BaseClassWithEnumDiscriminator {
-  discriminatorProperty: BaseClassWithEnumDiscriminatorEnum.derived;
-}
-
-enum BaseClassWithExtensibleEnumDiscriminatorEnumValues {
-  derived,
-  other
-}
-
-@knownValues(BaseClassWithExtensibleEnumDiscriminatorEnumValues)
-model BaseClassWithExtensibleEnumDiscriminatorEnum is string {
-}
-
-@discriminator("discriminatorProperty")
-model BaseClassWithExtensibleEnumDiscriminator {
-  discriminatorProperty: BaseClassWithExtensibleEnumDiscriminatorEnum;
-}
-
-model DerivedClassWithExtensibleEnumDiscriminator extends BaseClassWithExtensibleEnumDiscriminator {
-}
-
-model AnotherClassWithExtensibleEnumDiscriminator extends BaseClassWithExtensibleEnumDiscriminator {
-
+@doc("Illustrates case where a basic model has polymorphic properties.")
+model ModelWithPolymorphicProperty {
+  @doc("Example polymorphic type property.")
+  polymorphicProperty: BaseClassWithDiscriminator;
 }
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip inherited model.")
-@route("/operation")
+@route("/model")
 @put
 op setValue(@body input: BaseClass): BaseClass | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with a polymorphic property.")
+@route("/property")
+@put
+op setValueWithPolymorphicProperty(@body input: ModelWithPolymorphicProperty): ModelWithPolymorphicProperty | ErrorResponse;
