@@ -1,0 +1,57 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("NonStringEnumsClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Testing non-string enums.")
+namespace Cadl.TestServer.NonStringEnums;
+
+enum IntEnum {
+  TWO_HUNDRED: 200,
+  FOUR_HUNDRED_THREE: 403,
+  FOUR_HUNDRED_FIVE: 405,
+  FOUR_HUNDRED_SIX: 406,
+  FOUR_HUNDRED_TWENTY_NINE: 429,
+}
+
+@doc("List of float enums")
+enum FloatEnum {
+  TWO_HUNDRED4: 200.4,
+  FOUR_HUNDRED_THREE4: 403.4,
+  FOUR_HUNDRED_FIVE3: 405.3,
+  FOUR_HUNDRED_SIX2: 406.2,
+  FOUR_HUNDRED_TWENTY_NINE1: 429.1,
+}
+
+interface Int {
+  @scenario
+  @scenarioDoc("Put an int enum")
+  @route("/nonStringEnums/int/put")
+  @put
+  put(@body input?: IntEnum): OkResponse<string> | ErrorResponse;
+
+  @scenario
+  @scenarioDoc("Get an int enum")
+  @route("/nonStringEnums/int/get")
+  @get
+  get(): OkResponse<IntEnum> | ErrorResponse;
+}
+
+interface Float {
+  @scenario
+  @scenarioDoc("Put an float enum")
+  @route("/nonStringEnums/float/put")
+  @put
+  put(@body input?: FloatEnum): OkResponse<string> | ErrorResponse;
+
+  @scenario
+  @scenarioDoc("Get an float enum")
+  @route("/nonStringEnums/float/get")
+  @get
+  get(): OkResponse<FloatEnum> | ErrorResponse;
+}

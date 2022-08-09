@@ -24,3 +24,8 @@ The tests in the http/models directory describe scenarios for generating models 
 - [enum-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/enum-properties) - Generate, send, and receive input, output, and round-trip models with required enum properties.
 - [nested-models](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/nested-models) - Generate, send, and receive input, output, and round-trip models with required nested model properties.
 - [readonly-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/readonly-properties) - Generate, send, and receive input, output, and round-trip models with readonly properties.
+
+### from-testserver
+
+The tests in the `http/from-testserver` directory are translated from [autorest.testserver](https://github.com/Azure/autorest.testserver/tree/main/swagger).
+- [non-string-enum](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/from-testserver/non-string-enum) - Translated from [non-string-enum.json](https://github.com/Azure/autorest.testserver/blob/main/swagger/non-string-enum.json) and [nonStringEnums.js](https://github.com/Azure/autorest.testserver/blob/main/legacy/routes/nonStringEnums.js)
