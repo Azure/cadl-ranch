@@ -1,0 +1,62 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Rest;
+using Cadl.Http;
+using Azure.Core.Operations;
+
+@serviceTitle("InheritanceClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates round-trip polymorphic models.")
+
+namespace Cadl.TestServer.BasicPolymorphicModels;
+
+@doc("Example base type.")
+model BaseClass {
+  @doc("An example property.")
+  baseClassProperty: string;
+}
+
+model DerivedFromBaseClassA extends BaseClass {
+  @doc("An example property on a derived type")
+  derivedClassAProperty: string;
+}
+
+model DerivedFromBaseClassB extends BaseClass {
+  @doc("An example property on a derived type")
+  derivedClassBProperty: string;
+}
+
+@discriminator("discriminatorProperty")
+@doc("Example base class that has a discriminator property.")
+model BaseClassWithDiscriminator extends BaseClass {
+  // Note: discriminator property is not defined on parent
+}
+
+model DerivedFromBaseClassWithDiscriminatorA extends BaseClassWithDiscriminator {
+  discriminatorProperty: "A";
+}
+
+model DerivedFromBaseClassWithDiscriminatorB extends BaseClassWithDiscriminator {
+  discriminatorProperty: "B";
+}
+
+@doc("Illustrates case where a basic model has polymorphic properties.")
+model ModelWithPolymorphicProperty {
+  @doc("Example polymorphic type property.")
+  polymorphicProperty: BaseClassWithDiscriminator;
+}
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip inherited model.")
+@route("/model")
+@put
+op setValue(@body input: BaseClass): BaseClass | ErrorResponse;
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with a polymorphic property.")
+@route("/property")
+@put
+op setValueWithPolymorphicProperty(@body input: ModelWithPolymorphicProperty): ModelWithPolymorphicProperty | ErrorResponse;
