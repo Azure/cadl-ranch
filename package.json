@@ -15,6 +15,7 @@
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run -s prettier -- --check",
     "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios ",
+    "validate-mock-apis": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-mock-apis ",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md}"
   },
   "engines": {
