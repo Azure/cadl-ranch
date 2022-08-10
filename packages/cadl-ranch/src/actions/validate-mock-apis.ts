@@ -96,6 +96,10 @@ const NOT_IMPLEMENTED = [
   "models/input-basic",
   "models/readonly-properties",
   "models/roundtrip-basic",
+  "models/nested-models",
+  "models/primitive-properties",
+  "models/optional-properties",
+  "models/output-basic",
   "clients/interfaces",
 
   // Laurent
@@ -105,4 +109,5 @@ const NOT_IMPLEMENTED = [
 
   // Yuchao
   "from-testserver/non-string-enum",
+  "from-testserver/extensible-enums",
 ];
