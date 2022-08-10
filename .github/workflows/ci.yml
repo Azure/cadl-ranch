@@ -39,7 +39,7 @@ jobs:
       - run: pnpm run validate-scenarios --debug
         name: Validate Scenarios
 
-      - run: pnpm run validate-scenarios --debug
+      - run: pnpm run validate-mock-apis --debug
         name: Validate mock apis
 
       - run: pnpm run check-format
