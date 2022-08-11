@@ -27,6 +27,7 @@ pnpm build
 pnpm watch
 ```
 
+[Docs on writing scenarios specs](./docs/writing-scenario-spec.md)
 [Docs on writing mock apis](./docs/writing-mock-apis.md)
 
 ### Other helpful commands
