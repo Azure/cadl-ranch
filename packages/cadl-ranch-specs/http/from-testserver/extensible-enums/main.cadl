@@ -9,7 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("PetStore")
-namespace Cadl.TestServer.PetStoreInc;
+namespace Cadl.TestServer.ExtensibleEnums;
 
 enum DaysOfWeekExtensibleEnumValues {
   "Monday",
@@ -43,4 +43,10 @@ interface Pet {
   @route("/extensibleenums/pet/{petId}")
   @get
   getByPetId(@path petId: string): OkResponse<PetModel> | ErrorResponse;
+
+  @scenario
+  @scenarioDoc("add pet")
+  @route("/extensibleenums/pet/addPet")
+  @post
+  addPet(@body petParam: PetModel): OkResponse<PetModel> | ErrorResponse;
 }

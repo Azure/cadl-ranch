@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Int_put = passOnSuccess(
+Scenarios.NonStringEnums_put = passOnSuccess(
   mockapi.put("/nonStringEnums/int/put", (req) => {
     if (req.body == "200") {
       return { status: 200, body: json("Nice job posting an int enum") };
@@ -13,13 +13,13 @@ Scenarios.Int_put = passOnSuccess(
   }),
 );
 
-Scenarios.Int_get = passOnSuccess(
+Scenarios.NonStringEnums_get = passOnSuccess(
   mockapi.get("/nonStringEnums/int/get", () => {
     return { status: 200, body: json(429) };
   }),
 );
 
-Scenarios.Float_put = passOnSuccess(
+Scenarios.NonStringEnums_put = passOnSuccess(
   mockapi.put("/nonStringEnums/float/put", (req) => {
     if (req.body == "200.4") {
       return { status: 200, body: json("Nice job posting a float enum") };
@@ -29,7 +29,7 @@ Scenarios.Float_put = passOnSuccess(
   }),
 );
 
-Scenarios.Float_get = passOnSuccess(
+Scenarios.NonStringEnums_get = passOnSuccess(
   mockapi.get("/nonStringEnums/float/get", () => {
     return { status: 200, body: json(429.1) };
   }),
