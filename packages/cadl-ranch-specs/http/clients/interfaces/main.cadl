@@ -24,18 +24,29 @@ model Cat {
   name : string;
 }
 
+enum DogBreedValues {
+  BASSET,
+  BEAGLE,
+  BULLDOG;
+}
+
+@doc("Dog breed extensible enum.")
+@knownValues(DogBreedValues)
+model DogBreed is string {
+}
+
 @route("/dogs")
 interface dogs {
   @scenario
   @scenarioDoc("Illustrate grouping operations on subclient.")
   @get
-  op getDogs(): Dog | ErrorResponse;
+  op getDogs(@query breed?: DogBreed): Dog | ErrorResponse;
 
   @scenario
   @scenarioDoc("Illustrate grouping operations on subclient.")
   @route("/models")
   @put
-  op setDogs(@body input: Dog): Dog | ErrorResponse;
+  op setDogs(@query breed: DogBreed, @body input: Dog): Dog | ErrorResponse;
 }
 
 @route("/cats")
