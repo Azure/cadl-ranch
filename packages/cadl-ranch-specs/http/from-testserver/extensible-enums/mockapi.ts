@@ -21,7 +21,7 @@ const scooby = {
   IntEnum: "2.1",
   name: "Scooby Scarface",
 };
-Scenarios.Pet_GetByPetId = passOnSuccess(
+Scenarios.ExtensibleEnums_getByPetId = passOnSuccess(
   mockapi.get("/extensibleenums/pet/:petId", (req) => {
     const petId = req.params.petId;
     switch (petId) {
@@ -37,7 +37,7 @@ Scenarios.Pet_GetByPetId = passOnSuccess(
   }),
 );
 
-Scenarios.Pet_AddPet = passOnSuccess(
+Scenarios.ExtensibleEnums_addPet = passOnSuccess(
   mockapi.post("/extensibleenums/pet/addPet", (req) => {
     const petName = req.body.name;
     if (petName === "Retriever") {

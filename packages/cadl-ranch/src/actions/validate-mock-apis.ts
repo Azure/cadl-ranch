@@ -106,8 +106,4 @@ const NOT_IMPLEMENTED = [
   "resiliency/dev-driven",
   "resiliency/srv-driven-1",
   "resiliency/srv-driven-2",
-
-  // Yuchao
-  "from-testserver/non-string-enum",
-  "from-testserver/extensible-enums",
 ];
