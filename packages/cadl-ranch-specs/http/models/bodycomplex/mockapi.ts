@@ -5,10 +5,10 @@ import * as util from "util";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 function coerceDate(targetObject: any) {
-    let stringRep = JSON.stringify(targetObject);
-    stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)\.\d{3,7}([Zz]|[+-]00:00)/g, "$1Z");
-    return JSON.parse(stringRep);
-  };
+  let stringRep = JSON.stringify(targetObject);
+  stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)\.\d{3,7}([Zz]|[+-]00:00)/g, "$1Z");
+  return JSON.parse(stringRep);
+}
 
 Scenarios.Basic_put = passOnSuccess(
   mockapi.put("/complex/basic/:scenario", (req) => {
@@ -16,8 +16,8 @@ Scenarios.Basic_put = passOnSuccess(
       if (_.isEqual(req.body, { id: 2, name: "abc", color: "Magenta" })) {
         return { status: 200 };
       } else {
-          console.log(JSON.stringify(req.body));
-          console.log(JSON.stringify({ id: 2, name: "abc", color: "Magenta" }))
+        console.log(JSON.stringify(req.body));
+        console.log(JSON.stringify({ id: 2, name: "abc", color: "Magenta" }));
         return { status: 400, body: json("Did not like valid req " + util.inspect(req.body)) };
       }
     } else {
@@ -457,51 +457,51 @@ const regularSalmonWithoutDiscriminator = {
 };
 
 const dotSalmon = {
-  "fish_type": "DotSalmon",
-  "location": "sweden",
-  "iswild": true,
-  "species": "king",
+  fish_type: "DotSalmon",
+  location: "sweden",
+  iswild: true,
+  species: "king",
 };
 
 const dotFishMarketWithDiscriminator = {
   sampleSalmon: {
-    "fish_type": "DotSalmon",
-    "location": "sweden",
-    "iswild": false,
-    "species": "king",
+    fish_type: "DotSalmon",
+    location: "sweden",
+    iswild: false,
+    species: "king",
   },
   salmons: [
     {
-      "fish_type": "DotSalmon",
-      "location": "sweden",
-      "iswild": false,
-      "species": "king",
+      fish_type: "DotSalmon",
+      location: "sweden",
+      iswild: false,
+      species: "king",
     },
     {
-      "fish_type": "DotSalmon",
-      "location": "atlantic",
-      "iswild": true,
-      "species": "king",
+      fish_type: "DotSalmon",
+      location: "atlantic",
+      iswild: true,
+      species: "king",
     },
   ],
   sampleFish: {
-    "fish_type": "DotSalmon",
-    "location": "australia",
-    "iswild": false,
-    "species": "king",
+    fish_type: "DotSalmon",
+    location: "australia",
+    iswild: false,
+    species: "king",
   },
   fishes: [
     {
-      "fish_type": "DotSalmon",
-      "location": "australia",
-      "iswild": false,
-      "species": "king",
+      fish_type: "DotSalmon",
+      location: "australia",
+      iswild: false,
+      species: "king",
     },
     {
-      "fish_type": "DotSalmon",
-      "location": "canada",
-      "iswild": true,
-      "species": "king",
+      fish_type: "DotSalmon",
+      location: "canada",
+      iswild: true,
+      species: "king",
     },
   ],
 };
@@ -728,7 +728,6 @@ Scenarios.Readonlyproperty_put = passOnSuccess(
     }
   }),
 );
-
 
 Scenarios.Int_get = passOnSuccess(
   mockapi.get("/nonStringEnums/int/get", () => {

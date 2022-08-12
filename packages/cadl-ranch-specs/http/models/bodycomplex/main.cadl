@@ -90,8 +90,8 @@ model salmon extends Fish {
   iswild?: boolean;
 }
 
-model smart_salmon extends salmon {
-  // fishtype: "smart_salmon";
+model smart_salmon extends Fish {
+  fishtype: "smart_salmon";
   college_degree?: string;
   // additionalProperties?: Record<unknown>;
 }
@@ -436,11 +436,11 @@ namespace polymorphism {
 
   @route("/complicated")
   @doc("Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties")
-  @get op getComplicated(): OkResponse<salmon> | Error;
+  @get op getComplicated(): OkResponse<Fish> | Error;
 
   @route("/complicated")
   @doc("Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties")
-  @put op putComplicated(@body complexBody: salmon):  {@statusCode statusCode: 200;} | Error;
+  @put op putComplicated(@body complexBody: Fish):  {@statusCode statusCode: 200;} | Error;
 
   @route("/missingdiscriminator")
   @doc("Put complex types that are polymorphic, omitting the discriminator")
