@@ -124,7 +124,7 @@ enum GoblinSharkColorValues
 }
 
 model goblinshark extends shark {
-  sharktype: "goblinshark";
+  sharktype: "goblin";
   jawsize?: int32;
   color?: GoblinSharkColor = "gray";
 }
