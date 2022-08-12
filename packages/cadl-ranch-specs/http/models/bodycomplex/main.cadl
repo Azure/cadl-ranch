@@ -376,7 +376,7 @@ namespace array {
   @get op getNotProvided(): OkResponse<array_wrapper> | Error;
 }
 
-@route("/complex/dictionary")
+@route("/complex/dictionary/typed")
 namespace dictionary {
   @route("/valid")
   @doc("Get complex types with dictionary properties")
