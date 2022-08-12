@@ -513,7 +513,7 @@ def test_polymorphism_get_and_put_complicated(client):
 
 # Complex types that uses missing discriminator
 
-@pytest.mark.skip(reason="todo: test_polymorphism_get_and_put_complicated")
+@pytest.mark.skip(reason="todo: test_polymorphism_get_and_put_missing_discriminator")
 def test_polymorphism_get_and_put_missing_discriminator(client):
     regular_salmon = {
         "fishtype": "salmon",
