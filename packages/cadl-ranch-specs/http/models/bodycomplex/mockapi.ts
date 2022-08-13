@@ -606,7 +606,7 @@ Scenarios.Polymorphism_get = passOnSuccess(
 );
 
 Scenarios.Polymorphism_missingrequired_invalid_get = passOnSuccess(
-  mockapi.get("/complex/polymorphism/missingrequired/invalid", (req) => {
+  mockapi.put("/complex/polymorphism/missingrequired/invalid", (req) => {
     return {
       status: 400,
       body: json(
