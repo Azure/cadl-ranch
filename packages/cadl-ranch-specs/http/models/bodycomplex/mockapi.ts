@@ -611,12 +611,10 @@ Scenarios.Polymorphism_get = passOnSuccess(
 
 Scenarios.Polymorphism_missingrequired_invalid_get = passOnSuccess(
   mockapi.put("/complex/polymorphism/missingrequired/invalid", (req) => {
-    return {
-      status: 400,
-      body: json(
-        "Reached server in scenario: /complex/polymorphism/missingrequired/invalid, and should not have - since required fields are missing from the request, the client should not be able to send it.",
-      ),
-    };
+    return composeError(
+      400,
+      "Reached server in scenario: /complex/polymorphism/missingrequired/invalid, and should not have - since required fields are missing from the request, the client should not be able to send it.",
+    );
   }),
 );
 
