@@ -10,6 +10,10 @@ function coerceDate(targetObject: any) {
   return JSON.parse(stringRep);
 }
 
+function composeError(code: number, msg: string) {
+  return { status: code, body: json({ message: msg, status: code }) };
+}
+
 Scenarios.Basic_put = passOnSuccess(
   mockapi.put("/complex/basic/:scenario", (req) => {
     if (req.params.scenario === "valid") {
@@ -18,10 +22,10 @@ Scenarios.Basic_put = passOnSuccess(
       } else {
         console.log(JSON.stringify(req.body));
         console.log(JSON.stringify({ id: 2, name: "abc", color: "Magenta" }));
-        return { status: 400, body: json("Did not like valid req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like valid req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json('Must specify scenario either "valid" or "empty"') };
+      return composeError(400, 'Must specify scenario either "valid" or "empty"');
     }
   }),
 );
@@ -39,7 +43,7 @@ Scenarios.Basic_get = passOnSuccess(
     } else if (req.params.scenario === "invalid") {
       return { status: 200, body: json(JSON.parse('{ "id": "a", "name": "abc" }')) };
     } else {
-      return { status: 400, body: json("Request scenario must be valid, empty, null, notprovided, or invalid.") };
+      return composeError(400, "Request scenario must be valid, empty, null, notprovided, or invalid.");
     }
   }),
 );
@@ -80,50 +84,50 @@ Scenarios.Primitive_put = passOnSuccess(
       if (_.isEqual(req.body, intBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like integer req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like integer req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "long") {
       if (_.isEqual(req.body, longBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like long req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like long req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "float") {
       if (_.isEqual(req.body, floatBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like float req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like float req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "double") {
       if (_.isEqual(req.body, doubleBodyInbound)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like double req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like double req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "bool") {
       if (_.isEqual(req.body, boolBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like bool req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like bool req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "string") {
       console.log(JSON.stringify(req.body));
       if (_.isEqual(req.body, stringBody) || _.isEqual(req.body, stringBodyInbound)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like string req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like string req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "date") {
       if (_.isEqual(req.body, dateBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like date req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like date req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "datetime") {
       if (_.isEqual(coerceDate(req.body), datetimeBody)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like datetime req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like datetime req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "datetimerfc1123") {
       if (
@@ -133,22 +137,22 @@ Scenarios.Primitive_put = passOnSuccess(
       ) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like datetimerfc1123 req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like datetimerfc1123 req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "duration") {
       if (_.isEqual(req.body, durationBody) || _.isEqual(req.body, durationBodyAlternate)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like duration req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like duration req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "byte") {
       if (JSON.stringify(req.body) === byteBody) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like byte req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like byte req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid primitive type.") };
+      return composeError(400, "Must provide a valid primitive type.");
     }
   }),
 );
@@ -178,7 +182,7 @@ Scenarios.Primitive_get = passOnSuccess(
     } else if (req.params.scenario === "byte") {
       return { status: 200, body: json(JSON.parse(byteBody)) };
     } else {
-      return { status: 400, body: json("Must provide a valid primitive type scenario.") };
+      return composeError(400, "Must provide a valid primitive type scenario.");
     }
   }),
 );
@@ -193,16 +197,16 @@ Scenarios.Array_put = passOnSuccess(
       if (JSON.stringify(req.body) === arrayValidBody) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex array req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex array req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "empty") {
       if (JSON.stringify(req.body) === '{"array":[]}') {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex array req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex array req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -216,7 +220,7 @@ Scenarios.Array_get = passOnSuccess(
     } else if (req.params.scenario === "notprovided") {
       return { status: 200, body: json(JSON.parse("{}")) };
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -231,16 +235,16 @@ Scenarios.Dictionary_put = passOnSuccess(
       if (_.isEqual(req.body, JSON.parse(dictionaryValidBody))) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex dictionary req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex dictionary req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "empty") {
       if (JSON.stringify(req.body) === '{"defaultProgram":{}}') {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex array req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex array req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -256,7 +260,7 @@ Scenarios.Dictionary_get = passOnSuccess(
     } else if (req.params.scenario === "notprovided") {
       return { status: 200, body: json(JSON.parse("{}")) };
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -266,12 +270,12 @@ Scenarios.Dictionary_get = passOnSuccess(
  */
 Scenarios.Dictionary_untyped_put = passOnSuccess(
   mockapi.put("/complex/dictionary/untyped/:scenario", (req) => {
-    return { status: 501, body: json("Untyped dictionaries are not supported for now.") };
+    return composeError(501, "Untyped dictionaries are not supported for now.");
   }),
 );
 Scenarios.Dictionary_untyped_get = passOnSuccess(
   mockapi.get("/complex/dictionary/untyped/:scenario", (req) => {
-    return { status: 501, body: json("Untyped dictionaries are not supported for now.") };
+    return composeError(501, "Untyped dictionaries are not supported for now.");
   }),
 );
 
@@ -286,10 +290,10 @@ Scenarios.Inheritance_put = passOnSuccess(
       if (_.isEqual(req.body, JSON.parse(siamese))) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex inheritance req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex inheritance req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -299,7 +303,7 @@ Scenarios.Inheritance_get = passOnSuccess(
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(JSON.parse(siamese)) };
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -569,7 +573,7 @@ Scenarios.Polymorphism_put = passOnSuccess(
       if (_.isEqual(coerceDate(req.body), rawFish)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex polymorphism req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex polymorphism req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "complicated") {
       console.log(JSON.stringify(req.body, null, 4));
@@ -577,18 +581,18 @@ Scenarios.Polymorphism_put = passOnSuccess(
       if (_.isEqual(coerceDate(req.body), rawSalmon)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex polymorphism req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex polymorphism req " + util.inspect(req.body));
       }
     } else if (req.params.scenario === "missingdiscriminator") {
       console.log(JSON.stringify(req.body, null, 4));
       console.log(JSON.stringify(regularSalmon, null, 4));
       if (_.isEqual(coerceDate(req.body), regularSalmon)) {
-        return { status: 400, body: json(regularSalmonWithoutDiscriminator) };
+        return { status: 200, body: json(regularSalmonWithoutDiscriminator) };
       } else {
-        return { status: 400, body: json("Did not like complex polymorphism req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex polymorphism req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -600,7 +604,7 @@ Scenarios.Polymorphism_get = passOnSuccess(
     } else if (req.params.scenario === "complicated") {
       return { status: 200, body: json(rawSalmon) };
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -691,10 +695,10 @@ Scenarios.Polymorphicrecursive_put = passOnSuccess(
       if (_.isEqual(coerceDate(req.body), bigfishRaw)) {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("Did not like complex polymorphic recursive req " + util.inspect(req.body)) };
+        return composeError(400, "Did not like complex polymorphic recursive req " + util.inspect(req.body));
       }
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -704,7 +708,7 @@ Scenarios.Polymorphicrecursive_get = passOnSuccess(
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(bigfishRaw) };
     } else {
-      return { status: 400, body: json("Must provide a valid scenario.") };
+      return composeError(400, "Must provide a valid scenario.");
     }
   }),
 );
@@ -721,10 +725,10 @@ Scenarios.Readonlyproperty_put = passOnSuccess(
       if (typeof req.body.id == "undefined") {
         return { status: 200 };
       } else {
-        return { status: 400, body: json("id is readonly") };
+        return composeError(400, "id is readonly");
       }
     } else {
-      return { status: 400, body: json("Must provide a body.") };
+      return composeError(400, "Must provide a body.");
     }
   }),
 );
