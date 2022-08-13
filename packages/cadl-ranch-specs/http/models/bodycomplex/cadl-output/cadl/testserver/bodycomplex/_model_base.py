@@ -450,13 +450,6 @@ def _deserialize(deserializer: typing.Optional[typing.Callable[[typing.Any], typ
         raise DeserializationError() from e
 
 
-def _get_content(http_response: HttpResponse):
-    try:
-        return http_response.json()
-    except:
-        return http_response.content
-
-
 class _RestField:
     def __init__(
         self,

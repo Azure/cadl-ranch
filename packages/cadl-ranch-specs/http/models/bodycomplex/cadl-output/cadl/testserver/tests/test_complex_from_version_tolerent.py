@@ -70,10 +70,10 @@ def test_basic_get_and_put_valid(client: ComplexTestService):
 
     # PUT basic/valid
     basic_result = {
-            "id": 2,
-            "name": "abc",
-            "color": "Magenta",
-        }
+        "id": 2,
+        "name": "abc",
+        "color": "Magenta",
+    }
     client.basic_ops.put_valid(basic_result, api_version="2016-02-29")
 
 
@@ -88,6 +88,7 @@ def test_basic_get_null(client):
     basic_result = client.basic_ops.get_null()
     assert basic_result["id"] is None
     assert basic_result["name"] is None
+
 
 @pytest.mark.skip(reason="todo: test_basic_get_not_provided")
 def test_basic_get_not_provided(client):
@@ -402,7 +403,7 @@ def test_polymorphism_get_and_put_valid(client):
     }
     client.polymorphism.put_valid(request)
 
-@pytest.mark.skip(reason="todo: test_polymorphism_put_valid_missing_required")
+
 def test_polymorphism_put_valid_missing_required(client):
     bad_request = {
         "fishtype": "salmon",
@@ -512,8 +513,6 @@ def test_polymorphism_get_and_put_complicated(client):
 
 
 # Complex types that uses missing discriminator
-
-@pytest.mark.skip(reason="todo: test_polymorphism_get_and_put_missing_discriminator")
 def test_polymorphism_get_and_put_missing_discriminator(client):
     regular_salmon = {
         "fishtype": "salmon",
@@ -548,19 +547,21 @@ def test_polymorphism_get_and_put_missing_discriminator(client):
         "location": "alaska",
         "iswild": True,
     }
-    # Not raise is enough of a test
-    client.polymorphism.put_missing_discriminator(regular_salmon)
+    with pytest.raises(HttpResponseError):
+        client.polymorphism.put_missing_discriminator(regular_salmon)
 
     # Dot syntax
     dot_salmon = client.polymorphism.get_dot_syntax()
     assert dot_salmon["fish_type"] == "DotSalmon"
     assert dot_salmon["location"] == "sweden"
 
+
 @pytest.mark.skip(reason="todo: test_pass_in_api_version")
 def test_pass_in_api_version(client):
     assert client._config.api_version == "2016-02-29"
     with ComplexTestService(api_version="2021-10-01") as client:
         assert client._config.api_version == "2021-10-01"
+
 
 @pytest.mark.skip(reason="todo: test_client_api_version")
 def test_client_api_version():

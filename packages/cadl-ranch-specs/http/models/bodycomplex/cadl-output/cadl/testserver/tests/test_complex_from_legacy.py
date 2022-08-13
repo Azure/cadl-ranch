@@ -196,12 +196,12 @@ class TestComplex(object):
         # we are not using the min date of year 1 because of the latest msrest update
         # with msrest update, minimal year we can parse is 100, instead of 1
         min_date = datetime(2001, 1, 1)
-        assert min_date.replace(tzinfo=UTC()) ==  datetimeRfc1123Result.field
+        assert min_date.replace(tzinfo=UTC()) == datetimeRfc1123Result.field
 
         # we can still model year 1 though with the latest msrest update
         datetime_request = Datetimerfc1123Wrapper(
-            field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
-            now=isodate.parse_datetime("2015-05-18T11:38:00Z"))
+            field=isodate.parse_datetime("0001-01-01T00:00:00Z"), now=isodate.parse_datetime("2015-05-18T11:38:00Z")
+        )
         client.primitive.put_date_time_rfc1123(datetime_request)
 
     @pytest.mark.skip(reason="todo: test_primitive_get_and_put_duration")
@@ -368,7 +368,7 @@ class TestComplex(object):
         )
         client.polymorphism.put_valid(request)
 
-    @pytest.mark.skip(reason="todo: test_polymorphism_put_valid_missing_required")
+    # @pytest.mark.skip(reason="todo: test_polymorphism_put_valid_missing_required")
     def test_polymorphism_put_valid_missing_required(self, client):
         bad_request = models.salmon(
             length=1,
@@ -385,7 +385,7 @@ class TestComplex(object):
             ],
         )
 
-        with pytest.raises(ValidationError):
+        with pytest.raises(HttpResponseError):
             client.polymorphism.put_valid_missing_required(bad_request)
 
     # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
@@ -461,8 +461,6 @@ class TestComplex(object):
         client.polymorphism.put_complicated(smart_salmon)
 
     # Complex types that uses missing discriminator
-
-    @pytest.mark.skip(reason="todo: test_polymorphism_get_and_put_missing_discriminator")
     def test_polymorphism_get_and_put_missing_discriminator(self, client):
         regular_salmon = models.salmon(
             iswild=True,
