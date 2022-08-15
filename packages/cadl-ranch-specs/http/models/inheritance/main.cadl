@@ -4,7 +4,7 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Rest;
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("InheritanceClient")
 @serviceVersion("1.0.0")

@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("NestedModelsBasicClient")
 @serviceVersion("1.0.0")
@@ -84,10 +84,10 @@ op sendNestedModel(@body input: InputModel): Response<200> | ErrorResponse;
 @scenarioDoc("Generate and receive output model with required nested model properties.")
 @route("/models")
 @get
-op getNestedModel(): OkResponse<OutputModel> | ErrorResponse;
+op getNestedModel(): OutputModel | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with required nested model properties.")
 @route("/models")
 @put
-op setNestedModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
+op setNestedModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;

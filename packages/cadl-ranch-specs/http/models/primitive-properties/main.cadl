@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("PrimitivePropertyClient")
 @serviceVersion("1.0.0")
@@ -30,4 +30,4 @@ model PrimitivePropertyModel {
 @scenarioDoc("Generate/send a round-trip model with basic Cadl primitive type properties.")
 @route("/models")
 @get
-op getModel(input: PrimitivePropertyModel): OkResponse<PrimitivePropertyModel> | ErrorResponse;
+op getModel(@body input: PrimitivePropertyModel): PrimitivePropertyModel | ErrorResponse;
