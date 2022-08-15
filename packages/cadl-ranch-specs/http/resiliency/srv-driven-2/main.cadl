@@ -24,7 +24,6 @@ model PostInput {
 }
 
 model Message {
-  message: string;
 }
 
 @doc("Answer from service")
