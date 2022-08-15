@@ -94,11 +94,11 @@ class TestComplex(object):
         basic_result = client.basic_ops.get_not_provided()
         assert basic_result is None
 
-    @pytest.mark.skip(reason="todo: test_basic_get_invalid")
     def test_basic_get_invalid(self, client):
         # GET basic/invalid
-        with pytest.raises(DeserializationError):
-            client.basic_ops.get_invalid()
+        basic_result = client.basic_ops.get_invalid()
+        assert basic_result["id"] == "a"
+        assert basic_result["name"] == "abc"
 
     # COMPLEX TYPE WITH PRIMITIVE PROPERTIES
     def test_primitive_get_and_put_int(self, client):
@@ -249,7 +249,6 @@ class TestComplex(object):
 
         client.array.put_valid(models.array_wrapper(array=array_value))
 
-    @pytest.mark.skip(reason="todo: test_array_get_and_put_empty")
     def test_array_get_and_put_empty(self, client):
 
         # GET array/empty
@@ -257,7 +256,7 @@ class TestComplex(object):
         assert 0 == len(array_result.array)
 
         # PUT array/empty
-        client.array.put_empty([])
+        client.array.put_empty({"array": []})
 
     def test_array_get_not_provided(self, client):
         # Get array/notprovided
@@ -276,14 +275,13 @@ class TestComplex(object):
         # PUT dictionary/valid
         client.dictionary.put_valid(models.dictionary_wrapper(default_program=dict_val))
 
-    @pytest.mark.skip(reason="todo: test_dictionary_get_and_put_empty")
     def test_dictionary_get_and_put_empty(self, client):
         # GET dictionary/empty
         dict_result = client.dictionary.get_empty()
         assert 0 == len(dict_result.default_program)
 
         # PUT dictionary/empty
-        client.dictionary.put_empty(default_program={})
+        client.dictionary.put_empty({"defaultProgram": {}})
 
     def test_dictionary_get_and_null(self, client):
         # GET dictionary/null
@@ -368,7 +366,6 @@ class TestComplex(object):
         )
         client.polymorphism.put_valid(request)
 
-    # @pytest.mark.skip(reason="todo: test_polymorphism_put_valid_missing_required")
     def test_polymorphism_put_valid_missing_required(self, client):
         bad_request = models.salmon(
             length=1,
