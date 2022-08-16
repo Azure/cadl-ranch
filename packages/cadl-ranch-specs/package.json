@@ -29,22 +29,25 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "@azure-tools/cadl-autorest": "^0.18.0",
-    "@azure-tools/cadl-azure-core": "^0.5.0",
+    "@azure-tools/cadl-autorest": "^0.19.0",
+    "@azure-tools/cadl-azure-core": "^0.6.0",
     "@azure-tools/cadl-ranch": "^0.1.0",
     "@azure-tools/cadl-ranch-api": "^0.1.0",
     "@azure-tools/cadl-ranch-expect": "^0.1.0",
-    "@cadl-lang/compiler": "^0.33.0",
-    "@cadl-lang/openapi3": "^0.13.0",
-    "@cadl-lang/openapi": "^0.10.1",
-    "@cadl-lang/rest": "^0.15.1",
-    "@cadl-lang/versioning": "^0.6.0"
+    "@cadl-lang/compiler": "0.34.0",
+    "@cadl-lang/openapi": "^0.11.0",
+    "@cadl-lang/openapi3": "^0.14.0",
+    "@cadl-lang/rest": "^0.16.0",
+    "@cadl-lang/versioning": "^0.7.0",
+    "@types/underscore": "^1.11.4",
+    "underscore": "^1.13.4",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "@cadl-lang/eslint-config-cadl": "^0.3.0",
     "@types/node": "^18.0.6",
-    "prettier": "^2.7.1",
     "eslint": "^8.20.0",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
   }

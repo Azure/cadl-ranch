@@ -57,23 +57,15 @@ class ComplexTestService:  # pylint: disable=client-accepts-api-version-keyword,
         self._config = ComplexTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-        self._serialize.client_side_validation = False
-        self.basic_ops = BasicOpsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.readonlyproperty = ReadonlypropertyOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.basic_ops = BasicOpsOperations(self._client, self._config)
+        self.primitive = PrimitiveOperations(self._client, self._config)
+        self.array = ArrayOperations(self._client, self._config)
+        self.dictionary = DictionaryOperations(self._client, self._config)
+        self.inheritance = InheritanceOperations(self._client, self._config)
+        self.polymorphism = PolymorphismOperations(self._client, self._config)
+        self.polymorphicrecursive = PolymorphicrecursiveOperations(self._client, self._config)
+        self.readonlyproperty = ReadonlypropertyOperations(self._client, self._config)
+        self.flattencomplex = FlattencomplexOperations(self._client, self._config)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

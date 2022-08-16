@@ -5,7 +5,6 @@ import "@azure-tools/cadl-azure-core";
 
 using Cadl.Http;
 using Cadl.Rest;
-using Azure.Core.Operations;
 using Cadl.Rest.Resource;
 using Cadl.Versioning;
 
@@ -14,6 +13,11 @@ using Cadl.Versioning;
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("Illustrates complex model generation, as well as serialization and deserialization.")
 namespace Cadl.Testserver.BodyComplex;
+
+@withVisibility("read")
+model OkResponse<T> is Http.Response<"200"> {
+  @body body: T;
+}
 
 @error
 model Error {

@@ -96,14 +96,10 @@ class BasicOpsOperations:
         :attr:`basic_ops` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.basic:
@@ -208,7 +204,6 @@ class BasicOpsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -409,14 +404,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :attr:`primitive` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_int(self, **kwargs: Any) -> _models.int_wrapper:
@@ -515,7 +506,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -643,7 +633,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -768,7 +757,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -899,7 +887,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1024,7 +1011,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -1152,7 +1138,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1278,7 +1263,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -1408,7 +1392,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1537,7 +1520,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1663,7 +1645,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -1793,7 +1774,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1832,14 +1812,10 @@ class ArrayOperations:
         :attr:`array` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.array_wrapper:
@@ -1941,7 +1917,6 @@ class ArrayOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -2068,7 +2043,6 @@ class ArrayOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2147,14 +2121,10 @@ class DictionaryOperations:
         :attr:`dictionary` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.dictionary_wrapper:
@@ -2257,7 +2227,6 @@ class DictionaryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -2385,7 +2354,6 @@ class DictionaryOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2504,14 +2472,10 @@ class InheritanceOperations:
         :attr:`inheritance` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.siamese:
@@ -2618,7 +2582,6 @@ class InheritanceOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2657,14 +2620,10 @@ class PolymorphismOperations:
         :attr:`polymorphism` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
@@ -2859,7 +2818,6 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -3114,7 +3072,6 @@ class PolymorphismOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3197,7 +3154,6 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.salmon]
 
         content_type = content_type or "application/json"
-        _content = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
@@ -3369,7 +3325,6 @@ class PolymorphismOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3408,14 +3363,10 @@ class PolymorphicrecursiveOperations:
         :attr:`polymorphicrecursive` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
@@ -3671,7 +3622,6 @@ class PolymorphicrecursiveOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3710,14 +3660,10 @@ class ReadonlypropertyOperations:
         :attr:`readonlyproperty` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.readonly_obj:
@@ -3817,7 +3763,6 @@ class ReadonlypropertyOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3856,14 +3801,10 @@ class FlattencomplexOperations:
         :attr:`flattencomplex` attribute.
     """
 
-    models = _models
-
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.MyBaseType:

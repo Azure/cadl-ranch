@@ -883,8 +883,8 @@ class goblinshark(shark, discriminator="goblin"):
     """
 
     jawsize: Optional[int] = rest_field(name="jawsize")
-    color: Optional[Union[str, "GoblinSharkColor"]] = rest_field(
-        name="color"
+    color: Union[str, "GoblinSharkColor"] = rest_field(
+        name="color", default="gray"
     )  # Known values are: "pink", "gray", "brown", "RED", and "red".
 
     @overload
@@ -897,7 +897,7 @@ class goblinshark(shark, discriminator="goblin"):
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
-        color: Optional[Union[str, "_models.GoblinSharkColor"]] = None,
+        color: Union[str, "_models.GoblinSharkColor"] = "gray",
     ):
         """
         :keyword species:
