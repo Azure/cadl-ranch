@@ -87,4 +87,23 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 }
 
 // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
-const NOT_IMPLEMENTED = ["models"];
+const NOT_IMPLEMENTED = [
+  // Anne
+  "models/collections-basic",
+  "models/collections-models",
+  "models/enum-properties",
+  "models/inheritance",
+  "models/input-basic",
+  "models/readonly-properties",
+  "models/roundtrip-basic",
+  "models/nested-models",
+  "models/primitive-properties",
+  "models/optional-properties",
+  "models/output-basic",
+  "clients/interfaces",
+
+  // Laurent
+  "resiliency/dev-driven",
+  "resiliency/srv-driven-1",
+  "resiliency/srv-driven-2",
+];
