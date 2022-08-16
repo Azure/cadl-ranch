@@ -404,7 +404,12 @@ class Model(_MyMutableMapping):
         attr_to_rest_field: typing.Dict[str, _RestField] = {  # map attribute name to rest_field property
             k: v for mro_class in mros for k, v in mro_class.__dict__.items() if k[0] != "_" and hasattr(v, "_type")
         }
-        annotations = {k: v for mro_class in mros for k, v in mro_class.__annotations__.items()}
+        annotations = {
+            k: v
+            for mro_class in mros
+            if hasattr(mro_class, "__annotations__")
+            for k, v in mro_class.__annotations__.items()
+        }
         for attr, rest_field in attr_to_rest_field.items():
             rest_field._module = cls.__module__
             if not rest_field._type:
