@@ -13,7 +13,6 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models
-from .._serialization import Deserializer, Serializer
 from ._configuration import ComplexTestServiceConfiguration
 from .operations import (
     ArrayOperations,

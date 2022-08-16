@@ -14,7 +14,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models
 from ._configuration import ComplexTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
 from .operations import (
     ArrayOperations,
     BasicOpsOperations,
