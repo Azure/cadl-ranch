@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("PetStoreInc")
 @serviceVersion("1.0.0")
@@ -42,11 +42,11 @@ interface Pet {
   @scenarioDoc("get pet by id")
   @route("/extensibleenums/pet/{petId}")
   @get
-  getByPetId(@path petId: string): OkResponse<PetModel> | ErrorResponse;
+  getByPetId(@path petId: string): PetModel | ErrorResponse;
 
   @scenario
   @scenarioDoc("add pet")
   @route("/extensibleenums/pet/addPet")
   @post
-  addPet(@body petParam: PetModel): OkResponse<PetModel> | ErrorResponse;
+  addPet(@body petParam: PetModel): PetModel | ErrorResponse;
 }
