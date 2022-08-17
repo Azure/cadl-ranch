@@ -24,6 +24,6 @@ model InputModel {
 
 @scenario
 @scenarioDoc("Generate and send an input-only model with required reference and value type properties.")
-@route("/models")
+@route("/models/basic")
 @get
 op getModel(@body input: InputModel): Response<200> | ErrorResponse ;
