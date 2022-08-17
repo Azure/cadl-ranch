@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from json import dumps
+import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -82,6 +83,11 @@ from ...operations._operations import (
     build_readonlyproperty_put_valid_request,
 )
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -100,6 +106,8 @@ class BasicOpsOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.basic:
@@ -143,7 +151,12 @@ class BasicOpsOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.basic, *, api_version: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.basic, JSON],
+        *,
+        api_version: str,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -179,7 +192,7 @@ class BasicOpsOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.basic, IO], *, api_version: str, **kwargs: Any
+        self, complex_body: Union[_models.basic, JSON, IO], *, api_version: str, **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -408,6 +421,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_int(self, **kwargs: Any) -> _models.int_wrapper:
@@ -451,7 +466,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.int_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.int_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -483,7 +498,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.int_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.int_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -576,7 +591,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.long_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.long_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -608,7 +623,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.long_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.long_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -702,7 +717,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.float_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.float_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -734,7 +749,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.float_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.float_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -827,7 +842,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.double_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.double_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -861,7 +880,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.double_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.double_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -956,7 +975,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.boolean_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.boolean_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -988,7 +1011,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.boolean_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.boolean_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -1081,7 +1104,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.string_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.string_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -1113,7 +1140,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.string_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.string_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -1207,7 +1234,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.date_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.date_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -1239,7 +1266,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.date_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.date_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -1333,7 +1360,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.datetime_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.datetime_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -1367,7 +1398,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.datetime_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.datetime_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -1461,7 +1492,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.datetimerfc1123_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.datetimerfc1123_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetimerfc1123 properties.
 
@@ -1495,7 +1530,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.datetimerfc1123_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.datetimerfc1123_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with datetimerfc1123 properties.
 
@@ -1589,7 +1624,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.duration_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.duration_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
@@ -1621,7 +1660,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.duration_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.duration_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
@@ -1715,7 +1754,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.byte_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.byte_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
@@ -1749,7 +1788,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.byte_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.byte_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
@@ -1816,6 +1855,8 @@ class ArrayOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.array_wrapper:
@@ -1859,7 +1900,7 @@ class ArrayOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.array_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.array_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array properties.
 
@@ -1893,7 +1934,7 @@ class ArrayOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.array_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.array_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with array properties.
 
@@ -1987,7 +2028,7 @@ class ArrayOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.array_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.array_wrapper, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array properties which is empty.
 
@@ -2019,7 +2060,7 @@ class ArrayOperations:
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.array_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.array_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with array properties which is empty.
 
@@ -2125,6 +2166,8 @@ class DictionaryOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.dictionary_wrapper:
@@ -2168,7 +2211,11 @@ class DictionaryOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.dictionary_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.dictionary_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary properties.
 
@@ -2202,7 +2249,7 @@ class DictionaryOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.dictionary_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.dictionary_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary properties.
 
@@ -2297,7 +2344,11 @@ class DictionaryOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.dictionary_wrapper, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        complex_body: Union[_models.dictionary_wrapper, JSON],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary properties which is empty.
 
@@ -2329,7 +2380,7 @@ class DictionaryOperations:
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.dictionary_wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.dictionary_wrapper, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary properties which is empty.
 
@@ -2476,6 +2527,8 @@ class InheritanceOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.siamese:
@@ -2519,7 +2572,7 @@ class InheritanceOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.siamese, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.siamese, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -2555,7 +2608,7 @@ class InheritanceOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.siamese, IO], **kwargs: Any
+        self, complex_body: Union[_models.siamese, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -2624,6 +2677,8 @@ class PolymorphismOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
@@ -2667,7 +2722,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -2763,7 +2818,7 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -3013,7 +3068,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -3047,7 +3102,7 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -3101,7 +3156,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_missing_discriminator(
-        self, complex_body: _models.salmon, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.salmon, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -3132,7 +3187,9 @@ class PolymorphismOperations:
         """
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body: Union[_models.salmon, IO], **kwargs: Any) -> _models.salmon:
+    async def put_missing_discriminator(
+        self, complex_body: Union[_models.salmon, JSON, IO], **kwargs: Any
+    ) -> _models.salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body: Is either a model type or a IO type. Required.
@@ -3188,7 +3245,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -3274,7 +3331,7 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -3367,6 +3424,8 @@ class PolymorphicrecursiveOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
@@ -3410,7 +3469,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -3546,7 +3605,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -3664,6 +3723,8 @@ class ReadonlypropertyOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.readonly_obj:
@@ -3707,7 +3768,7 @@ class ReadonlypropertyOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.readonly_obj, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: Union[_models.readonly_obj, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
@@ -3739,7 +3800,7 @@ class ReadonlypropertyOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.readonly_obj, IO], **kwargs: Any
+        self, complex_body: Union[_models.readonly_obj, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
@@ -3805,6 +3866,8 @@ class FlattencomplexOperations:
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_valid(self, **kwargs: Any) -> _models.MyBaseType:

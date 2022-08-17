@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
+import sys
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
@@ -16,6 +17,11 @@ from .._model_base import rest_discriminator, rest_field
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class array_wrapper(_model_base.Model):

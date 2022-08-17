@@ -212,7 +212,6 @@ class TestComplex(object):
 
         client.primitive.put_duration(expected)
 
-    @pytest.mark.skip(reason="todo: test_primitive_get_and_put_byte")
     def test_primitive_get_and_put_byte(self, client):
         # GET primitive/byte
         byteResult = client.primitive.get_byte()
@@ -220,7 +219,7 @@ class TestComplex(object):
         assert valid_bytes == byteResult.field
 
         # PUT primitive/byte
-        client.primitive.put_byte(valid_bytes)
+        client.primitive.put_byte(models.byte_wrapper(field=valid_bytes))
 
     # COMPLEX TYPE WITH READ ONLY PROPERTIES
 
@@ -232,7 +231,7 @@ class TestComplex(object):
         assert readonly_result == valid_obj
 
         # PUT readonly/valid
-        readonly_result = client.readonlyproperty.put_valid(2)
+        readonly_result = client.readonlyproperty.put_valid(models.readonly_obj({"id": "123", "size": 2}))
         assert readonly_result is None
 
     # COMPLEX TYPE WITH ARRAY PROPERTIES
