@@ -5,3 +5,4 @@ endOfLine: lf
 arrowParens: always
 plugins:
   - "./node_modules/@cadl-lang/prettier-plugin-cadl"
+overrides: [{ "files": "*.cadl", "options": { "parser": "cadl" } }]
