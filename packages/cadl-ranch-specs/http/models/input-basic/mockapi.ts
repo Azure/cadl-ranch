@@ -6,13 +6,12 @@ Scenarios.Basic_Input = passOnSuccess(
     mockapi.get("/models/basic", (req) => {
       if (req.body && req.body["requiredString"] && req.body["requiredInt"]) {
           return {
-            status: 200,
-            body: json({ message: `InputModel was successfully returned` }),
+            status: 200
           };
         } else {
           return {
             status: 400,
-            body: json({ message: `Expected InputModel parameter with required fields` }),
+            body: json({ code: 400, message: `Expected InputModel parameter with required fields` }),
           };
         }
     }),
