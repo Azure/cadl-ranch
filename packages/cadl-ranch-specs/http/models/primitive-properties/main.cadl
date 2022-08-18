@@ -9,6 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("Illustrates model generation, as well as serialization and deserialization.")
+@route("/primitive-properties")
 namespace Cadl.Testserver.PrimitiveProperties;
 
 @doc("Round-trip model with primitive properties to show serialization and deserialization of each.")

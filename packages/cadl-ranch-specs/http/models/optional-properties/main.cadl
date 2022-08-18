@@ -9,6 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with optional properties.")
+@route("/optional-properties")
 
 namespace Cadl.TestServer.OptionalProperties;
 

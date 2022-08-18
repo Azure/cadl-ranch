@@ -9,7 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models that have properties that are collections of models.")
-
+@route("/collection-models")
 namespace Cadl.TestServer.ModelCollectionProperties;
 
 @doc("Simple model that will appear in a collection.")

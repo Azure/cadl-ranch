@@ -9,6 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
+@route("/readonly-properties")
 
 namespace Cadl.TestServer.ReadonlyProperties;
 

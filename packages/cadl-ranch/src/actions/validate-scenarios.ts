@@ -2,8 +2,9 @@ import { logger } from "../logger.js";
 import pc from "picocolors";
 import { createDiagnosticReporter, ensureScenariosPathExists } from "../utils/index.js";
 import { findScenarioCadlFiles } from "../scenarios-resolver.js";
-import { importCadl, importCadlRanchExpect } from "../cadl-utils/import-cadl.js";
+import { importCadl, importCadlRanchExpect, importCadlRest } from "../cadl-utils/import-cadl.js";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
+import { OperationType } from "@cadl-lang/compiler";
 
 export interface ValidateScenarioConfig {
   scenariosPath: string;
@@ -14,8 +15,11 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
   const scenarioFiles = await findScenarioCadlFiles(scenariosPath);
   const invalidScenarios = [];
   const cadlCompiler = await importCadl(scenariosPath);
+  const cadlRanchExpect = await importCadlRanchExpect(scenariosPath);
+  const cadlRest = await importCadlRest(scenariosPath);
+
   const scenarioNames = new Map<string, Scenario[]>();
-  const endpoints = new Map<string, Scenario[]>();
+  const endpoints = new Map<string, OperationType[]>();
   const diagnostics = createDiagnosticReporter();
 
   for (const { name, cadlFilePath } of scenarioFiles) {
@@ -35,7 +39,6 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
       continue;
     }
 
-    const cadlRanchExpect = await importCadlRanchExpect(scenariosPath);
     const scenarios = cadlRanchExpect.listScenarios(program);
 
     for (const scenario of scenarios) {
@@ -46,6 +49,15 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
         scenarioNames.set(scenario.name, [scenario]);
       }
     }
+    for (const route of cadlRest.http.getAllRoutes(program)[0]) {
+      const key = `${route.verb} ${route.path}`;
+      const existing = endpoints.get(key);
+      if (existing) {
+        existing.push(route.operation);
+      } else {
+        endpoints.set(key, [route.operation]);
+      }
+    }
   }
 
   for (const [name, scenarios] of scenarioNames.entries()) {
@@ -54,6 +66,17 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
         diagnostics.reportDiagnostic({
           message: `Duplicate scenario name "${name}".`,
           target: scenario.target,
+        });
+      }
+    }
+  }
+
+  for (const [path, operations] of endpoints.entries()) {
+    if (operations.length > 1) {
+      for (const operation of operations) {
+        diagnostics.reportDiagnostic({
+          message: `Duplicate endpoint path "${path}".`,
+          target: operation,
         });
       }
     }

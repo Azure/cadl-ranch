@@ -9,6 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates a round-trip model with required reference and value type properties.")
+@route("/roundtrip-basic")
 
 namespace Cadl.TestServer.RoundTripBasic;
 

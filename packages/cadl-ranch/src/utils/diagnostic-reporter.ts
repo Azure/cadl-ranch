@@ -29,7 +29,7 @@ function resolveSourceLocation(target: Type) {
   const location = getSourceLocation(target);
   const position = location.file.getLineAndCharacterOfPosition(location.pos);
   const path = pc.cyan(location.file.path);
-  const line = pc.yellow(position.line);
-  const column = pc.yellow(position.character);
+  const line = pc.yellow(position.line + 1);
+  const column = pc.yellow(position.character + 1);
   return `${path}:${line}:${column}`;
 }
