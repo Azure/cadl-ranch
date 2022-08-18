@@ -9,12 +9,11 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates an input-only model with required reference and value type properties.")
-
+@route("/input-basic")
 namespace Cadl.TestServer.InputBasic;
 
 @doc("Input Model")
 model InputModel {
-
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 
@@ -26,4 +25,4 @@ model InputModel {
 @scenarioDoc("Generate and send an input-only model with required reference and value type properties.")
 @route("/models")
 @get
-op getModel(@body input: InputModel): Response<200> | ErrorResponse ;
+op getModel(@body input: InputModel): Response<200> | ErrorResponse;

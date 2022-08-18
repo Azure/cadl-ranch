@@ -9,12 +9,11 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models with required collection type properties.")
-
+@route("/collection-properties-basic")
 namespace Cadl.TestServer.CollectionPropertiesBasic;
 
 @doc("Input model with collection properties")
 model InputModel {
-
   @doc("Required collection of strings, illustrating a collection of reference types.")
   requiredStringList: string[];
 
@@ -24,7 +23,6 @@ model InputModel {
 
 @doc("Output model with collection properties")
 model OutputModel {
-
   @doc("Required collection of strings, illustrating a collection of reference types.")
   requiredStringList: string[];
 
@@ -34,7 +32,6 @@ model OutputModel {
 
 @doc("Round-trip model with collection properties")
 model RoundTripModel {
-
   @doc("Required collection of strings, illustrating a collection of reference types.")
   requiredStringList: string[];
 

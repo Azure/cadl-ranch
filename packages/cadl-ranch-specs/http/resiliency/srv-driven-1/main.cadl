@@ -7,7 +7,8 @@ import "@azure-tools/cadl-ranch-expect";
 @doc("DPG Swagger, this is the initial swagger a service could do")
 @Cadl.Rest.produces("application/json")
 @Cadl.Rest.consumes("application/json")
-namespace Cadl.Testserver;
+@route("/serviceDriven1")
+namespace DPGServiceDriven1;
 using Cadl.Http;
 
 model PostInput {
@@ -24,7 +25,6 @@ model MessageResponse {
   @body body: Message;
 }
 
-@route("/serviceDriven")
 interface params {
   @scenario
   @scenarioDoc("""
@@ -82,6 +82,7 @@ Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
   @post
   postParameters(
     @path contenttype: "json",
+
     @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
     @body
     parameter: PostInput
