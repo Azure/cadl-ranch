@@ -5,12 +5,11 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("PetStoreInc")
+@serviceTitle("ExtensibleEnums")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
-@doc("PetStore")
 @route("/extensible-enums")
-namespace Cadl.TestServer.ExtensibleEnums;
+namespace ExtensibleEnums;
 
 enum DaysOfWeekExtensibleEnumValues {
   "Monday",
