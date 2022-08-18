@@ -14,7 +14,7 @@ namespace Cadl.TestServer.EnumPropertiesBasic;
 
 @doc("The language to translate the input text into.")
 @knownValues(TranslationLanguageValues)
-model TranslationLanguage is string {}
+model TranslationLanguage is string;
 
 @doc("The supported languages to translate input text into.")
 enum TranslationLanguageValues {

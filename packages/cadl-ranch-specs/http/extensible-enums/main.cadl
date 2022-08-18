@@ -22,7 +22,7 @@ enum DaysOfWeekExtensibleEnumValues {
   "Sunday",
 }
 @knownValues(DaysOfWeekExtensibleEnumValues)
-model DaysOfWeekExtensibleEnum is string {}
+model DaysOfWeekExtensibleEnum is string;
 
 @route("/string")
 interface String {
