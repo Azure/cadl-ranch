@@ -30,6 +30,9 @@ jobs:
       - run: pnpm install
         name: Install dependencies
 
+      - run: pnpm check-version-mismatch
+        name: Check dependencies are consitent
+
       - run: pnpm run build
         name: Build
 
