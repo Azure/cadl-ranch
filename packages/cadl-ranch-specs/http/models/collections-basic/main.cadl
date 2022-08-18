@@ -52,10 +52,10 @@ op sendCollectionModel(@body input: InputModel): Response<200> | ErrorResponse;
 @scenarioDoc("Generate and receive output model with required collection properties.")
 @route("/models")
 @get
-op getCollectionModel(): (OkResponse & Body<OutputModel>) | ErrorResponse;
+op getCollectionModel(): OutputModel | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with required collection properties.")
 @route("/models")
 @put
-op setCollectionModel(@body input: RoundTripModel): (OkResponse & Body<RoundTripModel>) | ErrorResponse;
+op setCollectionModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
