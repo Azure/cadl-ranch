@@ -33,7 +33,6 @@ interface dogs {
 
   @scenario
   @scenarioDoc("Illustrate grouping operations on subclient.")
-  @route("/models")
   @put
   op setDogs(@body input: Dog): Dog | ErrorResponse;
 }
