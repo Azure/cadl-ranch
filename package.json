@@ -22,7 +22,7 @@
   },
   "engines": {
     "node": ">=16.0.0",
-    "pnpm": ">=7.5.2"
+    "pnpm": ">=7.6.0"
   },
   "repository": {
     "type": "git",
