@@ -77,11 +77,11 @@ Show that you can call a POST HTTP endpoint.
 This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
 """)
-  @route("/parameters/{contenttype}")
+  @route("/parameters/{contentTypePath}")
   @doc("POST a JSON")
   @post
   postParameters(
-    @path contenttype: "json",
+    @path contentTypePath: "json",
 
     @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
     @body

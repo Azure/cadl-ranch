@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("OutputBasicClient")
 @serviceVersion("1.0.0")
@@ -25,4 +25,4 @@ model OutputModel {
 @scenarioDoc("Generate and receive an output-only model with required reference and value type properties.")
 @route("/models")
 @get
-op getModel(): OkResponse<OutputModel> | ErrorResponse;
+op getModel(): OutputModel | ErrorResponse;

@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
   "main": "dist/index.js",
   "type": "module",
@@ -29,9 +29,8 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "@azure-tools/cadl-ranch-api": "0.1.0",
-    "@azure-tools/cadl-ranch-expect": "0.1.0",
-    "@cadl-lang/compiler": "^0.33.0",
+    "@azure-tools/cadl-ranch-api": "0.1.1",
+    "@azure-tools/cadl-ranch-expect": "0.1.1",
     "body-parser": "^1.20.0",
     "deep-equal": "^2.0.5",
     "express": "^4.18.1",
@@ -54,10 +53,13 @@
     "@types/node": "^18.0.6",
     "@types/xml2js": "^0.4.11",
     "@types/yargs": "^17.0.10",
-    "@cadl-lang/rest": "^0.15.1",
     "eslint": "^8.20.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@cadl-lang/compiler": "~0.34.0",
+    "@cadl-lang/rest": "~0.16.0"
   }
 }
