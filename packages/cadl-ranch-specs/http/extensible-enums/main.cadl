@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("PetStoreInc")
 @serviceVersion("1.0.0")
