@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "@azure-tools/cadl-ranch": "workspace:*",
-    "@azure-tools/cadl-ranch-api": "workspace:*"
+    "@azure-tools/cadl-ranch": "~0.1.1",
+    "@azure-tools/cadl-ranch-api": "~0.1.1"
   },
   "devDependencies": {
     "@cadl-lang/eslint-config-cadl": "^0.3.0",
@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@azure-tools/cadl-autorest": "0.19.0",
-    "@azure-tools/cadl-ranch-expect": "workspace:*",
+    "@azure-tools/cadl-ranch-expect": "~0.1.1",
     "@azure-tools/cadl-azure-core": "~0.6.0",
     "@cadl-lang/compiler": "~0.34.0",
     "@cadl-lang/openapi3": "0.14.0",

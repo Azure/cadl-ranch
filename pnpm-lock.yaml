@@ -28,8 +28,8 @@ importers:
 
   packages/cadl-ranch:
     specifiers:
-      '@azure-tools/cadl-ranch-api': workspace:*
-      '@azure-tools/cadl-ranch-expect': workspace:*
+      '@azure-tools/cadl-ranch-api': ~0.1.1
+      '@azure-tools/cadl-ranch-expect': ~0.1.1
       '@cadl-lang/compiler': ~0.34.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
       '@cadl-lang/rest': ~0.16.0
@@ -157,9 +157,9 @@ importers:
     specifiers:
       '@azure-tools/cadl-autorest': 0.19.0
       '@azure-tools/cadl-azure-core': ~0.6.0
-      '@azure-tools/cadl-ranch': workspace:*
-      '@azure-tools/cadl-ranch-api': workspace:*
-      '@azure-tools/cadl-ranch-expect': workspace:*
+      '@azure-tools/cadl-ranch': ~0.1.1
+      '@azure-tools/cadl-ranch-api': ~0.1.1
+      '@azure-tools/cadl-ranch-expect': ~0.1.1
       '@cadl-lang/compiler': ~0.34.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
       '@cadl-lang/openapi': 0.11.0
