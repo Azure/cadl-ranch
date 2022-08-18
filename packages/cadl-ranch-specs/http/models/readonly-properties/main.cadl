@@ -9,7 +9,7 @@ using Azure.Core.Foundations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
-
+@route("/readonly-properties")
 namespace Cadl.TestServer.ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
@@ -18,7 +18,7 @@ namespace Cadl.TestServer.ReadonlyProperties;
 @doc("Readonly model")
 model ReadonlyModel {
   @doc("Required string")
-  requiredString : string;
+  requiredString: string;
 }
 
 @doc("Output model with readonly properties.")
@@ -66,7 +66,7 @@ model OutputModel {
 
 @doc("Round-trip model with readonly properties.")
 model RoundTripModel {
-  ...OutputModel
+  ...OutputModel;
 }
 
 @scenario
