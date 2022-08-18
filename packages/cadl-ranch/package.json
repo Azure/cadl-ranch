@@ -29,8 +29,10 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "@azure-tools/cadl-ranch-api": "0.1.1",
-    "@azure-tools/cadl-ranch-expect": "0.1.1",
+    "@azure-tools/cadl-ranch-api": "workspace:~",
+    "@azure-tools/cadl-ranch-expect": "workspace:~",
+    "@cadl-lang/compiler": "~0.34.0",
+    "@cadl-lang/rest": "~0.16.0",
     "body-parser": "^1.20.0",
     "deep-equal": "^2.0.5",
     "express": "^4.18.1",
@@ -57,9 +59,5 @@
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
-  },
-  "peerDependencies": {
-    "@cadl-lang/compiler": "~0.34.0",
-    "@cadl-lang/rest": "~0.16.0"
   }
 }
