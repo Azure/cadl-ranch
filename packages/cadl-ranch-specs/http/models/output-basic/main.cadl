@@ -10,12 +10,10 @@ using Azure.Core.Operations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates an output-only model with required reference and value type properties.")
 @route("/output-basic")
-
 namespace Cadl.TestServer.OutputBasic;
 
 @doc("Output Model")
 model OutputModel {
-
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 

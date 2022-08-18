@@ -17,38 +17,36 @@ namespace Cadl.TestServer.EnumPropertiesBasic;
 model TranslationLanguage is string {}
 
 @doc("The supported languages to translate input text into.")
-enum TranslationLanguageValues
-{
+enum TranslationLanguageValues {
   @doc("Translate to English")
   English,
-  
+
   @doc("Translate to Spanish")
   Spanish,
-  
+
   @doc("Translate to Mandarin")
   Mandarin,
-
   // Value without @doc decorator, to test this case.
-  Undocumented
+  Undocumented,
 }
 
 @doc("Represents the days of the week using a standard, non-string enum.")
 enum DayOfTheWeek {
   Monday,
   Tuesday,
+
   @doc("Wednesday is documented to test this case.")
   Wednesday,
   Thursday,
   Friday,
   Saturday,
-  Sunday
+  Sunday,
 }
 
 @doc("Input model with enum properties.")
 model InputModel {
-
   @doc("Required standard enum value.")
-  Day : DayOfTheWeek;
+  Day: DayOfTheWeek;
 
   @doc("Required string enum value.")
   Language: TranslationLanguage;
@@ -56,9 +54,8 @@ model InputModel {
 
 @doc("Output model with enum properties")
 model OutputModel {
-
   @doc("Required standard enum value.")
-  Day : DayOfTheWeek;
+  Day: DayOfTheWeek;
 
   @doc("Required string enum value.")
   Language: TranslationLanguage;
@@ -66,9 +63,8 @@ model OutputModel {
 
 @doc("Round-trip model with enum properties")
 model RoundTripModel {
-
   @doc("Required standard enum value.")
-  Day : DayOfTheWeek;
+  Day: DayOfTheWeek;
 
   @doc("Required string enum value.")
   Language: TranslationLanguage;
