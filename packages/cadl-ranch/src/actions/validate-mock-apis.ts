@@ -98,9 +98,6 @@ const NOT_IMPLEMENTED = [
   "models/roundtrip-basic",
   "models/nested-models",
   "models/primitive-properties",
-  "models/optional-properties",
-  "models/output-basic",
-  "clients/interfaces",
 
   // Laurent
   "resiliency/dev-driven",
