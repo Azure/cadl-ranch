@@ -2,30 +2,10 @@ import { logger } from "../logger.js";
 import pc from "picocolors";
 import { findScenarioCadlFiles, loadScenarioMockApiFiles } from "../scenarios-resolver.js";
 import { importCadl, importCadlRanchExpect } from "../cadl-utils/import-cadl.js";
+import { createDiagnosticReporter } from "../utils/diagnostic-reporter.js";
 
 export interface ValidateMockApisConfig {
   scenariosPath: string;
-}
-
-interface Diagnostic {
-  message: string;
-}
-
-export interface Diagnosticreporter {
-  readonly diagnostics: Diagnostic[];
-  reportDiagnostic(diagnostic: Diagnostic): void;
-}
-
-function createDiagnosticReporter(): Diagnosticreporter {
-  const diagnostics: Diagnostic[] = [];
-
-  return {
-    diagnostics,
-    reportDiagnostic(diagnostic: Diagnostic) {
-      logger.error(`${pc.red("✘")} ${diagnostic.message}`);
-      diagnostics.push(diagnostic);
-    },
-  };
 }
 
 export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig) {
@@ -64,7 +44,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       continue;
     }
 
-    const scenarios = cadlRanchExpect.listScenarios(program as any);
+    const scenarios = cadlRanchExpect.listScenarios(program);
 
     let foundFailure = false;
     for (const scenario of scenarios) {

@@ -9,13 +9,11 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models with required properties of types that are also models.")
-
+@route("/nested-models")
 namespace Cadl.TestServer.NestedModelsBasic;
-
 
 @doc("Model to illustrate a nested model that only appears on an input model.")
 model NestedInputOnlyModel {
-
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 
@@ -31,47 +29,44 @@ model NestedInputOnlyModel {
 
 @doc("Model to illustrate a nested model that only appears on an output model.")
 model NestedOutputOnlyModel {
-  ...NestedInputOnlyModel
+  ...NestedInputOnlyModel;
 }
 
 @doc("Model to illustrate a nested model that only appears on a nested model.")
 model NestedRoundTripOnlyModel {
-  ...NestedInputOnlyModel
+  ...NestedInputOnlyModel;
 }
 
 @doc("Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models.")
 model NestedRoundTripSharedModel {
-  ...NestedInputOnlyModel
+  ...NestedInputOnlyModel;
 }
 
 @doc("Input model with nested model properties.")
 model InputModel {
-
   @doc("Required nested input model.")
-  NestedInputModel : NestedInputOnlyModel;
+  NestedInputModel: NestedInputOnlyModel;
 
   @doc("Required nested shared model.")
-  NestedSharedModel : NestedRoundTripSharedModel;
+  NestedSharedModel: NestedRoundTripSharedModel;
 }
 
 @doc("Output model with nested model properties")
 model OutputModel {
-
   @doc("Required nested output model.")
-  NestedOutputModel : NestedOutputOnlyModel;
+  NestedOutputModel: NestedOutputOnlyModel;
 
   @doc("Required nested shared model.")
-  NestedSharedModel : NestedRoundTripSharedModel;
+  NestedSharedModel: NestedRoundTripSharedModel;
 }
 
 @doc("Round-trip model with nested model properties")
 model RoundTripModel {
-
   @doc("Required nested round-trip model.")
-  NestedRoundTripModel : NestedRoundTripOnlyModel;
+  NestedRoundTripModel: NestedRoundTripOnlyModel;
 
   @doc("Required nested shared model.")
-  NestedSharedModel : NestedRoundTripSharedModel;
+  NestedSharedModel: NestedRoundTripSharedModel;
 }
 
 @scenario

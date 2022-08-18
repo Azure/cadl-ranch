@@ -8,6 +8,9 @@ export async function importCadl(baseDir: string): Promise<typeof import("@cadl-
 export async function importCadlRanchExpect(baseDir: string): Promise<typeof import("@azure-tools/cadl-ranch-expect")> {
   return importCadlLibrary("@azure-tools/cadl-ranch-expect", baseDir);
 }
+export async function importCadlRest(baseDir: string): Promise<typeof import("@cadl-lang/rest")> {
+  return importCadlLibrary("@cadl-lang/rest", baseDir);
+}
 
 export async function importCadlLibrary(name: string, baseDir: string): Promise<any> {
   try {
