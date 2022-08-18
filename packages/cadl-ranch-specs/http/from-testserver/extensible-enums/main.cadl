@@ -9,6 +9,7 @@ using Azure.Core.Operations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("PetStore")
+@route("/extensible-enums")
 namespace Cadl.TestServer.ExtensibleEnums;
 
 enum DaysOfWeekExtensibleEnumValues {
@@ -23,30 +24,26 @@ enum DaysOfWeekExtensibleEnumValues {
 @knownValues(DaysOfWeekExtensibleEnumValues)
 model DaysOfWeekExtensibleEnum is string {}
 
-enum IntEnumValues {
-  "1",
-  "2",
-  "3",
-}
-@knownValues(IntEnumValues)
-model IntEnum is string {}
 
-model PetModel {
-  name?: string;
-  DaysOfWeek?: DaysOfWeekExtensibleEnum;
-  IntEnum: IntEnum;
-}
-
-interface Pet {
+@route("/string")
+interface String {
   @scenario
-  @scenarioDoc("get pet by id")
-  @route("/extensibleenums/pet/{petId}")
-  @get
-  getByPetId(@path petId: string): OkResponse<PetModel> | ErrorResponse;
+  @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
+  @get @route("/known-value")
+  getKnownValue(): DaysOfWeekExtensibleEnum;
+  
+  @scenario
+  @scenarioDoc("Expect to handle a unknown value. Mock api will return 'Weekend'")
+  @get @route("/unknown-value")
+  getUnknownValue(): DaysOfWeekExtensibleEnum;
 
   @scenario
-  @scenarioDoc("add pet")
-  @route("/extensibleenums/pet/addPet")
-  @post
-  addPet(@body petParam: PetModel): OkResponse<PetModel> | ErrorResponse;
+  @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")
+  @put @route("/known-value")
+  putKnownValue(@body body: DaysOfWeekExtensibleEnum): void;
+  
+  @scenario
+  @scenarioDoc("Expect to handle a unknown value. Mock api expect to receive 'Weekend'")
+  @put @route("/unknown-value")
+  putUnknownValue(@body body: DaysOfWeekExtensibleEnum): void;
 }
