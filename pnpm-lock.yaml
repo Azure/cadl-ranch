@@ -30,9 +30,9 @@ importers:
     specifiers:
       '@azure-tools/cadl-ranch-api': 0.1.0
       '@azure-tools/cadl-ranch-expect': 0.1.0
-      '@cadl-lang/compiler': ~0.33.0
+      '@cadl-lang/compiler': ~0.34.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
-      '@cadl-lang/rest': ^0.15.1
+      '@cadl-lang/rest': ~0.16.0
       '@types/body-parser': ^1.19.2
       '@types/deep-equal': ^1.0.1
       '@types/express': ^4.17.13
@@ -59,7 +59,7 @@ importers:
     dependencies:
       '@azure-tools/cadl-ranch-api': link:../cadl-ranch-api
       '@azure-tools/cadl-ranch-expect': link:../cadl-ranch-expect
-      '@cadl-lang/compiler': 0.33.0
+      '@cadl-lang/compiler': 0.34.0
       body-parser: 1.20.0
       deep-equal: 2.0.5
       express: 4.18.1
@@ -73,7 +73,7 @@ importers:
       yargs: 17.5.1
     devDependencies:
       '@cadl-lang/eslint-config-cadl': 0.3.0_prettier@2.7.1
-      '@cadl-lang/rest': 0.15.1_@cadl-lang+compiler@0.33.0
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@types/body-parser': 1.19.2
       '@types/deep-equal': 1.0.1
       '@types/express': 4.17.13
@@ -555,27 +555,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@cadl-lang/compiler/0.33.0:
-    resolution: {integrity: sha512-emylkgPuD1nPEUwtsdRV5F/WQvqPU2UYGTpWXocqP5FuJfmiTZBRvPvJ9Ftkg/rYJ9EKgf45IIXyGRza7bRyFA==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/code-frame': 7.16.7
-      ajv: 8.9.0
-      change-case: 4.1.2
-      globby: 13.1.2
-      js-yaml: 4.1.0
-      mkdirp: 1.0.4
-      mustache: 4.2.0
-      node-fetch: 3.2.10
-      node-watch: 0.7.3
-      picocolors: 1.0.0
-      prettier: 2.7.1
-      prompts: 2.4.2
-      vscode-languageserver: 7.0.0
-      vscode-languageserver-textdocument: 1.0.5
-      yargs: 17.3.1
-
   /@cadl-lang/compiler/0.34.0:
     resolution: {integrity: sha512-5KdfJTXkvzvRXVE4cvSm6lJtVVC4hEhUn+9vJXuxl3FIEmMR176xRXl9+ykcYLtDOGojVX0d1OCukeniwXQAWA==}
     engines: {node: '>=16.0.0'}
@@ -596,7 +575,6 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.5
       yargs: 17.3.1
-    dev: false
 
   /@cadl-lang/eslint-config-cadl/0.3.0_prettier@2.7.1:
     resolution: {integrity: sha512-MrUuMtcgYD1lhMtjLa8thCfoRJ7z/PVxZrba8vvYrrJJiQCS+WIndG5zrgksOrm0QkIa3PnqB3FUoiuV0mpykw==}
@@ -645,15 +623,6 @@ packages:
       prettier: 2.7.1
     dev: true
 
-  /@cadl-lang/rest/0.15.1_@cadl-lang+compiler@0.33.0:
-    resolution: {integrity: sha512-J7gaLFri1huDzUPmndvg7JTJZ8dnQ9csl1PafGbvypjga5Ct9+YZcAInErMKFgnxJJ5NVnDz5auD3579eOCYWg==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@cadl-lang/compiler': ~0.33.0
-    dependencies:
-      '@cadl-lang/compiler': 0.33.0
-    dev: true
-
   /@cadl-lang/rest/0.16.0_@cadl-lang+compiler@0.34.0:
     resolution: {integrity: sha512-sf6BmJXpXWiTRZyqJkAAUZaAmfp6L35rg235PI4JeKsi93SbNExxuWR7USisA8sRvcCK9Ru8f8d0M+pb9oi4Mw==}
     engines: {node: '>=16.0.0'}
@@ -661,7 +630,6 @@ packages:
       '@cadl-lang/compiler': ~0.34.0
     dependencies:
       '@cadl-lang/compiler': 0.34.0
-    dev: false
 
   /@cadl-lang/versioning/0.7.0:
     resolution: {integrity: sha512-Wg0CyP47jZnv4hHaq8enUxhsqaJSQzYrlzQzg265CtZrUFzwlBAkqQVel8qeA6f/wljkkL5Se75Vt5tLE2kfhQ==}
