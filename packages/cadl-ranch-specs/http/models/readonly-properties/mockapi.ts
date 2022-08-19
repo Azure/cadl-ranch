@@ -11,7 +11,7 @@ let mockRoundTripModel = {
   requiredReadonlyIntList: [1,2,3,4,5]
 }
 
-Scenarios.Get_Optional_Property_Model = passOnSuccess(
+Scenarios.ReadonlyProperties_getOptionalPropertyModel = passOnSuccess(
   mockapi.get("/readonly-properties/models", () => {
     return {
       status: 200,
@@ -20,11 +20,11 @@ Scenarios.Get_Optional_Property_Model = passOnSuccess(
   }),
 );
 
-Scenarios.Set_Optional_Property_Model = passOnSuccess(
+Scenarios.ReadonlyProperties_setOptionalPropertyModel = passOnSuccess(
   mockapi.post("/readonly-properties/models", (req) => {
     req.expect.bodyNotEmpty();
     if (!req.body.requiredString) {
-        throw new ValidationError("Required properties missing!", "Non null value.", null);
+        throw new ValidationError("Required properties missing!", null, null);
       }
     return {
       status: 200,
