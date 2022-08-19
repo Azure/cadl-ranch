@@ -23,13 +23,14 @@ model PostInput {
   url: string;
 }
 
-model Message {
+model MessageBody {
+  message: string;
 }
 
 @doc("Answer from service")
 model MessageResponse {
   @statusCode statusCode: 200;
-  @body body: Message;
+  @body body: MessageBody;
 }
 
 @route("/serviceDriven")
