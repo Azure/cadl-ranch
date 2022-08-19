@@ -1,0 +1,32 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Cadl.Versioning;
+
+@serviceTitle("MultiVersionClient")
+@serviceVersion(Versions.v2022_02_02)
+@server("{Endpoint}", "Multi-version Service", {Endpoint: string})
+@doc("Illustrates a v1 client model for the purposes of testing multi-version client scenarios.")
+@versioned(Versions)
+@route("/")
+namespace Cadl.TestServer.MultiVersionClient;
+
+enum Versions {
+  v2022_01_01:  "2022-01-01",
+  v2022_02_02:  "2022-02-02",
+}
+
+@scenario
+@scenarioDoc("Operation available in service version 2022-01-01.")
+@route("/ops/v1op")
+@get
+op serviceV1Operation() : OkResponse<null>;
+
+@scenario
+@scenarioDoc("Operation added in service version 2022-02-02.")
+@route("/ops/v2op")
+@added(Versions.v2022_02_02)
+@get
+op serviceV2Operation() : OkResponse<null>;

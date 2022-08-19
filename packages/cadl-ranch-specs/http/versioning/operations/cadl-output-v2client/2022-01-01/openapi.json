@@ -1,0 +1,61 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MultiVersionClient",
+    "version": "2022-01-01",
+    "description": "Illustrates a v1 client model for the purposes of testing multi-version client scenarios.",
+    "x-cadl-generated": [
+      {
+        "emitter": "@azure-tools/cadl-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{Endpoint}",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "name": "Endpoint",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "format": "url",
+        "x-ms-skip-url-encoding": true,
+        "x-ms-parameter-location": "client"
+      }
+    ]
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [],
+  "paths": {
+    "/ops/v1op": {
+      "get": {
+        "operationId": "MultiVersionClient_ServiceV1Operation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/null"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "null": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "parameters": {}
+}
