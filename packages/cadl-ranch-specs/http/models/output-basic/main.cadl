@@ -23,6 +23,6 @@ model OutputModel {
 
 @scenario
 @scenarioDoc("Generate and receive an output-only model with required reference and value type properties.")
-@route("/models/output/basic")
+@route("/models")
 @get
 op getModel(): OkResponse<OutputModel> | ErrorResponse;

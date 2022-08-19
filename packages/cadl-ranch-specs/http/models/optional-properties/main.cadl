@@ -39,18 +39,18 @@ model RoundTripModel {
 
 @scenario
 @scenarioDoc("Generate and send input model with optional properties.")
-@route("/models/optional/properties")
+@route("/models")
 @post
 op sendOptionalPropertyModel(@body input: InputModel): Response<200> | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate and receive output model with optional properties.")
-@route("/models/optional/properties")
+@route("/models")
 @get
 op getOptionalPropertyModel(): OkResponse<OutputModel> | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with optional properties.")
-@route("/models/optional/properties")
+@route("/models")
 @put
 op setOptionalPropertyModel(@body input: RoundTripModel): OkResponse<RoundTripModel> | ErrorResponse;
