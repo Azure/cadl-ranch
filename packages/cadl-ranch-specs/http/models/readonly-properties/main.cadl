@@ -79,4 +79,4 @@ op getOptionalPropertyModel(): OutputModel | ErrorResponse;
 @scenarioDoc("Generate, send, and receive round-trip model with readonly properties.")
 @route("/models")
 @put
-op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
+op setOptionalPropertyModel(@body input: ReadonlyModel): RoundTripModel | ErrorResponse;

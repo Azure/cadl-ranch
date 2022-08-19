@@ -74,7 +74,6 @@ const NOT_IMPLEMENTED = [
   "models/enum-properties",
   "models/inheritance",
   "models/input-basic",
-  "models/readonly-properties",
   "models/roundtrip-basic",
   "models/nested-models",
   "models/primitive-properties",
