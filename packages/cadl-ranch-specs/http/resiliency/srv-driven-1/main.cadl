@@ -7,7 +7,8 @@ import "@azure-tools/cadl-ranch-expect";
 @doc("DPG Swagger, this is the initial swagger a service could do")
 @Cadl.Rest.produces("application/json")
 @Cadl.Rest.consumes("application/json")
-namespace Cadl.Testserver;
+@route("/serviceDriven1")
+namespace DPGServiceDriven1;
 using Cadl.Http;
 
 model PostInput {
@@ -24,7 +25,6 @@ model MessageResponse {
   @body body: Message;
 }
 
-@route("/serviceDriven")
 interface params {
   @scenario
   @scenarioDoc("""
@@ -77,11 +77,12 @@ Show that you can call a POST HTTP endpoint.
 This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
 """)
-  @route("/parameters/{contenttype}")
+  @route("/parameters/{contentTypePath}")
   @doc("POST a JSON")
   @post
   postParameters(
-    @path contenttype: "json",
+    @path contentTypePath: "json",
+
     @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
     @body
     parameter: PostInput

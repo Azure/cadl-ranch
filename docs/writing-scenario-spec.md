@@ -20,7 +20,10 @@ namespace String;
 @scenario("get_string")
 @doc("Support passing a simple string as JSON")
 @scenarioDoc("In this scenario the Client should expect a string matching 'abc' to be returned.")
-@get @route("/simple") op returnString(): string;
+@get
+@route("/simple")
+op returnString(): string;
+
 ```
 
 Decorators that should be provided in this test library `@azure-tools/cadl-scenario-lib`:

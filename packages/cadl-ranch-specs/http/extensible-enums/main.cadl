@@ -1,0 +1,51 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Foundations;
+
+@serviceTitle("ExtensibleEnums")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@route("/extensible-enums")
+namespace ExtensibleEnums;
+
+enum DaysOfWeekExtensibleEnumValues {
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+}
+@knownValues(DaysOfWeekExtensibleEnumValues)
+model DaysOfWeekExtensibleEnum is string;
+
+@route("/string")
+interface String {
+  @scenario
+  @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
+  @get
+  @route("/known-value")
+  getKnownValue(): DaysOfWeekExtensibleEnum;
+
+  @scenario
+  @scenarioDoc("Expect to handle a unknown value. Mock api will return 'Weekend'")
+  @get
+  @route("/unknown-value")
+  getUnknownValue(): DaysOfWeekExtensibleEnum;
+
+  @scenario
+  @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")
+  @put
+  @route("/known-value")
+  putKnownValue(@body body: DaysOfWeekExtensibleEnum): void;
+
+  @scenario
+  @scenarioDoc("Expect to handle a unknown value. Mock api expect to receive 'Weekend'")
+  @put
+  @route("/unknown-value")
+  putUnknownValue(@body body: DaysOfWeekExtensibleEnum): void;
+}

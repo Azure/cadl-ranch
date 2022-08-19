@@ -4,13 +4,12 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Rest;
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("InheritanceClient")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates round-trip polymorphic models.")
-
 namespace Cadl.TestServer.BasicPolymorphicModels;
 
 @doc("Example base type.")
@@ -31,9 +30,8 @@ model DerivedFromBaseClassB extends BaseClass {
 
 @discriminator("discriminatorProperty")
 @doc("Example base class that has a discriminator property.")
-model BaseClassWithDiscriminator extends BaseClass {
-  // Note: discriminator property is not defined on parent
-}
+model BaseClassWithDiscriminator extends BaseClass {}
+// Note: discriminator property is not defined on parent
 
 model DerivedFromBaseClassWithDiscriminatorA extends BaseClassWithDiscriminator {
   discriminatorProperty: "A";
@@ -59,4 +57,6 @@ op setValue(@body input: BaseClass): BaseClass | ErrorResponse;
 @scenarioDoc("Generate, send, and receive round-trip model with a polymorphic property.")
 @route("/property")
 @put
-op setValueWithPolymorphicProperty(@body input: ModelWithPolymorphicProperty): ModelWithPolymorphicProperty | ErrorResponse;
+op setValueWithPolymorphicProperty(
+  @body input: ModelWithPolymorphicProperty
+): ModelWithPolymorphicProperty | ErrorResponse;

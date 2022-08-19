@@ -11,7 +11,8 @@ using Cadl.Versioning;
 @doc("DPG Swagger, this is the initial swagger a service could do")
 @Cadl.Rest.produces("application/json")
 @Cadl.Rest.consumes("application/json")
-namespace Cadl.Testserver;
+@route("/serviceDriven2")
+namespace DPGServiceDriven2;
 using Cadl.Http;
 
 enum Versions {
@@ -104,11 +105,12 @@ Show that you can call a POST HTTP endpoint.
 This test now accept both image/jpeg and applicat/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 """)
-  @route("/parameters/{contenttype}")
+  @route("/parameters/{contentTypePath}")
   @doc("POST a JSON or a JPEG")
   @post
   postParameters(
-    @path contenttype: "json" | "jpeg",
+    @path contentTypePath: "json" | "jpeg",
+
     @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
     @body
     parameter: PostInput

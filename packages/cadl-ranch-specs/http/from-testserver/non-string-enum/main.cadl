@@ -3,7 +3,7 @@ import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Operations;
+using Azure.Core.Foundations;
 
 @serviceTitle("NonStringEnumsClient")
 @serviceVersion("1.0.0")
@@ -33,13 +33,13 @@ interface Int {
   @scenarioDoc("Put an int enum")
   @route("/nonStringEnums/int/put")
   @put
-  put(@body input?: IntEnum): OkResponse<string> | ErrorResponse;
+  put(@body input?: IntEnum): string | ErrorResponse;
 
   @scenario
   @scenarioDoc("Get an int enum")
   @route("/nonStringEnums/int/get")
   @get
-  get(): OkResponse<IntEnum> | ErrorResponse;
+  get(): IntEnum | ErrorResponse;
 }
 
 interface Float {
@@ -47,11 +47,11 @@ interface Float {
   @scenarioDoc("Put an float enum")
   @route("/nonStringEnums/float/put")
   @put
-  put(@body input?: FloatEnum): OkResponse<string> | ErrorResponse;
+  put(@body input?: FloatEnum): string | ErrorResponse;
 
   @scenario
   @scenarioDoc("Get an float enum")
   @route("/nonStringEnums/float/get")
   @get
-  get(): OkResponse<FloatEnum> | ErrorResponse;
+  get(): FloatEnum | ErrorResponse;
 }

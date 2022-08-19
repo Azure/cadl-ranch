@@ -73,11 +73,19 @@ export function listScenarios(program: Program): Scenario[] {
   return [...(program.stateMap(ScenarioKey).entries() as any)].map(([target, name]) => {
     return {
       target,
-      name: target.namespace ? `${target.namespace.name}_${name}` : name,
+      name: resolveScenarioName(target, name),
     };
   });
 }
 
+function resolveScenarioName(target: OperationType | NamespaceType, name: string) {
+  if (target.kind === "Operation" && target.interface) {
+    name = `${target.interface.name}_${name}`;
+  }
+  return target.namespace ? `${target.namespace.name}_${name}` : name;
+}
+
 export function getScenarioName(program: Program, target: OperationType | NamespaceType): string | undefined {
-  return program.stateMap(ScenarioKey).get(target);
+  const name = program.stateMap(ScenarioKey).get(target);
+  return resolveScenarioName(target, name);
 }

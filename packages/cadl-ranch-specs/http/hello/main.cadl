@@ -3,6 +3,10 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
+@serviceTitle("HelloClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Basic Hello World Test.")
 @supportedBy("dpg")
 @route("/hello")
 namespace Hello;
