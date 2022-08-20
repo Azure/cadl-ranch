@@ -39,7 +39,11 @@
     "/ops/v1op": {
       "get": {
         "operationId": "MultiVersionClient_ServiceV1Operation",
-        "parameters": [],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.ApiVersionParameter"
+          }
+        ],
         "responses": {
           "200": {
             "description": "The request has succeeded.",
@@ -57,5 +61,15 @@
       "properties": {}
     }
   },
-  "parameters": {}
+  "parameters": {
+    "Azure.Core.ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "description": "The API version to use for this operation.",
+      "minLength": 1,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    }
+  }
 }

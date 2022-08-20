@@ -1,9 +1,11 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
+import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 using Cadl.Versioning;
+using Azure.Core;
 
 @serviceTitle("MultiVersionClient")
 @serviceVersion(Versions.v2022_02_02)
@@ -22,11 +24,11 @@ enum Versions {
 @scenarioDoc("Operation available in service version 2022-01-01.")
 @route("/ops/v1op")
 @get
-op serviceV1Operation() : OkResponse<null>;
+op serviceV1Operation(...ApiVersionParameter) : OkResponse<null>;
 
 @scenario
 @scenarioDoc("Operation added in service version 2022-02-02.")
 @route("/ops/v2op")
 @added(Versions.v2022_02_02)
 @get
-op serviceV2Operation() : OkResponse<null>;
+op serviceV2Operation(...ApiVersionParameter) : OkResponse<null>;
