@@ -31,19 +31,34 @@ model ModelCollectionModel {
 }
 
 @scenario
-@scenarioDoc("Generate and send input model with model collection properties.")
+@scenarioDoc("""
+Generate and send input model with model collection properties.
+expected requestBody = {
+  requiredModelCollection: [{ requiredStringList: ["post_required"], requiredIntList: [100] }],
+}
+""")
 @route("/models")
 @post
 op sendCollectionModel(@body input: ModelCollectionModel): Response<200> | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate and receive output model with model collection properties.")
+@scenarioDoc("""
+Generate and receive output model with model collection properties.
+expected response body: { requiredModelCollection: [{ requiredStringList: ["get_required"], requiredIntList: [101] }] }
+""")
 @route("/models")
 @get
 op getCollectionModel(): ModelCollectionModel | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate, send, and receive round-trip model with model collection properties.")
+@scenarioDoc("""
+Generate, send, and receive round-trip model with model collection properties.
+expected requestBody and responseBody are
+{
+  requiredModelCollection: [{ requiredStringList: ["put_required"], requiredIntList: [102] }],
+  optionalModelCollection: [{ requiredStringList: ["put_optional"], requiredIntList: [102] }],
+}
+""")
 @route("/models")
 @put
 op setCollectionModel(@body input: ModelCollectionModel): ModelCollectionModel | ErrorResponse;

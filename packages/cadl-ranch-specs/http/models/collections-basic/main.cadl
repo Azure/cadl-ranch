@@ -40,19 +40,30 @@ model RoundTripModel {
 }
 
 @scenario
+@scenarioDoc("""
+Generate and send input model with required collection properties.
+expected requestBody: { requiredStringList: ["post"], requiredIntList: [100] }
+""")
 @scenarioDoc("Generate and send input model with required collection properties.")
 @route("/models")
 @post
 op sendCollectionModel(@body input: InputModel): Response<200> | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate and receive output model with required collection properties.")
+@scenarioDoc("""
+Generate and receive output model with required collection properties.
+expected responseBody: { requiredStringList: ["get"], requiredIntList: [101] }
+""")
 @route("/models")
 @get
 op getCollectionModel(): OutputModel | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate, send, and receive round-trip model with required collection properties.")
+@scenarioDoc("""
+Generate, send, and receive round-trip model with required collection properties.
+expected requestBody: { requiredStringList: ["put"], requiredIntList: [102] }
+expected responseBody: { requiredStringList: ["put"], requiredIntList: [102] }
+""")
 @route("/models")
 @put
 op setCollectionModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
