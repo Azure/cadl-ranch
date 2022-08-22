@@ -1,5 +1,6 @@
 import { RequestExt, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Response, Router } from "express";
+import { CoverageTracker } from "../coverage/coverage-tracker.js";
 import { internalRouter } from "../routes/index.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { MockApiServer } from "../server/index.js";
@@ -9,6 +10,7 @@ import { processRequest } from "./request-processor.js";
 export class MockApiApp {
   private router = Router();
   private server: MockApiServer;
+  private coverageTracker = new CoverageTracker();
 
   constructor(private config: ApiMockAppConfig) {
     this.server = new MockApiServer({ port: config.port });
@@ -18,9 +20,14 @@ export class MockApiApp {
     this.server.use("/", internalRouter);
 
     const scenarios = await loadScenarioMockApis(this.config.scenarioPath);
+    this.coverageTracker.setScenarios(scenarios);
     for (const [name, scenario] of Object.entries(scenarios)) {
       this.registerScenario(name, scenario);
     }
+    this.router.get("/.coverage", (req, res) => {
+      res.json(this.coverageTracker.commputeCoverage());
+    });
+
     this.server.use("/", this.router);
     this.server.start();
   }
@@ -28,7 +35,7 @@ export class MockApiApp {
   private registerScenario(name: string, scenario: ScenarioMockApi) {
     for (const endpoint of scenario.apis) {
       this.router.route(endpoint.uri)[endpoint.method](async (req: RequestExt, res: Response) => {
-        await processRequest(name, req, res, endpoint.handler);
+        await processRequest(this.coverageTracker, name, endpoint.uri, req, res, endpoint.handler);
       });
     }
   }

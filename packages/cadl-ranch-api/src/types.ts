@@ -8,13 +8,22 @@ export interface RequestExt extends Request {
   rawBody?: string;
 }
 
-export type ScenarioPassCondition = "response-success";
+export type ScenarioPassCondition = "response-success" | "status-code";
 
-export interface ScenarioMockApi {
-  passCondition: ScenarioPassCondition;
+export interface ScenarioMockApiBase {
   apis: MockApi[];
 }
 
+export interface PassOnSuccessScenario extends ScenarioMockApiBase {
+  passCondition: "response-success";
+}
+
+export interface PassOnCodeScenario extends ScenarioMockApiBase {
+  passCondition: "status-code";
+  code: number;
+}
+
+export type ScenarioMockApi = PassOnSuccessScenario | PassOnCodeScenario;
 export type MockRequestHandler = (req: MockRequest) => MockResponse | Promise<MockResponse>;
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
