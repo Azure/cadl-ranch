@@ -23,7 +23,7 @@ export async function processRequest(
     return;
   }
 
-  coverageTracker.trackEndpointResponse(scenarioName, scenarioUri, mockResponse);
+  await coverageTracker.trackEndpointResponse(scenarioName, scenarioUri, mockResponse);
   processResponse(response, mockResponse);
 }
 

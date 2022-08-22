@@ -1,7 +1,7 @@
 import { MockResponse, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { writeFile } from "fs/promises";
 import { logger } from "../logger.js";
-import { ScenarioStatus } from "./types.js";
+import { CoverageResult, ScenarioStatus } from "./types.js";
 
 export class CoverageTracker {
   private scenarios: Record<string, ScenarioMockApi> = {};
@@ -24,8 +24,8 @@ export class CoverageTracker {
     await this.saveCoverage();
   }
 
-  public commputeCoverage(): Record<string, ScenarioStatus> {
-    const results: Record<string, ScenarioStatus> = {};
+  public commputeCoverage(): CoverageResult {
+    const results: CoverageResult = {};
 
     for (const [name, mockApi] of Object.entries(this.scenarios)) {
       results[name] = this.computeScenarioStatus(name, mockApi);

@@ -5,6 +5,7 @@ import { logger } from "../logger.js";
 import "source-map-support/register.js";
 import { serve } from "../actions/serve.js";
 import { validateMockApis } from "../actions/validate-mock-apis.js";
+import { checkCoverage } from "../actions/check-coverage.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -71,6 +72,48 @@ async function main() {
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           port: args.port,
           coverageFile: args.coverageFile,
+        });
+      },
+    )
+    .command(
+      "check-coverage <scenariosPath>",
+      "Serve the mock api at the given paths.",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .option("configFile", {
+            type: "string",
+            description: "Path to config file for generator.",
+          })
+          .option("coverageFiles", {
+            type: "string",
+            array: true,
+            description: "Path to the created coverage files.",
+            default: [join(process.cwd(), "cadl-ranch-coverage.json")],
+          })
+          .demandOption("coverageFiles")
+          .option("mergedCoverageFile", {
+            type: "string",
+            description: "Output Path to the merged coverage file.",
+            default: join(process.cwd(), "cadl-ranch-coverage.json"),
+          })
+          .option("ignoreNotImplemented", {
+            type: "boolean",
+            description: "Do not fail if there is some non implemneted scenarios.",
+            default: false,
+          });
+      },
+      async (args) => {
+        await checkCoverage({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+          configFile: args.configFile,
+          mergedCoverageFile: args.mergedCoverageFile,
+          coverageFiles: args.coverageFiles,
+          ignoreNotImplemented: args.ignoreNotImplemented,
         });
       },
     )

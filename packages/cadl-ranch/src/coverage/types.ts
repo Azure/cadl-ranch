@@ -9,3 +9,5 @@ export type ScenarioStatus =
   | "not-supported"
   // Scenario is not applicable in current test.
   | "not-applicable";
+
+export type CoverageResult = Record<string, ScenarioStatus>;

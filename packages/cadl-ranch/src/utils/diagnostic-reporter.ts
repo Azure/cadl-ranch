@@ -10,17 +10,23 @@ export interface Diagnostic {
 export interface DiagnosticReporter {
   readonly diagnostics: Diagnostic[];
   reportDiagnostic(diagnostic: Diagnostic): void;
+  reportDiagnostics(diagnostic: readonly Diagnostic[]): void;
 }
 
 export function createDiagnosticReporter(): DiagnosticReporter {
   const diagnostics: Diagnostic[] = [];
-
+  function reportDiagnostic(diagnostic: Diagnostic) {
+    const target = diagnostic.target ? `\n  ${resolveSourceLocation(diagnostic.target)}` : "";
+    logger.error(`${pc.red("✘")} ${diagnostic.message}${target}`);
+    diagnostics.push(diagnostic);
+  }
   return {
     diagnostics,
-    reportDiagnostic(diagnostic: Diagnostic) {
-      const target = diagnostic.target ? `\n  ${resolveSourceLocation(diagnostic.target)}` : "";
-      logger.error(`${pc.red("✘")} ${diagnostic.message}${target}`);
-      diagnostics.push(diagnostic);
+    reportDiagnostic,
+    reportDiagnostics(diagnostics: readonly Diagnostic[]) {
+      for (const diagnostic of diagnostics) {
+        reportDiagnostic(diagnostic);
+      }
     },
   };
 }
