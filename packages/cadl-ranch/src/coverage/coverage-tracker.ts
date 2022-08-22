@@ -1,17 +1,19 @@
 import { MockResponse, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import { writeFile } from "fs/promises";
+import { logger } from "../logger.js";
 import { ScenarioStatus } from "./types.js";
 
 export class CoverageTracker {
   private scenarios: Record<string, ScenarioMockApi> = {};
   private hits = new Map<string, Map<string, MockResponse>>();
 
-  public constructor() {}
+  public constructor(private coverageFile: string) {}
 
   public setScenarios(scenarios: Record<string, ScenarioMockApi>) {
     this.scenarios = scenarios;
   }
 
-  public trackEndpointResponse(scenarioName: string, endpoint: string, response: MockResponse) {
+  public async trackEndpointResponse(scenarioName: string, endpoint: string, response: MockResponse) {
     let scenarioHits = this.hits.get(scenarioName);
     if (scenarioHits === undefined) {
       scenarioHits = new Map();
@@ -19,6 +21,7 @@ export class CoverageTracker {
     }
 
     scenarioHits.set(endpoint, response);
+    await this.saveCoverage();
   }
 
   public commputeCoverage(): Record<string, ScenarioStatus> {
@@ -28,6 +31,16 @@ export class CoverageTracker {
       results[name] = this.computeScenarioStatus(name, mockApi);
     }
     return results;
+  }
+
+  private async saveCoverage() {
+    const coverage = this.commputeCoverage();
+
+    try {
+      await writeFile(this.coverageFile, JSON.stringify(coverage, null, 2));
+    } catch (e) {
+      logger.warn("Error while saving coverage", e);
+    }
   }
 
   private computeScenarioStatus(name: string, mockApi: ScenarioMockApi): ScenarioStatus {

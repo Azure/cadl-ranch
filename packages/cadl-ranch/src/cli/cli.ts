@@ -1,4 +1,4 @@
-import { resolve } from "path";
+import { join, resolve } from "path";
 import yargs from "yargs";
 import { validateScenarios } from "../actions/index.js";
 import { logger } from "../logger.js";
@@ -59,12 +59,18 @@ async function main() {
             type: "number",
             description: "Port where to host the server",
             default: DEFAULT_PORT,
+          })
+          .option("coverageFile", {
+            type: "string",
+            description: "Path to the coverage file.",
+            default: join(process.cwd(), "cadl-ranch-coverage.json"),
           });
       },
       async (args) => {
         await serve({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           port: args.port,
+          coverageFile: args.coverageFile,
         });
       },
     )

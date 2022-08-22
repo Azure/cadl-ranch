@@ -10,10 +10,11 @@ import { processRequest } from "./request-processor.js";
 export class MockApiApp {
   private router = Router();
   private server: MockApiServer;
-  private coverageTracker = new CoverageTracker();
+  private coverageTracker: CoverageTracker;
 
   constructor(private config: ApiMockAppConfig) {
     this.server = new MockApiServer({ port: config.port });
+    this.coverageTracker = new CoverageTracker(config.coverageFile);
   }
 
   public async start(): Promise<void> {
