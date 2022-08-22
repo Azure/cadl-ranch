@@ -5,6 +5,10 @@
 - Node 16+
 - pnpm 7.5.2+
 
+## Usage
+
+See [usage docs](./docs/using-cadl-ranch.md)
+
 ## Develop
 
 This project uses [pnpm workspaces](https://pnpm.io/workspaces) to manage multiple packages.

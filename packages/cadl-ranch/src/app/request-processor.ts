@@ -7,9 +7,12 @@ import {
   RequestExt,
   ValidationError,
 } from "@azure-tools/cadl-ranch-api";
+import { CoverageTracker } from "../coverage/coverage-tracker.js";
 
 export async function processRequest(
-  scenarioName: string | undefined,
+  coverageTracker: CoverageTracker,
+  scenarioName: string,
+  scenarioUri: string,
   request: RequestExt,
   response: Response,
   func: MockRequestHandler,
@@ -20,11 +23,7 @@ export async function processRequest(
     return;
   }
 
-  // if ((mockResponse.status >= 200 && mockResponse.status < 300) || mockResponse.testSuccessful) {
-  //   if (name) {
-  //     await coverageService.track(category, name);
-  //   }
-  // }
+  await coverageTracker.trackEndpointResponse(scenarioName, scenarioUri, mockResponse);
   processResponse(response, mockResponse);
 }
 
