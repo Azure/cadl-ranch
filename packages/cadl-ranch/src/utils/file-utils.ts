@@ -1,4 +1,4 @@
-import fs from "fs";
+import { mkdir } from "fs/promises";
 import glob from "glob";
 
 export async function findFilesFromPattern(pattern: string): Promise<string[]> {
@@ -17,5 +17,5 @@ export async function findFilesFromPattern(pattern: string): Promise<string[]> {
  * @param path Path to the dir.
  */
 export async function ensureDir(path: string): Promise<void> {
-  await fs.promises.mkdir(path, { recursive: true });
+  await mkdir(path, { recursive: true });
 }

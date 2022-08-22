@@ -2,17 +2,17 @@ import { logger } from "../logger.js";
 import pc from "picocolors";
 import { getSourceLocation, Type } from "@cadl-lang/compiler";
 
-interface Diagnostic {
+export interface Diagnostic {
   message: string;
-  target?: Type;
+  target?: Type | string;
 }
 
-export interface Diagnosticreporter {
+export interface DiagnosticReporter {
   readonly diagnostics: Diagnostic[];
   reportDiagnostic(diagnostic: Diagnostic): void;
 }
 
-export function createDiagnosticReporter(): Diagnosticreporter {
+export function createDiagnosticReporter(): DiagnosticReporter {
   const diagnostics: Diagnostic[] = [];
 
   return {
@@ -25,7 +25,11 @@ export function createDiagnosticReporter(): Diagnosticreporter {
   };
 }
 
-function resolveSourceLocation(target: Type) {
+function resolveSourceLocation(target: Type | string) {
+  if (typeof target === "string") {
+    return pc.cyan(target);
+  }
+
   const location = getSourceLocation(target);
   const position = location.file.getLineAndCharacterOfPosition(location.pos);
   const path = pc.cyan(location.file.path);
