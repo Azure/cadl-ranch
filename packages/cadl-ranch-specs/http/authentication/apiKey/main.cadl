@@ -1,0 +1,31 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Foundations;
+
+@serviceTitle("ApiKeyAuthentication")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@route("/authentication/api-key")
+@doc("Illustrates clients generated with ApiKey authentication.")
+
+@useAuth(ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key">)
+namespace ApiKeyAuthentication;
+
+interface ApiKey {
+  @scenario
+  @scenarioDoc("Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.")
+  @doc("Check whether client is authenticated")
+  @get
+  @route("/authenticated")
+  op authenticated(): NoContentResponse | ErrorResponse;
+
+  @scenario
+  @scenarioDoc("Expect to handle an unauthenticated call. Mock api will always respond with status code 403.")
+  @doc("Check whether client is authenticated")
+  @get
+  @route("/invalid-authentication")
+  op invalidAuthentication(): NoContentResponse | ErrorResponse;
+}
