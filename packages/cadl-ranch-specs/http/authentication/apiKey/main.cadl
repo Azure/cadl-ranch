@@ -13,18 +13,16 @@ using Azure.Core.Foundations;
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key">)
 namespace ApiKeyAuthentication;
 
-interface ApiKey {
-  @scenario
-  @scenarioDoc("Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.")
-  @doc("Check whether client is authenticated")
-  @get
-  @route("/authenticated")
-  authenticated(): NoContentResponse | ErrorResponse;
+@scenario
+@scenarioDoc("Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.")
+@doc("Check whether client is authenticated")
+@get
+@route("/authenticated")
+op authenticated(): NoContentResponse | ErrorResponse;
 
-  @scenario
-  @scenarioDoc("Expect to handle an unauthenticated call. Mock api will always respond with status code 403.")
-  @doc("Check whether client is authenticated")
-  @get
-  @route("/invalid-authentication")
-  invalidAuthentication(): NoContentResponse | ErrorResponse;
-}
+@scenario
+@scenarioDoc("Expect to handle an unauthenticated call. Mock api will always respond with status code 403.")
+@doc("Check whether client is authenticated")
+@get
+@route("/invalid-authentication")
+op invalidAuthentication(): NoContentResponse | ErrorResponse;
