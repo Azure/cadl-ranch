@@ -1,7 +1,7 @@
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
 
-@serviceTitle("ServiceDriven1ResiliencyClient")
+@serviceTitle("ResiliencyServiceDriven1")
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("DPG Swagger, this is the initial swagger a service could do")
