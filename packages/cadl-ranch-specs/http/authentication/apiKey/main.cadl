@@ -10,7 +10,6 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @route("/authentication/api-key")
 @doc("Illustrates clients generated with ApiKey authentication.")
-
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key">)
 namespace ApiKeyAuthentication;
 
@@ -20,12 +19,12 @@ interface ApiKey {
   @doc("Check whether client is authenticated")
   @get
   @route("/authenticated")
-  op authenticated(): NoContentResponse | ErrorResponse;
+  authenticated(): NoContentResponse | ErrorResponse;
 
   @scenario
   @scenarioDoc("Expect to handle an unauthenticated call. Mock api will always respond with status code 403.")
   @doc("Check whether client is authenticated")
   @get
   @route("/invalid-authentication")
-  op invalidAuthentication(): NoContentResponse | ErrorResponse;
+  invalidAuthentication(): NoContentResponse | ErrorResponse;
 }

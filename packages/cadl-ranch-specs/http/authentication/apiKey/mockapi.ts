@@ -12,13 +12,14 @@ Scenarios.ApiKeyAuthentication_ApiKey_authenticated = passOnSuccess(
 
 Scenarios.ApiKeyAuthentication_ApiKey_invalidAuthentication = passOnSuccess(
   mockapi.get("/authentication/api-key/invalid-authentication", (req) => {
-    return { status: 403,
+    return {
+      status: 403,
       body: json({
         error: {
           code: "InvalidApiKey",
-          message: "API key is invalid"
-        }
-      })
+          message: "API key is invalid",
+        },
+      }),
     };
   }),
 );
