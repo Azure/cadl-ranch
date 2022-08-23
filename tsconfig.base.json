@@ -5,7 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
