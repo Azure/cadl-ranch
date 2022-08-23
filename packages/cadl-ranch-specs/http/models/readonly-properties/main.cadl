@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
 @route("/readonly-properties")
-namespace Cadl.TestServer.ReadonlyProperties;
+namespace ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
 // because input models are for setting values.
@@ -64,19 +64,52 @@ model OutputModel {
   optionalReadonlyIntList?: int32[];
 }
 
-@doc("Round-trip model with readonly properties.")
+@doc("Input model for setting values.")
+model InputModel {
+  @doc("Required input string name.")
+  name: string;
+}
+
+@doc("Round-trip model with readonly properties from server, and non-readonly properties for sending to server.")
 model RoundTripModel {
   ...OutputModel;
+  ...InputModel;
 }
 
 @scenario
-@scenarioDoc("Generate and receive output model with readonly properties.")
+@scenarioDoc("""
+Get a roundtrip model with readonly properties.
+expected responseBody: {
+  requiredReadonlyString: "requiredReadonlyStringValue",
+  requiredReadonlyInt: 10,
+  requiredReadonlyModel: {
+    requiredString: "requiredStringValue",
+  },
+  requiredReadonlyStringList: ["value1", "value2"],
+  requiredReadonlyIntList: [1, 2, 3, 4, 5],
+}
+""")
 @route("/models")
 @get
-op getOptionalPropertyModel(): OutputModel | ErrorResponse;
+op getReadOnlyProperties(): RoundTripModel | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate, send, and receive round-trip model with readonly properties.")
+@scenarioDoc("""
+Send roundtrip model to server, and receive a new roundtrip model with both sent properties and readonly properties from server.
+expected requestBody: {
+  name: "foo"
+}
+expected responseBody: {
+  name: "foo",
+  requiredReadonlyString: "requiredReadonlyStringValue",
+  requiredReadonlyInt: 10,
+  requiredReadonlyModel: {
+    requiredString: "requiredStringValue",
+  },
+  requiredReadonlyStringList: ["value1", "value2"],
+  requiredReadonlyIntList: [1, 2, 3, 4, 5],
+}
+""")
 @route("/models")
 @put
-op setOptionalPropertyModel(@body input: ReadonlyModel): RoundTripModel | ErrorResponse;
+op sendNonReadOnlyAndGetAllProperties(@body input: RoundTripModel): RoundTripModel | ErrorResponse;

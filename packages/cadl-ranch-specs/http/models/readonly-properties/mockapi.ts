@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -6,12 +6,14 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 const mockRoundTripModel = {
   requiredReadonlyString: "requiredReadonlyStringValue",
   requiredReadonlyInt: 10,
-  requiredReadonlyModel: "requiredStringValue",
+  requiredReadonlyModel: {
+    requiredString: "requiredStringValue",
+  },
   requiredReadonlyStringList: ["value1", "value2"],
   requiredReadonlyIntList: [1, 2, 3, 4, 5],
 };
 
-Scenarios.ReadonlyProperties_getOptionalPropertyModel = passOnSuccess(
+Scenarios.ReadonlyProperties_getReadOnlyProperties = passOnSuccess(
   mockapi.get("/readonly-properties/models", () => {
     return {
       status: 200,
@@ -20,12 +22,9 @@ Scenarios.ReadonlyProperties_getOptionalPropertyModel = passOnSuccess(
   }),
 );
 
-Scenarios.ReadonlyProperties_setOptionalPropertyModel = passOnSuccess(
+Scenarios.ReadonlyProperties_sendNonReadOnlyAndGetAllProperties = passOnSuccess(
   mockapi.post("/readonly-properties/models", (req) => {
-    req.expect.bodyNotEmpty();
-    if (!req.body.requiredString) {
-      throw new ValidationError("Required properties missing!", null, null);
-    }
+    req.expect.bodyEquals({name: "foo"})
     return {
       status: 200,
       body: json(mockRoundTripModel),
