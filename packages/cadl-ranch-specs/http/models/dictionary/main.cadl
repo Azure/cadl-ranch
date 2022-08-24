@@ -16,12 +16,7 @@ model dictionary_wrapper {
 
 @scenario
 @route("/complex/dictionary/typed")
-namespace dictionary {
-  @route("/valid")
-  @scenarioDoc("Get complex types with dictionary properties")
-  @get
-  op getValid(): dictionary_wrapper | ErrorResponse;
-
+namespace put {
   @route("/valid")
   @scenarioDoc("Put complex types with dictionary properties")
   @put
@@ -34,16 +29,25 @@ namespace dictionary {
   } | ErrorResponse;
 
   @route("/empty")
-  @scenarioDoc("Get complex types with dictionary property which is empty")
-  @get
-  op getEmpty(): dictionary_wrapper | ErrorResponse;
-
-  @route("/empty")
   @scenarioDoc("Put complex types with dictionary properties which is empty")
   @put
   op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper): {
     @statusCode statusCode: 200;
   } | ErrorResponse;
+}
+
+@scenario
+@route("/complex/dictionary/typed")
+namespace get {
+  @route("/valid")
+  @scenarioDoc("Get complex types with dictionary properties")
+  @get
+  op getValid(): dictionary_wrapper | ErrorResponse;
+
+  @route("/empty")
+  @scenarioDoc("Get complex types with dictionary property which is empty")
+  @get
+  op getEmpty(): dictionary_wrapper | ErrorResponse;
 
   @route("/null")
   @scenarioDoc("Get complex types with dictionary property which is null")

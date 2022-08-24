@@ -7,7 +7,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
  * Put and get for typed dictionary properties.
  */
 const dictionaryValidBody = '{"defaultProgram":{"txt":"notepad","bmp":"mspaint","xls":"excel","exe":"","":null}}';
-Scenarios.Dictionary_put = passOnSuccess(
+Scenarios.BodyComplexDictionary_put = passOnSuccess(
   mockapi.put("/complex/dictionary/typed/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       req.expect.bodyEquals(JSON.parse(dictionaryValidBody));
@@ -24,7 +24,7 @@ Scenarios.Dictionary_put = passOnSuccess(
   }),
 );
 
-Scenarios.Dictionary_get = passOnSuccess(
+Scenarios.BodyComplexDictionary_get = passOnSuccess(
   mockapi.get("/complex/dictionary/typed/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(JSON.parse(dictionaryValidBody)) };
