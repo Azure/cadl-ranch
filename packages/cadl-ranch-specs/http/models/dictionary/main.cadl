@@ -1,0 +1,57 @@
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Azure.Core.Foundations;
+
+@serviceTitle("Dictionary in Complex Test Service")
+@serviceVersion("2016-02-29")
+@server("http://localhost:3000", "Testserver endpoint")
+@doc("Illustrates complex model generation, as well as serialization and deserialization.")
+namespace Cadl.Testserver.BodyComplexDictionary;
+
+model dictionary_wrapper {
+  defaultProgram?: Record<string>;
+}
+
+@scenario
+@route("/complex/dictionary/typed")
+namespace dictionary {
+  @route("/valid")
+  @scenarioDoc("Get complex types with dictionary properties")
+  @get
+  op getValid(): dictionary_wrapper | ErrorResponse;
+
+  @route("/valid")
+  @scenarioDoc("Put complex types with dictionary properties")
+  @put
+  op putValid(
+    @doc("Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\", \"bmp\":\"mspaint\", \"xls\":\"excel\", \"exe\":\"\", \"\":null")
+    @body
+    complexBody: dictionary_wrapper
+  ): {
+    @statusCode statusCode: 200;
+  } | ErrorResponse;
+
+  @route("/empty")
+  @scenarioDoc("Get complex types with dictionary property which is empty")
+  @get
+  op getEmpty(): dictionary_wrapper | ErrorResponse;
+
+  @route("/empty")
+  @scenarioDoc("Put complex types with dictionary properties which is empty")
+  @put
+  op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper): {
+    @statusCode statusCode: 200;
+  } | ErrorResponse;
+
+  @route("/null")
+  @scenarioDoc("Get complex types with dictionary property which is null")
+  @get
+  op getNull(): dictionary_wrapper | ErrorResponse;
+
+  @route("/notprovided")
+  @scenarioDoc("Get complex types with dictionary property while server doesn't provide a response payload")
+  @get
+  op getNotProvided(): dictionary_wrapper | ErrorResponse;
+}
