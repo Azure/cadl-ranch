@@ -3,7 +3,6 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-
 Scenarios.ReadonlyProperties_getReadOnlyProperties = passOnSuccess(
   mockapi.get("/readonly-properties/models", () => {
     return {
@@ -23,7 +22,7 @@ Scenarios.ReadonlyProperties_getReadOnlyProperties = passOnSuccess(
 
 Scenarios.ReadonlyProperties_sendNonReadOnlyAndGetAllProperties = passOnSuccess(
   mockapi.post("/readonly-properties/models", (req) => {
-    req.expect.bodyEquals({name: "foo"})
+    req.expect.bodyEquals({ name: "foo" });
     return {
       status: 200,
       body: json({
