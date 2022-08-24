@@ -3,21 +3,20 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const mockRoundTripModel = {
-  requiredReadonlyString: "requiredReadonlyStringValue",
-  requiredReadonlyInt: 10,
-  requiredReadonlyModel: {
-    requiredString: "requiredStringValue",
-  },
-  requiredReadonlyStringList: ["value1", "value2"],
-  requiredReadonlyIntList: [1, 2, 3, 4, 5],
-};
 
 Scenarios.ReadonlyProperties_getReadOnlyProperties = passOnSuccess(
   mockapi.get("/readonly-properties/models", () => {
     return {
       status: 200,
-      body: json(mockRoundTripModel),
+      body: json({
+        requiredReadonlyString: "requiredReadonlyStringValue",
+        requiredReadonlyInt: 10,
+        requiredReadonlyModel: {
+          requiredString: "requiredStringValue",
+        },
+        requiredReadonlyStringList: ["value1", "value2"],
+        requiredReadonlyIntList: [1, 2, 3, 4, 5],
+      }),
     };
   }),
 );
@@ -27,7 +26,16 @@ Scenarios.ReadonlyProperties_sendNonReadOnlyAndGetAllProperties = passOnSuccess(
     req.expect.bodyEquals({name: "foo"})
     return {
       status: 200,
-      body: json(mockRoundTripModel),
+      body: json({
+        name: req.body.name,
+        requiredReadonlyString: "requiredReadonlyStringValue",
+        requiredReadonlyInt: 10,
+        requiredReadonlyModel: {
+          requiredString: "requiredStringValue",
+        },
+        requiredReadonlyStringList: ["value1", "value2"],
+        requiredReadonlyIntList: [1, 2, 3, 4, 5],
+      }),
     };
   }),
 );

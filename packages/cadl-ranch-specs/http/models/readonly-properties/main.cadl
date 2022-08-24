@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
 @route("/readonly-properties")
-namespace ReadonlyProperties;
+namespace Model.ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
 // because input models are for setting values.
