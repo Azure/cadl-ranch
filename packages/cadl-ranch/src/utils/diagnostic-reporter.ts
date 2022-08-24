@@ -2,30 +2,40 @@ import { logger } from "../logger.js";
 import pc from "picocolors";
 import { getSourceLocation, Type } from "@cadl-lang/compiler";
 
-interface Diagnostic {
+export interface Diagnostic {
   message: string;
-  target?: Type;
+  target?: Type | string;
 }
 
-export interface Diagnosticreporter {
+export interface DiagnosticReporter {
   readonly diagnostics: Diagnostic[];
   reportDiagnostic(diagnostic: Diagnostic): void;
+  reportDiagnostics(diagnostic: readonly Diagnostic[]): void;
 }
 
-export function createDiagnosticReporter(): Diagnosticreporter {
+export function createDiagnosticReporter(): DiagnosticReporter {
   const diagnostics: Diagnostic[] = [];
-
+  function reportDiagnostic(diagnostic: Diagnostic) {
+    const target = diagnostic.target ? `\n  ${resolveSourceLocation(diagnostic.target)}` : "";
+    logger.error(`${pc.red("✘")} ${diagnostic.message}${target}`);
+    diagnostics.push(diagnostic);
+  }
   return {
     diagnostics,
-    reportDiagnostic(diagnostic: Diagnostic) {
-      const target = diagnostic.target ? `\n  ${resolveSourceLocation(diagnostic.target)}` : "";
-      logger.error(`${pc.red("✘")} ${diagnostic.message}${target}`);
-      diagnostics.push(diagnostic);
+    reportDiagnostic,
+    reportDiagnostics(diagnostics: readonly Diagnostic[]) {
+      for (const diagnostic of diagnostics) {
+        reportDiagnostic(diagnostic);
+      }
     },
   };
 }
 
-function resolveSourceLocation(target: Type) {
+function resolveSourceLocation(target: Type | string) {
+  if (typeof target === "string") {
+    return pc.cyan(target);
+  }
+
   const location = getSourceLocation(target);
   const position = location.file.getLineAndCharacterOfPosition(location.pos);
   const path = pc.cyan(location.file.path);
