@@ -24,16 +24,12 @@ namespace put {
     @doc("Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\", \"bmp\":\"mspaint\", \"xls\":\"excel\", \"exe\":\"\", \"\":null")
     @body
     complexBody: dictionary_wrapper
-  ): {
-    @statusCode statusCode: 200;
-  } | ErrorResponse;
+  ): Response<200> | ErrorResponse;
 
   @route("/empty")
   @scenarioDoc("Put complex types with dictionary properties which is empty")
   @put
-  op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper): {
-    @statusCode statusCode: 200;
-  } | ErrorResponse;
+  op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper): Response<200> | ErrorResponse;
 }
 
 @scenario

@@ -8,7 +8,7 @@ function coerceDate(targetObject: any) {
   return JSON.parse(stringRep);
 }
 
-Scenarios.Basic_put = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_basicOps_put = passOnSuccess(
   mockapi.put("/complex/basic/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       req.expect.bodyEquals({ id: 2, name: "abc", color: "Magenta" });
@@ -19,7 +19,7 @@ Scenarios.Basic_put = passOnSuccess(
   }),
 );
 
-Scenarios.Basic_get = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_basicOps_get = passOnSuccess(
   mockapi.get("/complex/basic/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(JSON.parse('{ "id": 2, "name": "abc", "color": "YELLOW" }')) };
@@ -46,7 +46,7 @@ Scenarios.Basic_get = passOnSuccess(
  */
 const siamese =
   '{"breed":"persian","color":"green","hates":[{"food":"tomato","id":1,"name":"Potato"},{"food":"french fries","id":-1,"name":"Tomato"}],"id":2,"name":"Siameeee"}';
-Scenarios.Inheritance_put = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_inheritance_put = passOnSuccess(
   mockapi.put("/complex/inheritance/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       req.expect.bodyEquals(JSON.parse(siamese));
@@ -57,7 +57,7 @@ Scenarios.Inheritance_put = passOnSuccess(
   }),
 );
 
-Scenarios.Inheritance_get = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_inheritance_get = passOnSuccess(
   mockapi.get("/complex/inheritance/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(JSON.parse(siamese)) };
@@ -306,25 +306,7 @@ const dotFishMarketWithoutDiscriminator = {
   ],
 };
 
-Scenarios.Polymorphism_dotsyntax_get = passOnSuccess(
-  mockapi.get("/complex/polymorphism/dotsyntax", (req) => {
-    return { status: 200, body: json(dotSalmon) };
-  }),
-);
-
-Scenarios.Polymorphism_composedWithDiscriminator_get = passOnSuccess(
-  mockapi.get("/complex/polymorphism/composedWithDiscriminator", (req) => {
-    return { status: 200, body: json(dotFishMarketWithDiscriminator) };
-  }),
-);
-
-Scenarios.Polymorphism_composedWithoutDiscriminator_get = passOnSuccess(
-  mockapi.get("/complex/polymorphism/composedWithoutDiscriminator", (req) => {
-    return { status: 200, body: json(dotFishMarketWithoutDiscriminator) };
-  }),
-);
-
-Scenarios.Polymorphism_put = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_polymorphism_put = passOnSuccess(
   mockapi.put("/complex/polymorphism/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       console.log(JSON.stringify(req.body, null, 4));
@@ -347,19 +329,25 @@ Scenarios.Polymorphism_put = passOnSuccess(
   }),
 );
 
-Scenarios.Polymorphism_get = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_polymorphism_get = passOnSuccess(
   mockapi.get("/complex/polymorphism/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(rawFish) };
     } else if (req.params.scenario === "complicated") {
       return { status: 200, body: json(rawSalmon) };
+    } else if (req.params.scenario === "dotsyntax") {
+      return { status: 200, body: json(dotSalmon) };
+    } else if (req.params.scenario === "composedWithDiscriminator") {
+      return { status: 200, body: json(dotFishMarketWithDiscriminator) };
+    } else if (req.params.scenario === "composedWithoutDiscriminator") {
+      return { status: 200, body: json(dotFishMarketWithoutDiscriminator) };
     } else {
       throw new ValidationError("Must provide a valid scenario.", null, req.params.scenario);
     }
   }),
 );
 
-Scenarios.Polymorphism_missingrequired_invalid_get = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_polymorphism_missingrequired_put = passOnSuccess(
   mockapi.put("/complex/polymorphism/missingrequired/invalid", (req) => {
     throw new ValidationError(
       "Reached server in scenario: /complex/polymorphism/missingrequired/invalid, and should not have - since required fields are missing from the request, the client should not be able to send it.",
@@ -436,7 +424,7 @@ const bigfishRaw = {
   ],
 };
 
-Scenarios.Polymorphicrecursive_put = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_polymorphicrecursive_put = passOnSuccess(
   mockapi.put("/complex/polymorphicrecursive/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       console.log(JSON.stringify(req.body, null, 4));
@@ -449,7 +437,7 @@ Scenarios.Polymorphicrecursive_put = passOnSuccess(
   }),
 );
 
-Scenarios.Polymorphicrecursive_get = passOnSuccess(
+Scenarios.BodyComplexPolymorphism_polymorphicrecursive_get = passOnSuccess(
   mockapi.get("/complex/polymorphicrecursive/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(bigfishRaw) };
