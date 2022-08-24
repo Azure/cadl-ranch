@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models with required collection type properties.")
 @route("/collection-properties-basic")
-namespace CollectionPropertiesBasic;
+namespace Model.CollectionPropertiesBasic;
 
 @doc("Input model with collection properties")
 model InputModel {

@@ -6,7 +6,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.CollectionPropertiesBasic_sendCollectionModel = passOnSuccess(
   mockapi.post("/collection-properties-basic/models", (req) => {
     const expectedBody = { requiredStringList: ["post"], requiredIntList: [100] };
-    req.expect.coercedBodyEquals(expectedBody);
+    req.expect.bodyEquals(expectedBody);
     return { status: 200 };
   }),
 );
@@ -18,7 +18,7 @@ Scenarios.CollectionPropertiesBasic_getCollectionModel = passOnSuccess(
 Scenarios.CollectionPropertiesBasic_setCollectionModel = passOnSuccess(
   mockapi.put("/collection-properties-basic/models", (req) => {
     const expectedBody = { requiredStringList: ["put"], requiredIntList: [102] };
-    req.expect.coercedBodyEquals(expectedBody);
+    req.expect.bodyEquals(expectedBody);
     return { status: 200, body: json(expectedBody) };
   }),
 );

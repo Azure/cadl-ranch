@@ -6,7 +6,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.EnumPropertiesBasic_sendEnumPropertyModel = passOnSuccess(
   mockapi.post("/enum-properties-basic/models", (req) => {
     const expectedBody = { Day: "Wednesday", Language: "Undocumented" };
-    req.expect.coercedBodyEquals(expectedBody);
+    req.expect.bodyEquals(expectedBody);
     return { status: 200 };
   }),
 );
@@ -18,7 +18,7 @@ Scenarios.EnumPropertiesBasic_getEnumPropertyModel = passOnSuccess(
 Scenarios.EnumPropertiesBasic_setEnumPropertyModel = passOnSuccess(
   mockapi.put("/enum-properties-basic/models", (req) => {
     const expectedBody = { Day: "Wednesday", Language: "Undocumented" };
-    req.expect.coercedBodyEquals(expectedBody);
+    req.expect.bodyEquals(expectedBody);
     return { status: 200, body: json({ Day: "Monday", Language: "English" }) };
   }),
 );
