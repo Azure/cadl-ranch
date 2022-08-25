@@ -13,7 +13,7 @@ using Azure.Core.Foundations;
 namespace Cadl.Testserver.BodyComplexPolymorphism;
 
 @knownValues(CMYKColorsValues)
-model CMYKColors is string {}
+model CMYKColors is string;
 
 enum CMYKColorsValues {
   cyan,
@@ -99,7 +99,7 @@ model sawshark extends shark {
 
 @doc("Colors possible")
 @knownValues(GoblinSharkColorValues)
-model GoblinSharkColor is string {}
+model GoblinSharkColor is string;
 
 enum GoblinSharkColorValues {
   pink,
