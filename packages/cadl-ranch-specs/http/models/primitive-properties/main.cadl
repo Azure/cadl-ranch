@@ -5,12 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("PrimitivePropertyClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "Testserver endpoint")
 @doc("Illustrates model generation, as well as serialization and deserialization.")
-@route("/primitive-properties")
-namespace Cadl.Testserver.PrimitiveProperties;
+@scenarioService("/primitive-properties")
+namespace PrimitiveProperties;
 
 @doc("Round-trip model with primitive properties to show serialization and deserialization of each.")
 model PrimitivePropertyModel {

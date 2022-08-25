@@ -144,6 +144,7 @@ importers:
     specifiers:
       '@cadl-lang/compiler': ~0.34.0
       '@cadl-lang/eslint-config-cadl': ^0.3.0
+      '@cadl-lang/rest': ~0.16.0
       '@types/node': ^18.0.6
       eslint: ^8.20.0
       prettier: ^2.7.1
@@ -151,6 +152,7 @@ importers:
       typescript: ^4.7.4
     dependencies:
       '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
     devDependencies:
       '@cadl-lang/eslint-config-cadl': 0.3.0_prettier@2.7.1
       '@types/node': 18.7.10

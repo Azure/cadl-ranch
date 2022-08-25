@@ -5,12 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("OptionalPropertiesClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with optional properties.")
-@route("/optional-properties")
-namespace Cadl.TestServer.OptionalProperties;
+@scenarioService("/optional-properties")
+namespace OptionalProperties;
 
 @doc("Input model with optional properties.")
 model InputModel {

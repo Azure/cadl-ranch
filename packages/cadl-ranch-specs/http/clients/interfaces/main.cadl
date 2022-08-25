@@ -5,11 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("MultiInterfaceClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
+@scenarioService("/multi-interface")
 @doc("Illustrates clients generated from a Cadl with multiple interfaces.")
-namespace Cadl.TestServer.MultiInterfaceClient;
+namespace MultiInterfaceClient;
 
 @doc("Simple model.")
 model Dog {
@@ -48,4 +46,22 @@ interface cats {
   @scenarioDoc("Illustrate grouping operations on subclient.")
   @put
   setCats(@body input: Cat): Cat | ErrorResponse;
+}
+
+@scenario
+interface Group1 {
+  a(): void;
+  b(): void;
+}
+
+@scenario
+interface Group2 {
+  c(): void;
+  d(): void;
+}
+
+@scenario
+namespace AtRootScenario {
+  op e(): void;
+  op f(): void;
 }
