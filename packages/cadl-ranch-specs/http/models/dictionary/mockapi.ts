@@ -7,7 +7,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
  * Put and get for typed dictionary properties.
  */
 const dictionaryValidBody = '{"defaultProgram":{"txt":"notepad","bmp":"mspaint","xls":"excel","exe":"","":null}}';
-Scenarios.BodyComplexDictionary_put = passOnSuccess(
+Scenarios.BodyComplexDictionary_dictionary = passOnSuccess([
   mockapi.put("/complex/dictionary/typed/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       req.expect.bodyEquals(JSON.parse(dictionaryValidBody));
@@ -22,9 +22,6 @@ Scenarios.BodyComplexDictionary_put = passOnSuccess(
       throw new ValidationError("Must provide a valid scenario.", null, req.params.scenario);
     }
   }),
-);
-
-Scenarios.BodyComplexDictionary_get = passOnSuccess(
   mockapi.get("/complex/dictionary/typed/:scenario", (req) => {
     if (req.params.scenario === "valid") {
       return { status: 200, body: json(JSON.parse(dictionaryValidBody)) };
@@ -38,4 +35,4 @@ Scenarios.BodyComplexDictionary_get = passOnSuccess(
       throw new ValidationError("Must provide a valid scenario.", null, req.params.scenario);
     }
   }),
-);
+]);

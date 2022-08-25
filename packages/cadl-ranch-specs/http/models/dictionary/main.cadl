@@ -10,48 +10,44 @@ using Azure.Core.Foundations;
 @doc("Illustrates complex model generation, as well as serialization and deserialization.")
 namespace Cadl.Testserver.BodyComplexDictionary;
 
-model dictionary_wrapper {
+model dictionaryWrapper {
   defaultProgram?: Record<string>;
 }
 
 @scenario
 @route("/complex/dictionary/typed")
-namespace put {
+namespace dictionary {
   @route("/valid")
   @scenarioDoc("Put complex types with dictionary properties")
   @put
   op putValid(
     @doc("Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\", \"bmp\":\"mspaint\", \"xls\":\"excel\", \"exe\":\"\", \"\":null")
     @body
-    complexBody: dictionary_wrapper
-  ): Response<200> | ErrorResponse;
+    complexBody: dictionaryWrapper
+  ): OkResponse | ErrorResponse;
 
   @route("/empty")
   @scenarioDoc("Put complex types with dictionary properties which is empty")
   @put
-  op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionary_wrapper): Response<200> | ErrorResponse;
-}
+  op putEmpty(@doc("Please put an empty dictionary") @body complexBody: dictionaryWrapper): OkResponse | ErrorResponse;
 
-@scenario
-@route("/complex/dictionary/typed")
-namespace get {
   @route("/valid")
   @scenarioDoc("Get complex types with dictionary properties")
   @get
-  op getValid(): dictionary_wrapper | ErrorResponse;
+  op getValid(): dictionaryWrapper | ErrorResponse;
 
   @route("/empty")
   @scenarioDoc("Get complex types with dictionary property which is empty")
   @get
-  op getEmpty(): dictionary_wrapper | ErrorResponse;
+  op getEmpty(): dictionaryWrapper | ErrorResponse;
 
   @route("/null")
   @scenarioDoc("Get complex types with dictionary property which is null")
   @get
-  op getNull(): dictionary_wrapper | ErrorResponse;
+  op getNull(): dictionaryWrapper | ErrorResponse;
 
   @route("/notprovided")
   @scenarioDoc("Get complex types with dictionary property while server doesn't provide a response payload")
   @get
-  op getNotProvided(): dictionary_wrapper | ErrorResponse;
+  op getNotProvided(): dictionaryWrapper | ErrorResponse;
 }

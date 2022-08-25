@@ -13,7 +13,7 @@ using Azure.Core.Foundations;
 namespace Cadl.Testserver.BodyComplexPolymorphism;
 
 @knownValues(CMYKColorsValues)
-model CMYKColors is string;
+model CMYKColors is string {}
 
 enum CMYKColorsValues {
   cyan,
@@ -99,7 +99,7 @@ model sawshark extends shark {
 
 @doc("Colors possible")
 @knownValues(GoblinSharkColorValues)
-model GoblinSharkColor is string;
+model GoblinSharkColor is string {}
 
 enum GoblinSharkColorValues {
   pink,
@@ -125,16 +125,12 @@ model cookiecuttershark extends shark {
 
 @scenario
 @route("/complex/basic")
-namespace basicOps_put {
+namespace basicOps {
   @route("/valid")
   @scenarioDoc("Please put {id: 2, name: 'abc', color: 'Magenta'}")
   @put
-  op putValid(@header "api-version": string, @body complexBody: basic): Response<200> | ErrorResponse;
-}
+  op putValid(@header "api-version": string, @body complexBody: basic): OkResponse | ErrorResponse;
 
-@scenario
-@route("/complex/basic")
-namespace basicOps_get {
   @route("/valid")
   @scenarioDoc("Get complex type {id: 2, name: 'abc', color: 'YELLOW'}")
   @get
@@ -163,19 +159,15 @@ namespace basicOps_get {
 
 @scenario
 @route("/complex/inheritance/valid")
-namespace inheritance_put {
+namespace inheritance {
   @scenarioDoc("Put complex types that extend others")
   @put
   op putValid(
     @doc("Please put a siamese with id=2, name=\"Siameee\", color=green, breed=persion, which hates 2 dogs, the 1st one named \"Potato\" with id=1 and food=\"tomato\", and the 2nd one named \"Tomato\" with id=-1 and food=\"french fries\".")
     @body
     complexBody: siamese
-  ): Response<200> | ErrorResponse;
-}
+  ): OkResponse | ErrorResponse;
 
-@scenario
-@route("/complex/inheritance/valid")
-namespace inheritance_get {
   @scenarioDoc("Get complex types that extend others")
   @get
   op getValid(): siamese | ErrorResponse;
@@ -183,7 +175,7 @@ namespace inheritance_get {
 
 @scenario
 @route("/complex/polymorphism")
-namespace polymorphism_put {
+namespace polymorphism {
   @route("/valid")
   @scenarioDoc("Put complex types that are polymorphic")
   @put
@@ -191,23 +183,18 @@ namespace polymorphism_put {
     @doc("Please put a salmon that looks like this:\n{\n        'fishtype':'Salmon',\n        'location':'alaska',\n        'iswild':true,\n        'species':'king',\n        'length':1.0,\n        'siblings':[\n          {\n            'fishtype':'Shark',\n            'age':6,\n            'birthday': '2012-01-05T01:00:00Z',\n            'length':20.0,\n            'species':'predator',\n          },\n          {\n            'fishtype':'Sawshark',\n            'age':105,\n            'birthday': '1900-01-05T01:00:00Z',\n            'length':10.0,\n            'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),\n            'species':'dangerous',\n          },\n          {\n            'fishtype': 'goblin',\n            'age': 1,\n            'birthday': '2015-08-08T00:00:00Z',\n            'length': 30.0,\n            'species': 'scary',\n            'jawsize': 5\n          }\n        ]\n      };")
     @body
     complexBody: Fish
-  ): Response<200> | ErrorResponse;
+  ): OkResponse | ErrorResponse;
 
   @route("/complicated")
   @scenarioDoc("Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties")
   @put
-  op putComplicated(@body complexBody: Fish): Response<200> | ErrorResponse;
+  op putComplicated(@body complexBody: Fish): OkResponse | ErrorResponse;
 
   @route("/missingdiscriminator")
   @scenarioDoc("Put complex types that are polymorphic, omitting the discriminator")
   @put
   op putMissingDiscriminator(@body complexBody: salmon): salmon | ErrorResponse;
-}
 
-
-@scenario
-@route("/complex/polymorphism")
-namespace polymorphism_put {
   @route("/missingrequired/invalid")
   @scenarioDoc("Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client")
   @put
@@ -215,13 +202,8 @@ namespace polymorphism_put {
     @doc("Please attempt put a sawshark that looks like this, the client should not allow this data to be sent:\n{\n    \"fishtype\": \"sawshark\",\n    \"species\": \"snaggle toothed\",\n    \"length\": 18.5,\n    \"age\": 2,\n    \"birthday\": \"2013-06-01T01:00:00Z\",\n    \"location\": \"alaska\",\n    \"picture\": base64(FF FF FF FF FE),\n    \"siblings\": [\n        {\n            \"fishtype\": \"shark\",\n            \"species\": \"predator\",\n            \"birthday\": \"2012-01-05T01:00:00Z\",\n            \"length\": 20,\n            \"age\": 6\n        },\n        {\n            \"fishtype\": \"sawshark\",\n            \"species\": \"dangerous\",\n            \"picture\": base64(FF FF FF FF FE),\n            \"length\": 10,\n            \"age\": 105\n        }\n    ]\n}")
     @body
     complexBody: Fish
-  ): Response<200> | ErrorResponse;
-}
+  ): OkResponse | ErrorResponse;
 
-
-@scenario
-@route("/complex/polymorphism")
-namespace polymorphism_get {
   @route("/valid")
   @scenarioDoc("Get complex types that are polymorphic")
   @get
@@ -250,20 +232,15 @@ namespace polymorphism_get {
 
 @scenario
 @route("/complex/polymorphicrecursive/valid")
-namespace polymorphicrecursive_put {
+namespace polymorphicrecursive {
   @scenarioDoc("Put complex types that are polymorphic and have recursive references")
   @put
   op putValid(
     @doc("Please put a salmon that looks like this:\n{\n    \"fishtype\": \"salmon\",\n    \"species\": \"king\",\n    \"length\": 1,\n    \"age\": 1,\n    \"location\": \"alaska\",\n    \"iswild\": true,\n    \"siblings\": [\n        {\n            \"fishtype\": \"shark\",\n            \"species\": \"predator\",\n            \"length\": 20,\n            \"age\": 6,\n            \"siblings\": [\n                {\n                    \"fishtype\": \"salmon\",\n                    \"species\": \"coho\",\n                    \"length\": 2,\n                    \"age\": 2,\n                    \"location\": \"atlantic\",\n                    \"iswild\": true,\n                    \"siblings\": [\n                        {\n                            \"fishtype\": \"shark\",\n                            \"species\": \"predator\",\n                            \"length\": 20,\n                            \"age\": 6\n                        },\n                        {\n                            \"fishtype\": \"sawshark\",\n                            \"species\": \"dangerous\",\n                            \"length\": 10,\n                            \"age\": 105\n                        }\n                    ]\n                },\n                {\n                    \"fishtype\": \"sawshark\",\n                    \"species\": \"dangerous\",\n                    \"length\": 10,\n                    \"age\": 105\n                }\n            ]\n        },\n        {\n            \"fishtype\": \"sawshark\",\n            \"species\": \"dangerous\",\n            \"length\": 10,\n            \"age\": 105\n        }\n    ]\n}")
     @body
     complexBody: Fish
-  ): Response<200> | ErrorResponse;
-}
+  ): OkResponse | ErrorResponse;
 
-
-@scenario
-@route("/complex/polymorphicrecursive/valid")
-namespace polymorphicrecursive_get {
   @scenarioDoc("Get complex types that are polymorphic and have recursive references")
   @get
   op getValid(): Fish | ErrorResponse;
