@@ -1,6 +1,6 @@
 import { logger } from "../logger.js";
 import pc from "picocolors";
-import { createDiagnosticReporter, ensureScenariosPathExists } from "../utils/index.js";
+import { createDiagnosticReporter, ensureScenariosPathExists, getSourceLocationStr } from "../utils/index.js";
 import { findScenarioCadlFiles } from "../scenarios-resolver.js";
 import { importCadl, importCadlRanchExpect, importCadlRest } from "../cadl-utils/import-cadl.js";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
@@ -33,7 +33,10 @@ export async function validateScenarios({ scenariosPath }: ValidateScenarioConfi
     if (program.diagnostics.length === 0) {
       logger.info(`${pc.green("✓")} Scenario ${name} is valid.`);
     } else {
-      cadlCompiler.logDiagnostics(program.diagnostics, { log: logger.error });
+      cadlCompiler.logDiagnostics(program.diagnostics, {
+        log: (item) =>
+          logger.error(`${item.message}: ${item.sourceLocation && getSourceLocationStr(item.sourceLocation)}`),
+      });
       logger.error(`${pc.red("✘")} Scenario ${name} is invalid.`);
       invalidScenarios.push(name);
       continue;

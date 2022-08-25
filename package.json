@@ -35,16 +35,16 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
-    "@cadl-lang/prettier-plugin-cadl": "^0.5.12",
-    "eslint": "^8.20.0",
+    "@cadl-lang/prettier-plugin-cadl": "^0.5.14",
+    "eslint": "^8.22.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-unicorn": "^43.0.0",
-    "jest": "^28.1.2",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "jest": "^28.1.3",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "syncpack": "^8.2.4",
-    "ts-jest": "^28.0.5",
-    "typescript": "^4.7.4"
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.8.2"
   },
   "syncpack": {
     "workspace": false

@@ -47,21 +47,3 @@ interface cats {
   @put
   setCats(@body input: Cat): Cat | ErrorResponse;
 }
-
-@scenario
-interface Group1 {
-  a(): void;
-  b(): void;
-}
-
-@scenario
-interface Group2 {
-  c(): void;
-  d(): void;
-}
-
-@scenario
-namespace AtRootScenario {
-  op e(): void;
-  op f(): void;
-}
