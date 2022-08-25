@@ -7,7 +7,7 @@ using Azure.Core.Foundations;
 @serviceTitle("Dictionary in Complex Test Service")
 @serviceVersion("2016-02-29")
 @server("http://localhost:3000", "Testserver endpoint")
-@doc("Illustrates complex model generation, as well as serialization and deserialization.")
+@doc("Illustrates dictionary generation, as well as serialization and deserialization.")
 namespace Cadl.Testserver.BodyComplexDictionary;
 
 model dictionaryWrapper {
