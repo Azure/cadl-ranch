@@ -64,16 +64,11 @@ model OutputModel {
   optionalReadonlyIntList?: int32[];
 }
 
-@doc("Input model for setting values.")
-model InputModel {
-  @doc("Required input string name.")
-  name: string;
-}
-
 @doc("Round-trip model with readonly properties from server, and non-readonly properties for sending to server.")
 model RoundTripModel {
   ...OutputModel;
-  ...InputModel;
+  @doc("Required input string name.")
+  name: string;
 }
 
 @scenario
@@ -91,7 +86,7 @@ expected responseBody: {
 """)
 @route("/models")
 @get
-op getReadOnlyProperties(): RoundTripModel | ErrorResponse;
+op getReadOnlyProperties(): OutputModel | ErrorResponse;
 
 @scenario
 @scenarioDoc("""
