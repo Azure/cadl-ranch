@@ -54,7 +54,7 @@ interface String extends ModelOperations<StringProperty, "hello"> {};
 @doc("Model with a bytes property")
 model BytesProperty is ModelTemplate<bytes>{ };
 @route("/bytes")
-interface Bytes extends ModelOperations<BytesProperty, ""> {};
+interface Bytes extends ModelOperations<BytesProperty, "aGVsbG8sIHdvcmxkIQ=="> {};
 
 // Test a model with an int property
 @doc("Model with a int property")
@@ -72,13 +72,13 @@ interface Float extends ModelOperations<FloatProperty, "42.42"> {};
 @doc("Model with a datetime property")
 model DatetimeProperty is ModelTemplate<zonedDateTime>{ };
 @route("/datetime")
-interface Datetime extends ModelOperations<DatetimeProperty, ""> {};
+interface Datetime extends ModelOperations<DatetimeProperty, "2022-08-26T18:38:00Z"> {};
 
 // Test a model with a duration property
 @doc("Model with a duration property")
 model DurationProperty is ModelTemplate<zonedDateTime>{ };
 @route("/duration")
-interface Duration extends ModelOperations<DurationProperty, ""> {};
+interface Duration extends ModelOperations<DurationProperty, "P123DT22H14M12.011S"> {};
 
 // Test a model with an enum property
 @doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
