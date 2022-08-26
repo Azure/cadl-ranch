@@ -51,5 +51,8 @@ jobs:
       - run: pnpm run check-format
         name: Check formatting
 
-      - run: test -n "$(git status --porcelain)"
+      - run: |
+          gitStatus = $(git status --porcelain)
+          echo $gitStatus
+          test -n "$(gitStatus)"
         name: Check not out of date generated files
