@@ -3,19 +3,19 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.EnumPropertiesBasic_sendEnumPropertyModel = passOnSuccess(
+Scenarios.EnumProperties_sendEnumPropertyModel = passOnSuccess(
   mockapi.post("/enum-properties-basic/models", (req) => {
     const expectedBody = { Day: "Wednesday", Language: "Undocumented" };
     req.expect.bodyEquals(expectedBody);
     return { status: 200 };
   }),
 );
-Scenarios.EnumPropertiesBasic_getEnumPropertyModel = passOnSuccess(
+Scenarios.EnumProperties_getEnumPropertyModel = passOnSuccess(
   mockapi.get("/enum-properties-basic/models", () => {
     return { status: 200, body: json({ Day: "Wednesday", Language: "Undocumented" }) };
   }),
 );
-Scenarios.EnumPropertiesBasic_setEnumPropertyModel = passOnSuccess(
+Scenarios.EnumProperties_setEnumPropertyModel = passOnSuccess(
   mockapi.put("/enum-properties-basic/models", (req) => {
     const expectedBody = { Day: "Wednesday", Language: "Undocumented" };
     req.expect.bodyEquals(expectedBody);
