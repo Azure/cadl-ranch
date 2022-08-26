@@ -1,4 +1,6 @@
 import {
+  $serviceTitle,
+  $serviceVersion,
   createDecoratorDefinition,
   DecoratorContext,
   InterfaceType,
@@ -6,6 +8,7 @@ import {
   OperationType,
   Program,
 } from "@cadl-lang/compiler";
+import { $route, $server } from "@cadl-lang/rest/http";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
@@ -55,7 +58,7 @@ export function getScenarioDoc(program: Program, target: OperationType): string 
 const ScenarioKey = Symbol("Scenario");
 const scenarioSignature = createDecoratorDefinition({
   name: "@scenario",
-  target: ["Operation", "Namespace"] as any,
+  target: ["Operation", "Namespace", "Interface"],
   args: [{ kind: "String", optional: true }],
 } as const);
 export function $scenario(
@@ -93,4 +96,21 @@ function resolveScenarioName(target: OperationType | NamespaceType, name: string
 export function getScenarioName(program: Program, target: OperationType | NamespaceType): string | undefined {
   const name = program.stateMap(ScenarioKey).get(target);
   return resolveScenarioName(target, name);
+}
+
+const ScenarioServiceKey = Symbol("ScenarioService");
+const scenarioServiceSignature = createDecoratorDefinition({
+  name: "@scenarioService",
+  target: "Namespace",
+  args: [{ kind: "String" }],
+} as const);
+export function $scenarioService(context: DecoratorContext, target: NamespaceType, route: string) {
+  if (!scenarioServiceSignature.validate(context, target, [route])) {
+    return;
+  }
+  context.program.stateSet(ScenarioServiceKey).add(target);
+  context.call($serviceTitle, target, context.program.checker.getNamespaceString(target));
+  context.call($serviceVersion, target, "1.0.0");
+  context.call($server, target, "http://localhost:3000", "TestServer endpoint");
+  context.call($route, target, route);
 }

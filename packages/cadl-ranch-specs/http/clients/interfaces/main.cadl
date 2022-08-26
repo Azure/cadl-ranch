@@ -5,11 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("MultiInterfaceClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
+@scenarioService("/multi-interface")
 @doc("Illustrates clients generated from a Cadl with multiple interfaces.")
-namespace Cadl.TestServer.MultiInterfaceClient;
+namespace MultiInterfaceClient;
 
 @doc("Simple model.")
 model Dog {

@@ -1,16 +1,11 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Foundations;
 
-@serviceTitle("OptionalPropertiesClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with optional properties.")
-@route("/optional-properties")
-namespace Cadl.TestServer.OptionalProperties;
+@scenarioService("/optional-properties")
+namespace OptionalProperties;
 
 @doc("Input model with optional properties.")
 model InputModel {
@@ -41,16 +36,16 @@ model RoundTripModel {
 @scenarioDoc("Generate and send input model with optional properties.")
 @route("/models")
 @post
-op sendOptionalPropertyModel(@body input: InputModel): Response<200> | ErrorResponse;
+op sendOptionalPropertyModel(@body input: InputModel): Response<200>;
 
 @scenario
 @scenarioDoc("Generate and receive output model with optional properties.")
 @route("/models")
 @get
-op getOptionalPropertyModel(): OutputModel | ErrorResponse;
+op getOptionalPropertyModel(): OutputModel;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with optional properties.")
 @route("/models")
 @put
-op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
+op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel;
