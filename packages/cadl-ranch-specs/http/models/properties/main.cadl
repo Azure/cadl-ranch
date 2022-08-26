@@ -21,15 +21,19 @@ model ModelTemplate<TProperty> {
 interface ModelOperations<TModel, TDoc extends string> {
   @scenario
   @scenarioDoc("""
-  Get the following response body
-  expected responseBody: {{ property: {doc} }}
+  Expected response body:
+  ```json
+  {property: {doc}}
+  ```
   """, {doc: TDoc})
   @get get(): TModel | ErrorResponse;
 
   @scenario
   @scenarioDoc("""
-  Put the following body
-  expected input: {{ property: {doc} }}
+  Expected input body:
+  ```json
+  {property: {doc}}
+  ```
   """, {doc: TDoc})
   @put put(@body body: TModel): void | ErrorResponse;
 }
