@@ -2,7 +2,6 @@
 
 ### MultiInterfaceClient_dogs_getDogs
 
-Test
 Illustrate grouping operations on subclient.
 
 ### MultiInterfaceClient_dogs_setDogs
