@@ -3,6 +3,7 @@ import {
   $serviceVersion,
   createDecoratorDefinition,
   DecoratorContext,
+  getServiceNamespace,
   InterfaceType,
   ModelType,
   NamespaceType,
@@ -87,12 +88,34 @@ export interface Scenario {
 }
 
 export function listScenarios(program: Program): Scenario[] {
-  return [...(program.stateMap(ScenarioKey).entries() as any)].map(([target, name]) => {
-    return {
-      target,
-      name: resolveScenarioName(target, name),
-    };
-  });
+  const serviceNamespace = getServiceNamespace(program);
+  if (serviceNamespace === undefined) {
+    return [];
+  }
+  return listScenarioIn(program, serviceNamespace);
+}
+
+export function listScenarioIn(program: Program, target: NamespaceType | InterfaceType | OperationType): Scenario[] {
+  const scenarioName = getScenarioName(program, target);
+  if (scenarioName) {
+    return [
+      {
+        target,
+        name: scenarioName,
+      },
+    ];
+  }
+  switch (target.kind) {
+    case "Namespace":
+      return [
+        ...[...target.namespaces.values()].flatMap((x) => listScenarioIn(program, x)),
+        ...[...target.interfaces.values()].flatMap((x) => listScenarioIn(program, x)),
+      ];
+    case "Interface":
+      return [...target.operations.values()].flatMap((x) => listScenarioIn(program, x));
+    case "Operation":
+      return [];
+  }
 }
 
 function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string) {
@@ -102,11 +125,18 @@ function resolveScenarioName(target: OperationType | InterfaceType | NamespaceTy
   return target.namespace ? `${target.namespace.name}_${name}` : name;
 }
 
+export function isScenario(program: Program, target: OperationType | InterfaceType | NamespaceType): boolean {
+  return program.stateMap(ScenarioKey).has(target);
+}
+
 export function getScenarioName(
   program: Program,
   target: OperationType | InterfaceType | NamespaceType,
 ): string | undefined {
   const name = program.stateMap(ScenarioKey).get(target);
+  if (name === undefined) {
+    return undefined;
+  }
   return resolveScenarioName(target, name);
 }
 
