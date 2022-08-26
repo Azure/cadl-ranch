@@ -1,4 +1,3 @@
-import "@cadl-lang/rest";
 import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 

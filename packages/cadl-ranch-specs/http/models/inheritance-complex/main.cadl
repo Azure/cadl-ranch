@@ -1,4 +1,3 @@
-import "@cadl-lang/rest";
 import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
@@ -27,7 +26,6 @@ model DerivedFromBaseModel extends BaseModel {
 model BottomModel extends DerivedFromBaseModel {
   optionalBool?: boolean;
 }
-
 
 @doc("Base model for three levels inheritance with discriminator.")
 @discriminator("discriminator1")
@@ -59,7 +57,6 @@ model BottomModelWithDiscriminatorB extends SubModelWithDiscriminator {
   discriminator2: "BottomB";
 }
 
-
 @scenario
 @scenarioDoc("Generate and send input BottomModel. The valid input value is {optionalString: \"abc\", optionalInt: 32, optionalBool: true}")
 @route("/inheritance/valid")
@@ -78,7 +75,6 @@ op getBottomModel(): BottomModel | ErrorResponse;
 @put
 op setBottomModel(@body input: BottomModel): BottomModel | ErrorResponse;
 
-
 @route("inheritance/invalid")
 @scenarioDoc("Get a basic model that is invalid for the local strong type.")
 @get
@@ -96,23 +92,22 @@ op setEmptyBaseModel(): BaseModel | ErrorResponse;
 @get
 op getBaseModelWithNullProperty(): BaseModel | ErrorResponse;
 
-
 @scenario
 @route("/polymorphism/valid")
 @scenarioDoc("Generate, send, and receive round-trip models in three levels inheritance with 2 discriminators. The valid input is  { optionalInt: 1, discriminator1: \"SubModel\",  discriminator2: \"BottomB\"}")
 @put
 op setBaseModelWithDiscriminator(@body input: BaseModelWithDiscriminator): BaseModelWithDiscriminator | ErrorResponse;
 
-
 @scenario
 @route("/polymorphism/recursive")
 @scenarioDoc("Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator")
 @put
-op setRecursiveModel(@body input: DerivedFromBaseModelWithDiscriminator): DerivedFromBaseModelWithDiscriminator | ErrorResponse;
+op setRecursiveModel(
+  @body input: DerivedFromBaseModelWithDiscriminator
+): DerivedFromBaseModelWithDiscriminator | ErrorResponse;
 
 @scenario
 @route("/polymorphism/missingdiscriminator")
 @scenarioDoc("Get a BaseModel omitting the discriminator")
 @get
 op getBaseModelMissingDiscriminator(): BaseModelWithDiscriminator | ErrorResponse;
-

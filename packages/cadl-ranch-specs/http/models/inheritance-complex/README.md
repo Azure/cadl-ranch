@@ -5,4 +5,3 @@ The inheritance-complex test cases cover input and output of conditions:
 - collection of polymorphic instances.
 - dictionary of polymorphic instances.
 - recursive polymorphic instances.
-
