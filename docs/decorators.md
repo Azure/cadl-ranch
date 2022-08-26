@@ -2,7 +2,7 @@
 
 ### `@scenario`
 
-Mark an operation or interface as a scenario. Optionally can provide the name of the scenario.
+Mark an operation, interface or namespace as a scenario. Optionally can provide the name of the scenario.
 
 ### `@scenarioDoc`
 
