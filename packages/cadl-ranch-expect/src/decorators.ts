@@ -4,6 +4,7 @@ import {
   createDecoratorDefinition,
   DecoratorContext,
   InterfaceType,
+  ModelType,
   NamespaceType,
   OperationType,
   Program,
@@ -42,17 +43,25 @@ const ScenarioDocKey = Symbol("ScenarioDoc");
 const scenarioDocSignature = createDecoratorDefinition({
   name: "@scenario",
   target: "Operation",
-  args: [{ kind: "String" }],
+  args: [{ kind: "String" }, { kind: "Model", optional: true }],
 } as const);
-export function $scenarioDoc(context: DecoratorContext, target: OperationType, doc: string) {
-  if (!scenarioDocSignature.validate(context, target, [doc])) {
+export function $scenarioDoc(context: DecoratorContext, target: OperationType, doc: string, formatArgs?: ModelType) {
+  if (!scenarioDocSignature.validate(context, target, [doc, formatArgs])) {
     return;
   }
-  context.program.stateMap(ScenarioDocKey).set(target, doc);
+  const formattedDoc = formatArgs ? replaceTemplatedStringFromProperties(doc, formatArgs) : doc;
+  context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
 
 export function getScenarioDoc(program: Program, target: OperationType): string | undefined {
   return program.stateMap(ScenarioDocKey).get(target);
+}
+
+function replaceTemplatedStringFromProperties(formatString: string, formatArgs: ModelType) {
+  return formatString.replace(/{(\w+)}/g, (_, propName) => {
+    const type = formatArgs.properties.get(propName)?.type;
+    return type && "value" in type ? type.value : propName;
+  });
 }
 
 const ScenarioKey = Symbol("Scenario");
@@ -112,7 +121,7 @@ export function $scenarioService(context: DecoratorContext, target: NamespaceTyp
     return;
   }
   context.program.stateSet(ScenarioServiceKey).add(target);
-  context.call($serviceTitle, target, context.program.checker.getNamespaceString(target));
+  context.call($serviceTitle, target, context.program.checker.getNamespaceString(target).replace(/\./g, ""));
   context.call($serviceVersion, target, "1.0.0");
   context.call($server, target, "http://localhost:3000", "TestServer endpoint");
   context.call($route, target, route);
