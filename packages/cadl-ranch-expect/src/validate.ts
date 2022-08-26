@@ -1,10 +1,21 @@
-import { getSourceLocation, NamespaceType, navigateProgram, OperationType, Program } from "@cadl-lang/compiler";
+import {
+  getSourceLocation,
+  InterfaceType,
+  isTemplateDeclaration,
+  NamespaceType,
+  navigateProgram,
+  OperationType,
+  Program,
+} from "@cadl-lang/compiler";
 import { getScenarioDoc, getScenarioName } from "./decorators.js";
 import { reportDiagnostic } from "./lib.js";
 
 export function $onValidate(program: Program) {
   navigateProgram(program, {
     operation: (operation) => {
+      if (isTemplateDeclaration(operation) || (operation.interface && isTemplateDeclaration(operation.interface))) {
+        return;
+      }
       if (getSourceLocation(operation).file.path.includes("/node_modules/")) {
         return;
       }
@@ -19,9 +30,12 @@ export function $onValidate(program: Program) {
   });
 }
 
-function checkIsInScenario(program: Program, type: OperationType | NamespaceType): boolean {
+function checkIsInScenario(program: Program, type: OperationType | InterfaceType | NamespaceType): boolean {
   if (getScenarioName(program, type)) {
     return true;
+  }
+  if (type.kind === "Operation" && type.interface) {
+    return checkIsInScenario(program, type.interface);
   }
   if (type.namespace === undefined) {
     return false;
