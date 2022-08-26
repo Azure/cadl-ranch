@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates an input-only model with required reference and value type properties.")
 @route("/input-basic")
-namespace Cadl.TestServer.InputBasic;
+namespace Models.InputBasic;
 
 @doc("Input Model")
 model InputModel {
