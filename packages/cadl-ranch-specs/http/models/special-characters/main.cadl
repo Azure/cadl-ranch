@@ -1,0 +1,35 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Rest;
+using Cadl.Http;
+using Azure.Core.Foundations;
+
+@serviceTitle("SpecialCharacterClient")
+@serviceVersion("1.0.0")
+@server("http://localhost:3000", "TestServer endpoint")
+@doc("Illustrates models with special characters or keyword in property name")
+@route("/special-chars")
+namespace Cadl.TestServer.SpecialCharacterModels;
+
+@doc("Base type with a discriminator containing dot.")
+@discriminator("discriminator.property")
+model BaseClass {
+  @doc("An example property with programming keyword `for`")
+  for: string;
+
+  @doc("An example property with Python key word bytes")
+  bytes: string;
+}
+
+model DerivedClass extends BaseClass {
+  "discriminator.property": "A";
+}
+
+@scenario
+@scenarioDoc("Generate, send, and receive round-trip model with special character properties.")
+@route("/model")
+@put
+op setDerivedClass(@body input: DerivedClass): DerivedClass | ErrorResponse;
+
