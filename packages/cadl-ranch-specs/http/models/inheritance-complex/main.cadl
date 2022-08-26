@@ -25,7 +25,7 @@ model DerivedFromBaseModel extends BaseModel {
 
 @doc("The third level model A in the non-discriminator three levels inheritance.")
 model BottomModel extends DerivedFromBaseModel {
-  optionalBool?: bool;
+  optionalBool?: boolean;
 }
 
 

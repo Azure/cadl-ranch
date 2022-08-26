@@ -25,13 +25,13 @@ model ModelDictionaryModel {
 }
 
 @scenario
-@scenarioDoc("Generate and send input model with dictionary properties. The valid value is {optionalModelDictionary: {key: {requiredString: "abc"}}}")
+@scenarioDoc("Generate and send input model with dictionary properties. The valid value is {optionalModelDictionary: {key: {requiredString: \"abc\"}}}")
 @route("/models")
 @post
 op sendDictionaryModel(@body input: ModelDictionaryModel): OkResponse | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate and receive output model with dictionary properties. The return value is {optionalModelDictionary: {key: {requiredString: "abc"}}}")
+@scenarioDoc("Generate and receive output model with dictionary properties. The return value is {optionalModelDictionary: {key: {requiredString: \"abc\"}}}")
 @route("/models")
 @get
 op getDictionaryModel(): ModelDictionaryModel | ErrorResponse;
