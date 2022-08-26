@@ -121,7 +121,7 @@ yarn-error.log*
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+packages/*/coverage
 
 # nyc test coverage
 .nyc_output

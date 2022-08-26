@@ -1,6 +1,7 @@
 import {
   createDecoratorDefinition,
   DecoratorContext,
+  InterfaceType,
   NamespaceType,
   OperationType,
   Program,
@@ -57,7 +58,11 @@ const scenarioSignature = createDecoratorDefinition({
   target: ["Operation", "Namespace"] as any,
   args: [{ kind: "String", optional: true }],
 } as const);
-export function $scenario(context: DecoratorContext, target: NamespaceType | OperationType, name?: string) {
+export function $scenario(
+  context: DecoratorContext,
+  target: NamespaceType | OperationType | InterfaceType,
+  name?: string,
+) {
   if (!scenarioSignature.validate(context, target, [name])) {
     return;
   }
@@ -66,7 +71,7 @@ export function $scenario(context: DecoratorContext, target: NamespaceType | Ope
 
 export interface Scenario {
   name: string;
-  target: OperationType | NamespaceType;
+  target: OperationType | InterfaceType | NamespaceType;
 }
 
 export function listScenarios(program: Program): Scenario[] {
