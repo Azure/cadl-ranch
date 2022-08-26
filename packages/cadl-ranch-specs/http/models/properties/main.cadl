@@ -18,19 +18,19 @@ model ModelTemplate<TProperty> {
 }
 
 @doc("Template to have models operations")
-interface ModelOperations<TModel, TBodyDoc> {
+interface ModelOperations<TModel, TDoc extends string> {
   @scenario
   @scenarioDoc("""
   Get the following response body
   expected responseBody: {{ property: {doc} }}
-  """, {doc: TBodyDoc})
+  """, {doc: TDoc})
   @get get(): TModel | ErrorResponse;
 
   @scenario
   @scenarioDoc("""
   Put the following body
   expected input: {{ property: {doc} }}
-  """, {doc: TBodyDoc})
+  """, {doc: TDoc})
   @put put(@body body: TModel): void | ErrorResponse;
 }
 
@@ -56,13 +56,13 @@ interface Bytes extends ModelOperations<BytesProperty, ""> {};
 @doc("Model with a int property")
 model IntProperty is ModelTemplate<int32>{ };
 @route("/int")
-interface Int extends ModelOperations<IntProperty, 42> {};
+interface Int extends ModelOperations<IntProperty, "42"> {};
 
 // Test a model with a float property
 @doc("Model with a float property")
 model FloatProperty is ModelTemplate<float32>{ };
 @route("/float")
-interface Float extends ModelOperations<FloatProperty, 42.42> {};
+interface Float extends ModelOperations<FloatProperty, "42.42"> {};
 
 // Test a model with a datetime property
 @doc("Model with a datetime property")
@@ -109,22 +109,22 @@ model InnerModel {
 @doc("Model with model properties")
 model ModelProperty is ModelTemplate<InnerModel>{ };
 @route("/model")
-interface Model extends ModelOperations<ModelProperty, {"property": "hello"}> {};
+interface Model extends ModelOperations<ModelProperty, "{'property': 'hello'}"> {};
 
 // Test a model with a string collection property
 @doc("Model with collection string properties")
 model CollectionsStringProperty is ModelTemplate<string[]>{ };
 @route("/collections/string")
-interface CollectionsString extends ModelOperations<CollectionsStringProperty, ["hello", "world"]> {};
+interface CollectionsString extends ModelOperations<CollectionsStringProperty, "['hello', 'world']"> {};
 
 // Test a model with an int collection property
 @doc("Model with collection int properties")
 model CollectionsIntProperty is ModelTemplate<int32[]>{};
 @route("/collections/int")
-interface CollectionsInt extends ModelOperations<CollectionsIntProperty, [1, 2]> {};
+interface CollectionsInt extends ModelOperations<CollectionsIntProperty, "[1, 2]"> {};
 
 // Test a model with a model collection property
 @doc("Model with collection model properties")
 model CollectionsModelProperty is ModelTemplate<InnerModel[]>{};
 @route("/collections/model")
-interface CollectionsModel extends ModelOperations<CollectionsModelProperty, [{"property": "hello"}, {"property": "world"}]> {};
+interface CollectionsModel extends ModelOperations<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {};
