@@ -9,6 +9,11 @@ using Cadl.Http;
 namespace Hello;
 
 @scenario
-@scenarioDoc("This test is testing 'hello world' is being returned from the server")
+@scenarioDoc("""
+This test is testing this payload is returned from the server
+```json
+"hello world"
+```
+""")
 @route("/world")
 op world(): string;

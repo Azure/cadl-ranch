@@ -54,7 +54,10 @@ export function $scenarioDoc(context: DecoratorContext, target: OperationType, d
   context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
 
-export function getScenarioDoc(program: Program, target: OperationType): string | undefined {
+export function getScenarioDoc(
+  program: Program,
+  target: OperationType | InterfaceType | NamespaceType,
+): string | undefined {
   return program.stateMap(ScenarioDocKey).get(target);
 }
 
@@ -84,6 +87,7 @@ export function $scenario(
 
 export interface Scenario {
   name: string;
+  scenarioDoc: string;
   target: OperationType | InterfaceType | NamespaceType;
 }
 
@@ -101,6 +105,7 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
     return [
       {
         target,
+        scenarioDoc: getScenarioDoc(program, target)!, /// `onValidate` validate against this happening
         name: scenarioName,
       },
     ];
@@ -110,6 +115,7 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
       return [
         ...[...target.namespaces.values()].flatMap((x) => listScenarioIn(program, x)),
         ...[...target.interfaces.values()].flatMap((x) => listScenarioIn(program, x)),
+        ...[...target.operations.values()].flatMap((x) => listScenarioIn(program, x)),
       ];
     case "Interface":
       return [...target.operations.values()].flatMap((x) => listScenarioIn(program, x));
