@@ -52,7 +52,6 @@ jobs:
         name: Check formatting
 
       - run: |
-          gitStatus = $(git status --porcelain)
-          echo $gitStatus
-          test -n "$(gitStatus)"
+          git status --porcelain
+          git diff --no-ext-diff --quiet --exit-code
         name: Check not out of date generated files
