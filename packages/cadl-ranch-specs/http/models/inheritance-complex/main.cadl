@@ -75,6 +75,7 @@ op getBottomModel(): BottomModel | ErrorResponse;
 @put
 op setBottomModel(@body input: BottomModel): BottomModel | ErrorResponse;
 
+@scenario
 @route("inheritance/invalid")
 @scenarioDoc("Get a basic model that is invalid for the local strong type.")
 @get
@@ -90,7 +91,7 @@ op setEmptyBaseModel(@body input: BottomModel): BaseModel | ErrorResponse;
 @scenarioDoc("Get a basic model that optional property is sent as null.")
 @route("inheritance/null")
 @get
-op getNullBaseModel(): BaseModel | ErrorResponse;
+op getBaseModelWithNullProperty(): BaseModel | ErrorResponse;
 
 @scenario
 @route("/polymorphism/valid")
