@@ -5,11 +5,8 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("ModelCollectionPropertiesClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models that have properties that are collections of models.")
-@route("/collection-models")
+@scenarioService("/collection-models")
 namespace Model.ModelCollectionProperties;
 
 @doc("Simple model that will appear in a collection.")

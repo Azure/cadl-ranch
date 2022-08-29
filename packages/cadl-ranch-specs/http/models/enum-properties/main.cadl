@@ -5,11 +5,8 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("EnumPropertiesBasicClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models with required enum type properties.")
-@route("/enum-properties-basic")
+@scenarioService("/enum-properties-basic")
 namespace Model.EnumProperties;
 
 @doc("The language to translate the input text into.")
