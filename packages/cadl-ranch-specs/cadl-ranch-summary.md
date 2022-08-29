@@ -534,9 +534,3 @@ The value you pass for the parameter is not verified by the mock server.
 
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
-
-### Hello2_world
-
-- Endpoint: `get /hello2/world`
-
-This test is testing 'hello world' is being returned from the server
