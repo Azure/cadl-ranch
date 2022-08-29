@@ -9,18 +9,18 @@ interface MockApiGetPut {
 
 /**
  * Return the get and put operations
- * @param route The route within /models-properties for your function.
+ * @param route The route within /models/properties for your function.
  * @param value The value you are expecting and will return.
  */
 function getMockApis(route: string, value: any): MockApiGetPut {
   return {
-    get: mockapi.get(`/models-properties/${route}`, (req) => {
+    get: mockapi.get(`/models/properties/${route}`, (req) => {
       return {
         status: 200,
         body: json({ property: value }),
       };
     }),
-    put: mockapi.put(`/models-properties/${route}`, (req) => {
+    put: mockapi.put(`/models/properties/${route}`, (req) => {
       req.expect.bodyEquals({ property: value });
       return {
         status: 200,

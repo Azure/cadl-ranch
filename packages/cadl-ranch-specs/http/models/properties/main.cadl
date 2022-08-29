@@ -7,7 +7,7 @@ using Cadl.Http;
 using Azure.Core.Foundations;
 
 @doc("Illustrates various property types for models")
-@scenarioService("/models-properties")
+@scenarioService("/models/properties")
 namespace Models.Properties;
 
 // TEMPLATES
