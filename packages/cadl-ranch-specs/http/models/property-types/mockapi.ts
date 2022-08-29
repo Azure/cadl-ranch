@@ -32,54 +32,54 @@ function createMockApis(route: string, value: any): MockApiGetPut {
 }
 
 const booleanMock = createMockApis("boolean", true);
-Scenarios.Properties_Boolean_get = passOnSuccess(booleanMock.get);
-Scenarios.Properties_Boolean_put = passOnSuccess(booleanMock.put);
+Scenarios.Types_Boolean_get = passOnSuccess(booleanMock.get);
+Scenarios.Types_Boolean_put = passOnSuccess(booleanMock.put);
 
 const stringMock = createMockApis("string", "hello");
-Scenarios.Properties_String_get = passOnSuccess(stringMock.get);
-Scenarios.Properties_String_put = passOnSuccess(stringMock.put);
+Scenarios.Types_String_get = passOnSuccess(stringMock.get);
+Scenarios.Types_String_put = passOnSuccess(stringMock.put);
 
 const bytesMock = createMockApis("bytes", "aGVsbG8sIHdvcmxkIQ==");
-Scenarios.Properties_Bytes_get = passOnSuccess(bytesMock.get);
-Scenarios.Properties_Bytes_put = passOnSuccess(bytesMock.put);
+Scenarios.Types_Bytes_get = passOnSuccess(bytesMock.get);
+Scenarios.Types_Bytes_put = passOnSuccess(bytesMock.put);
 
 const intMock = createMockApis("int", 42);
-Scenarios.Properties_Int_get = passOnSuccess(intMock.get);
-Scenarios.Properties_Int_put = passOnSuccess(intMock.put);
+Scenarios.Types_Int_get = passOnSuccess(intMock.get);
+Scenarios.Types_Int_put = passOnSuccess(intMock.put);
 
 const floatMock = createMockApis("float", 42.42);
-Scenarios.Properties_Float_get = passOnSuccess(floatMock.get);
-Scenarios.Properties_Float_put = passOnSuccess(floatMock.put);
+Scenarios.Types_Float_get = passOnSuccess(floatMock.get);
+Scenarios.Types_Float_put = passOnSuccess(floatMock.put);
 
 const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
-Scenarios.Properties_Datetime_get = passOnSuccess(datetimeMock.get);
-Scenarios.Properties_Datetime_put = passOnSuccess(datetimeMock.put);
+Scenarios.Types_Datetime_get = passOnSuccess(datetimeMock.get);
+Scenarios.Types_Datetime_put = passOnSuccess(datetimeMock.put);
 
 const durationMock = createMockApis("duration", "P123DT22H14M12.011S");
-Scenarios.Properties_Duration_get = passOnSuccess(durationMock.get);
-Scenarios.Properties_Duration_put = passOnSuccess(durationMock.put);
+Scenarios.Types_Duration_get = passOnSuccess(durationMock.get);
+Scenarios.Types_Duration_put = passOnSuccess(durationMock.put);
 
 const enumMock = createMockApis("enum", "ValueOne");
-Scenarios.Properties_Enum_get = passOnSuccess(enumMock.get);
-Scenarios.Properties_Enum_put = passOnSuccess(enumMock.put);
+Scenarios.Types_Enum_get = passOnSuccess(enumMock.get);
+Scenarios.Types_Enum_put = passOnSuccess(enumMock.put);
 
 const extensibleEnumMock = createMockApis("extensible-enum", "UnknownValue");
-Scenarios.Properties_ExtensibleEnum_get = passOnSuccess(extensibleEnumMock.get);
-Scenarios.Properties_ExtensibleEnum_put = passOnSuccess(extensibleEnumMock.put);
+Scenarios.Types_ExtensibleEnum_get = passOnSuccess(extensibleEnumMock.get);
+Scenarios.Types_ExtensibleEnum_put = passOnSuccess(extensibleEnumMock.put);
 
 const modelMock = createMockApis("model", { property: "hello" });
-Scenarios.Properties_Model_get = passOnSuccess(modelMock.get);
-Scenarios.Properties_Model_put = passOnSuccess(modelMock.put);
+Scenarios.Types_Model_get = passOnSuccess(modelMock.get);
+Scenarios.Types_Model_put = passOnSuccess(modelMock.put);
 
 const collectionsStringMock = createMockApis("collections/string", ["hello", "world"]);
-Scenarios.Properties_CollectionsString_get = passOnSuccess(collectionsStringMock.get);
-Scenarios.Properties_CollectionsString_put = passOnSuccess(collectionsStringMock.put);
+Scenarios.Types_CollectionsString_get = passOnSuccess(collectionsStringMock.get);
+Scenarios.Types_CollectionsString_put = passOnSuccess(collectionsStringMock.put);
 
 const collectionsIntMock = createMockApis("collections/int", [1, 2]);
-Scenarios.Properties_CollectionsInt_get = passOnSuccess(collectionsIntMock.get);
-Scenarios.Properties_CollectionsInt_put = passOnSuccess(collectionsIntMock.put);
+Scenarios.Types_CollectionsInt_get = passOnSuccess(collectionsIntMock.get);
+Scenarios.Types_CollectionsInt_put = passOnSuccess(collectionsIntMock.put);
 
 const collectionsModelMock = createMockApis("collections/model", [{ property: "hello" }, { property: "world" }]);
-Scenarios.Properties_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
+Scenarios.Types_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
 
-Scenarios.Properties_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
+Scenarios.Types_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
