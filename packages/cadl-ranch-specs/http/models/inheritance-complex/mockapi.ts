@@ -19,7 +19,7 @@ Scenarios.ComplexInheritanceModels_getBottomModel = passOnSuccess(
 
 Scenarios.ComplexInheritanceModels_setBottomModel = passOnSuccess(
   mockapi.put("/inheritance-complex/inheritance/valid", (req) => {
-    return { status: 200, body: req.body };
+    return { status: 200, body: json(req.body) };
   }),
 );
 
@@ -31,7 +31,7 @@ Scenarios.ComplexInheritanceModels_getInvalidBaseModel = passOnSuccess(
 
 Scenarios.ComplexInheritanceModels_setEmptyBottomModel = passOnSuccess(
   mockapi.put("/inheritance-complex/inheritance/empty", (req) => {
-    req.expect.bodyEquals(inheritanceValidBody);
+    req.expect.bodyEquals({});
     return { status: 200, body: json({}) };
   }),
 );

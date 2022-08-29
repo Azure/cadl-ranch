@@ -8,7 +8,7 @@ using Azure.Core.Foundations;
 @serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates input, output, and round-trip models that have properties that are dictionary of models.")
-@route("/dictionary-properties-basic")
+@route("/model-dictionary-properties")
 namespace Cadl.TestServer.ModelDictionaryProperties;
 
 @doc("Simple model that will appear in a dictionary.")

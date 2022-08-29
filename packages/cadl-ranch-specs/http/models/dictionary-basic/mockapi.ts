@@ -1,5 +1,6 @@
 import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import { Console } from "console";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
@@ -13,32 +14,32 @@ const dictionaryValidBody = {
   },
 };
 Scenarios.DictionaryPropertiesBasic_sendDictionaryModel = passOnSuccess(
-  mockapi.post("/models/valid", (req) => {
+  mockapi.post("/dictionary-properties-basic/models/valid", (req) => {
     req.expect.bodyEquals(dictionaryValidBody);
     return { status: 200 };
   }),
 );
 
 Scenarios.DictionaryPropertiesBasic_getDictionaryModel = passOnSuccess(
-  mockapi.get("/models/valid", (req) => {
+  mockapi.get("/dictionary-properties-basic/models/valid", (req) => {
     return { status: 200, body: json(dictionaryValidBody) };
   }),
 );
 
 Scenarios.DictionaryPropertiesBasic_setDictionaryModel = passOnSuccess(
-  mockapi.put("/models/valid", (req) => {
+  mockapi.put("/dictionary-properties-basic/models/valid", (req) => {
     return { status: 200, body: json(req.body) };
   }),
 );
 
 Scenarios.DictionaryPropertiesBasic_getNullDictionaryModel = passOnSuccess(
-  mockapi.get("/models/null", (req) => {
+  mockapi.get("/dictionary-properties-basic/models/null", (req) => {
     return { status: 200, body: json({ requiredStringDictionary: null }) };
   }),
 );
 
 Scenarios.DictionaryPropertiesBasic_setEmptyDictionaryModel = passOnSuccess(
-  mockapi.get("/models/empty", (req) => {
+  mockapi.put("/dictionary-properties-basic/models/empty", (req) => {
     req.expect.bodyEquals({ requiredStringDictionary: {} });
     return { status: 200, body: json({ requiredStringDictionary: {} }) };
   }),

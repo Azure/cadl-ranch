@@ -39,10 +39,10 @@ op setDictionaryModel(@body input: DictionaryModel): DictionaryModel | ErrorResp
 @scenarioDoc("Generate and receive null dictionary value.")
 @route("/models/null")
 @get
-op getNullDictionaryModel(@body input: DictionaryModel): DictionaryModel | ErrorResponse;
+op getNullDictionaryModel(): DictionaryModel | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with empty dictionary value.")
 @route("/models/empty")
 @put
-op setEmptyDictionaryModel(): DictionaryModel | ErrorResponse;
+op setEmptyDictionaryModel(@body input: DictionaryModel): DictionaryModel | ErrorResponse;

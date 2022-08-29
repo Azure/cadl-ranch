@@ -84,13 +84,13 @@ op getInvalidBaseModel(): BaseModel | ErrorResponse;
 @scenarioDoc("Generate, send, and receive round-trip BaseModel that optional propertu is not presented.")
 @route("inheritance/empty")
 @put
-op setEmptyBaseModel(): BaseModel | ErrorResponse;
+op setEmptyBaseModel(@body input: BottomModel): BaseModel | ErrorResponse;
 
 @scenario
 @scenarioDoc("Get a basic model that optional property is sent as null.")
 @route("inheritance/null")
 @get
-op getBaseModelWithNullProperty(): BaseModel | ErrorResponse;
+op getNullBaseModel(): BaseModel | ErrorResponse;
 
 @scenario
 @route("/polymorphism/valid")
