@@ -24,7 +24,7 @@ interface ModelOperations<TModel, TDoc extends string> {
     """
   Expected response body:
   ```json
-  {property: {doc}}
+  {"property": {doc}}
   ```
   """,
     {
@@ -39,7 +39,7 @@ interface ModelOperations<TModel, TDoc extends string> {
     """
   Expected input body:
   ```json
-  {property: {doc}}
+  {"property": {doc}}
   ```
   """,
     {
