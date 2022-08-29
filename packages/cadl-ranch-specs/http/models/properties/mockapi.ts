@@ -1,126 +1,83 @@
-import { passOnSuccess, ScenarioMockApi, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, ScenarioMockApi, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function getMockApiGet(route: string, value: any){
-  return mockapi.get(`/models-properties/${route}`, (req) => {
-    return {
-      status: 200,
-      body: json({ property: value }),
-    };
-  });
+interface MockApiGetPut {
+  get: MockApi;
+  put: MockApi;
 }
 
-function getMockApiPut(route: string, value: any){
-  return mockapi.put(`/models-properties/${route}`, (req) => {
-    req.expect.bodyEquals({ property: value });
-    return {
-      status: 200,
-    };
-  });
+/**
+ * Return the get and put operations
+ * @param route The route within /models-properties for your function.
+ * @param value The value you are expecting and will return.
+ */
+function getMockApis(route: string, value: any): MockApiGetPut {
+  return {
+    get: mockapi.get(`/models-properties/${route}`, (req) => {
+      return {
+        status: 200,
+        body: json({ property: value }),
+      };
+    }),
+    put: mockapi.put(`/models-properties/${route}`, (req) => {
+      req.expect.bodyEquals({ property: value });
+      return {
+        status: 200,
+      };
+    }),
+  };
 }
 
+const booleanMock = getMockApis("boolean", true);
+Scenarios.Properties_Boolean_get = passOnSuccess(booleanMock.get);
+Scenarios.Properties_Boolean_put = passOnSuccess(booleanMock.put);
 
-Scenarios.Properties_Boolean_get = passOnSuccess(
-  getMockApiGet("boolean", true)
-);
+const stringMock = getMockApis("string", "hello");
+Scenarios.Properties_String_get = passOnSuccess(stringMock.get);
+Scenarios.Properties_String_put = passOnSuccess(stringMock.put);
 
-Scenarios.Properties_Boolean_put = passOnSuccess(
-  getMockApiPut("boolean", true)
-);
+const bytesMock = getMockApis("bytes", "aGVsbG8sIHdvcmxkIQ==");
+Scenarios.Properties_Bytes_get = passOnSuccess(bytesMock.get);
+Scenarios.Properties_Bytes_put = passOnSuccess(bytesMock.put);
 
-Scenarios.Properties_String_get = passOnSuccess(
-  getMockApiGet("string", "hello")
-);
+const intMock = getMockApis("int", 42);
+Scenarios.Properties_Int_get = passOnSuccess(intMock.get);
+Scenarios.Properties_Int_put = passOnSuccess(intMock.put);
 
-Scenarios.Properties_String_put = passOnSuccess(
-  getMockApiPut("string", "hello")
-);
+const floatMock = getMockApis("float", 42.42);
+Scenarios.Properties_Float_get = passOnSuccess(floatMock.get);
+Scenarios.Properties_Float_put = passOnSuccess(floatMock.put);
 
-Scenarios.Properties_Bytes_get = passOnSuccess(
-  getMockApiGet("bytes", "aGVsbG8sIHdvcmxkIQ==")
-);
+const datetimeMock = getMockApis("datetime", "2022-08-26T18:38:00Z");
+Scenarios.Properties_Datetime_get = passOnSuccess(datetimeMock.get);
+Scenarios.Properties_Datetime_put = passOnSuccess(datetimeMock.put);
 
-Scenarios.Properties_Bytes_put = passOnSuccess(
-  getMockApiPut("bytes", "aGVsbG8sIHdvcmxkIQ==")
-);
+const durationMock = getMockApis("duration", "P123DT22H14M12.011S");
+Scenarios.Properties_Duration_get = passOnSuccess(durationMock.get);
+Scenarios.Properties_Duration_put = passOnSuccess(durationMock.put);
 
-Scenarios.Properties_Int_get = passOnSuccess(
-  getMockApiGet("int", 42)
-);
+const enumMock = getMockApis("enum", "ValueOne");
+Scenarios.Properties_Enum_get = passOnSuccess(enumMock.get);
+Scenarios.Properties_Enum_put = passOnSuccess(enumMock.put);
 
-Scenarios.Properties_Int_put = passOnSuccess(
-  getMockApiPut("int", 42)
-);
+const extensibleEnumMock = getMockApis("enum", "UnknownValue");
+Scenarios.Properties_ExtensibleEnum_get = passOnSuccess(extensibleEnumMock.get);
+Scenarios.Properties_ExtensibleEnum_put = passOnSuccess(extensibleEnumMock.put);
 
-Scenarios.Properties_Float_get = passOnSuccess(
-  getMockApiGet("float", 42.42)
-);
+const modelMock = getMockApis("model", { property: "hello" });
+Scenarios.Properties_Model_get = passOnSuccess(modelMock.get);
+Scenarios.Properties_Model_put = passOnSuccess(modelMock.put);
 
-Scenarios.Properties_Float_put = passOnSuccess(
-  getMockApiPut("float", 42.42)
-);
+const collectionsStringMock = getMockApis("collections/string", ["hello", "world"]);
+Scenarios.Properties_CollectionsString_get = passOnSuccess(collectionsStringMock.get);
+Scenarios.Properties_CollectionsString_put = passOnSuccess(collectionsStringMock.put);
 
-Scenarios.Properties_Datetime_get = passOnSuccess(
-  getMockApiGet("datetime", "2022-08-26T18:38:00Z")
-);
+const collectionsIntMock = getMockApis("collections/int", [1, 2]);
+Scenarios.Properties_CollectionsInt_get = passOnSuccess(collectionsIntMock.get);
+Scenarios.Properties_CollectionsInt_put = passOnSuccess(collectionsIntMock.put);
 
-Scenarios.Properties_Datetime_put = passOnSuccess(
-  getMockApiPut("datetime", "2022-08-26T18:38:00Z")
-);
+const collectionsModelMock = getMockApis("collections/model", [{ property: "hello" }, { property: "world" }]);
+Scenarios.Properties_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
 
-Scenarios.Properties_Duration_get = passOnSuccess(
-  getMockApiGet("duration", "P123DT22H14M12.011S")
-);
-
-Scenarios.Properties_Duration_put = passOnSuccess(
-  getMockApiPut("duration", "P123DT22H14M12.011S")
-);
-
-Scenarios.Properties_Enum_get = passOnSuccess(
-  getMockApiGet("enum", "ValueOne")
-);
-
-Scenarios.Properties_Enum_put = passOnSuccess(
-  getMockApiPut("enum", "ValueOne")
-);
-
-Scenarios.Properties_ExtensibleEnum_get = passOnSuccess(
-  getMockApiGet("enum", "UnknownValue")
-);
-
-Scenarios.Properties_ExtensibleEnum_put = passOnSuccess(
-  getMockApiPut("enum", "UnknownValue")
-);
-
-Scenarios.Properties_Model_get = passOnSuccess(
-  getMockApiGet("model", { property: "hello" })
-);
-
-Scenarios.Properties_Model_put = passOnSuccess(
-  getMockApiPut("model", { property: "hello" })
-);
-
-Scenarios.Properties_CollectionsString_get = passOnSuccess(
-  getMockApiGet("model", ["hello", "world"])
-);
-
-Scenarios.Properties_CollectionsString_put = passOnSuccess(
-  getMockApiPut("model", ["hello", "world"])
-);
-
-Scenarios.Properties_CollectionsInt_get = passOnSuccess(
-  getMockApiGet("model", [1, 2])
-);
-
-Scenarios.Properties_CollectionsInt_put = passOnSuccess(
-  getMockApiPut("model", [1, 2])
-);
-
-Scenarios.Properties_CollectionsModel_get = passOnSuccess(
-  getMockApiGet("model", [{property: "hello"}, {property: "world"}])
-);
-
-Scenarios.Properties_CollectionsModel_put = passOnSuccess(
-  getMockApiPut("model", [{property: "hello"}, {property: "world"}])
-);
+Scenarios.Properties_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
