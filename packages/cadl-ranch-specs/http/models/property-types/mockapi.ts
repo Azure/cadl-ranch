@@ -13,15 +13,17 @@ interface MockApiGetPut {
  * @param value The value you are expecting and will return.
  */
 function getMockApis(route: string, value: any): MockApiGetPut {
+  const url = `/models/properties/types/${route}`;
+  const body = { property: value };
   return {
-    get: mockapi.get(`/models/properties/${route}`, (req) => {
+    get: mockapi.get(url, (req) => {
       return {
         status: 200,
-        body: json({ property: value }),
+        body: json(body),
       };
     }),
-    put: mockapi.put(`/models/properties/${route}`, (req) => {
-      req.expect.bodyEquals({ property: value });
+    put: mockapi.put(url, (req) => {
+      req.expect.bodyEquals(body);
       return {
         status: 204,
       };
