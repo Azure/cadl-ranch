@@ -71,7 +71,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 Make sure to run the following commands:
 
 - `pnpm validate-scenarios`
-- `pnpm validate-mockapis`
+- `pnpm validate-mock-apis`
 - `pnpm generate-scenarios-summary`
 - `pnpm format`
 

@@ -10,7 +10,7 @@ import {
   OperationType,
   Program,
 } from "@cadl-lang/compiler";
-import { $route, $server } from "@cadl-lang/rest/http";
+import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@cadl-lang/rest/http";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
@@ -89,6 +89,13 @@ export interface Scenario {
   name: string;
   scenarioDoc: string;
   target: OperationType | InterfaceType | NamespaceType;
+  endpoints: ScenarioEndpoint[];
+}
+
+export interface ScenarioEndpoint {
+  verb: HttpVerb;
+  path: string;
+  target: OperationType;
 }
 
 export function listScenarios(program: Program): Scenario[] {
@@ -99,6 +106,53 @@ export function listScenarios(program: Program): Scenario[] {
   return listScenarioIn(program, serviceNamespace);
 }
 
+export function getScenarioEndpoints(
+  program: Program,
+  target: NamespaceType | InterfaceType | OperationType,
+): ScenarioEndpoint[] {
+  switch (target.kind) {
+    case "Namespace":
+      return [
+        ...[...target.namespaces.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+        ...[...target.interfaces.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+        ...[...target.operations.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+      ];
+    case "Interface":
+      return [...target.operations.values()].flatMap((x) => getScenarioEndpoints(program, x));
+    case "Operation":
+      return [
+        {
+          verb: getOperationVerb(program, target) ?? "get",
+          path: getOperationRoute(program, target),
+          target,
+        },
+      ];
+  }
+}
+
+function getRouteSegements(program: Program, target: OperationType | InterfaceType | NamespaceType): string[] {
+  const route = getRoutePath(program, target)?.path;
+  const seg = route ? [route] : [];
+  switch (target.kind) {
+    case "Namespace":
+      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+    case "Interface":
+      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+
+    case "Operation":
+      return target.interface
+        ? [...getRouteSegements(program, target.interface), ...seg]
+        : target.namespace
+        ? [...getRouteSegements(program, target.namespace), ...seg]
+        : seg;
+  }
+}
+
+function getOperationRoute(program: Program, target: OperationType): string {
+  const segements = getRouteSegements(program, target);
+  return "/" + segements.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+}
+
 export function listScenarioIn(program: Program, target: NamespaceType | InterfaceType | OperationType): Scenario[] {
   const scenarioName = getScenarioName(program, target);
   if (scenarioName) {
@@ -107,6 +161,7 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
         target,
         scenarioDoc: getScenarioDoc(program, target)!, /// `onValidate` validate against this happening
         name: scenarioName,
+        endpoints: getScenarioEndpoints(program, target),
       },
     ];
   }
