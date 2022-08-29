@@ -179,11 +179,18 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
   }
 }
 
-function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string) {
-  if (target.kind === "Operation" && target.interface) {
-    name = `${target.interface.name}_${name}`;
+function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string): string {
+  const names = [name];
+
+  let current: OperationType | InterfaceType | NamespaceType | undefined = target;
+  while (true) {
+    current = current.kind === "Operation" && current.interface ? current.interface : current.namespace;
+    if (current === undefined || (current.kind === "Namespace" && current.name === "")) {
+      break;
+    }
+    names.unshift(current.name);
   }
-  return target.namespace ? `${target.namespace.name}_${name}` : name;
+  return names.join("_");
 }
 
 export function isScenario(program: Program, target: OperationType | InterfaceType | NamespaceType): boolean {
