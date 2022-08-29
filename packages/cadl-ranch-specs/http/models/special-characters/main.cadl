@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with special characters or keyword in property name")
 @route("/special-chars")
-namespace Cadl.TestServer.SpecialCharacterModels;
+namespace Model.SpecialCharacter;
 
 @doc("Base type with a discriminator containing dot.")
 @discriminator("discriminator.property")

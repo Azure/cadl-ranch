@@ -10,7 +10,7 @@ using Azure.Core.Foundations;
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("Illustrates complex polymorphic model.")
 @route("/inheritance-complex")
-namespace Cadl.Testserver.ComplexInheritanceModels;
+namespace Model.Inheritance;
 
 @doc("Base model for non-discriminator three levels inheritance.")
 model BaseModel {
