@@ -32,6 +32,20 @@
     },
     {
       "type": "node",
+      "request": "launch",
+      "name": "Generate scenarios summary",
+      "program": "${workspaceFolder}/packages/cadl-ranch/cmd/cli.mjs",
+      "args": [
+        "generate-scenarios-summary",
+        "${workspaceFolder}/packages/cadl-ranch-specs/http"
+      ],
+      "smartStep": true,
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**/*.js"],
+      "cwd": "${workspaceFolder}",
+    },
+    {
+      "type": "node",
       "request": "attach",
       "name": "Attach",
       "port": 9229

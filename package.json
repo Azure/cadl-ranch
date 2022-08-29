@@ -16,8 +16,9 @@
     "check-format": "npm run -s prettier -- --check",
     "check-version-mismatch": "syncpack list-mismatches",
     "fix-version-mismatch": "syncpack fix-mismatches",
-    "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios ",
-    "validate-mock-apis": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-mock-apis ",
+    "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios",
+    "validate-mock-apis": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-mock-apis",
+    "generate-scenarios-summary": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run generate-scenarios-summary",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md,cadl}"
   },
   "engines": {
