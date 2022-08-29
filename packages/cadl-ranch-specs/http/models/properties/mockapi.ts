@@ -23,7 +23,7 @@ function getMockApis(route: string, value: any): MockApiGetPut {
     put: mockapi.put(`/models/properties/${route}`, (req) => {
       req.expect.bodyEquals({ property: value });
       return {
-        status: 200,
+        status: 204,
       };
     }),
   };
@@ -61,7 +61,7 @@ const enumMock = getMockApis("enum", "ValueOne");
 Scenarios.Properties_Enum_get = passOnSuccess(enumMock.get);
 Scenarios.Properties_Enum_put = passOnSuccess(enumMock.put);
 
-const extensibleEnumMock = getMockApis("enum", "UnknownValue");
+const extensibleEnumMock = getMockApis("extensible-enum", "UnknownValue");
 Scenarios.Properties_ExtensibleEnum_get = passOnSuccess(extensibleEnumMock.get);
 Scenarios.Properties_ExtensibleEnum_put = passOnSuccess(extensibleEnumMock.put);
 
