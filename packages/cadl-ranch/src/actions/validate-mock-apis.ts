@@ -15,6 +15,19 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
   const cadlCompiler = await importCadl(scenariosPath);
   const cadlRanchExpect = await importCadlRanchExpect(scenariosPath);
   const diagnostics = createDiagnosticReporter();
+
+  const foundUris = new Set<string>();
+  mockApis.forEach(mockApi =>
+    Object.values(mockApi.scenarios).forEach(scenario =>
+      scenario.apis.forEach(api => {
+        const key = `${api.method} ${api.uri}`;
+        foundUris.has(key)
+          ? diagnostics.reportDiagnostic({
+            message: `Uri ${api.uri} with HTTP verb ${api.method} is being defined twice.`,
+          })
+          : foundUris.add(key);
+      })));
+
   for (const { name, cadlFilePath } of scenarioFiles) {
     logger.debug(`Found scenario "${cadlFilePath}"`);
     const program = await cadlCompiler.compile(cadlFilePath, cadlCompiler.NodeHost, {
