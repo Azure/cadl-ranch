@@ -103,7 +103,17 @@ This method requires to write 2 tests.
 }
 
 @route("/all")
-interface AllOptional extends OperationsTemplate<AllOptionalProperties, "", ""> {}
+interface AllOptional
+  extends OperationsTemplate<
+      AllOptionalProperties,
+      "{'optionalString': 'hello', 'optionalInt': 42, 'optionalStringList': ['hello', 'world'], 'optionalIntList': [1, 2]}",
+      "{}"
+    > {}
 
 @route("/some")
-interface SomeOptional extends OperationsTemplate<SomeOptionalProperties, "", ""> {}
+interface SomeOptional
+  extends OperationsTemplate<
+      SomeOptionalProperties,
+      "{'optionalString': 'hello', 'requiredInt': 42, 'requiredStringList': ['hello', 'world'], 'optionalIntList': [1, 2]}",
+      "{'requiredInt': 42, 'requiredStringList': ['hello', 'world']}"
+    > {}
