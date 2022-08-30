@@ -10,7 +10,7 @@ import {
   OperationType,
   Program,
 } from "@cadl-lang/compiler";
-import { $route, $server } from "@cadl-lang/rest/http";
+import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@cadl-lang/rest/http";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
@@ -54,7 +54,10 @@ export function $scenarioDoc(context: DecoratorContext, target: OperationType, d
   context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
 
-export function getScenarioDoc(program: Program, target: OperationType): string | undefined {
+export function getScenarioDoc(
+  program: Program,
+  target: OperationType | InterfaceType | NamespaceType,
+): string | undefined {
   return program.stateMap(ScenarioDocKey).get(target);
 }
 
@@ -84,7 +87,15 @@ export function $scenario(
 
 export interface Scenario {
   name: string;
+  scenarioDoc: string;
   target: OperationType | InterfaceType | NamespaceType;
+  endpoints: ScenarioEndpoint[];
+}
+
+export interface ScenarioEndpoint {
+  verb: HttpVerb;
+  path: string;
+  target: OperationType;
 }
 
 export function listScenarios(program: Program): Scenario[] {
@@ -95,13 +106,62 @@ export function listScenarios(program: Program): Scenario[] {
   return listScenarioIn(program, serviceNamespace);
 }
 
+export function getScenarioEndpoints(
+  program: Program,
+  target: NamespaceType | InterfaceType | OperationType,
+): ScenarioEndpoint[] {
+  switch (target.kind) {
+    case "Namespace":
+      return [
+        ...[...target.namespaces.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+        ...[...target.interfaces.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+        ...[...target.operations.values()].flatMap((x) => getScenarioEndpoints(program, x)),
+      ];
+    case "Interface":
+      return [...target.operations.values()].flatMap((x) => getScenarioEndpoints(program, x));
+    case "Operation":
+      return [
+        {
+          verb: getOperationVerb(program, target) ?? "get",
+          path: getOperationRoute(program, target),
+          target,
+        },
+      ];
+  }
+}
+
+function getRouteSegements(program: Program, target: OperationType | InterfaceType | NamespaceType): string[] {
+  const route = getRoutePath(program, target)?.path;
+  const seg = route ? [route] : [];
+  switch (target.kind) {
+    case "Namespace":
+      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+    case "Interface":
+      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+
+    case "Operation":
+      return target.interface
+        ? [...getRouteSegements(program, target.interface), ...seg]
+        : target.namespace
+        ? [...getRouteSegements(program, target.namespace), ...seg]
+        : seg;
+  }
+}
+
+function getOperationRoute(program: Program, target: OperationType): string {
+  const segements = getRouteSegements(program, target);
+  return "/" + segements.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+}
+
 export function listScenarioIn(program: Program, target: NamespaceType | InterfaceType | OperationType): Scenario[] {
   const scenarioName = getScenarioName(program, target);
   if (scenarioName) {
     return [
       {
         target,
+        scenarioDoc: getScenarioDoc(program, target)!, /// `onValidate` validate against this happening
         name: scenarioName,
+        endpoints: getScenarioEndpoints(program, target),
       },
     ];
   }
@@ -110,6 +170,7 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
       return [
         ...[...target.namespaces.values()].flatMap((x) => listScenarioIn(program, x)),
         ...[...target.interfaces.values()].flatMap((x) => listScenarioIn(program, x)),
+        ...[...target.operations.values()].flatMap((x) => listScenarioIn(program, x)),
       ];
     case "Interface":
       return [...target.operations.values()].flatMap((x) => listScenarioIn(program, x));
@@ -118,11 +179,18 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
   }
 }
 
-function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string) {
-  if (target.kind === "Operation" && target.interface) {
-    name = `${target.interface.name}_${name}`;
+function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string): string {
+  const names = [name];
+
+  let current: OperationType | InterfaceType | NamespaceType | undefined = target;
+  while (true) {
+    current = current.kind === "Operation" && current.interface ? current.interface : current.namespace;
+    if (current === undefined || (current.kind === "Namespace" && current.name === "")) {
+      break;
+    }
+    names.unshift(current.name);
   }
-  return target.namespace ? `${target.namespace.name}_${name}` : name;
+  return names.join("_");
 }
 
 export function isScenario(program: Program, target: OperationType | InterfaceType | NamespaceType): boolean {

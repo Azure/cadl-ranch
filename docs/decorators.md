@@ -23,7 +23,7 @@ Mark an operation, interface or namespace as a scenario. Optionally can provide 
 
 ### `@scenarioDoc`
 
-Specify how to implement this scenario. Differ from @doc which describe the scenario to the end user.
+Specify how to implement this scenario. Value is markdown. Differ from @doc which describe the scenario to the end user.
 
 ### `@supportedBy`
 

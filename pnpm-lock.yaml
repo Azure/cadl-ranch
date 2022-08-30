@@ -74,6 +74,7 @@ importers:
       js-yaml: 4.1.0
       morgan: 1.10.0
       picocolors: 1.0.0
+      prettier: 2.7.1
       source-map-support: 0.5.21
       winston: 3.8.1
       xml2js: 0.4.23
@@ -89,7 +90,6 @@ importers:
       '@types/xml2js': 0.4.11
       '@types/yargs': 17.0.11
       eslint: 8.22.0
-      prettier: 2.7.1
       rimraf: 3.0.2
       typescript: 4.8.2
 
