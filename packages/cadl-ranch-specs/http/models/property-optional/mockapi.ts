@@ -37,12 +37,12 @@ const allOptionalRequiredAndOptional = createMockApis("all/requiredAndOptional",
   optionalStringList: ["hello", "world"],
   optionalIntList: [1, 2],
 });
-Scenarios.Optional_AllOptional_get = passOnSuccess(allOptionalRequiredAndOptional.get);
-Scenarios.Optional_AllOptional_put = passOnSuccess(allOptionalRequiredAndOptional.put);
+Scenarios.Models_Property_Optional_AllOptional_get = passOnSuccess(allOptionalRequiredAndOptional.get);
+Scenarios.Models_Property_Optional_AllOptional_put = passOnSuccess(allOptionalRequiredAndOptional.put);
 
 const allOptionalRequiredOnly = createMockApis("all/requiredOnly", {});
-Scenarios.Optional_AllOptional_get_required_only = passOnSuccess(allOptionalRequiredOnly.get);
-Scenarios.Optional_AllOptional_put_required_only = passOnSuccess(allOptionalRequiredOnly.put);
+Scenarios.Models_Property_Optional_AllOptional_get_required_only = passOnSuccess(allOptionalRequiredOnly.get);
+Scenarios.Models_Property_Optional_AllOptional_put_required_only = passOnSuccess(allOptionalRequiredOnly.put);
 
 const someOptionalRequiredAndOptional = createMockApis("some/requiredAndOptional", {
   optionalString: "hello",
@@ -50,12 +50,12 @@ const someOptionalRequiredAndOptional = createMockApis("some/requiredAndOptional
   requiredStringList: ["hello", "world"],
   optionalIntList: [1, 2],
 });
-Scenarios.Optional_SomeOptional_get = passOnSuccess(someOptionalRequiredAndOptional.get);
-Scenarios.Optional_SomeOptional_put = passOnSuccess(someOptionalRequiredAndOptional.put);
+Scenarios.Models_Property_Optional_SomeOptional_get = passOnSuccess(someOptionalRequiredAndOptional.get);
+Scenarios.Models_Property_Optional_SomeOptional_put = passOnSuccess(someOptionalRequiredAndOptional.put);
 
 const someOptionalRequiredOnly = createMockApis("some/requiredOnly", {
   requiredInt: 42,
   requiredStringList: ["hello", "world"],
 });
-Scenarios.Optional_SomeOptional_get_required_only = passOnSuccess(someOptionalRequiredOnly.get);
-Scenarios.Optional_SomeOptional_put_required_only = passOnSuccess(someOptionalRequiredOnly.put);
+Scenarios.Models_Property_Optional_SomeOptional_get_required_only = passOnSuccess(someOptionalRequiredOnly.get);
+Scenarios.Models_Property_Optional_SomeOptional_put_required_only = passOnSuccess(someOptionalRequiredOnly.put);
