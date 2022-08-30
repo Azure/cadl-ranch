@@ -1,0 +1,109 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core.Foundations;
+
+@doc("Illustrates models with optional properties.")
+@scenarioService("/models/properties/optional")
+namespace Models.Property.Optional;
+
+@doc("Model with all optional properties.")
+model AllOptionalProperties {
+  @doc("Optional string, illustrating an optional reference type property.")
+  optionalString?: string;
+
+  @doc("Optional int, illustrating an optional value type property.")
+  optionalInt?: int32;
+
+  @doc("Optional string collection.")
+  optionalStringList?: string[];
+
+  @doc("Optional int collection.")
+  optionalIntList?: int32[];
+}
+
+@doc("Model with optional and required properties.")
+model SomeOptionalProperties {
+  @doc("Optional string, illustrating an optional reference type property.")
+  optionalString?: string;
+
+  @doc("Required int")
+  requiredInt: int32;
+
+  @doc("Required string collection.")
+  requiredStringList: string[];
+
+  @doc("Optional int collection.")
+  optionalIntList?: int32[];
+}
+
+enum OptionalMode {
+  "requiredAndOptional",
+  "requiredOnly",
+}
+
+model PropertiesToIncludeParameter {
+  @doc("The properties present in the body parameter. 'requiredAndOptional' expects all properties to be present, 'requiredOnly' should only have required properties be present.")
+  @path
+  propertiesToInclude: OptionalMode;
+}
+
+@doc("Operations associated with sending some or all optional properties.")
+interface OperationsTemplate<TModel, TAllDoc extends string, TRequiredOnlyDoc extends string> {
+  @doc("Get models that you will either a body with all properties present, or a body with only required properties present.")
+  @scenario
+  @scenarioDoc(
+    """
+Show that you can support getting a model with all properties present, and a model with only required properties present.
+This method requires to write 2 tests.
+- Test 1 is a call with "requiredAndOptional" and confirm you can receive:
+  ```json
+  {allDoc}
+  ```
+- Test 2 is a call with "requiredOnly" and confirm you can receive:
+  ```json
+  {requiredOnlyDoc}
+  ```
+""",
+    {
+      allDoc: TAllDoc,
+      requiredOnlyDoc: TRequiredOnlyDoc,
+    }
+  )
+  @route("/{propertiesToInclude}")
+  @get
+  get(...PropertiesToIncludeParameter): TModel | ErrorResponse;
+
+  @doc("Put models that will either have a body with all properties present, or a body with only required properties present.")
+  @scenario
+  @scenarioDoc(
+    """
+Show that you can support putting a model with all optional properties present, and a model with only required properties present.
+This method requires to write 2 tests.
+- Test 1 is a call with "requiredAndOptional" and confirm you can input:
+  ```json
+  {allDoc}
+  ```
+- Test 2 is a call with "requiredOnly" and confirm you can input:
+  ```json
+  {requiredOnlyDoc}
+  ```
+""",
+    {
+      allDoc: TAllDoc,
+      requiredOnlyDoc: TRequiredOnlyDoc,
+    }
+  )
+  @route("/{propertiesToInclude}")
+  @put
+  put(...PropertiesToIncludeParameter, @body body: TModel): void | ErrorResponse;
+}
+
+@route("/all")
+interface AllOptional extends OperationsTemplate<AllOptionalProperties, "", ""> {}
+
+@route("/some")
+interface SomeOptional extends OperationsTemplate<SomeOptionalProperties, "", ""> {}
