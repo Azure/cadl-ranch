@@ -6,6 +6,7 @@ import "source-map-support/register.js";
 import { serve } from "../actions/serve.js";
 import { validateMockApis } from "../actions/validate-mock-apis.js";
 import { checkCoverage } from "../actions/check-coverage.js";
+import { generateScenarioSummary } from "../actions/generate-scenario-summary.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -42,6 +43,29 @@ async function main() {
       async (args) => {
         await validateScenarios({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
+        });
+      },
+    )
+    .command(
+      "generate-scenarios-summary <scenariosPath>",
+      "Compile and validate all the Cadl scenarios.",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios",
+            type: "string",
+            demandOption: true,
+          })
+          .option("outputFile", {
+            type: "string",
+            description: "Path to the generated summary file(Markdown).",
+            default: join(process.cwd(), "cadl-ranch-summary.md"),
+          });
+      },
+      async (args) => {
+        await generateScenarioSummary({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+          outputFile: resolve(process.cwd(), args.outputFile),
         });
       },
     )

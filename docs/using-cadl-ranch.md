@@ -11,7 +11,7 @@ Install `cadl-ranch` CLI globally or as a local dependency:
 
 ### Cadl Ranch Config
 
-Cadl ranch support a config file where you can configure scenarios that are not supported by your generator.
+Cadl ranch supports a config file where you can configure scenarios that are not supported by your generator.
 
 Create a `cadl-ranch-config.yaml` file.
 

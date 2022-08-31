@@ -5,12 +5,10 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("RoundTripBasicClient")
-@serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates a round-trip model with required reference and value type properties.")
-@route("/roundtrip-basic")
-namespace Cadl.TestServer.RoundTripBasic;
+@scenarioService("/roundtrip-basic")
+namespace RoundTripBasic;
 
 @doc("Round-trip Model")
 model RoundTripModel {
