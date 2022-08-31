@@ -10,110 +10,108 @@ using Azure.Core.Foundations;
 @scenarioService("/models/properties/optional")
 namespace Models.Property.Optional;
 
-@doc("Model with all optional properties.")
-model AllOptionalProperties {
-  @doc("Optional string, illustrating an optional reference type property.")
-  optionalString?: string;
-
-  @doc("Optional int, illustrating an optional value type property.")
-  optionalInt?: int32;
-
-  @doc("Optional string collection.")
-  optionalStringList?: string[];
-
-  @doc("Optional int collection.")
-  optionalIntList?: int32[];
+@doc("Template type for testing models with optional property. Pass in the type of the property you are looking for")
+model ModelTemplate<TProperty> {
+  @doc("Property")
+  property?: TProperty;
 }
 
-@doc("Model with optional and required properties.")
-model SomeOptionalProperties {
-  @doc("Optional string, illustrating an optional reference type property.")
-  optionalString?: string;
-
-  @doc("Required int")
-  requiredInt: int32;
-
-  @doc("Required string collection.")
-  requiredStringList: string[];
-
-  @doc("Optional int collection.")
-  optionalIntList?: int32[];
-}
-
-enum OptionalMode {
-  "requiredAndOptional",
-  "requiredOnly",
-}
-
-model PropertiesToIncludeParameter {
-  @doc("The properties present in the body parameter. 'requiredAndOptional' expects all properties to be present, 'requiredOnly' should only have required properties be present.")
-  @path
-  propertiesToInclude: OptionalMode;
-}
-
-@doc("Operations associated with sending some or all optional properties.")
-interface OperationsTemplate<TModel, TAllDoc extends string, TRequiredOnlyDoc extends string> {
-  @doc("Get models that you will either a body with all properties present, or a body with only required properties present.")
+@doc("Operations associated with getting and putting models with optional properties.")
+interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends string = "{}"> {
+  @doc("Get models that will return all properties in the model")
   @scenario
   @scenarioDoc(
     """
-Show that you can support getting a model with all properties present, and a model with only required properties present.
-This method requires to write 2 tests.
-- Test 1 is a call with "requiredAndOptional" and confirm you can receive:
+  Expected response body:
   ```json
-  {allDoc}
+  {"property": {doc}}
   ```
-- Test 2 is a call with "requiredOnly" and confirm you can receive:
-  ```json
-  {requiredOnlyDoc}
-  ```
-""",
+  """,
     {
-      allDoc: TAllDoc,
-      requiredOnlyDoc: TRequiredOnlyDoc,
+      allDoc: TDoc,
     }
   )
-  @route("/{propertiesToInclude}")
+  @route("/all")
   @get
-  get(...PropertiesToIncludeParameter): TModel | ErrorResponse;
+  getAll(): TModel | ErrorResponse;
 
-  @doc("Put models that will either have a body with all properties present, or a body with only required properties present.")
+  @doc("Get models that will return the default object")
   @scenario
   @scenarioDoc(
     """
-Show that you can support putting a model with all optional properties present, and a model with only required properties present.
-This method requires to write 2 tests.
-- Test 1 is a call with "requiredAndOptional" and confirm you can input:
+  Expected response body:
+  ```json
+  {defaultDoc}
+  ```
+  """,
+    {
+      defaultDoc: TDefaultDoc,
+    }
+  )
+  @route("/default")
+  @get
+  getDefault(): TModel | ErrorResponse;
+
+  @doc("Put a body with all properties present.")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request body:
   ```json
   {allDoc}
   ```
-- Test 2 is a call with "requiredOnly" and confirm you can input:
-  ```json
-  {requiredOnlyDoc}
-  ```
-""",
+  """,
     {
-      allDoc: TAllDoc,
-      requiredOnlyDoc: TRequiredOnlyDoc,
+      allDoc: TDoc,
     }
   )
-  @route("/{propertiesToInclude}")
+  @route("/all")
   @put
-  put(...PropertiesToIncludeParameter, @body body: TModel): void | ErrorResponse;
+  putAll(@body body: TModel): void | ErrorResponse;
+
+  @doc("Put a body with default properties.")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request body:
+  ```json
+  {defaultDoc}
+  ```
+  """,
+    {
+      defaultDoc: TDefaultDoc,
+    }
+  )
+  @route("/default")
+  @put
+  putDefault(@body body: TModel): void | ErrorResponse;
 }
 
-@route("/all")
-interface AllOptional
-  extends OperationsTemplate<
-      AllOptionalProperties,
-      "{'optionalString': 'hello', 'optionalInt': 42, 'optionalStringList': ['hello', 'world'], 'optionalIntList': [1, 2]}",
-      "{}"
-    > {}
+// Model with optional string property
+model StringProperty is ModelTemplate<string>;
+@route("/string")
+interface String extends OperationsTemplate<StringProperty, "hello"> {}
 
-@route("/some")
-interface SomeOptional
-  extends OperationsTemplate<
-      SomeOptionalProperties,
-      "{'optionalString': 'hello', 'requiredInt': 42, 'requiredStringList': ['hello', 'world'], 'optionalIntList': [1, 2]}",
-      "{'requiredInt': 42, 'requiredStringList': ['hello', 'world']}"
-    > {}
+// Model with optional bytes property
+model BytesProperty is ModelTemplate<bytes>;
+@route("/bytes")
+interface Bytes extends OperationsTemplate<BytesProperty, "aGVsbG8sIHdvcmxkIQ=="> {}
+
+// Model with optional datetime property
+@doc("Model with a datetime property")
+model DatetimeProperty is ModelTemplate<zonedDateTime>;
+@route("/datetime")
+interface Datetime extends OperationsTemplate<DatetimeProperty, "2022-08-26T18:38:00Z"> {}
+
+// Model with optional duration property
+@doc("Model with a duration property")
+model DurationProperty is ModelTemplate<zonedDateTime>;
+@route("/duration")
+interface Duration extends OperationsTemplate<DurationProperty, "P123DT22H14M12.011S"> {}
+
+// Model with optional collection bytes property
+@doc("Model with collection bytes properties")
+model CollectionsByteProperty is ModelTemplate<bytes[]>;
+@route("/collections/bytes")
+interface CollectionsByte
+  extends OperationsTemplate<CollectionsByteProperty, "[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]"> {}
