@@ -81,5 +81,19 @@ Scenarios.Models_Property_Types_CollectionsInt_put = passOnSuccess(collectionsIn
 
 const collectionsModelMock = createMockApis("collections/model", [{ property: "hello" }, { property: "world" }]);
 Scenarios.Models_Property_Types_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
-
 Scenarios.Models_Property_Types_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
+
+const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", k2: "world" });
+Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
+Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);
+
+const dictionaryIntMock = createMockApis("dictionary/int", { k1: 1, k2: 2 });
+Scenarios.Models_Property_Types_DictionaryInt_get = passOnSuccess(dictionaryIntMock.get);
+Scenarios.Models_Property_Types_DictionaryInt_put = passOnSuccess(dictionaryIntMock.put);
+
+const dictionaryModelMock = createMockApis("dictionary/model", {
+  k1: { property: "hello" },
+  k2: { property: "world" },
+});
+Scenarios.Models_Property_Types_DictionaryModel_get = passOnSuccess(dictionaryModelMock.get);
+Scenarios.Models_Property_Types_DictionaryModel_put = passOnSuccess(dictionaryModelMock.put);

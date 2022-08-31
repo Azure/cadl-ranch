@@ -25,5 +25,3 @@ The tests in the http/models directory describe scenarios for generating models 
 - [nested-models](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/nested-models) - Generate, send, and receive input, output, and round-trip models with required nested model properties.
 - [readonly-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/readonly-properties) - Generate, send, and receive input, output, and round-trip models with readonly properties.
 - [inheritance](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/inheritance) - Generate, send, and receive round-trip models polymorphic models.
-- [inheritance-complex](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/inheritance-complex) - Generate, send, and receive complex polymorphic models.
-- [dictionary](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/dictionary) - Generate, send, and receive dictionary properties.

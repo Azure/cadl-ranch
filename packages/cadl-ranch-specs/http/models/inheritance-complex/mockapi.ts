@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const inheritanceValidBody = { optionalString: "abc", optionalInt: 32, optionalBool: true };
+const inheritanceValidBody = { name: "abc", age: 32, smart: true };
 Scenarios.ComplexInheritanceModels_sendBottomModel = passOnSuccess(
   mockapi.post("/inheritance-complex/inheritance/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
@@ -25,7 +25,7 @@ Scenarios.ComplexInheritanceModels_setBottomModel = passOnSuccess(
 
 Scenarios.ComplexInheritanceModels_getInvalidBaseModel = passOnSuccess(
   mockapi.get("/inheritance-complex/inheritance/invalid", (req) => {
-    return { status: 200, body: json({ optionalString: 1 }) };
+    return { status: 200, body: json({ name: 1 }) };
   }),
 );
 
@@ -38,14 +38,14 @@ Scenarios.ComplexInheritanceModels_setEmptyBottomModel = passOnSuccess(
 
 Scenarios.ComplexInheritanceModels_getBaseModelWithNullProperty = passOnSuccess(
   mockapi.get("/inheritance-complex/inheritance/null", (req) => {
-    return { status: 200, body: json({ optionalString: null }) };
+    return { status: 200, body: json({ name: null }) };
   }),
 );
 
 const polymorphicValidBody = {
-  optionalInt: 1,
-  discriminator1: "SubModel",
-  discriminator2: "BottomB",
+  age: 1,
+  kind: "shark",
+  sharktype: "goblin",
 };
 Scenarios.ComplexInheritanceModels_setBaseModelWithDiscriminator = passOnSuccess(
   mockapi.put("/inheritance-complex/polymorphism/valid", (req) => {
@@ -55,57 +55,57 @@ Scenarios.ComplexInheritanceModels_setBaseModelWithDiscriminator = passOnSuccess
 );
 
 const polymorphicRecursiveValidBody = {
-  optionalInt: 1,
-  discriminator1: "Derived",
-  optionalBase: {
-    optionalInt: 2,
-    discriminator1: "SubModel",
-    discriminator2: "BottomA",
+  age: 1,
+  kind: "salmon",
+  partner: {
+    age: 2,
+    kind: "shark",
+    sharktype: "saw",
   },
-  optionalBaseCollection: [
+  friends: [
     {
-      optionalInt: 2,
-      discriminator1: "Derived",
-      optionalBase: {
-        optionalInt: 2,
-        discriminator1: "Derived",
+      age: 2,
+      kind: "salmon",
+      partner: {
+        age: 2,
+        kind: "salmon",
       },
-      optionalBaseDictionary: {
+      hate: {
         key1: {
-          optionalInt: 2,
-          discriminator1: "Derived",
+          age: 2,
+          kind: "salmon",
         },
         key2: {
-          optionalInt: 2,
-          discriminator1: "SubModel",
-          discriminator2: "BottomB",
+          age: 2,
+          kind: "shark",
+          sharktype: "goblin",
         },
       },
     },
     {
-      optionalInt: 3,
-      discriminator1: "SubModel",
-      discriminator2: "BottomB",
+      age: 3,
+      kind: "shark",
+      sharktype: "goblin",
     },
   ],
-  optionalBaseDictionary: {
+  hate: {
     key3: {
-      optionalInt: 3,
-      discriminator1: "SubModel",
-      discriminator2: "BottomA",
+      age: 3,
+      kind: "shark",
+      sharktype: "saw",
     },
     key4: {
-      optionalInt: 2,
-      discriminator1: "Derived",
-      optionalBaseCollection: [
+      age: 2,
+      kind: "salmon",
+      friends: [
         {
-          optionalInt: 2,
-          discriminator1: "Derived",
+          age: 2,
+          kind: "salmon",
         },
         {
-          optionalInt: 2,
-          discriminator1: "SubModel",
-          discriminator2: "BottomB",
+          age: 2,
+          kind: "shark",
+          sharktype: "goblin",
         },
       ],
     },
@@ -120,6 +120,6 @@ Scenarios.ComplexInheritanceModels_setRecursiveModel = passOnSuccess(
 
 Scenarios.ComplexInheritanceModels_getBaseModelMissingDiscriminator = passOnSuccess(
   mockapi.get("/inheritance-complex/polymorphism/missingdiscriminator", (req) => {
-    return { status: 200, body: json({ optionalInt: 1 }) };
+    return { status: 200, body: json({ age: 1 }) };
   }),
 );

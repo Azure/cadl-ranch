@@ -13,102 +13,100 @@ using Azure.Core.Foundations;
 namespace Model.Inheritance;
 
 @doc("Base model for non-discriminator three levels inheritance.")
-model BaseModel {
-  optionalString?: string;
+model Pet {
+  name?: string;
 }
 
 @doc("The second level model A in the non-discriminator three levels inheritance.")
-model DerivedFromBaseModel extends BaseModel {
-  optionalInt?: int32;
+model Cat extends Pet {
+  age?: int32;
 }
 
 @doc("The third level model A in the non-discriminator three levels inheritance.")
-model BottomModel extends DerivedFromBaseModel {
-  optionalBool?: boolean;
+model Siamese extends Cat {
+  smart?: boolean;
 }
 
 @doc("Base model for three levels inheritance with discriminator.")
-@discriminator("discriminator1")
-model BaseModelWithDiscriminator {
-  optionalInt?: int32;
+@discriminator("kind")
+model Fish {
+  age?: int32;
 }
 
 @doc("The second level model in three levels inheritance with discriminator and defined a new discriminator.")
-@discriminator("discriminator2")
-model SubModelWithDiscriminator extends BaseModelWithDiscriminator {
-  discriminator1: "SubModel";
+@discriminator("sharktype")
+model Shark extends Fish {
+  kind: "shark";
 }
 
 @doc("The second level model in three levels inheritance with discriminator.")
-model DerivedFromBaseModelWithDiscriminator extends BaseModelWithDiscriminator {
-  discriminator1: "Derived";
-  optionalBaseCollection?: BaseModelWithDiscriminator[];
-  optionalBaseDictionary?: Record<BaseModelWithDiscriminator>;
-  optionalBase?: BaseModelWithDiscriminator;
+model Salmon extends Fish {
+  kind: "salmon";
+  friends?: Fish[];
+  hate?: Record<Fish>;
+  partner?: Fish;
 }
 
 @doc("The third level model A in the three levels inheritance with discriminators.")
-model BottomModelWithDiscriminatorA extends SubModelWithDiscriminator {
-  discriminator2: "BottomA";
+model SawShark extends Shark {
+  sharktype: "saw";
 }
 
 @doc("The third level model B in the non-discriminator three levels inheritance with discriminators.")
-model BottomModelWithDiscriminatorB extends SubModelWithDiscriminator {
-  discriminator2: "BottomB";
+model GoblinShark extends Shark {
+  sharktype: "goblin";
 }
 
 @scenario
-@scenarioDoc("Generate and send input BottomModel. The valid input value is {optionalString: \"abc\", optionalInt: 32, optionalBool: true}")
+@scenarioDoc("Generate and send model. The valid input value is {name: \"abc\", age: 32, smart: true}")
 @route("/inheritance/valid")
 @post
-op sendBottomModel(@body input: BottomModel): OkResponse | ErrorResponse;
+op sendBottomModel(@body input: Siamese): OkResponse | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate and receive output BottomModel. The return value is {optionalString: \"abc\", optionalInt: 32, optionalBool: true}")
+@scenarioDoc("Generate and receive model. The return value is {name: \"abc\", age: 32, smart: true}")
 @route("/inheritance/valid")
 @get
-op getBottomModel(): BottomModel | ErrorResponse;
+op getBottomModel(): Siamese | ErrorResponse;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip bottom model.")
 @route("/inheritance/valid")
 @put
-op setBottomModel(@body input: BottomModel): BottomModel | ErrorResponse;
+op setBottomModel(@body input: Siamese): Siamese | ErrorResponse;
 
 @scenario
 @route("inheritance/invalid")
-@scenarioDoc("Get a basic model that is invalid for the local strong type.")
+@scenarioDoc("Get a basic model that is invalid for the local strong kind.")
 @get
-op getInvalidBaseModel(): BaseModel | ErrorResponse;
+op getInvalidBaseModel(): Pet | ErrorResponse;
 
 @scenario
-@scenarioDoc("Generate, send, and receive round-trip BaseModel that optional propertu is not presented.")
+@scenarioDoc("Generate, send, and receive round-trip model that optional property is not presented.")
 @route("inheritance/empty")
 @put
-op setEmptyBaseModel(@body input: BottomModel): BaseModel | ErrorResponse;
+op setEmptyBaseModel(@body input: Siamese): Pet | ErrorResponse;
 
 @scenario
 @scenarioDoc("Get a basic model that optional property is sent as null.")
 @route("inheritance/null")
 @get
-op getBaseModelWithNullProperty(): BaseModel | ErrorResponse;
+op getBaseModelWithNullProperty(): Pet | ErrorResponse;
 
 @scenario
 @route("/polymorphism/valid")
-@scenarioDoc("Generate, send, and receive round-trip models in three levels inheritance with 2 discriminators. The valid input is  { optionalInt: 1, discriminator1: \"SubModel\",  discriminator2: \"BottomB\"}")
+@scenarioDoc("Generate, send, and receive round-trip models in three levels inheritance with 2 discriminators. The valid input is  { age: 1, kind: \"shark\",  sharktype: \"goblin\"}")
 @put
-op setBaseModelWithDiscriminator(@body input: BaseModelWithDiscriminator): BaseModelWithDiscriminator | ErrorResponse;
+op setBaseModelWithDiscriminator(@body input: Fish): Fish | ErrorResponse;
 
 @scenario
 @route("/polymorphism/recursive")
 @scenarioDoc("Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator")
 @put
-op setRecursiveModel(
-  @body input: DerivedFromBaseModelWithDiscriminator
-): DerivedFromBaseModelWithDiscriminator | ErrorResponse;
+op setRecursiveModel(@body input: Salmon): Salmon | ErrorResponse;
 
 @scenario
 @route("/polymorphism/missingdiscriminator")
-@scenarioDoc("Get a BaseModel omitting the discriminator")
+@scenarioDoc("Get a model omitting the discriminator")
 @get
-op getBaseModelMissingDiscriminator(): BaseModelWithDiscriminator | ErrorResponse;
+op getBaseModelMissingDiscriminator(): Fish | ErrorResponse;
