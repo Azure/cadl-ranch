@@ -165,4 +165,3 @@ model DictionaryModelProperty is ModelTemplate<InnerModel[]>;
 @route("/dictionary/model")
 interface DictionaryModel
   extends ModelOperations<DictionaryModelProperty, "{'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}"> {}
-  
