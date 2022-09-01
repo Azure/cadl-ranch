@@ -5,39 +5,39 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const inheritanceValidBody = { name: "abc", age: 32, smart: true };
 Scenarios.ComplexInheritanceModels_sendInheritanceValid = passOnSuccess(
-  mockapi.post("/inheritance-complex/inheritance/valid", (req) => {
+  mockapi.post("/inheritance/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
     return { status: 200 };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_getInheritanceValid = passOnSuccess(
-  mockapi.get("/inheritance-complex/inheritance/valid", (req) => {
+  mockapi.get("/inheritance/valid", (req) => {
     return { status: 200, body: json(inheritanceValidBody) };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_setInheritanceValid = passOnSuccess(
-  mockapi.put("/inheritance-complex/inheritance/valid", (req) => {
+  mockapi.put("/inheritance/valid", (req) => {
     return { status: 200, body: json(req.body) };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_getInheritanceInvalid = passOnSuccess(
-  mockapi.get("/inheritance-complex/inheritance/invalid", (req) => {
+  mockapi.get("/inheritance/invalid", (req) => {
     return { status: 200, body: json({ name: 1 }) };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_setInheritanceEmpty = passOnSuccess(
-  mockapi.put("/inheritance-complex/inheritance/empty", (req) => {
+  mockapi.put("/inheritance/empty", (req) => {
     req.expect.bodyEquals({});
     return { status: 200, body: json({}) };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_getInheritanceWithNullProperty = passOnSuccess(
-  mockapi.get("/inheritance-complex/inheritance/null", (req) => {
+  mockapi.get("/inheritance/null", (req) => {
     return { status: 200, body: json({ name: null }) };
   }),
 );
@@ -48,7 +48,7 @@ const polymorphicValidBody = {
   sharktype: "goblin",
 };
 Scenarios.ComplexInheritanceModels_setPolymorphism = passOnSuccess(
-  mockapi.put("/inheritance-complex/polymorphism/valid", (req) => {
+  mockapi.put("/inheritance/polymorphism/valid", (req) => {
     req.expect.bodyEquals(polymorphicValidBody);
     return { status: 200, body: json(polymorphicValidBody) };
   }),
@@ -112,14 +112,14 @@ const polymorphicRecursiveValidBody = {
   },
 };
 Scenarios.ComplexInheritanceModels_setPolymorphismRecursively = passOnSuccess(
-  mockapi.put("/inheritance-complex/polymorphism/recursive", (req) => {
+  mockapi.put("/inheritance/polymorphism/recursive", (req) => {
     req.expect.bodyEquals(polymorphicRecursiveValidBody);
     return { status: 200, body: json(polymorphicRecursiveValidBody) };
   }),
 );
 
 Scenarios.ComplexInheritanceModels_getPolymorphismMissingDiscriminator = passOnSuccess(
-  mockapi.get("/inheritance-complex/polymorphism/missingdiscriminator", (req) => {
+  mockapi.get("/inheritance/polymorphism/missingdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1 }) };
   }),
 );
