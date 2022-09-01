@@ -1,5 +1,17 @@
 # Cadl Ranch Project summary
 
+### ApiKeyAuthentication_authenticated
+
+- Endpoint: `get /authentication/api-key/authenticated`
+
+Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.
+
+### ApiKeyAuthentication_invalidAuthentication
+
+- Endpoint: `get /authentication/api-key/invalid-authentication`
+
+Expect to handle an unauthenticated call. Mock api will always respond with status code 403.
+
 ### MultiInterfaceClient_dogs_getDogs
 
 - Endpoint: `get /multi-interface/dogs`
