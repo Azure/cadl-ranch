@@ -352,6 +352,46 @@ Expected request body:
 {}
 ```
 
+### Models_Property_Optional_RequiredAndOptional_getAll
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/all`
+
+Expected response body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_getRequiredOnly
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected response body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putAll
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/all`
+
+Expected request body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putRequiredOnly
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected request body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
 ### Models_Property_Types_Boolean_get
 
 - Endpoint: `get /models/properties/types/boolean`

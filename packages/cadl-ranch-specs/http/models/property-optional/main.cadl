@@ -122,3 +122,66 @@ model CollectionsModelProperty is ModelTemplate<StringProperty[]>;
 @route("/collections/model")
 interface CollectionsModel
   extends OperationsTemplate<CollectionsByteProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+@doc("Model with required and optional properties")
+model RequiredAndOptionalProperty {
+  @doc("optional string property")
+  optionalProperty?: string;
+  @doc("required int property")
+  requiredProperty: int32;
+}
+@doc("Test optional and required properties")
+@route("/requiredAndOptional")
+interface RequiredAndOptional {
+@doc("Get models that will return all properties in the model")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"optionalProperty": "hello", "requiredProperty": 42}
+  ```
+  """)
+  @route("/all")
+  @get
+  getAll(): RequiredAndOptionalProperty | ErrorResponse;
+
+  @doc("Get models that will return only the required properties")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"requiredProperty": 42}
+  ```
+  """)
+  @route("/requiredOnly")
+  @get
+  getRequiredOnly(): RequiredAndOptionalProperty | ErrorResponse;
+
+  @doc("Put a body with all properties present.")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request body:
+  ```json
+  {"optionalProperty": "hello", "requiredProperty": 42}
+  ```
+  """)
+  @route("/all")
+  @put
+  putAll(@body body: RequiredAndOptionalProperty): void | ErrorResponse;
+
+  @doc("Put a body with only required properties.")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request body:
+  ```json
+  {"requiredProperty": 42}
+  ```
+  """)
+  @route("/requiredOnly")
+  @put
+  putRequiredOnly(@body body: RequiredAndOptionalProperty): void | ErrorResponse;
+}

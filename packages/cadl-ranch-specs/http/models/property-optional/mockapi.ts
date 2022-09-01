@@ -15,7 +15,7 @@ interface MockApiGetPut {
  * @param value The value you are expecting and will return
  */
 function createMockApis(route: string, value: any): MockApiGetPut {
-  const url = `/models/properties/optional/${route}`
+  const url = `/models/properties/optional/${route}`;
   const allUrl = `${url}/all`;
   const defaultUrl = `${url}/default`;
   const allBody = { property: value };
@@ -82,9 +82,54 @@ Scenarios.Models_Property_Optional_CollectionsByte_getDefault = passOnSuccess(co
 Scenarios.Models_Property_Optional_CollectionsByte_putAll = passOnSuccess(collectionsBytesMock.putAll);
 Scenarios.Models_Property_Optional_CollectionsByte_putDefault = passOnSuccess(collectionsBytesMock.putDefault);
 
-const collectionsModelMock = createMockApis("collections/model", [{"property": "hello"}, {"property": "world"}]);
+const collectionsModelMock = createMockApis("collections/model", [{ property: "hello" }, { property: "world" }]);
 Scenarios.Models_Property_Optional_CollectionsModel_getAll = passOnSuccess(collectionsModelMock.getAll);
 Scenarios.Models_Property_Optional_CollectionsModel_getDefault = passOnSuccess(collectionsModelMock.getDefault);
 Scenarios.Models_Property_Optional_CollectionsModel_putAll = passOnSuccess(collectionsModelMock.putAll);
 Scenarios.Models_Property_Optional_CollectionsModel_putDefault = passOnSuccess(collectionsModelMock.putDefault);
 
+// TEST REQUIRED AND OPTIONAL PROPERTIES
+
+const requiredAndOptionalBaseUrl = `/models/properties/optional/requiredAndOptional`;
+Scenarios.Models_Property_Optional_RequiredAndOptional_getAll = passOnSuccess(
+  mockapi.get(`${requiredAndOptionalBaseUrl}/all`, (req) => {
+    return {
+      status: 200,
+      body: json({
+        optionalProperty: "hello",
+        requiredProperty: 42,
+      }),
+    };
+  }),
+);
+Scenarios.Models_Property_Optional_RequiredAndOptional_getRequiredOnly = passOnSuccess(
+  mockapi.get(`${requiredAndOptionalBaseUrl}/requiredOnly`, (req) => {
+    return {
+      status: 200,
+      body: json({
+        requiredProperty: 42,
+      }),
+    };
+  }),
+);
+Scenarios.Models_Property_Optional_RequiredAndOptional_putAll = passOnSuccess(
+  mockapi.put(`${requiredAndOptionalBaseUrl}/all`, (req) => {
+    req.expect.bodyEquals({
+      optionalProperty: "hello",
+      requiredProperty: 42,
+    });
+    return {
+      status: 204,
+    };
+  }),
+);
+Scenarios.Models_Property_Optional_RequiredAndOptional_putRequiredOnly = passOnSuccess(
+  mockapi.put(`${requiredAndOptionalBaseUrl}/requiredOnly`, (req) => {
+    req.expect.bodyEquals({
+      requiredProperty: 42,
+    });
+    return {
+      status: 204,
+    };
+  }),
+);
