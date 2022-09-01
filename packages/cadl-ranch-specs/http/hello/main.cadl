@@ -3,15 +3,17 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
-@serviceTitle("HelloClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Basic Hello World Test.")
 @supportedBy("dpg")
-@route("/hello")
+@scenarioService("/hello")
 namespace Hello;
 
 @scenario
-@scenarioDoc("This test is testing 'hello world' is being returned from the server")
+@scenarioDoc("""
+This test is testing this payload is returned from the server
+```json
+"hello world"
+```
+""")
 @route("/world")
 op world(): string;

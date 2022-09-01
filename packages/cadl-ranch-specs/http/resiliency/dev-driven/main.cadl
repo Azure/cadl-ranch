@@ -6,12 +6,10 @@ import "@azure-tools/cadl-ranch-expect";
 using Azure.Core.Foundations;
 using Azure.Core;
 
-@serviceTitle("ResiliencyDevDriven")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "Testserver endpoint")
 @doc("DPG Swagger that tests our ability to grow up.")
 @Cadl.Rest.produces("application/json")
 @Cadl.Rest.consumes("application/json")
+@scenarioService("/resilency/devdriven")
 namespace Resiliency.DevDriven;
 using Cadl.Http;
 

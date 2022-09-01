@@ -5,12 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("InputBasicClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates an input-only model with required reference and value type properties.")
-@route("/input-basic")
-namespace Cadl.TestServer.InputBasic;
+@scenarioService("/input-basic")
+namespace InputBasic;
 
 @doc("Input Model")
 model InputModel {

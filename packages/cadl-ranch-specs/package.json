@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
+    "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
     "serve": "cadl-ranch serve ./http",
@@ -37,9 +38,9 @@
     "@cadl-lang/eslint-config-cadl": "^0.3.0",
     "@types/node": "^18.0.6",
     "prettier": "^2.7.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.22.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.7.4",
+    "typescript": "^4.8.2",
     "@azure-tools/cadl-autorest": "0.19.0",
     "@cadl-lang/openapi3": "0.14.0",
     "@cadl-lang/openapi": "0.11.0"

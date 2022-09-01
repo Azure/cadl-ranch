@@ -45,5 +45,13 @@ jobs:
       - run: pnpm run validate-mock-apis --debug
         name: Validate mock apis
 
+      - run: pnpm run generate-scenarios-summary --debug
+        name: Generate scenario summary
+
       - run: pnpm run check-format
         name: Check formatting
+
+      - run: |
+          git status --porcelain
+          git diff --no-ext-diff --quiet --exit-code
+        name: Check not out of date generated files

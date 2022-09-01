@@ -5,12 +5,10 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("ReadonlyPropertiesClient")
-@serviceVersion("1.0.0")
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
-@route("/readonly-properties")
-namespace Cadl.TestServer.ReadonlyProperties;
+@scenarioService("/readonly-properties")
+namespace ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
 // because input models are for setting values.

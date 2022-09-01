@@ -1,6 +1,6 @@
 import { logger } from "../logger.js";
 import pc from "picocolors";
-import { getSourceLocation, Type } from "@cadl-lang/compiler";
+import { getSourceLocation, SourceLocation, Type } from "@cadl-lang/compiler";
 
 export interface Diagnostic {
   message: string;
@@ -37,6 +37,10 @@ function resolveSourceLocation(target: Type | string) {
   }
 
   const location = getSourceLocation(target);
+  return getSourceLocationStr(location);
+}
+
+export function getSourceLocationStr(location: SourceLocation) {
   const position = location.file.getLineAndCharacterOfPosition(location.pos);
   const path = pc.cyan(location.file.path);
   const line = pc.yellow(position.line + 1);

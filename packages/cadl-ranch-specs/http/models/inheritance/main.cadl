@@ -6,11 +6,9 @@ using Cadl.Rest;
 using Cadl.Http;
 using Azure.Core.Foundations;
 
-@serviceTitle("InheritanceClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates round-trip polymorphic models.")
-namespace Cadl.TestServer.BasicPolymorphicModels;
+@scenarioService("/polymorphic")
+namespace BasicPolymorphicModels;
 
 @doc("Example base type.")
 model BaseClass {

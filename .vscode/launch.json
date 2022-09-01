@@ -3,6 +3,49 @@
   "configurations": [
     {
       "type": "node",
+      "request": "launch",
+      "name": "Compile Scratch",
+      "program": "${workspaceFolder}/packages/cadl-ranch-specs/node_modules/@cadl-lang/compiler/dist/core/cli.js",
+      "args": [
+        "compile",
+        ".",
+        "--import=\"@azure-tools/cadl-ranch-expect\"",
+      ],
+      "smartStep": true,
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**/*.js"],
+      "cwd": "${workspaceFolder}/packages/cadl-ranch-specs/http/scratch",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Validate scenarios",
+      "program": "${workspaceFolder}/packages/cadl-ranch/cmd/cli.mjs",
+      "args": [
+        "validate-scenarios",
+        "${workspaceFolder}/packages/cadl-ranch-specs/http"
+      ],
+      "smartStep": true,
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**/*.js"],
+      "cwd": "${workspaceFolder}",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Generate scenarios summary",
+      "program": "${workspaceFolder}/packages/cadl-ranch/cmd/cli.mjs",
+      "args": [
+        "generate-scenarios-summary",
+        "${workspaceFolder}/packages/cadl-ranch-specs/http"
+      ],
+      "smartStep": true,
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**/*.js"],
+      "cwd": "${workspaceFolder}",
+    },
+    {
+      "type": "node",
       "request": "attach",
       "name": "Attach",
       "port": 9229
