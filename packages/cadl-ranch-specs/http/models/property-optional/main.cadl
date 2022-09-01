@@ -127,16 +127,16 @@ interface CollectionsModel
 model RequiredAndOptionalProperty {
   @doc("optional string property")
   optionalProperty?: string;
+
   @doc("required int property")
   requiredProperty: int32;
 }
 @doc("Test optional and required properties")
 @route("/requiredAndOptional")
 interface RequiredAndOptional {
-@doc("Get models that will return all properties in the model")
+  @doc("Get models that will return all properties in the model")
   @scenario
-  @scenarioDoc(
-    """
+  @scenarioDoc("""
   Expected response body:
   ```json
   {"optionalProperty": "hello", "requiredProperty": 42}
@@ -148,8 +148,7 @@ interface RequiredAndOptional {
 
   @doc("Get models that will return only the required properties")
   @scenario
-  @scenarioDoc(
-    """
+  @scenarioDoc("""
   Expected response body:
   ```json
   {"requiredProperty": 42}
@@ -161,8 +160,7 @@ interface RequiredAndOptional {
 
   @doc("Put a body with all properties present.")
   @scenario
-  @scenarioDoc(
-    """
+  @scenarioDoc("""
   Expected request body:
   ```json
   {"optionalProperty": "hello", "requiredProperty": 42}
@@ -174,8 +172,7 @@ interface RequiredAndOptional {
 
   @doc("Put a body with only required properties.")
   @scenario
-  @scenarioDoc(
-    """
+  @scenarioDoc("""
   Expected request body:
   ```json
   {"requiredProperty": 42}
