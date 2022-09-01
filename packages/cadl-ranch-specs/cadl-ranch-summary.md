@@ -58,6 +58,60 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
+### Model_Inheritance_sendInheritanceValid
+
+- Endpoint: `post /inheritance-complex/inheritance/valid`
+
+Generate and send model. The valid input value is {name: "abc", age: 32, smart: true}
+
+### Model_Inheritance_getInheritanceValid
+
+- Endpoint: `get /inheritance-complex/inheritance/valid`
+
+Generate and receive model. The return value is {name: "abc", age: 32, smart: true}
+
+### Model_Inheritance_setInheritanceValid
+
+- Endpoint: `put /inheritance-complex/inheritance/valid`
+
+Generate, send, and receive round-trip bottom model.
+
+### Model_Inheritance_getInheritanceInvalid
+
+- Endpoint: `get /inheritance-complex/inheritance/invalid`
+
+Get a basic model that is invalid for the local strong kind.
+
+### Model_Inheritance_setInheritanceEmpty
+
+- Endpoint: `put /inheritance-complex/inheritance/empty`
+
+Generate, send, and receive round-trip model that optional property is not presented.
+
+### Model_Inheritance_getInheritanceWithNullProperty
+
+- Endpoint: `get /inheritance-complex/inheritance/null`
+
+Get a basic model that optional property is sent as null.
+
+### Model_Inheritance_setPolymorphism
+
+- Endpoint: `put /inheritance-complex/polymorphism/valid`
+
+Generate, send, and receive round-trip models in three levels inheritance with 2 discriminators. The valid input is { age: 1, kind: "shark", sharktype: "goblin"}
+
+### Model_Inheritance_setPolymorphismRecursively
+
+- Endpoint: `put /inheritance-complex/polymorphism/recursive`
+
+Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator
+
+### Model_Inheritance_getPolymorphismMissingDiscriminator
+
+- Endpoint: `get /inheritance-complex/polymorphism/missingdiscriminator`
+
+Get a model omitting the discriminator
+
 ### BasicPolymorphicModels_setValue
 
 - Endpoint: `put /polymorphic/model`
@@ -376,6 +430,66 @@ Expected input body:
 
 ```json
 { "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Models_Property_Types_DictionaryString_get
+
+- Endpoint: `get /models/properties/types/dictionary/string`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Models_Property_Types_DictionaryString_put
+
+- Endpoint: `put /models/properties/types/dictionary/string`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Models_Property_Types_DictionaryInt_get
+
+- Endpoint: `get /models/properties/types/dictionary/int`
+
+Expected response body:
+
+```json
+{ "property": { "k1": 1, "k2": 2 } }
+```
+
+### Models_Property_Types_DictionaryInt_put
+
+- Endpoint: `put /models/properties/types/dictionary/int`
+
+Expected input body:
+
+```json
+{ "property": { "k1": 1, "k2": 2 } }
+```
+
+### Models_Property_Types_DictionaryModel_get
+
+- Endpoint: `get /models/properties/types/dictionary/model`
+
+Expected response body:
+
+```json
+{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
+```
+
+### Models_Property_Types_DictionaryModel_put
+
+- Endpoint: `put /models/properties/types/dictionary/model`
+
+Expected input body:
+
+```json
+{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
 ```
 
 ### ReadonlyProperties_getOptionalPropertyModel
