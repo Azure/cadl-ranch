@@ -15,28 +15,30 @@ interface MockApiGetPut {
  * @param value The value you are expecting and will return
  */
 function createMockApis(route: string, value: any): MockApiGetPut {
-  const url = `/models/properties/optional/${route}`;
+  const url = `/models/properties/optional/${route}`
+  const allUrl = `${url}/all`;
+  const defaultUrl = `${url}/default`;
   const allBody = { property: value };
   const defaultBody = {};
-  const getAll = mockapi.get(url + "/all", (req) => {
+  const getAll = mockapi.get(allUrl, (req) => {
     return {
       status: 200,
       body: json(allBody),
     };
   });
-  const getDefault = mockapi.get(url + "/default", (req) => {
+  const getDefault = mockapi.get(defaultUrl, (req) => {
     return {
       status: 200,
       body: json(defaultBody),
     };
   });
-  const putAll = mockapi.put(url + "/all", (req) => {
+  const putAll = mockapi.put(allUrl, (req) => {
     req.expect.bodyEquals(allBody);
     return {
       status: 204,
     };
   });
-  const putDefault = mockapi.put(url + "/default", (req) => {
+  const putDefault = mockapi.put(defaultUrl, (req) => {
     req.expect.bodyEquals(defaultBody);
     return {
       status: 204,
@@ -52,30 +54,37 @@ function createMockApis(route: string, value: any): MockApiGetPut {
 
 const stringMock = createMockApis("string", "hello");
 Scenarios.Models_Property_Optional_String_getAll = passOnSuccess(stringMock.getAll);
-Scenarios.Models_Property_Optional_String_getDefault = passOnSuccess(stringMock.putAll);
+Scenarios.Models_Property_Optional_String_getDefault = passOnSuccess(stringMock.getDefault);
 Scenarios.Models_Property_Optional_String_putAll = passOnSuccess(stringMock.putAll);
 Scenarios.Models_Property_Optional_String_putDefault = passOnSuccess(stringMock.putDefault);
 
 const bytesMock = createMockApis("bytes", "aGVsbG8sIHdvcmxkIQ==");
 Scenarios.Models_Property_Optional_Bytes_getAll = passOnSuccess(bytesMock.getAll);
-Scenarios.Models_Property_Optional_Bytes_getDefault = passOnSuccess(bytesMock.putAll);
+Scenarios.Models_Property_Optional_Bytes_getDefault = passOnSuccess(bytesMock.getDefault);
 Scenarios.Models_Property_Optional_Bytes_putAll = passOnSuccess(bytesMock.putAll);
 Scenarios.Models_Property_Optional_Bytes_putDefault = passOnSuccess(bytesMock.putDefault);
 
-const datetimeMock = createMockApis("bytes", "2022-08-26T18:38:00Z");
+const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
 Scenarios.Models_Property_Optional_Datetime_getAll = passOnSuccess(datetimeMock.getAll);
-Scenarios.Models_Property_Optional_Datetime_getDefault = passOnSuccess(datetimeMock.putAll);
+Scenarios.Models_Property_Optional_Datetime_getDefault = passOnSuccess(datetimeMock.getDefault);
 Scenarios.Models_Property_Optional_Datetime_putAll = passOnSuccess(datetimeMock.putAll);
 Scenarios.Models_Property_Optional_Datetime_putDefault = passOnSuccess(datetimeMock.putDefault);
 
-const durationMock = createMockApis("bytes", "P123DT22H14M12.011S");
+const durationMock = createMockApis("duration", "P123DT22H14M12.011S");
 Scenarios.Models_Property_Optional_Duration_getAll = passOnSuccess(durationMock.getAll);
-Scenarios.Models_Property_Optional_Duration_getDefault = passOnSuccess(durationMock.putAll);
+Scenarios.Models_Property_Optional_Duration_getDefault = passOnSuccess(durationMock.getDefault);
 Scenarios.Models_Property_Optional_Duration_putAll = passOnSuccess(durationMock.putAll);
 Scenarios.Models_Property_Optional_Duration_putDefault = passOnSuccess(durationMock.putDefault);
 
-const collectionsBytesMock = createMockApis("bytes", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]);
+const collectionsBytesMock = createMockApis("collections/bytes", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]);
 Scenarios.Models_Property_Optional_CollectionsByte_getAll = passOnSuccess(collectionsBytesMock.getAll);
-Scenarios.Models_Property_Optional_CollectionsByte_getDefault = passOnSuccess(collectionsBytesMock.putAll);
+Scenarios.Models_Property_Optional_CollectionsByte_getDefault = passOnSuccess(collectionsBytesMock.getDefault);
 Scenarios.Models_Property_Optional_CollectionsByte_putAll = passOnSuccess(collectionsBytesMock.putAll);
 Scenarios.Models_Property_Optional_CollectionsByte_putDefault = passOnSuccess(collectionsBytesMock.putDefault);
+
+const collectionsModelMock = createMockApis("collections/model", [{"property": "hello"}, {"property": "world"}]);
+Scenarios.Models_Property_Optional_CollectionsModel_getAll = passOnSuccess(collectionsModelMock.getAll);
+Scenarios.Models_Property_Optional_CollectionsModel_getDefault = passOnSuccess(collectionsModelMock.getDefault);
+Scenarios.Models_Property_Optional_CollectionsModel_putAll = passOnSuccess(collectionsModelMock.putAll);
+Scenarios.Models_Property_Optional_CollectionsModel_putDefault = passOnSuccess(collectionsModelMock.putDefault);
+

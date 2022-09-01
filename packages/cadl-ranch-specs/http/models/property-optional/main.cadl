@@ -115,3 +115,10 @@ model CollectionsByteProperty is ModelTemplate<bytes[]>;
 @route("/collections/bytes")
 interface CollectionsByte
   extends OperationsTemplate<CollectionsByteProperty, "[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]"> {}
+
+// Model with optional collection models property
+@doc("Model with collection models properties")
+model CollectionsModelProperty is ModelTemplate<StringProperty[]>;
+@route("/collections/model")
+interface CollectionsModel
+  extends OperationsTemplate<CollectionsByteProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
