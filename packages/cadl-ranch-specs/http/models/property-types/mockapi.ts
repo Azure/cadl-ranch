@@ -23,7 +23,7 @@ function createMockApis(route: string, value: any): MockApiGetPut {
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (route == "datetime" && new Date(body.property).toISOString() === new Date(req.body.property).toISOString()) {
+      if (route === "datetime" && new Date(body.property).toISOString() === new Date(req.body.property).toISOString()) {
         return {
           status: 204,
         };
@@ -69,7 +69,7 @@ const enumMock = createMockApis("enum", "ValueOne");
 Scenarios.Models_Property_Types_Enum_get = passOnSuccess(enumMock.get);
 Scenarios.Models_Property_Types_Enum_put = passOnSuccess(enumMock.put);
 
-const extensibleEnumMock = createMockApis("extensible-enum", "ValueOne");
+const extensibleEnumMock = createMockApis("extensible-enum", "UnknownValue");
 Scenarios.Models_Property_Types_ExtensibleEnum_get = passOnSuccess(extensibleEnumMock.get);
 Scenarios.Models_Property_Types_ExtensibleEnum_put = passOnSuccess(extensibleEnumMock.put);
 
