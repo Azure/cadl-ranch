@@ -6,6 +6,8 @@ using Cadl.Rest;
 using Cadl.Http;
 using Azure.Core.Foundations;
 
+@Cadl.Rest.produces("application/json")
+@Cadl.Rest.consumes("application/json")
 @doc("Illustrates various property types for models")
 @scenarioService("/models/properties/types")
 namespace Models.Property.Types;
