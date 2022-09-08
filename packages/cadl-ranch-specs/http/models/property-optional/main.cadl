@@ -60,7 +60,8 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   ```json
   {"property": null}
   ```
-  """
+  """,
+    {}
   )
   @route("/null")
   @get
