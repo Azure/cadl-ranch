@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: npx changeset status --since=main
+      - run: npx -p @changesets/cli changesets status --since=main
         name: Check changelog
 
   # This workflow contains a single job called "build"
