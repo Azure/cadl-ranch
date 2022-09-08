@@ -1,16 +1,45 @@
 # Cadl Ranch Project summary
 
-### ApiKeyAuthentication_authenticated
+### Authentication_ApiKey_valid
 
-- Endpoint: `get /authentication/api-key/authenticated`
+- Endpoint: `get /authentication/api-key/valid`
 
-Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.
+Expects header 'x-ms-api-key': 'valid-key'
 
-### ApiKeyAuthentication_invalidAuthentication
+### Authentication_ApiKey_invalid
 
-- Endpoint: `get /authentication/api-key/invalid-authentication`
+- Endpoint: `get /authentication/api-key/invalid`
 
-Expect to handle an unauthenticated call. Mock api will always respond with status code 403.
+Expect error code 403 and error body:
+
+```json
+{
+  "error": {
+    "code": "InvalidApiKey",
+    "message": "API key is invalid"
+  }
+}
+```
+
+### Authentication_OAuth2_valid
+
+- Endpoint: `get /authentication/oauth2/valid`
+
+Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
+
+### Authentication_OAuth2_invalid
+
+- Endpoint: `get /authentication/oauth2/invalid`
+
+Expect error code 400 and error body:
+
+```json
+{
+  "message": "Expected Bearer x but got Bearer y",
+  "expected": "Bearer x",
+  "actual": "Bearer y"
+}
+```
 
 ### MultiInterfaceClient_dogs_getDogs
 
