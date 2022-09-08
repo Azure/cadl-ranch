@@ -120,11 +120,78 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Models_Inheritance_setPolymorphismRecursively
+### Models_Inheritance_getRecursivePolymorphicModel
+
+- Endpoint: `get /models/inheritance/polymorphism/recursive`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input and response body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Models_Inheritance_putRecursivePolymorphicModel
 
 - Endpoint: `put /models/inheritance/polymorphism/recursive`
 
-Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator.
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input and response body:
 
 ```json

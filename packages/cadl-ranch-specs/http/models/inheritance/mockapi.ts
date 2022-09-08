@@ -98,10 +98,16 @@ const polymorphicRecursiveValidBody = {
     },
   },
 };
-Scenarios.ComplexInheritanceModels_setPolymorphismRecursively = passOnSuccess(
+Scenarios.ComplexInheritanceModels_getRecursivePolymorphicModel = passOnSuccess(
+  mockapi.get("/inheritance/polymorphism/recursive", (req) => {
+    return { status: 200, body: json(polymorphicRecursiveValidBody) };
+  }),
+);
+
+Scenarios.ComplexInheritanceModels_setRecursivePolymorphicModel = passOnSuccess(
   mockapi.put("/inheritance/polymorphism/recursive", (req) => {
     req.expect.bodyEquals(polymorphicRecursiveValidBody);
-    return { status: 200, body: json(polymorphicRecursiveValidBody) };
+    return { status: 200 };
   }),
 );
 
