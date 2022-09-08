@@ -52,6 +52,20 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @get
   getDefault(): TModel | ErrorResponse;
 
+  @doc("Get models that will return property as null")
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"property": null}
+  ```
+  """
+  )
+  @route("/null")
+  @get
+  getNull(): TModel | ErrorResponse;
+
   @doc("Put a body with all properties present.")
   @scenario
   @scenarioDoc(

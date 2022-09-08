@@ -132,6 +132,16 @@ Expected response body:
 {}
 ```
 
+### Models_Property_Optional_String_getNull
+
+- Endpoint: `get /models/properties/optional/string/null`
+
+Expected response body:
+
+```json
+{ "property": null }
+```
+
 ### Models_Property_Optional_String_putAll
 
 - Endpoint: `put /models/properties/optional/string/all`
@@ -170,6 +180,16 @@ Expected response body:
 
 ```json
 {}
+```
+
+### Models_Property_Optional_Bytes_getNull
+
+- Endpoint: `get /models/properties/optional/bytes/null`
+
+Expected response body:
+
+```json
+{ "property": null }
 ```
 
 ### Models_Property_Optional_Bytes_putAll
@@ -212,6 +232,16 @@ Expected response body:
 {}
 ```
 
+### Models_Property_Optional_Datetime_getNull
+
+- Endpoint: `get /models/properties/optional/datetime/null`
+
+Expected response body:
+
+```json
+{ "property": null }
+```
+
 ### Models_Property_Optional_Datetime_putAll
 
 - Endpoint: `put /models/properties/optional/datetime/all`
@@ -250,6 +280,16 @@ Expected response body:
 
 ```json
 {}
+```
+
+### Models_Property_Optional_Duration_getNull
+
+- Endpoint: `get /models/properties/optional/duration/null`
+
+Expected response body:
+
+```json
+{ "property": null }
 ```
 
 ### Models_Property_Optional_Duration_putAll
@@ -292,6 +332,16 @@ Expected response body:
 {}
 ```
 
+### Models_Property_Optional_CollectionsByte_getNull
+
+- Endpoint: `get /models/properties/optional/collections/bytes/null`
+
+Expected response body:
+
+```json
+{ "property": null }
+```
+
 ### Models_Property_Optional_CollectionsByte_putAll
 
 - Endpoint: `put /models/properties/optional/collections/bytes/all`
@@ -330,6 +380,16 @@ Expected response body:
 
 ```json
 {}
+```
+
+### Models_Property_Optional_CollectionsModel_getNull
+
+- Endpoint: `get /models/properties/optional/collections/model/null`
+
+Expected response body:
+
+```json
+{ "property": null }
 ```
 
 ### Models_Property_Optional_CollectionsModel_putAll
