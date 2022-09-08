@@ -61,7 +61,9 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   {"property": null}
   ```
   """,
-    {}
+    {
+      allDoc: TDoc,
+    }
   )
   @route("/null")
   @get
