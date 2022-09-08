@@ -49,5 +49,8 @@
   },
   "syncpack": {
     "workspace": false
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.24.4"
   }
 }
