@@ -74,6 +74,7 @@ Make sure to run the following commands:
 - `pnpm validate-mock-apis`
 - `pnpm generate-scenarios-summary`
 - `pnpm format`
+- `pnpm cspell`
 
 Go through [PR checklist](./.github/pull_request_template.md)
 
