@@ -24,7 +24,7 @@ export class CoverageTracker {
     await this.saveCoverage();
   }
 
-  public commputeCoverage(): CoverageResult {
+  public computeCoverage(): CoverageResult {
     const results: CoverageResult = {};
 
     for (const [name, mockApi] of Object.entries(this.scenarios)) {
@@ -34,7 +34,7 @@ export class CoverageTracker {
   }
 
   private async saveCoverage() {
-    const coverage = this.commputeCoverage();
+    const coverage = this.computeCoverage();
 
     try {
       await writeFile(this.coverageFile, JSON.stringify(coverage, null, 2));

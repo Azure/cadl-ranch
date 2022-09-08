@@ -75,6 +75,7 @@ Make sure to run the following commands:
 - `pnpm generate-scenarios-summary`
 - `pnpm format`
 - `pnpm changeset add` or `pnpm changeset add --empty`
+- `pnpm cspell`
 
 Go through [PR checklist](./.github/pull_request_template.md)
 
