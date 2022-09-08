@@ -17,6 +17,9 @@ jobs:
         with:
           fetch-depth: 0 ## Needed for Changesets to find `main` branch
 
+      - run: git pull --force --no-tags origin main:main
+        name: Get main ref
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
