@@ -37,6 +37,7 @@ words:
   - openapi
   - openapiv
   - picocolors
+  - pnpm
   - proto
   - protobuf
   - protoc

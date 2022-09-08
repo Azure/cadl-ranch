@@ -49,7 +49,7 @@ jobs:
         name: Install dependencies
 
       - run: pnpm check-version-mismatch
-        name: Check dependencies are consitent
+        name: Check dependencies are consistent
 
       - run: pnpm run build
         name: Build
