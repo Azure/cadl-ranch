@@ -52,5 +52,8 @@
   },
   "syncpack": {
     "workspace": false
+  },
+  "dependencies": {
+    "@changesets/changelog-github": "^0.4.6"
   }
 }
