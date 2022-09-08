@@ -5,7 +5,7 @@ import { logger } from "../logger.js";
 const router = Router();
 
 router.post(AdminUrls.stop, (_req, res) => {
-  logger.info("Recieved signal to stop server. Exiting...");
+  logger.info("Received signal to stop server. Exiting...");
   res.status(202).end();
   setTimeout(() => {
     process.exit(0);

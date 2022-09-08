@@ -127,7 +127,7 @@ async function main() {
           })
           .option("ignoreNotImplemented", {
             type: "boolean",
-            description: "Do not fail if there is some non implemneted scenarios.",
+            description: "Do not fail if there is some non implemented scenarios.",
             default: false,
           });
       },

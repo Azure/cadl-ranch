@@ -106,29 +106,291 @@ Generate and receive output model with required nested model properties.
 
 Generate, send, and receive round-trip model with required nested model properties.
 
-### OptionalProperties_sendOptionalPropertyModel
-
-- Endpoint: `post /optional-properties/models`
-
-Generate and send input model with optional properties.
-
-### OptionalProperties_getOptionalPropertyModel
-
-- Endpoint: `get /optional-properties/models`
-
-Generate and receive output model with optional properties.
-
-### OptionalProperties_setOptionalPropertyModel
-
-- Endpoint: `put /optional-properties/models`
-
-Generate, send, and receive round-trip model with optional properties.
-
 ### OutputBasic_getModel
 
 - Endpoint: `get /output-basic/models`
 
 Generate and receive an output-only model with required reference and value type properties.
+
+### Models_Property_Optional_String_getAll
+
+- Endpoint: `get /models/properties/optional/string/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_String_getDefault
+
+- Endpoint: `get /models/properties/optional/string/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_String_putAll
+
+- Endpoint: `put /models/properties/optional/string/all`
+
+Expected request body:
+
+```json
+hello
+```
+
+### Models_Property_Optional_String_putDefault
+
+- Endpoint: `put /models/properties/optional/string/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Bytes_getAll
+
+- Endpoint: `get /models/properties/optional/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Bytes_getDefault
+
+- Endpoint: `get /models/properties/optional/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Bytes_putAll
+
+- Endpoint: `put /models/properties/optional/bytes/all`
+
+Expected request body:
+
+```json
+aGVsbG8sIHdvcmxkIQ==
+```
+
+### Models_Property_Optional_Bytes_putDefault
+
+- Endpoint: `put /models/properties/optional/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Datetime_getAll
+
+- Endpoint: `get /models/properties/optional/datetime/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Datetime_getDefault
+
+- Endpoint: `get /models/properties/optional/datetime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Datetime_putAll
+
+- Endpoint: `put /models/properties/optional/datetime/all`
+
+Expected request body:
+
+```json
+2022-08-26T18:38:00Z
+```
+
+### Models_Property_Optional_Datetime_putDefault
+
+- Endpoint: `put /models/properties/optional/datetime/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Duration_getAll
+
+- Endpoint: `get /models/properties/optional/duration/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Duration_getDefault
+
+- Endpoint: `get /models/properties/optional/duration/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Duration_putAll
+
+- Endpoint: `put /models/properties/optional/duration/all`
+
+Expected request body:
+
+```json
+P123DT22H14M12.011S
+```
+
+### Models_Property_Optional_Duration_putDefault
+
+- Endpoint: `put /models/properties/optional/duration/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsByte_getAll
+
+- Endpoint: `get /models/properties/optional/collections/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_CollectionsByte_getDefault
+
+- Endpoint: `get /models/properties/optional/collections/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsByte_putAll
+
+- Endpoint: `put /models/properties/optional/collections/bytes/all`
+
+Expected request body:
+
+```json
+[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]
+```
+
+### Models_Property_Optional_CollectionsByte_putDefault
+
+- Endpoint: `put /models/properties/optional/collections/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsModel_getAll
+
+- Endpoint: `get /models/properties/optional/collections/model/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_CollectionsModel_getDefault
+
+- Endpoint: `get /models/properties/optional/collections/model/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsModel_putAll
+
+- Endpoint: `put /models/properties/optional/collections/model/all`
+
+Expected request body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
+### Models_Property_Optional_CollectionsModel_putDefault
+
+- Endpoint: `put /models/properties/optional/collections/model/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_RequiredAndOptional_getAll
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/all`
+
+Expected response body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_getRequiredOnly
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected response body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putAll
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/all`
+
+Expected request body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putRequiredOnly
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected request body:
+
+```json
+{ "requiredProperty": 42 }
+```
 
 ### Models_Property_Types_Boolean_get
 
@@ -410,7 +672,7 @@ Generate, send, and receive a round-trip model with required reference and value
 
 ### Resiliency_DevDriven_getModel
 
-- Endpoint: `get /resilency/devdriven/customization/model/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP GET.
 This method requires to write 2 tests.
@@ -422,7 +684,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_postModel
 
-- Endpoint: `post /resilency/devdriven/customization/model/{mode}`
+- Endpoint: `post /resiliency/devdriven/customization/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP POST.
 This method requires to write 2 tests.
@@ -434,7 +696,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_getPages
 
-- Endpoint: `get /resilency/devdriven/customization/paging/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/paging/{mode}`
 
 Show that you can support both protocol methods and convenience method for a Paging operation.
 This method requires to write 2 tests.
@@ -446,7 +708,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_lro
 
-- Endpoint: `put /resilency/devdriven/customization/lro/{mode}`
+- Endpoint: `put /resiliency/devdriven/customization/lro/{mode}`
 
 Show that you can support both protocol methods and convenience method for a LRO.
 This method requires to write 2 tests.
@@ -458,21 +720,21 @@ This method requires to write 2 tests.
 
 ### Resiliency_ServiceDriven1_params_headNoParams
 
-- Endpoint: `head /resilency/servicedriven1/parameters`
+- Endpoint: `head /resiliency/servicedriven1/parameters`
 
 Show that you can call a HEAD HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
 
 ### Resiliency_ServiceDriven1_params_getRequired
 
-- Endpoint: `get /resilency/servicedriven1/parameters`
+- Endpoint: `get /resiliency/servicedriven1/parameters`
 
 Show that you can call a GET HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
 
 ### Resiliency_ServiceDriven1_params_putRequiredOptional
 
-- Endpoint: `put /resilency/servicedriven1/parameters`
+- Endpoint: `put /resiliency/servicedriven1/parameters`
 
 Show that you can call a PUT HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
@@ -480,7 +742,7 @@ The value you pass for the parameter is not verified by the mock server.
 
 ### Resiliency_ServiceDriven1_params_postParameters
 
-- Endpoint: `post /resilency/servicedriven1/parameters/{contentTypePath}`
+- Endpoint: `post /resiliency/servicedriven1/parameters/{contentTypePath}`
 
 Show that you can call a POST HTTP endpoint.
 This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
@@ -488,7 +750,7 @@ Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
 
 ### Resiliency_ServiceDriven1_params_getOptional
 
-- Endpoint: `get /resilency/servicedriven1/moreParameters`
+- Endpoint: `get /resiliency/servicedriven1/moreParameters`
 
 Show that you can call a GET HTTP endpoint.
 This version has his main parameter optional first, making the grow-up story to two optionals.
@@ -523,7 +785,7 @@ The value you pass for the parameter is not verified by the mock server.
 - Endpoint: `post /serviceDriven2/serviceDriven/parameters/{contentTypePath}`
 
 Show that you can call a POST HTTP endpoint.
-This test now accept both image/jpeg and applicat/json and is expected keeping backward compat with srv-driven-1.
+This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 
 ### Resiliency_ServiceDriven2_params_deleteParameters
