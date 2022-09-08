@@ -74,13 +74,23 @@ This test is testing this payload is returned from the server
 
 - Endpoint: `post /models/inheritance/valid`
 
-Generate and send model. The valid input value is {"name": "abc", "age": 32, "smart": true}.
+Generate and send model.
+Expected input body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
 
 ### Models_Inheritance_getValid
 
 - Endpoint: `get /models/inheritance/valid`
 
-Generate and receive model. The return value is {"name": "abc", "age": 32, "smart": true}.
+Generate and receive model.
+Expected response body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
 
 ### Models_Inheritance_putValid
 
@@ -92,19 +102,90 @@ Generate, send, and receive round-trip bottom model.
 
 - Endpoint: `get /models/inheritance/polymorphism/valid`
 
-Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators. The valid input is {"age": 1, "kind": "shark", "sharktype": "goblin"}.
+Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
 
 ### Models_Inheritance_putPolymorphicModel
 
 - Endpoint: `put /models/inheritance/polymorphism/valid`
 
-Generate and send polymorphic model in multiple levels inheritance with 2 discriminators. The return value is {"age": 1, "kind": "shark", "sharktype": "goblin"}.
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected input body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
 
 ### Models_Inheritance_setPolymorphismRecursively
 
 - Endpoint: `put /models/inheritance/polymorphism/recursive`
 
-Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator. The input and output is {"age":1,"kind":"salmon","partner":{"age":2,"kind":"shark","sharktype":"saw"},"friends":[{"age":2,"kind":"salmon","partner":{"age":3,"kind":"salmon"},"hate":{"key1":{"age":4,"kind":"salmon"},"key2":{"age":2,"kind":"shark","sharktype":"goblin"}}},{"age":3,"kind":"shark","sharktype":"goblin"}],"hate":{"key3":{"age":3,"kind":"shark","sharktype":"saw"},"key4":{"age":2,"kind":"salmon","friends":[{"age":1,"kind":"salmon"},{"age":4,"kind":"shark","sharktype":"goblin"}]}}}
+Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator.
+Expected input and response body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
 
 ### Models_Inheritance_getPolymorphismMissingDiscriminator
 
