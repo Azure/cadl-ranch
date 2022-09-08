@@ -34,5 +34,3 @@ This will start the server using the mock apis. When writing a mock api use this
 ```bash
 pnpm run serve
 ```
-
-TEST REMOVE CHECKING FOR CHANGES
