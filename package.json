@@ -19,7 +19,8 @@
     "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios",
     "validate-mock-apis": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-mock-apis",
     "generate-scenarios-summary": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run generate-scenarios-summary",
-    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md,cadl}"
+    "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md,cadl}",
+    "cspell": "cspell **/*.md **/*.ts **/*.cadl"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -49,5 +50,8 @@
   },
   "syncpack": {
     "workspace": false
+  },
+  "dependencies": {
+    "cspell": "^6.8.1"
   }
 }
