@@ -58,59 +58,47 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
-### Model_Inheritance_sendInheritanceValid
+### Models_Inheritance_postValid
 
-- Endpoint: `post /inheritance/valid`
+- Endpoint: `post /models/inheritance/valid`
 
-Generate and send model. The valid input value is {name: "abc", age: 32, smart: true}
+Generate and send model. The valid input value is {"name": "abc", "age": 32, "smart": true}.
 
-### Model_Inheritance_getInheritanceValid
+### Models_Inheritance_getValid
 
-- Endpoint: `get /inheritance/valid`
+- Endpoint: `get /models/inheritance/valid`
 
-Generate and receive model. The return value is {name: "abc", age: 32, smart: true}
+Generate and receive model. The return value is {"name": "abc", "age": 32, "smart": true}.
 
-### Model_Inheritance_setInheritanceValid
+### Models_Inheritance_putValid
 
-- Endpoint: `put /inheritance/valid`
+- Endpoint: `put /models/inheritance/valid`
 
 Generate, send, and receive round-trip bottom model.
 
-### Model_Inheritance_getInheritanceInvalid
+### Models_Inheritance_getPolymorphicModel
 
-- Endpoint: `get /inheritance/invalid`
+- Endpoint: `get /models/inheritance/polymorphism/valid`
 
-Get a basic model that is invalid for the local strong kind.
+Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators. The valid input is {"age": 1, "kind": "shark", "sharktype": "goblin"}.
 
-### Model_Inheritance_setInheritanceEmpty
+### Models_Inheritance_putPolymorphicModel
 
-- Endpoint: `put /inheritance/empty`
+- Endpoint: `put /models/inheritance/polymorphism/valid`
 
-Generate, send, and receive round-trip model that optional property is not presented.
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators. The return value is {"age": 1, "kind": "shark", "sharktype": "goblin"}.
 
-### Model_Inheritance_getInheritanceWithNullProperty
+### Models_Inheritance_setPolymorphismRecursively
 
-- Endpoint: `get /inheritance/null`
+- Endpoint: `put /models/inheritance/polymorphism/recursive`
 
-Get a basic model that optional property is sent as null.
+Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator. The input and output is {"age":1,"kind":"salmon","partner":{"age":2,"kind":"shark","sharktype":"saw"},"friends":[{"age":2,"kind":"salmon","partner":{"age":3,"kind":"salmon"},"hate":{"key1":{"age":4,"kind":"salmon"},"key2":{"age":2,"kind":"shark","sharktype":"goblin"}}},{"age":3,"kind":"shark","sharktype":"goblin"}],"hate":{"key3":{"age":3,"kind":"shark","sharktype":"saw"},"key4":{"age":2,"kind":"salmon","friends":[{"age":1,"kind":"salmon"},{"age":4,"kind":"shark","sharktype":"goblin"}]}}}
 
-### Model_Inheritance_setPolymorphism
+### Models_Inheritance_getPolymorphismMissingDiscriminator
 
-- Endpoint: `put /inheritance/polymorphism/valid`
+- Endpoint: `get /models/inheritance/polymorphism/missingdiscriminator`
 
-Generate, send, and receive round-trip models in three levels inheritance with 2 discriminators. The valid input is { age: 1, kind: "shark", sharktype: "goblin"}
-
-### Model_Inheritance_setPolymorphismRecursively
-
-- Endpoint: `put /inheritance/polymorphism/recursive`
-
-Generate, send, and receive round-trip models has collection and dictionary properties referring to models in three levels inheritance with 2 discriminator
-
-### Model_Inheritance_getPolymorphismMissingDiscriminator
-
-- Endpoint: `get /inheritance/polymorphism/missingdiscriminator`
-
-Get a model omitting the discriminator
+Get a model omitting the discriminator.
 
 ### InputBasic_getModel
 

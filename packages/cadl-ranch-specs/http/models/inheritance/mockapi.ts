@@ -4,41 +4,22 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const inheritanceValidBody = { name: "abc", age: 32, smart: true };
-Scenarios.ComplexInheritanceModels_sendInheritanceValid = passOnSuccess(
+Scenarios.ComplexInheritanceModels_postValid = passOnSuccess(
   mockapi.post("/inheritance/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
     return { status: 200 };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_getInheritanceValid = passOnSuccess(
+Scenarios.ComplexInheritanceModels_getValid = passOnSuccess(
   mockapi.get("/inheritance/valid", (req) => {
     return { status: 200, body: json(inheritanceValidBody) };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_setInheritanceValid = passOnSuccess(
+Scenarios.ComplexInheritanceModels_putValid = passOnSuccess(
   mockapi.put("/inheritance/valid", (req) => {
     return { status: 200, body: json(req.body) };
-  }),
-);
-
-Scenarios.ComplexInheritanceModels_getInheritanceInvalid = passOnSuccess(
-  mockapi.get("/inheritance/invalid", (req) => {
-    return { status: 200, body: json({ name: 1 }) };
-  }),
-);
-
-Scenarios.ComplexInheritanceModels_setInheritanceEmpty = passOnSuccess(
-  mockapi.put("/inheritance/empty", (req) => {
-    req.expect.bodyEquals({});
-    return { status: 200, body: json({}) };
-  }),
-);
-
-Scenarios.ComplexInheritanceModels_getInheritanceWithNullProperty = passOnSuccess(
-  mockapi.get("/inheritance/null", (req) => {
-    return { status: 200, body: json({ name: null }) };
   }),
 );
 
@@ -47,10 +28,16 @@ const polymorphicValidBody = {
   kind: "shark",
   sharktype: "goblin",
 };
-Scenarios.ComplexInheritanceModels_setPolymorphism = passOnSuccess(
+Scenarios.ComplexInheritanceModels_getPolymorphicModel = passOnSuccess(
+  mockapi.get("/inheritance/polymorphism/valid", (req) => {
+    return { status: 200, body: json(polymorphicValidBody) };
+  }),
+);
+
+Scenarios.ComplexInheritanceModels_putPolymorphicModel = passOnSuccess(
   mockapi.put("/inheritance/polymorphism/valid", (req) => {
     req.expect.bodyEquals(polymorphicValidBody);
-    return { status: 200, body: json(polymorphicValidBody) };
+    return { status: 200 };
   }),
 );
 
@@ -67,12 +54,12 @@ const polymorphicRecursiveValidBody = {
       age: 2,
       kind: "salmon",
       partner: {
-        age: 2,
+        age: 3,
         kind: "salmon",
       },
       hate: {
         key1: {
-          age: 2,
+          age: 4,
           kind: "salmon",
         },
         key2: {
@@ -99,11 +86,11 @@ const polymorphicRecursiveValidBody = {
       kind: "salmon",
       friends: [
         {
-          age: 2,
+          age: 1,
           kind: "salmon",
         },
         {
-          age: 2,
+          age: 4,
           kind: "shark",
           sharktype: "goblin",
         },
