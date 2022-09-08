@@ -125,7 +125,7 @@ Expected input body:
 - Endpoint: `get /models/inheritance/polymorphism/recursive`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected input and response body:
+Expected response body:
 
 ```json
 {
@@ -192,7 +192,7 @@ Expected input and response body:
 - Endpoint: `put /models/inheritance/polymorphism/recursive`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected input and response body:
+Expected input body:
 
 ```json
 {
