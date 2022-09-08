@@ -9,7 +9,7 @@ using Azure.Core.Foundations;
 @scenarioService("/models/inheritance")
 namespace Models.Inheritance;
 
-@doc("This is base model for non-discriminator normal multiple level inheritance.")
+@doc("This is base model for non-discriminator normal multiple levels inheritance.")
 model Pet {
   name: string;
 }
@@ -24,7 +24,7 @@ model Siamese extends Cat {
   smart: boolean;
 }
 
-@doc("This is base model for polymorphic multiple level inheritance with a discriminator.")
+@doc("This is base model for polymorphic multiple levels inheritance with a discriminator.")
 @discriminator("kind")
 model Fish {
   age: int32;
