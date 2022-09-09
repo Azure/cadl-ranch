@@ -70,37 +70,9 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
-### Models_Inheritance_postValid
+### Models_Inheritance_Discriminated_getModel
 
-- Endpoint: `post /models/inheritance/valid`
-
-Generate and send model.
-Expected input body:
-
-```json
-{ "name": "abc", "age": 32, "smart": true }
-```
-
-### Models_Inheritance_getValid
-
-- Endpoint: `get /models/inheritance/valid`
-
-Generate and receive model.
-Expected response body:
-
-```json
-{ "name": "abc", "age": 32, "smart": true }
-```
-
-### Models_Inheritance_putValid
-
-- Endpoint: `put /models/inheritance/valid`
-
-Generate, send, and receive round-trip bottom model.
-
-### Models_Inheritance_getPolymorphicModel
-
-- Endpoint: `get /models/inheritance/polymorphism/valid`
+- Endpoint: `get /models/inheritance/discriminated/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
@@ -109,9 +81,9 @@ Expected response body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Models_Inheritance_putPolymorphicModel
+### Models_Inheritance_Discriminated_putModel
 
-- Endpoint: `put /models/inheritance/polymorphism/valid`
+- Endpoint: `put /models/inheritance/discriminated/model`
 
 Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected input body:
@@ -120,9 +92,9 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Models_Inheritance_getRecursivePolymorphicModel
+### Models_Inheritance_Discriminated_getRecursiveModel
 
-- Endpoint: `get /models/inheritance/polymorphism/recursive`
+- Endpoint: `get /models/inheritance/discriminated/recursivemodel`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected response body:
@@ -187,9 +159,9 @@ Expected response body:
 }
 ```
 
-### Models_Inheritance_putRecursivePolymorphicModel
+### Models_Inheritance_Discriminated_putRecursiveModel
 
-- Endpoint: `put /models/inheritance/polymorphism/recursive`
+- Endpoint: `put /models/inheritance/discriminated/recursivemodel`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input body:
@@ -254,11 +226,55 @@ Expected input body:
 }
 ```
 
-### Models_Inheritance_getPolymorphismMissingDiscriminator
+### Models_Inheritance_Discriminated_getMissingDiscriminator
 
-- Endpoint: `get /models/inheritance/polymorphism/missingdiscriminator`
+- Endpoint: `get /models/inheritance/discriminated/missingdiscriminator`
 
 Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "age": 1 }
+```
+
+### Models_Inheritance_Discriminated_getWrongDiscriminator
+
+- Endpoint: `get /models/inheritance/discriminated/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "wrongKind" }
+```
+
+### Models_Inheritance_postValid
+
+- Endpoint: `post /models/inheritance/valid`
+
+Generate and send model.
+Expected input body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_getValid
+
+- Endpoint: `get /models/inheritance/valid`
+
+Generate and receive model.
+Expected response body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_putValid
+
+- Endpoint: `put /models/inheritance/valid`
+
+Generate, send, and receive round-trip bottom model.
 
 ### InputBasic_getModel
 
@@ -848,46 +864,6 @@ Expected input body:
 
 ```json
 { "property": { "k1": "hello", "k2": "world" } }
-```
-
-### Models_Property_Types_DictionaryInt_get
-
-- Endpoint: `get /models/properties/types/dictionary/int`
-
-Expected response body:
-
-```json
-{ "property": { "k1": 1, "k2": 2 } }
-```
-
-### Models_Property_Types_DictionaryInt_put
-
-- Endpoint: `put /models/properties/types/dictionary/int`
-
-Expected input body:
-
-```json
-{ "property": { "k1": 1, "k2": 2 } }
-```
-
-### Models_Property_Types_DictionaryModel_get
-
-- Endpoint: `get /models/properties/types/dictionary/model`
-
-Expected response body:
-
-```json
-{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
-```
-
-### Models_Property_Types_DictionaryModel_put
-
-- Endpoint: `put /models/properties/types/dictionary/model`
-
-Expected input body:
-
-```json
-{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
 ```
 
 ### ReadonlyProperties_getOptionalPropertyModel

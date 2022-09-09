@@ -4,44 +4,44 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const inheritanceValidBody = { name: "abc", age: 32, smart: true };
-Scenarios.ComplexInheritanceModels_postValid = passOnSuccess(
+Scenarios.Models_Inheritance_postValid = passOnSuccess(
   mockapi.post("/inheritance/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
     return { status: 200 };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_getValid = passOnSuccess(
+Scenarios.Models_Inheritance_getValid = passOnSuccess(
   mockapi.get("/inheritance/valid", (req) => {
     return { status: 200, body: json(inheritanceValidBody) };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_putValid = passOnSuccess(
+Scenarios.Models_Inheritance_putValid = passOnSuccess(
   mockapi.put("/inheritance/valid", (req) => {
     return { status: 200, body: json(req.body) };
   }),
 );
 
-const polymorphicValidBody = {
+const validPolymorphicBody = {
   age: 1,
   kind: "shark",
   sharktype: "goblin",
 };
-Scenarios.ComplexInheritanceModels_getPolymorphicModel = passOnSuccess(
-  mockapi.get("/inheritance/polymorphism/valid", (req) => {
-    return { status: 200, body: json(polymorphicValidBody) };
+Scenarios.Models_Inheritance_Discriminated_getModel = passOnSuccess(
+  mockapi.get("/inheritance/discriminated/model", (req) => {
+    return { status: 200, body: json(validPolymorphicBody) };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_putPolymorphicModel = passOnSuccess(
-  mockapi.put("/inheritance/polymorphism/valid", (req) => {
-    req.expect.bodyEquals(polymorphicValidBody);
+Scenarios.Models_Inheritance_Discriminated_putModel = passOnSuccess(
+  mockapi.put("/inheritance/discriminated/model", (req) => {
+    req.expect.bodyEquals(validPolymorphicBody);
     return { status: 200 };
   }),
 );
 
-const polymorphicRecursiveValidBody = {
+const validRecursiveBody = {
   age: 1,
   kind: "salmon",
   partner: {
@@ -98,21 +98,27 @@ const polymorphicRecursiveValidBody = {
     },
   },
 };
-Scenarios.ComplexInheritanceModels_getRecursivePolymorphicModel = passOnSuccess(
-  mockapi.get("/inheritance/polymorphism/recursive", (req) => {
-    return { status: 200, body: json(polymorphicRecursiveValidBody) };
+Scenarios.Models_Inheritance_Discriminated_getRecursiveModel = passOnSuccess(
+  mockapi.get("/inheritance/discriminated/recursivemodel", (req) => {
+    return { status: 200, body: json(validRecursiveBody) };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_setRecursivePolymorphicModel = passOnSuccess(
-  mockapi.put("/inheritance/polymorphism/recursive", (req) => {
-    req.expect.bodyEquals(polymorphicRecursiveValidBody);
+Scenarios.Models_Inheritance_Discriminated_putRecursiveModel = passOnSuccess(
+  mockapi.put("/inheritance/discriminated/recursivemodel", (req) => {
+    req.expect.bodyEquals(validRecursiveBody);
     return { status: 200 };
   }),
 );
 
-Scenarios.ComplexInheritanceModels_getPolymorphismMissingDiscriminator = passOnSuccess(
-  mockapi.get("/inheritance/polymorphism/missingdiscriminator", (req) => {
+Scenarios.Models_Inheritance_Discriminated_getMissingDiscriminator = passOnSuccess(
+  mockapi.get("/inheritance/discriminated/missingdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1 }) };
+  }),
+);
+
+Scenarios.Models_Inheritance_Discriminated_getWrongDiscriminator = passOnSuccess(
+  mockapi.get("/inheritance/discriminated/wrongdiscriminator", (req) => {
+    return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
   }),
 );
