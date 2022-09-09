@@ -27,7 +27,8 @@ jobs:
       - run: pnpm install
         name: Install dependencies
 
-      - name: Create Release Pull Request
+      - id: create-pr
+        name: Create Release Pull Request
         uses: changesets/action@v1
         with:
           title: "Bump package versions for release"
@@ -46,7 +47,7 @@ jobs:
             const pr = github.rest.pulls.get({
               ...repo,
               pull_number: ${{ steps.create-pr.outputs.pullRequestNumber }}
-            })
+            });
             console.log("PR", pr);
             github.rest.actions.createWorkflowDispatch({
               ...repo,
