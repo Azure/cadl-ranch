@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test-ci-release
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -38,9 +39,17 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.actions.createWorkflowDispatch({
+            const repo = {
               owner: context.repo.owner,
               repo: context.repo.repo,
+            };
+            const pr = github.rest.pulls.get({
+              ...repo,
+              pull_number: ${{ steps.create-pr.outputs.pullRequestNumber }}
+            })
+            console.log("PR", pr);
+            github.rest.actions.createWorkflowDispatch({
+              ...repo,
               workflow_id: 'ci.yml',
-              ref: "changeset-release/main",
+              ref: pr.head.ref,
             })
