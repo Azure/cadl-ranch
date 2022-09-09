@@ -44,12 +44,12 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             };
-            const pr = github.rest.pulls.get({
+            const pr = await github.rest.pulls.get({
               ...repo,
               pull_number: ${{ steps.create-pr.outputs.pullRequestNumber }}
             });
             console.log("PR", pr);
-            github.rest.actions.createWorkflowDispatch({
+            await github.rest.actions.createWorkflowDispatch({
               ...repo,
               workflow_id: 'ci.yml',
               ref: pr.head.ref,
