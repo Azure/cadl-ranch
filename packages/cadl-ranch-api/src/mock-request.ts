@@ -1,4 +1,4 @@
-import { RequestExpectation } from "./request-expecation.js";
+import { RequestExpectation } from "./expectation.js";
 import { RequestExt } from "./types.js";
 
 export class MockRequest {

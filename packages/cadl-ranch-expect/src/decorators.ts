@@ -130,27 +130,27 @@ export function getScenarioEndpoints(
   }
 }
 
-function getRouteSegements(program: Program, target: OperationType | InterfaceType | NamespaceType): string[] {
+function getRouteSegments(program: Program, target: OperationType | InterfaceType | NamespaceType): string[] {
   const route = getRoutePath(program, target)?.path;
   const seg = route ? [route] : [];
   switch (target.kind) {
     case "Namespace":
-      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+      return target.namespace ? [...getRouteSegments(program, target.namespace), ...seg] : seg;
     case "Interface":
-      return target.namespace ? [...getRouteSegements(program, target.namespace), ...seg] : seg;
+      return target.namespace ? [...getRouteSegments(program, target.namespace), ...seg] : seg;
 
     case "Operation":
       return target.interface
-        ? [...getRouteSegements(program, target.interface), ...seg]
+        ? [...getRouteSegments(program, target.interface), ...seg]
         : target.namespace
-        ? [...getRouteSegements(program, target.namespace), ...seg]
+        ? [...getRouteSegments(program, target.namespace), ...seg]
         : seg;
   }
 }
 
 function getOperationRoute(program: Program, target: OperationType): string {
-  const segements = getRouteSegements(program, target);
-  return "/" + segements.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+  const segments = getRouteSegments(program, target);
+  return "/" + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
 }
 
 export function listScenarioIn(program: Program, target: NamespaceType | InterfaceType | OperationType): Scenario[] {

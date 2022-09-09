@@ -28,7 +28,7 @@ Scenarios.Hello_world = passOnSuccess(
 
 ## How to build response
 
-Return the reponse object. [See type](../src/api/mock-response.ts)
+Return the response object. [See type](../src/api/mock-response.ts)
 
 ```ts
 // Minimum requirement is the status code.

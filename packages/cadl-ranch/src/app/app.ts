@@ -26,7 +26,7 @@ export class MockApiApp {
       this.registerScenario(name, scenario);
     }
     this.router.get("/.coverage", (req, res) => {
-      res.json(this.coverageTracker.commputeCoverage());
+      res.json(this.coverageTracker.computeCoverage());
     });
 
     this.server.use("/", this.router);
