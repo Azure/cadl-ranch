@@ -52,5 +52,5 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               ...repo,
               workflow_id: 'ci.yml',
-              ref: pr.head.ref,
+              ref: pr.data.head.ref,
             })
