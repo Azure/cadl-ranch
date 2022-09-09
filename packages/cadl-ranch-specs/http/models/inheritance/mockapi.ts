@@ -5,20 +5,20 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const inheritanceValidBody = { name: "abc", age: 32, smart: true };
 Scenarios.Models_Inheritance_postValid = passOnSuccess(
-  mockapi.post("/inheritance/valid", (req) => {
+  mockapi.post("/models/inheritance/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
     return { status: 200 };
   }),
 );
 
 Scenarios.Models_Inheritance_getValid = passOnSuccess(
-  mockapi.get("/inheritance/valid", (req) => {
+  mockapi.get("/models/inheritance/valid", (req) => {
     return { status: 200, body: json(inheritanceValidBody) };
   }),
 );
 
 Scenarios.Models_Inheritance_putValid = passOnSuccess(
-  mockapi.put("/inheritance/valid", (req) => {
+  mockapi.put("/models/inheritance/valid", (req) => {
     return { status: 200, body: json(req.body) };
   }),
 );
@@ -29,13 +29,13 @@ const validPolymorphicBody = {
   sharktype: "goblin",
 };
 Scenarios.Models_Inheritance_Discriminated_getModel = passOnSuccess(
-  mockapi.get("/inheritance/discriminated/model", (req) => {
+  mockapi.get("/models/inheritance/discriminated/model", (req) => {
     return { status: 200, body: json(validPolymorphicBody) };
   }),
 );
 
 Scenarios.Models_Inheritance_Discriminated_putModel = passOnSuccess(
-  mockapi.put("/inheritance/discriminated/model", (req) => {
+  mockapi.put("/models/inheritance/discriminated/model", (req) => {
     req.expect.bodyEquals(validPolymorphicBody);
     return { status: 200 };
   }),
@@ -99,26 +99,26 @@ const validRecursiveBody = {
   },
 };
 Scenarios.Models_Inheritance_Discriminated_getRecursiveModel = passOnSuccess(
-  mockapi.get("/inheritance/discriminated/recursivemodel", (req) => {
+  mockapi.get("/models/inheritance/discriminated/recursivemodel", (req) => {
     return { status: 200, body: json(validRecursiveBody) };
   }),
 );
 
 Scenarios.Models_Inheritance_Discriminated_putRecursiveModel = passOnSuccess(
-  mockapi.put("/inheritance/discriminated/recursivemodel", (req) => {
+  mockapi.put("/models/inheritance/discriminated/recursivemodel", (req) => {
     req.expect.bodyEquals(validRecursiveBody);
     return { status: 200 };
   }),
 );
 
 Scenarios.Models_Inheritance_Discriminated_getMissingDiscriminator = passOnSuccess(
-  mockapi.get("/inheritance/discriminated/missingdiscriminator", (req) => {
+  mockapi.get("/models/inheritance/discriminated/missingdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1 }) };
   }),
 );
 
 Scenarios.Models_Inheritance_Discriminated_getWrongDiscriminator = passOnSuccess(
-  mockapi.get("/inheritance/discriminated/wrongdiscriminator", (req) => {
+  mockapi.get("/models/inheritance/discriminated/wrongdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
   }),
 );
