@@ -23,7 +23,6 @@ namespace String;
 @get
 @route("/simple")
 op returnString(): string;
-
 ```
 
 Decorators that should be provided in this test library `@azure-tools/cadl-scenario-lib`:

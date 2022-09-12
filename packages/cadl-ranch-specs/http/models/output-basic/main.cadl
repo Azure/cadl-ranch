@@ -1,9 +1,7 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @doc("Illustrates an output-only model with required reference and value type properties.")
 @scenarioService("/output-basic")
@@ -22,4 +20,4 @@ model OutputModel {
 @scenarioDoc("Generate and receive an output-only model with required reference and value type properties.")
 @route("/models")
 @get
-op getModel(): OutputModel | ErrorResponse;
+op getModel(): OutputModel;

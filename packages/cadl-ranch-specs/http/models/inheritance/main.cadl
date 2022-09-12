@@ -1,10 +1,8 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Rest;
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @doc("Illustrates round-trip polymorphic models.")
 @scenarioService("/polymorphic")
@@ -49,12 +47,10 @@ model ModelWithPolymorphicProperty {
 @scenarioDoc("Generate, send, and receive round-trip inherited model.")
 @route("/model")
 @put
-op setValue(@body input: BaseClass): BaseClass | ErrorResponse;
+op setValue(@body input: BaseClass): BaseClass;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with a polymorphic property.")
 @route("/property")
 @put
-op setValueWithPolymorphicProperty(
-  @body input: ModelWithPolymorphicProperty
-): ModelWithPolymorphicProperty | ErrorResponse;
+op setValueWithPolymorphicProperty(@body input: ModelWithPolymorphicProperty): ModelWithPolymorphicProperty;

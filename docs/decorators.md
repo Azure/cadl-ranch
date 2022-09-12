@@ -14,7 +14,6 @@ Usage:
 ```cadl
 @scenarioSpec("/my-spec")
 namespace MySpec;
-
 ```
 
 ### `@scenario`
