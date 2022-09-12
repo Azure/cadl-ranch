@@ -1,10 +1,8 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Rest;
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @doc("Illustrates various property types for models")
 @scenarioService("/models/properties/types")
@@ -32,7 +30,7 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @get
-  get(): TModel | ErrorResponse;
+  get(): TModel;
 
   @scenario
   @scenarioDoc(
@@ -47,7 +45,7 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @put
-  put(@body body: TModel): void | ErrorResponse;
+  put(@body body: TModel): void;
 }
 
 // Test a model with a boolean property

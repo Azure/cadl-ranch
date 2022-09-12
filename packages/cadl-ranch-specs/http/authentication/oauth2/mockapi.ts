@@ -15,7 +15,7 @@ Scenarios.Authentication_OAuth2_invalid = passOnSuccess(
     return {
       status: 403,
       body: json({
-        error: "invalid_grant",
+        error: "invalid-grant",
       }),
     };
   }),

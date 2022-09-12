@@ -15,10 +15,7 @@ Scenarios.Authentication_ApiKey_invalid = passOnSuccess(
     return {
       status: 403,
       body: json({
-        error: {
-          code: "InvalidApiKey",
-          message: "API key is invalid",
-        },
+        error: "invalid-api-key",
       }),
     };
   }),
