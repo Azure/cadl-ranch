@@ -5,7 +5,7 @@ import {
   DecoratorContext,
   getServiceNamespace,
   Interface,
-  ModelType,
+  Model,
   Namespace,
   Operation,
   Program,
@@ -46,7 +46,7 @@ const scenarioDocSignature = createDecoratorDefinition({
   target: "Operation",
   args: [{ kind: "String" }, { kind: "Model", optional: true }],
 } as const);
-export function $scenarioDoc(context: DecoratorContext, target: Operation, doc: string, formatArgs?: ModelType) {
+export function $scenarioDoc(context: DecoratorContext, target: Operation, doc: string, formatArgs?: Model) {
   if (!scenarioDocSignature.validate(context, target, [doc, formatArgs])) {
     return;
   }
@@ -58,7 +58,7 @@ export function getScenarioDoc(program: Program, target: Operation | Interface |
   return program.stateMap(ScenarioDocKey).get(target);
 }
 
-function replaceTemplatedStringFromProperties(formatString: string, formatArgs: ModelType) {
+function replaceTemplatedStringFromProperties(formatString: string, formatArgs: Model) {
   return formatString.replace(/{(\w+)}/g, (_, propName) => {
     const type = formatArgs.properties.get(propName)?.type;
     return type && "value" in type ? type.value : propName;
