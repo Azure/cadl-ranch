@@ -4,10 +4,10 @@ import {
   createDecoratorDefinition,
   DecoratorContext,
   getServiceNamespace,
-  InterfaceType,
+  Interface,
   ModelType,
-  NamespaceType,
-  OperationType,
+  Namespace,
+  Operation,
   Program,
 } from "@cadl-lang/compiler";
 import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@cadl-lang/rest/http";
@@ -21,7 +21,7 @@ const decoratorSignature = createDecoratorDefinition({
   target: "Namespace",
   args: [{ kind: "String" }],
 } as const);
-export function $supportedBy(context: DecoratorContext, target: NamespaceType, catgory: string) {
+export function $supportedBy(context: DecoratorContext, target: Namespace, catgory: string) {
   if (!decoratorSignature.validate(context, target, [catgory])) {
     return;
   }
@@ -36,7 +36,7 @@ export function $supportedBy(context: DecoratorContext, target: NamespaceType, c
   context.program.stateMap(SupportedBy).set(target, catgory);
 }
 
-export function getSupportedBy(program: Program, target: NamespaceType): SupportedBy | undefined {
+export function getSupportedBy(program: Program, target: Namespace): SupportedBy | undefined {
   return program.stateMap(SupportedBy).get(target);
 }
 
@@ -46,7 +46,7 @@ const scenarioDocSignature = createDecoratorDefinition({
   target: "Operation",
   args: [{ kind: "String" }, { kind: "Model", optional: true }],
 } as const);
-export function $scenarioDoc(context: DecoratorContext, target: OperationType, doc: string, formatArgs?: ModelType) {
+export function $scenarioDoc(context: DecoratorContext, target: Operation, doc: string, formatArgs?: ModelType) {
   if (!scenarioDocSignature.validate(context, target, [doc, formatArgs])) {
     return;
   }
@@ -54,10 +54,7 @@ export function $scenarioDoc(context: DecoratorContext, target: OperationType, d
   context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
 
-export function getScenarioDoc(
-  program: Program,
-  target: OperationType | InterfaceType | NamespaceType,
-): string | undefined {
+export function getScenarioDoc(program: Program, target: Operation | Interface | Namespace): string | undefined {
   return program.stateMap(ScenarioDocKey).get(target);
 }
 
@@ -74,11 +71,7 @@ const scenarioSignature = createDecoratorDefinition({
   target: ["Operation", "Namespace", "Interface"],
   args: [{ kind: "String", optional: true }],
 } as const);
-export function $scenario(
-  context: DecoratorContext,
-  target: NamespaceType | OperationType | InterfaceType,
-  name?: string,
-) {
+export function $scenario(context: DecoratorContext, target: Namespace | Operation | Interface, name?: string) {
   if (!scenarioSignature.validate(context, target, [name])) {
     return;
   }
@@ -88,14 +81,14 @@ export function $scenario(
 export interface Scenario {
   name: string;
   scenarioDoc: string;
-  target: OperationType | InterfaceType | NamespaceType;
+  target: Operation | Interface | Namespace;
   endpoints: ScenarioEndpoint[];
 }
 
 export interface ScenarioEndpoint {
   verb: HttpVerb;
   path: string;
-  target: OperationType;
+  target: Operation;
 }
 
 export function listScenarios(program: Program): Scenario[] {
@@ -106,10 +99,7 @@ export function listScenarios(program: Program): Scenario[] {
   return listScenarioIn(program, serviceNamespace);
 }
 
-export function getScenarioEndpoints(
-  program: Program,
-  target: NamespaceType | InterfaceType | OperationType,
-): ScenarioEndpoint[] {
+export function getScenarioEndpoints(program: Program, target: Namespace | Interface | Operation): ScenarioEndpoint[] {
   switch (target.kind) {
     case "Namespace":
       return [
@@ -130,7 +120,7 @@ export function getScenarioEndpoints(
   }
 }
 
-function getRouteSegments(program: Program, target: OperationType | InterfaceType | NamespaceType): string[] {
+function getRouteSegments(program: Program, target: Operation | Interface | Namespace): string[] {
   const route = getRoutePath(program, target)?.path;
   const seg = route ? [route] : [];
   switch (target.kind) {
@@ -148,12 +138,12 @@ function getRouteSegments(program: Program, target: OperationType | InterfaceTyp
   }
 }
 
-function getOperationRoute(program: Program, target: OperationType): string {
+function getOperationRoute(program: Program, target: Operation): string {
   const segments = getRouteSegments(program, target);
   return "/" + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
 }
 
-export function listScenarioIn(program: Program, target: NamespaceType | InterfaceType | OperationType): Scenario[] {
+export function listScenarioIn(program: Program, target: Namespace | Interface | Operation): Scenario[] {
   const scenarioName = getScenarioName(program, target);
   if (scenarioName) {
     return [
@@ -179,10 +169,10 @@ export function listScenarioIn(program: Program, target: NamespaceType | Interfa
   }
 }
 
-function resolveScenarioName(target: OperationType | InterfaceType | NamespaceType, name: string): string {
+function resolveScenarioName(target: Operation | Interface | Namespace, name: string): string {
   const names = [name];
 
-  let current: OperationType | InterfaceType | NamespaceType | undefined = target;
+  let current: Operation | Interface | Namespace | undefined = target;
   while (true) {
     current = current.kind === "Operation" && current.interface ? current.interface : current.namespace;
     if (current === undefined || (current.kind === "Namespace" && current.name === "")) {
@@ -193,14 +183,11 @@ function resolveScenarioName(target: OperationType | InterfaceType | NamespaceTy
   return names.join("_");
 }
 
-export function isScenario(program: Program, target: OperationType | InterfaceType | NamespaceType): boolean {
+export function isScenario(program: Program, target: Operation | Interface | Namespace): boolean {
   return program.stateMap(ScenarioKey).has(target);
 }
 
-export function getScenarioName(
-  program: Program,
-  target: OperationType | InterfaceType | NamespaceType,
-): string | undefined {
+export function getScenarioName(program: Program, target: Operation | Interface | Namespace): string | undefined {
   const name = program.stateMap(ScenarioKey).get(target);
   if (name === undefined) {
     return undefined;
@@ -214,7 +201,7 @@ const scenarioServiceSignature = createDecoratorDefinition({
   target: "Namespace",
   args: [{ kind: "String" }],
 } as const);
-export function $scenarioService(context: DecoratorContext, target: NamespaceType, route: string) {
+export function $scenarioService(context: DecoratorContext, target: Namespace, route: string) {
   if (!scenarioServiceSignature.validate(context, target, [route])) {
     return;
   }
