@@ -65,6 +65,88 @@ Illustrate grouping operations on subclient.
 
 Illustrate grouping operations on subclient.
 
+### Dictionary_IntValue_get
+
+- Endpoint: `get /dictionary/types/int`
+
+Expected response body:
+
+```json
+{ "property": { "k1": 1, "k2": 2 } }
+```
+
+### Dictionary_IntValue_put
+
+- Endpoint: `put /dictionary/types/int`
+
+Expected input body:
+
+```json
+{ "property": { "k1": 1, "k2": 2 } }
+```
+
+### Dictionary_UnknownValue_get
+
+- Endpoint: `get /dictionary/types/unknown`
+
+Expected response body:
+
+```json
+{ "property": { "k1": 1, "k2": "hello", "k3": null } }
+```
+
+### Dictionary_UnknownValue_put
+
+- Endpoint: `put /dictionary/types/unknown`
+
+Expected input body:
+
+```json
+{ "property": { "k1": 1, "k2": "hello", "k3": null } }
+```
+
+### Dictionary_ModelValue_get
+
+- Endpoint: `get /dictionary/types/model`
+
+Expected response body:
+
+```json
+{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
+```
+
+### Dictionary_ModelValue_put
+
+- Endpoint: `put /dictionary/types/model`
+
+Expected input body:
+
+```json
+{ "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
+```
+
+### Dictionary_getHeader
+
+- Endpoint: `get /dictionary/body`
+
+Dictionary as output in body.
+Expected output body:
+
+```json
+{ "k1": "hello", "k2": "world" }
+```
+
+### Dictionary_putHeader
+
+- Endpoint: `put /dictionary/body`
+
+Dictionary as input in body.
+Expected input body:
+
+```json
+{ "k1": "hello", "k2": "world" }
+```
+
 ### ExtensibleEnums_String_getKnownValue
 
 - Endpoint: `get /extensible-enums/string/known-value`

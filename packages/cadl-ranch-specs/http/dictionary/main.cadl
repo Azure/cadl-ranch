@@ -1,0 +1,99 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+
+@doc("Illustrates various of dictionary.")
+@scenarioService("/dictionary")
+namespace Dictionary;
+using Cadl.Http;
+
+// TEMPLATES
+@doc("Template type for testing dictionary with specific value type. Pass in the type of the value you are looking for")
+model ModelValueTemplate<TProperty> {
+  @doc("Property")
+  property: Record<TProperty>;
+}
+
+@doc("Template to have models operations")
+interface ModelOperations<TModel, TDoc extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"property": {doc}}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  get(): TModel;
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected input body:
+  ```json
+  {"property": {doc}}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @put
+  put(@body body: TModel): OkResponse;
+}
+
+// Test a model with an int dictionary property
+@doc("Model with dictionary int properties")
+model IntValueProperty is ModelValueTemplate<int32>;
+@route("/types/int")
+interface IntValue extends ModelOperations<IntValueProperty, "{'k1': 1, 'k2': 2}"> {}
+
+// Test a model with an int dictionary property
+@doc("Model with dictionary unknown properties")
+model UnknownValueProperty is ModelValueTemplate<unknown>;
+@route("/types/unknown")
+interface UnknownValue extends ModelOperations<UnknownValueProperty, "{'k1': 1, 'k2': 'hello', 'k3': null}"> {}
+
+// Test a model with a model dictionary property
+@doc("Inner model. Will be a property type for ModelWithModelProperties")
+model InnerModel {
+  @doc("Required string property")
+  property: string;
+}
+@doc("Model with dictionary model properties")
+model ModelValueProperty is ModelValueTemplate<InnerModel>;
+@route("/types/model")
+interface ModelValue
+  extends ModelOperations<ModelValueProperty, "{'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}"> {}
+
+// Test dictionary in http body
+@scenario
+@scenarioDoc("""
+Dictionary as output in body.
+Expected output body:
+```json
+{ "k1": "hello", k2: "world" }
+```
+""")
+@route("/body")
+@get
+op getBody(): {
+  @statusCode statusCode: 200;
+  @body strRecord: Record<string>;
+};
+
+@scenario
+@scenarioDoc("""
+Dictionary as input in body.
+Expected input body:
+```json
+{ "k1": "hello", k2: "world" }
+```
+""")
+@route("/body")
+@put
+op putBody(@body strRecord: Record<string>): OkResponse;
