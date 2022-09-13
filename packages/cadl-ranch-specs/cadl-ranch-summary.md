@@ -125,7 +125,7 @@ Expected input body:
 { "property": { "k1": { "property": "hello" }, "k2": { "property": "world" } } }
 ```
 
-### Dictionary_getHeader
+### Dictionary_getBody
 
 - Endpoint: `get /dictionary/body`
 
@@ -136,7 +136,7 @@ Expected output body:
 { "k1": "hello", "k2": "world" }
 ```
 
-### Dictionary_putHeader
+### Dictionary_putBody
 
 - Endpoint: `put /dictionary/body`
 
