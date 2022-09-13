@@ -3,7 +3,6 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Rest;
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @doc("Illustrates inheritance and polymorphic model.")
 @scenarioService("/models/inheritance")

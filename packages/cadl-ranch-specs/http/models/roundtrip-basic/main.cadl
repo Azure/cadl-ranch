@@ -1,9 +1,7 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates a round-trip model with required reference and value type properties.")
@@ -23,4 +21,4 @@ model RoundTripModel {
 @scenarioDoc("Generate, send, and receive a round-trip model with required reference and value type properties.")
 @route("/models")
 @get
-op getModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
+op getModel(@body input: RoundTripModel): RoundTripModel;
