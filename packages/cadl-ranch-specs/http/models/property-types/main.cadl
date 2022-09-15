@@ -144,3 +144,9 @@ model CollectionsModelProperty is ModelTemplate<InnerModel[]>;
 @route("/collections/model")
 interface CollectionsModel
   extends ModelOperations<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+// Test a model with a string dictionary property
+@doc("Model with dictionary string properties")
+model DictionaryStringProperty is ModelTemplate<Record<string>>;
+@route("/dictionary/string")
+interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'k1': 'hello', 'k2': 'world'}"> {}
