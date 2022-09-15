@@ -7,14 +7,7 @@ using Cadl.Http;
 @scenarioService("/dictionary")
 namespace Dictionary;
 
-// TEMPLATES
-@doc("Template type for testing dictionary with specific value type. Pass in the type of the value you are looking for")
-model ModelValueTemplate<TProperty> {
-  @doc("Property")
-  property: Record<TProperty>;
-}
-
-@doc("Template to have models operations")
+@doc("Template to have dictionary operations")
 interface DictionaryOperations<TDict, TDoc extends string> {
   @scenario
   @scenarioDoc(
