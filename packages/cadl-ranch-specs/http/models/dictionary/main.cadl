@@ -1,10 +1,11 @@
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
 
-@doc("Illustrates various of dictionary.")
+using Cadl.Http;
+
+@doc("Illustrates various of dictionaries.")
 @scenarioService("/dictionary")
 namespace Dictionary;
-using Cadl.Http;
 
 // TEMPLATES
 @doc("Template type for testing dictionary with specific value type. Pass in the type of the value you are looking for")
@@ -14,13 +15,13 @@ model ModelValueTemplate<TProperty> {
 }
 
 @doc("Template to have models operations")
-interface ModelOperations<TModel, TDoc extends string> {
+interface DictionaryOperations<TDict, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
+  Expected dictionary response body:
   ```json
-  {"property": {doc}}
+  {doc}
   ```
   """,
     {
@@ -28,14 +29,14 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @get
-  get(): TModel;
+  get(): TDict;
 
   @scenario
   @scenarioDoc(
     """
-  Expected input body:
+  Expected dictionary input body:
   ```json
-  {"property": {doc}}
+  {doc}
   ```
   """,
     {
@@ -43,57 +44,58 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @put
-  put(@body body: TModel): OkResponse;
+  put(@body body: TDict): OkResponse;
 }
 
-// Test a model with an int dictionary property
-@doc("Model with dictionary int properties")
-model IntValueProperty is ModelValueTemplate<int32>;
-@route("/types/int")
-interface IntValue extends ModelOperations<IntValueProperty, "{'k1': 1, 'k2': 2}"> {}
+@doc("Dictionary of int32 values")
+@route("/int32")
+interface Int32Value extends DictionaryOperations<Record<int32>, "{'k1': 1, 'k2': 2}"> {}
 
-// Test a model with an int dictionary property
-@doc("Model with dictionary unknown properties")
-model UnknownValueProperty is ModelValueTemplate<unknown>;
-@route("/types/unknown")
-interface UnknownValue extends ModelOperations<UnknownValueProperty, "{'k1': 1, 'k2': 'hello', 'k3': null}"> {}
+@doc("Dictionary of int64 values")
+@route("/int64")
+interface Int64Value
+  extends DictionaryOperations<Record<int64>, "{'k1': 0x7FFFFFFFFFFFFFFF, 'k2': -0x7FFFFFFFFFFFFFFF}"> {}
 
-// Test a model with a model dictionary property
-@doc("Inner model. Will be a property type for ModelWithModelProperties")
+@doc("Dictionary of boolean values")
+@route("/boolean")
+interface BooleanValue extends DictionaryOperations<Record<boolean>, "{'k1': true, 'k2': false}"> {}
+
+@doc("Dictionary of string values")
+@route("/string")
+interface StringValue extends DictionaryOperations<Record<string>, "{'k1': 'hello', 'k2': ''}"> {}
+
+@doc("Dictionary of float values")
+@route("/float32")
+interface Float32Value extends DictionaryOperations<Record<float32>, "{'k1': 42.42}"> {}
+
+@doc("Dictionary of datetime values")
+@route("/datetime")
+interface DatetimeValue extends DictionaryOperations<Record<zonedDateTime>, "{'k1': '2022-08-26T18:38:00Z'}"> {}
+
+@doc("Dictionary of duration values")
+@route("/duration")
+interface DurationValue extends DictionaryOperations<Record<duration>, "{'k1': 'P123DT22H14M12.011S'}"> {}
+
+@doc("Dictionary of unknown values")
+@route("/unknown")
+interface UnknownValue extends DictionaryOperations<Record<unknown>, "{'k1': 1, 'k2': 'hello', 'k3': null}"> {}
+
+@doc("Dictionary inner model")
 model InnerModel {
   @doc("Required string property")
   property: string;
+  children?: Record<InnerModel>;
 }
-@doc("Model with dictionary model properties")
-model ModelValueProperty is ModelValueTemplate<InnerModel>;
-@route("/types/model")
+
+@doc("Dictionary of model values")
+@route("/model")
 interface ModelValue
-  extends ModelOperations<ModelValueProperty, "{'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}"> {}
+  extends DictionaryOperations<Record<InnerModel>, "{'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}"> {}
 
-// Test dictionary in http body
-@scenario
-@scenarioDoc("""
-Dictionary as output in body.
-Expected output body:
-```json
-{ "k1": "hello", k2: "world" }
-```
-""")
-@route("/body")
-@get
-op getBody(): {
-  @statusCode statusCode: 200;
-  @body strRecord: Record<string>;
-};
-
-@scenario
-@scenarioDoc("""
-Dictionary as input in body.
-Expected input body:
-```json
-{ "k1": "hello", k2: "world" }
-```
-""")
-@route("/body")
-@put
-op putBody(@body strRecord: Record<string>): OkResponse;
+@doc("Dictionary of model values")
+@route("/model/recursive")
+interface RecursiveModelValue
+  extends DictionaryOperations<
+      Record<InnerModel>,
+      "{'k1': {'property': 'hello', children: {}}, 'k2': {'property': 'world', children: {'k2.1': {'property': 'inner world'}}}}"
+    > {}
