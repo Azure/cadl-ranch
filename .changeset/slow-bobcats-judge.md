@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Add test case for polymorphism and Record<string>.
+Add specs for inheritance models with or without discriminator.
