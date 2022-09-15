@@ -65,40 +65,6 @@ Illustrate grouping operations on subclient.
 
 Illustrate grouping operations on subclient.
 
-### ExtensibleEnums_String_getKnownValue
-
-- Endpoint: `get /extensible-enums/string/known-value`
-
-Expect to handle a known value. Mock api will return 'Monday'
-
-### ExtensibleEnums_String_getUnknownValue
-
-- Endpoint: `get /extensible-enums/string/unknown-value`
-
-Expect to handle a unknown value. Mock api will return 'Weekend'
-
-### ExtensibleEnums_String_putKnownValue
-
-- Endpoint: `put /extensible-enums/string/known-value`
-
-Expect to send a known value. Mock api expect to receive 'Monday'
-
-### ExtensibleEnums_String_putUnknownValue
-
-- Endpoint: `put /extensible-enums/string/unknown-value`
-
-Expect to handle a unknown value. Mock api expect to receive 'Weekend'
-
-### Hello_world
-
-- Endpoint: `get /hello/world`
-
-This test is testing this payload is returned from the server
-
-```json
-"hello world"
-```
-
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
@@ -309,6 +275,40 @@ Expected dictionary input body:
     "children": { "k2.1": { "property": "inner world" } }
   }
 }
+```
+
+### ExtensibleEnums_String_getKnownValue
+
+- Endpoint: `get /extensible-enums/string/known-value`
+
+Expect to handle a known value. Mock api will return 'Monday'
+
+### ExtensibleEnums_String_getUnknownValue
+
+- Endpoint: `get /extensible-enums/string/unknown-value`
+
+Expect to handle a unknown value. Mock api will return 'Weekend'
+
+### ExtensibleEnums_String_putKnownValue
+
+- Endpoint: `put /extensible-enums/string/known-value`
+
+Expect to send a known value. Mock api expect to receive 'Monday'
+
+### ExtensibleEnums_String_putUnknownValue
+
+- Endpoint: `put /extensible-enums/string/unknown-value`
+
+Expect to handle a unknown value. Mock api expect to receive 'Weekend'
+
+### Hello_world
+
+- Endpoint: `get /hello/world`
+
+This test is testing this payload is returned from the server
+
+```json
+"hello world"
 ```
 
 ### BasicPolymorphicModels_setValue
