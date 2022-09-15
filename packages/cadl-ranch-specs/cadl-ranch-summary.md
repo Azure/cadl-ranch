@@ -311,17 +311,211 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
-### BasicPolymorphicModels_setValue
+### Models_Inheritance_Discriminated_getModel
 
-- Endpoint: `put /polymorphic/model`
+- Endpoint: `get /models/inheritance/discriminated/model`
 
-Generate, send, and receive round-trip inherited model.
+Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected response body:
 
-### BasicPolymorphicModels_setValueWithPolymorphicProperty
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
 
-- Endpoint: `put /polymorphic/property`
+### Models_Inheritance_Discriminated_putModel
 
-Generate, send, and receive round-trip model with a polymorphic property.
+- Endpoint: `put /models/inheritance/discriminated/model`
+
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected input body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
+
+### Models_Inheritance_Discriminated_getRecursiveModel
+
+- Endpoint: `get /models/inheritance/discriminated/recursivemodel`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected response body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Models_Inheritance_Discriminated_putRecursiveModel
+
+- Endpoint: `put /models/inheritance/discriminated/recursivemodel`
+
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Models_Inheritance_Discriminated_getMissingDiscriminator
+
+- Endpoint: `get /models/inheritance/discriminated/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "age": 1 }
+```
+
+### Models_Inheritance_Discriminated_getWrongDiscriminator
+
+- Endpoint: `get /models/inheritance/discriminated/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "wrongKind" }
+```
+
+### Models_Inheritance_postValid
+
+- Endpoint: `post /models/inheritance/valid`
+
+Generate and send model.
+Expected input body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_getValid
+
+- Endpoint: `get /models/inheritance/valid`
+
+Generate and receive model.
+Expected response body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_putValid
+
+- Endpoint: `put /models/inheritance/valid`
+
+Generate, send, and receive round-trip bottom model.
 
 ### InputBasic_getModel
 
