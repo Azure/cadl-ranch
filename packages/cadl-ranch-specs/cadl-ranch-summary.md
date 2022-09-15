@@ -65,6 +65,218 @@ Illustrate grouping operations on subclient.
 
 Illustrate grouping operations on subclient.
 
+### Dictionary_Int32Value_get
+
+- Endpoint: `get /dictionary/int32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Dictionary_Int32Value_put
+
+- Endpoint: `put /dictionary/int32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Dictionary_Int64Value_get
+
+- Endpoint: `get /dictionary/int64`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Dictionary_Int64Value_put
+
+- Endpoint: `put /dictionary/int64`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Dictionary_BooleanValue_get
+
+- Endpoint: `get /dictionary/boolean`
+
+Expected dictionary response body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Dictionary_BooleanValue_put
+
+- Endpoint: `put /dictionary/boolean`
+
+Expected dictionary input body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Dictionary_StringValue_get
+
+- Endpoint: `get /dictionary/string`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Dictionary_StringValue_put
+
+- Endpoint: `put /dictionary/string`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Dictionary_Float32Value_get
+
+- Endpoint: `get /dictionary/float32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Dictionary_Float32Value_put
+
+- Endpoint: `put /dictionary/float32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Dictionary_DatetimeValue_get
+
+- Endpoint: `get /dictionary/datetime`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Dictionary_DatetimeValue_put
+
+- Endpoint: `put /dictionary/datetime`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Dictionary_DurationValue_get
+
+- Endpoint: `get /dictionary/duration`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Dictionary_DurationValue_put
+
+- Endpoint: `put /dictionary/duration`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Dictionary_UnknownValue_get
+
+- Endpoint: `get /dictionary/unknown`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Dictionary_UnknownValue_put
+
+- Endpoint: `put /dictionary/unknown`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Dictionary_ModelValue_get
+
+- Endpoint: `get /dictionary/model`
+
+Expected dictionary response body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Dictionary_ModelValue_put
+
+- Endpoint: `put /dictionary/model`
+
+Expected dictionary input body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Dictionary_RecursiveModelValue_get
+
+- Endpoint: `get /dictionary/model/recursive`
+
+Expected dictionary response body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
+
+### Dictionary_RecursiveModelValue_put
+
+- Endpoint: `put /dictionary/model/recursive`
+
+Expected dictionary input body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
+
 ### ExtensibleEnums_String_getKnownValue
 
 - Endpoint: `get /extensible-enums/string/known-value`
@@ -873,6 +1085,26 @@ Expected input body:
 
 ```json
 { "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Models_Property_Types_DictionaryString_get
+
+- Endpoint: `get /models/properties/types/dictionary/string`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Models_Property_Types_DictionaryString_put
+
+- Endpoint: `put /models/properties/types/dictionary/string`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
 ```
 
 ### ReadonlyProperties_getOptionalPropertyModel
