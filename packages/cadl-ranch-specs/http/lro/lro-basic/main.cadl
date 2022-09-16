@@ -1,0 +1,27 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/cadl-azure-core";
+
+using Cadl.Http;
+using Azure.Core;
+
+@scenarioService("/lro/basic")
+@doc("Basic test for lro")
+namespace Lro.Basic;
+
+#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+@scenario
+@scenarioDoc("The polling url is in operation-location of response headers. Mock api finally return 'Successful'")
+@doc("Test for basic lro of put")
+@pollingOperation
+@route("/put")
+@put
+op create(): string;
+
+#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+@scenario
+@scenarioDoc("return 'Successful'(The op is also used to get final result for PUT lro method)")
+@doc("Test for get")
+@route("/put")
+@get
+op read(): string;

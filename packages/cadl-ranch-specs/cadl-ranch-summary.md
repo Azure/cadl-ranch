@@ -1263,3 +1263,13 @@ The value you pass for the parameter is not verified by the mock server.
 
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
+
+### LroBasic_put
+
+- Endpoint: `put /lro/basic/put`
+
+Basic test for long running operation. Final result is:
+
+```json
+"Successful"
+```
