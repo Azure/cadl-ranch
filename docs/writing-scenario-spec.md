@@ -23,7 +23,6 @@ namespace String;
 @get
 @route("/simple")
 op returnString(): string;
-
 ```
 
 Decorators that should be provided in this test library `@azure-tools/cadl-scenario-lib`:
@@ -35,7 +34,7 @@ Decorators that should be provided in this test library `@azure-tools/cadl-scena
 
 ## Compatibility table
 
-With all this information, a detailed compatiblity table should be able to be produced by compiling each one of the scenarios and extracting the cases. Providing something like
+With all this information, a detailed compatibility table should be able to be produced by compiling each one of the scenarios and extracting the cases. Providing something like
 
 | Scenario                     | CSharp | Python | Go  | Java | TS/JS |
 | ---------------------------- | ------ | ------ | --- | ---- | ----- |

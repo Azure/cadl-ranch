@@ -1,6 +1,6 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
-import { OperationType } from "@cadl-lang/compiler";
+import { Operation } from "@cadl-lang/compiler";
 import { join, relative, resolve } from "path";
 import { pathToFileURL } from "url";
 import { importCadl, importCadlRanchExpect, importCadlRest } from "./cadl-utils/index.js";
@@ -45,7 +45,7 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
   const cadlRest = await importCadlRest(scenariosPath);
 
   const scenarioNames = new Map<string, Scenario[]>();
-  const endpoints = new Map<string, OperationType[]>();
+  const endpoints = new Map<string, Operation[]>();
   const diagnostics = createDiagnosticReporter();
 
   for (const { name, cadlFilePath } of scenarioFiles) {

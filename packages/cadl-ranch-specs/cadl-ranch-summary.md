@@ -1,16 +1,45 @@
 # Cadl Ranch Project summary
 
-### ApiKeyAuthentication_authenticated
+### Authentication_ApiKey_valid
 
-- Endpoint: `get /authentication/api-key/authenticated`
+- Endpoint: `get /authentication/api-key/valid`
 
-Expect to handle an authenticated call. Mock api expect to receive header 'x-ms-api-key: valid-key'.
+Expects header 'x-ms-api-key': 'valid-key'
 
-### ApiKeyAuthentication_invalidAuthentication
+### Authentication_ApiKey_invalid
 
-- Endpoint: `get /authentication/api-key/invalid-authentication`
+- Endpoint: `get /authentication/api-key/invalid`
 
-Expect to handle an unauthenticated call. Mock api will always respond with status code 403.
+Expect error code 403 and error body:
+
+```json
+{
+  "error": {
+    "code": "InvalidApiKey",
+    "message": "API key is invalid"
+  }
+}
+```
+
+### Authentication_OAuth2_valid
+
+- Endpoint: `get /authentication/oauth2/valid`
+
+Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
+
+### Authentication_OAuth2_invalid
+
+- Endpoint: `get /authentication/oauth2/invalid`
+
+Expect error code 400 and error body:
+
+```json
+{
+  "message": "Expected Bearer x but got Bearer y",
+  "expected": "Bearer x",
+  "actual": "Bearer y"
+}
+```
 
 ### MultiInterfaceClient_dogs_getDogs
 
@@ -35,6 +64,218 @@ Illustrate grouping operations on subclient.
 - Endpoint: `put /multi-interface/cats`
 
 Illustrate grouping operations on subclient.
+
+### Dictionary_Int32Value_get
+
+- Endpoint: `get /dictionary/int32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Dictionary_Int32Value_put
+
+- Endpoint: `put /dictionary/int32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Dictionary_Int64Value_get
+
+- Endpoint: `get /dictionary/int64`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Dictionary_Int64Value_put
+
+- Endpoint: `put /dictionary/int64`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Dictionary_BooleanValue_get
+
+- Endpoint: `get /dictionary/boolean`
+
+Expected dictionary response body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Dictionary_BooleanValue_put
+
+- Endpoint: `put /dictionary/boolean`
+
+Expected dictionary input body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Dictionary_StringValue_get
+
+- Endpoint: `get /dictionary/string`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Dictionary_StringValue_put
+
+- Endpoint: `put /dictionary/string`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Dictionary_Float32Value_get
+
+- Endpoint: `get /dictionary/float32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Dictionary_Float32Value_put
+
+- Endpoint: `put /dictionary/float32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Dictionary_DatetimeValue_get
+
+- Endpoint: `get /dictionary/datetime`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Dictionary_DatetimeValue_put
+
+- Endpoint: `put /dictionary/datetime`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Dictionary_DurationValue_get
+
+- Endpoint: `get /dictionary/duration`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Dictionary_DurationValue_put
+
+- Endpoint: `put /dictionary/duration`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Dictionary_UnknownValue_get
+
+- Endpoint: `get /dictionary/unknown`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Dictionary_UnknownValue_put
+
+- Endpoint: `put /dictionary/unknown`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Dictionary_ModelValue_get
+
+- Endpoint: `get /dictionary/model`
+
+Expected dictionary response body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Dictionary_ModelValue_put
+
+- Endpoint: `put /dictionary/model`
+
+Expected dictionary input body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Dictionary_RecursiveModelValue_get
+
+- Endpoint: `get /dictionary/model/recursive`
+
+Expected dictionary response body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
+
+### Dictionary_RecursiveModelValue_put
+
+- Endpoint: `put /dictionary/model/recursive`
+
+Expected dictionary input body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
 
 ### ExtensibleEnums_String_getKnownValue
 
@@ -70,17 +311,211 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
-### BasicPolymorphicModels_setValue
+### Models_Inheritance_Discriminated_getModel
 
-- Endpoint: `put /polymorphic/model`
+- Endpoint: `get /models/inheritance/discriminated/model`
 
-Generate, send, and receive round-trip inherited model.
+Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected response body:
 
-### BasicPolymorphicModels_setValueWithPolymorphicProperty
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
 
-- Endpoint: `put /polymorphic/property`
+### Models_Inheritance_Discriminated_putModel
 
-Generate, send, and receive round-trip model with a polymorphic property.
+- Endpoint: `put /models/inheritance/discriminated/model`
+
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected input body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
+
+### Models_Inheritance_Discriminated_getRecursiveModel
+
+- Endpoint: `get /models/inheritance/discriminated/recursivemodel`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected response body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Models_Inheritance_Discriminated_putRecursiveModel
+
+- Endpoint: `put /models/inheritance/discriminated/recursivemodel`
+
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Models_Inheritance_Discriminated_getMissingDiscriminator
+
+- Endpoint: `get /models/inheritance/discriminated/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "age": 1 }
+```
+
+### Models_Inheritance_Discriminated_getWrongDiscriminator
+
+- Endpoint: `get /models/inheritance/discriminated/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "wrongKind" }
+```
+
+### Models_Inheritance_postValid
+
+- Endpoint: `post /models/inheritance/valid`
+
+Generate and send model.
+Expected input body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_getValid
+
+- Endpoint: `get /models/inheritance/valid`
+
+Generate and receive model.
+Expected response body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Models_Inheritance_putValid
+
+- Endpoint: `put /models/inheritance/valid`
+
+Generate, send, and receive round-trip bottom model.
 
 ### InputBasic_getModel
 
@@ -106,29 +541,291 @@ Generate and receive output model with required nested model properties.
 
 Generate, send, and receive round-trip model with required nested model properties.
 
-### OptionalProperties_sendOptionalPropertyModel
-
-- Endpoint: `post /optional-properties/models`
-
-Generate and send input model with optional properties.
-
-### OptionalProperties_getOptionalPropertyModel
-
-- Endpoint: `get /optional-properties/models`
-
-Generate and receive output model with optional properties.
-
-### OptionalProperties_setOptionalPropertyModel
-
-- Endpoint: `put /optional-properties/models`
-
-Generate, send, and receive round-trip model with optional properties.
-
 ### OutputBasic_getModel
 
 - Endpoint: `get /output-basic/models`
 
 Generate and receive an output-only model with required reference and value type properties.
+
+### Models_Property_Optional_String_getAll
+
+- Endpoint: `get /models/properties/optional/string/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_String_getDefault
+
+- Endpoint: `get /models/properties/optional/string/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_String_putAll
+
+- Endpoint: `put /models/properties/optional/string/all`
+
+Expected request body:
+
+```json
+hello
+```
+
+### Models_Property_Optional_String_putDefault
+
+- Endpoint: `put /models/properties/optional/string/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Bytes_getAll
+
+- Endpoint: `get /models/properties/optional/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Bytes_getDefault
+
+- Endpoint: `get /models/properties/optional/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Bytes_putAll
+
+- Endpoint: `put /models/properties/optional/bytes/all`
+
+Expected request body:
+
+```json
+aGVsbG8sIHdvcmxkIQ==
+```
+
+### Models_Property_Optional_Bytes_putDefault
+
+- Endpoint: `put /models/properties/optional/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Datetime_getAll
+
+- Endpoint: `get /models/properties/optional/datetime/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Datetime_getDefault
+
+- Endpoint: `get /models/properties/optional/datetime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Datetime_putAll
+
+- Endpoint: `put /models/properties/optional/datetime/all`
+
+Expected request body:
+
+```json
+2022-08-26T18:38:00Z
+```
+
+### Models_Property_Optional_Datetime_putDefault
+
+- Endpoint: `put /models/properties/optional/datetime/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Duration_getAll
+
+- Endpoint: `get /models/properties/optional/duration/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_Duration_getDefault
+
+- Endpoint: `get /models/properties/optional/duration/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_Duration_putAll
+
+- Endpoint: `put /models/properties/optional/duration/all`
+
+Expected request body:
+
+```json
+P123DT22H14M12.011S
+```
+
+### Models_Property_Optional_Duration_putDefault
+
+- Endpoint: `put /models/properties/optional/duration/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsByte_getAll
+
+- Endpoint: `get /models/properties/optional/collections/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_CollectionsByte_getDefault
+
+- Endpoint: `get /models/properties/optional/collections/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsByte_putAll
+
+- Endpoint: `put /models/properties/optional/collections/bytes/all`
+
+Expected request body:
+
+```json
+[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]
+```
+
+### Models_Property_Optional_CollectionsByte_putDefault
+
+- Endpoint: `put /models/properties/optional/collections/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsModel_getAll
+
+- Endpoint: `get /models/properties/optional/collections/model/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Models_Property_Optional_CollectionsModel_getDefault
+
+- Endpoint: `get /models/properties/optional/collections/model/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_CollectionsModel_putAll
+
+- Endpoint: `put /models/properties/optional/collections/model/all`
+
+Expected request body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
+### Models_Property_Optional_CollectionsModel_putDefault
+
+- Endpoint: `put /models/properties/optional/collections/model/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Models_Property_Optional_RequiredAndOptional_getAll
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/all`
+
+Expected response body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_getRequiredOnly
+
+- Endpoint: `get /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected response body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putAll
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/all`
+
+Expected request body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Models_Property_Optional_RequiredAndOptional_putRequiredOnly
+
+- Endpoint: `put /models/properties/optional/requiredAndOptional/requiredOnly`
+
+Expected request body:
+
+```json
+{ "requiredProperty": 42 }
+```
 
 ### Models_Property_Types_Boolean_get
 
@@ -390,6 +1087,26 @@ Expected input body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
+### Models_Property_Types_DictionaryString_get
+
+- Endpoint: `get /models/properties/types/dictionary/string`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Models_Property_Types_DictionaryString_put
+
+- Endpoint: `put /models/properties/types/dictionary/string`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
 ### ReadonlyProperties_getOptionalPropertyModel
 
 - Endpoint: `get /readonly-properties/models`
@@ -410,7 +1127,7 @@ Generate, send, and receive a round-trip model with required reference and value
 
 ### Resiliency_DevDriven_getModel
 
-- Endpoint: `get /resilency/devdriven/customization/model/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP GET.
 This method requires to write 2 tests.
@@ -422,7 +1139,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_postModel
 
-- Endpoint: `post /resilency/devdriven/customization/model/{mode}`
+- Endpoint: `post /resiliency/devdriven/customization/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP POST.
 This method requires to write 2 tests.
@@ -434,7 +1151,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_getPages
 
-- Endpoint: `get /resilency/devdriven/customization/paging/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/paging/{mode}`
 
 Show that you can support both protocol methods and convenience method for a Paging operation.
 This method requires to write 2 tests.
@@ -446,7 +1163,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_lro
 
-- Endpoint: `put /resilency/devdriven/customization/lro/{mode}`
+- Endpoint: `put /resiliency/devdriven/customization/lro/{mode}`
 
 Show that you can support both protocol methods and convenience method for a LRO.
 This method requires to write 2 tests.
@@ -458,21 +1175,21 @@ This method requires to write 2 tests.
 
 ### Resiliency_ServiceDriven1_params_headNoParams
 
-- Endpoint: `head /resilency/servicedriven1/parameters`
+- Endpoint: `head /resiliency/servicedriven1/parameters`
 
 Show that you can call a HEAD HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
 
 ### Resiliency_ServiceDriven1_params_getRequired
 
-- Endpoint: `get /resilency/servicedriven1/parameters`
+- Endpoint: `get /resiliency/servicedriven1/parameters`
 
 Show that you can call a GET HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
 
 ### Resiliency_ServiceDriven1_params_putRequiredOptional
 
-- Endpoint: `put /resilency/servicedriven1/parameters`
+- Endpoint: `put /resiliency/servicedriven1/parameters`
 
 Show that you can call a PUT HTTP endpoint.
 This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
@@ -480,7 +1197,7 @@ The value you pass for the parameter is not verified by the mock server.
 
 ### Resiliency_ServiceDriven1_params_postParameters
 
-- Endpoint: `post /resilency/servicedriven1/parameters/{contentTypePath}`
+- Endpoint: `post /resiliency/servicedriven1/parameters/{contentTypePath}`
 
 Show that you can call a POST HTTP endpoint.
 This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
@@ -488,7 +1205,7 @@ Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
 
 ### Resiliency_ServiceDriven1_params_getOptional
 
-- Endpoint: `get /resilency/servicedriven1/moreParameters`
+- Endpoint: `get /resiliency/servicedriven1/moreParameters`
 
 Show that you can call a GET HTTP endpoint.
 This version has his main parameter optional first, making the grow-up story to two optionals.
@@ -523,7 +1240,7 @@ The value you pass for the parameter is not verified by the mock server.
 - Endpoint: `post /serviceDriven2/serviceDriven/parameters/{contentTypePath}`
 
 Show that you can call a POST HTTP endpoint.
-This test now accept both image/jpeg and applicat/json and is expected keeping backward compat with srv-driven-1.
+This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 
 ### Resiliency_ServiceDriven2_params_deleteParameters

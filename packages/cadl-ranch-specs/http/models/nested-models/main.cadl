@@ -1,9 +1,7 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Foundations;
 
 @doc("Illustrates input, output, and round-trip models with required properties of types that are also models.")
 @scenarioService("/nested-models")
@@ -70,16 +68,16 @@ model RoundTripModel {
 @scenarioDoc("Generate and send input model with required nested model properties.")
 @route("/models")
 @post
-op sendNestedModel(@body input: InputModel): Response<200> | ErrorResponse;
+op sendNestedModel(@body input: InputModel): Response<200>;
 
 @scenario
 @scenarioDoc("Generate and receive output model with required nested model properties.")
 @route("/models")
 @get
-op getNestedModel(): OutputModel | ErrorResponse;
+op getNestedModel(): OutputModel;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with required nested model properties.")
 @route("/models")
 @put
-op setNestedModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
+op setNestedModel(@body input: RoundTripModel): RoundTripModel;

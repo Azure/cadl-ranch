@@ -1,10 +1,10 @@
 import {
   getSourceLocation,
-  InterfaceType,
+  Interface,
   isTemplateDeclaration,
-  NamespaceType,
+  Namespace,
   navigateProgram,
-  OperationType,
+  Operation,
   Program,
 } from "@cadl-lang/compiler";
 import { getScenarioDoc, getScenarioName } from "./decorators.js";
@@ -30,7 +30,7 @@ export function $onValidate(program: Program) {
   });
 }
 
-function checkIsInScenario(program: Program, type: OperationType | InterfaceType | NamespaceType): boolean {
+function checkIsInScenario(program: Program, type: Operation | Interface | Namespace): boolean {
   if (getScenarioName(program, type)) {
     return true;
   }
