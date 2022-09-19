@@ -1,4 +1,5 @@
 import { passOnSuccess, ScenarioMockApi, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
+import { RequestExpectation } from "@azure-tools/cadl-ranch-api/dist/request-expecation.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
@@ -12,7 +13,7 @@ interface MockApiGetPut {
  * @param route The route within /models/properties for your function.
  * @param value The value you are expecting and will return.
  */
-function createMockApis(route: string, value: any): MockApiGetPut {
+function createMockApis(route: string, value: any, convertBodyProperty?: (_: any) => unknown | undefined): MockApiGetPut {
   const url = `/models/properties/types/${route}`;
   const body = { property: value };
   return {
@@ -23,13 +24,14 @@ function createMockApis(route: string, value: any): MockApiGetPut {
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (route === "datetime" && new Date(body.property).toISOString() === new Date(req.body.property).toISOString()) {
-        return {
-          status: 204,
-        };
+      if (convertBodyProperty)
+      {
+        req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
+        body.property = convertBodyProperty(body.property);
       }
-
+      
       req.expect.bodyEquals(body);
+
       return {
         status: 204,
       };
@@ -57,7 +59,7 @@ const floatMock = createMockApis("float", 42.42);
 Scenarios.Models_Property_Types_Float_get = passOnSuccess(floatMock.get);
 Scenarios.Models_Property_Types_Float_put = passOnSuccess(floatMock.put);
 
-const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
+const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z", datetime => new Date(datetime).toISOString());
 Scenarios.Models_Property_Types_Datetime_get = passOnSuccess(datetimeMock.get);
 Scenarios.Models_Property_Types_Datetime_put = passOnSuccess(datetimeMock.put);
 
