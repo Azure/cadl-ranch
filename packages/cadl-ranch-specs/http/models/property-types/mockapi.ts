@@ -15,7 +15,7 @@ interface MockApiGetPut {
 function createMockApis(
   route: string,
   value: any,
-  convertBodyProperty?: (_: any) => unknown | undefined,
+  convertBodyProperty?: (_: any) => any,
 ): MockApiGetPut {
   const url = `/models/properties/types/${route}`;
   const body = { property: value };
@@ -27,7 +27,7 @@ function createMockApis(
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (convertBodyProperty) {
+      if (convertBodyProperty && req.originalRequest.body?.property && body?.property) {
         req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
         body.property = convertBodyProperty(body.property);
       }
