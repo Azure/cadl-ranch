@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.1.12
+
+### Patch Changes
+
+- [#108](https://github.com/Azure/cadl-ranch/pull/108) [`69518f3`](https://github.com/Azure/cadl-ranch/commit/69518f30d90cfdbae4ec8c7493229a2c2fe4fa01) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Fix model type for collections model optional property testing
+
+- [#91](https://github.com/Azure/cadl-ranch/pull/91) [`cc4dd0f`](https://github.com/Azure/cadl-ranch/commit/cc4dd0fbeb58e7e85fd5ec6282739c49338daa71) Thanks [@pshao25](https://github.com/pshao25)! - Fix datetime compare issue
+
+- [#104](https://github.com/Azure/cadl-ranch/pull/104) [`e622348`](https://github.com/Azure/cadl-ranch/commit/e6223481a78f7b9844fee6d9457d01d9adf05860) Thanks [@changlong-liu](https://github.com/changlong-liu)! - Adding specs and mockapi for dictionary.
+
+- [#74](https://github.com/Azure/cadl-ranch/pull/74) [`cf1b966`](https://github.com/Azure/cadl-ranch/commit/cf1b9660e195ffca5f4292830f3e78f7af748534) Thanks [@changlong-liu](https://github.com/changlong-liu)! - Add specs for inheritance models with or without discriminator.
+
 ## 0.1.11
 
 ### Patch Changes
