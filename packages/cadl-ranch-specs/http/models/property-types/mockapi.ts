@@ -12,11 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /models/properties for your function.
  * @param value The value you are expecting and will return.
  */
-function createMockApis(
-  route: string,
-  value: any,
-  convertBodyProperty?: (_: any) => any,
-): MockApiGetPut {
+function createMockApis(route: string, value: any, convertBodyProperty?: (_: any) => any): MockApiGetPut {
   const url = `/models/properties/types/${route}`;
   const body = { property: value };
   return {
