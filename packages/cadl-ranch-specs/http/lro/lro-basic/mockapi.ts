@@ -10,10 +10,7 @@ Scenarios.Lro_Basic_create = passOnSuccess([
   mockapi.get("/lro/basic/put/polling", (req) => {
     return { status: 200, body: json({ status: "Succeeded" }) };
   }),
-]);
-
-Scenarios.Lro_Basic_read = passOnSuccess(
   mockapi.get("/lro/basic/put", (req) => {
     return { status: 200, body: json("Successful") };
   }),
-);
+]);

@@ -17,11 +17,3 @@ namespace Lro.Basic;
 @route("/put")
 @put
 op create(): string;
-
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
-@scenario
-@scenarioDoc("return 'Successful'(The op is also used to get final result for PUT lro method)")
-@doc("Test for get")
-@route("/put")
-@get
-op read(): string;

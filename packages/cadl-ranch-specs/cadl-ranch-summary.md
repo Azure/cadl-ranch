@@ -317,12 +317,6 @@ This test is testing this payload is returned from the server
 
 The polling url is in operation-location of response headers. Mock api finally return 'Successful'
 
-### Lro_Basic_read
-
-- Endpoint: `get /lro/basic/put`
-
-return 'Successful'(The op is also used to get final result for PUT lro method)
-
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`
