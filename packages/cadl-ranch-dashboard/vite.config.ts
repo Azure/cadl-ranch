@@ -10,5 +10,12 @@ export default defineConfig({
   esbuild: {
     target: "esnext",
   },
-  plugins: [(react as any)()],
+  plugins: [
+    (react as any)({
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+      },
+    }),
+  ],
 });

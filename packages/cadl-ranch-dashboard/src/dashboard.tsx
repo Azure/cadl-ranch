@@ -1,5 +1,7 @@
+import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
-import { ScenarioManifest } from "./apis.js";
+import { Colors } from "./constants.js";
 
 const languages = ["python", "typescript", "csharp", "java"];
 export interface DashboardProps {
@@ -18,17 +20,30 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ manifest }) => {
     );
   });
   return (
-    <table>
+    <table css={TableStyles}>
       <thead>
         <tr>
-          <td>Scenario name</td>
+          <th>Scenario name</th>
           {languages.map((lang) => (
-            <td key={lang}>{lang}</td>
+            <th key={lang}>{lang}</th>
           ))}
         </tr>
       </thead>
-
-      {rows}
+      <tbody>{rows}</tbody>
     </table>
   );
 };
+
+const TableStyles = css({
+  "borderCollapse": "collapse",
+  "& tr:nth-child(2n)": {
+    backgroundColor: Colors.bgSubtle,
+  },
+  "& td, & th": {
+    padding: "6px 13px",
+    border: `1px solid ${Colors.borderDefault}`,
+  },
+  "& th": {
+    backgroundColor: Colors.bgSubtle,
+  },
+});

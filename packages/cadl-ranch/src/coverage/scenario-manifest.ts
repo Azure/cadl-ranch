@@ -2,7 +2,7 @@ import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { loadScenarios } from "../scenarios-resolver.js";
 import { Diagnostic } from "../utils/diagnostic-reporter.js";
 import { getCommit, getPackageJson } from "../utils/misc-utils.js";
-import { ScenarioManifest } from "./types.js";
+import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 
 export async function computeScenarioManifest(
   scenariosPath: string,

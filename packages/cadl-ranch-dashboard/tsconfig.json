@@ -4,7 +4,9 @@
     "outDir": "dist",
     "tsBuildInfoFile": "temp/.tsbuildinfo",
     "jsx": "react-jsx",
-    "lib": ["DOM"]
+    "jsxImportSource": "@emotion/react",
+    "lib": ["DOM"],
+    "types": ["@emotion/react"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "src/main.tsx", "vite.config.ts"]
 }

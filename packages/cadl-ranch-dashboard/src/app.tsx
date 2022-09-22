@@ -1,5 +1,6 @@
+import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { FunctionComponent, useState } from "react";
-import { getManifest, ScenarioManifest } from "./apis.js";
+import { getManifest } from "./apis.js";
 import { Dashboard } from "./dashboard.js";
 import { useEffectAsync } from "./utils.js";
 
