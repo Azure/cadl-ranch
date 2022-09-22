@@ -30,7 +30,6 @@
   "dependencies": {
     "@azure-tools/cadl-ranch-coverage-sdk": "workspace:~",
     "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

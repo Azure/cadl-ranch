@@ -175,7 +175,6 @@ importers:
       '@azure-tools/cadl-ranch-coverage-sdk': workspace:~
       '@cadl-lang/eslint-config-cadl': ^0.4.1
       '@emotion/react': ^11.10.4
-      '@emotion/styled': ^11.10.4
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^2.1.0
@@ -189,7 +188,6 @@ importers:
     dependencies:
       '@azure-tools/cadl-ranch-coverage-sdk': link:../cadl-ranch-coverage-sdk
       '@emotion/react': 11.10.4_iksih6ga4nkhwh2wzqdjne7wyy
-      '@emotion/styled': 11.10.4_bo6g5kkyx5y4ealzoy4dxykgri
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -1408,12 +1406,6 @@ packages:
     resolution: {integrity: sha512-14FtKiHhy2QoPIzdTcvh//8OyBlknNs2nXRwIhG904opCby3l+9Xaf/wuPvICBF0rc1ZCNBd3nKe9cd2mecVkQ==}
     dev: false
 
-  /@emotion/is-prop-valid/1.2.0:
-    resolution: {integrity: sha512-3aDpDprjM0AwaxGE09bOPkNxHpBd+kA6jty3RnaEXdweX1DF1U3VQpPYb0g1IStAuK7SVQ1cy+bNBBKp4W3Fjg==}
-    dependencies:
-      '@emotion/memoize': 0.8.0
-    dev: false
-
   /@emotion/memoize/0.8.0:
     resolution: {integrity: sha512-G/YwXTkv7Den9mXDO7AhLWkE3q+I92B+VqAE+dYG4NGPaHZGvt3G8Q0p9vmE+sq7rTGphUbAvmQ9YpbfMQGGlA==}
     dev: false
@@ -1455,31 +1447,6 @@ packages:
 
   /@emotion/sheet/1.2.0:
     resolution: {integrity: sha512-OiTkRgpxescko+M51tZsMq7Puu/KP55wMT8BgpcXVG2hqXc0Vo0mfymJ/Uj24Hp0i083ji/o0aLddh08UEjq8w==}
-    dev: false
-
-  /@emotion/styled/11.10.4_bo6g5kkyx5y4ealzoy4dxykgri:
-    resolution: {integrity: sha512-pRl4R8Ez3UXvOPfc2bzIoV8u9P97UedgHS4FPX594ntwEuAMA114wlaHvOK24HB48uqfXiGlYIZYCxVJ1R1ttQ==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-      '@emotion/react': ^11.0.0-rc.0
-      '@types/react': '*'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/core': 7.19.0
-      '@babel/runtime': 7.19.0
-      '@emotion/babel-plugin': 11.10.2_@babel+core@7.19.0
-      '@emotion/is-prop-valid': 1.2.0
-      '@emotion/react': 11.10.4_iksih6ga4nkhwh2wzqdjne7wyy
-      '@emotion/serialize': 1.1.0
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.0_react@18.2.0
-      '@emotion/utils': 1.2.0
-      '@types/react': 18.0.20
-      react: 18.2.0
     dev: false
 
   /@emotion/unitless/0.8.0:
