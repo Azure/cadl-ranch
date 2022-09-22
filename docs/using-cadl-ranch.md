@@ -41,11 +41,11 @@ cadl-ranch serve ./path/to/scenarios --coverageFile ./path/to/cadl-ranch-coverag
 cadl-ranch check-coverage ./path/to/scenarios
 
 # Path to cadl-ranch config file for generator
-cadl-ranch serve ./path/to/scenarios --configFile ./cadl-ranch-config.yaml
+cadl-ranch check-coverage ./path/to/scenarios --configFile ./cadl-ranch-config.yaml
 
 # In case where there was multiple serve instance each creating their own coverage file
-cadl-ranch serve ./path/to/scenarios --coverageFiles ./path/to/*-coverage.json --coverageFiles ./other/to/*-coverage.json
+cadl-ranch check-coverage ./path/to/scenarios --coverageFiles ./path/to/*-coverage.json --coverageFiles ./other/to/*-coverage.json
 
 # Specify where the merged coverage file should go
-cadl-ranch serve ./path/to/scenarios --mergedCoverageFile ./path/to/cadl-ranch-final-coverage.json
+cadl-ranch check-coverage ./path/to/scenarios --mergedCoverageFile ./path/to/cadl-ranch-final-coverage.json
 ```
