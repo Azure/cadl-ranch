@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./packages/dashboard/dist
+          path: ./packages/cadl-ranch-dashboard/dist
 
   # Deployment job
   deploy:
