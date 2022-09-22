@@ -26,8 +26,9 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
+    "@azure/identity": "^3.0.0",
     "@azure/storage-blob": "^12.11.0",
-    "@azure/identity": "^3.0.0"
+    "@types/node": "^18.7.16"
   },
   "devDependencies": {
     "@cadl-lang/eslint-config-cadl": "^0.4.1",
