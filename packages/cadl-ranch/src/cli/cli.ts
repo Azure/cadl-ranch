@@ -7,6 +7,7 @@ import { serve } from "../actions/serve.js";
 import { validateMockApis } from "../actions/validate-mock-apis.js";
 import { checkCoverage } from "../actions/check-coverage.js";
 import { generateScenarioSummary } from "../actions/generate-scenario-summary.js";
+import { uploadScenarioManifest } from "../actions/upload-scenario-manifest.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -154,6 +155,29 @@ async function main() {
       async (args) => {
         await validateMockApis({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
+        });
+      },
+    )
+    .command(
+      "upload-manifest <scenariosPath>",
+      "Upload the scenario manifest",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .option("storageAccountName", {
+            type: "string",
+            description: "Name of the storage account",
+          })
+          .demandOption("storageAccountName");
+      },
+      async (args) => {
+        await uploadScenarioManifest({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+          storageAccountName: args.storageAccountName,
         });
       },
     )

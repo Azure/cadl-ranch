@@ -31,6 +31,8 @@
   "dependencies": {
     "@azure-tools/cadl-ranch-api": "workspace:~",
     "@azure-tools/cadl-ranch-expect": "workspace:~",
+    "@azure-tools/cadl-ranch-coverage-sdk": "workspace:*",
+    "@azure/identity": "^3.0.0",
     "@cadl-lang/compiler": "~0.35.0",
     "@cadl-lang/rest": "~0.17.0",
     "@types/js-yaml": "^4.0.5",
