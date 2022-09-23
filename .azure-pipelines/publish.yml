@@ -28,6 +28,10 @@ steps:
       NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public --no-git-checks
     displayName: Publish packages
 
-  - script: |
-      pnpm upload-manifest
+  - task: AzureCLI@2
     displayName: Upload scenario manifest
+    inputs:
+      azureSubscription: 'Azure SDK Playground'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'pnpm upload-manifest'
