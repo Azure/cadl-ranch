@@ -1,3 +1,4 @@
+import { CoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
 import { CoverageSummary, GeneratorNames } from "./apis.js";
@@ -38,27 +39,31 @@ interface DashboardHeaderRow {
   coverageSummary: CoverageSummary;
 }
 const DashboardHeaderRow: FunctionComponent<DashboardHeaderRow> = ({ coverageSummary }) => {
-  const data: [string, number][] = Object.entries(coverageSummary.generatorReports).map(([language, report]) => {
-    if (report === undefined) {
-      return [language, 0];
-    }
-    let coveredCount = 0;
-    for (const scenario of coverageSummary.manifest.scenarios) {
-      const status = report.results[scenario.name];
-      if (status === "pass" || status === "not-applicable") {
-        coveredCount++;
+  const data: [string, number, CoverageReport | undefined][] = Object.entries(coverageSummary.generatorReports).map(
+    ([language, report]) => {
+      if (report === undefined) {
+        return [language, 0, undefined];
       }
-    }
-    return [language, coveredCount / coverageSummary.manifest.scenarios.length];
-  });
+      let coveredCount = 0;
+      for (const scenario of coverageSummary.manifest.scenarios) {
+        const status = report.results[scenario.name];
+        if (status === "pass" || status === "not-applicable") {
+          coveredCount++;
+        }
+      }
+      return [language, coveredCount / coverageSummary.manifest.scenarios.length, report];
+    },
+  );
 
+  const title = [].join("\n");
   return (
     <tr>
       <th>Scenario name</th>
-      {data.map(([lang, status]) => (
-        <th key={lang}>
-          <div>{lang} </div>
+      {data.map(([lang, status, report]) => (
+        <th key={lang} title={title}>
+          <div>{lang}</div>
           <div>{Math.floor(status * 100)}%</div>
+          <div>{report?.scenariosMetadata?.version}</div>
         </th>
       ))}
     </tr>
