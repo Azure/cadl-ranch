@@ -1,20 +1,21 @@
-import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
+import { CoverageSummary, GeneratorNames } from "./apis.js";
+import { ScenarioStatusCell } from "./components/scenario-status.js";
 import { Colors } from "./constants.js";
 
-const languages = ["python", "typescript", "csharp", "java"];
 export interface DashboardProps {
-  manifest: ScenarioManifest;
+  coverageSummary: CoverageSummary;
 }
 
-export const Dashboard: FunctionComponent<DashboardProps> = ({ manifest }) => {
-  const rows = manifest.scenarios.map((x) => {
+export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
+  const languages: GeneratorNames[] = Object.keys(coverageSummary.generatorReports) as any;
+  const rows = coverageSummary.manifest.scenarios.map((x) => {
     return (
       <tr key={x.name}>
         <td>{x.name}</td>
         {languages.map((lang) => (
-          <td key={lang}></td>
+          <ScenarioStatusCell key={lang} status={coverageSummary.generatorReports[lang]?.results[x.name]} />
         ))}
       </tr>
     );
@@ -36,7 +37,7 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ manifest }) => {
 
 const TableStyles = css({
   "borderCollapse": "collapse",
-  "& tr:nth-child(2n)": {
+  "& tr:nth-of-type(2n)": {
     backgroundColor: Colors.bgSubtle,
   },
   "& td, & th": {
