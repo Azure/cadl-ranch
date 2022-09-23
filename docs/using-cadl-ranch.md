@@ -64,6 +64,23 @@ cadl-ranch upload-coverage --generatorName typescript --version=0.1.0  --coverag
 
 Options:
 
+- `--storageAccountName`: Name of the storage account to publish coverage. Use `cadlranchcoverage` for Azure Cadl Ranch dashboard.
 - `--generatorName`: Name of the generator. Must be one of `"python", "typescript", "csharp", "java"`
 - `--generatorVersion`: Version of the generator
 - `--coverageFile`: Path to the coverage file
+
+#### Upload in azure devops
+
+**This is applicable in the azure-sdk/internal ado project only.**
+
+Add the following step
+
+```yaml
+- task: AzureCLI@2
+  displayName: Upload scenario manifest
+  inputs:
+    azureSubscription: "Azure SDK Playground"
+    scriptType: "bash"
+    scriptLocation: "inlineScript"
+    inlineScript: `cadl-ranch upload-coverage --storageAccountName cadlranchcoverage ... FILL options fitting your generator here as described above...`
+```
