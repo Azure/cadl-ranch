@@ -55,15 +55,14 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRow> = ({ coverageSum
     },
   );
 
-  const title = [].join("\n");
   return (
     <tr>
       <th>Scenario name</th>
       {data.map(([lang, status, report]) => (
-        <th key={lang} title={title}>
-          <div>{lang}</div>
-          <div>{Math.floor(status * 100)}%</div>
-          <div>{report?.scenariosMetadata?.version}</div>
+        <th key={lang}>
+          <div title="Generator name">{lang}</div>
+          <div title="Scenario version used in this coverage.">{report?.scenariosMetadata?.version ?? "?"}</div>
+          <div title="Coverage stats">{Math.floor(status * 100)}%</div>
         </th>
       ))}
     </tr>
