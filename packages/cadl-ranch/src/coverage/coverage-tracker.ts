@@ -1,7 +1,7 @@
 import { MockResponse, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { writeFile } from "fs/promises";
 import { logger } from "../logger.js";
-import { CoverageReport, ScenariosMetadata, ScenarioStatus } from "./types.js";
+import { CoverageReport, ScenariosMetadata, ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 
 export class CoverageTracker {
   private scenarios: Record<string, ScenarioMockApi> = {};

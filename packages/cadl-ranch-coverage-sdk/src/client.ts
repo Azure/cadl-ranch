@@ -6,11 +6,12 @@ import {
   StorageSharedKeyCredential,
 } from "@azure/storage-blob";
 import { TokenCredential } from "@azure/identity";
-import { ScenarioManifest } from "./types.js";
+import { CoverageReport, ScenarioManifest } from "./types.js";
 
 export class CadlRanchCoverageClient {
   #container: ContainerClient;
   manifest: CadlRanchManifestOperations;
+  coverage: CadlRanchCoverageOperations;
 
   constructor(
     storageAccountName: string,
@@ -18,6 +19,7 @@ export class CadlRanchCoverageClient {
   ) {
     this.#container = getCoverageContainer(storageAccountName, credential);
     this.manifest = new CadlRanchManifestOperations(this.#container);
+    this.coverage = new CadlRanchCoverageOperations(this.#container);
   }
 
   public async createIfNotExists() {
@@ -50,6 +52,28 @@ export class CadlRanchManifestOperations {
     const body = await blob.blobBody;
     const content = await body?.text();
     return content ? JSON.parse(content) : undefined;
+  }
+}
+
+export class CadlRanchCoverageOperations {
+  #container: ContainerClient;
+
+  constructor(container: ContainerClient) {
+    this.#container = container;
+  }
+
+  public async upload(generator: string, version: string, manifest: CoverageReport): Promise<void> {
+    const blob = this.#container.getBlockBlobClient(`${generator}/${version}.json`);
+    const content = JSON.stringify(manifest, null, 2);
+    await blob.upload(content, content.length, {
+      metadata: {
+        generator,
+        generatorVersion: version,
+      },
+      blobHTTPHeaders: {
+        blobContentType: "application/json; charset=utf-8",
+      },
+    });
   }
 }
 

@@ -1,7 +1,7 @@
+import { CoverageReport, ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { readFile, writeFile } from "fs/promises";
 import { loadCadlRanchConfig } from "../config/config.js";
 import { createCoverageReport } from "../coverage/coverage-report.js";
-import { CoverageReport, ScenarioStatus } from "../coverage/types.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { createDiagnosticReporter, findFilesFromPattern } from "../utils/index.js";
 

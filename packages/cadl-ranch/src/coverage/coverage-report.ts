@@ -1,5 +1,5 @@
+import { CoverageReport, ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { getScenarioMetadata } from "./common.js";
-import { ScenarioStatus, CoverageReport } from "./types.js";
 
 export async function createCoverageReport(
   scenariosPath: string,
