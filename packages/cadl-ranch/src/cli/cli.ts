@@ -183,7 +183,7 @@ async function main() {
       },
     )
     .command(
-      "upload-coverage <scenariosPath>",
+      "upload-coverage",
       "Upload the coverage report.",
       (cmd) => {
         return cmd
@@ -196,6 +196,7 @@ async function main() {
           .option("storageAccountName", {
             type: "string",
             description: "Name of the storage account",
+            default: join(process.cwd(), "cadl-ranch-coverage.json"),
           })
           .demandOption("storageAccountName")
           .option("generatorName", {

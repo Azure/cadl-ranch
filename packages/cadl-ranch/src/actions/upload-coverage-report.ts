@@ -2,6 +2,7 @@ import { CadlRanchCoverageClient, CoverageReport } from "@azure-tools/cadl-ranch
 import { logger } from "../logger.js";
 import pc from "picocolors";
 import { readFile } from "fs/promises";
+import { DefaultAzureCredential } from "@azure/identity";
 
 export interface UploadCoverageReportConfig {
   coverageFile: string;
@@ -19,7 +20,7 @@ export async function uploadCoverageReport({
   const content = await readFile(coverageFile);
   const coverage: CoverageReport = JSON.parse(content.toString());
 
-  const client = new CadlRanchCoverageClient(storageAccountName);
+  const client = new CadlRanchCoverageClient(storageAccountName, new DefaultAzureCredential());
   await client.coverage.upload(generatorName, generatorVersion, coverage);
 
   logger.info(
