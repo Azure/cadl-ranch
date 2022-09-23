@@ -11,7 +11,18 @@ export type ScenarioStatus =
   | "not-applicable";
 
 export interface CoverageReport {
+  /**
+   * Metadata for the scenario set for this report.
+   */
+  scenariosMetadata: ScenariosMetadata;
+
+  /**
+   * Coverage result.
+   */
+  results: Record<string, ScenarioStatus>;
+}
+
+export interface ScenariosMetadata {
   version: string;
   commit: string;
-  results: Record<string, ScenarioStatus>;
 }

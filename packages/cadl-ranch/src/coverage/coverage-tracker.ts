@@ -1,17 +1,17 @@
 import { MockResponse, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { writeFile } from "fs/promises";
 import { logger } from "../logger.js";
-import { CoverageReport, ScenarioStatus } from "./types.js";
+import { CoverageReport, ScenariosMetadata, ScenarioStatus } from "./types.js";
 
 export class CoverageTracker {
   private scenarios: Record<string, ScenarioMockApi> = {};
   private hits = new Map<string, Map<string, MockResponse>>();
-  private metadata: { commit: string; version: string } = { commit: "", version: "" };
+  private scenariosMetadata: ScenariosMetadata = { commit: "", version: "" };
 
   public constructor(private coverageFile: string) {}
 
-  public setScenarios(commit: string, version: string, scenarios: Record<string, ScenarioMockApi>) {
-    this.metadata = { commit, version };
+  public setScenarios(scenariosMetadata: ScenariosMetadata, scenarios: Record<string, ScenarioMockApi>) {
+    this.scenariosMetadata = scenariosMetadata;
     this.scenarios = scenarios;
   }
 
@@ -33,7 +33,7 @@ export class CoverageTracker {
       results[name] = this.computeScenarioStatus(name, mockApi);
     }
     return {
-      ...this.metadata,
+      scenariosMetadata: this.scenariosMetadata,
       results,
     };
   }
