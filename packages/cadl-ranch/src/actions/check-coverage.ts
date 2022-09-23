@@ -1,6 +1,7 @@
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { loadCadlRanchConfig } from "../config/config.js";
-import { CoverageResult } from "../coverage/types.js";
+import { createCoverageReport } from "../coverage/coverage-report.js";
+import { CoverageReport, ScenarioStatus } from "../coverage/types.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { createDiagnosticReporter, findFilesFromPattern } from "../utils/index.js";
 
@@ -15,12 +16,12 @@ export interface CheckCoverageConfig {
 export async function checkCoverage(config: CheckCoverageConfig) {
   const inputCoverageFiles = (await Promise.all(config.coverageFiles.map((x) => findFilesFromPattern(x)))).flat();
 
-  const coverage: CoverageResult = {};
+  const results: Record<string, ScenarioStatus> = {};
   const diagnosticsReporter = createDiagnosticReporter();
   const scenarios = await loadScenarioMockApis(config.scenariosPath);
 
   for (const scenarioName of Object.keys(scenarios)) {
-    coverage[scenarioName] = "not-implemented";
+    results[scenarioName] = "not-implemented";
   }
 
   if (config.configFile) {
@@ -28,16 +29,16 @@ export async function checkCoverage(config: CheckCoverageConfig) {
     diagnosticsReporter.reportDiagnostics(diagnostics);
 
     for (const scenarioName of cadlRanchConfig.unsupportedScenarios) {
-      coverage[scenarioName] = "not-supported";
+      results[scenarioName] = "not-supported";
     }
   }
 
   for (const coverageFile of inputCoverageFiles) {
     const content = await readFile(coverageFile);
-    const inputCoverage: CoverageResult = JSON.parse(content.toString());
+    const inputCoverage: CoverageReport = JSON.parse(content.toString());
 
-    for (const [scenarioName, scenarioStatus] of Object.entries(inputCoverage)) {
-      const existing = coverage[scenarioName];
+    for (const [scenarioName, scenarioStatus] of Object.entries(inputCoverage.results)) {
+      const existing = results[scenarioName];
       if (existing === undefined) {
         diagnosticsReporter.reportDiagnostic({
           message: `Scenario ${scenarioName} with coverage in file "${coverageFile}" is not defined in the scenarios in path "${config.scenariosPath}".`,
@@ -47,7 +48,7 @@ export async function checkCoverage(config: CheckCoverageConfig) {
 
       switch (scenarioStatus) {
         case "fail":
-          coverage[scenarioName] = "fail";
+          results[scenarioName] = "fail";
           diagnosticsReporter.reportDiagnostic({
             message: `Scenario ${scenarioName} failed in "${coverageFile}".`,
           });
@@ -56,7 +57,7 @@ export async function checkCoverage(config: CheckCoverageConfig) {
         case "not-applicable":
         case "not-supported":
           if (existing === "not-implemented") {
-            coverage[scenarioName] = scenarioStatus;
+            results[scenarioName] = scenarioStatus;
           }
           break;
         case "not-implemented":
@@ -66,7 +67,7 @@ export async function checkCoverage(config: CheckCoverageConfig) {
   }
 
   if (!config.ignoreNotImplemented) {
-    for (const [scenarioName, scenarioStatus] of Object.entries(coverage)) {
+    for (const [scenarioName, scenarioStatus] of Object.entries(results)) {
       if (scenarioStatus === "not-implemented") {
         diagnosticsReporter.reportDiagnostic({
           message: `Scenario ${scenarioName} is not implemented.`,
@@ -74,6 +75,9 @@ export async function checkCoverage(config: CheckCoverageConfig) {
       }
     }
   }
+
+  const coverageReport = createCoverageReport(config.scenariosPath, results);
+  await writeFile(config.mergedCoverageFile, JSON.stringify(coverageReport, null, 2));
 
   if (diagnosticsReporter.diagnostics.length) {
     process.exit(1);

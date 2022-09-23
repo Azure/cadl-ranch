@@ -10,4 +10,8 @@ export type ScenarioStatus =
   // Scenario is not applicable in current test.
   | "not-applicable";
 
-export type CoverageResult = Record<string, ScenarioStatus>;
+export interface CoverageReport {
+  version: string;
+  commit: string;
+  results: Record<string, ScenarioStatus>;
+}

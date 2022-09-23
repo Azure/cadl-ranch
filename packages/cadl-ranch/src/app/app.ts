@@ -4,6 +4,7 @@ import { CoverageTracker } from "../coverage/coverage-tracker.js";
 import { internalRouter } from "../routes/index.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { MockApiServer } from "../server/index.js";
+import { getCommit, getPackageJson } from "../utils/misc-utils.js";
 import { ApiMockAppConfig } from "./config.js";
 import { processRequest } from "./request-processor.js";
 
@@ -21,7 +22,8 @@ export class MockApiApp {
     this.server.use("/", internalRouter);
 
     const scenarios = await loadScenarioMockApis(this.config.scenarioPath);
-    this.coverageTracker.setScenarios(scenarios);
+    const pkg = await getPackageJson(this.config.scenarioPath);
+    this.coverageTracker.setScenarios(getCommit(this.config.scenarioPath), pkg?.version ?? "?", scenarios);
     for (const [name, scenario] of Object.entries(scenarios)) {
       this.registerScenario(name, scenario);
     }
