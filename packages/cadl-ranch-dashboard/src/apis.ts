@@ -22,7 +22,7 @@ export async function getManifest(): Promise<ScenarioManifest> {
   return await coverageClient.manifest.get();
 }
 
-export async function getCoverageSummary() {
+export async function getCoverageSummary(): Promise<CoverageSummary> {
   const coverageClient = getCoverageClient();
   const [manifest, generatorReports] = await Promise.all([
     coverageClient.manifest.get(),
@@ -34,8 +34,11 @@ export async function getCoverageSummary() {
   };
 }
 
-async function loadReports(coverageClient: CadlRanchCoverageClient, generatorNames: string[]) {
-  const items: [string, CoverageReport | undefined][] = await Promise.all(
+async function loadReports(
+  coverageClient: CadlRanchCoverageClient,
+  generatorNames: GeneratorNames[],
+): Promise<Record<GeneratorNames, CoverageReport | undefined>> {
+  const items: [GeneratorNames, CoverageReport | undefined][] = await Promise.all(
     generatorNames.map(async (generatorName) => {
       try {
         const report = await coverageClient.coverage.getLatestCoverageFor(generatorName);
@@ -49,5 +52,5 @@ async function loadReports(coverageClient: CadlRanchCoverageClient, generatorNam
     }),
   );
 
-  return Object.fromEntries(items);
+  return Object.fromEntries(items) as any;
 }

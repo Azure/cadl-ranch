@@ -8,5 +8,6 @@
     "lib": ["DOM"],
     "types": ["@emotion/react"]
   },
+  "references": [{ "path": "../cadl-ranch-coverage-sdk/tsconfig.build.json" }],
   "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "src/main.tsx", "vite.config.ts"]
 }
