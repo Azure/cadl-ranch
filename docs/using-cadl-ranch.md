@@ -71,6 +71,8 @@ Options:
 
 #### Upload in azure devops
 
+**This is applicable in the azure-sdk/internal ado project only.**
+
 Add the following step
 
 ```yaml
