@@ -1,20 +1,26 @@
-import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { CoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
+import { CoverageSummary, GeneratorNames } from "./apis.js";
+import { ScenarioStatusBox } from "./components/scenario-status.js";
 import { Colors } from "./constants.js";
 
-const languages = ["python", "typescript", "csharp", "java"];
 export interface DashboardProps {
-  manifest: ScenarioManifest;
+  coverageSummary: CoverageSummary;
 }
 
-export const Dashboard: FunctionComponent<DashboardProps> = ({ manifest }) => {
-  const rows = manifest.scenarios.map((x) => {
+export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
+  const languages: GeneratorNames[] = Object.keys(coverageSummary.generatorReports) as any;
+  const rows = coverageSummary.manifest.scenarios.map((x) => {
     return (
       <tr key={x.name}>
-        <td>{x.name}</td>
+        <td css={ScenarioNameCellStyles} title={x.scenarioDoc}>
+          {x.name}
+        </td>
         {languages.map((lang) => (
-          <td key={lang}></td>
+          <td key={lang} css={ScenarioStatusCellStyles}>
+            <ScenarioStatusBox status={coverageSummary.generatorReports[lang]?.results[x.name]} />
+          </td>
         ))}
       </tr>
     );
@@ -22,28 +28,65 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ manifest }) => {
   return (
     <table css={TableStyles}>
       <thead>
-        <tr>
-          <th>Scenario name</th>
-          {languages.map((lang) => (
-            <th key={lang}>{lang}</th>
-          ))}
-        </tr>
+        <DashboardHeaderRow coverageSummary={coverageSummary} />
       </thead>
       <tbody>{rows}</tbody>
     </table>
   );
 };
 
+interface DashboardHeaderRow {
+  coverageSummary: CoverageSummary;
+}
+const DashboardHeaderRow: FunctionComponent<DashboardHeaderRow> = ({ coverageSummary }) => {
+  const data: [string, number, CoverageReport | undefined][] = Object.entries(coverageSummary.generatorReports).map(
+    ([language, report]) => {
+      if (report === undefined) {
+        return [language, 0, undefined];
+      }
+      let coveredCount = 0;
+      for (const scenario of coverageSummary.manifest.scenarios) {
+        const status = report.results[scenario.name];
+        if (status === "pass" || status === "not-applicable") {
+          coveredCount++;
+        }
+      }
+      return [language, coveredCount / coverageSummary.manifest.scenarios.length, report];
+    },
+  );
+
+  return (
+    <tr>
+      <th>Scenario name</th>
+      {data.map(([lang, status, report]) => (
+        <th key={lang}>
+          <div title="Generator name">{lang}</div>
+          <div title="Scenario version used in this coverage.">{report?.scenariosMetadata?.version ?? "?"}</div>
+          <div title="Coverage stats">{Math.floor(status * 100)}%</div>
+        </th>
+      ))}
+    </tr>
+  );
+};
 const TableStyles = css({
   "borderCollapse": "collapse",
-  "& tr:nth-child(2n)": {
+  "& tr:nth-of-type(2n)": {
     backgroundColor: Colors.bgSubtle,
   },
   "& td, & th": {
-    padding: "6px 13px",
     border: `1px solid ${Colors.borderDefault}`,
+    height: "32px",
   },
   "& th": {
+    padding: "6px 13px",
     backgroundColor: Colors.bgSubtle,
   },
+});
+
+const ScenarioNameCellStyles = css({
+  padding: "6px 13px",
+});
+const ScenarioStatusCellStyles = css({
+  padding: 0,
+  width: 120,
 });

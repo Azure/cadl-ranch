@@ -3,6 +3,10 @@
   "compilerOptions": {
     "rootDir": "./src"
   },
-  "references": [{ "path": "../cadl-ranch-expect/tsconfig.build.json" }],
+  "references": [
+    { "path": "../cadl-ranch-expect/tsconfig.build.json" },
+    { "path": "../cadl-ranch-api/tsconfig.build.json" },
+    { "path": "../cadl-ranch-coverage-sdk/tsconfig.build.json" }
+  ],
   "exclude": ["**/*.test.*", "test/**/*"]
 }

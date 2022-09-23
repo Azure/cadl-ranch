@@ -6,11 +6,12 @@ import {
   StorageSharedKeyCredential,
 } from "@azure/storage-blob";
 import { TokenCredential } from "@azure/identity";
-import { ScenarioManifest } from "./types.js";
+import { CoverageReport, ScenarioManifest } from "./types.js";
 
 export class CadlRanchCoverageClient {
   #container: ContainerClient;
   manifest: CadlRanchManifestOperations;
+  coverage: CadlRanchCoverageOperations;
 
   constructor(
     storageAccountName: string,
@@ -18,6 +19,7 @@ export class CadlRanchCoverageClient {
   ) {
     this.#container = getCoverageContainer(storageAccountName, credential);
     this.manifest = new CadlRanchManifestOperations(this.#container);
+    this.coverage = new CadlRanchCoverageOperations(this.#container);
   }
 
   public async createIfNotExists() {
@@ -46,10 +48,56 @@ export class CadlRanchManifestOperations {
   }
 
   public async get(): Promise<ScenarioManifest> {
-    const blob = await this.#blob.download();
-    const body = await blob.blobBody;
-    const content = await body?.text();
-    return content ? JSON.parse(content) : undefined;
+    return readJsonBlob<ScenarioManifest>(this.#blob);
+  }
+}
+
+export class CadlRanchCoverageOperations {
+  #container: ContainerClient;
+
+  constructor(container: ContainerClient) {
+    this.#container = container;
+  }
+
+  public async upload(generatorName: string, version: string, manifest: CoverageReport): Promise<void> {
+    const blob = this.#container.getBlockBlobClient(`${generatorName}/reports/${version}.json`);
+    const content = JSON.stringify(manifest, null, 2);
+    await blob.upload(content, content.length, {
+      metadata: {
+        generatorName: generatorName,
+        generatorVersion: version,
+      },
+      blobHTTPHeaders: {
+        blobContentType: "application/json; charset=utf-8",
+      },
+    });
+
+    await this.updateIndex(generatorName, version);
+  }
+
+  public async getLatestCoverageFor(generatorName: string): Promise<CoverageReport> {
+    const index = await readJsonBlob<{ version: string }>(
+      this.#container.getBlockBlobClient(`${generatorName}/index.json`),
+    );
+    console.log("index", index.version);
+
+    const report = await readJsonBlob<CoverageReport>(
+      this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`),
+    );
+    return report;
+  }
+
+  private async updateIndex(generatorName: string, version: string) {
+    const blob = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
+    const data = {
+      version,
+    };
+    const content = JSON.stringify(data, null, 2);
+    await blob.upload(content, content.length, {
+      blobHTTPHeaders: {
+        blobContentType: "application/json; charset=utf-8",
+      },
+    });
   }
 }
 
@@ -60,4 +108,11 @@ function getCoverageContainer(
   const blobSvc = new BlobServiceClient(`https://${storageAccountName}.blob.core.windows.net`, credential);
   const containerClient = blobSvc.getContainerClient(`coverages`);
   return containerClient;
+}
+
+async function readJsonBlob<T>(blobClient: BlockBlobClient): Promise<T> {
+  const blob = await blobClient.download();
+  const body = await blob.blobBody;
+  const content = await body?.text();
+  return content ? JSON.parse(content) : undefined;
 }

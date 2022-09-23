@@ -49,3 +49,21 @@ cadl-ranch check-coverage ./path/to/scenarios --coverageFiles ./path/to/*-covera
 # Specify where the merged coverage file should go
 cadl-ranch check-coverage ./path/to/scenarios --mergedCoverageFile ./path/to/cadl-ranch-final-coverage.json
 ```
+
+### Upload coverage
+
+Upload the coverage. Upload from the `main` branch. DO NOT upload on PR this WILL override the latest index.
+
+```bash
+# Minimal
+cadl-ranch upload-coverage --generatorName typescript --version=0.1.0
+
+# Specify Coverage file
+cadl-ranch upload-coverage --generatorName typescript --version=0.1.0  --coverageFile ./path/to/cadl-ranch-final-coverage.json
+```
+
+Options:
+
+- `--generatorName`: Name of the generator. Must be one of `"python", "typescript", "csharp", "java"`
+- `--generatorVersion`: Version of the generator
+- `--coverageFile`: Path to the coverage file
