@@ -79,7 +79,6 @@ export class CadlRanchCoverageOperations {
     const index = await readJsonBlob<{ version: string }>(
       this.#container.getBlockBlobClient(`${generatorName}/index.json`),
     );
-    console.log("index", index.version);
 
     const report = await readJsonBlob<CoverageReport>(
       this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`),

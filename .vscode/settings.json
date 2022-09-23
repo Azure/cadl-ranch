@@ -11,5 +11,6 @@
   "files.eol": "\n",
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.documentSelectors": ["**/*.cadl"],
-  "cadl.cadl-server.path": "${workspaceRoot}/packages/cadl-ranch-specs/node_modules/@cadl-lang/compiler"
+  "cadl.cadl-server.path": "${workspaceRoot}/packages/cadl-ranch-specs/node_modules/@cadl-lang/compiler",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

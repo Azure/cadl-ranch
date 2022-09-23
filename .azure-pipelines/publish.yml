@@ -29,5 +29,5 @@ steps:
     displayName: Publish packages
 
   - script: |
-      pnpm upload-scenario-manifest
+      pnpm upload-manifest
     displayName: Upload scenario manifest

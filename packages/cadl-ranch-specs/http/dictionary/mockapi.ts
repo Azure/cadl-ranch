@@ -35,7 +35,7 @@ const Int32ValueMock = createModelMockApis("int32", { k1: 1, k2: 2 });
 Scenarios.Dictionary_Int32Value_get = passOnSuccess(Int32ValueMock.get);
 Scenarios.Dictionary_Int32Value_put = passOnSuccess(Int32ValueMock.put);
 
-const Int64ValueMock = createModelMockApis("int64", { k1: 0x7fffffffffffffff, k2: -0x7fffffffffffffff });
+const Int64ValueMock = createModelMockApis("int64", { k1: Number.MAX_SAFE_INTEGER, k2: Number.MIN_SAFE_INTEGER });
 Scenarios.Dictionary_Int64Value_get = passOnSuccess(Int64ValueMock.get);
 Scenarios.Dictionary_Int64Value_put = passOnSuccess(Int64ValueMock.put);
 
