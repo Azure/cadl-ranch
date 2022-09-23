@@ -13,7 +13,9 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }
   const rows = coverageSummary.manifest.scenarios.map((x) => {
     return (
       <tr key={x.name}>
-        <td css={ScenarioNameCellStyles}>{x.name}</td>
+        <td css={ScenarioNameCellStyles} title={x.scenarioDoc}>
+          {x.name}
+        </td>
         {languages.map((lang) => (
           <td key={lang} css={ScenarioStatusCellStyles}>
             <ScenarioStatusBox status={coverageSummary.generatorReports[lang]?.results[x.name]} />
@@ -25,18 +27,43 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }
   return (
     <table css={TableStyles}>
       <thead>
-        <tr>
-          <th>Scenario name</th>
-          {languages.map((lang) => (
-            <th key={lang}>{lang}</th>
-          ))}
-        </tr>
+        <DashboardHeaderRow coverageSummary={coverageSummary} />
       </thead>
       <tbody>{rows}</tbody>
     </table>
   );
 };
 
+interface DashboardHeaderRow {
+  coverageSummary: CoverageSummary;
+}
+const DashboardHeaderRow: FunctionComponent<DashboardHeaderRow> = ({ coverageSummary }) => {
+  const data: [string, number][] = Object.entries(coverageSummary.generatorReports).map(([language, report]) => {
+    if (report === undefined) {
+      return [language, 0];
+    }
+    let coveredCount = 0;
+    for (const scenario of coverageSummary.manifest.scenarios) {
+      const status = report.results[scenario.name];
+      if (status === "pass" || status === "not-applicable") {
+        coveredCount++;
+      }
+    }
+    return [language, coveredCount / coverageSummary.manifest.scenarios.length];
+  });
+
+  return (
+    <tr>
+      <th>Scenario name</th>
+      {data.map(([lang, status]) => (
+        <th key={lang}>
+          <div>{lang} </div>
+          <div>{Math.floor(status * 100)}%</div>
+        </th>
+      ))}
+    </tr>
+  );
+};
 const TableStyles = css({
   "borderCollapse": "collapse",
   "& tr:nth-of-type(2n)": {
@@ -57,4 +84,5 @@ const ScenarioNameCellStyles = css({
 });
 const ScenarioStatusCellStyles = css({
   padding: 0,
+  width: 120,
 });
