@@ -55,9 +55,6 @@ jobs:
       - run: pnpm run build
         name: Build
 
-      - run: ls ./packages/cadl-ranch-specs/node_modules/.bin
-        name: Test LS
-
       - run: pnpm run validate-scenarios --debug
         name: Validate Scenarios
 
@@ -69,6 +66,9 @@ jobs:
 
       - run: pnpm run check-format
         name: Check formatting
+
+      - run: pnpm run lint
+        name: Lint
 
       - run: |
           git status --porcelain

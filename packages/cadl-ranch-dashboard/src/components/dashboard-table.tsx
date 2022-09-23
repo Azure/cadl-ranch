@@ -1,15 +1,15 @@
 import { CoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
 import { FunctionComponent } from "react";
-import { CoverageSummary, GeneratorNames } from "./apis.js";
-import { ScenarioStatusBox } from "./components/scenario-status.js";
-import { Colors } from "./constants.js";
+import { CoverageSummary, GeneratorNames } from "../apis.js";
+import { Colors } from "../constants.js";
+import { ScenarioStatusBox } from "./scenario-status.js";
 
-export interface DashboardProps {
+export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
 }
 
-export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
+export const DashboardTable: FunctionComponent<DashboardTableProps> = ({ coverageSummary }) => {
   const languages: GeneratorNames[] = Object.keys(coverageSummary.generatorReports) as any;
   const rows = coverageSummary.manifest.scenarios.map((x) => {
     return (
@@ -84,7 +84,7 @@ const TableStyles = css({
 });
 
 const ScenarioNameCellStyles = css({
-  padding: "6px 13px",
+  padding: "0 13px",
 });
 const ScenarioStatusCellStyles = css({
   padding: 0,
