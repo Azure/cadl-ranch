@@ -31,7 +31,7 @@ steps:
   - task: AzureCLI@2
     displayName: Upload scenario manifest
     inputs:
-      azureSubscription: 'Azure SDK Playground'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'pnpm upload-manifest'
+      azureSubscription: "Azure SDK Playground"
+      scriptType: "bash"
+      scriptLocation: "inlineScript"
+      inlineScript: "pnpm upload-manifest"
