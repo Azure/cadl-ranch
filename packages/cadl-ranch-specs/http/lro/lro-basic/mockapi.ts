@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Lro_Basic_create = passOnSuccess([
+Scenarios.Azure_Lro_PollingSuccess = passOnSuccess([
   mockapi.put("/lro/basic/put", (req) => {
     return { status: 200, headers: { "operation-location": "http://localhost:3000/lro/basic/put/polling" } };
   }),
@@ -11,6 +11,6 @@ Scenarios.Lro_Basic_create = passOnSuccess([
     return { status: 200, body: json({ status: "Succeeded" }) };
   }),
   mockapi.get("/lro/basic/put", (req) => {
-    return { status: 200, body: json("Successful") };
+    return { status: 200, body: json("Test for polling succeed") };
   }),
 ]);

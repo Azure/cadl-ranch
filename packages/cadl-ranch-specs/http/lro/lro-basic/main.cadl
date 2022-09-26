@@ -6,14 +6,27 @@ using Cadl.Http;
 using Azure.Core;
 
 @scenarioService("/lro/basic")
-@doc("Basic test for lro")
-namespace Lro.Basic;
+@doc("All the basic lro test shall be added in this file")
+namespace Azure.Lro;
 
 #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
 @scenario
-@scenarioDoc("The polling url is in operation-location of response headers. Mock api finally return 'Successful'")
-@doc("Test for basic lro of put")
-@pollingOperation
 @route("/put")
-@put
-op create(): string;
+interface PollingSuccess {
+  @scenarioDoc("The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'")
+  @doc("Test for basic lro of put")
+  @pollingOperation
+  @put
+  op create(): string;
+
+  @scenarioDoc("The polling url. It shall be handled automatically in azure-core")
+  @doc("The polling url")
+  @route("/polling")
+  @get
+  op polling(): string;
+
+  @scenarioDoc("The final url and it returns 'Test for polling succeed'.  It shall be handled automatically in azure-core")
+  @doc("The final url")
+  @get
+  op get(): string;
+}

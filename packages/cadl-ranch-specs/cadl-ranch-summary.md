@@ -311,11 +311,14 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
-### Lro_Basic_create
+### Azure_Lro_PollingSuccess
 
-- Endpoint: `put /lro/basic/put`
+- Endpoints:
+  - `put /lro/basic/put`
+  - `put /lro/basic/put/polling`
+  - `put /lro/basic/put`
 
-The polling url is in operation-location of response headers. Mock api finally return 'Successful'
+undefined
 
 ### Models_Inheritance_Discriminated_getModel
 
