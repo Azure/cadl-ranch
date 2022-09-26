@@ -17,16 +17,16 @@ interface PollingSuccess {
   @doc("Test for basic lro of put")
   @pollingOperation
   @put
-  op create(): string;
+  create(): string;
 
   @scenarioDoc("The polling url. It shall be handled automatically in azure-core")
   @doc("The polling url")
   @route("/polling")
   @get
-  op polling(): string;
+  polling(): string;
 
   @scenarioDoc("The final url and it returns 'Test for polling succeed'.  It shall be handled automatically in azure-core")
   @doc("The final url")
   @get
-  op get(): string;
+  get(): string;
 }
