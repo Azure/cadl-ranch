@@ -311,6 +311,15 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
+### Azure_Lro_PollingSuccess
+
+- Endpoints:
+  - `put /lro/basic/put`
+  - `put /lro/basic/put/polling`
+  - `put /lro/basic/put`
+
+undefined
+
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`
