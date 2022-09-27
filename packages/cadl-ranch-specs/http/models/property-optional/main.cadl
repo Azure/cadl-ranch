@@ -103,7 +103,7 @@ interface Datetime extends OperationsTemplate<DatetimeProperty, "2022-08-26T18:3
 
 // Model with optional duration property
 @doc("Model with a duration property")
-model DurationProperty is ModelTemplate<zonedDateTime>;
+model DurationProperty is ModelTemplate<duration>;
 @route("/duration")
 interface Duration extends OperationsTemplate<DurationProperty, "P123DT22H14M12.011S"> {}
 

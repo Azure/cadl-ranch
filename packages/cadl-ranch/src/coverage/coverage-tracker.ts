@@ -1,15 +1,17 @@
 import { MockResponse, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { writeFile } from "fs/promises";
 import { logger } from "../logger.js";
-import { CoverageResult, ScenarioStatus } from "./types.js";
+import { CoverageReport, ScenariosMetadata, ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 
 export class CoverageTracker {
   private scenarios: Record<string, ScenarioMockApi> = {};
   private hits = new Map<string, Map<string, MockResponse>>();
+  private scenariosMetadata: ScenariosMetadata = { commit: "", version: "" };
 
   public constructor(private coverageFile: string) {}
 
-  public setScenarios(scenarios: Record<string, ScenarioMockApi>) {
+  public setScenarios(scenariosMetadata: ScenariosMetadata, scenarios: Record<string, ScenarioMockApi>) {
+    this.scenariosMetadata = scenariosMetadata;
     this.scenarios = scenarios;
   }
 
@@ -24,13 +26,16 @@ export class CoverageTracker {
     await this.saveCoverage();
   }
 
-  public computeCoverage(): CoverageResult {
-    const results: CoverageResult = {};
+  public computeCoverage(): CoverageReport {
+    const results: Record<string, ScenarioStatus> = {};
 
     for (const [name, mockApi] of Object.entries(this.scenarios)) {
       results[name] = this.computeScenarioStatus(name, mockApi);
     }
-    return results;
+    return {
+      scenariosMetadata: this.scenariosMetadata,
+      results,
+    };
   }
 
   private async saveCoverage() {
