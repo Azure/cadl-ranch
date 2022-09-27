@@ -42,11 +42,16 @@ export function getSupportedBy(program: Program, target: Namespace): SupportedBy
 
 const ScenarioDocKey = Symbol("ScenarioDoc");
 const scenarioDocSignature = createDecoratorDefinition({
-  name: "@scenario",
-  target: "Operation",
+  name: "@scenarioDoc",
+  target: ["Operation", "Namespace", "Interface"],
   args: [{ kind: "String" }, { kind: "Model", optional: true }],
 } as const);
-export function $scenarioDoc(context: DecoratorContext, target: Operation, doc: string, formatArgs?: Model) {
+export function $scenarioDoc(
+  context: DecoratorContext,
+  target: Namespace | Operation | Interface,
+  doc: string,
+  formatArgs?: Model,
+) {
   if (!scenarioDocSignature.validate(context, target, [doc, formatArgs])) {
     return;
   }
