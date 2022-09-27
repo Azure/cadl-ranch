@@ -317,3 +317,5 @@ dist
 
 # MICROSOFT SECURITY.md
 /SECURITY.md
+
+.changeset/**/*.md
