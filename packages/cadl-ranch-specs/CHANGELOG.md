@@ -1,5 +1,24 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.2.0
+
+### Minor Changes
+
+- [#111](https://github.com/Azure/cadl-ranch/pull/111) [`b58be0e`](https://github.com/Azure/cadl-ranch/commit/b58be0e35aae20dad18f6c50f1b9ec407ca86e18) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Upload scenario manifest to storage account for dashboard
+
+### Patch Changes
+
+- [#113](https://github.com/Azure/cadl-ranch/pull/113) [`1fc9000`](https://github.com/Azure/cadl-ranch/commit/1fc90008a87acead33c86567c167dbcaa524115f) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - bug fix, update models/property-optional /duration operation
+
+- [#107](https://github.com/Azure/cadl-ranch/pull/107) [`9d6ae37`](https://github.com/Azure/cadl-ranch/commit/9d6ae3770ef6da76172377a922b5b6a52ea55d28) Thanks [@changlong-liu](https://github.com/changlong-liu)! - Fix route in dictionary mock apis.
+
+- [#114](https://github.com/Azure/cadl-ranch/pull/114) [`f34dc29`](https://github.com/Azure/cadl-ranch/commit/f34dc29d87003d6a3e5c37b78e2e9d83cabc27d7) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Upload coverage report and show aggregated report on dashboard
+
+- [#109](https://github.com/Azure/cadl-ranch/pull/109) [`069a616`](https://github.com/Azure/cadl-ranch/commit/069a616b32b3f898b5396f0a592ea53620cf571b) Thanks [@iscai-msft](https://github.com/iscai-msft)! - fix coverage report for invalid authentication tests
+
+- Updated dependencies [[`b58be0e`](https://github.com/Azure/cadl-ranch/commit/b58be0e35aae20dad18f6c50f1b9ec407ca86e18), [`f34dc29`](https://github.com/Azure/cadl-ranch/commit/f34dc29d87003d6a3e5c37b78e2e9d83cabc27d7)]:
+  - @azure-tools/cadl-ranch@0.2.0
+
 ## 0.1.12
 
 ### Patch Changes

@@ -7,6 +7,8 @@ import { serve } from "../actions/serve.js";
 import { validateMockApis } from "../actions/validate-mock-apis.js";
 import { checkCoverage } from "../actions/check-coverage.js";
 import { generateScenarioSummary } from "../actions/generate-scenario-summary.js";
+import { uploadScenarioManifest } from "../actions/upload-scenario-manifest.js";
+import { uploadCoverageReport } from "../actions/upload-coverage-report.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -135,8 +137,8 @@ async function main() {
         await checkCoverage({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           configFile: args.configFile,
-          mergedCoverageFile: args.mergedCoverageFile,
-          coverageFiles: args.coverageFiles,
+          mergedCoverageFile: resolve(process.cwd(), args.mergedCoverageFile),
+          coverageFiles: args.coverageFiles.map((x) => resolve(process.cwd(), x)),
           ignoreNotImplemented: args.ignoreNotImplemented,
         });
       },
@@ -154,6 +156,66 @@ async function main() {
       async (args) => {
         await validateMockApis({
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
+        });
+      },
+    )
+    .command(
+      "upload-manifest <scenariosPath>",
+      "Upload the scenario manifest. DO NOT CALL in generator.",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .option("storageAccountName", {
+            type: "string",
+            description: "Name of the storage account",
+          })
+          .demandOption("storageAccountName");
+      },
+      async (args) => {
+        await uploadScenarioManifest({
+          scenariosPath: resolve(process.cwd(), args.scenariosPath),
+          storageAccountName: args.storageAccountName,
+        });
+      },
+    )
+    .command(
+      "upload-coverage",
+      "Upload the coverage report.",
+      (cmd) => {
+        return cmd
+          .option("coverageFile", {
+            type: "string",
+            description: "Path to the coverage file to upload.",
+            default: join(process.cwd(), "cadl-ranch-coverage.json"),
+          })
+          .demandOption("coverageFile")
+          .option("storageAccountName", {
+            type: "string",
+            description: "Name of the storage account",
+            default: join(process.cwd(), "cadl-ranch-coverage.json"),
+          })
+          .demandOption("storageAccountName")
+          .option("generatorName", {
+            type: "string",
+            description: "Name of generator",
+          })
+          .demandOption("generatorName")
+          .option("generatorVersion", {
+            type: "string",
+            description: "Version of generator",
+          })
+          .demandOption("generatorVersion");
+      },
+      async (args) => {
+        await uploadCoverageReport({
+          coverageFile: resolve(process.cwd(), args.coverageFile),
+          storageAccountName: args.storageAccountName,
+          generatorName: args.generatorName,
+          generatorVersion: args.generatorVersion,
         });
       },
     )

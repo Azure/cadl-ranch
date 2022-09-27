@@ -1,5 +1,6 @@
 import { RequestExt, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Response, Router } from "express";
+import { getScenarioMetadata } from "../coverage/common.js";
 import { CoverageTracker } from "../coverage/coverage-tracker.js";
 import { internalRouter } from "../routes/index.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
@@ -21,7 +22,7 @@ export class MockApiApp {
     this.server.use("/", internalRouter);
 
     const scenarios = await loadScenarioMockApis(this.config.scenarioPath);
-    this.coverageTracker.setScenarios(scenarios);
+    this.coverageTracker.setScenarios(await getScenarioMetadata(this.config.scenarioPath), scenarios);
     for (const [name, scenario] of Object.entries(scenarios)) {
       this.registerScenario(name, scenario);
     }
