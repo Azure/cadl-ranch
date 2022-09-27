@@ -19,26 +19,31 @@ export function $onValidate(program: Program) {
       if (getSourceLocation(operation).file.path.includes("/node_modules/")) {
         return;
       }
-      if (!checkIsInScenario(program, operation)) {
+      const scenarioType = checkIsInScenario(program, operation);
+      if (!scenarioType) {
         reportDiagnostic(program, { code: "missing-scenario", target: operation });
-      }
-      const doc = getScenarioDoc(program, operation);
-      if (doc === undefined) {
-        reportDiagnostic(program, { code: "missing-scenario-doc", target: operation });
+      } else {
+        const doc = getScenarioDoc(program, scenarioType);
+        if (doc === undefined) {
+          reportDiagnostic(program, { code: "missing-scenario-doc", target: scenarioType });
+        }
       }
     },
   });
 }
 
-function checkIsInScenario(program: Program, type: Operation | Interface | Namespace): boolean {
+function checkIsInScenario(
+  program: Program,
+  type: Operation | Interface | Namespace,
+): Operation | Interface | Namespace | undefined {
   if (getScenarioName(program, type)) {
-    return true;
+    return type;
   }
   if (type.kind === "Operation" && type.interface) {
     return checkIsInScenario(program, type.interface);
   }
   if (type.namespace === undefined) {
-    return false;
+    return undefined;
   }
   return checkIsInScenario(program, type.namespace);
 }

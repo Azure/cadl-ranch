@@ -318,7 +318,7 @@ This test is testing this payload is returned from the server
   - `put /lro/basic/put/polling`
   - `put /lro/basic/put`
 
-undefined
+The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
 
 ### Models_Inheritance_Discriminated_getModel
 
