@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.0
+
+### Minor Changes
+
+- [#105](https://github.com/Azure/cadl-ranch/pull/105) [`08f06ba`](https://github.com/Azure/cadl-ranch/commit/08f06ba886189114fde67c68ccc433d3381cf5d9) Thanks [@msyyc](https://github.com/msyyc)! - Adding specs and mockapi to support basic lro
+
+### Patch Changes
+
+- [#118](https://github.com/Azure/cadl-ranch/pull/118) [`a307dea`](https://github.com/Azure/cadl-ranch/commit/a307deab3c1af32935992bd2fd8340f5879aeec5) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Fix: should be allowed on interface and namespace as well(next to @scenario)
+
+- Updated dependencies [[`a307dea`](https://github.com/Azure/cadl-ranch/commit/a307deab3c1af32935992bd2fd8340f5879aeec5)]:
+  - @azure-tools/cadl-ranch-expect@0.1.10
+  - @azure-tools/cadl-ranch@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
