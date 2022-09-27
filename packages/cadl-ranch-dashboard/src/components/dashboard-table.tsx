@@ -47,7 +47,7 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRow> = ({ coverageSum
       let coveredCount = 0;
       for (const scenario of coverageSummary.manifest.scenarios) {
         const status = report.results[scenario.name];
-        if (status === "pass" || status === "not-applicable") {
+        if (status === "pass" || status === "not-applicable" || status === "not-supported") {
           coveredCount++;
         }
       }

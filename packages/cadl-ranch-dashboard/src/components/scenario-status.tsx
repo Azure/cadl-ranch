@@ -23,6 +23,8 @@ export const ScenarioStatusBox: FunctionComponent<ScenarioStatusBoxProps> = ({ s
       return <FailStatus />;
     case "not-applicable":
       return <NotApplicableStatus />;
+    case "not-supported":
+      return <NotSupportedStatus />;
     case "not-implemented":
       return <NotImplementedStatus />;
     case undefined: {
@@ -54,6 +56,11 @@ export const FailStatus = () => (
   </div>
 );
 
+export const NotSupportedStatus = () => (
+  <div title="Not supported" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.borderDefault })]}>
+    <FontAwesomeIcon icon={faEyeSlash} />
+  </div>
+);
 export const NotApplicableStatus = () => (
   <div title="Not applicable" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.borderDefault })]}>
     <FontAwesomeIcon icon={faEyeSlash} />
