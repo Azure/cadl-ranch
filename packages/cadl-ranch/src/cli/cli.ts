@@ -228,3 +228,8 @@ main().catch((error) => {
   console.log("Error", error);
   process.exit(1);
 });
+
+process.once("SIGTERM", () => process.exit(2));
+process.once("SIGINT", () => process.exit(2));
+process.once("SIGUSR1", () => process.exit(2));
+process.once("SIGUSR2", () => process.exit(2));
