@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.2
+
+### Patch Changes
+
+- [#119](https://github.com/Azure/cadl-ranch/pull/119) [`4634cd7`](https://github.com/Azure/cadl-ranch/commit/4634cd7aa834b44bf58695a8a5c0b090ce0c525d) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Not supported should be a supported coverage status
+
+- [#122](https://github.com/Azure/cadl-ranch/pull/122) [`23665a0`](https://github.com/Azure/cadl-ranch/commit/23665a0a9abd1428486c274d5b72971ee1f8c379) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Save coverage on process exiting only.
+
 ## 0.2.1
 
 ### Patch Changes
