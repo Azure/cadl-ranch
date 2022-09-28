@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.1.3
+
+### Patch Changes
+
+- [#119](https://github.com/Azure/cadl-ranch/pull/119) [`4634cd7`](https://github.com/Azure/cadl-ranch/commit/4634cd7aa834b44bf58695a8a5c0b090ce0c525d) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Not supported should be a supported coverage status
+
 ## 0.1.2
 
 ### Patch Changes
