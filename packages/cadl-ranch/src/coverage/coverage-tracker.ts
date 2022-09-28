@@ -9,7 +9,7 @@ export class CoverageTracker {
   private scenariosMetadata: ScenariosMetadata = { commit: "", version: "" };
 
   public constructor(private coverageFile: string) {
-    process.once("exit", () => {
+    process.on("exit", () => {
       logger.info("Saving coverage");
       this.saveCoverageSync();
       logger.info("Coverage saved!");
