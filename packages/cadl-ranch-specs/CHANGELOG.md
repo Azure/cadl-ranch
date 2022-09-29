@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.2
+
+### Patch Changes
+
+- [#125](https://github.com/Azure/cadl-ranch/pull/125) [`78f52a6`](https://github.com/Azure/cadl-ranch/commit/78f52a69c09af377a1e0d4d9592cd17207982283) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Redresign Models usage scenarios
+
+- Updated dependencies [[`fc7ac81`](https://github.com/Azure/cadl-ranch/commit/fc7ac81e7bb6c8be4f5aa01863ab7f811dc96c52), [`78f52a6`](https://github.com/Azure/cadl-ranch/commit/78f52a69c09af377a1e0d4d9592cd17207982283)]:
+  - @azure-tools/cadl-ranch@0.2.3
+
 ## 0.3.1
 
 ### Patch Changes
