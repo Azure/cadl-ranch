@@ -69,12 +69,8 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
 const NOT_IMPLEMENTED = [
   // Anne
-  "models/input-basic",
   "models/readonly-properties",
-  "models/roundtrip-basic",
-  "models/nested-models",
-  "models/output-basic",
-  "clients/interfaces",
+  "clients/interfaces", // Need to figure out the client subclient operation group story for dpg.
 
   // Laurent
   "resiliency/dev-driven",

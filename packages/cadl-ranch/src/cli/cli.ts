@@ -229,7 +229,6 @@ main().catch((error) => {
   process.exit(1);
 });
 
-process.stdin.resume(); //so the program will not close instantly
 process.on("SIGTERM", () => process.exit(2));
 process.on("SIGINT", () => process.exit(2));
 process.on("SIGUSR1", () => process.exit(2));
