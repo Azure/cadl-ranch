@@ -34,6 +34,19 @@ cadl-ranch serve ./path/to/scenarios --port 1234
 cadl-ranch serve ./path/to/scenarios --coverageFile ./path/to/cadl-ranch-coverage.json
 ```
 
+Alternative to start in background
+
+```bash
+cadl-ranch server start ./path/to/scenarios # Takes the same arguments as serve
+```
+
+### Stop running server
+
+```bash
+cadl-ranch server stop # Stop at the default port
+cadl-ranch server stop --port  1234 # If started the server at another port
+```
+
 ### Validate and merge coverage
 
 ```bash
