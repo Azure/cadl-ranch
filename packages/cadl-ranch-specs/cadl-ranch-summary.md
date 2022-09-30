@@ -1136,7 +1136,7 @@ Generate, send, and receive a round-trip model with required reference and value
 
 ### Resiliency_DevDriven_getModel
 
-- Endpoint: `get /resiliency/devdriven/customization/model/{mode}`
+- Endpoint: `get /resiliency/devdriven/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP GET.
 This method requires to write 2 tests.
@@ -1148,7 +1148,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_DevDriven_postModel
 
-- Endpoint: `post /resiliency/devdriven/customization/model/{mode}`
+- Endpoint: `post /resiliency/devdriven/model/{mode}`
 
 Show that you can support both protocol methods and convenience method for a HTTP POST.
 This method requires to write 2 tests.
@@ -1158,21 +1158,26 @@ This method requires to write 2 tests.
   - With DPG 1.0, write a model Input("world!"), serialize to input write your own model to parse `{"received": "model"}`
   - With DPG 2.0, generate the convenience method to pass Input("world!") and read Product model with "received" to "model"
 
-### Resiliency_DevDriven_getPages
+### Resiliency_DevDriven_getRawPages
 
-- Endpoint: `get /resiliency/devdriven/customization/paging/{mode}`
+- Endpoint: `get /resiliency/devdriven`
+
+Show that you can support protocol methods for a Paging operation.
+Confirm you can read a JSON `{"received": "raw"}` on page 2.
+
+### Resiliency_DevDriven_getModelPages
+
+- Endpoint: `get /resiliency/devdriven`
 
 Show that you can support both protocol methods and convenience method for a Paging operation.
 This method requires to write 2 tests.
 
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}` on page 2.
-- Test 2 varies:
-  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
+- With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
 
 ### Resiliency_DevDriven_lro
 
-- Endpoint: `put /resiliency/devdriven/customization/lro/{mode}`
+- Endpoint: `put /resiliency/devdriven/lro/{mode}`
 
 Show that you can support both protocol methods and convenience method for a LRO.
 This method requires to write 2 tests.

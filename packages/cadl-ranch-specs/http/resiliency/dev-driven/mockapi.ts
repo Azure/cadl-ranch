@@ -2,7 +2,7 @@ import { passOnSuccess, ScenarioMockApi, mockapi, json } from "@azure-tools/cadl
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.GetRawModel = passOnSuccess(
+Scenarios.Resiliency_DevDriven_getModel = passOnSuccess(
   mockapi.get("/resiliency/devdriven/model/raw", (req) => {
     return {
       status: 200,
@@ -11,7 +11,7 @@ Scenarios.GetRawModel = passOnSuccess(
   }),
 );
 
-Scenarios.GetHandwrittenModel = passOnSuccess(
+Scenarios.Resiliency_DevDriven_getModel = passOnSuccess(
   mockapi.get("/resiliency/devdriven/model/model", (req) => {
     return {
       status: 200,
@@ -20,7 +20,7 @@ Scenarios.GetHandwrittenModel = passOnSuccess(
   }),
 );
 
-Scenarios.PostRawModel = passOnSuccess(
+Scenarios.Resiliency_DevDriven_postModel = passOnSuccess(
   mockapi.post("/resiliency/devdriven/model/raw", (req) => {
     req.expect.bodyEquals({ hello: `world!` });
     return {
@@ -30,7 +30,7 @@ Scenarios.PostRawModel = passOnSuccess(
   }),
 );
 
-Scenarios.PostHandwrittenModel = passOnSuccess(
+Scenarios.Resiliency_DevDriven_postModel = passOnSuccess(
   mockapi.post("/resiliency/devdriven/model/model", (req) => {
     req.expect.bodyEquals({ hello: `world!` });
     return {
@@ -40,7 +40,7 @@ Scenarios.PostHandwrittenModel = passOnSuccess(
   }),
 );
 
-Scenarios.GetRawPages = passOnSuccess([
+Scenarios.Resiliency_DevDriven_getRawPages = passOnSuccess([
   mockapi.get("/resiliency/devdriven/products", (req) => {
     return {
       status: 200,
@@ -58,7 +58,7 @@ Scenarios.GetRawPages = passOnSuccess([
   }),
 ]);
 
-Scenarios.GetHandwrittenModelPages = passOnSuccess([
+Scenarios.Resiliency_DevDriven_getModelPages = passOnSuccess([
   mockapi.get("/resiliency/devdriven/productmodels/", (req) => {
     return {
       status: 200,
@@ -76,7 +76,7 @@ Scenarios.GetHandwrittenModelPages = passOnSuccess([
   }),
 ]);
 
-Scenarios.RawLRO = passOnSuccess(
+Scenarios.Resiliency_DevDriven_lro = passOnSuccess(
   mockapi.put("/resiliency/devdriven/lro/raw", (req) => {
     return {
       status: 200,
@@ -85,7 +85,7 @@ Scenarios.RawLRO = passOnSuccess(
   }),
 );
 
-Scenarios.HandwrittenModelLRO = passOnSuccess(
+Scenarios.Resiliency_DevDriven_lro = passOnSuccess(
   mockapi.put("/resiliency/devdriven/lro/model", (req) => {
     return {
       status: 200,

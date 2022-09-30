@@ -83,7 +83,6 @@ const NOT_IMPLEMENTED = [
   "clients/interfaces",
 
   // Laurent
-  "resiliency/dev-driven",
   "resiliency/srv-driven-1",
   "resiliency/srv-driven-2",
 ];
