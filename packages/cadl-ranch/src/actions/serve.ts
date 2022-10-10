@@ -43,7 +43,7 @@ export async function startInBackground(config: ServeConfig) {
       ],
       {
         detached: true,
-        stdio: "ignore"
+        stdio: 'ignore'
       },
     );
     const exitListener = (exitCode: number) => {
