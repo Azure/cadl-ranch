@@ -311,6 +311,15 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
+### Azure_Lro_PollingSuccess
+
+- Endpoints:
+  - `put /lro/basic/put`
+  - `put /lro/basic/put/polling`
+  - `put /lro/basic/put`
+
+The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
+
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`
@@ -516,36 +525,6 @@ Expected response body:
 - Endpoint: `put /models/inheritance/valid`
 
 Generate, send, and receive round-trip bottom model.
-
-### InputBasic_getModel
-
-- Endpoint: `get /input-basic/models`
-
-Generate and send an input-only model with required reference and value type properties.
-
-### NestedModelsBasic_sendNestedModel
-
-- Endpoint: `post /nested-models/models`
-
-Generate and send input model with required nested model properties.
-
-### NestedModelsBasic_getNestedModel
-
-- Endpoint: `get /nested-models/models`
-
-Generate and receive output model with required nested model properties.
-
-### NestedModelsBasic_setNestedModel
-
-- Endpoint: `put /nested-models/models`
-
-Generate, send, and receive round-trip model with required nested model properties.
-
-### OutputBasic_getModel
-
-- Endpoint: `get /output-basic/models`
-
-Generate and receive an output-only model with required reference and value type properties.
 
 ### Models_Property_Optional_String_getAll
 
@@ -1119,11 +1098,23 @@ Generate and receive output model with readonly properties.
 
 Generate, send, and receive round-trip model with readonly properties.
 
-### RoundTripBasic_getModel
+### Models_Usage_input
 
-- Endpoint: `get /roundtrip-basic/models`
+- Endpoint: `get /models/usages/input`
 
-Generate, send, and receive a round-trip model with required reference and value type properties.
+Send a POST request with the following body {requiredProp: "example-value"}
+
+### Models_Usage_output
+
+- Endpoint: `get /models/usages/output`
+
+Send a GET request which return the following body {requiredProp: "example-value"}
+
+### Models_Usage_inputAndOutput
+
+- Endpoint: `get /models/usages/input-output`
+
+Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
 
 ### Resiliency_DevDriven_getModel
 

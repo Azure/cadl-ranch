@@ -1,5 +1,35 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.2
+
+### Patch Changes
+
+- [#125](https://github.com/Azure/cadl-ranch/pull/125) [`78f52a6`](https://github.com/Azure/cadl-ranch/commit/78f52a69c09af377a1e0d4d9592cd17207982283) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Redresign Models usage scenarios
+
+- Updated dependencies [[`fc7ac81`](https://github.com/Azure/cadl-ranch/commit/fc7ac81e7bb6c8be4f5aa01863ab7f811dc96c52), [`78f52a6`](https://github.com/Azure/cadl-ranch/commit/78f52a69c09af377a1e0d4d9592cd17207982283)]:
+  - @azure-tools/cadl-ranch@0.2.3
+
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`4634cd7`](https://github.com/Azure/cadl-ranch/commit/4634cd7aa834b44bf58695a8a5c0b090ce0c525d), [`23665a0`](https://github.com/Azure/cadl-ranch/commit/23665a0a9abd1428486c274d5b72971ee1f8c379)]:
+  - @azure-tools/cadl-ranch@0.2.2
+
+## 0.3.0
+
+### Minor Changes
+
+- [#105](https://github.com/Azure/cadl-ranch/pull/105) [`08f06ba`](https://github.com/Azure/cadl-ranch/commit/08f06ba886189114fde67c68ccc433d3381cf5d9) Thanks [@msyyc](https://github.com/msyyc)! - Adding specs and mockapi to support basic lro
+
+### Patch Changes
+
+- [#118](https://github.com/Azure/cadl-ranch/pull/118) [`a307dea`](https://github.com/Azure/cadl-ranch/commit/a307deab3c1af32935992bd2fd8340f5879aeec5) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Fix: should be allowed on interface and namespace as well(next to @scenario)
+
+- Updated dependencies [[`a307dea`](https://github.com/Azure/cadl-ranch/commit/a307deab3c1af32935992bd2fd8340f5879aeec5)]:
+  - @azure-tools/cadl-ranch-expect@0.1.10
+  - @azure-tools/cadl-ranch@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

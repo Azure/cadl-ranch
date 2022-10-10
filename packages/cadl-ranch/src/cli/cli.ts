@@ -3,7 +3,7 @@ import yargs from "yargs";
 import { validateScenarios } from "../actions/index.js";
 import { logger } from "../logger.js";
 import "source-map-support/register.js";
-import { serve } from "../actions/serve.js";
+import { serve, startInBackground, stop } from "../actions/serve.js";
 import { validateMockApis } from "../actions/validate-mock-apis.js";
 import { checkCoverage } from "../actions/check-coverage.js";
 import { generateScenarioSummary } from "../actions/generate-scenario-summary.js";
@@ -71,6 +71,51 @@ async function main() {
         });
       },
     )
+    .command("server", "Server management", (cmd) => {
+      cmd
+        .command(
+          "start <scenariosPath>",
+          "Start the server in the background.",
+          (cmd) => {
+            return cmd
+              .positional("scenariosPath", {
+                description: "Path to the scenarios and mock apis",
+                type: "string",
+                demandOption: true,
+              })
+              .option("port", {
+                alias: "p",
+                type: "number",
+                description: "Port where to host the server",
+                default: DEFAULT_PORT,
+              })
+              .option("coverageFile", {
+                type: "string",
+                description: "Path to the coverage file.",
+                default: join(process.cwd(), "cadl-ranch-coverage.json"),
+              });
+          },
+          async (args) =>
+            startInBackground({
+              scenariosPath: resolve(process.cwd(), args.scenariosPath),
+              port: args.port,
+              coverageFile: args.coverageFile,
+            }),
+        )
+        .command(
+          "stop",
+          "Stop the server running.",
+          (cmd) => {
+            return cmd.option("port", {
+              alias: "p",
+              type: "number",
+              description: "Port where to host the server",
+              default: DEFAULT_PORT,
+            });
+          },
+          async (args) => stop({ port: args.port }),
+        );
+    })
     .command(
       "serve <scenariosPath>",
       "Serve the mock api at the given paths.",
@@ -228,3 +273,8 @@ main().catch((error) => {
   console.log("Error", error);
   process.exit(1);
 });
+
+process.on("SIGTERM", () => process.exit(2));
+process.on("SIGINT", () => process.exit(2));
+process.on("SIGUSR1", () => process.exit(2));
+process.on("SIGUSR2", () => process.exit(2));
