@@ -19,6 +19,7 @@
     "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios",
     "validate-mock-apis": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-mock-apis",
     "generate-scenarios-summary": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run generate-scenarios-summary",
+    "upload-manifest": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run upload-manifest",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md,cadl}",
     "cspell": "cspell **/*.md **/*.ts **/*.cadl"
   },
