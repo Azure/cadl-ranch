@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.4
+
+### Patch Changes
+
+- [#128](https://github.com/Azure/cadl-ranch/pull/128) [`48ba1f6`](https://github.com/Azure/cadl-ranch/commit/48ba1f62e10733b3c562f261736ab01e55de2d5f) Thanks [@pshao25](https://github.com/pshao25)! - Fix server start issue
+
+- [#126](https://github.com/Azure/cadl-ranch/pull/126) [`ea70aac`](https://github.com/Azure/cadl-ranch/commit/ea70aac457b6404c0585cd1e00da8db0455ae843) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Added `cadl-ranch server start` and `cadl-ranch server stop` commands to start server in background and kill server.
+
 ## 0.2.3
 
 ### Patch Changes

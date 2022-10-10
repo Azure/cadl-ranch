@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`48ba1f6`](https://github.com/Azure/cadl-ranch/commit/48ba1f62e10733b3c562f261736ab01e55de2d5f), [`ea70aac`](https://github.com/Azure/cadl-ranch/commit/ea70aac457b6404c0585cd1e00da8db0455ae843)]:
+  - @azure-tools/cadl-ranch@0.2.4
+
 ## 0.3.2
 
 ### Patch Changes
