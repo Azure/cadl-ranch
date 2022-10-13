@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.1.4
+
+### Patch Changes
+
+- [#130](https://github.com/Azure/cadl-ranch/pull/130) [`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
 ## 0.1.3
 
 ### Patch Changes
