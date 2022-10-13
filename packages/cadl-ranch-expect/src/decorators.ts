@@ -1,6 +1,5 @@
 import {
-  $serviceTitle,
-  $serviceVersion,
+  $service,
   createDecoratorDefinition,
   DecoratorContext,
   getServiceNamespace,
@@ -211,8 +210,19 @@ export function $scenarioService(context: DecoratorContext, target: Namespace, r
     return;
   }
   context.program.stateSet(ScenarioServiceKey).add(target);
-  context.call($serviceTitle, target, context.program.checker.getNamespaceString(target).replace(/\./g, ""));
-  context.call($serviceVersion, target, "1.0.0");
+  context.call($service, target, {
+    kind: "Model",
+    properties: new Map()
+      .set("title", {
+        type: { kind: "String", value: context.program.checker.getNamespaceString(target).replace(/\./g, "") },
+      })
+      .set("version", { type: { kind: "String", value: "1.0.0" } }),
+    decorators: [],
+    projections: [],
+    name: "Service",
+    derivedModels: [],
+    projectionsByName: [],
+  } as any);
   context.call($server, target, "http://localhost:3000", "TestServer endpoint");
   context.call($route, target, route);
 }
