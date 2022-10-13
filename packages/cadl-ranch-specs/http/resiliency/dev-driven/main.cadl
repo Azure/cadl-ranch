@@ -29,7 +29,9 @@ enum Mode {
 @resource("products")
 model Product {
   @doc("key of product")
-  @key key: string;
+  @key
+  key: string;
+
   @doc("received mode")
   received: Mode;
 }
@@ -37,9 +39,12 @@ model Product {
 @doc("Returns {'received': <mode>}")
 model ProductResponse {
   @doc("Status code of response")
-  @statusCode statusCode: 200;
+  @statusCode
+  statusCode: 200;
+
   @doc("Actual product")
-  @body body: Product;
+  @body
+  body: Product;
 }
 
 @doc("Input to LRO call")
