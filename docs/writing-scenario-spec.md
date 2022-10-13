@@ -27,7 +27,7 @@ op returnString(): string;
 
 Decorators that should be provided in this test library `@azure-tools/cadl-scenario-lib`:
 
-- `@scenarioTitle`: Specify the base url for that scenario and sets up some of the boilerplate(`@serviceTitle`, `@serviceVersion`, etc.)
+- `@scenarioTitle`: Specify the base url for that scenario and sets up some of the boilerplate(`@service` etc.)
 - `@scenario`: Specify that this operation, interface or namespace is a scenario. Optionally take a scenario name otherwise default to the namespace name + operation/interface name
 - `@scenarioDoc`: Specify how to implement this scenario. Differ from `@doc` which describe the scenario to the end user.
 - `@supportedBy`: Specify if something is supported only by some kind of SDK. Option: `arm`, `dpg`. By default everything.
