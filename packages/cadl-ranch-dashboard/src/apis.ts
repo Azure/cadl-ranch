@@ -3,7 +3,15 @@ import { CadlRanchCoverageClient, CoverageReport, ScenarioManifest } from "@azur
 const storageAccountName = "cadlranchcoverage";
 
 export type GeneratorNames = "python" | "typescript" | "csharp" | "java" | "test";
-const generatorNames: GeneratorNames[] = ["python", "typescript", "csharp", "java", "test"];
+const query = new URLSearchParams(window.location.search);
+const generatorNames: GeneratorNames[] = [
+  "python",
+  "typescript",
+  "csharp",
+  "java",
+  ...(query.has("showtest") ? (["test"] as const) : []),
+];
+
 export interface CoverageSummary {
   manifest: ScenarioManifest;
   generatorReports: Record<GeneratorNames, CoverageReport | undefined>;
