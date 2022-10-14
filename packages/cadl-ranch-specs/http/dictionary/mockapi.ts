@@ -24,7 +24,7 @@ function createModelMockApis(route: string, value: any): MockApiGetPut {
     put: mockapi.put(url, (req) => {
       req.expect.bodyEquals(value);
       return {
-        status: 204,
+        status: 200,
       };
     }),
   };
