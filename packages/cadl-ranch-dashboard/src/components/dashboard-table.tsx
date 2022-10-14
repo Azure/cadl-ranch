@@ -1,6 +1,6 @@
 import { ResolvedCoverageReport, ScenarioData, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
-import { faShieldAlt, faTrowelBricks } from "@fortawesome/free-solid-svg-icons";
+import { faCow, faPencil, faShieldAlt, faTrowelBricks } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { CoverageSummary, GeneratorNames } from "../apis.js";
@@ -206,7 +206,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faTrowelBricks} css={{ marginRight: 5 }} />
+          <FontAwesomeIcon icon={faPencil} css={{ marginRight: 5 }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -219,7 +219,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faShieldAlt} css={{ marginRight: 5 }} />
+          <FontAwesomeIcon icon={faCow} css={{ marginRight: 5 }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div
