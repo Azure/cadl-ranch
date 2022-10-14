@@ -197,7 +197,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
           {report?.generatorMetadata?.name}
         </div>
         <div
-          title="Scenario version used in this coverage."
+          title="Generator version used in this coverage."
           css={[
             versionStyles,
             {
