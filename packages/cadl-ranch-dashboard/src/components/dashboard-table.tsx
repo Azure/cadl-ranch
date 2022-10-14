@@ -1,6 +1,6 @@
 import { ResolvedCoverageReport, ScenarioData, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
-import { faCow, faPencil, faShieldAlt, faTrowelBricks } from "@fortawesome/free-solid-svg-icons";
+import { faCow, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { CoverageSummary, GeneratorNames } from "../apis.js";

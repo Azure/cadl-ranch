@@ -11,8 +11,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "rimraf dist/ temp/",
-    "lint": "eslint . --ext .ts --max-warnings=0",
-    "lint:fix": "eslint . --fix --ext .ts",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
