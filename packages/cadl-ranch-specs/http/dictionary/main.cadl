@@ -37,7 +37,7 @@ interface DictionaryOperations<TDict, TDoc extends string> {
     }
   )
   @put
-  put(@body body: TDict): OkResponse;
+  put(@body body: TDict): void;
 }
 
 @doc("Dictionary of int32 values")
