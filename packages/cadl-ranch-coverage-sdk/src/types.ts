@@ -33,7 +33,16 @@ export interface CoverageReport {
   results: Record<string, ScenarioStatus>;
 }
 
+export interface ResolvedCoverageReport extends CoverageReport {
+  generatorMetadata: GeneratorMetadata;
+}
+
 export interface ScenariosMetadata {
   version: string;
   commit: string;
+}
+
+export interface GeneratorMetadata {
+  name: string;
+  version: string;
 }

@@ -1,12 +1,24 @@
-import { CadlRanchCoverageClient, CoverageReport, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import {
+  CadlRanchCoverageClient,
+  ResolvedCoverageReport,
+  ScenarioManifest,
+} from "@azure-tools/cadl-ranch-coverage-sdk";
 
 const storageAccountName = "cadlranchcoverage";
 
 export type GeneratorNames = "python" | "typescript" | "csharp" | "java" | "test";
-const generatorNames: GeneratorNames[] = ["python", "typescript", "csharp", "java", "test"];
+const query = new URLSearchParams(window.location.search);
+const generatorNames: GeneratorNames[] = [
+  "python",
+  "typescript",
+  "csharp",
+  "java",
+  ...(query.has("showtest") ? (["test"] as const) : []),
+];
+
 export interface CoverageSummary {
   manifest: ScenarioManifest;
-  generatorReports: Record<GeneratorNames, CoverageReport | undefined>;
+  generatorReports: Record<GeneratorNames, ResolvedCoverageReport | undefined>;
 }
 
 let client: CadlRanchCoverageClient | undefined;
@@ -37,8 +49,8 @@ export async function getCoverageSummary(): Promise<CoverageSummary> {
 async function loadReports(
   coverageClient: CadlRanchCoverageClient,
   generatorNames: GeneratorNames[],
-): Promise<Record<GeneratorNames, CoverageReport | undefined>> {
-  const items: [GeneratorNames, CoverageReport | undefined][] = await Promise.all(
+): Promise<Record<GeneratorNames, ResolvedCoverageReport | undefined>> {
+  const items: [GeneratorNames, ResolvedCoverageReport | undefined][] = await Promise.all(
     generatorNames.map(async (generatorName) => {
       try {
         const report = await coverageClient.coverage.getLatestCoverageFor(generatorName);
