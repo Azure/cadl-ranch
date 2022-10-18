@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.6
+
+### Patch Changes
+
+- [#138](https://github.com/Azure/cadl-ranch/pull/138) [`e0c063c`](https://github.com/Azure/cadl-ranch/commit/e0c063c3b8b06b4ff976d2c8f4793b11aaf5709a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - add cadl-dpg dep, operationGroup decorators
+
 ## 0.3.5
 
 ### Patch Changes
