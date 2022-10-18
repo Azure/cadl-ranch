@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.1.2
+
+### Patch Changes
+
+- [#135](https://github.com/Azure/cadl-ranch/pull/135) [`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Show generator version in dashboard
+
 ## 0.1.1
 
 ### Patch Changes

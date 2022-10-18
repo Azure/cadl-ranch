@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.5
+
+### Patch Changes
+
+- [#132](https://github.com/Azure/cadl-ranch/pull/132) [`66570fc`](https://github.com/Azure/cadl-ranch/commit/66570fcbacd7ed571672ab9920068ae981c67ca8) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix dictionary mockapi
+
+- Updated dependencies [[`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df)]:
+  - @azure-tools/cadl-ranch@0.2.6
+
 ## 0.3.4
 
 ### Patch Changes
