@@ -17,7 +17,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
   const diagnostics = createDiagnosticReporter();
   for (const { name, cadlFilePath } of scenarioFiles) {
     logger.debug(`Found scenario "${cadlFilePath}"`);
-    const program = await cadlCompiler.compile(cadlFilePath, cadlCompiler.NodeHost, {
+    const program = await cadlCompiler.compile(cadlCompiler.NodeHost, cadlFilePath, {
       noEmit: true,
       warningAsError: true,
     });

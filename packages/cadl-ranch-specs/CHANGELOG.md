@@ -1,5 +1,30 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.6
+
+### Patch Changes
+
+- [#138](https://github.com/Azure/cadl-ranch/pull/138) [`e0c063c`](https://github.com/Azure/cadl-ranch/commit/e0c063c3b8b06b4ff976d2c8f4793b11aaf5709a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - add cadl-dpg dep, operationGroup decorators
+
+## 0.3.5
+
+### Patch Changes
+
+- [#132](https://github.com/Azure/cadl-ranch/pull/132) [`66570fc`](https://github.com/Azure/cadl-ranch/commit/66570fcbacd7ed571672ab9920068ae981c67ca8) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix dictionary mockapi
+
+- Updated dependencies [[`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df)]:
+  - @azure-tools/cadl-ranch@0.2.6
+
+## 0.3.4
+
+### Patch Changes
+
+- [#130](https://github.com/Azure/cadl-ranch/pull/130) [`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4)]:
+  - @azure-tools/cadl-ranch@0.2.5
+  - @azure-tools/cadl-ranch-expect@0.1.11
+
 ## 0.3.3
 
 ### Patch Changes

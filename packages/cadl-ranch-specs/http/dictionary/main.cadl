@@ -1,7 +1,9 @@
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/cadl-dpg";
 
 using Cadl.Http;
+using Azure.DPG;
 
 @doc("Illustrates various of dictionaries.")
 @scenarioService("/dictionary")
@@ -37,40 +39,48 @@ interface DictionaryOperations<TDict, TDoc extends string> {
     }
   )
   @put
-  put(@body body: TDict): OkResponse;
+  put(@body body: TDict): void;
 }
 
 @doc("Dictionary of int32 values")
 @route("/int32")
+@operationGroup
 interface Int32Value extends DictionaryOperations<Record<int32>, "{'k1': 1, 'k2': 2}"> {}
 
 @doc("Dictionary of int64 values")
 @route("/int64")
+@operationGroup
 interface Int64Value
   extends DictionaryOperations<Record<int64>, "{'k1': 0x7FFFFFFFFFFFFFFF, 'k2': -0x7FFFFFFFFFFFFFFF}"> {}
 
 @doc("Dictionary of boolean values")
 @route("/boolean")
+@operationGroup
 interface BooleanValue extends DictionaryOperations<Record<boolean>, "{'k1': true, 'k2': false}"> {}
 
 @doc("Dictionary of string values")
 @route("/string")
+@operationGroup
 interface StringValue extends DictionaryOperations<Record<string>, "{'k1': 'hello', 'k2': ''}"> {}
 
 @doc("Dictionary of float values")
 @route("/float32")
+@operationGroup
 interface Float32Value extends DictionaryOperations<Record<float32>, "{'k1': 42.42}"> {}
 
 @doc("Dictionary of datetime values")
 @route("/datetime")
+@operationGroup
 interface DatetimeValue extends DictionaryOperations<Record<zonedDateTime>, "{'k1': '2022-08-26T18:38:00Z'}"> {}
 
 @doc("Dictionary of duration values")
 @route("/duration")
+@operationGroup
 interface DurationValue extends DictionaryOperations<Record<duration>, "{'k1': 'P123DT22H14M12.011S'}"> {}
 
 @doc("Dictionary of unknown values")
 @route("/unknown")
+@operationGroup
 interface UnknownValue extends DictionaryOperations<Record<unknown>, "{'k1': 1, 'k2': 'hello', 'k3': null}"> {}
 
 @doc("Dictionary inner model")
@@ -82,11 +92,13 @@ model InnerModel {
 
 @doc("Dictionary of model values")
 @route("/model")
+@operationGroup
 interface ModelValue
   extends DictionaryOperations<Record<InnerModel>, "{'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}"> {}
 
 @doc("Dictionary of model values")
 @route("/model/recursive")
+@operationGroup
 interface RecursiveModelValue
   extends DictionaryOperations<
       Record<InnerModel>,

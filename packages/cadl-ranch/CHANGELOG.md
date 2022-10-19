@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.6
+
+### Patch Changes
+
+- [#135](https://github.com/Azure/cadl-ranch/pull/135) [`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Show generator version in dashboard
+
+- Updated dependencies [[`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df)]:
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.2
+
+## 0.2.5
+
+### Patch Changes
+
+- [#130](https://github.com/Azure/cadl-ranch/pull/130) [`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4)]:
+  - @azure-tools/cadl-ranch-expect@0.1.11
+
 ## 0.2.4
 
 ### Patch Changes

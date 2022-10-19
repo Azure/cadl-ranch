@@ -25,30 +25,49 @@ enum Mode {
   "model",
 }
 
+@doc("Product resource")
 @resource("products")
 model Product {
-  @key key: string;
+  @doc("key of product")
+  @key
+  key: string;
+
+  @doc("received mode")
   received: Mode;
 }
 
 @doc("Returns {'received': <mode>}")
 model ProductResponse {
-  @statusCode statusCode: 200;
-  @body body: Product;
+  @doc("Status code of response")
+  @statusCode
+  statusCode: 200;
+
+  @doc("Actual product")
+  @body
+  body: Product;
 }
 
+@doc("Input to LRO call")
 model Input {
+  @doc("property on the input")
   hello: string;
 }
 
+@doc("Final response from LRO call")
 model LROProduct extends Product {
+  @doc("Provisioning state returned by the service")
   provisioningState: string;
 }
 
 @doc("Initial response with ProvisioningState='Succeeded'")
 model LROProductResponse {
-  @statusCode statusCode: 200;
-  @body body: LROProduct;
+  @doc("Status code for LRO response")
+  @statusCode
+  statusCode: 200;
+
+  @doc("Body of LRO response")
+  @body
+  body: LROProduct;
 }
 
 #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
