@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.3.7
+
+### Patch Changes
+
+- [#140](https://github.com/Azure/cadl-ranch/pull/140) [`e30765b`](https://github.com/Azure/cadl-ranch/commit/e30765ba40737daa897e4b3c2d82e63ed3975003) Thanks [@pshao25](https://github.com/pshao25)! - Fix the datetime compare issue
+
 ## 0.3.6
 
 ### Patch Changes
