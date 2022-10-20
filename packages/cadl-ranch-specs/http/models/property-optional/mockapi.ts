@@ -14,7 +14,7 @@ interface MockApiGetPut {
  * @param route The route within /models/properties/optional/all/ for your function.
  * @param value The value you are expecting and will return
  */
-function createMockApis(route: string, value: any): MockApiGetPut {
+function createMockApis(route: string, value: any, convertBodyProperty?: (_: any) => any): MockApiGetPut {
   const url = `/models/properties/optional/${route}`;
   const allUrl = `${url}/all`;
   const defaultUrl = `${url}/default`;
@@ -33,6 +33,11 @@ function createMockApis(route: string, value: any): MockApiGetPut {
     };
   });
   const putAll = mockapi.put(allUrl, (req) => {
+    if (convertBodyProperty && req.originalRequest.body?.property && allBody?.property) {
+      req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
+      allBody.property = convertBodyProperty(allBody.property);
+    }
+
     req.expect.bodyEquals(allBody);
     return {
       status: 204,
@@ -64,7 +69,7 @@ Scenarios.Models_Property_Optional_Bytes_getDefault = passOnSuccess(bytesMock.ge
 Scenarios.Models_Property_Optional_Bytes_putAll = passOnSuccess(bytesMock.putAll);
 Scenarios.Models_Property_Optional_Bytes_putDefault = passOnSuccess(bytesMock.putDefault);
 
-const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
+const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z", (datetime) => new Date(datetime).toISOString());
 Scenarios.Models_Property_Optional_Datetime_getAll = passOnSuccess(datetimeMock.getAll);
 Scenarios.Models_Property_Optional_Datetime_getDefault = passOnSuccess(datetimeMock.getDefault);
 Scenarios.Models_Property_Optional_Datetime_putAll = passOnSuccess(datetimeMock.putAll);
