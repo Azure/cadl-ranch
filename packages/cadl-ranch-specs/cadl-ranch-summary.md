@@ -1,5 +1,185 @@
 # Cadl Ranch Project summary
 
+### Array_ItemTypes_Int32Value_get
+
+- Endpoint: `get /array/item-types/int32`
+
+Expected Array response body:
+
+```json
+[1, 2]
+```
+
+### Array_ItemTypes_Int32Value_put
+
+- Endpoint: `put /array/item-types/int32`
+
+Expected Array input body:
+
+```json
+[1, 2]
+```
+
+### Array_ItemTypes_Int64Value_get
+
+- Endpoint: `get /array/item-types/int64`
+
+Expected Array response body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
+```
+
+### Array_ItemTypes_Int64Value_put
+
+- Endpoint: `put /array/item-types/int64`
+
+Expected Array input body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
+```
+
+### Array_ItemTypes_BooleanValue_get
+
+- Endpoint: `get /array/item-types/boolean`
+
+Expected Array response body:
+
+```json
+[true, false]
+```
+
+### Array_ItemTypes_BooleanValue_put
+
+- Endpoint: `put /array/item-types/boolean`
+
+Expected Array input body:
+
+```json
+[true, false]
+```
+
+### Array_ItemTypes_StringValue_get
+
+- Endpoint: `get /array/item-types/string`
+
+Expected Array response body:
+
+```json
+["hello", ""]
+```
+
+### Array_ItemTypes_StringValue_put
+
+- Endpoint: `put /array/item-types/string`
+
+Expected Array input body:
+
+```json
+["hello", ""]
+```
+
+### Array_ItemTypes_Float32Value_get
+
+- Endpoint: `get /array/item-types/float32`
+
+Expected Array response body:
+
+```json
+[42.42]
+```
+
+### Array_ItemTypes_Float32Value_put
+
+- Endpoint: `put /array/item-types/float32`
+
+Expected Array input body:
+
+```json
+[42.42]
+```
+
+### Array_ItemTypes_DatetimeValue_get
+
+- Endpoint: `get /array/item-types/datetime`
+
+Expected Array response body:
+
+```json
+["2022-08-26T18:38:00Z"]
+```
+
+### Array_ItemTypes_DatetimeValue_put
+
+- Endpoint: `put /array/item-types/datetime`
+
+Expected Array input body:
+
+```json
+["2022-08-26T18:38:00Z"]
+```
+
+### Array_ItemTypes_DurationValue_get
+
+- Endpoint: `get /array/item-types/duration`
+
+Expected Array response body:
+
+```json
+["P123DT22H14M12.011S"]
+```
+
+### Array_ItemTypes_DurationValue_put
+
+- Endpoint: `put /array/item-types/duration`
+
+Expected Array input body:
+
+```json
+["P123DT22H14M12.011S"]
+```
+
+### Array_ItemTypes_UnknownValue_get
+
+- Endpoint: `get /array/item-types/unknown`
+
+Expected Array response body:
+
+```json
+[1, 'hello', 'k3': null]
+```
+
+### Array_ItemTypes_UnknownValue_put
+
+- Endpoint: `put /array/item-types/unknown`
+
+Expected Array input body:
+
+```json
+[1, 'hello', 'k3': null]
+```
+
+### Array_ItemTypes_ModelValue_get
+
+- Endpoint: `get /array/item-types/model`
+
+Expected Array response body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
+### Array_ItemTypes_ModelValue_put
+
+- Endpoint: `put /array/item-types/model`
+
+Expected Array input body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
 ### Authentication_ApiKey_valid
 
 - Endpoint: `get /authentication/api-key/valid`
