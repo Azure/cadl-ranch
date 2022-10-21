@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.4.0
+
+### Minor Changes
+
+- [#143](https://github.com/Azure/cadl-ranch/pull/143) [`2705271`](https://github.com/Azure/cadl-ranch/commit/27052714fefdceef0b5e8cc26b862fc16f05418b) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Add scenarios for Array
+
+### Patch Changes
+
+- [#145](https://github.com/Azure/cadl-ranch/pull/145) [`45b34d8`](https://github.com/Azure/cadl-ranch/commit/45b34d8de510f2a0d04f90c0eedec832251a7479) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Remove interfaces scenario
+
 ## 0.3.7
 
 ### Patch Changes
