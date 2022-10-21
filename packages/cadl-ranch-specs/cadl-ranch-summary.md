@@ -221,30 +221,6 @@ Expect error code 400 and error body:
 }
 ```
 
-### MultiInterfaceClient_dogs_getDogs
-
-- Endpoint: `get /multi-interface/dogs`
-
-Illustrate grouping operations on subclient.
-
-### MultiInterfaceClient_dogs_setDogs
-
-- Endpoint: `put /multi-interface/dogs/models`
-
-Illustrate grouping operations on subclient.
-
-### MultiInterfaceClient_cats_getCats
-
-- Endpoint: `get /multi-interface/cats`
-
-Illustrate grouping operations on subclient.
-
-### MultiInterfaceClient_cats_setCats
-
-- Endpoint: `put /multi-interface/cats`
-
-Illustrate grouping operations on subclient.
-
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
