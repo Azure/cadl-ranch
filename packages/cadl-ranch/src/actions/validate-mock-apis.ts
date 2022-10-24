@@ -70,7 +70,6 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 const NOT_IMPLEMENTED = [
   // Anne
   "models/readonly-properties",
-  "clients/interfaces", // Need to figure out the client subclient operation group story for dpg.
 
   // Laurent
   "resiliency/dev-driven",
