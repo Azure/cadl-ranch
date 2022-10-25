@@ -10,14 +10,14 @@ model PostInput {
   url: string;
 }
 
-model MessageBody {
+model Message {
   message: string;
 }
 
 @doc("Answer from service")
 model MessageResponse {
   @statusCode statusCode: 200;
-  @body body: MessageBody;
+  @body body: Message;
 }
 
 interface params {
