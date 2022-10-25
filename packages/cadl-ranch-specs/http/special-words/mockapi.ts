@@ -10,7 +10,7 @@ Scenarios.SpecialWords_Operation_for = passOnSuccess(
   }),
 );
 
-Scenarios.SpecialWords_Parameter_if = passOnSuccess(
+Scenarios.SpecialWords_Parameter_getWithIf = passOnSuccess(
   mockapi.get("/special-words/parameter/if", (req) => {
     req.expect.containsHeader("if", "weekend");
     return {
@@ -18,7 +18,7 @@ Scenarios.SpecialWords_Parameter_if = passOnSuccess(
     };
   }),
 );
-Scenarios.SpecialWords_Parameter_filter = passOnSuccess(
+Scenarios.SpecialWords_Parameter_getWithFilter = passOnSuccess(
   mockapi.get("/special-words/parameter/filter", (req) => {
     req.expect.containsQueryParam("filter", "abc*.");
     return {
