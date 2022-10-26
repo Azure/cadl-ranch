@@ -13,7 +13,7 @@ interface MockApiGetPut {
  * @param value The value you are expecting and will return.
  */
 function createModelMockApis(route: string, value: any): MockApiGetPut {
-  const url = `/array/item-types/${route}`;
+  const url = `/arrays/item-types/${route}`;
   return {
     get: mockapi.get(url, (req) => {
       return {
