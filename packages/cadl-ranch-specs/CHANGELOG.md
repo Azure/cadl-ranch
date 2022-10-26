@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.4.1
+
+### Patch Changes
+
+- [#142](https://github.com/Azure/cadl-ranch/pull/142) [`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325) Thanks [@changlong-liu](https://github.com/changlong-liu)! - fix lro mockapi: add response body for Azure_Lro_PollingSuccess
+
+- Updated dependencies [[`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325)]:
+  - @azure-tools/cadl-ranch@0.2.7
+
 ## 0.4.0
 
 ### Minor Changes
