@@ -1,0 +1,85 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/cadl-dpg";
+
+using Cadl.Http;
+using Azure.DPG;
+
+@doc("Illustrates operation, parameter and property have name of special words or characters.")
+@scenarioService("/special-words")
+namespace SpecialWords;
+
+@route("/operation")
+@doc("This interface is for testing operations has a special name.")
+@operationGroup
+interface Operation {
+  @scenario
+  @scenarioDoc("A operation name of `for` should work.")
+  @get
+  @route("/for")
+  for(): void;
+}
+
+@route("/parameter")
+@doc("This interface is for testing operations parameters of special words.")
+@operationGroup
+interface Parameter {
+  @scenario
+  @scenarioDoc("Expect input parameter `if='weekend'`")
+  @get
+  @route("/if")
+  getWithIf(@header "if": string): void;
+
+  @scenario
+  @scenarioDoc("Expect input parameter `filter='abc*.'`")
+  @get
+  @route("/filter")
+  getWithFilter(@query filter: string): void;
+}
+
+@doc("This is a base model has discriminator name containing dot.")
+@discriminator("model.kind")
+model BaseModel {}
+
+@doc("This is a model has property names of special words or characters.")
+@discriminator("model.kind")
+model DerivedModel extends BaseModel {
+  "model.kind": "derived";
+  "derived.name": string;
+  for: string;
+}
+
+@route("/model")
+@doc("This interface is for testing models and properties of special words.")
+@operationGroup
+interface Model {
+  @scenario
+  @scenarioDoc("""
+  Expected response body:
+  ```json
+  {
+    "model.kind": "derived",
+    "derived.name": "my.name",
+    "for": "value",
+  }
+  ```
+  """)
+  @route("/get")
+  @get
+  get(): BaseModel;
+
+  @scenario
+  @scenarioDoc("""
+  Expected input body:
+  ```json
+    {
+    "model.kind": "derived",
+    "derived.name": "my.name",
+    "for": "value",
+  }
+  ```
+  """)
+  @route("/put")
+  @put
+  put(@body body: BaseModel): void;
+}

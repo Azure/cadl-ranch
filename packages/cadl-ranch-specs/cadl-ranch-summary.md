@@ -1410,3 +1410,49 @@ The value you pass for the parameter is not verified by the mock server.
 
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
+
+### SpecialWords_Operation_for
+
+- Endpoint: `get /special-words/operation/for`
+
+A operation name of `for` should work.
+
+### SpecialWords_Parameter_getWithIf
+
+- Endpoint: `get /special-words/parameter/if`
+
+Expect input parameter `if='weekend'`
+
+### SpecialWords_Parameter_getWithFilter
+
+- Endpoint: `get /special-words/parameter/filter`
+
+Expect input parameter `filter='abc*.'`
+
+### SpecialWords_Model_get
+
+- Endpoint: `get /special-words/model/get`
+
+Expected response body:
+
+```json
+{
+  "model.kind": "derived",
+  "derived.name": "my.name",
+  "for": "value"
+}
+```
+
+### SpecialWords_Model_put
+
+- Endpoint: `put /special-words/model/put`
+
+Expected input body:
+
+```json
+{
+  "model.kind": "derived",
+  "derived.name": "my.name",
+  "for": "value"
+}
+```
