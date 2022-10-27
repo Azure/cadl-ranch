@@ -1,8 +1,8 @@
 # Cadl Ranch Project summary
 
-### Array_ItemTypes_Int32Value_get
+### Arrays_ItemTypes_Int32Value_get
 
-- Endpoint: `get /array/item-types/int32`
+- Endpoint: `get /arrays/item-types/int32`
 
 Expected Array response body:
 
@@ -10,9 +10,9 @@ Expected Array response body:
 [1, 2]
 ```
 
-### Array_ItemTypes_Int32Value_put
+### Arrays_ItemTypes_Int32Value_put
 
-- Endpoint: `put /array/item-types/int32`
+- Endpoint: `put /arrays/item-types/int32`
 
 Expected Array input body:
 
@@ -20,9 +20,9 @@ Expected Array input body:
 [1, 2]
 ```
 
-### Array_ItemTypes_Int64Value_get
+### Arrays_ItemTypes_Int64Value_get
 
-- Endpoint: `get /array/item-types/int64`
+- Endpoint: `get /arrays/item-types/int64`
 
 Expected Array response body:
 
@@ -30,9 +30,9 @@ Expected Array response body:
 [0x7fffffffffffffff, -0x7fffffffffffffff]
 ```
 
-### Array_ItemTypes_Int64Value_put
+### Arrays_ItemTypes_Int64Value_put
 
-- Endpoint: `put /array/item-types/int64`
+- Endpoint: `put /arrays/item-types/int64`
 
 Expected Array input body:
 
@@ -40,9 +40,9 @@ Expected Array input body:
 [0x7fffffffffffffff, -0x7fffffffffffffff]
 ```
 
-### Array_ItemTypes_BooleanValue_get
+### Arrays_ItemTypes_BooleanValue_get
 
-- Endpoint: `get /array/item-types/boolean`
+- Endpoint: `get /arrays/item-types/boolean`
 
 Expected Array response body:
 
@@ -50,9 +50,9 @@ Expected Array response body:
 [true, false]
 ```
 
-### Array_ItemTypes_BooleanValue_put
+### Arrays_ItemTypes_BooleanValue_put
 
-- Endpoint: `put /array/item-types/boolean`
+- Endpoint: `put /arrays/item-types/boolean`
 
 Expected Array input body:
 
@@ -60,9 +60,9 @@ Expected Array input body:
 [true, false]
 ```
 
-### Array_ItemTypes_StringValue_get
+### Arrays_ItemTypes_StringValue_get
 
-- Endpoint: `get /array/item-types/string`
+- Endpoint: `get /arrays/item-types/string`
 
 Expected Array response body:
 
@@ -70,9 +70,9 @@ Expected Array response body:
 ["hello", ""]
 ```
 
-### Array_ItemTypes_StringValue_put
+### Arrays_ItemTypes_StringValue_put
 
-- Endpoint: `put /array/item-types/string`
+- Endpoint: `put /arrays/item-types/string`
 
 Expected Array input body:
 
@@ -80,9 +80,9 @@ Expected Array input body:
 ["hello", ""]
 ```
 
-### Array_ItemTypes_Float32Value_get
+### Arrays_ItemTypes_Float32Value_get
 
-- Endpoint: `get /array/item-types/float32`
+- Endpoint: `get /arrays/item-types/float32`
 
 Expected Array response body:
 
@@ -90,9 +90,9 @@ Expected Array response body:
 [42.42]
 ```
 
-### Array_ItemTypes_Float32Value_put
+### Arrays_ItemTypes_Float32Value_put
 
-- Endpoint: `put /array/item-types/float32`
+- Endpoint: `put /arrays/item-types/float32`
 
 Expected Array input body:
 
@@ -100,9 +100,9 @@ Expected Array input body:
 [42.42]
 ```
 
-### Array_ItemTypes_DatetimeValue_get
+### Arrays_ItemTypes_DatetimeValue_get
 
-- Endpoint: `get /array/item-types/datetime`
+- Endpoint: `get /arrays/item-types/datetime`
 
 Expected Array response body:
 
@@ -110,9 +110,9 @@ Expected Array response body:
 ["2022-08-26T18:38:00Z"]
 ```
 
-### Array_ItemTypes_DatetimeValue_put
+### Arrays_ItemTypes_DatetimeValue_put
 
-- Endpoint: `put /array/item-types/datetime`
+- Endpoint: `put /arrays/item-types/datetime`
 
 Expected Array input body:
 
@@ -120,9 +120,9 @@ Expected Array input body:
 ["2022-08-26T18:38:00Z"]
 ```
 
-### Array_ItemTypes_DurationValue_get
+### Arrays_ItemTypes_DurationValue_get
 
-- Endpoint: `get /array/item-types/duration`
+- Endpoint: `get /arrays/item-types/duration`
 
 Expected Array response body:
 
@@ -130,9 +130,9 @@ Expected Array response body:
 ["P123DT22H14M12.011S"]
 ```
 
-### Array_ItemTypes_DurationValue_put
+### Arrays_ItemTypes_DurationValue_put
 
-- Endpoint: `put /array/item-types/duration`
+- Endpoint: `put /arrays/item-types/duration`
 
 Expected Array input body:
 
@@ -140,9 +140,9 @@ Expected Array input body:
 ["P123DT22H14M12.011S"]
 ```
 
-### Array_ItemTypes_UnknownValue_get
+### Arrays_ItemTypes_UnknownValue_get
 
-- Endpoint: `get /array/item-types/unknown`
+- Endpoint: `get /arrays/item-types/unknown`
 
 Expected Array response body:
 
@@ -150,9 +150,9 @@ Expected Array response body:
 [1, 'hello', 'k3': null]
 ```
 
-### Array_ItemTypes_UnknownValue_put
+### Arrays_ItemTypes_UnknownValue_put
 
-- Endpoint: `put /array/item-types/unknown`
+- Endpoint: `put /arrays/item-types/unknown`
 
 Expected Array input body:
 
@@ -160,9 +160,9 @@ Expected Array input body:
 [1, 'hello', 'k3': null]
 ```
 
-### Array_ItemTypes_ModelValue_get
+### Arrays_ItemTypes_ModelValue_get
 
-- Endpoint: `get /array/item-types/model`
+- Endpoint: `get /arrays/item-types/model`
 
 Expected Array response body:
 
@@ -170,9 +170,9 @@ Expected Array response body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
-### Array_ItemTypes_ModelValue_put
+### Arrays_ItemTypes_ModelValue_put
 
-- Endpoint: `put /array/item-types/model`
+- Endpoint: `put /arrays/item-types/model`
 
 Expected Array input body:
 
