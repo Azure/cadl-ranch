@@ -31,37 +31,37 @@ function createModelMockApis(route: string, value: any): MockApiGetPut {
 }
 
 const Int32ValueMock = createModelMockApis("int32", [1, 2]);
-Scenarios.Array_ItemTypes_Int32Value_get = passOnSuccess(Int32ValueMock.get);
-Scenarios.Array_ItemTypes_Int32Value_put = passOnSuccess(Int32ValueMock.put);
+Scenarios.Arrays_ItemTypes_Int32Value_get = passOnSuccess(Int32ValueMock.get);
+Scenarios.Arrays_ItemTypes_Int32Value_put = passOnSuccess(Int32ValueMock.put);
 
 const Int64ValueMock = createModelMockApis("int64", [Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER]);
-Scenarios.Array_ItemTypes_Int64Value_get = passOnSuccess(Int64ValueMock.get);
-Scenarios.Array_ItemTypes_Int64Value_put = passOnSuccess(Int64ValueMock.put);
+Scenarios.Arrays_ItemTypes_Int64Value_get = passOnSuccess(Int64ValueMock.get);
+Scenarios.Arrays_ItemTypes_Int64Value_put = passOnSuccess(Int64ValueMock.put);
 
 const BooleanValueMock = createModelMockApis("boolean", [true, false]);
-Scenarios.Array_ItemTypes_BooleanValue_get = passOnSuccess(BooleanValueMock.get);
-Scenarios.Array_ItemTypes_BooleanValue_put = passOnSuccess(BooleanValueMock.put);
+Scenarios.Arrays_ItemTypes_BooleanValue_get = passOnSuccess(BooleanValueMock.get);
+Scenarios.Arrays_ItemTypes_BooleanValue_put = passOnSuccess(BooleanValueMock.put);
 
 const StringValueMock = createModelMockApis("string", ["hello", ""]);
-Scenarios.Array_ItemTypes_StringValue_get = passOnSuccess(StringValueMock.get);
-Scenarios.Array_ItemTypes_StringValue_put = passOnSuccess(StringValueMock.put);
+Scenarios.Arrays_ItemTypes_StringValue_get = passOnSuccess(StringValueMock.get);
+Scenarios.Arrays_ItemTypes_StringValue_put = passOnSuccess(StringValueMock.put);
 
 const Float32ValueMock = createModelMockApis("float32", [42.42]);
-Scenarios.Array_ItemTypes_Float32Value_get = passOnSuccess(Float32ValueMock.get);
-Scenarios.Array_ItemTypes_Float32Value_put = passOnSuccess(Float32ValueMock.put);
+Scenarios.Arrays_ItemTypes_Float32Value_get = passOnSuccess(Float32ValueMock.get);
+Scenarios.Arrays_ItemTypes_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
 const DatetimeValueMock = createModelMockApis("datetime", ["2022-08-26T18:38:00Z"]);
-Scenarios.Array_ItemTypes_DatetimeValue_get = passOnSuccess(DatetimeValueMock.get);
-Scenarios.Array_ItemTypes_DatetimeValue_put = passOnSuccess(DatetimeValueMock.put);
+Scenarios.Arrays_ItemTypes_DatetimeValue_get = passOnSuccess(DatetimeValueMock.get);
+Scenarios.Arrays_ItemTypes_DatetimeValue_put = passOnSuccess(DatetimeValueMock.put);
 
 const DurationValueMock = createModelMockApis("duration", ["P123DT22H14M12.011S"]);
-Scenarios.Array_ItemTypes_DurationValue_get = passOnSuccess(DurationValueMock.get);
-Scenarios.Array_ItemTypes_DurationValue_put = passOnSuccess(DurationValueMock.put);
+Scenarios.Arrays_ItemTypes_DurationValue_get = passOnSuccess(DurationValueMock.get);
+Scenarios.Arrays_ItemTypes_DurationValue_put = passOnSuccess(DurationValueMock.put);
 
 const UnknownValueMock = createModelMockApis("unknown", [1, "hello", null]);
-Scenarios.Array_ItemTypes_UnknownValue_get = passOnSuccess(UnknownValueMock.get);
-Scenarios.Array_ItemTypes_UnknownValue_put = passOnSuccess(UnknownValueMock.put);
+Scenarios.Arrays_ItemTypes_UnknownValue_get = passOnSuccess(UnknownValueMock.get);
+Scenarios.Arrays_ItemTypes_UnknownValue_put = passOnSuccess(UnknownValueMock.put);
 
 const ModelValueMock = createModelMockApis("model", [{ property: "hello" }, { property: "world" }]);
-Scenarios.Array_ItemTypes_ModelValue_get = passOnSuccess(ModelValueMock.get);
-Scenarios.Array_ItemTypes_ModelValue_put = passOnSuccess(ModelValueMock.put);
+Scenarios.Arrays_ItemTypes_ModelValue_get = passOnSuccess(ModelValueMock.get);
+Scenarios.Arrays_ItemTypes_ModelValue_put = passOnSuccess(ModelValueMock.put);
