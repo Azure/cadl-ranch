@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.8
+
+### Patch Changes
+
+- [#149](https://github.com/Azure/cadl-ranch/pull/149) [`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add testcases for using special words as operation/parameter/property names
+
 ## 0.2.7
 
 ### Patch Changes
