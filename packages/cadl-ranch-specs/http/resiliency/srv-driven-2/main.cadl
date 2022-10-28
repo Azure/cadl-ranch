@@ -5,13 +5,9 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Versioning;
 
 @versioned(Versions)
-@serviceTitle("ResiliencyServiceDriven2")
-@serviceVersion("1.1.0")
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("DPG Swagger, this is the initial swagger a service could do")
-@Cadl.Rest.produces("application/json")
-@Cadl.Rest.consumes("application/json")
-@route("/serviceDriven2")
+@scenarioService("/serviceDriven2")
 namespace Resiliency.ServiceDriven2;
 using Cadl.Http;
 
@@ -102,7 +98,7 @@ The value you pass for the parameter is not verified by the mock server.
   @scenario
   @scenarioDoc("""
 Show that you can call a POST HTTP endpoint.
-This test now accept both image/jpeg and applicat/json and is expected keeping backward compat with srv-driven-1.
+This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 """)
   @route("/parameters/{contentTypePath}")
@@ -155,7 +151,7 @@ This is a totally new operation in this API version.
 """)
   @added(Versions.v11)
   @route("/newPath")
-  @doc("I'm a new operation.\n Initiallty neither path or method exist for this operation. After evolution, this is a new method in a new path")
+  @doc("I'm a new operation.\n Initially neither path or method exist for this operation. After evolution, this is a new method in a new path")
   @get
   getNewOperation(): MessageResponse;
 }

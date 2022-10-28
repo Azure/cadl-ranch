@@ -1,13 +1,8 @@
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
 
-@serviceTitle("ResiliencyServiceDriven1")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "Testserver endpoint")
 @doc("DPG Swagger, this is the initial swagger a service could do")
-@Cadl.Rest.produces("application/json")
-@Cadl.Rest.consumes("application/json")
-@route("/serviceDriven1")
+@scenarioService("/resiliency/servicedriven1")
 namespace Resiliency.ServiceDriven1;
 using Cadl.Http;
 

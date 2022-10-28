@@ -1,16 +1,11 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
-using Azure.Core.Foundations;
 
-@serviceTitle("ReadonlyPropertiesClient")
-@serviceVersion("1.0.0")
-@server("http://localhost:3000", "TestServer endpoint")
 @doc("Illustrates models with readonly properties.")
-@route("/readonly-properties")
-namespace Cadl.TestServer.ReadonlyProperties;
+@scenarioService("/readonly-properties")
+namespace ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
 // because input models are for setting values.
@@ -73,10 +68,10 @@ model RoundTripModel {
 @scenarioDoc("Generate and receive output model with readonly properties.")
 @route("/models")
 @get
-op getOptionalPropertyModel(): OutputModel | ErrorResponse;
+op getOptionalPropertyModel(): OutputModel;
 
 @scenario
 @scenarioDoc("Generate, send, and receive round-trip model with readonly properties.")
 @route("/models")
 @put
-op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel | ErrorResponse;
+op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel;

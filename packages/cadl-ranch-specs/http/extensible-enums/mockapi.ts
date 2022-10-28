@@ -11,7 +11,7 @@ Scenarios.ExtensibleEnums_String_getKnownValue = passOnSuccess(
 );
 
 Scenarios.ExtensibleEnums_String_putKnownValue = passOnSuccess(
-  mockapi.get("/extensible-enums/string/known-value", (req) => {
+  mockapi.put("/extensible-enums/string/known-value", (req) => {
     req.expect.bodyEquals("Monday");
     return { status: 204 };
   }),
@@ -19,13 +19,13 @@ Scenarios.ExtensibleEnums_String_putKnownValue = passOnSuccess(
 
 // Unknown values
 Scenarios.ExtensibleEnums_String_getUnknownValue = passOnSuccess(
-  mockapi.get("/extensible-enums/string/known-value", (req) => {
+  mockapi.get("/extensible-enums/string/unknown-value", (req) => {
     return { status: 200, body: json("Weekend") };
   }),
 );
 
 Scenarios.ExtensibleEnums_String_putUnknownValue = passOnSuccess(
-  mockapi.get("/extensible-enums/string/known-value", (req) => {
+  mockapi.put("/extensible-enums/string/unknown-value", (req) => {
     req.expect.bodyEquals("Weekend");
     return { status: 204 };
   }),

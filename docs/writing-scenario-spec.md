@@ -14,7 +14,7 @@ When naming scenario always think about what would it look like in the [compatib
 ```cadl
 import "@azure-tools/cadl-scenario-lib";
 
-@route("/strings")
+@scenarioTitle("/strings")
 namespace String;
 
 @scenario("get_string")
@@ -23,18 +23,18 @@ namespace String;
 @get
 @route("/simple")
 op returnString(): string;
-
 ```
 
 Decorators that should be provided in this test library `@azure-tools/cadl-scenario-lib`:
 
-- `@scenario`: Specify that this operation or interface is a scenario. Optionally take a scenario name otherwise default to the namespace name + operation/interface name
+- `@scenarioTitle`: Specify the base url for that scenario and sets up some of the boilerplate(`@service` etc.)
+- `@scenario`: Specify that this operation, interface or namespace is a scenario. Optionally take a scenario name otherwise default to the namespace name + operation/interface name
 - `@scenarioDoc`: Specify how to implement this scenario. Differ from `@doc` which describe the scenario to the end user.
 - `@supportedBy`: Specify if something is supported only by some kind of SDK. Option: `arm`, `dpg`. By default everything.
 
 ## Compatibility table
 
-With all this information, a detailed compatiblity table should be able to be produced by compiling each one of the scenarios and extracting the cases. Providing something like
+With all this information, a detailed compatibility table should be able to be produced by compiling each one of the scenarios and extracting the cases. Providing something like
 
 | Scenario                     | CSharp | Python | Go  | Java | TS/JS |
 | ---------------------------- | ------ | ------ | --- | ---- | ----- |

@@ -36,10 +36,16 @@ pnpm watch
 
 ### Other helpful commands
 
-Clean
+#### Clean
 
 ```bash
 pnpm clean
+```
+
+#### Generate the scenario summary
+
+```bash
+pnpm generate-scenarios-summary
 ```
 
 ## Links
@@ -59,6 +65,19 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+### Before making a Pull request
+
+Make sure to run the following commands:
+
+- `pnpm validate-scenarios`
+- `pnpm validate-mock-apis`
+- `pnpm generate-scenarios-summary`
+- `pnpm format`
+- `pnpm changeset add` or `pnpm changeset add --empty`
+- `pnpm cspell`
+
+Go through [PR checklist](./.github/pull_request_template.md)
 
 ## Trademarks
 

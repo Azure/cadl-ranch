@@ -7,9 +7,28 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch: {}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 ## Needed for Changesets to find `main` branch
+
+      - run: git pull --force --no-tags origin main:main
+        name: Get main ref
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npx -p @changesets/cli changeset status --since=main
+        name: Check changelog
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -31,13 +50,10 @@ jobs:
         name: Install dependencies
 
       - run: pnpm check-version-mismatch
-        name: Check dependencies are consitent
+        name: Check dependencies are consistent
 
       - run: pnpm run build
         name: Build
-
-      - run: ls ./packages/cadl-ranch-specs/node_modules/.bin
-        name: Test LS
 
       - run: pnpm run validate-scenarios --debug
         name: Validate Scenarios
@@ -45,5 +61,16 @@ jobs:
       - run: pnpm run validate-mock-apis --debug
         name: Validate mock apis
 
+      - run: pnpm run generate-scenarios-summary --debug
+        name: Generate scenario summary
+
       - run: pnpm run check-format
         name: Check formatting
+
+      - run: pnpm run lint
+        name: Lint
+
+      - run: |
+          git status --porcelain
+          git diff --no-ext-diff --quiet --exit-code
+        name: Check not out of date generated files

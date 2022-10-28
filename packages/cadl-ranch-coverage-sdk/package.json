@@ -1,0 +1,40 @@
+{
+  "name": "@azure-tools/cadl-ranch-coverage-sdk",
+  "version": "0.1.2",
+  "description": "Cadl Ranch utility to manage the reported coverage",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "watch": "tsc -p ./tsconfig.build.json --watch",
+    "build": "tsc -p ./tsconfig.build.json",
+    "clean": "rimraf dist/ temp/",
+    "lint": "eslint . --ext .ts --max-warnings=0",
+    "lint:fix": "eslint . --fix --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/cadl-ranch.git"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/cadl-ranch/issues"
+  },
+  "homepage": "https://github.com/Azure/cadl-ranch#readme",
+  "dependencies": {
+    "@azure/identity": "^3.0.0",
+    "@azure/storage-blob": "^12.11.0",
+    "@types/node": "^18.7.16"
+  },
+  "devDependencies": {
+    "@cadl-lang/eslint-config-cadl": "^0.4.1",
+    "eslint": "^8.23.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.3"
+  }
+}

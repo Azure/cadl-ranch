@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.1.4",
+  "version": "0.4.2",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
@@ -11,6 +11,9 @@
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
+    "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
+    "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName cadlranchcoverage",
+    "upload-coverage": "cadl-ranch upload-coverage --storageAccountName cadlranchcoverage",
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
     "serve": "cadl-ranch serve ./http",
@@ -34,21 +37,22 @@
     "@azure-tools/cadl-ranch-api": "workspace:~"
   },
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "^0.3.0",
-    "@types/node": "^18.0.6",
+    "@azure-tools/cadl-autorest": "0.21.0",
+    "@cadl-lang/eslint-config-cadl": "^0.4.1",
+    "@azure-tools/cadl-dpg": "~0.1.0",
+    "@cadl-lang/openapi": "0.13.0",
+    "@cadl-lang/openapi3": "0.16.0",
+    "@types/node": "^18.7.16",
+    "eslint": "^8.23.1",
     "prettier": "^2.7.1",
-    "eslint": "^8.20.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.7.4",
-    "@azure-tools/cadl-autorest": "0.19.0",
-    "@cadl-lang/openapi3": "0.14.0",
-    "@cadl-lang/openapi": "0.11.0"
+    "typescript": "^4.8.3"
   },
   "peerDependencies": {
+    "@azure-tools/cadl-azure-core": "~0.8.0",
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure-tools/cadl-azure-core": "~0.6.0",
-    "@cadl-lang/compiler": "~0.34.0",
-    "@cadl-lang/rest": "~0.16.0",
-    "@cadl-lang/versioning": "~0.7.0"
+    "@cadl-lang/compiler": "~0.36.0",
+    "@cadl-lang/rest": "~0.18.0",
+    "@cadl-lang/versioning": "~0.9.0"
   }
 }

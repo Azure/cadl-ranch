@@ -17,7 +17,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
   const diagnostics = createDiagnosticReporter();
   for (const { name, cadlFilePath } of scenarioFiles) {
     logger.debug(`Found scenario "${cadlFilePath}"`);
-    const program = await cadlCompiler.compile(cadlFilePath, cadlCompiler.NodeHost, {
+    const program = await cadlCompiler.compile(cadlCompiler.NodeHost, cadlFilePath, {
       noEmit: true,
       warningAsError: true,
     });
@@ -69,18 +69,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
 const NOT_IMPLEMENTED = [
   // Anne
-  "models/collections-basic",
-  "models/collections-models",
-  "models/enum-properties",
-  "models/inheritance",
-  "models/input-basic",
   "models/readonly-properties",
-  "models/roundtrip-basic",
-  "models/nested-models",
-  "models/primitive-properties",
-  "models/optional-properties",
-  "models/output-basic",
-  "clients/interfaces",
 
   // Laurent
   "resiliency/dev-driven",
