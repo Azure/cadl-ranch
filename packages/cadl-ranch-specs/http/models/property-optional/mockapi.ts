@@ -20,6 +20,9 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
   const defaultUrl = `${url}/default`;
   const allBody = { property: value };
   const defaultBody = {};
+  if (convertBodyProperty && allBody.property) {
+    allBody.property = convertBodyProperty(allBody.property);
+  }
   const getAll = mockapi.get(allUrl, (req) => {
     return {
       status: 200,
@@ -33,9 +36,8 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
     };
   });
   const putAll = mockapi.put(allUrl, (req) => {
-    if (convertBodyProperty && req.originalRequest.body?.property && allBody?.property) {
+    if (convertBodyProperty && req.originalRequest.body?.propertyy) {
       req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
-      allBody.property = convertBodyProperty(allBody.property);
     }
 
     req.expect.bodyEquals(allBody);
