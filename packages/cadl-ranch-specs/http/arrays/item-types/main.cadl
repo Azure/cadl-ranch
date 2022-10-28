@@ -6,8 +6,8 @@ using Cadl.Http;
 using Azure.DPG;
 
 @doc("Illustrates various of dictionaries.")
-@scenarioService("/array/item-types")
-namespace Array.ItemTypes;
+@scenarioService("/arrays/item-types")
+namespace Arrays.ItemTypes;
 
 @doc("Template to have Array operations")
 interface ArrayOperations<TArr, TDoc extends string> {

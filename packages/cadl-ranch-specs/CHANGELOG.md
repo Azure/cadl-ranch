@@ -1,5 +1,25 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.4.2
+
+### Patch Changes
+
+- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namesapce array to arrays
+
+- [#149](https://github.com/Azure/cadl-ranch/pull/149) [`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add testcases for using special words as operation/parameter/property names
+
+- Updated dependencies [[`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98)]:
+  - @azure-tools/cadl-ranch@0.2.8
+
+## 0.4.1
+
+### Patch Changes
+
+- [#142](https://github.com/Azure/cadl-ranch/pull/142) [`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325) Thanks [@changlong-liu](https://github.com/changlong-liu)! - fix lro mockapi: add response body for Azure_Lro_PollingSuccess
+
+- Updated dependencies [[`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325)]:
+  - @azure-tools/cadl-ranch@0.2.7
+
 ## 0.4.0
 
 ### Minor Changes
