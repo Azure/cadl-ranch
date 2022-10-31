@@ -36,7 +36,7 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
     };
   });
   const putAll = mockapi.put(allUrl, (req) => {
-    if (convertBodyProperty && req.originalRequest.body?.propertyy) {
+    if (convertBodyProperty && req.originalRequest.body?.property) {
       req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
     }
 
