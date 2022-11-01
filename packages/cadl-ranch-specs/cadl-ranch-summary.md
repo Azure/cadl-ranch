@@ -1256,19 +1256,19 @@ Generate, send, and receive round-trip model with readonly properties.
 
 ### Models_Usage_input
 
-- Endpoint: `get /models/usages/input`
+- Endpoint: `get /models/usage/input`
 
 Send a POST request with the following body {requiredProp: "example-value"}
 
 ### Models_Usage_output
 
-- Endpoint: `get /models/usages/output`
+- Endpoint: `get /models/usage/output`
 
 Send a GET request which return the following body {requiredProp: "example-value"}
 
 ### Models_Usage_inputAndOutput
 
-- Endpoint: `get /models/usages/input-output`
+- Endpoint: `get /models/usage/input-output`
 
 Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
 
