@@ -15,9 +15,6 @@ interface MockApiGetPut {
 function createMockApis(route: string, value: any, convertBodyProperty?: (_: any) => any): MockApiGetPut {
   const url = `/models/properties/types/${route}`;
   const body = { property: value };
-  if (convertBodyProperty && body.property) {
-    body.property = convertBodyProperty(body.property);
-  }
   return {
     get: mockapi.get(url, (req) => {
       return {
@@ -26,11 +23,13 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (convertBodyProperty && req.originalRequest.body?.property) {
+      const expectedBody = JSON.parse(JSON.stringify(body)); // deep clone
+      if (convertBodyProperty && req.originalRequest.body?.property && body.property) {
         req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
+        expectedBody.property = convertBodyProperty(expectedBody.property);
       }
 
-      req.expect.bodyEquals(body);
+      req.expect.bodyEquals(expectedBody);
 
       return {
         status: 204,
