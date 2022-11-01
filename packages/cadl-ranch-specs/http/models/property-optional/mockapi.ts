@@ -33,12 +33,13 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
     };
   });
   const putAll = mockapi.put(allUrl, (req) => {
+    const expectedBody = JSON.parse(JSON.stringify(allBody)); // deep clone
     if (convertBodyProperty && req.originalRequest.body?.property && allBody?.property) {
       req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
-      allBody.property = convertBodyProperty(allBody.property);
+      expectedBody.property = convertBodyProperty(expectedBody.property);
     }
 
-    req.expect.bodyEquals(allBody);
+    req.expect.bodyEquals(expectedBody);
     return {
       status: 204,
     };
