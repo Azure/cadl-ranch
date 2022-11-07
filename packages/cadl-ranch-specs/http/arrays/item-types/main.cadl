@@ -26,22 +26,6 @@ interface ArrayOperations<TArr, TDoc extends string> {
   @get
   @convenienceAPI
   get(): TArr;
-
-  @scenario
-  @scenarioDoc(
-    """
-  Expected Array input body:
-  ```json
-  {doc}
-  ```
-  """,
-    {
-      doc: TDoc,
-    }
-  )
-  @put
-  @convenienceAPI
-  put(@body body: TArr): void;
 }
 
 @doc("Array of int32 values")
