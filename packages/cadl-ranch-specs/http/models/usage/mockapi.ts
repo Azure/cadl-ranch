@@ -13,14 +13,14 @@ Scenarios.Models_Usage_input = passOnSuccess(
 );
 
 Scenarios.Models_Usage_output = passOnSuccess(
-  mockapi.post("/models/usage/output", (req) => {
-    return { status: 202, body: json(body) };
+  mockapi.get("/models/usage/output", (req) => {
+    return { status: 200, body: json(body) };
   }),
 );
 
 Scenarios.Models_Usage_inputAndOutput = passOnSuccess(
   mockapi.post("/models/usage/input-output", (req) => {
     req.expect.bodyEquals(body);
-    return { status: 202, body: json(body) };
+    return { status: 200, body: json(body) };
   }),
 );
