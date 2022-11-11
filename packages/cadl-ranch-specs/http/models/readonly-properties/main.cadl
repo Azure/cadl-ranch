@@ -4,7 +4,7 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 
 @doc("Illustrates models with readonly properties.")
-@scenarioService("/readonly-properties")
+@scenarioService("/models/readonly-properties")
 namespace ReadonlyProperties;
 
 // Note: input model with readonly properties doesn't make sense
@@ -65,13 +65,60 @@ model RoundTripModel {
 }
 
 @scenario
-@scenarioDoc("Generate and receive output model with readonly properties.")
+@scenarioDoc("""
+Generate and receive output model with readonly properties.
+Expected response body:
+```json
+{
+  requiredReadonlyString: "abc",
+  requiredReadonlyInt: 123,
+  optionalReadonlyString: "efg",
+  optionalReadonlyInt: 456,
+  requiredReadonlyModel: {
+    requiredString: "!",
+  },
+  optionalReadonlyModel: {
+    requiredString: "**",
+  },
+  requiredReadonlyStringList: ["foo", "bar"],
+  requiredReadonlyIntList: [1, 2],
+  optionalReadonlyStringList: ["fox", "fish"],
+  optionalReadonlyIntList: [3, 4],
+}
+```
+""")
 @route("/models")
 @get
 op getOptionalPropertyModel(): OutputModel;
 
 @scenario
-@scenarioDoc("Generate, send, and receive round-trip model with readonly properties.")
+@scenarioDoc("""
+Generate, send, and receive round-trip model with readonly properties.
+Expected input body:
+```json
+{}
+```
+
+Expected response body:
+```json
+{
+  requiredReadonlyString: "abc",
+  requiredReadonlyInt: 123,
+  optionalReadonlyString: "efg",
+  optionalReadonlyInt: 456,
+  requiredReadonlyModel: {
+    requiredString: "!",
+  },
+  optionalReadonlyModel: {
+    requiredString: "**",
+  },
+  requiredReadonlyStringList: ["foo", "bar"],
+  requiredReadonlyIntList: [1, 2],
+  optionalReadonlyStringList: ["fox", "fish"],
+  optionalReadonlyIntList: [3, 4],
+}
+```
+""")
 @route("/models")
 @put
 op setOptionalPropertyModel(@body input: RoundTripModel): RoundTripModel;

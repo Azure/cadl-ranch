@@ -1244,15 +1244,61 @@ Expected input body:
 
 ### ReadonlyProperties_getOptionalPropertyModel
 
-- Endpoint: `get /readonly-properties/models`
+- Endpoint: `get /models/readonly-properties/models`
 
 Generate and receive output model with readonly properties.
+Expected response body:
+
+```json
+{
+  "requiredReadonlyString": "abc",
+  "requiredReadonlyInt": 123,
+  "optionalReadonlyString": "efg",
+  "optionalReadonlyInt": 456,
+  "requiredReadonlyModel": {
+    "requiredString": "!"
+  },
+  "optionalReadonlyModel": {
+    "requiredString": "**"
+  },
+  "requiredReadonlyStringList": ["foo", "bar"],
+  "requiredReadonlyIntList": [1, 2],
+  "optionalReadonlyStringList": ["fox", "fish"],
+  "optionalReadonlyIntList": [3, 4]
+}
+```
 
 ### ReadonlyProperties_setOptionalPropertyModel
 
-- Endpoint: `put /readonly-properties/models`
+- Endpoint: `put /models/readonly-properties/models`
 
 Generate, send, and receive round-trip model with readonly properties.
+Expected input body:
+
+```json
+{}
+```
+
+Expected response body:
+
+```json
+{
+  "requiredReadonlyString": "abc",
+  "requiredReadonlyInt": 123,
+  "optionalReadonlyString": "efg",
+  "optionalReadonlyInt": 456,
+  "requiredReadonlyModel": {
+    "requiredString": "!"
+  },
+  "optionalReadonlyModel": {
+    "requiredString": "**"
+  },
+  "requiredReadonlyStringList": ["foo", "bar"],
+  "requiredReadonlyIntList": [1, 2],
+  "optionalReadonlyStringList": ["fox", "fish"],
+  "optionalReadonlyIntList": [3, 4]
+}
+```
 
 ### Models_Usage_input
 
