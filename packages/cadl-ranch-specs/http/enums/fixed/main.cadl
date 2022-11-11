@@ -1,0 +1,40 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+
+@scenarioService("/fixed-enums")
+namespace FixedEnums;
+
+@fixed
+enum DaysOfWeekEnum {
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+}
+
+@route("/string")
+interface String {
+  @scenario
+  @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
+  @get
+  @route("/known-value")
+  getKnownValue(): DaysOfWeekEnum;
+
+  @scenario
+  @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")
+  @put
+  @route("/known-value")
+  putKnownValue(@body body: DaysOfWeekEnum): void;
+
+  @scenario
+  @scenarioDoc("Expect to handle an unknown value. Mock api expect to receive 'Weekend'")
+  @put
+  @route("/unknown-value")
+  putUnknownValue(@body body: DaysOfWeekEnum): void;
+}
