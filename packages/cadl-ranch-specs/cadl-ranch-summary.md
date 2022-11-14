@@ -1242,64 +1242,6 @@ Expected input body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
-### ReadonlyProperties_getOptionalPropertyModel
-
-- Endpoint: `get /models/readonly-properties/models`
-
-Generate and receive output model with readonly properties.
-Expected response body:
-
-```json
-{
-  "requiredReadonlyString": "abc",
-  "requiredReadonlyInt": 123,
-  "optionalReadonlyString": "efg",
-  "optionalReadonlyInt": 456,
-  "requiredReadonlyModel": {
-    "requiredString": "!"
-  },
-  "optionalReadonlyModel": {
-    "requiredString": "**"
-  },
-  "requiredReadonlyStringList": ["foo", "bar"],
-  "requiredReadonlyIntList": [1, 2],
-  "optionalReadonlyStringList": ["fox", "fish"],
-  "optionalReadonlyIntList": [3, 4]
-}
-```
-
-### ReadonlyProperties_setOptionalPropertyModel
-
-- Endpoint: `put /models/readonly-properties/models`
-
-Generate, send, and receive round-trip model with readonly properties.
-Expected input body:
-
-```json
-{}
-```
-
-Expected response body:
-
-```json
-{
-  "requiredReadonlyString": "abc",
-  "requiredReadonlyInt": 123,
-  "optionalReadonlyString": "efg",
-  "optionalReadonlyInt": 456,
-  "requiredReadonlyModel": {
-    "requiredString": "!"
-  },
-  "optionalReadonlyModel": {
-    "requiredString": "**"
-  },
-  "requiredReadonlyStringList": ["foo", "bar"],
-  "requiredReadonlyIntList": [1, 2],
-  "optionalReadonlyStringList": ["fox", "fish"],
-  "optionalReadonlyIntList": [3, 4]
-}
-```
-
 ### Models_Usage_input
 
 - Endpoint: `get /models/usage/input`
@@ -1317,6 +1259,62 @@ Send a GET request which return the following body {requiredProp: "example-value
 - Endpoint: `get /models/usage/input-output`
 
 Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
+
+### Models_Visibility_getModel
+
+- Endpoint: `get /models/visibility`
+
+Generate and receive output model with readonly properties.
+Expected response body:
+
+```json
+{
+  "requiredReadonlyString": "abc"
+}
+```
+
+### Models_Visibility_putModel
+
+- Endpoint: `put /models/visibility`
+
+Generate abd send put model with write/create/udpate properties.
+Expected input body:
+
+```json
+{
+  "requiredWriteonlyInt": 123,
+  "requiredCreateonlyStringList": ["foo", "bar"],
+  "requiredUpdateonlyIntList": [1, 2]
+}
+```
+
+### Models_Visibility_patchModel
+
+- Endpoint: `patch /models/visibility`
+
+Generate abd send put model with write/udpate properties.
+Expected input body:
+
+```json
+{
+  "requiredWriteonlyInt": 123,
+  "requiredUpdateonlyIntList": [1, 2]
+}
+```
+
+### Models_Visibility_postModel
+
+- Endpoint: `post /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "requiredWriteonlyInt": 123,
+  "requiredCreateonlyStringList": ["foo", "bar"]
+}
+```
 
 ### Resiliency_DevDriven_getModel
 

@@ -1,0 +1,50 @@
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+
+export const Scenarios: Record<string, ScenarioMockApi> = {};
+
+
+function genData(keys: string[]): Record<string, any> {
+  const ret: Record<string, any> = {}
+  const fullData: Record<string, any> = {
+    requiredReadonlyString: "abc",
+    requiredWriteonlyInt: 123,
+    requiredCreateonlyStringList: ["foo", "bar"],
+    requiredUpdateonlyIntList: [1, 2],
+  };
+  for (const k of keys) {
+    if (k in fullData) {
+      ret[k] = fullData[k];
+    }
+  }
+  return ret;
+}
+
+Scenarios.Models_Visibility_getModel = passOnSuccess(
+  mockapi.get("/models/visibility", (req) => {
+    return {
+      status: 200, body: json(genData(['requiredReadonlyString']))
+    };
+  }),
+);
+
+Scenarios.Models_Visibility_putModel = passOnSuccess(
+  mockapi.put("/models/visibility", (req) => {
+    req.expect.bodyEquals(genData(['requiredWriteonlyInt', 'requiredCreateonlyStringList', 'requiredUpdateonlyIntList']));
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Models_Visibility_patchModel = passOnSuccess(
+  mockapi.patch("/models/visibility", (req) => {
+    req.expect.bodyEquals(genData(['requiredWriteonlyInt', 'requiredUpdateonlyIntList']));
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Models_Visibility_postModel = passOnSuccess(
+  mockapi.post("/models/visibility", (req) => {
+    req.expect.bodyEquals(genData(['requiredWriteonlyInt', 'requiredCreateonlyStringList']));
+    return { status: 204 };
+  }),
+);
