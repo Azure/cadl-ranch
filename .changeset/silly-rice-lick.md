@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-- add readonly-properties mockapi
+- add visibility spec and mockapi
