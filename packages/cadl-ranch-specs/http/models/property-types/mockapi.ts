@@ -93,3 +93,7 @@ Scenarios.Models_Property_Types_CollectionsModel_put = passOnSuccess(collections
 const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", k2: "world" });
 Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
 Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);
+
+const neverMock = createMockApis("never", undefined);
+Scenarios.Models_Property_Types_Never_get = passOnSuccess(neverMock.get);
+Scenarios.Models_Property_Types_Never_put = passOnSuccess(neverMock.put);
