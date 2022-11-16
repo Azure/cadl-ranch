@@ -1,5 +1,7 @@
+
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
+
 
 using Cadl.Http;
 
@@ -9,26 +11,37 @@ namespace Models.Visibility;
 
 @doc("Output model with visibility properties.")
 model VisibilityModel {
-  @doc("Required string, illustrating a readonly value type property.")
+  @doc("Required string, illustrating a readonly property.")
   @visibility("read")
   requiredReadonlyString: string;
 
-  @doc("Required int, illustrating a writeonly value type property.")
-  @visibility("write")
-  requiredWriteonlyInt: int32;
+  @doc("Required int32, illustrating a query property.")
+  @visibility("query")
+  requiredQueryInt32: int32;
 
-  @doc("Required createonly string collection.")
+  @doc("Required string[], illustrating a create property.")
   @visibility("create")
-  requiredCreateonlyStringList: string[];
+  requiredCreateStringList: string[];
 
-  @doc("Required updateonly int collection.")
+  @doc("Required int32[], illustrating a update property.")
   @visibility("update")
-  requiredUpdateonlyIntList: int32[];
+  requiredUpdateIntList: int32[];
+
+  @doc("Required bool, illustrating a delete property.")
+  @visibility("delete")
+  requiredDeleteBoolean: boolean;
 }
 
 @scenario
 @scenarioDoc("""
 Generate and receive output model with readonly properties.
+Expected input body:
+```json
+{
+  requiredQueryInt32: 123,
+}
+```
+
 Expected response body:
 ```json
 {
@@ -37,7 +50,21 @@ Expected response body:
 ```
 """)
 @get
-op getModel(): VisibilityModel;
+op getModel(@body input: VisibilityModel): VisibilityModel;
+
+@scenario
+@scenarioDoc("""
+Generate abd send put model with write/create properties.
+Expected input body:
+```json
+{
+  requiredQueryInt32: 123,
+}
+```
+""")
+@head
+op headModel(@body input: VisibilityModel): void;
+
 
 @scenario
 @scenarioDoc("""
@@ -45,9 +72,8 @@ Generate abd send put model with write/create/udpate properties.
 Expected input body:
 ```json
 {
-  requiredWriteonlyInt: 123,
-  requiredCreateonlyStringList: ["foo", "bar"],
-  requiredUpdateonlyIntList: [1, 2],
+  requiredCreateStringList: ["foo", "bar"],
+  requiredUpdateIntList: [1, 2],
 }
 ```
 """)
@@ -60,8 +86,7 @@ Generate abd send put model with write/udpate properties.
 Expected input body:
 ```json
 {
-  requiredWriteonlyInt: 123,
-  requiredUpdateonlyIntList: [1, 2],
+  requiredUpdateIntList: [1, 2],
 }
 ```
 """)
@@ -74,10 +99,22 @@ Generate abd send put model with write/create properties.
 Expected input body:
 ```json
 {
-  requiredWriteonlyInt: 123,
-  requiredCreateonlyStringList: ["foo", "bar"],
+  requiredCreateStringList: ["foo", "bar"],
 }
 ```
 """)
 @post
 op postModel(@body input: VisibilityModel): void;
+
+@scenario
+@scenarioDoc("""
+Generate abd send put model with write/create properties.
+Expected input body:
+```json
+{
+  requiredDeleteBoolean: true,
+}
+```
+""")
+@delete
+op deleteModel(@body input: VisibilityModel): void;

@@ -1265,11 +1265,32 @@ Send a POST request which return the following body {requiredProp: "example-valu
 - Endpoint: `get /models/visibility`
 
 Generate and receive output model with readonly properties.
+Expected input body:
+
+```json
+{
+  "requiredQueryInt32": 123
+}
+```
+
 Expected response body:
 
 ```json
 {
   "requiredReadonlyString": "abc"
+}
+```
+
+### Models_Visibility_headModel
+
+- Endpoint: `head /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "requiredQueryInt32": 123
 }
 ```
 
@@ -1282,9 +1303,8 @@ Expected input body:
 
 ```json
 {
-  "requiredWriteonlyInt": 123,
-  "requiredCreateonlyStringList": ["foo", "bar"],
-  "requiredUpdateonlyIntList": [1, 2]
+  "requiredCreateStringList": ["foo", "bar"],
+  "requiredUpdateIntList": [1, 2]
 }
 ```
 
@@ -1297,8 +1317,7 @@ Expected input body:
 
 ```json
 {
-  "requiredWriteonlyInt": 123,
-  "requiredUpdateonlyIntList": [1, 2]
+  "requiredUpdateIntList": [1, 2]
 }
 ```
 
@@ -1311,8 +1330,20 @@ Expected input body:
 
 ```json
 {
-  "requiredWriteonlyInt": 123,
-  "requiredCreateonlyStringList": ["foo", "bar"]
+  "requiredCreateStringList": ["foo", "bar"]
+}
+```
+
+### Models_Visibility_deleteModel
+
+- Endpoint: `delete /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "requiredDeleteBoolean": true
 }
 ```
 
