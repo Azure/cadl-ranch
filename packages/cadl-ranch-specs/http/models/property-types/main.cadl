@@ -166,3 +166,10 @@ model DictionaryStringProperty is ModelTemplate<Record<string>>;
 @route("/dictionary/string")
 @operationGroup
 interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'k1': 'hello', 'k2': 'world'}"> {}
+
+// Test a model with a never property
+@doc("Model with a property never. (This property should not be included).")
+model NeverProperty is ModelTemplate<never>;
+@route("/never")
+@operationGroup
+interface Never extends ModelOperations<NeverProperty, "<dont include this property>"> {}

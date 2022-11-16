@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.5.0
+
+### Minor Changes
+
+- [#160](https://github.com/Azure/cadl-ranch/pull/160) [`c4b58d9`](https://github.com/Azure/cadl-ranch/commit/c4b58d9473913d82021a676eddb34cd0e8f2da7c) Thanks [@msyyc](https://github.com/msyyc)! - Bug fix for models/usage
+
+### Patch Changes
+
+- [#165](https://github.com/Azure/cadl-ranch/pull/165) [`dce629c`](https://github.com/Azure/cadl-ranch/commit/dce629c677d0102bd71e646c39a4efabeb8cb0b1) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Added `never` as a model property type case. (Meaning the property should not be included)
+
+- [#166](https://github.com/Azure/cadl-ranch/pull/166) [`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl deps
+
+- Updated dependencies [[`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e)]:
+  - @azure-tools/cadl-ranch@0.2.9
+  - @azure-tools/cadl-ranch-expect@0.1.12
+
 ## 0.4.3
 
 ### Patch Changes

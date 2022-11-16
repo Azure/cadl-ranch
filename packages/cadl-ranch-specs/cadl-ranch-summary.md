@@ -1242,6 +1242,26 @@ Expected input body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
+### Models_Property_Types_Never_get
+
+- Endpoint: `get /models/properties/types/never`
+
+Expected response body:
+
+```json
+{"property": <dont include this property>}
+```
+
+### Models_Property_Types_Never_put
+
+- Endpoint: `put /models/properties/types/never`
+
+Expected input body:
+
+```json
+{"property": <dont include this property>}
+```
+
 ### Models_Usage_input
 
 - Endpoint: `get /models/usage/input`
