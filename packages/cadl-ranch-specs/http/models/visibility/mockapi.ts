@@ -33,7 +33,7 @@ Scenarios.Models_Visibility_getModel = passOnSuccess(
 Scenarios.Models_Visibility_headModel = passOnSuccess(
   mockapi.head("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['requiredQueryInt32']));
-    return { status: 204 };
+    return { status: 200 };
   }),
 );
 

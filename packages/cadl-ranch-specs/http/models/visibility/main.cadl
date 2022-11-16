@@ -63,7 +63,7 @@ Expected input body:
 ```
 """)
 @head
-op headModel(@body input: VisibilityModel): void;
+op headModel(@body input: VisibilityModel): OkResponse;
 
 
 @scenario
