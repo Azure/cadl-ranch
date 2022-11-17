@@ -1259,7 +1259,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": <dont include this property>}
+{"property": <don't include this property>}
 ```
 
 ### Models_Property_Types_Never_put
@@ -1269,7 +1269,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": <dont include this property>}
+{"property": <don't include this property>}
 ```
 
 ### ReadonlyProperties_getOptionalPropertyModel
