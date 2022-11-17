@@ -7,29 +7,29 @@ using Cadl.Http;
 
 @doc("Illustrates models with visibility properties.")
 @scenarioService("/models/visibility")
-namespace Models.Visibility;
+namespace Models.Visibility.Automatic;
 
 @doc("Output model with visibility properties.")
 model VisibilityModel {
   @doc("Required string, illustrating a readonly property.")
   @visibility("read")
-  requiredReadonlyString: string;
+  readProp: string;
 
   @doc("Required int32, illustrating a query property.")
   @visibility("query")
-  requiredQueryInt32: int32;
+  queryProp: int32;
 
   @doc("Required string[], illustrating a create property.")
   @visibility("create")
-  requiredCreateStringList: string[];
+  createProp: string[];
 
   @doc("Required int32[], illustrating a update property.")
   @visibility("update")
-  requiredUpdateIntList: int32[];
+  updateProp: int32[];
 
   @doc("Required bool, illustrating a delete property.")
   @visibility("delete")
-  requiredDeleteBoolean: boolean;
+  deleteProp: boolean;
 }
 
 @scenario
@@ -38,14 +38,14 @@ Generate and receive output model with readonly properties.
 Expected input body:
 ```json
 {
-  requiredQueryInt32: 123,
+  queryProp: 123,
 }
 ```
 
 Expected response body:
 ```json
 {
-  requiredReadonlyString: "abc",
+  readProp: "abc",
 }
 ```
 """)
@@ -58,7 +58,7 @@ Generate abd send put model with write/create properties.
 Expected input body:
 ```json
 {
-  requiredQueryInt32: 123,
+  queryProp: 123,
 }
 ```
 """)
@@ -72,8 +72,8 @@ Generate abd send put model with write/create/udpate properties.
 Expected input body:
 ```json
 {
-  requiredCreateStringList: ["foo", "bar"],
-  requiredUpdateIntList: [1, 2],
+  createProp: ["foo", "bar"],
+  updateProp: [1, 2],
 }
 ```
 """)
@@ -86,7 +86,7 @@ Generate abd send put model with write/udpate properties.
 Expected input body:
 ```json
 {
-  requiredUpdateIntList: [1, 2],
+  updateProp: [1, 2],
 }
 ```
 """)
@@ -99,7 +99,7 @@ Generate abd send put model with write/create properties.
 Expected input body:
 ```json
 {
-  requiredCreateStringList: ["foo", "bar"],
+  createProp: ["foo", "bar"],
 }
 ```
 """)
@@ -112,7 +112,7 @@ Generate abd send put model with write/create properties.
 Expected input body:
 ```json
 {
-  requiredDeleteBoolean: true,
+  deleteProp: true,
 }
 ```
 """)

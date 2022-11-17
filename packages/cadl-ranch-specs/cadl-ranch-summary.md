@@ -1280,7 +1280,7 @@ Send a GET request which return the following body {requiredProp: "example-value
 
 Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
 
-### Models_Visibility_getModel
+### Models_Visibility_Automatic_getModel
 
 - Endpoint: `get /models/visibility`
 
@@ -1289,7 +1289,7 @@ Expected input body:
 
 ```json
 {
-  "requiredQueryInt32": 123
+  "queryProp": 123
 }
 ```
 
@@ -1297,11 +1297,11 @@ Expected response body:
 
 ```json
 {
-  "requiredReadonlyString": "abc"
+  "readProp": "abc"
 }
 ```
 
-### Models_Visibility_headModel
+### Models_Visibility_Automatic_headModel
 
 - Endpoint: `head /models/visibility`
 
@@ -1310,11 +1310,11 @@ Expected input body:
 
 ```json
 {
-  "requiredQueryInt32": 123
+  "queryProp": 123
 }
 ```
 
-### Models_Visibility_putModel
+### Models_Visibility_Automatic_putModel
 
 - Endpoint: `put /models/visibility`
 
@@ -1323,12 +1323,12 @@ Expected input body:
 
 ```json
 {
-  "requiredCreateStringList": ["foo", "bar"],
-  "requiredUpdateIntList": [1, 2]
+  "createProp": ["foo", "bar"],
+  "updateProp": [1, 2]
 }
 ```
 
-### Models_Visibility_patchModel
+### Models_Visibility_Automatic_patchModel
 
 - Endpoint: `patch /models/visibility`
 
@@ -1337,11 +1337,11 @@ Expected input body:
 
 ```json
 {
-  "requiredUpdateIntList": [1, 2]
+  "updateProp": [1, 2]
 }
 ```
 
-### Models_Visibility_postModel
+### Models_Visibility_Automatic_postModel
 
 - Endpoint: `post /models/visibility`
 
@@ -1350,11 +1350,11 @@ Expected input body:
 
 ```json
 {
-  "requiredCreateStringList": ["foo", "bar"]
+  "createProp": ["foo", "bar"]
 }
 ```
 
-### Models_Visibility_deleteModel
+### Models_Visibility_Automatic_deleteModel
 
 - Endpoint: `delete /models/visibility`
 
@@ -1363,7 +1363,7 @@ Expected input body:
 
 ```json
 {
-  "requiredDeleteBoolean": true
+  "deleteProp": true
 }
 ```
 

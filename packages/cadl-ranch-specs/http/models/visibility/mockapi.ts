@@ -7,11 +7,11 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 function genData(keys: string[]): Record<string, any> {
   const ret: Record<string, any> = {}
   const fullData: Record<string, any> = {
-    requiredReadonlyString: "abc",
-    requiredQueryInt32: 123,
-    requiredCreateStringList: ["foo", "bar"],
-    requiredUpdateIntList: [1, 2],
-    requiredDeleteBoolean: true,
+    readProp: "abc",
+    queryProp: 123,
+    createProp: ["foo", "bar"],
+    updateProp: [1, 2],
+    deleteProp: true,
   };
   for (const k of keys) {
     if (k in fullData) {
@@ -23,44 +23,44 @@ function genData(keys: string[]): Record<string, any> {
 
 Scenarios.Models_Visibility_getModel = passOnSuccess(
   mockapi.get("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredQueryInt32']));
+    req.expect.bodyEquals(genData(['queryProp']));
     return {
-      status: 200, body: json(genData(['requiredReadonlyString']))
+      status: 200, body: json(genData(['readProp']))
     };
   }),
 );
 
 Scenarios.Models_Visibility_headModel = passOnSuccess(
   mockapi.head("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredQueryInt32']));
+    req.expect.bodyEquals(genData(['queryProp']));
     return { status: 200 };
   }),
 );
 
 Scenarios.Models_Visibility_putModel = passOnSuccess(
   mockapi.put("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredCreateStringList', 'requiredUpdateIntList']));
+    req.expect.bodyEquals(genData(['createProp', 'updateProp']));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_patchModel = passOnSuccess(
   mockapi.patch("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredUpdateIntList']));
+    req.expect.bodyEquals(genData(['updateProp']));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_postModel = passOnSuccess(
   mockapi.post("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredCreateStringList']));
+    req.expect.bodyEquals(genData(['createProp']));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_deleteModel = passOnSuccess(
   mockapi.delete("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['requiredDeleteBoolean']));
+    req.expect.bodyEquals(genData(['deleteProp']));
     return { status: 204 };
   }),
 );
