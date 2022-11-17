@@ -1,0 +1,56 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/cadl-dpg";
+import "@cadl-lang/versioning";
+import "@azure-tools/cadl-azure-core";
+
+using Cadl.Http;
+using Azure.DPG;
+using Cadl.Versioning;
+using Azure.Core;
+using Cadl.Rest;
+
+@versioned(Versions)
+@service({
+  title: "PathClient",
+})
+@server(
+  "{Endpoint}/clients/parameters/path/{ApiVersion}",
+  "The Anomaly Detector API detects anomalies automatically in time series data. It supports two kinds of mode, one is for stateless using, another is for stateful using. In stateless mode, there are three functionalities. Entire Detect is for detecting the whole series with model trained by the time series, Last Detect is detecting last point with model trained by points before. ChangePoint Detect is for detecting trend changes in time series. In stateful mode, user can store time series, the stored time series will be used for detection anomalies. Under this mode, user can still use the above three functionalities by only giving a time range without preparing time series in client side. Besides the above three functionalities, stateful model also provide group based detection and labeling service. By leveraging labeling service user can provide labels for each detection result, these labels will be used for retuning or regenerating detection models. Inconsistency detection is a kind of group based detection, this detection will find inconsistency ones in a set of time series. By using anomaly detector service, business customers can discover incidents and establish a logic flow for root cause analysis.",
+  {
+    @doc("""
+Pass in http://localhost:3000 for endpoint.
+""")
+    Endpoint: string,
+
+    @doc("Api Version")
+    @doc("""
+Pass in v1.0 for endpoint.
+""")
+    @path
+    ApiVersion: Versions,
+  }
+)
+namespace Clients.Parameters.Path;
+
+enum Versions {
+  v1_0: "v1.0",
+}
+
+@doc("Product resource")
+@resource("products")
+model Product {
+  @doc("ID of a product")
+  @key
+  id: int32;
+}
+
+@scenario
+@scenarioDoc("""
+Expected response body:
+  ```json
+  {"id": 1}
+  ```
+""")
+@doc("Get a resource")
+op get is ResourceRead<Product>;
