@@ -172,4 +172,4 @@ interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'
 model NeverProperty is ModelTemplate<never>;
 @route("/never")
 @operationGroup
-interface Never extends ModelOperations<NeverProperty, "<dont include this property>"> {}
+interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}

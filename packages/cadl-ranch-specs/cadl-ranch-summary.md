@@ -221,6 +221,16 @@ Expect error code 400 and error body:
 }
 ```
 
+### Clients_Parameters_Path_get
+
+- Endpoint: `get /`
+
+Expected response body:
+
+```json
+{ "id": 1 }
+```
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
