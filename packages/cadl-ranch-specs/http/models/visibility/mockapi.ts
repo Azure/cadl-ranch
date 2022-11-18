@@ -3,9 +3,8 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-
 function genData(keys: string[]): Record<string, any> {
-  const ret: Record<string, any> = {}
+  const ret: Record<string, any> = {};
   const fullData: Record<string, any> = {
     readProp: "abc",
     queryProp: 123,
@@ -23,44 +22,45 @@ function genData(keys: string[]): Record<string, any> {
 
 Scenarios.Models_Visibility_Automatic_getModel = passOnSuccess(
   mockapi.get("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['queryProp']));
+    req.expect.bodyEquals(genData(["queryProp"]));
     return {
-      status: 200, body: json(genData(['readProp']))
+      status: 200,
+      body: json(genData(["readProp"])),
     };
   }),
 );
 
 Scenarios.Models_Visibility_Automatic_headModel = passOnSuccess(
   mockapi.head("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['queryProp']));
+    req.expect.bodyEquals(genData(["queryProp"]));
     return { status: 200 };
   }),
 );
 
 Scenarios.Models_Visibility_Automatic_putModel = passOnSuccess(
   mockapi.put("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['createProp', 'updateProp']));
+    req.expect.bodyEquals(genData(["createProp", "updateProp"]));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_Automatic_patchModel = passOnSuccess(
   mockapi.patch("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['updateProp']));
+    req.expect.bodyEquals(genData(["updateProp"]));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_Automatic_postModel = passOnSuccess(
   mockapi.post("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['createProp']));
+    req.expect.bodyEquals(genData(["createProp"]));
     return { status: 204 };
   }),
 );
 
 Scenarios.Models_Visibility_Automatic_deleteModel = passOnSuccess(
   mockapi.delete("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(['deleteProp']));
+    req.expect.bodyEquals(genData(["deleteProp"]));
     return { status: 204 };
   }),
 );
