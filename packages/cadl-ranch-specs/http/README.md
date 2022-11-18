@@ -23,5 +23,5 @@ The tests in the http/models directory describe scenarios for generating models 
 - [optional-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/optional-properties) - Generate, send, and receive input, output, and round-trip models with optional properties.
 - [enum-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/enum-properties) - Generate, send, and receive input, output, and round-trip models with required enum properties.
 - [nested-models](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/nested-models) - Generate, send, and receive input, output, and round-trip models with required nested model properties.
-- [readonly-properties](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/readonly-properties) - Generate, send, and receive input, output, and round-trip models with readonly properties.
+- [visibility](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/visibility) - Generate, send, and receive models with visibility properties.
 - [inheritance](https://github.com/Azure/cadl-ranch/tree/main/packages/cadl-ranch-specs/http/models/inheritance) - Generate, send, and receive round-trip models polymorphic models.

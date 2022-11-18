@@ -68,9 +68,6 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 
 // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
 const NOT_IMPLEMENTED = [
-  // Anne
-  "models/readonly-properties",
-
   // Laurent
   "resiliency/dev-driven",
   "resiliency/srv-driven-1",
