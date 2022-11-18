@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.5.1
+
+### Patch Changes
+
+- [#163](https://github.com/Azure/cadl-ranch/pull/163) [`7ee5b68`](https://github.com/Azure/cadl-ranch/commit/7ee5b68093ad761c6dabecd43fb4a9dc887560a2) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add visibility spec and mockapi
+
 ## 0.5.0
 
 ### Minor Changes
