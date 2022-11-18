@@ -21,7 +21,7 @@ function genData(keys: string[]): Record<string, any> {
   return ret;
 }
 
-Scenarios.Models_Visibility_getModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_getModel = passOnSuccess(
   mockapi.get("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['queryProp']));
     return {
@@ -30,35 +30,35 @@ Scenarios.Models_Visibility_getModel = passOnSuccess(
   }),
 );
 
-Scenarios.Models_Visibility_headModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_headModel = passOnSuccess(
   mockapi.head("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['queryProp']));
     return { status: 200 };
   }),
 );
 
-Scenarios.Models_Visibility_putModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_putModel = passOnSuccess(
   mockapi.put("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['createProp', 'updateProp']));
     return { status: 204 };
   }),
 );
 
-Scenarios.Models_Visibility_patchModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_patchModel = passOnSuccess(
   mockapi.patch("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['updateProp']));
     return { status: 204 };
   }),
 );
 
-Scenarios.Models_Visibility_postModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_postModel = passOnSuccess(
   mockapi.post("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['createProp']));
     return { status: 204 };
   }),
 );
 
-Scenarios.Models_Visibility_deleteModel = passOnSuccess(
+Scenarios.Models_Visibility_Automatic_deleteModel = passOnSuccess(
   mockapi.delete("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(['deleteProp']));
     return { status: 204 };
