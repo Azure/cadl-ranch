@@ -13,4 +13,6 @@ export interface ApiMockAppConfig {
    * Coverage file Path.
    */
   coverageFile: string;
+
+  additionalMockApiPath: string | undefined;
 }

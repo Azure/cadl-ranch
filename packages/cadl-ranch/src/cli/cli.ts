@@ -93,6 +93,11 @@ async function main() {
                 type: "string",
                 description: "Path to the coverage file.",
                 default: join(process.cwd(), "cadl-ranch-coverage.json"),
+              })
+              .option("additionalMockApiPath", {
+                type: "string",
+                description: "Additional path to mock apis",
+                default: undefined,
               });
           },
           async (args) =>
@@ -100,6 +105,7 @@ async function main() {
               scenariosPath: resolve(process.cwd(), args.scenariosPath),
               port: args.port,
               coverageFile: args.coverageFile,
+              additionalMockApiPath: args.additionalMockApiPath,
             }),
         )
         .command(
@@ -136,6 +142,11 @@ async function main() {
             type: "string",
             description: "Path to the coverage file.",
             default: join(process.cwd(), "cadl-ranch-coverage.json"),
+          })
+          .option("additionalMockApiPath", {
+            type: "string",
+            description: "Additional path to mock apis",
+            default: undefined,
           });
       },
       async (args) => {
@@ -143,6 +154,7 @@ async function main() {
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           port: args.port,
           coverageFile: args.coverageFile,
+          additionalMockApiPath: args.additionalMockApiPath,
         });
       },
     )

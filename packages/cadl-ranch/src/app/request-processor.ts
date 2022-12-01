@@ -27,6 +27,20 @@ export async function processRequest(
   processResponse(response, mockResponse);
 }
 
+export async function processRequestWithoutCoverage(
+  request: RequestExt,
+  response: Response,
+  func: MockRequestHandler,
+): Promise<void> {
+  const mockRequest = new MockRequest(request);
+  const mockResponse = await callHandler(mockRequest, response, func);
+  if (mockResponse === undefined) {
+    return;
+  }
+
+  processResponse(response, mockResponse);
+}
+
 const processResponse = (response: Response, mockResponse: MockResponse) => {
   response.status(mockResponse.status);
 

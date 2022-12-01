@@ -9,6 +9,7 @@ export interface ServeConfig {
   scenariosPath: string;
   coverageFile: string;
   port: number;
+  additionalMockApiPath: string | undefined;
 }
 
 export interface StopConfig {
@@ -22,6 +23,7 @@ export async function serve(config: ServeConfig) {
     port: config.port,
     scenarioPath: config.scenariosPath,
     coverageFile: config.coverageFile,
+    additionalMockApiPath: config.additionalMockApiPath
   });
   await server.start();
 }
@@ -40,6 +42,8 @@ export async function startInBackground(config: ServeConfig) {
         config.port.toString(),
         "--coverageFile",
         config.coverageFile,
+        "--additionalMockApiPath",
+        config.additionalMockApiPath,
       ],
       {
         detached: true,

@@ -6,7 +6,7 @@ import { internalRouter } from "../routes/index.js";
 import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { MockApiServer } from "../server/index.js";
 import { ApiMockAppConfig } from "./config.js";
-import { processRequest } from "./request-processor.js";
+import { processRequest, processRequestWithoutCoverage } from "./request-processor.js";
 
 export class MockApiApp {
   private router = Router();
@@ -26,6 +26,15 @@ export class MockApiApp {
     for (const [name, scenario] of Object.entries(scenarios)) {
       this.registerScenario(name, scenario);
     }
+
+    if (this.config.additionalMockApiPath)
+    {
+      const additionalScenarios = await loadScenarioMockApis(this.config.additionalMockApiPath);
+      for (const [_, scenario] of Object.entries(additionalScenarios)) {
+        this.registerScenarioWithoutCoverage(scenario);
+      }
+    }
+    
     this.router.get("/.coverage", (req, res) => {
       res.json(this.coverageTracker.computeCoverage());
     });
@@ -38,6 +47,14 @@ export class MockApiApp {
     for (const endpoint of scenario.apis) {
       this.router.route(endpoint.uri)[endpoint.method](async (req: RequestExt, res: Response) => {
         await processRequest(this.coverageTracker, name, endpoint.uri, req, res, endpoint.handler);
+      });
+    }
+  }
+
+  private registerScenarioWithoutCoverage(scenario: ScenarioMockApi) {
+    for (const endpoint of scenario.apis) {
+      this.router.route(endpoint.uri)[endpoint.method](async (req: RequestExt, res: Response) => {
+        await processRequestWithoutCoverage(req, res, endpoint.handler);
       });
     }
   }
