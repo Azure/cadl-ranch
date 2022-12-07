@@ -37,7 +37,7 @@
     "yargs": "^17.5.1"
   },
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "^0.4.1",
+    "@cadl-lang/eslint-config-cadl": "~0.5.0",
     "@types/body-parser": "^1.19.2",
     "@types/deep-equal": "^1.0.1",
     "@types/express": "^4.17.13",
