@@ -54,20 +54,20 @@ model Input {
 }
 
 @doc("Final response from LRO call")
-model LROProduct extends Product {
+model LroProduct extends Product {
   @doc("Provisioning state returned by the service")
   provisioningState: string;
 }
 
 @doc("Initial response with ProvisioningState='Succeeded'")
-model LROProductResponse {
+model LroProductResponse {
   @doc("Status code for LRO response")
   @statusCode
   statusCode: 200;
 
   @doc("Body of LRO response")
   @body
-  body: LROProduct;
+  body: LroProduct;
 }
 
 #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
@@ -138,4 +138,4 @@ This method requires to write 2 tests.
 @doc("Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up.")
 @OpenAPI.operationId("lro") // Do NOT read this from your CADL emitter, this is here only for Swagger generation accuracy
 @put
-op lro(...ModeParameter): LROProductResponse;
+op lro(...ModeParameter): LroProductResponse;

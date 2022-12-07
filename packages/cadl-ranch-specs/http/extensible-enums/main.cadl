@@ -6,7 +6,7 @@ using Cadl.Http;
 @scenarioService("/extensible-enums")
 namespace ExtensibleEnums;
 
-enum DaysOfWeekExtensibleEnumValues {
+enum DaysOfWeekExtensibleEnum {
   "Monday",
   "Tuesday",
   "Wednesday",
@@ -15,8 +15,6 @@ enum DaysOfWeekExtensibleEnumValues {
   "Saturday",
   "Sunday",
 }
-@knownValues(DaysOfWeekExtensibleEnumValues)
-model DaysOfWeekExtensibleEnum is string;
 
 @route("/string")
 interface String {
