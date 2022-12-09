@@ -433,45 +433,45 @@ Expected dictionary input body:
 }
 ```
 
-### ExtensibleEnums_String_getKnownValue
+### Enums_Extensible_String_getKnownValue
 
-- Endpoint: `get /extensible-enums/string/known-value`
+- Endpoint: `get /enums/extensible/string/known-value`
 
 Expect to handle a known value. Mock api will return 'Monday'
 
-### ExtensibleEnums_String_getUnknownValue
+### Enums_Extensible_String_getUnknownValue
 
-- Endpoint: `get /extensible-enums/string/unknown-value`
+- Endpoint: `get /enums/extensible/string/unknown-value`
 
 Expect to handle an unknown value. Mock api will return 'Weekend'
 
-### ExtensibleEnums_String_putKnownValue
+### Enums_Extensible_String_putKnownValue
 
-- Endpoint: `put /extensible-enums/string/known-value`
+- Endpoint: `put /enums/extensible/string/known-value`
 
 Expect to send a known value. Mock api expect to receive 'Monday'
 
-### ExtensibleEnums_String_putUnknownValue
+### Enums_Extensible_String_putUnknownValue
 
-- Endpoint: `put /extensible-enums/string/unknown-value`
+- Endpoint: `put /enums/extensible/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
-### FixedEnums_String_getKnownValue
+### Enums_Fixed_String_getKnownValue
 
-- Endpoint: `get /fixed-enums/string/known-value`
+- Endpoint: `get /enums/fixed/string/known-value`
 
 Expect to handle a known value. Mock api will return 'Monday'
 
-### FixedEnums_String_putKnownValue
+### Enums_Fixed_String_putKnownValue
 
-- Endpoint: `put /fixed-enums/string/known-value`
+- Endpoint: `put /enums/fixed/string/known-value`
 
 Expect to send a known value. Mock api expect to receive 'Monday'
 
-### FixedEnums_String_putUnknownValue
+### Enums_Fixed_String_putUnknownValue
 
-- Endpoint: `put /fixed-enums/string/unknown-value`
+- Endpoint: `put /enums/fixed/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
@@ -1336,7 +1336,7 @@ Expected input body:
 
 - Endpoint: `put /models/visibility`
 
-Generate abd send put model with write/create/udpate properties.
+Generate abd send put model with write/create/update properties.
 Expected input body:
 
 ```json
@@ -1350,7 +1350,7 @@ Expected input body:
 
 - Endpoint: `patch /models/visibility`
 
-Generate abd send put model with write/udpate properties.
+Generate abd send put model with write/update properties.
 Expected input body:
 
 ```json

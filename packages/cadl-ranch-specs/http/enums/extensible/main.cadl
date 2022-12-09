@@ -3,8 +3,8 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
-@scenarioService("/extensible-enums")
-namespace ExtensibleEnums;
+@scenarioService("/enums/extensible")
+namespace Enums.Extensible;
 
 enum DaysOfWeekExtensibleEnum {
   "Monday",

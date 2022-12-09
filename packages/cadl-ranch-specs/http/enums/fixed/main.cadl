@@ -5,8 +5,8 @@ import "@azure-tools/cadl-ranch-expect";
 using Azure.Core;
 using Cadl.Http;
 
-@scenarioService("/fixed-enums")
-namespace FixedEnums;
+@scenarioService("/enums/fixed")
+namespace Enums.Fixed;
 
 #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "For testing"
 @fixed

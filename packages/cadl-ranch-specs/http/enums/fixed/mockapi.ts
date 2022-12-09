@@ -4,23 +4,23 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 // Known Values
-Scenarios.FixedEnums_String_getKnownValue = passOnSuccess(
-  mockapi.get("/fixed-enums/string/known-value", (req) => {
+Scenarios.Enums_Fixed_String_getKnownValue = passOnSuccess(
+  mockapi.get("/enums/fixed/string/known-value", (req) => {
     return { status: 200, body: json("Monday") };
   }),
 );
 
-Scenarios.FixedEnums_String_putKnownValue = passOnSuccess(
-  mockapi.put("/fixed-enums/string/known-value", (req) => {
+Scenarios.Enums_Fixed_String_putKnownValue = passOnSuccess(
+  mockapi.put("/enums/fixed/string/known-value", (req) => {
     req.expect.bodyEquals("Monday");
     return { status: 204 };
   }),
 );
 
 // Unknown values
-Scenarios.FixedEnums_String_putUnknownValue = passOnCode(
+Scenarios.Enums_Fixed_String_putUnknownValue = passOnCode(
   500,
-  mockapi.put("/fixed-enums/string/unknown-value", (req) => {
+  mockapi.put("/enums/fixed/string/unknown-value", (req) => {
     req.expect.bodyEquals("Weekend");
     return { status: 500 };
   }),

@@ -65,7 +65,7 @@ op headModel(@body input: VisibilityModel): OkResponse;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/create/udpate properties.
+Generate abd send put model with write/create/update properties.
 Expected input body:
 ```json
 {
@@ -79,7 +79,7 @@ op putModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/udpate properties.
+Generate abd send put model with write/update properties.
 Expected input body:
 ```json
 {
