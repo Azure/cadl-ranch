@@ -3,8 +3,8 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
-@scenarioService("/extensible-enums")
-namespace ExtensibleEnums;
+@scenarioService("/enums/extensible")
+namespace Enums.Extensible;
 
 enum DaysOfWeekExtensibleEnum {
   "Monday",
@@ -25,7 +25,7 @@ interface String {
   getKnownValue(): DaysOfWeekExtensibleEnum;
 
   @scenario
-  @scenarioDoc("Expect to handle a unknown value. Mock api will return 'Weekend'")
+  @scenarioDoc("Expect to handle an unknown value. Mock api will return 'Weekend'")
   @get
   @route("/unknown-value")
   getUnknownValue(): DaysOfWeekExtensibleEnum;
@@ -37,7 +37,7 @@ interface String {
   putKnownValue(@body body: DaysOfWeekExtensibleEnum): void;
 
   @scenario
-  @scenarioDoc("Expect to handle a unknown value. Mock api expect to receive 'Weekend'")
+  @scenarioDoc("Expect to handle an unknown value. Mock api expect to receive 'Weekend'")
   @put
   @route("/unknown-value")
   putUnknownValue(@body body: DaysOfWeekExtensibleEnum): void;
