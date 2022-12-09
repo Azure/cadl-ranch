@@ -443,7 +443,7 @@ Expect to handle a known value. Mock api will return 'Monday'
 
 - Endpoint: `get /extensible-enums/string/unknown-value`
 
-Expect to handle a unknown value. Mock api will return 'Weekend'
+Expect to handle an unknown value. Mock api will return 'Weekend'
 
 ### ExtensibleEnums_String_putKnownValue
 
@@ -455,7 +455,25 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 
 - Endpoint: `put /extensible-enums/string/unknown-value`
 
-Expect to handle a unknown value. Mock api expect to receive 'Weekend'
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### FixedEnums_String_getKnownValue
+
+- Endpoint: `get /fixed-enums/string/known-value`
+
+Expect to handle a known value. Mock api will return 'Monday'
+
+### FixedEnums_String_putKnownValue
+
+- Endpoint: `put /fixed-enums/string/known-value`
+
+Expect to send a known value. Mock api expect to receive 'Monday'
+
+### FixedEnums_String_putUnknownValue
+
+- Endpoint: `put /fixed-enums/string/unknown-value`
+
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
 ### Hello_world
 
@@ -1249,7 +1267,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": <dont include this property>}
+{"property": <don't include this property>}
 ```
 
 ### Models_Property_Types_Never_put
@@ -1259,7 +1277,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": <dont include this property>}
+{"property": <don't include this property>}
 ```
 
 ### Models_Usage_input
