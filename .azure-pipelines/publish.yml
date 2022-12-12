@@ -33,5 +33,6 @@ steps:
     inputs:
       azureSubscription: "Azure SDK Playground"
       scriptType: "bash"
+      useGlobalConfig: true
       scriptLocation: "inlineScript"
       inlineScript: "pnpm upload-manifest"
