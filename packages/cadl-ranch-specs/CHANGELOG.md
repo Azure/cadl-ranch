@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.0
+
+### Minor Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Updated tests for proper expected behavior of enums in Azure.
+
+### Patch Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Added test for fixed enums
+
+- Updated dependencies [[`b40f674`](https://github.com/Azure/cadl-ranch/commit/b40f674bb52b826be196d7b318e48fa23d19fa8a)]:
+  - @azure-tools/cadl-ranch@0.2.11
+
 ## 0.5.2
 
 ### Patch Changes
