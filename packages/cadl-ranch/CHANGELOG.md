@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.11
+
+### Patch Changes
+
+- [#174](https://github.com/Azure/cadl-ranch/pull/174) [`b40f674`](https://github.com/Azure/cadl-ranch/commit/b40f674bb52b826be196d7b318e48fa23d19fa8a) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update authentication to use azure cli instead of DefaultAuthentication
+
 ## 0.2.10
 
 ### Patch Changes
