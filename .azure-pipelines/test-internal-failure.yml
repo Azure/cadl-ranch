@@ -1,0 +1,12 @@
+pool:
+  name: azsdk-pool-mms-ubuntu-2004-general
+
+steps:
+  - task: AzureCLI@2
+    displayName: Upload scenario manifest
+    inputs:
+      azureSubscription: "Azure SDK Playground"
+      scriptType: "bash"
+      scriptLocation: "inlineScript"
+      inlineScript: |
+        az storage blob upload -f ./pnpm-workspace.yaml --account-name -c coverages -n pnpm-workspace.yaml
