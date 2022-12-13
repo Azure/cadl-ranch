@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.1
+
+### Patch Changes
+
+- [#176](https://github.com/Azure/cadl-ranch/pull/176) [`c38c13c`](https://github.com/Azure/cadl-ranch/commit/c38c13ce29608ef928d9192156c26173693da4ed) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update storage account for coverage upload
+
 ## 0.6.0
 
 ### Minor Changes
