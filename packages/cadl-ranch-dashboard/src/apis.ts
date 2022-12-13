@@ -4,7 +4,7 @@ import {
   ScenarioManifest,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
 
-const storageAccountName = "cadlranchcoverage";
+const storageAccountName = "azuresdkcadlranch";
 
 export type GeneratorNames = "python" | "typescript" | "csharp" | "java" | "test";
 const query = new URLSearchParams(window.location.search);
