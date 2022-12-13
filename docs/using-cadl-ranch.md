@@ -92,8 +92,8 @@ Add the following step
 - task: AzureCLI@2
   displayName: Upload scenario manifest
   inputs:
-    azureSubscription: "Azure SDK Playground"
+    azureSubscription: "Cadl Ranch Storage"
     scriptType: "bash"
     scriptLocation: "inlineScript"
-    inlineScript: `cadl-ranch upload-coverage --storageAccountName cadlranchcoverage ... FILL options fitting your generator here as described above...`
+    inlineScript: `cadl-ranch upload-coverage --storageAccountName azuresdkcadlranch ... FILL options fitting your generator here as described above...`
 ```
