@@ -1,5 +1,35 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.0
+
+### Minor Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Updated tests for proper expected behavior of enums in Azure.
+
+### Patch Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Added test for fixed enums
+
+- Updated dependencies [[`b40f674`](https://github.com/Azure/cadl-ranch/commit/b40f674bb52b826be196d7b318e48fa23d19fa8a)]:
+  - @azure-tools/cadl-ranch@0.2.11
+
+## 0.5.2
+
+### Patch Changes
+
+- [#171](https://github.com/Azure/cadl-ranch/pull/171) [`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a)]:
+  - @azure-tools/cadl-ranch@0.2.10
+  - @azure-tools/cadl-ranch-api@0.1.10
+  - @azure-tools/cadl-ranch-expect@0.1.13
+
+## 0.5.1
+
+### Patch Changes
+
+- [#163](https://github.com/Azure/cadl-ranch/pull/163) [`7ee5b68`](https://github.com/Azure/cadl-ranch/commit/7ee5b68093ad761c6dabecd43fb4a9dc887560a2) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add visibility spec and mockapi
+
 ## 0.5.0
 
 ### Minor Changes

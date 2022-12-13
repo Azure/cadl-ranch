@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-expect",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
   "type": "module",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "^0.4.1",
+    "@cadl-lang/eslint-config-cadl": "~0.5.0",
     "@types/node": "^18.7.16",
     "eslint": "^8.23.1",
     "prettier": "^2.7.1",
@@ -34,7 +34,7 @@
     "typescript": "^4.8.3"
   },
   "peerDependencies": {
-    "@cadl-lang/compiler": "~0.37.0",
-    "@cadl-lang/rest": "~0.19.0"
+    "@cadl-lang/compiler": "~0.38.0",
+    "@cadl-lang/rest": "~0.38.0"
   }
 }
