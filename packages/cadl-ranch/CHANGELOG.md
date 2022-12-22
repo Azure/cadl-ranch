@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.12
+
+### Patch Changes
+
+- [#181](https://github.com/Azure/cadl-ranch/pull/181) [`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update url of visibility mock api
+
 ## 0.2.11
 
 ### Patch Changes
