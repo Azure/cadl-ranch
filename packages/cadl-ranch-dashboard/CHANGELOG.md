@@ -1,5 +1,20 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.1.7
+
+### Patch Changes
+
+- [#176](https://github.com/Azure/cadl-ranch/pull/176) [`c38c13c`](https://github.com/Azure/cadl-ranch/commit/c38c13ce29608ef928d9192156c26173693da4ed) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update storage account for coverage upload
+
+## 0.1.6
+
+### Patch Changes
+
+- [#171](https://github.com/Azure/cadl-ranch/pull/171) [`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a)]:
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.3
+
 ## 0.1.5
 
 ### Patch Changes

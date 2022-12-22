@@ -2,7 +2,7 @@ trigger:
   - main
 
 pool:
-  vmImage: "ubuntu-latest"
+  name: azsdk-pool-mms-ubuntu-2004-general
 
 steps:
   - script: npm install -g pnpm
@@ -31,7 +31,7 @@ steps:
   - task: AzureCLI@2
     displayName: Upload scenario manifest
     inputs:
-      azureSubscription: "Azure SDK Playground"
+      azureSubscription: "Cadl Ranch Storage"
       scriptType: "bash"
       scriptLocation: "inlineScript"
       inlineScript: "pnpm upload-manifest"

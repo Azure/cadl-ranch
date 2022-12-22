@@ -221,6 +221,18 @@ Expect error code 400 and error body:
 }
 ```
 
+### Authentication_Union_validKey
+
+- Endpoint: `get /authentication/union/validkey`
+
+Expects header 'x-ms-api-key': 'valid-key'
+
+### Authentication_Union_validToken
+
+- Endpoint: `get /authentication/union/validtoken`
+
+Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
@@ -433,29 +445,47 @@ Expected dictionary input body:
 }
 ```
 
-### ExtensibleEnums_String_getKnownValue
+### Enums_Extensible_String_getKnownValue
 
-- Endpoint: `get /extensible-enums/string/known-value`
+- Endpoint: `get /enums/extensible/string/known-value`
 
 Expect to handle a known value. Mock api will return 'Monday'
 
-### ExtensibleEnums_String_getUnknownValue
+### Enums_Extensible_String_getUnknownValue
 
-- Endpoint: `get /extensible-enums/string/unknown-value`
+- Endpoint: `get /enums/extensible/string/unknown-value`
 
-Expect to handle a unknown value. Mock api will return 'Weekend'
+Expect to handle an unknown value. Mock api will return 'Weekend'
 
-### ExtensibleEnums_String_putKnownValue
+### Enums_Extensible_String_putKnownValue
 
-- Endpoint: `put /extensible-enums/string/known-value`
+- Endpoint: `put /enums/extensible/string/known-value`
 
 Expect to send a known value. Mock api expect to receive 'Monday'
 
-### ExtensibleEnums_String_putUnknownValue
+### Enums_Extensible_String_putUnknownValue
 
-- Endpoint: `put /extensible-enums/string/unknown-value`
+- Endpoint: `put /enums/extensible/string/unknown-value`
 
-Expect to handle a unknown value. Mock api expect to receive 'Weekend'
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### Enums_Fixed_String_getKnownValue
+
+- Endpoint: `get /enums/fixed/string/known-value`
+
+Expect to handle a known value. Mock api will return 'Monday'
+
+### Enums_Fixed_String_putKnownValue
+
+- Endpoint: `put /enums/fixed/string/known-value`
+
+Expect to send a known value. Mock api expect to receive 'Monday'
+
+### Enums_Fixed_String_putUnknownValue
+
+- Endpoint: `put /enums/fixed/string/unknown-value`
+
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
 ### Hello_world
 
@@ -1242,17 +1272,25 @@ Expected input body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
-### ReadonlyProperties_getOptionalPropertyModel
+### Models_Property_Types_Never_get
 
-- Endpoint: `get /readonly-properties/models`
+- Endpoint: `get /models/properties/types/never`
 
-Generate and receive output model with readonly properties.
+Expected response body:
 
-### ReadonlyProperties_setOptionalPropertyModel
+```json
+{"property": <don't include this property>}
+```
 
-- Endpoint: `put /readonly-properties/models`
+### Models_Property_Types_Never_put
 
-Generate, send, and receive round-trip model with readonly properties.
+- Endpoint: `put /models/properties/types/never`
+
+Expected input body:
+
+```json
+{"property": <don't include this property>}
+```
 
 ### Models_Usage_input
 
@@ -1271,6 +1309,93 @@ Send a GET request which return the following body {requiredProp: "example-value
 - Endpoint: `get /models/usage/input-output`
 
 Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
+
+### Models_Visibility_Automatic_getModel
+
+- Endpoint: `get /models/visibility`
+
+Generate and receive output model with readonly properties.
+Expected input body:
+
+```json
+{
+  "queryProp": 123
+}
+```
+
+Expected response body:
+
+```json
+{
+  "readProp": "abc"
+}
+```
+
+### Models_Visibility_Automatic_headModel
+
+- Endpoint: `head /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "queryProp": 123
+}
+```
+
+### Models_Visibility_Automatic_putModel
+
+- Endpoint: `put /models/visibility`
+
+Generate abd send put model with write/create/update properties.
+Expected input body:
+
+```json
+{
+  "createProp": ["foo", "bar"],
+  "updateProp": [1, 2]
+}
+```
+
+### Models_Visibility_Automatic_patchModel
+
+- Endpoint: `patch /models/visibility`
+
+Generate abd send put model with write/update properties.
+Expected input body:
+
+```json
+{
+  "updateProp": [1, 2]
+}
+```
+
+### Models_Visibility_Automatic_postModel
+
+- Endpoint: `post /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "createProp": ["foo", "bar"]
+}
+```
+
+### Models_Visibility_Automatic_deleteModel
+
+- Endpoint: `delete /models/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "deleteProp": true
+}
+```
 
 ### Resiliency_DevDriven_getModel
 

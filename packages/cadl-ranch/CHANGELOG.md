@@ -1,5 +1,31 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.11
+
+### Patch Changes
+
+- [#174](https://github.com/Azure/cadl-ranch/pull/174) [`b40f674`](https://github.com/Azure/cadl-ranch/commit/b40f674bb52b826be196d7b318e48fa23d19fa8a) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update authentication to use azure cli instead of DefaultAuthentication
+
+## 0.2.10
+
+### Patch Changes
+
+- [#171](https://github.com/Azure/cadl-ranch/pull/171) [`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a)]:
+  - @azure-tools/cadl-ranch-api@0.1.10
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.3
+  - @azure-tools/cadl-ranch-expect@0.1.13
+
+## 0.2.9
+
+### Patch Changes
+
+- [#166](https://github.com/Azure/cadl-ranch/pull/166) [`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl deps
+
+- Updated dependencies [[`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e)]:
+  - @azure-tools/cadl-ranch-expect@0.1.12
+
 ## 0.2.8
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.1.13
+
+### Patch Changes
+
+- [#171](https://github.com/Azure/cadl-ranch/pull/171) [`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+## 0.1.12
+
+### Patch Changes
+
+- [#166](https://github.com/Azure/cadl-ranch/pull/166) [`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl deps
+
 ## 0.1.11
 
 ### Patch Changes

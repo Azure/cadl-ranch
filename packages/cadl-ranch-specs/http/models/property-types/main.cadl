@@ -1,6 +1,7 @@
 import "@cadl-lang/rest";
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/cadl-dpg";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
 using Cadl.Http;
@@ -19,6 +20,7 @@ model ModelTemplate<TProperty> {
 
 @doc("Template to have models operations")
 interface ModelOperations<TModel, TDoc extends string> {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
@@ -32,8 +34,10 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @get
+  @doc("Get call")
   get(): TModel;
 
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
@@ -47,7 +51,8 @@ interface ModelOperations<TModel, TDoc extends string> {
     }
   )
   @put
-  put(@body body: TModel): void;
+  @doc("Put operation")
+  put(@body @doc("body") body: TModel): void;
 }
 
 // Test a model with a boolean property
@@ -109,19 +114,25 @@ enum InnerEnum {
   ValueTwo,
 }
 
+#suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "For testing"
+@doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
+@Azure.Core.fixed
+enum FixedInnerEnum {
+  @doc("First value.")
+  ValueOne,
+
+  @doc("Second value.")
+  ValueTwo,
+}
+
 @doc("Model with enum properties")
-model EnumProperty is ModelTemplate<InnerEnum>;
+model EnumProperty is ModelTemplate<FixedInnerEnum>;
 @route("/enum")
 @operationGroup
 interface Enum extends ModelOperations<EnumProperty, "ValueOne"> {}
 
-// Test a model with an extensible enum property
-@doc("Extensible enum that will be used as a property for model InnerExtensibleEnum.")
-@knownValues(InnerEnum)
-model InnerExtensibleEnum is string;
-
 @doc("Model with extensible enum properties")
-model ExtensibleEnumProperty is ModelTemplate<InnerExtensibleEnum>;
+model ExtensibleEnumProperty is ModelTemplate<InnerEnum>;
 @route("/extensible-enum")
 @operationGroup
 interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "UnknownValue"> {}
@@ -166,3 +177,10 @@ model DictionaryStringProperty is ModelTemplate<Record<string>>;
 @route("/dictionary/string")
 @operationGroup
 interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'k1': 'hello', 'k2': 'world'}"> {}
+
+// Test a model with a never property
+@doc("Model with a property never. (This property should not be included).")
+model NeverProperty is ModelTemplate<never>;
+@route("/never")
+@operationGroup
+interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
