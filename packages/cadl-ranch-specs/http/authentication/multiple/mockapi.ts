@@ -10,7 +10,7 @@ Scenarios.Authentication_Multiple_validkey = passOnSuccess(
   }),
 );
 
-Scenarios.Authentication_multiple_validtoken = passOnSuccess(
+Scenarios.Authentication_Multiple_validtoken = passOnSuccess(
   mockapi.get("/authentication/multiple/validtoken", (req) => {
     req.expect.containsHeader("authorization", "Bearer https://security.microsoft.com/.default");
     return { status: 204 };
