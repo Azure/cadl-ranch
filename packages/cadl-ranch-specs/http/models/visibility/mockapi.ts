@@ -20,6 +20,13 @@ function genData(keys: string[]): Record<string, any> {
   return ret;
 }
 
+Scenarios.Models_Visibility_Automatic_headModel = passOnSuccess(
+  mockapi.head("/models/visibility", (req) => {
+    req.expect.bodyEquals(genData(["queryProp"]));
+    return { status: 200 };
+  }),
+);
+
 Scenarios.Models_Visibility_Automatic_getModel = passOnSuccess(
   mockapi.get("/models/visibility", (req) => {
     req.expect.bodyEquals(genData(["queryProp"]));
@@ -27,13 +34,6 @@ Scenarios.Models_Visibility_Automatic_getModel = passOnSuccess(
       status: 200,
       body: json(genData(["readProp"])),
     };
-  }),
-);
-
-Scenarios.Models_Visibility_Automatic_headModel = passOnSuccess(
-  mockapi.head("/models/visibility", (req) => {
-    req.expect.bodyEquals(genData(["queryProp"]));
-    return { status: 200 };
   }),
 );
 
