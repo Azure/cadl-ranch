@@ -8,6 +8,7 @@ import {
   ValidationError,
 } from "@azure-tools/cadl-ranch-api";
 import { CoverageTracker } from "../coverage/coverage-tracker.js";
+import { inspect } from "util";
 
 export async function processRequest(
   coverageTracker: CoverageTracker,
@@ -54,7 +55,11 @@ const callHandler = async (
     }
 
     logger.warn(
-      [`Request validation failed: ${e.message}:`, ` Expected:\n${e.expected}`, ` Actual: \n${e.actual}`].join("\n"),
+      [
+        `Request validation failed: ${e.message}:`,
+        ` Expected:\n${inspect(e.expected)}`,
+        ` Actual: \n${inspect(e.actual)}`,
+      ].join("\n"),
     );
     response
       .status(400)
