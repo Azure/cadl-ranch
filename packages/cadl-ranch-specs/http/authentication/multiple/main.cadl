@@ -3,7 +3,7 @@ import "@azure-tools/cadl-ranch-expect";
 
 using Cadl.Http;
 
-@scenarioService("/authentication/api-key")
+@scenarioService("/authentication/multiple")
 @doc("Illustrates clients generated with ApiKey and OAuth2 authentication.")
 @useAuth(
   ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key"> |
