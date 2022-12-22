@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Add multiple Auth tests in CADL-Ranch
+Add Union Auth tests in CADL-Ranch
