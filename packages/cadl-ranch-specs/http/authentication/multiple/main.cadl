@@ -19,7 +19,7 @@ model MyFlow {
 @doc("Check whether client is authenticated")
 @get
 @route("/validkey")
-op validkey(): NoContentResponse;
+op validKey(): NoContentResponse;
 
 @scenario
 @scenarioDoc("Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'")
