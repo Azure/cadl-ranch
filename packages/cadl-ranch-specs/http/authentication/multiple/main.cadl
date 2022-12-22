@@ -5,10 +5,7 @@ using Cadl.Http;
 
 @scenarioService("/authentication/multiple")
 @doc("Illustrates clients generated with ApiKey and OAuth2 authentication.")
-@useAuth(
-  ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key"> |
-  OAuth2Auth<[MyFlow]>
-)
+@useAuth(ApiKeyAuth<ApiKeyLocation.header, "x-ms-api-key"> | OAuth2Auth<[MyFlow]>)
 namespace Authentication.Multiple;
 
 model MyFlow {
@@ -16,7 +13,6 @@ model MyFlow {
   authorizationUrl: "https://login.microsoftonline.com/common/oauth2/authorize";
   scopes: ["https://security.microsoft.com/.default"];
 }
-
 
 @scenario
 @scenarioDoc("Expects header 'x-ms-api-key': 'valid-key'")
