@@ -221,6 +221,18 @@ Expect error code 400 and error body:
 }
 ```
 
+### Authentication_Union_validKey
+
+- Endpoint: `get /authentication/union/validkey`
+
+Expects header 'x-ms-api-key': 'valid-key'
+
+### Authentication_Union_validToken
+
+- Endpoint: `get /authentication/union/validtoken`
+
+Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
