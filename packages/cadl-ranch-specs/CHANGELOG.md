@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.2
+
+### Patch Changes
+
+- [#179](https://github.com/Azure/cadl-ranch/pull/179) [`760b57f`](https://github.com/Azure/cadl-ranch/commit/760b57f85cae17e707a530e1fc3db9b3a60ee3f1) Thanks [@lmazuel](https://github.com/lmazuel)! - Add Union Auth tests in CADL-Ranch
+
 ## 0.6.1
 
 ### Patch Changes
