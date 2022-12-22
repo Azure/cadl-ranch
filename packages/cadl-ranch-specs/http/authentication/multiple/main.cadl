@@ -26,4 +26,4 @@ op validkey(): NoContentResponse;
 @doc("Check whether client is authenticated")
 @get
 @route("/validtoken")
-op validtoken(): NoContentResponse;
+op validToken(): NoContentResponse;
