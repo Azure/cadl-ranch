@@ -31,8 +31,7 @@ steps:
   - task: AzureCLI@2
     displayName: Upload scenario manifest
     inputs:
-      azureSubscription: "Azure SDK Playground"
+      azureSubscription: "Cadl Ranch Storage"
       scriptType: "bash"
-      useGlobalConfig: true
       scriptLocation: "inlineScript"
       inlineScript: "pnpm upload-manifest"

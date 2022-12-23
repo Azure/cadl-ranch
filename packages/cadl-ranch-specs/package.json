@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
@@ -12,8 +12,8 @@
     "lint:fix": "eslint . --fix --ext .ts",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
     "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
-    "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName cadlranchcoverage",
-    "upload-coverage": "cadl-ranch upload-coverage --storageAccountName cadlranchcoverage",
+    "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName azuresdkcadlranch",
+    "upload-coverage": "cadl-ranch upload-coverage --storageAccountName azuresdkcadlranch",
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
     "serve": "cadl-ranch serve ./http",
