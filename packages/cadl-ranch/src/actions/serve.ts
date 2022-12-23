@@ -43,6 +43,7 @@ export async function startInBackground(config: ServeConfig) {
       ],
       {
         detached: true,
+        stdio: "ignore",
       },
     );
     const exitListener = (exitCode: number) => {
@@ -54,7 +55,6 @@ export async function startInBackground(config: ServeConfig) {
       cp.removeListener("exit", exitListener);
       logger.info(`Stated server with pid: ${cp.pid}`);
       cp.unref();
-      process.exit(0);
       resolve();
     }, 1000);
   });

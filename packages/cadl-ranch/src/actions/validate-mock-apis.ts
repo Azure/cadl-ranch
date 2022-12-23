@@ -17,7 +17,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
   const diagnostics = createDiagnosticReporter();
   for (const { name, cadlFilePath } of scenarioFiles) {
     logger.debug(`Found scenario "${cadlFilePath}"`);
-    const program = await cadlCompiler.compile(cadlFilePath, cadlCompiler.NodeHost, {
+    const program = await cadlCompiler.compile(cadlCompiler.NodeHost, cadlFilePath, {
       noEmit: true,
       warningAsError: true,
     });
@@ -68,10 +68,6 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
 
 // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
 const NOT_IMPLEMENTED = [
-  // Anne
-  "models/readonly-properties",
-  "clients/interfaces", // Need to figure out the client subclient operation group story for dpg.
-
   // Laurent
   "resiliency/srv-driven-1",
   "resiliency/srv-driven-2",

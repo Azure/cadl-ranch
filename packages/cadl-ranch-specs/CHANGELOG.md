@@ -1,5 +1,150 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.3
+
+### Patch Changes
+
+- [#181](https://github.com/Azure/cadl-ranch/pull/181) [`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update url of visibility mock api
+
+- Updated dependencies [[`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba)]:
+  - @azure-tools/cadl-ranch@0.2.12
+
+## 0.6.2
+
+### Patch Changes
+
+- [#179](https://github.com/Azure/cadl-ranch/pull/179) [`760b57f`](https://github.com/Azure/cadl-ranch/commit/760b57f85cae17e707a530e1fc3db9b3a60ee3f1) Thanks [@lmazuel](https://github.com/lmazuel)! - Add Union Auth tests in CADL-Ranch
+
+## 0.6.1
+
+### Patch Changes
+
+- [#176](https://github.com/Azure/cadl-ranch/pull/176) [`c38c13c`](https://github.com/Azure/cadl-ranch/commit/c38c13ce29608ef928d9192156c26173693da4ed) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update storage account for coverage upload
+
+## 0.6.0
+
+### Minor Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Updated tests for proper expected behavior of enums in Azure.
+
+### Patch Changes
+
+- [#164](https://github.com/Azure/cadl-ranch/pull/164) [`791c99c`](https://github.com/Azure/cadl-ranch/commit/791c99cd4708cc9c2686ef1cd4aec8118c470928) Thanks [@tjprescott](https://github.com/tjprescott)! - Added test for fixed enums
+
+- Updated dependencies [[`b40f674`](https://github.com/Azure/cadl-ranch/commit/b40f674bb52b826be196d7b318e48fa23d19fa8a)]:
+  - @azure-tools/cadl-ranch@0.2.11
+
+## 0.5.2
+
+### Patch Changes
+
+- [#171](https://github.com/Azure/cadl-ranch/pull/171) [`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`690f5f2`](https://github.com/Azure/cadl-ranch/commit/690f5f2990744d712507378d6a3e6485648b012a)]:
+  - @azure-tools/cadl-ranch@0.2.10
+  - @azure-tools/cadl-ranch-api@0.1.10
+  - @azure-tools/cadl-ranch-expect@0.1.13
+
+## 0.5.1
+
+### Patch Changes
+
+- [#163](https://github.com/Azure/cadl-ranch/pull/163) [`7ee5b68`](https://github.com/Azure/cadl-ranch/commit/7ee5b68093ad761c6dabecd43fb4a9dc887560a2) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add visibility spec and mockapi
+
+## 0.5.0
+
+### Minor Changes
+
+- [#160](https://github.com/Azure/cadl-ranch/pull/160) [`c4b58d9`](https://github.com/Azure/cadl-ranch/commit/c4b58d9473913d82021a676eddb34cd0e8f2da7c) Thanks [@msyyc](https://github.com/msyyc)! - Bug fix for models/usage
+
+### Patch Changes
+
+- [#165](https://github.com/Azure/cadl-ranch/pull/165) [`dce629c`](https://github.com/Azure/cadl-ranch/commit/dce629c677d0102bd71e646c39a4efabeb8cb0b1) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Added `never` as a model property type case. (Meaning the property should not be included)
+
+- [#166](https://github.com/Azure/cadl-ranch/pull/166) [`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl deps
+
+- Updated dependencies [[`e3adc0d`](https://github.com/Azure/cadl-ranch/commit/e3adc0d84d113548d1bc56e1e0fd8d67fae6773e)]:
+  - @azure-tools/cadl-ranch@0.2.9
+  - @azure-tools/cadl-ranch-expect@0.1.12
+
+## 0.4.3
+
+### Patch Changes
+
+- [#148](https://github.com/Azure/cadl-ranch/pull/148) [`0631ee6`](https://github.com/Azure/cadl-ranch/commit/0631ee6db7de212db19f63f267b8a1f138af4a1d) Thanks [@pshao25](https://github.com/pshao25)! - Add convenienceAPI decorator to array spec
+
+- [#154](https://github.com/Azure/cadl-ranch/pull/154) [`e9b3aed`](https://github.com/Azure/cadl-ranch/commit/e9b3aed77d72e4917d33842c4077cd8565db8201) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - models/usage, fix but that senario url and mockapi url mismatch
+
+- [#153](https://github.com/Azure/cadl-ranch/pull/153) [`c91d046`](https://github.com/Azure/cadl-ranch/commit/c91d046168ca738600846e0c83ad41d6c6f470e7) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Fix mockapi of getting a datetime.
+
+## 0.4.2
+
+### Patch Changes
+
+- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namesapce array to arrays
+
+- [#149](https://github.com/Azure/cadl-ranch/pull/149) [`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add testcases for using special words as operation/parameter/property names
+
+- Updated dependencies [[`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98)]:
+  - @azure-tools/cadl-ranch@0.2.8
+
+## 0.4.1
+
+### Patch Changes
+
+- [#142](https://github.com/Azure/cadl-ranch/pull/142) [`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325) Thanks [@changlong-liu](https://github.com/changlong-liu)! - fix lro mockapi: add response body for Azure_Lro_PollingSuccess
+
+- Updated dependencies [[`9116e47`](https://github.com/Azure/cadl-ranch/commit/9116e478df9cba0aad2bee1d23ed59382260c325)]:
+  - @azure-tools/cadl-ranch@0.2.7
+
+## 0.4.0
+
+### Minor Changes
+
+- [#143](https://github.com/Azure/cadl-ranch/pull/143) [`2705271`](https://github.com/Azure/cadl-ranch/commit/27052714fefdceef0b5e8cc26b862fc16f05418b) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Add scenarios for Array
+
+### Patch Changes
+
+- [#145](https://github.com/Azure/cadl-ranch/pull/145) [`45b34d8`](https://github.com/Azure/cadl-ranch/commit/45b34d8de510f2a0d04f90c0eedec832251a7479) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Remove interfaces scenario
+
+## 0.3.7
+
+### Patch Changes
+
+- [#140](https://github.com/Azure/cadl-ranch/pull/140) [`e30765b`](https://github.com/Azure/cadl-ranch/commit/e30765ba40737daa897e4b3c2d82e63ed3975003) Thanks [@pshao25](https://github.com/pshao25)! - Fix the datetime compare issue
+
+## 0.3.6
+
+### Patch Changes
+
+- [#138](https://github.com/Azure/cadl-ranch/pull/138) [`e0c063c`](https://github.com/Azure/cadl-ranch/commit/e0c063c3b8b06b4ff976d2c8f4793b11aaf5709a) Thanks [@iscai-msft](https://github.com/iscai-msft)! - add cadl-dpg dep, operationGroup decorators
+
+## 0.3.5
+
+### Patch Changes
+
+- [#132](https://github.com/Azure/cadl-ranch/pull/132) [`66570fc`](https://github.com/Azure/cadl-ranch/commit/66570fcbacd7ed571672ab9920068ae981c67ca8) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix dictionary mockapi
+
+- Updated dependencies [[`4cecb47`](https://github.com/Azure/cadl-ranch/commit/4cecb476985c47a5d9926c3d068f5abefe8573df)]:
+  - @azure-tools/cadl-ranch@0.2.6
+
+## 0.3.4
+
+### Patch Changes
+
+- [#130](https://github.com/Azure/cadl-ranch/pull/130) [`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl dependencies
+
+- Updated dependencies [[`38d1672`](https://github.com/Azure/cadl-ranch/commit/38d1672d0fd38ee11cf65e8409cf366f282340e4)]:
+  - @azure-tools/cadl-ranch@0.2.5
+  - @azure-tools/cadl-ranch-expect@0.1.11
+
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`48ba1f6`](https://github.com/Azure/cadl-ranch/commit/48ba1f62e10733b3c562f261736ab01e55de2d5f), [`ea70aac`](https://github.com/Azure/cadl-ranch/commit/ea70aac457b6404c0585cd1e00da8db0455ae843)]:
+  - @azure-tools/cadl-ranch@0.2.4
+
 ## 0.3.2
 
 ### Patch Changes

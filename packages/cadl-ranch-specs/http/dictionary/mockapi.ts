@@ -14,16 +14,15 @@ interface MockApiGetPut {
  */
 function createModelMockApis(route: string, value: any): MockApiGetPut {
   const url = `/dictionary/${route}`;
-  const body = { property: value };
   return {
     get: mockapi.get(url, (req) => {
       return {
         status: 200,
-        body: json(body),
+        body: json(value),
       };
     }),
     put: mockapi.put(url, (req) => {
-      req.expect.bodyEquals(body);
+      req.expect.bodyEquals(value);
       return {
         status: 204,
       };

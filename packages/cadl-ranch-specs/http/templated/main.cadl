@@ -1,0 +1,45 @@
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+import "@cadl-lang/rest";
+
+using Azure.Core;
+using Cadl.Rest;
+
+@doc("Illustrates bodies templated with Azure Core")
+@scenarioService("/templated")
+namespace Templated;
+
+@resource("users")
+@doc("Details about a user.")
+model User {
+  @key
+  @doc("The user's id.")
+  id: int32;
+
+  @doc("The user's name.")
+  name: string;
+}
+
+@scenario
+@doc("Creates or updates a User")
+@summary("Adds a user or updates a user's fields.")
+@scenarioDoc("""
+Should only generate one model named User.
+
+Expected input body:
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+Expected response body:
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+""")
+op createOrUpdate is Azure.Core.ResourceCreateOrUpdate<User>;

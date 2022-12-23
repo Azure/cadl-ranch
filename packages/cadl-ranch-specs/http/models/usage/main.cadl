@@ -10,7 +10,7 @@ using Cadl.Http;
  * This is valuable if you for example only decide to create a public constructor if a model is used as input.
  */
 @doc("Illustrates usage of Record in different places(Operation parameters, return type or both).")
-@scenarioService("/models/usages")
+@scenarioService("/models/usage")
 namespace Models.Usage;
 
 alias RecordBase = {

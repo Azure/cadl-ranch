@@ -23,12 +23,13 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (convertBodyProperty && req.originalRequest.body?.property && body?.property) {
+      const expectedBody = JSON.parse(JSON.stringify(body)); // deep clone
+      if (convertBodyProperty && req.originalRequest.body?.property && body.property) {
         req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
-        body.property = convertBodyProperty(body.property);
+        expectedBody.property = convertBodyProperty(expectedBody.property);
       }
 
-      req.expect.bodyEquals(body);
+      req.expect.bodyEquals(expectedBody);
 
       return {
         status: 204,
@@ -92,3 +93,7 @@ Scenarios.Models_Property_Types_CollectionsModel_put = passOnSuccess(collections
 const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", k2: "world" });
 Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
 Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);
+
+const neverMock = createMockApis("never", undefined);
+Scenarios.Models_Property_Types_Never_get = passOnSuccess(neverMock.get);
+Scenarios.Models_Property_Types_Never_put = passOnSuccess(neverMock.put);

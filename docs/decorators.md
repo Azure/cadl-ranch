@@ -4,8 +4,7 @@
 
 Decorator setting up the boilerplate for specs service namespace. Will automatically set:
 
-- `@serviceTitle` using the namespace as a value
-- `@serviceVersion` to `1.0.0`
+- `@service{title: '<namespace>', value: '1.0.0'}` using the namespace as a value
 - `@server` to `localhost:3000`
 - `@route` using the parameter passed.
 
