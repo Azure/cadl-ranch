@@ -23,10 +23,7 @@ Pass in http://localhost:3000 for endpoint.
 """)
     Endpoint: string,
 
-    @doc("Api Version")
-    @doc("""
-Pass in v1.0 for endpoint.
-""")
+    @doc("Api Version. Pass in v1.0 for endpoint.")
     @path
     ApiVersion: Versions,
   }
