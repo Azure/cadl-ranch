@@ -1581,3 +1581,27 @@ Expected input body:
   "for": "value"
 }
 ```
+
+### Templated_createOrUpdate
+
+- Endpoint: `get /templated`
+
+Should only generate one model named User.
+
+Expected input body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
