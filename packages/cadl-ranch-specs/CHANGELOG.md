@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.4
+
+### Patch Changes
+
+- [#184](https://github.com/Azure/cadl-ranch/pull/184) [`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update templated spec to be under Azure.Core category
+
+- [#162](https://github.com/Azure/cadl-ranch/pull/162) [`1df7329`](https://github.com/Azure/cadl-ranch/commit/1df732912a4785da7a3e692386a3206dccf06b45) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Add template tests
+
+- Updated dependencies [[`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2)]:
+  - @azure-tools/cadl-ranch-expect@0.1.14
+  - @azure-tools/cadl-ranch@0.2.13
+
 ## 0.6.3
 
 ### Patch Changes

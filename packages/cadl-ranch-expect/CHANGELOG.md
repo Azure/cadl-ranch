@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.1.14
+
+### Patch Changes
+
+- [#184](https://github.com/Azure/cadl-ranch/pull/184) [`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update templated spec to be under Azure.Core category
+
 ## 0.1.13
 
 ### Patch Changes
