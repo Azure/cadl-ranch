@@ -80,7 +80,7 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
         scenarioNames.set(scenario.name, [scenario]);
       }
     }
-    for (const route of cadlRest.http.getAllRoutes(program)[0]) {
+    for (const route of cadlCompiler.ignoreDiagnostics(cadlRest.http.getAllHttpServices(program))[0].operations) {
       const key = `${route.verb} ${route.path}`;
       const existing = endpoints.get(key);
       if (existing) {

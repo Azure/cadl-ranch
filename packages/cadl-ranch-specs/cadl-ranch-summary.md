@@ -233,6 +233,30 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_Core_createOrUpdate
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected input body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
@@ -1579,29 +1603,5 @@ Expected input body:
   "model.kind": "derived",
   "derived.name": "my.name",
   "for": "value"
-}
-```
-
-### Templated_createOrUpdate
-
-- Endpoint: `get /templated`
-
-Should only generate one model named User.
-
-Expected input body:
-
-```json
-{
-  "id": 1,
-  "name": "Madge"
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": 1,
-  "name": "Madge"
 }
 ```

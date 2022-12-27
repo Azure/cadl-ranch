@@ -179,7 +179,10 @@ function resolveScenarioName(target: Operation | Interface | Namespace, name: st
   let current: Operation | Interface | Namespace | undefined = target;
   while (true) {
     current = current.kind === "Operation" && current.interface ? current.interface : current.namespace;
-    if (current === undefined || (current.kind === "Namespace" && current.name === "")) {
+    if (
+      current === undefined ||
+      (current.kind === "Namespace" && (current.name === "" || current.name === "_Specs_"))
+    ) {
       break;
     }
     names.unshift(current.name);
