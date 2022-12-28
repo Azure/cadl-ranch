@@ -6,20 +6,23 @@ using Cadl.Http;
 @doc("Projection")
 @supportedBy("dpg")
 @scenarioService("/projection")
-namespace Projection;
+namespace ProjectedName;
 
 model Project {
+  @doc("Only valid value is 'DPG'")
   @projectedName("json", "codegen")
   producedBy?: string;
 
+  @doc("Only valid value is 'DPG'")
   @projectedName("client", "createdBy")
   builtfrom?: string;
 
+  @doc("Only valid value is 'customers'")
   @projectedName("client", "DontUseMeAsName") // Should be ignored
-  @projectedName("csharp", "MadeFor")
-  @projectedName("java", "MadeFor")
-  @projectedName("javascript", "MadeFor")
-  @projectedName("python", "made_for")
+  @projectedName("csharp", "MadeForCS")
+  @projectedName("java", "MadeForJava")
+  @projectedName("javascript", "MadeForTS")
+  @projectedName("python", "made_for_python")
   wasMadeFor?: string;
 }
 
