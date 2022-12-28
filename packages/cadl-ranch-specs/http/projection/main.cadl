@@ -55,3 +55,5 @@ CADL name is JSON, Projection is client name per language override. Send:
 @route("/language")
 @post
 op languageProjection(...Project): void;
+
+// May add query/header project after https://github.com/microsoft/cadl/issues/1487
