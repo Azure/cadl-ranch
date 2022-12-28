@@ -47,7 +47,7 @@ op clientProjection(...Project): void;
 
 @scenario
 @scenarioDoc("""
-CADL name is SDK, Projection is JSON name. Send:
+CADL name is JSON, Projection is client name per language override. Send:
 ```json
 {"wasMadeFor": "customers"}
 ```

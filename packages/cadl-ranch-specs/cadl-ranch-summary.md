@@ -233,7 +233,7 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### \_Specs\_\_Azure_Core_createOrUpdate
+### Azure_Core_createOrUpdate
 
 - Endpoint: `get /azure/core`
 
@@ -1445,7 +1445,7 @@ CADL name is JSON, Projection is client name. Send:
 
 - Endpoint: `post /projection/language`
 
-CADL name is SDK, Projection is JSON name. Send:
+CADL name is JSON, Projection is client name per language override. Send:
 
 ```json
 { "wasMadeFor": "customers" }
