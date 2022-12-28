@@ -233,7 +233,7 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_Core_createOrUpdate
+### \_Specs\_\_Azure_Core_createOrUpdate
 
 - Endpoint: `get /azure/core`
 
@@ -1419,6 +1419,36 @@ Expected input body:
 {
   "deleteProp": true
 }
+```
+
+### Projection_jsonProjection
+
+- Endpoint: `post /projection/json`
+
+CADL name is SDK, Projection is JSON name. Send:
+
+```json
+{ "codegen": "DPG" }
+```
+
+### Projection_clientProjection
+
+- Endpoint: `post /projection/client`
+
+CADL name is JSON, Projection is client name. Send:
+
+```json
+{ "builtfrom": "DPG" }
+```
+
+### Projection_languageProjection
+
+- Endpoint: `post /projection/language`
+
+CADL name is SDK, Projection is JSON name. Send:
+
+```json
+{ "wasMadeFor": "customers" }
 ```
 
 ### Resiliency_DevDriven_getModel
