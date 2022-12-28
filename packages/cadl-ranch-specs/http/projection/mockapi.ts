@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Projection_jsonProjection = passOnSuccess(
+Scenarios.ProjectedName_jsonProjection = passOnSuccess(
   mockapi.post("/projection/json", (req) => {
     req.expect.bodyEquals({ codegen: "DPG" });
     return {
@@ -12,7 +12,7 @@ Scenarios.Projection_jsonProjection = passOnSuccess(
   }),
 );
 
-Scenarios.Projection_clientProjection = passOnSuccess(
+Scenarios.ProjectedName_clientProjection = passOnSuccess(
   mockapi.post("/projection/client", (req) => {
     req.expect.bodyEquals({ builtfrom: "DPG" });
     return {
@@ -21,7 +21,7 @@ Scenarios.Projection_clientProjection = passOnSuccess(
   }),
 );
 
-Scenarios.Projection_languageProjection = passOnSuccess(
+Scenarios.ProjectedName_languageProjection = passOnSuccess(
   mockapi.post("/projection/language", (req) => {
     req.expect.bodyEquals({ wasMadeFor: "customers" });
     return {
