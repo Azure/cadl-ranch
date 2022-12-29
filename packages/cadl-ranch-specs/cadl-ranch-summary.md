@@ -1421,7 +1421,7 @@ Expected input body:
 }
 ```
 
-### Projection_jsonProjection
+### ProjectedName_jsonProjection
 
 - Endpoint: `post /projection/json`
 
@@ -1431,7 +1431,7 @@ CADL name is SDK, Projection is JSON name. Send:
 { "codegen": "DPG" }
 ```
 
-### Projection_clientProjection
+### ProjectedName_clientProjection
 
 - Endpoint: `post /projection/client`
 
@@ -1441,7 +1441,7 @@ CADL name is JSON, Projection is client name. Send:
 { "builtfrom": "DPG" }
 ```
 
-### Projection_languageProjection
+### ProjectedName_languageProjection
 
 - Endpoint: `post /projection/language`
 
