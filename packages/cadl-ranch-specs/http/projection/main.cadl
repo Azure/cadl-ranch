@@ -1,0 +1,62 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+
+@doc("Projection")
+@supportedBy("dpg")
+@scenarioService("/projection")
+namespace ProjectedName;
+
+model Project {
+  @doc("Only valid value is 'DPG'")
+  @projectedName("json", "codegen")
+  producedBy?: string;
+
+  @doc("Only valid value is 'DPG'")
+  @projectedName("client", "createdBy")
+  builtfrom?: string;
+
+  @doc("Only valid value is 'customers'")
+  @projectedName("client", "DontUseMeAsName") // Should be ignored
+  @projectedName("csharp", "MadeForCS")
+  @projectedName("java", "MadeForJava")
+  @projectedName("javascript", "MadeForTS")
+  @projectedName("python", "made_for_python")
+  wasMadeFor?: string;
+}
+
+@scenario
+@scenarioDoc("""
+CADL name is SDK, Projection is JSON name. Send:
+```json
+{"codegen": "DPG"}
+```
+""")
+@route("/json")
+@post
+op jsonProjection(...Project): void;
+
+@scenario
+@scenarioDoc("""
+CADL name is JSON, Projection is client name. Send:
+```json
+{"builtfrom": "DPG"}
+```
+""")
+@route("/client")
+@post
+op clientProjection(...Project): void;
+
+@scenario
+@scenarioDoc("""
+CADL name is JSON, Projection is client name per language override. Send:
+```json
+{"wasMadeFor": "customers"}
+```
+""")
+@route("/language")
+@post
+op languageProjection(...Project): void;
+
+// May add query/header project after https://github.com/microsoft/cadl/issues/1487

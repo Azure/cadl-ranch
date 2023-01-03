@@ -1421,6 +1421,36 @@ Expected input body:
 }
 ```
 
+### ProjectedName_jsonProjection
+
+- Endpoint: `post /projection/json`
+
+CADL name is SDK, Projection is JSON name. Send:
+
+```json
+{ "codegen": "DPG" }
+```
+
+### ProjectedName_clientProjection
+
+- Endpoint: `post /projection/client`
+
+CADL name is JSON, Projection is client name. Send:
+
+```json
+{ "builtfrom": "DPG" }
+```
+
+### ProjectedName_languageProjection
+
+- Endpoint: `post /projection/language`
+
+CADL name is JSON, Projection is client name per language override. Send:
+
+```json
+{ "wasMadeFor": "customers" }
+```
+
 ### Resiliency_DevDriven_getModel
 
 - Endpoint: `get /resiliency/devdriven/customization/model/{mode}`
