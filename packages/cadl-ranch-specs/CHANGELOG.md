@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.5
+
+### Patch Changes
+
+- [#186](https://github.com/Azure/cadl-ranch/pull/186) [`8b31efb`](https://github.com/Azure/cadl-ranch/commit/8b31efb60165fb72baed943bafc037b94981dad4) Thanks [@lmazuel](https://github.com/lmazuel)! - Add projection tests
+
+- Updated dependencies [[`8b31efb`](https://github.com/Azure/cadl-ranch/commit/8b31efb60165fb72baed943bafc037b94981dad4)]:
+  - @azure-tools/cadl-ranch@0.2.14
+
 ## 0.6.4
 
 ### Patch Changes
