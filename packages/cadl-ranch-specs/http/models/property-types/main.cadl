@@ -9,10 +9,14 @@ using Azure.DPG;
 
 @doc("Illustrates various property types for models")
 @scenarioService("/models/properties/types")
-@server("{endpoint}", "Testserver endpoint", {
-  @doc("Need to be set as 'http://localhost:3000' in client.")
-  endpoint: url,
-})
+@server(
+  "{endpoint}",
+  "Testserver endpoint",
+  {
+    @doc("Need to be set as 'http://localhost:3000' in client.")
+    endpoint: url,
+  }
+)
 namespace Models.Property.Types;
 
 // TEMPLATES
