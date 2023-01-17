@@ -9,6 +9,10 @@ using Azure.DPG;
 
 @doc("Illustrates various property types for models")
 @scenarioService("/models/properties/types")
+@server("{endpoint}", "Testserver endpoint", {
+  @doc("Need to be set as 'http://localhost:3000' in client.")
+  endpoint: url,
+})
 namespace Models.Property.Types;
 
 // TEMPLATES
@@ -184,3 +188,10 @@ model NeverProperty is ModelTemplate<never>;
 @route("/never")
 @operationGroup
 interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
+
+// Test a model with a url property
+@doc("Model with a property type of url.")
+model UrlProperty is ModelTemplate<url>;
+@route("/url")
+@operationGroup
+interface Url extends ModelOperations<UrlProperty, "https://www.virtualsite.org/non"> {}

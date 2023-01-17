@@ -1316,6 +1316,26 @@ Expected input body:
 {"property": <don't include this property>}
 ```
 
+### Models_Property_Types_Url_get
+
+- Endpoint: `get /models/properties/types/url`
+
+Expected response body:
+
+```json
+{"property": https://www.virtualsite.org/non}
+```
+
+### Models_Property_Types_Url_put
+
+- Endpoint: `put /models/properties/types/url`
+
+Expected input body:
+
+```json
+{"property": https://www.virtualsite.org/non}
+```
+
 ### Models_Usage_input
 
 - Endpoint: `get /models/usage/input`
