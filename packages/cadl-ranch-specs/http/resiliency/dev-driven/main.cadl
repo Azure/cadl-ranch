@@ -29,6 +29,7 @@ enum Mode {
 @resource("products")
 model Product {
   @doc("key of product")
+  @visibility("read")
   @key
   key: string;
 
