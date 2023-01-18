@@ -1316,26 +1316,6 @@ Expected input body:
 {"property": <don't include this property>}
 ```
 
-### Models_Property_Types_Url_get
-
-- Endpoint: `get /models/properties/types/url`
-
-Expected response body:
-
-```json
-{"property": https://www.virtualsite.org/non}
-```
-
-### Models_Property_Types_Url_put
-
-- Endpoint: `put /models/properties/types/url`
-
-Expected input body:
-
-```json
-{"property": https://www.virtualsite.org/non}
-```
-
 ### Models_Usage_input
 
 - Endpoint: `get /models/usage/input`
@@ -1609,6 +1589,12 @@ The value you pass for the parameter is not verified by the mock server.
 
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
+
+### Server_Parameterized_myOp
+
+- Endpoint: `head /server/parameterized/myOp`
+
+An simple operation in a parameterized server.
 
 ### SpecialWords_Operation_for
 

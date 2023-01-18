@@ -97,7 +97,3 @@ Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryS
 const neverMock = createMockApis("never", undefined);
 Scenarios.Models_Property_Types_Never_get = passOnSuccess(neverMock.get);
 Scenarios.Models_Property_Types_Never_put = passOnSuccess(neverMock.put);
-
-const urlMock = createMockApis("url", "https://www.virtualsite.org/non");
-Scenarios.Models_Property_Types_Url_get = passOnSuccess(urlMock.get);
-Scenarios.Models_Property_Types_Url_put = passOnSuccess(urlMock.put);
