@@ -15,6 +15,7 @@ namespace _Specs_.Azure.Core;
 model User {
   @key
   @doc("The user's id.")
+  @visibility("read")
   id: int32;
 
   @doc("The user's name.")

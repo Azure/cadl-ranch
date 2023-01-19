@@ -24,7 +24,7 @@ interface ArrayOperations<TArr, TDoc extends string> {
     }
   )
   @get
-  @convenienceAPI
+  @convenientAPI
   get(): TArr;
 
   @scenario
@@ -40,7 +40,7 @@ interface ArrayOperations<TArr, TDoc extends string> {
     }
   )
   @put
-  @convenienceAPI
+  @convenientAPI
   put(@body body: TArr): void;
 }
 
