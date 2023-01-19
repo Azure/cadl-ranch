@@ -1,70 +1,70 @@
 {
-    "name": "@azure-tools/cadl-ranch",
-    "version": "0.2.14",
-    "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
-    "main": "dist/index.js",
-    "type": "module",
-    "bin": {
-        "cadl-ranch": "./cmd/cli.mjs"
-    },
-    "scripts": {
-        "watch": "tsc -p ./tsconfig.build.json --watch",
-        "build": "tsc -p ./tsconfig.build.json",
-        "clean": "rimraf dist/ temp/",
-        "lint": "eslint . --ext .ts --max-warnings=0",
-        "lint:fix": "eslint . --fix --ext .ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "engines": {
-        "node": ">=16.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Azure/cadl-ranch.git"
-    },
-    "author": "Microsoft",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Azure/cadl-ranch/issues"
-    },
-    "homepage": "https://github.com/Azure/cadl-ranch#readme",
-    "dependencies": {
-        "@azure-tools/cadl-ranch-api": "workspace:~",
-        "@azure-tools/cadl-ranch-coverage-sdk": "workspace:~",
-        "@azure-tools/cadl-ranch-expect": "workspace:~",
-        "@azure/identity": "^3.0.0",
-        "@cadl-lang/compiler": "~0.39.0",
-        "@cadl-lang/rest": "~0.39.0",
-        "@types/js-yaml": "^4.0.5",
-        "ajv": "8.11.0",
-        "body-parser": "^1.20.0",
-        "deep-equal": "^2.0.5",
-        "express": "^4.18.1",
-        "express-promise-router": "^4.1.1",
-        "glob": "^8.0.3",
-        "js-yaml": "^4.1.0",
-        "morgan": "^1.10.0",
-        "node-fetch": "^3.2.10",
-        "picocolors": "^1.0.0",
-        "prettier": "^2.7.1",
-        "source-map-support": "^0.5.21",
-        "winston": "^3.8.2",
-        "xml2js": "^0.4.23",
-        "yargs": "^17.5.1"
-    },
-    "devDependencies": {
-        "@cadl-lang/eslint-config-cadl": "~0.5.0",
-        "@types/body-parser": "^1.19.2",
-        "@types/deep-equal": "^1.0.1",
-        "@types/express": "^4.17.13",
-        "@types/glob": "^8.0.0",
-        "@types/morgan": "^1.9.3",
-        "@types/node": "^18.7.16",
-        "@types/node-fetch": "^2.6.2",
-        "@types/xml2js": "^0.4.11",
-        "@types/yargs": "^17.0.12",
-        "eslint": "^8.23.1",
-        "rimraf": "^3.0.2",
-        "typescript": "^4.8.3"
-    }
+  "name": "@azure-tools/cadl-ranch",
+  "version": "0.2.14",
+  "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "cadl-ranch": "./cmd/cli.mjs"
+  },
+  "scripts": {
+    "watch": "tsc -p ./tsconfig.build.json --watch",
+    "build": "tsc -p ./tsconfig.build.json",
+    "clean": "rimraf dist/ temp/",
+    "lint": "eslint . --ext .ts --max-warnings=0",
+    "lint:fix": "eslint . --fix --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/cadl-ranch.git"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/cadl-ranch/issues"
+  },
+  "homepage": "https://github.com/Azure/cadl-ranch#readme",
+  "dependencies": {
+    "@azure-tools/cadl-ranch-api": "workspace:~",
+    "@azure-tools/cadl-ranch-coverage-sdk": "workspace:~",
+    "@azure-tools/cadl-ranch-expect": "workspace:~",
+    "@azure/identity": "^3.0.0",
+    "@cadl-lang/compiler": "~0.39.0",
+    "@cadl-lang/rest": "~0.39.0",
+    "@types/js-yaml": "^4.0.5",
+    "ajv": "8.11.0",
+    "body-parser": "^1.20.0",
+    "deep-equal": "^2.0.5",
+    "express": "^4.18.1",
+    "express-promise-router": "^4.1.1",
+    "glob": "^8.0.3",
+    "js-yaml": "^4.1.0",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.2.10",
+    "picocolors": "^1.0.0",
+    "prettier": "^2.7.1",
+    "source-map-support": "^0.5.21",
+    "winston": "^3.8.2",
+    "xml2js": "^0.4.23",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@cadl-lang/eslint-config-cadl": "~0.5.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/deep-equal": "^1.0.1",
+    "@types/express": "^4.17.13",
+    "@types/glob": "^8.0.0",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.7.16",
+    "@types/node-fetch": "^2.6.2",
+    "@types/xml2js": "^0.4.11",
+    "@types/yargs": "^17.0.12",
+    "eslint": "^8.23.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.3"
+  }
 }
