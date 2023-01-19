@@ -4,7 +4,7 @@ import "@azure-tools/cadl-ranch-expect";
 using Cadl.Http;
 
 @doc("Illustrates models with visibility properties.")
-@scenarioService("/models/visibility")
+@scenarioService("/models/visibility/automatic")
 namespace Models.Visibility.Automatic;
 
 @doc("Output model with visibility properties.")
