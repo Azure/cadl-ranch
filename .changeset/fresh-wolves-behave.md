@@ -7,4 +7,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-bump cadl deps
+Move to CADL 0.39 as a baseline
