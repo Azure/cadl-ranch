@@ -1336,7 +1336,7 @@ Send a POST request which return the following body {requiredProp: "example-valu
 
 ### Models_Visibility_Automatic_getModel
 
-- Endpoint: `get /models/visibility`
+- Endpoint: `get /models/visibility/automatic`
 
 Generate and receive output model with readonly properties.
 Expected input body:
@@ -1357,7 +1357,7 @@ Expected response body:
 
 ### Models_Visibility_Automatic_headModel
 
-- Endpoint: `head /models/visibility`
+- Endpoint: `head /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1370,7 +1370,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_putModel
 
-- Endpoint: `put /models/visibility`
+- Endpoint: `put /models/visibility/automatic`
 
 Generate abd send put model with write/create/update properties.
 Expected input body:
@@ -1384,7 +1384,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_patchModel
 
-- Endpoint: `patch /models/visibility`
+- Endpoint: `patch /models/visibility/automatic`
 
 Generate abd send put model with write/update properties.
 Expected input body:
@@ -1397,7 +1397,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_postModel
 
-- Endpoint: `post /models/visibility`
+- Endpoint: `post /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1410,7 +1410,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_deleteModel
 
-- Endpoint: `delete /models/visibility`
+- Endpoint: `delete /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
