@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.1.15
+
+### Patch Changes
+
+- [#191](https://github.com/Azure/cadl-ranch/pull/191) [`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Move to CADL 0.39 as a baseline
+
 ## 0.1.14
 
 ### Patch Changes

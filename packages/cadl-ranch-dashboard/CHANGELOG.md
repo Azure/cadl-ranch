@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.1.8
+
+### Patch Changes
+
+- [#191](https://github.com/Azure/cadl-ranch/pull/191) [`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Move to CADL 0.39 as a baseline
+
+- Updated dependencies [[`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2)]:
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.4
+
 ## 0.1.7
 
 ### Patch Changes

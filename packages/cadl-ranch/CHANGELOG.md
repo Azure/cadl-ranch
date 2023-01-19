@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.15
+
+### Patch Changes
+
+- [#191](https://github.com/Azure/cadl-ranch/pull/191) [`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Move to CADL 0.39 as a baseline
+
+- [#192](https://github.com/Azure/cadl-ranch/pull/192) [`2c90d3a`](https://github.com/Azure/cadl-ranch/commit/2c90d3adb812296e7119be4dfa407f75e170e1ab) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix visibility url in cadl.
+
+- Updated dependencies [[`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2)]:
+  - @azure-tools/cadl-ranch-api@0.1.11
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.4
+  - @azure-tools/cadl-ranch-expect@0.1.15
+
 ## 0.2.14
 
 ### Patch Changes
