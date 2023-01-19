@@ -56,8 +56,20 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
       warningAsError: true,
     });
 
-    if (program.diagnostics.length > 0) {
-      for (const item of program.diagnostics) {
+    // Workaround https://github.com/Azure/cadl-azure/issues/2458
+    const programDiagnostics = program.diagnostics.filter(
+      (d) =>
+        !(
+          d.code === "@azure-tools/cadl-azure-core/casing-style" &&
+          typeof d.target === "object" &&
+          "kind" in d.target &&
+          d.target.kind === "Namespace" &&
+          d.target.name === "DPG"
+        ),
+    );
+
+    if (programDiagnostics.length > 0) {
+      for (const item of programDiagnostics) {
         const sourceLocation = cadlCompiler.getSourceLocation(item.target);
         diagnostics.reportDiagnostic({
           message: `${item.message}: ${sourceLocation && getSourceLocationStr(sourceLocation)}`,

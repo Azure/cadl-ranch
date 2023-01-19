@@ -22,8 +22,20 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       warningAsError: true,
     });
 
-    if (program.diagnostics.length > 0) {
-      cadlCompiler.logDiagnostics(program.diagnostics, { log: logger.error });
+    // Workaround https://github.com/Azure/cadl-azure/issues/2458
+    const programDiagnostics = program.diagnostics.filter(
+      (d) =>
+        !(
+          d.code === "@azure-tools/cadl-azure-core/casing-style" &&
+          typeof d.target === "object" &&
+          "kind" in d.target &&
+          d.target.kind === "Namespace" &&
+          d.target.name === "DPG"
+        ),
+    );
+
+    if (programDiagnostics.length > 0) {
+      cadlCompiler.logDiagnostics(programDiagnostics, { log: logger.error });
       diagnostics.reportDiagnostic({
         message: `Scenario ${name} is invalid.`,
       });
