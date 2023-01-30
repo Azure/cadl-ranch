@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.2.16
+
+### Patch Changes
+
+- [#195](https://github.com/Azure/cadl-ranch/pull/195) [`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520) Thanks [@lmazuel](https://github.com/lmazuel)! - Update some Readme descriptions for clarity
+
 ## 0.2.15
 
 ### Patch Changes
