@@ -238,7 +238,7 @@ importers:
     specifiers:
       '@azure-tools/cadl-autorest': 0.25.0
       '@azure-tools/cadl-azure-core': ~0.25.0
-      '@azure-tools/cadl-dpg': ~0.25.0
+      '@azure-tools/cadl-dpg': ~0.26.0-dev.7
       '@azure-tools/cadl-ranch': workspace:~
       '@azure-tools/cadl-ranch-api': workspace:~
       '@azure-tools/cadl-ranch-expect': workspace:~
@@ -263,7 +263,7 @@ importers:
       '@cadl-lang/versioning': 0.39.0
     devDependencies:
       '@azure-tools/cadl-autorest': 0.25.0_ppnebcwzfesud5iwrj7tmped64
-      '@azure-tools/cadl-dpg': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
+      '@azure-tools/cadl-dpg': 0.26.0-dev.7_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/eslint-config-cadl': 0.5.0_prettier@2.7.1
       '@cadl-lang/openapi': 0.39.0_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/openapi3': 0.39.0_p4bx3dbrm3uzi7vnzj5ijbbdoy
@@ -310,12 +310,12 @@ packages:
       '@cadl-lang/lint': 0.39.0_@cadl-lang+compiler@0.39.0
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
 
-  /@azure-tools/cadl-dpg/0.25.0_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-T4txhl86WH4se3gklRBNBmy81w7C1fY/fkuRLQGgycBqZ1BEOkn7UpExh90alrGs7eNT8YzWcgh9lO1HWn1BQA==}
+  /@azure-tools/cadl-dpg/0.26.0-dev.7_5amtcsnro2dkqgugylxpqr5pa4:
+    resolution: {integrity: sha512-Fxur6Ir6rcsT4kysGpMcWvgUdFZ2UL95/wfIwt7MDvyvpoqUPc2udLqZXa2cxPzLEguhsXlbZ3N4utbP5d1nKA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/compiler': '>=0.39.0'
+      '@cadl-lang/rest': '>=0.39.0'
     dependencies:
       '@cadl-lang/compiler': 0.39.0
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
@@ -889,7 +889,7 @@ packages:
     dependencies:
       '@rushstack/eslint-patch': 1.1.0
       '@typescript-eslint/eslint-plugin': 5.36.2_onyqouhicpofiklrnl7t3mx7ra
-      '@typescript-eslint/parser': 5.36.2_irgkl5vooow2ydyo6aokmferha
+      '@typescript-eslint/parser': 5.36.2_as7rve46m6l2xihldwnsn6hs6a
       eslint: 8.23.1
       eslint-config-prettier: 8.5.0_eslint@8.23.1
       eslint-plugin-mocha: 10.1.0_eslint@8.23.1
@@ -1179,8 +1179,8 @@ packages:
       '@cspell/dict-docker': 1.1.1
       '@cspell/dict-dotnet': 2.0.1
       '@cspell/dict-elixir': 2.0.1
-      '@cspell/dict-en-gb': 1.1.33
       '@cspell/dict-en_us': 2.3.3
+      '@cspell/dict-en-gb': 1.1.33
       '@cspell/dict-filetypes': 2.1.1
       '@cspell/dict-fonts': 2.1.0
       '@cspell/dict-fullstack': 2.0.6
@@ -2141,7 +2141,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.36.2_irgkl5vooow2ydyo6aokmferha
+      '@typescript-eslint/parser': 5.36.2_as7rve46m6l2xihldwnsn6hs6a
       '@typescript-eslint/scope-manager': 5.36.2
       '@typescript-eslint/type-utils': 5.36.2_as7rve46m6l2xihldwnsn6hs6a
       '@typescript-eslint/utils': 5.36.2_as7rve46m6l2xihldwnsn6hs6a
@@ -2157,7 +2157,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser/5.36.2_irgkl5vooow2ydyo6aokmferha:
+  /@typescript-eslint/parser/5.36.2_as7rve46m6l2xihldwnsn6hs6a:
     resolution: {integrity: sha512-qS/Kb0yzy8sR0idFspI9Z6+t7mqk/oRjnAYfewG+VN73opAUvmYL3oPIMmgOX6CnQS6gmVIXGshlb5RY/R22pA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2169,10 +2169,10 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 5.36.2
       '@typescript-eslint/types': 5.36.2
-      '@typescript-eslint/typescript-estree': 5.36.2_typescript@4.8.3
+      '@typescript-eslint/typescript-estree': 5.36.2_typescript@4.9.3
       debug: 4.3.4
       eslint: 8.23.1
-      typescript: 4.8.3
+      typescript: 4.9.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2208,27 +2208,6 @@ packages:
   /@typescript-eslint/types/5.36.2:
     resolution: {integrity: sha512-9OJSvvwuF1L5eS2EQgFUbECb99F0mwq501w0H0EkYULkhFa19Qq7WFbycdw1PexAc929asupbZcgjVIe6OK/XQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
-  /@typescript-eslint/typescript-estree/5.36.2_typescript@4.8.3:
-    resolution: {integrity: sha512-8fyH+RfbKc0mTspfuEjlfqA4YywcwQK2Amcf6TDOwaRLg7Vwdu4bZzyvBZp4bjt1RRjQ5MDnOZahxMrt2l5v9w==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.36.2
-      '@typescript-eslint/visitor-keys': 5.36.2
-      debug: 4.3.4
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.3.7
-      tsutils: 3.21.0_typescript@4.8.3
-      typescript: 4.8.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@typescript-eslint/typescript-estree/5.36.2_typescript@4.9.3:
@@ -6740,16 +6719,6 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-
-  /tsutils/3.21.0_typescript@4.8.3:
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 4.8.3
-    dev: true
 
   /tsutils/3.21.0_typescript@4.9.3:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
