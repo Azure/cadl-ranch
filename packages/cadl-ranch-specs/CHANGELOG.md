@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.6.7
+
+### Patch Changes
+
+- [#195](https://github.com/Azure/cadl-ranch/pull/195) [`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520) Thanks [@lmazuel](https://github.com/lmazuel)! - Update some Readme descriptions for clarity
+
+- [#198](https://github.com/Azure/cadl-ranch/pull/198) [`92503ae`](https://github.com/Azure/cadl-ranch/commit/92503ae7cbf675b5ac4a60e515da00548cf7fce2) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix @convenientAPI in arrays/item-types/main.cadl
+
+- Updated dependencies [[`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520)]:
+  - @azure-tools/cadl-ranch@0.2.16
+
 ## 0.6.6
 
 ### Patch Changes
