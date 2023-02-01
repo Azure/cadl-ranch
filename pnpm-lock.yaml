@@ -236,8 +236,8 @@ importers:
 
   packages/cadl-ranch-specs:
     specifiers:
-      '@azure-tools/cadl-autorest': 0.25.0
-      '@azure-tools/cadl-azure-core': ~0.25.0
+      '@azure-tools/cadl-autorest': 0.26.0-dev.2
+      '@azure-tools/cadl-azure-core': ~0.26.0-dev.3
       '@azure-tools/cadl-dpg': ~0.26.0-dev.7
       '@azure-tools/cadl-ranch': workspace:~
       '@azure-tools/cadl-ranch-api': workspace:~
@@ -254,7 +254,7 @@ importers:
       rimraf: ^3.0.2
       typescript: ^4.8.3
     dependencies:
-      '@azure-tools/cadl-azure-core': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
+      '@azure-tools/cadl-azure-core': 0.26.0-dev.3_5amtcsnro2dkqgugylxpqr5pa4
       '@azure-tools/cadl-ranch': link:../cadl-ranch
       '@azure-tools/cadl-ranch-api': link:../cadl-ranch-api
       '@azure-tools/cadl-ranch-expect': link:../cadl-ranch-expect
@@ -262,7 +262,7 @@ importers:
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
       '@cadl-lang/versioning': 0.39.0
     devDependencies:
-      '@azure-tools/cadl-autorest': 0.25.0_ppnebcwzfesud5iwrj7tmped64
+      '@azure-tools/cadl-autorest': 0.26.0-dev.2_knoo37lnu6hn3idz4kbszolgm4
       '@azure-tools/cadl-dpg': 0.26.0-dev.7_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/eslint-config-cadl': 0.5.0_prettier@2.7.1
       '@cadl-lang/openapi': 0.39.0_5amtcsnro2dkqgugylxpqr5pa4
@@ -282,29 +282,29 @@ packages:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.15
 
-  /@azure-tools/cadl-autorest/0.25.0_ppnebcwzfesud5iwrj7tmped64:
-    resolution: {integrity: sha512-4i4siT4uDVm64gCDcuzDT8xikC2XPCMp4k+NWwPBF2v39IUZkDTtvqSWqRKXhpEVRZcTKbTlJLamfzWGfvdBtg==}
+  /@azure-tools/cadl-autorest/0.26.0-dev.2_knoo37lnu6hn3idz4kbszolgm4:
+    resolution: {integrity: sha512-iKlwjgkf+VjeV05v+HhOdoCGE9NgiTSJ9tQGMYb61OyHf4Vt2DmsAgHzy+IDccs1da/dclB4bRBsowI73fcZzw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-azure-core': ~0.25.0
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/openapi': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
-      '@cadl-lang/versioning': ~0.39.0
+      '@azure-tools/cadl-azure-core': '>=0.25.0'
+      '@cadl-lang/compiler': '>=0.39.0'
+      '@cadl-lang/openapi': '>=0.39.0'
+      '@cadl-lang/rest': '>=0.39.0'
+      '@cadl-lang/versioning': '>=0.39.0'
     dependencies:
-      '@azure-tools/cadl-azure-core': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
+      '@azure-tools/cadl-azure-core': 0.26.0-dev.3_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/compiler': 0.39.0
       '@cadl-lang/openapi': 0.39.0_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
       '@cadl-lang/versioning': 0.39.0
     dev: true
 
-  /@azure-tools/cadl-azure-core/0.25.0_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-V3yhJ9mUKntAt2AVm4f/sR91H/wWD8CMLUPQm2GwgSe/Fkv9fc4qE6qnE4QUxPGYJUgYeDXYv12qRN2eLId9sA==}
+  /@azure-tools/cadl-azure-core/0.26.0-dev.3_5amtcsnro2dkqgugylxpqr5pa4:
+    resolution: {integrity: sha512-m6k/FoyHYoTmdoFn9+XO9BOXO9IoEmdKf+0i02YVlMtkJM8sjJ8G6Ou3fCEJly1c3rzWSk68yQ5PsjFKDlMQVA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/compiler': '>=0.39.0'
+      '@cadl-lang/rest': '>=0.39.0'
     dependencies:
       '@cadl-lang/compiler': 0.39.0
       '@cadl-lang/lint': 0.39.0_@cadl-lang+compiler@0.39.0
