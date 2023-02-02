@@ -4,7 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.Azure_Core_createOrUpdate = passOnSuccess(
-  mockapi.patch("/azure/core/:id", (req) => {
+  mockapi.patch("/azure/core/users/:id", (req) => {
     if (req.params.id !== "1") {
       return { status: 400 };
     }
