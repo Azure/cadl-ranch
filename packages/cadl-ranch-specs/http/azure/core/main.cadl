@@ -35,7 +35,6 @@ Should only generate one model named User.
 Expected input body:
 ```json
 {
-  "id": 1,
   "name": "Madge"
 }
 ```

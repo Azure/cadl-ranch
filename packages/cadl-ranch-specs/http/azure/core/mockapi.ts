@@ -8,8 +8,10 @@ Scenarios.Azure_Core_createOrUpdate = passOnSuccess(
     if (req.params.id !== "1") {
       return { status: 400 };
     }
-    const validBody = { id: 1, name: "Madge" };
+    const validBody = { name: "Madge" };
+    req.expect.containsHeader("content-type", "application/merge-patch+json");
     req.expect.bodyEquals(validBody);
-    return { status: 200, body: json(validBody) };
+    const responseBody = { id: 1, name: "Madge" };
+    return { status: 200, body: json(responseBody) };
   }),
 );
