@@ -40,6 +40,7 @@ export class MockApiServer {
     this.app = express();
     this.app.use(morgan("dev", { stream: loggerstream }));
     this.app.use(bodyParser.json({ verify: rawBodySaver, strict: false }));
+    this.app.use(bodyParser.json({ type: "application/merge-patch+json", verify: rawBodySaver, strict: false }));
     this.app.use(bodyParser.urlencoded({ verify: rawBodySaver, extended: true }));
     this.app.use(bodyParser.text({ type: "*/xml", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "*/pdf", verify: rawBodySaver }));
