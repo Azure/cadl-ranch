@@ -243,10 +243,95 @@ Expected input body:
 
 ```json
 {
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
   "id": 1,
   "name": "Madge"
 }
 ```
+
+### Azure_Core_createOrReplace
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+### Azure_Core_get
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+### Azure_Core_list
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Should not generate visible model like CustomPage.
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge"
+    },
+    {
+      "id": 2,
+      "name": "John"
+    }
+  ]
+}
+```
+
+### Azure_Core_delete
+
+- Endpoint: `get /azure/core`
+
+Expected status code 204 with empty body.
+
+### Azure_Core_export
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected input query parameter: format=json
 
 Expected response body:
 
