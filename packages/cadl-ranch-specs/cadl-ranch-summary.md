@@ -239,6 +239,8 @@ Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
 Should only generate one model named User.
 
+Expected path parameter: id=1
+
 Expected input body:
 
 ```json
@@ -262,6 +264,8 @@ Expected response body:
 
 Should only generate one model named User.
 
+Expected path parameter: id=1
+
 Expected input body:
 
 ```json
@@ -284,6 +288,8 @@ Expected response body:
 - Endpoint: `get /azure/core`
 
 Should only generate one model named User.
+
+Expected path parameter: id=1
 
 Expected response body:
 
@@ -323,7 +329,9 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Expected status code 204 with empty body.
+Expected path parameter: id=1
+
+Expected response of status code 204 with empty body.
 
 ### Azure_Core_export
 
@@ -331,7 +339,8 @@ Expected status code 204 with empty body.
 
 Should only generate one model named User.
 
-Expected input query parameter: format=json
+Expected path parameter: id=1
+Expected query parameter: format=json
 
 Expected response body:
 
