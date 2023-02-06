@@ -29,11 +29,11 @@ union MyNamedUnion {
 }
 
 model WrapperModel1 {
-    simpleUnion: int32 | int32[];
+  simpleUnion: int32 | int32[];
 }
 
 model WrapperModel2 {
-    namedUnion: MyNamedUnion;
+  namedUnion: MyNamedUnion;
 }
 
 @scenario
@@ -79,4 +79,3 @@ This test is testing sending Installation2 in named union property.
 @route("/installation2")
 @post
 op sendInstallation2(@body input: WrapperModel2): OkResponse;
-
