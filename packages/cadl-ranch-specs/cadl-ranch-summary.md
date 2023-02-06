@@ -1641,3 +1641,43 @@ Expected input body:
   "for": "value"
 }
 ```
+
+### Unions_sendInt
+
+- Endpoint: `post /unions/int`
+
+This test is testing sending int in simple union property.
+
+```json
+{ "simpleUnion": 1 }
+```
+
+### Unions_sendIntArray
+
+- Endpoint: `post /unions/int-array`
+
+This test is testing sending int array in simple union property.
+
+```json
+{ "simpleUnion": [1, 2] }
+```
+
+### Unions_sendInstallation1
+
+- Endpoint: `post /unions/installation1`
+
+This test is testing sending Installation1 in named union property.
+
+```json
+{ "namedUnion": { "name": "installation1", "prop1": 1 } }
+```
+
+### Unions_sendInstallation2
+
+- Endpoint: `post /unions/installation2`
+
+This test is testing sending Installation2 in named union property.
+
+```json
+{ "namedUnion": { "name": "installation2", "prop2": 2 } }
+```

@@ -1,0 +1,82 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Http;
+
+@doc("Test for type of union.")
+@supportedBy("dpg")
+@scenarioService("/unions")
+namespace Unions;
+
+@doc("This is a base model.")
+model BaseInstallation {
+  name: string;
+}
+
+@doc("The first one of the unioned model type.")
+model Installation1 extends BaseInstallation {
+  prop1: int32;
+}
+
+@doc("The second one of the unioned model type.")
+model Installation2 extends BaseInstallation {
+  prop2: int32;
+}
+
+union MyNamedUnion {
+  one: Installation1,
+  two: Installation2,
+}
+
+model WrapperModel1 {
+    simpleUnion: int32 | int32[];
+}
+
+model WrapperModel2 {
+    namedUnion: MyNamedUnion;
+}
+
+@scenario
+@scenarioDoc("""
+This test is testing sending int in simple union property.
+```json
+{ "simpleUnion": 1 }
+```
+""")
+@route("/int")
+@post
+op sendInt(@body input: WrapperModel1): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending int array in simple union property.
+```json
+{ "simpleUnion": [1, 2] }
+```
+""")
+@route("/int-array")
+@post
+op sendIntArray(@body input: WrapperModel1): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending Installation1 in named union property.
+```json
+{ "namedUnion": { "name": "installation1", "prop1": 1 } }
+```
+""")
+@route("/installation1")
+@post
+op sendInstallation1(@body input: WrapperModel2): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending Installation2 in named union property.
+```json
+{ "namedUnion": { "name": "installation2", "prop2": 2 } }
+```
+""")
+@route("/installation2")
+@post
+op sendInstallation2(@body input: WrapperModel2): OkResponse;
+
