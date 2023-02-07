@@ -239,7 +239,17 @@ Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
 Should only generate one model named User.
 
+Expected path parameter: id=1
+
 Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
+
+Expected response body:
 
 ```json
 {
@@ -247,6 +257,90 @@ Expected input body:
   "name": "Madge"
 }
 ```
+
+### Azure_Core_createOrReplace
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected path parameter: id=1
+
+Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+### Azure_Core_get
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected path parameter: id=1
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge"
+}
+```
+
+### Azure_Core_list
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Should not generate visible model like CustomPage.
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge"
+    },
+    {
+      "id": 2,
+      "name": "John"
+    }
+  ]
+}
+```
+
+### Azure_Core_delete
+
+- Endpoint: `get /azure/core`
+
+Expected path parameter: id=1
+
+Expected response of status code 204 with empty body.
+
+### Azure_Core_export
+
+- Endpoint: `get /azure/core`
+
+Should only generate one model named User.
+
+Expected path parameter: id=1
+Expected query parameter: format=json
 
 Expected response body:
 
