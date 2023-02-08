@@ -1,0 +1,131 @@
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+import "@cadl-lang/rest";
+
+using Azure.Core;
+using global.Azure.Core.Traits;
+using Cadl.Rest;
+using Cadl.Http;
+
+#suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
+@doc("Illustrates bodies templated with Azure Core with long-running operation")
+@scenarioService("/azure/lro/core")
+namespace Azure.Lro.Core;
+
+interface ResourceOperations
+  extends global.Azure.Core.ResourceOperations<NoConditionalRequests & NoRepeatableRequests & NoClientRequestId> {}
+
+@resource("users")
+@doc("Details about a user.")
+model User {
+  @key
+  @visibility("read")
+  @doc("The name of user.")
+  name: string;
+
+  @doc("The description of user")
+  description: string;
+}
+
+@doc("The parameters for exporting a user.")
+model UserExportParams {
+  @query
+  @doc("The format of the data.")
+  format: string;
+}
+
+@doc("The exported user data.")
+model ExportedUser {
+  @doc("The name of user.")
+  name: string;
+
+  @doc("The exported URI.")
+  resourceUri: string;
+}
+
+@scenario
+@doc("Creates or repalces a User")
+@summary("Adds a user or repalces a user's fields.")
+@scenarioDoc("""
+Should only generate one model named User.
+
+Expected path parameter: name=Madge
+
+Expected input body:
+```json
+{
+  "description": "User Madge"
+}
+```
+
+Expected response body:
+```json
+{
+  "id":"operation1",
+  "status":"InProgress"
+}
+
+{
+  "id":"operation1",
+  "status":"Succeeded"
+}
+
+{
+  "name": "Madge"
+  "description": "User Madge"
+}
+```
+""")
+@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
+op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+
+@scenario
+@doc("Deletes a User")
+@summary("Deletes a user.")
+@scenarioDoc("""
+Expected path parameter: name=Madge
+
+Expected response body:
+```json
+{
+  "id":"operation1",
+  "status":"InProgress"
+}
+
+{
+  "id":"operation1",
+  "status":"Succeeded"
+}
+```
+""")
+@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
+op delete is ResourceOperations.LongRunningResourceDelete<User>;
+
+@scenario
+@doc("Exports a User")
+@summary("Exports a user.")
+@scenarioDoc("""
+Should only generate one model named User.
+
+Expected path parameter: name=Madge
+Expected query parameter: format=json
+
+Expected response body:
+```json
+{
+  "id":"operation1",
+  "status":"InProgress"
+}
+
+{
+  "id":"operation1",
+  "status":"Succeeded",
+  "result":{
+    "name":"Madge",
+    "resourceUri":"/users/1"
+  }
+}
+```
+""")
+@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
+op export is ResourceOperations.LongRunningResourceAction<User, UserExportParams, ExportedUser>;
