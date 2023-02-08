@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.1.12
+
+### Patch Changes
+
+- [#208](https://github.com/Azure/cadl-ranch/pull/208) [`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl to 0.40.0
+
 ## 0.1.11
 
 ### Patch Changes

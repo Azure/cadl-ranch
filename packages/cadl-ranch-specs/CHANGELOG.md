@@ -1,5 +1,24 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.7.0
+
+### Minor Changes
+
+- [#200](https://github.com/Azure/cadl-ranch/pull/200) [`3cf55c0`](https://github.com/Azure/cadl-ranch/commit/3cf55c07c648b3ac4c93695fcfac6b5a62069c93) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Use ResourceOperations for Azure.Core Preview2
+
+- [#202](https://github.com/Azure/cadl-ranch/pull/202) [`9975660`](https://github.com/Azure/cadl-ranch/commit/997566096547313802830ee1c3d147882bfeabbf) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Add ResourceCreateOrReplace, ResourceRead, ResourceList, ResourceDelete, ResourceAction to Azure.Core operations tests
+
+### Patch Changes
+
+- [#207](https://github.com/Azure/cadl-ranch/pull/207) [`131e76f`](https://github.com/Azure/cadl-ranch/commit/131e76f54230066d7152c7bb3fa170d0a769542d) Thanks [@pshao25](https://github.com/pshao25)! - Remove the convenientAPI decorator from array spec
+
+- [#208](https://github.com/Azure/cadl-ranch/pull/208) [`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl to 0.40.0
+
+- Updated dependencies [[`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d), [`68ac3cc`](https://github.com/Azure/cadl-ranch/commit/68ac3ccc553645284f39254c558bc0e4f24c85c8)]:
+  - @azure-tools/cadl-ranch@0.3.0
+  - @azure-tools/cadl-ranch-api@0.1.12
+  - @azure-tools/cadl-ranch-expect@0.1.16
+
 ## 0.6.7
 
 ### Patch Changes
