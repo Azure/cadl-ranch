@@ -23,8 +23,8 @@ model User {
   @doc("The name of user.")
   name: string;
 
-  @doc("The description of user")
-  description: string;
+  @doc("The role of user")
+  role: string;
 }
 
 @doc("The parameters for exporting a user.")
@@ -49,12 +49,12 @@ model ExportedUser {
 @scenarioDoc("""
 Should only generate one model named User.
 
-Expected path parameter: name=Madge
+Expected path parameter: name=madge
 
 Expected input body:
 ```json
 {
-  "description": "User Madge"
+  "role": "contributor"
 }
 ```
 
@@ -71,8 +71,8 @@ Expected response body:
 }
 
 {
-  "name": "Madge"
-  "description": "User Madge"
+  "name": "madge"
+  "role": "contributor"
 }
 ```
 """)
@@ -83,7 +83,7 @@ op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User
 @doc("Deletes a User")
 @summary("Deletes a user.")
 @scenarioDoc("""
-Expected path parameter: name=Madge
+Expected path parameter: name=madge
 
 Expected response body:
 ```json
@@ -105,9 +105,9 @@ op delete is ResourceOperations.LongRunningResourceDelete<User>;
 @doc("Exports a User")
 @summary("Exports a user.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate one model named ExportedUser.
 
-Expected path parameter: name=Madge
+Expected path parameter: name=madge
 Expected query parameter: format=json
 
 Expected response body:
@@ -121,7 +121,7 @@ Expected response body:
   "id":"operation1",
   "status":"Succeeded",
   "result":{
-    "name":"Madge",
+    "name":"madge",
     "resourceUri":"/users/1"
   }
 }
