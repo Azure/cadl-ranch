@@ -2,7 +2,6 @@ import {
   $service,
   createDecoratorDefinition,
   DecoratorContext,
-  getService,
   Interface,
   listServices,
   Model,
