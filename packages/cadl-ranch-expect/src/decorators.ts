@@ -2,8 +2,8 @@ import {
   $service,
   createDecoratorDefinition,
   DecoratorContext,
-  getServiceNamespace,
   Interface,
+  listServices,
   Model,
   Namespace,
   Operation,
@@ -96,7 +96,7 @@ export interface ScenarioEndpoint {
 }
 
 export function listScenarios(program: Program): Scenario[] {
-  const serviceNamespace = getServiceNamespace(program);
+  const serviceNamespace = listServices(program)[0].type;
   if (serviceNamespace === undefined) {
     return [];
   }

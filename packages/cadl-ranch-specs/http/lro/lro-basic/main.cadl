@@ -15,7 +15,7 @@ namespace Azure.Lro;
 @route("/put")
 interface PollingSuccess {
   @doc("Test for basic lro of put")
-  @pollingOperation
+  @pollingOperation(PollingSuccess.polling)
   @put
   create(): string;
 
