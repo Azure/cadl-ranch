@@ -17,16 +17,16 @@ Scenarios.Unions_sendIntArray = passOnSuccess(
   }),
 );
 
-Scenarios.Unions_sendInstallation1 = passOnSuccess(
-  mockapi.post("/unions/installation1", (req) => {
-    req.expect.bodyEquals({ namedUnion: { name: "installation1", prop1: 1 } });
+Scenarios.Unions_sendFirstNamedUnionValue = passOnSuccess(
+  mockapi.post("/unions/model1", (req) => {
+    req.expect.bodyEquals({ namedUnion: { name: "model1", prop1: 1 } });
     return { status: 200 };
   }),
 );
 
-Scenarios.Unions_sendInstallation2 = passOnSuccess(
-  mockapi.post("/unions/installation2", (req) => {
-    req.expect.bodyEquals({ namedUnion: { name: "installation2", prop2: 2 } });
+Scenarios.Unions_sendSecondNamedUnionValue = passOnSuccess(
+  mockapi.post("/unions/model2", (req) => {
+    req.expect.bodyEquals({ namedUnion: { name: "model2", prop2: 2 } });
     return { status: 200 };
   }),
 );

@@ -1740,7 +1740,7 @@ Expected input body:
 
 - Endpoint: `post /unions/int`
 
-This test is testing sending int in simple union property.
+This test is testing sending an int value in simple union property.
 
 ```json
 { "simpleUnion": 1 }
@@ -1750,28 +1750,28 @@ This test is testing sending int in simple union property.
 
 - Endpoint: `post /unions/int-array`
 
-This test is testing sending int array in simple union property.
+This test is testing sending an int array value in simple union property.
 
 ```json
 { "simpleUnion": [1, 2] }
 ```
 
-### Unions_sendInstallation1
+### Unions_sendFirstNamedUnionValue
 
-- Endpoint: `post /unions/installation1`
+- Endpoint: `post /unions/model1`
 
-This test is testing sending Installation1 in named union property.
+This test is testing sending the first union value in named union property.
 
 ```json
-{ "namedUnion": { "name": "installation1", "prop1": 1 } }
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
 ```
 
-### Unions_sendInstallation2
+### Unions_sendSecondNamedUnionValue
 
-- Endpoint: `post /unions/installation2`
+- Endpoint: `post /unions/model2`
 
-This test is testing sending Installation2 in named union property.
+This test is testing sending the second union value in named union property.
 
 ```json
-{ "namedUnion": { "name": "installation2", "prop2": 2 } }
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
 ```
