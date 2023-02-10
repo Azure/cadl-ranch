@@ -49,27 +49,56 @@ model ExportedUser {
 @scenarioDoc("""
 Should only generate one model named User.
 
+Expected verb: PUT
 Expected path parameter: name=madge
 
-Expected input body:
+Expected request body:
 ```json
 {
   "role": "contributor"
 }
 ```
 
+Expected status code: 201
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
 Expected response body:
 ```json
 {
-  "id":"operation1",
-  "status":"InProgress"
+  "name": "madge"
+  "role": "contributor"
 }
+```
 
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
 {
-  "id":"operation1",
-  "status":"Succeeded"
+  "id": "operation1",
+  "status": "InProgress"
 }
+```
 
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge
+
+Expected status code: 200
+Expected response body:
+```json
 {
   "name": "madge"
   "role": "contributor"
@@ -83,18 +112,40 @@ op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User
 @doc("Deletes a User")
 @summary("Deletes a user.")
 @scenarioDoc("""
+Expected verb: DELETE
 Expected path parameter: name=madge
 
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
 Expected response body:
 ```json
 {
-  "id":"operation1",
-  "status":"InProgress"
+  "id": "operation1",
+  "status": "InProgress"
 }
+```
 
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
 {
-  "id":"operation1",
-  "status":"Succeeded"
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
 }
 ```
 """)
@@ -107,22 +158,44 @@ op delete is ResourceOperations.LongRunningResourceDelete<User>;
 @scenarioDoc("""
 Should only generate one model named ExportedUser.
 
+Expected verb: POST
 Expected path parameter: name=madge
 Expected query parameter: format=json
 
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
 Expected response body:
 ```json
 {
-  "id":"operation1",
-  "status":"InProgress"
+  "id": "operation1",
+  "status": "InProgress"
 }
+```
 
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
 {
-  "id":"operation1",
-  "status":"Succeeded",
-  "result":{
-    "name":"madge",
-    "resourceUri":"/users/1"
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded",
+  "result": {
+    "name": "madge",
+    "resourceUri": "/users/madge"
   }
 }
 ```
