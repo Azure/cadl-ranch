@@ -1,0 +1,55 @@
+import "@cadl-lang/rest";
+import "@azure-tools/cadl-ranch-expect";
+
+using Cadl.Rest;
+using Cadl.Http;
+
+@service({
+  title: "Collection Format Testing",
+  version: "2022-12-16-preview",
+})
+@doc("Test for collectionFormat.")
+@supportedBy("dpg")
+@scenarioService("/collectionFormat")
+namespace CollectionFormat;
+
+model MultiCollectionFormatParameter {
+  @doc("Possible values for colors are [blue,red,green]")
+  @query({
+    format: "multi",
+  })
+  colors: string[];
+}
+model CsvCollectionFormatParameter {
+  @doc("Possible values for colors are [blue,red,green]")
+  @query({
+    format: "csv",
+  })
+  colors: string[];
+}
+model DefaultCollectionFormatParameter {
+  @doc("Possible values for colors are [blue,red,green]")
+  @query
+  colors: string[];
+}
+
+@scenario
+@scenarioDoc("""
+This test is testing sending a multi collection format array query parameters
+""")
+@route("/collectionFormat/multi")
+op testMulti(...MultiCollectionFormatParameter): string;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending a csv collection format array query parameters
+""")
+@route("/collectionFormat/csv")
+op testCsv(...CsvCollectionFormatParameter): string;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending a default collection format array query parameters
+""")
+@route("/collectionFormat/default")
+op testDefault(...DefaultCollectionFormatParameter): string;
