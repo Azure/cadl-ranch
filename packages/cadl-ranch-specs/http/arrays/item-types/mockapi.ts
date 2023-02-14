@@ -12,7 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /dictionary for your function.
  * @param value The value you are expecting and will return.
  */
-function createModelMockApis(route: string, value: any[], convertItemProperty?: (_: any) => any): MockApiGetPut {
+function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: any) => any): MockApiGetPut {
   const url = `/arrays/item-types/${route}`;
   return {
     get: mockapi.get(url, (req) => {
@@ -22,15 +22,15 @@ function createModelMockApis(route: string, value: any[], convertItemProperty?: 
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (convertItemProperty) {
+      if (convertBodyItem) {
         const expectedBody: any[] = [];
         for (var item in value) {
-          expectedBody.push(convertItemProperty(JSON.parse(JSON.stringify(item)))); // deep clone
+          expectedBody.push(convertBodyItem(JSON.parse(JSON.stringify(item)))); // deep clone
         }
   
         const actualBody: any[] = [];
         for (var item in req.originalRequest.body) {
-          actualBody.push(convertItemProperty(item));
+          actualBody.push(convertBodyItem(item));
         }
         req.originalRequest.body = actualBody;
         req.expect.bodyEquals(expectedBody);
