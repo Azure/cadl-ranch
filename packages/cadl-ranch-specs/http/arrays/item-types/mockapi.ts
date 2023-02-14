@@ -27,18 +27,17 @@ function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: 
         for (var item in value) {
           expectedBody.push(convertBodyItem(JSON.parse(JSON.stringify(item)))); // deep clone
         }
-  
+
         const actualBody: any[] = [];
         for (var item in req.originalRequest.body) {
           actualBody.push(convertBodyItem(item));
         }
         req.originalRequest.body = actualBody;
         req.expect.bodyEquals(expectedBody);
-      }
-      else {
+      } else {
         req.expect.bodyEquals(value);
       }
-      
+
       return {
         status: 204,
       };
@@ -66,7 +65,9 @@ const Float32ValueMock = createModelMockApis("float32", [42.42]);
 Scenarios.Arrays_ItemTypes_Float32Value_get = passOnSuccess(Float32ValueMock.get);
 Scenarios.Arrays_ItemTypes_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
-const DatetimeValueMock = createModelMockApis("datetime", ["2022-08-26T18:38:00Z"], (datetime) => new Date(datetime).toISOString());
+const DatetimeValueMock = createModelMockApis("datetime", ["2022-08-26T18:38:00Z"], (datetime) =>
+  new Date(datetime).toISOString(),
+);
 Scenarios.Arrays_ItemTypes_DatetimeValue_get = passOnSuccess(DatetimeValueMock.get);
 Scenarios.Arrays_ItemTypes_DatetimeValue_put = passOnSuccess(DatetimeValueMock.put);
 
