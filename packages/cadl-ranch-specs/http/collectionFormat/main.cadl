@@ -37,19 +37,19 @@ model DefaultCollectionFormatParameter {
 @scenarioDoc("""
 This test is testing sending a multi collection format array query parameters
 """)
-@route("/collectionFormat/multi")
+@route("/multi")
 op testMulti(...MultiCollectionFormatParameter): string;
 
 @scenario
 @scenarioDoc("""
 This test is testing sending a csv collection format array query parameters
 """)
-@route("/collectionFormat/csv")
+@route("/csv")
 op testCsv(...CsvCollectionFormatParameter): string;
 
 @scenario
 @scenarioDoc("""
 This test is testing sending a default collection format array query parameters
 """)
-@route("/collectionFormat/default")
+@route("/default")
 op testDefault(...DefaultCollectionFormatParameter): string;
