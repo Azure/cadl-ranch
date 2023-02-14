@@ -29,7 +29,7 @@ function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: 
         }
 
         const actualBody: any[] = [];
-        for (const item in req.originalRequest.body) {
+        for (const item in req.originalRequest.body ?? []) {
           actualBody.push(convertBodyItem(item));
         }
         req.originalRequest.body = actualBody;
