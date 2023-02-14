@@ -24,12 +24,12 @@ function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: 
     put: mockapi.put(url, (req) => {
       if (convertBodyItem) {
         const expectedBody: any[] = [];
-        for (var item in value) {
+        for (const item in value) {
           expectedBody.push(convertBodyItem(JSON.parse(JSON.stringify(item)))); // deep clone
         }
 
         const actualBody: any[] = [];
-        for (var item in req.originalRequest.body) {
+        for (const item in req.originalRequest.body) {
           actualBody.push(convertBodyItem(item));
         }
         req.originalRequest.body = actualBody;
