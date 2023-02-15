@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch
 
+## 0.3.1
+
+### Patch Changes
+
+- [#212](https://github.com/Azure/cadl-ranch/pull/212) [`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c) Thanks [@qiaozha](https://github.com/qiaozha)! - add collection format test
+
+- Updated dependencies [[`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265)]:
+  - @azure-tools/cadl-ranch-api@0.1.13
+
 ## 0.3.0
 
 ### Minor Changes
