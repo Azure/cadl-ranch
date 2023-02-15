@@ -13,25 +13,27 @@ using Cadl.Http;
 @scenarioService("/collectionFormat")
 namespace CollectionFormat;
 
-model MultiCollectionFormatParameter {
+alias MultiCollectionFormatParameter = {
   @doc("Possible values for colors are [blue,red,green]")
   @query({
     format: "multi",
   })
   colors: string[];
-}
-model CsvCollectionFormatParameter {
+};
+
+alias CsvCollectionFormatParameter = {
   @doc("Possible values for colors are [blue,red,green]")
   @query({
     format: "csv",
   })
   colors: string[];
-}
-model DefaultCollectionFormatParameter {
+};
+
+alias DefaultCollectionFormatParameter = {
   @doc("Possible values for colors are [blue,red,green]")
   @query
   colors: string[];
-}
+};
 
 @scenario
 @scenarioDoc("""
