@@ -240,6 +240,7 @@ Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 
@@ -265,6 +266,7 @@ Expected response body:
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 
@@ -290,6 +292,7 @@ Expected response body:
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 
@@ -307,6 +310,8 @@ Expected response body:
 Should only generate one model named User.
 
 Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 
@@ -331,6 +336,8 @@ Expected response body:
 
 Expected path parameter: id=1
 
+Expected query parameter: api-version=2022-12-01-preview
+
 Expected response of status code 204 with empty body.
 
 ### Azure_Core_export
@@ -341,6 +348,7 @@ Should only generate one model named User.
 
 Expected path parameter: id=1
 Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 
