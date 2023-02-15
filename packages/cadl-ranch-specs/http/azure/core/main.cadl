@@ -1,16 +1,24 @@
 import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
 
 using Azure.Core;
 using global.Azure.Core.Traits;
 using Cadl.Rest;
 using Cadl.Http;
+using Cadl.Versioning;
 
 #suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core")
 @scenarioService("/azure/core")
+@versioned(_Specs_.Azure.Core.Versions)
 namespace _Specs_.Azure.Core;
+
+enum Versions {
+  @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
+  v2022_12_01_preview: "2022-12-01-preview",
+}
 
 interface ResourceOperations
   extends global.Azure.Core.ResourceOperations<NoConditionalRequests & NoRepeatableRequests & NoClientRequestId> {}
@@ -41,6 +49,7 @@ model UserExportParams {
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 ```json
@@ -66,6 +75,7 @@ op createOrUpdate is ResourceOperations.ResourceCreateOrUpdate<User>;
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 ```json
@@ -91,6 +101,7 @@ op createOrReplace is ResourceOperations.ResourceCreateOrReplace<User>;
 Should only generate one model named User.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 ```json
@@ -109,6 +120,8 @@ op get is ResourceOperations.ResourceRead<User>;
 Should only generate one model named User.
 
 Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 ```json
@@ -134,6 +147,8 @@ op list is ResourceOperations.ResourceList<User>;
 @scenarioDoc("""
 Expected path parameter: id=1
 
+Expected query parameter: api-version=2022-12-01-preview
+
 Expected response of status code 204 with empty body.
 """)
 op delete is ResourceOperations.ResourceDelete<User>;
@@ -146,6 +161,7 @@ Should only generate one model named User.
 
 Expected path parameter: id=1
 Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 ```json
