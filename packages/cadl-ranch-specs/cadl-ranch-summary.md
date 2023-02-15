@@ -359,6 +359,18 @@ Expected response body:
 }
 ```
 
+### CollectionFormat_testMulti
+
+- Endpoint: `get /collectionFormat/multi`
+
+This test is testing sending a multi collection format array query parameters
+
+### CollectionFormat_testCsv
+
+- Endpoint: `get /collectionFormat/csv`
+
+This test is testing sending a csv collection format array query parameters
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
