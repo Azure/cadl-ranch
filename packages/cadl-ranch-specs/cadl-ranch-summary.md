@@ -353,19 +353,19 @@ Expected response body:
 
 ### CollectionFormat_testMulti
 
-- Endpoint: `get /collectionFormat/collectionFormat/multi`
+- Endpoint: `get /collectionFormat/multi`
 
 This test is testing sending a multi collection format array query parameters
 
 ### CollectionFormat_testCsv
 
-- Endpoint: `get /collectionFormat/collectionFormat/csv`
+- Endpoint: `get /collectionFormat/csv`
 
 This test is testing sending a csv collection format array query parameters
 
 ### CollectionFormat_testDefault
 
-- Endpoint: `get /collectionFormat/collectionFormat/default`
+- Endpoint: `get /collectionFormat/default`
 
 This test is testing sending a default collection format array query parameters
 

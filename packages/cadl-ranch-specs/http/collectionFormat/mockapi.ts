@@ -30,7 +30,7 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
     } else {
       return {
         status: 400,
-        body: json({ message: `Expected colors=blue,red,green after serialization`}),
+        body: json({ message: `Expected colors=blue,red,green after serialization` }),
       };
     }
   }),
