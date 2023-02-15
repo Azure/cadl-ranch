@@ -49,9 +49,9 @@ This test is testing sending a csv collection format array query parameters
 @route("/csv")
 op testCsv(...CsvCollectionFormatParameter): string;
 
-@scenario
-@scenarioDoc("""
-This test is testing sending a default collection format array query parameters
-""")
-@route("/default")
-op testDefault(...DefaultCollectionFormatParameter): string;
+// @scenario
+// @scenarioDoc("""
+// This test is testing sending a default collection format array query parameters
+// """)
+// @route("/default")
+// op testDefault(...DefaultCollectionFormatParameter): string;

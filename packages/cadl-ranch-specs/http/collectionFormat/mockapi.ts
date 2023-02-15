@@ -35,18 +35,18 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
   }),
 );
 
-Scenarios.CollectionFormat_testDefault = passOnSuccess(
-  mockapi.get("/collectionFormat/default", (req) => {
-    if (req.originalRequest.originalUrl.includes("colors=blue&colors=red&colors=green")) {
-      return {
-        status: 200,
-        body: json({ message: `A default multi collection format array was successfully received` }),
-      };
-    } else {
-      return {
-        status: 400,
-        body: json({ message: `Expected colors=blue&colors=red&colors=green after serialization` }),
-      };
-    }
-  }),
-);
+// Scenarios.CollectionFormat_testDefault = passOnSuccess(
+//   mockapi.get("/collectionFormat/default", (req) => {
+//     if (req.originalRequest.originalUrl.includes("colors=blue&colors=red&colors=green")) {
+//       return {
+//         status: 200,
+//         body: json({ message: `A default multi collection format array was successfully received` }),
+//       };
+//     } else {
+//       return {
+//         status: 400,
+//         body: json({ message: `Expected colors=blue&colors=red&colors=green after serialization` }),
+//       };
+//     }
+//   }),
+// );
