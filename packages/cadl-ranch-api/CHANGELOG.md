@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.1.13
+
+### Patch Changes
+
+- [#211](https://github.com/Azure/cadl-ranch/pull/211) [`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265) Thanks [@pshao25](https://github.com/pshao25)! - Add coerceBodyEquals support
+
 ## 0.1.12
 
 ### Patch Changes

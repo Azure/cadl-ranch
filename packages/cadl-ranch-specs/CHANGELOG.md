@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.8.0
+
+### Minor Changes
+
+- [#210](https://github.com/Azure/cadl-ranch/pull/210) [`41a966f`](https://github.com/Azure/cadl-ranch/commit/41a966fefa9c9d32e7afc561ac66a89ac4ea6484) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Support versioning to azure/core test, validate the api-version in mockapi
+
+### Patch Changes
+
+- [#212](https://github.com/Azure/cadl-ranch/pull/212) [`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c) Thanks [@qiaozha](https://github.com/qiaozha)! - add collection format test
+
+- [#204](https://github.com/Azure/cadl-ranch/pull/204) [`7d51edb`](https://github.com/Azure/cadl-ranch/commit/7d51edb53af6363b305562d02b728291abfaa46e) Thanks [@changlong-liu](https://github.com/changlong-liu)! - add test of unions
+
+- [#211](https://github.com/Azure/cadl-ranch/pull/211) [`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265) Thanks [@pshao25](https://github.com/pshao25)! - Fix datetime compare issue
+
+- Updated dependencies [[`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c), [`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265)]:
+  - @azure-tools/cadl-ranch@0.3.1
+  - @azure-tools/cadl-ranch-api@0.1.13
+
 ## 0.7.0
 
 ### Minor Changes
