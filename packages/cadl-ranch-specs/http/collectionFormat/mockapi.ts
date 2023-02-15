@@ -4,7 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.CollectionFormat_testMulti = passOnSuccess(
-  mockapi.post("/collectionFormat/multi", (req) => {
+  mockapi.get("/collectionFormat/multi", (req) => {
     if (req.originalRequest.originalUrl.includes("colors=blue&colors=red&colors=green")) {
       return {
         status: 200,
@@ -20,9 +20,8 @@ Scenarios.CollectionFormat_testMulti = passOnSuccess(
 );
 
 Scenarios.CollectionFormat_testCsv = passOnSuccess(
-  mockapi.post("/collectionFormat/csv", (req) => {
-    req.originalRequest.originalUrl.includes("colors=blue,red,green");
-    if (req.originalRequest.originalUrl.includes("colors=blue,red,green")) {
+  mockapi.get("/collectionFormat/csv", (req) => {
+    if (req.originalRequest.originalUrl.includes("colors=blue%2Cred%2Cgreen")) {
       return {
         status: 200,
         body: json({ message: `A multi collection format array was successfully received` }),
@@ -30,14 +29,14 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
     } else {
       return {
         status: 400,
-        body: json({ message: `Expected colors=blue,red,green after serialization` }),
+        body: json({ message: `Expected colors=blue%2Cred%2Cgreen after serialization` }),
       };
     }
   }),
 );
 
 Scenarios.CollectionFormat_testDefault = passOnSuccess(
-  mockapi.post("/collectionFormat/default", (req) => {
+  mockapi.get("/collectionFormat/default", (req) => {
     if (req.originalRequest.originalUrl.includes("colors=blue&colors=red&colors=green")) {
       return {
         status: 200,
