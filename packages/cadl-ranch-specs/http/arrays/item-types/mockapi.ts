@@ -12,7 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /dictionary for your function.
  * @param value The value you are expecting and will return.
  */
-function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: any) => any): MockApiGetPut {
+function createModelMockApis(route: string, value: any[]): MockApiGetPut {
   const url = `/arrays/item-types/${route}`;
   return {
     get: mockapi.get(url, (req) => {
@@ -22,22 +22,7 @@ function createModelMockApis(route: string, value: any[], convertBodyItem?: (_: 
       };
     }),
     put: mockapi.put(url, (req) => {
-      if (convertBodyItem) {
-        const expectedBody: any[] = [];
-        for (const item in value) {
-          expectedBody.push(convertBodyItem(JSON.parse(JSON.stringify(item)))); // deep clone
-        }
-
-        const actualBody: any[] = [];
-        for (const item in req.originalRequest.body ?? []) {
-          actualBody.push(convertBodyItem(item));
-        }
-        req.originalRequest.body = actualBody;
-        req.expect.bodyEquals(expectedBody);
-      } else {
-        req.expect.bodyEquals(value);
-      }
-
+      req.expect.coercedBodyEquals(value);
       return {
         status: 204,
       };
@@ -65,9 +50,7 @@ const Float32ValueMock = createModelMockApis("float32", [42.42]);
 Scenarios.Arrays_ItemTypes_Float32Value_get = passOnSuccess(Float32ValueMock.get);
 Scenarios.Arrays_ItemTypes_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
-const DatetimeValueMock = createModelMockApis("datetime", ["2022-08-26T18:38:00Z"], (datetime) =>
-  new Date(datetime).toISOString(),
-);
+const DatetimeValueMock = createModelMockApis("datetime", ["2022-08-26T18:38:00Z"]);
 Scenarios.Arrays_ItemTypes_DatetimeValue_get = passOnSuccess(DatetimeValueMock.get);
 Scenarios.Arrays_ItemTypes_DatetimeValue_put = passOnSuccess(DatetimeValueMock.put);
 

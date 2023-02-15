@@ -12,7 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /models/properties for your function.
  * @param value The value you are expecting and will return.
  */
-function createMockApis(route: string, value: any, convertBodyProperty?: (_: any) => any): MockApiGetPut {
+function createMockApis(route: string, value: any): MockApiGetPut {
   const url = `/models/properties/types/${route}`;
   const body = { property: value };
   return {
@@ -23,14 +23,8 @@ function createMockApis(route: string, value: any, convertBodyProperty?: (_: any
       };
     }),
     put: mockapi.put(url, (req) => {
-      const expectedBody = JSON.parse(JSON.stringify(body)); // deep clone
-      if (convertBodyProperty && req.originalRequest.body?.property && body.property) {
-        req.originalRequest.body.property = convertBodyProperty(req.originalRequest.body.property);
-        expectedBody.property = convertBodyProperty(expectedBody.property);
-      }
-
-      req.expect.bodyEquals(expectedBody);
-
+      const expectedBody = JSON.parse(JSON.stringify(body));
+      req.expect.coercedBodyEquals(expectedBody);
       return {
         status: 204,
       };
@@ -58,7 +52,7 @@ const floatMock = createMockApis("float", 42.42);
 Scenarios.Models_Property_Types_Float_get = passOnSuccess(floatMock.get);
 Scenarios.Models_Property_Types_Float_put = passOnSuccess(floatMock.put);
 
-const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z", (datetime) => new Date(datetime).toISOString());
+const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
 Scenarios.Models_Property_Types_Datetime_get = passOnSuccess(datetimeMock.get);
 Scenarios.Models_Property_Types_Datetime_put = passOnSuccess(datetimeMock.put);
 
