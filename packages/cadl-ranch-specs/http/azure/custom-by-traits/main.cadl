@@ -1,0 +1,116 @@
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-ranch-expect";
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+
+using Azure.Core;
+using global.Azure.Core.Traits;
+using Cadl.Rest;
+using Cadl.Http;
+using Cadl.Versioning;
+
+#suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
+@doc("Illustrates Azure Core operation customizations by traits")
+@scenarioService("/azure/core/traits")
+@versioned(_Specs_.Azure.Core.Traits.Versions)
+namespace _Specs_.Azure.Core.Traits;
+
+enum Versions {
+  @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
+  v2022_12_01_preview: "2022-12-01-preview",
+}
+
+alias ServiceTraits = SupportsRepeatableRequests & SupportsConditionalRequests & SupportsClientRequestId;
+
+alias OperationsWithTraits = global.Azure.Core.ResourceOperations<ServiceTraits>;
+
+@doc("Sample Model")
+@resource("user")
+model User {
+  @key
+  @doc("The user's id.")
+  @visibility("read")
+  id: int32;
+
+  @doc("The user's name.")
+  name?: string;
+
+  @doc("The user's order list")
+  orders?: UserOrder[];
+  ...global.Azure.Core.EtagProperty;
+}
+
+@doc("UserOrder for testing list with expand.")
+@resource("user")
+model UserOrder {
+  @key
+  @doc("The user's id.")
+  @visibility("read")
+  id: int32;
+
+  @doc("The user's id.")
+  userId: int32;
+
+  @doc("The user's order detail")
+  detail: string;
+}
+
+@doc("The ApiVersion path parameter.")
+model ApiVersionPathParameter {
+  @segment("api")
+  @path("api-version")
+  @doc("The API version to use for this operation.")
+  apiVersion: string;
+}
+
+@scenario
+@doc("Create with service provided name, and there is LocationOfCreatedResourceResponse in response.")
+@scenarioDoc("""
+  """)
+op create is OperationsWithTraits.ResourceCreateWithServiceProvidedName<User>;
+
+@scenario
+@doc("Get a resource, sending and receiving headers.")
+@scenarioDoc("""
+  """)
+op get is OperationsWithTraits.ResourceRead<
+  User,
+  RequestHeadersTrait<{
+    @doc("d")
+    @header
+    foo: string;
+  }> &
+    ResponseHeadersTrait<{
+      @header bar: string;
+    }>
+>;
+
+@scenario
+@doc("List with all query parameters.")
+@scenarioDoc("""
+  """)
+op list is OperationsWithTraits.ResourceList<
+  User,
+  ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
+    global.Azure.Core.OrderByQueryParameter &
+    global.Azure.Core.FilterQueryParameter &
+    global.Azure.Core.SelectQueryParameter &
+    global.Azure.Core.ExpandQueryParameter>
+>;
+
+#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with Azure.Core.Page<>.")
+@route("/page")
+@scenarioDoc("""
+  """)
+op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
+
+@scenario
+@doc("Delete resource with api-version path parameter")
+@scenarioDoc("""
+  """)
+op deleteWidget is OperationsWithTraits.ResourceDelete<
+  User,
+  TraitOverride<VersionParameterTrait<ApiVersionPathParameter>>
+>;
