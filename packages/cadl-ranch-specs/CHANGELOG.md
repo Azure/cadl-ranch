@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.8.1
+
+### Patch Changes
+
+- [#213](https://github.com/Azure/cadl-ranch/pull/213) [`b47c445`](https://github.com/Azure/cadl-ranch/commit/b47c44524c88aa4a68b67fa9b4fb4c897f97771e) Thanks [@chunyu3](https://github.com/chunyu3)! - Update the collectionFormat mockapi.
+
 ## 0.8.0
 
 ### Minor Changes
