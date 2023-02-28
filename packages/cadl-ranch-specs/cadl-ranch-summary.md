@@ -359,25 +359,25 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Traits_create
+### Azure_Traits_create
 
-- Endpoint: `get /azure/core/traits`
+- Endpoint: `get /azure/traits`
 
-### Azure_Core_Traits_get
+### Azure_Traits_get
 
-- Endpoint: `get /azure/core/traits`
+- Endpoint: `get /azure/traits`
 
-### Azure_Core_Traits_list
+### Azure_Traits_list
 
-- Endpoint: `get /azure/core/traits`
+- Endpoint: `get /azure/traits`
 
-### Azure_Core_Traits_listWithPage
+### Azure_Traits_listWithPage
 
-- Endpoint: `get /azure/core/traits/page`
+- Endpoint: `get /azure/traits/page`
 
-### Azure_Core_Traits_deleteWidget
+### Azure_Traits_delete
 
-- Endpoint: `get /azure/core/traits`
+- Endpoint: `get /azure/traits`
 
 ### CollectionFormat_testMulti
 

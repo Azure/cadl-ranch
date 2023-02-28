@@ -15,16 +15,16 @@ const validUser = {
   ETag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
 };
 
-Scenarios.Azure_Core_Traits_create = passOnSuccess(
-  mockapi.patch("/azure/core/traits/user", (req) => {
+Scenarios.Azure_Traits_create = passOnSuccess(
+  mockapi.post("/azure/traits/user", (req) => {
     validateHeaders(req);
     const validBody = { name: "Madge" };
     req.expect.bodyEquals(validBody);
     return {
-      status: 200,
+      status: 201,
       body: json(validUser),
       headers: {
-        "Location": "http://localhost:3000/azure/core/traits/user/1",
+        "Location": "http://localhost:3000/azure/traits/user/1",
         "Repeatability-Result": "Accepted",
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
       },
@@ -32,18 +32,17 @@ Scenarios.Azure_Core_Traits_create = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Traits_get = passOnSuccess(
-  mockapi.get("/azure/core/traits/user/:id", (req) => {
+Scenarios.Azure_Traits_get = passOnSuccess(
+  mockapi.get("/azure/traits/user/:id", (req) => {
     validateHeaders(req);
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
     req.expect.containsHeader("foo", "123");
-    req.expect.containsHeader("If-Match", "valid");
-    req.expect.containsHeader("If-None-Match", "invalid");
-    req.expect.containsHeader("If-Unmodified-Since", "2022-08-26T18:38:00Z");
-    req.expect.containsHeader("If-Modified-Since", "2021-08-26T18:38:00Z");
-    req.expect.containsHeader("If-None-Match", "invalid");
+    req.expect.containsHeader("if-match", "valid");
+    req.expect.containsHeader("if-none-match", "invalid");
+    req.expect.containsHeader("if-unmodified-since", "2022-08-26T18:38:00.000Z");
+    req.expect.containsHeader("if-modified-since", "2021-08-26T18:38:00.000Z");
     return {
       status: 200,
       body: json(validUser),
@@ -56,15 +55,17 @@ Scenarios.Azure_Core_Traits_get = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Trait_list = passOnSuccess(
-  mockapi.get("/azure/core/user", (req) => {
+Scenarios.Azure_Traits_list = passOnSuccess(
+  mockapi.get("/azure/traits/user", (req) => {
     validateHeaders(req);
     req.expect.containsQueryParam("top", "5");
     req.expect.containsQueryParam("skip", "10");
     req.expect.containsQueryParam("orderby", "id");
     req.expect.containsQueryParam("filter", "id eq 1");
-    req.expect.containsQueryParam("select", "select=id&select=orders&select=ETag");
-    req.expect.containsQueryParam("expand", "expand=orders");
+    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=ETag")) {
+      throw new ValidationError("Expected query param colors=blue&colors=red&colors=green ", "1", req.headers["select"]);
+    }
+    req.expect.containsQueryParam("expand", "orders");
     const responseBody = {
       value: [
         {
@@ -78,8 +79,8 @@ Scenarios.Azure_Core_Trait_list = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Trait_listWithPage = passOnSuccess(
-  mockapi.get("/azure/core/traits/page", (req) => {
+Scenarios.Azure_Traits_listWithPage = passOnSuccess(
+  mockapi.get("/azure/traits/page", (req) => {
     const responseBody = {
       value: [validUser],
     };
@@ -87,8 +88,9 @@ Scenarios.Azure_Core_Trait_listWithPage = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Trait_delete = passOnSuccess(
-  mockapi.delete("/azure/core/traits/api/2022-12-01-preview/user/:id", (req) => {
+Scenarios.Azure_Traits_delete = passOnSuccess(
+  mockapi.delete("/azure/traits/api/2022-12-01-preview/user/:id", (req) => {
+    validateHeaders(req);
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
