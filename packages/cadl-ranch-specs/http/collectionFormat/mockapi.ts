@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -27,12 +27,12 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
     ) {
       return {
         status: 200,
-        body: json({ message: `A multi collection format array was successfully received` }),
+        body: json(`A multi collection format array was successfully received`),
       };
     } else {
       return {
         status: 400,
-        body: json({ message: `Expected colors=blue,red,green or colors=blue%2Cred%2Cgreen after serialization` }),
+        body: json(`Expected colors=blue,red,green or colors=blue%2Cred%2Cgreen after serialization`),
       };
     }
   }),
