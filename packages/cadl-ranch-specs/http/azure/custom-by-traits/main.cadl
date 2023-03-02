@@ -69,7 +69,7 @@ Expected response body:
 op get is OperationsWithTraits.ResourceRead<
   User,
   RequestHeadersTrait<{
-    @doc("d")
+    @doc("header in request")
     @header
     foo: string;
   }> &

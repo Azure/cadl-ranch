@@ -45,11 +45,11 @@ Scenarios.Azure_Core_list = passOnSuccess(
     req.expect.containsQueryParam("top", "5");
     req.expect.containsQueryParam("skip", "10");
     req.expect.containsQueryParam("orderby", "id");
-    req.expect.containsQueryParam("filter", "id eq 1");
+    req.expect.containsQueryParam("filter", "id lt 10");
     if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=ETag")) {
       throw new ValidationError(
-        "Expected query param colors=blue&colors=red&colors=green ",
-        "1",
+        "Expected query param select=id&select=orders&select=ETag ",
+        "select=id&select=orders&select=ETag",
         req.headers["select"],
       );
     }
