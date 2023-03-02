@@ -50,11 +50,11 @@ Scenarios.Azure_Traits_delete = passOnSuccess(
       );
     }
     return {
-      "status": 204,
+      status: 204,
       headers: {
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
         "Repeatability-Result": "Accepted",
-      }
+      },
     };
   }),
 );

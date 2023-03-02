@@ -50,7 +50,7 @@ Scenarios.Azure_Core_list = passOnSuccess(
       throw new ValidationError(
         "Expected query param select=id&select=orders&select=ETag ",
         "select=id&select=orders&select=ETag",
-        req.query["select"],
+        req.originalRequest.originalUrl,
       );
     }
     req.expect.containsQueryParam("expand", "orders");

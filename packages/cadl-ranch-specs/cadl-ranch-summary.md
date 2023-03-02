@@ -313,7 +313,7 @@ Should only generate models named User and UserOrder.
 
 Should not generate visible model like CustomPage.
 
-Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20eq%201&select=id&select=orders&select=ETag&expand=orders
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=ETag&expand=orders
 
 Expected response body:
 
