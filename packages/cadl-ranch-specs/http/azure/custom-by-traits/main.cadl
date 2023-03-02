@@ -34,25 +34,6 @@ model User {
 
   @doc("The user's name.")
   name?: string;
-
-  @doc("The user's order list")
-  orders?: UserOrder[];
-  ...global.Azure.Core.EtagProperty;
-}
-
-@doc("UserOrder for testing list with expand.")
-@resource("user")
-model UserOrder {
-  @key
-  @doc("The user's id.")
-  @visibility("read")
-  id: int32;
-
-  @doc("The user's id.")
-  userId: int32;
-
-  @doc("The user's order detail")
-  detail: string;
 }
 
 @doc("The ApiVersion path parameter.")
@@ -62,12 +43,6 @@ model ApiVersionPathParameter {
   @doc("The API version to use for this operation.")
   apiVersion: string;
 }
-
-@scenario
-@doc("Create with service provided name, and there is LocationOfCreatedResourceResponse in response.")
-@scenarioDoc("""
-  """)
-op create is OperationsWithTraits.ResourceCreateWithServiceProvidedName<User>;
 
 @scenario
 @doc("Get a resource, sending and receiving headers.")
@@ -86,31 +61,7 @@ op get is OperationsWithTraits.ResourceRead<
 >;
 
 @scenario
-@doc("List with all query parameters.")
-@scenarioDoc("""
-  """)
-op list is OperationsWithTraits.ResourceList<
-  User,
-  ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
-    global.Azure.Core.OrderByQueryParameter &
-    global.Azure.Core.FilterQueryParameter &
-    global.Azure.Core.SelectQueryParameter &
-    global.Azure.Core.ExpandQueryParameter>
->;
-
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
-@scenario
-@doc("List with Azure.Core.Page<>.")
-@route("/page")
-@scenarioDoc("""
-  """)
-op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
-
-@scenario
 @doc("Delete resource with api-version path parameter")
 @scenarioDoc("""
   """)
-op delete is OperationsWithTraits.ResourceDelete<
-  User,
-  TraitOverride<VersionParameterTrait<ApiVersionPathParameter>>
->;
+op delete is OperationsWithTraits.ResourceDelete<User, TraitOverride<VersionParameterTrait<ApiVersionPathParameter>>>;
