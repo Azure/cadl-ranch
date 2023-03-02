@@ -46,9 +46,15 @@ Scenarios.Azure_Traits_delete = passOnSuccess(
       throw new ValidationError(
         "Expected path param apiVersion=2022-12-01-preview",
         "2022-12-01-preview",
-        req.params.id,
+        req.params.apiVersion,
       );
     }
-    return { status: 204 };
+    return {
+      "status": 204,
+      headers: {
+        "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
+        "Repeatability-Result": "Accepted",
+      }
+    };
   }),
 );

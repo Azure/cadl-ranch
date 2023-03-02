@@ -403,6 +403,7 @@ Expected header parameters:
 - if-modified-since=2021-08-26T18:38:00.000Z
 - x-ms-client-request-id=<any string>
 
+Expected response header: x-ms-client-request-id=<any string>
 Expected response body:
 
 ```json
@@ -421,6 +422,13 @@ Expected path parameter:
 
 - id=1
 - api-version=2022-12-01-preview
+  Expected header parameters:
+- x-ms-client-request-id=<any string>
+
+Expected response headers:
+
+- x-ms-client-request-id=<any string>
+- Repeatability-Result=Accepted
 
 ### CollectionFormat_testMulti
 
