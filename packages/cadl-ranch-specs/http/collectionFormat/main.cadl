@@ -35,7 +35,7 @@ alias DefaultCollectionFormatParameter = {
   colors: string[];
 };
 
-model Message {
+model MessageResponse {
   message: string;
 }
 
@@ -44,14 +44,14 @@ model Message {
 This test is testing sending a multi collection format array query parameters
 """)
 @route("/multi")
-op testMulti(...MultiCollectionFormatParameter): Message;
+op testMulti(...MultiCollectionFormatParameter): MessageResponse;
 
 @scenario
 @scenarioDoc("""
 This test is testing sending a csv collection format array query parameters
 """)
 @route("/csv")
-op testCsv(...CsvCollectionFormatParameter): Message;
+op testCsv(...CsvCollectionFormatParameter): MessageResponse;
 
 // @scenario
 // @scenarioDoc("""
