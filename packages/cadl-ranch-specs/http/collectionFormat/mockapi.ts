@@ -8,12 +8,12 @@ Scenarios.CollectionFormat_testMulti = passOnSuccess(
     if (req.originalRequest.originalUrl.includes("colors=blue&colors=red&colors=green")) {
       return {
         status: 200,
-        body: json({ message: `A multi collection format array was successfully received`}),
+        body: json({ message: `A multi collection format array was successfully received` }),
       };
     } else {
       return {
         status: 400,
-        body: json({ message: `Expected colors=blue&colors=red&colors=green after serialization`}),
+        body: json({ message: `Expected colors=blue&colors=red&colors=green after serialization` }),
       };
     }
   }),
@@ -27,12 +27,12 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
     ) {
       return {
         status: 200,
-        body: json({ message: `A multi collection format array was successfully received`}),
+        body: json({ message: `A multi collection format array was successfully received` }),
       };
     } else {
       return {
         status: 400,
-        body: json({ message: `Expected colors=blue,red,green or colors=blue%2Cred%2Cgreen after serialization`}),
+        body: json({ message: `Expected colors=blue,red,green or colors=blue%2Cred%2Cgreen after serialization` }),
       };
     }
   }),
