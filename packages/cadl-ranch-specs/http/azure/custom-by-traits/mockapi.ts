@@ -35,12 +35,19 @@ Scenarios.Azure_Traits_get = passOnSuccess(
 );
 
 Scenarios.Azure_Traits_delete = passOnSuccess(
-  mockapi.delete("/azure/traits/api/2022-12-01-preview/user/:id", (req) => {
+  mockapi.delete("/azure/traits/api/:apiVersion/user/:id", (req) => {
     if (!("x-ms-client-request-id" in req.headers)) {
       throw new ValidationError("Should submit header x-ms-client-request-id", "any uuid", undefined);
     }
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
+    }
+    if (req.params.apiVersion !== "2022-12-01-preview") {
+      throw new ValidationError(
+        "Expected path param apiVersion=2022-12-01-preview",
+        "2022-12-01-preview",
+        req.params.id,
+      );
     }
     return { status: 204 };
   }),

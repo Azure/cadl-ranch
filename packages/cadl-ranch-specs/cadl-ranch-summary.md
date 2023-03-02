@@ -237,7 +237,7 @@ Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -263,7 +263,7 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -281,7 +281,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -289,7 +290,7 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -299,7 +300,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -307,11 +309,11 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Should not generate visible model like CustomPage.
 
-Expected query parameter: api-version=2022-12-01-preview
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20eq%201&select=id&select=orders&select=ETag&expand=orders
 
 Expected response body:
 
@@ -320,15 +322,42 @@ Expected response body:
   "value": [
     {
       "id": 1,
-      "name": "Madge"
+      "name": "Madge",
+      "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+      "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
     },
     {
       "id": 2,
-      "name": "John"
+      "name": "John",
+      "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+      "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
     }
   ]
 }
 ```
+
+### Azure_Core_listWithPage
+
+- Endpoint: `get /azure/core/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
 
 ### Azure_Core_delete
 
@@ -344,40 +373,54 @@ Expected response of status code 204 with empty body.
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: format=json
 Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
-
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
-```
-
-### Azure_Traits_create
-
-- Endpoint: `get /azure/traits`
+````
 
 ### Azure_Traits_get
 
 - Endpoint: `get /azure/traits`
 
-### Azure_Traits_list
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+Expected header parameters:
 
-- Endpoint: `get /azure/traits`
+- foo=123
+- if-match=valid
+- if-none-match=invalid
+- if-unmodified-since=2022-08-26T18:38:00.000Z
+- if-modified-since=2021-08-26T18:38:00.000Z
+- x-ms-client-request-id=<any string>
 
-### Azure_Traits_listWithPage
+Expected response body:
 
-- Endpoint: `get /azure/traits/page`
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+```
 
 ### Azure_Traits_delete
 
 - Endpoint: `get /azure/traits`
+
+Expected path parameter:
+
+- id=1
+- api-version=2022-12-01-preview
 
 ### CollectionFormat_testMulti
 
