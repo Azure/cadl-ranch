@@ -21,11 +21,20 @@ Scenarios.CollectionFormat_testMulti = passOnSuccess(
 
 Scenarios.CollectionFormat_testCsv = passOnSuccess(
   mockapi.get("/collectionFormat/csv", (req) => {
-    req.expect.containsQueryParam("colors", "blue,red,green");
-    return {
-      status: 200,
-      body: json({ message: `A multi collection format array was successfully received` }),
-    };
+    if (
+      req.originalRequest.originalUrl.includes("colors=blue,red,green") ||
+      req.originalRequest.originalUrl.includes("colors=blue%2Cred%2Cgreen")
+    ) {
+      return {
+        status: 200,
+        body: json({ message: `A multi collection format array was successfully received` }),
+      };
+    } else {
+      return {
+        status: 400,
+        body: json({ message: `Expected colors=blue,red,green or colors=blue%2Cred%2Cgreen after serialization` }),
+      };
+    }
   }),
 );
 
