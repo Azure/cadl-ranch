@@ -42,7 +42,6 @@ interface Parameter {
 model BaseModel {}
 
 @doc("This is a model has property names of special words or characters.")
-@discriminator("model.kind")
 model DerivedModel extends BaseModel {
   "model.kind": "derived";
   "derived.name": string;
