@@ -53,8 +53,8 @@ Expected header parameters:
 - foo=123
 - if-match=valid
 - if-none-match=invalid
-- if-unmodified-since=2022-08-26T18:38:00.000Z
-- if-modified-since=2021-08-26T18:38:00.000Z
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
+- if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
 - x-ms-client-request-id=<any string>
 
 Expected response header: x-ms-client-request-id=<any string>
@@ -63,7 +63,7 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 """)

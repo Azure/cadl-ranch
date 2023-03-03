@@ -6,7 +6,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 const validUser = {
   id: 1,
   name: "Madge",
-  ETag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+  etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
 };
 
 Scenarios.Azure_Traits_get = passOnSuccess(
@@ -20,14 +20,14 @@ Scenarios.Azure_Traits_get = passOnSuccess(
     req.expect.containsHeader("foo", "123");
     req.expect.containsHeader("if-match", "valid");
     req.expect.containsHeader("if-none-match", "invalid");
-    req.expect.containsHeader("if-unmodified-since", "2022-08-26T18:38:00.000Z");
-    req.expect.containsHeader("if-modified-since", "2021-08-26T18:38:00.000Z");
+    req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
+    req.expect.containsHeader("if-modified-since", "Thu, 26 Aug 2021 14:38:00 GMT");
     return {
       status: 200,
       body: json(validUser),
       headers: {
         "bar": "456",
-        "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
       },
     };

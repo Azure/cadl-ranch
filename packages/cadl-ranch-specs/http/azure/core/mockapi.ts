@@ -2,7 +2,7 @@ import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
-const validUser = { id: 1, name: "Madge", ETag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59" };
+const validUser = { id: 1, name: "Madge", etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59" };
 Scenarios.Azure_Core_createOrUpdate = passOnSuccess(
   mockapi.patch("/azure/core/users/:id", (req) => {
     if (req.params.id !== "1") {
@@ -46,10 +46,10 @@ Scenarios.Azure_Core_list = passOnSuccess(
     req.expect.containsQueryParam("skip", "10");
     req.expect.containsQueryParam("orderby", "id");
     req.expect.containsQueryParam("filter", "id lt 10");
-    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=ETag")) {
+    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=etag")) {
       throw new ValidationError(
-        "Expected query param select=id&select=orders&select=ETag ",
-        "select=id&select=orders&select=ETag",
+        "Expected query param select=id&select=orders&select=etag ",
+        "select=id&select=orders&select=etag",
         req.originalRequest.originalUrl,
       );
     }
@@ -59,13 +59,13 @@ Scenarios.Azure_Core_list = passOnSuccess(
         {
           id: 1,
           name: "Madge",
-          ETag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
           orders: [{ id: 1, userId: 1, detail: "a recorder" }],
         },
         {
           id: 2,
           name: "John",
-          ETag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
           orders: [{ id: 2, userId: 2, detail: "a TV" }],
         },
       ],

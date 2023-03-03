@@ -282,7 +282,7 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -301,7 +301,7 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -313,7 +313,7 @@ Should only generate models named User and UserOrder.
 
 Should not generate visible model like CustomPage.
 
-Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=ETag&expand=orders
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
 
 Expected response body:
 
@@ -323,13 +323,13 @@ Expected response body:
     {
       "id": 1,
       "name": "Madge",
-      "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
       "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
     },
     {
       "id": 2,
       "name": "John",
-      "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
       "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
     }
   ]
@@ -354,7 +354,7 @@ Expected response body:
      {
         "id":1,
         "name":"Madge",
-        "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
      }
   ]
 }
@@ -384,7 +384,7 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ````
 
@@ -399,8 +399,8 @@ Expected header parameters:
 - foo=123
 - if-match=valid
 - if-none-match=invalid
-- if-unmodified-since=2022-08-26T18:38:00.000Z
-- if-modified-since=2021-08-26T18:38:00.000Z
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
+- if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
 - x-ms-client-request-id=<any string>
 
 Expected response header: x-ms-client-request-id=<any string>
@@ -410,7 +410,7 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "ETag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
