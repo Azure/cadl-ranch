@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.8.1
+
+### Patch Changes
+
+- [#213](https://github.com/Azure/cadl-ranch/pull/213) [`b47c445`](https://github.com/Azure/cadl-ranch/commit/b47c44524c88aa4a68b67fa9b4fb4c897f97771e) Thanks [@chunyu3](https://github.com/chunyu3)! - Update the collectionFormat mockapi.
+
+- [#216](https://github.com/Azure/cadl-ranch/pull/216) [`2ce9612`](https://github.com/Azure/cadl-ranch/commit/2ce96123f54c412a26d447ebac34d433dbe7b3f4) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - update mock response for collection format test case
+
+- [#214](https://github.com/Azure/cadl-ranch/pull/214) [`ce1ee18`](https://github.com/Azure/cadl-ranch/commit/ce1ee18cea64d665e51d2f3da496adb3bdf57300) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Add cases customizations with azure.core parameters and traits.
+
+- [#218](https://github.com/Azure/cadl-ranch/pull/218) [`2800a19`](https://github.com/Azure/cadl-ranch/commit/2800a19caabbb6bccf89d28492fbd02b234ee50b) Thanks [@archerzz](https://github.com/archerzz)! - fix test case on discriminator
+
 ## 0.8.0
 
 ### Minor Changes
