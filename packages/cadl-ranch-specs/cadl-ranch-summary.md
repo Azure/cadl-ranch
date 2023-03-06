@@ -1535,6 +1535,50 @@ Expected input body:
 }
 ```
 
+### Overload_uploadBytesOrString
+
+- Endpoint: `post /overload/bytesOrString`
+
+send "hello world" with `conten-type` "text/plain";
+send binary data "hello world" with `conten-type` "application/octet-stream"
+
+### Overload_uploadBytesOrStringSkip1
+
+- Endpoint: `post /overload/bytesOrString/skip1`
+
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+
+### Overload_uploadBytesOrStringSkip2
+
+- Endpoint: `post /overload/bytesOrString/skip2`
+
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+
+### Overload_uploadJsonOrString
+
+- Endpoint: `post /overload/JsonOrString`
+
+send "hello world" with `conten-type` "text/plain";
+send
+
+```json
+{ "hello": "world" }
+```
+
+with `conten-type` "application//json"
+
+### Overload_uploadJsonOrStringSkip3
+
+- Endpoint: `post /overload/JsonOrString/skip3`
+
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+
+### Overload_uploadJsonOrStringSkip4
+
+- Endpoint: `post /overload/JsonOrString/skip4`
+
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+
 ### ProjectedName_jsonProjection
 
 - Endpoint: `post /projection/json`
