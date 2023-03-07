@@ -56,20 +56,20 @@ Scenarios.CollectionFormat_testCsv = passOnSuccess(
 
 Scenarios.CollectionFormat_testCsvHeader = passOnSuccess(
   mockapi.get("/collectionFormat/csvHeader", (req) => {
-      req.expect.containsHeader("colors", "blue,red,green");
-      return {
-          status: 200,
-          body: json({ message: `A csv collection format array as header was successfully received` }),
-        };
+    req.expect.containsHeader("colors", "blue,red,green");
+    return {
+      status: 200,
+      body: json({ message: `A csv collection format array as header was successfully received` }),
+    };
   }),
 );
 
 Scenarios.CollectionFormat_testDefaultHeader = passOnSuccess(
   mockapi.get("/collectionFormat/defaultHeader", (req) => {
-      req.expect.containsHeader("colors", "blue,red,green");
-      return {
-          status: 200,
-          body: json({ message: `A default collection format array as header was successfully received` }),
-        };
+    req.expect.containsHeader("colors", "blue,red,green");
+    return {
+      status: 200,
+      body: json({ message: `A default collection format array as header was successfully received` }),
+    };
   }),
 );
