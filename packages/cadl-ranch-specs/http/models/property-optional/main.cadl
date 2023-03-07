@@ -1,10 +1,10 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 import "@azure-tools/cadl-ranch-expect";
-import "@azure-tools/cadl-dpg";
+import "@azure-tools/typespec-client-generator-core";
 
-using Cadl.Http;
-using Cadl.Rest;
-using Azure.DPG;
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using Azure.ClientGenerator.Core;
 
 @doc("Illustrates models with optional properties.")
 @scenarioService("/models/properties/optional")

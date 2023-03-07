@@ -1,10 +1,10 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 import "@azure-tools/cadl-ranch-expect";
 
 @doc("DPG Swagger, this is the initial swagger a service could do")
 @scenarioService("/resiliency/servicedriven1")
 namespace Resiliency.ServiceDriven1;
-using Cadl.Http;
+using TypeSpec.Http;
 
 model PostInput {
   url: string;
