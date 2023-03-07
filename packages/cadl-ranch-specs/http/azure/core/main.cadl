@@ -33,6 +33,25 @@ model User {
 
   @doc("The user's name.")
   name: string;
+
+  @doc("The user's order list")
+  orders?: UserOrder[];
+  ...global.Azure.Core.EtagProperty;
+}
+
+@doc("UserOrder for testing list with expand.")
+@resource("user")
+model UserOrder {
+  @key
+  @doc("The user's id.")
+  @visibility("read")
+  id: int32;
+
+  @doc("The user's id.")
+  userId: int32;
+
+  @doc("The user's order detail")
+  detail: string;
 }
 
 @doc("The parameters for exporting a user.")
@@ -46,7 +65,7 @@ model UserExportParams {
 @doc("Creates or updates a User")
 @summary("Adds a user or updates a user's fields.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -72,7 +91,7 @@ op createOrUpdate is ResourceOperations.ResourceCreateOrUpdate<User>;
 @doc("Creates or repalces a User")
 @summary("Adds a user or repalces a user's fields.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -88,7 +107,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 """)
@@ -98,7 +118,7 @@ op createOrReplace is ResourceOperations.ResourceCreateOrReplace<User>;
 @doc("Gets a User")
 @summary("Gets a user.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -107,7 +127,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 """)
@@ -117,9 +138,49 @@ op get is ResourceOperations.ResourceRead<User>;
 @doc("Lists all Users")
 @summary("Lists all users.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+        "orders": [{ "id": 1, "userId": 1, detail: "a recorder" }]
+     },
+     {
+        "id":2,
+        "name":"John",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+        "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
+     }
+  ]
+}
+```
+""")
+op list is ResourceOperations.ResourceList<
+  User,
+  ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
+    global.Azure.Core.OrderByQueryParameter &
+    global.Azure.Core.FilterQueryParameter &
+    global.Azure.Core.SelectQueryParameter &
+    global.Azure.Core.ExpandQueryParameter>
+>;
+
+#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with Azure.Core.Page<>.")
+@route("/page")
+@scenarioDoc("""
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
 
 Expected query parameter: api-version=2022-12-01-preview
 
@@ -129,17 +190,13 @@ Expected response body:
   "value":[
      {
         "id":1,
-        "name":"Madge"
-     },
-     {
-        "id":2,
-        "name":"John"
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
      }
   ]
 }
-```
 """)
-op list is ResourceOperations.ResourceList<User>;
+op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
 @scenario
 @doc("Deletes a User")
@@ -157,7 +214,7 @@ op delete is ResourceOperations.ResourceDelete<User>;
 @doc("Exports a User")
 @summary("Exports a user.")
 @scenarioDoc("""
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: format=json
@@ -167,7 +224,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 """)
