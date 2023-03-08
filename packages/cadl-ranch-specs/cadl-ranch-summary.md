@@ -1677,11 +1677,7 @@ This method requires to write 2 tests.
 - Endpoint: `get /resiliency/devdriven/customization/paging/protocol`
 
 Show that you can support protocol methods for a Paging operation.
-Call with "protocol" and confirm you can read a JSON `{"received": "raw"}` on page 2.
-
-- Test 2 varies:
-  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+Call with "protocol" and confirm you can read a JSON `{"received": "protocol"}` on page 2.
 
 ### Resiliency_DevDriven_getConveniencePages
 
@@ -1690,8 +1686,8 @@ Call with "protocol" and confirm you can read a JSON `{"received": "raw"}` on pa
 Show that you can support convenience methods for a Paging operation.
 This test varies:
 
-- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-- With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "convenience"}`
+- With DPG 2.0, generate the convenience method to read Product model with "received" to "convenience" on page 2
 
 ### Resiliency_DevDriven_lro
 
