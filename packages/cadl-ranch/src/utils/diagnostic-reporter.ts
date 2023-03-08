@@ -1,6 +1,6 @@
 import { logger } from "../logger.js";
 import pc from "picocolors";
-import { getSourceLocation, SourceLocation, Type } from "@cadl-lang/compiler";
+import { getSourceLocation, SourceLocation, Type } from "@typespec/compiler";
 
 export interface Diagnostic {
   message: string;

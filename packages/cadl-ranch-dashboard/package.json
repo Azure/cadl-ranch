@@ -38,7 +38,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "~0.5.0",
+    "@typespec/eslint-config-typespec": "~0.6.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",

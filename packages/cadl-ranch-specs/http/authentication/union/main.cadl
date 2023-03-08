@@ -1,7 +1,7 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 import "@azure-tools/cadl-ranch-expect";
 
-using Cadl.Http;
+using TypeSpec.Http;
 
 @scenarioService("/authentication/union")
 @doc("Illustrates clients generated with ApiKey and OAuth2 authentication.")

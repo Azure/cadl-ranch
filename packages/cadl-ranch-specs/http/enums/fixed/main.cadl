@@ -1,28 +1,28 @@
-import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
+import "@typespec/rest";
+import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 
 using Azure.Core;
-using Cadl.Http;
+using TypeSpec.Http;
 
 @scenarioService("/enums/fixed")
 namespace Enums.Fixed;
 
-#suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "For testing"
+#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
 @fixed
 enum DaysOfWeekEnum {
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
 }
 
 @route("/string")
 interface String {
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
   @get
@@ -30,7 +30,7 @@ interface String {
   @doc("getKnownValue")
   getKnownValue(): DaysOfWeekEnum;
 
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")
   @put
@@ -38,7 +38,7 @@ interface String {
   @doc("putKnownValue")
   putKnownValue(@body @doc("_") body: DaysOfWeekEnum): void;
 
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("Expect to handle an unknown value. Mock api expect to receive 'Weekend'")
   @put

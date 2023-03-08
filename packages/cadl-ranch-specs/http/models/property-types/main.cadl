@@ -1,11 +1,11 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 import "@azure-tools/cadl-ranch-expect";
-import "@azure-tools/cadl-dpg";
-import "@azure-tools/cadl-azure-core";
+import "@azure-tools/typespec-client-generator-core";
+import "@azure-tools/typespec-azure-core";
 
-using Cadl.Rest;
-using Cadl.Http;
-using Azure.DPG;
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
 
 @doc("Illustrates various property types for models")
 @scenarioService("/models/properties/types")
@@ -20,7 +20,7 @@ model ModelTemplate<TProperty> {
 
 @doc("Template to have models operations")
 interface ModelOperations<TModel, TDoc extends string> {
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
@@ -37,7 +37,7 @@ interface ModelOperations<TModel, TDoc extends string> {
   @doc("Get call")
   get(): TModel;
 
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
@@ -114,7 +114,7 @@ enum InnerEnum {
   ValueTwo,
 }
 
-#suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "For testing"
+#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
 @doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
 @Azure.Core.fixed
 enum FixedInnerEnum {

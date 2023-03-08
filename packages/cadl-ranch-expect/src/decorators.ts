@@ -8,8 +8,8 @@ import {
   Namespace,
   Operation,
   Program,
-} from "@cadl-lang/compiler";
-import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@cadl-lang/rest/http";
+} from "@typespec/compiler";
+import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
