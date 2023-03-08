@@ -51,6 +51,7 @@ importers:
       '@types/yargs': ^17.0.12
       '@typespec/compiler': ~0.41.0
       '@typespec/eslint-config-typespec': ~0.6.0
+      '@typespec/http': ~0.41.0
       '@typespec/rest': ~0.41.0
       ajv: 8.11.0
       body-parser: ^1.20.0
@@ -77,6 +78,7 @@ importers:
       '@azure/identity': 3.0.0
       '@types/js-yaml': 4.0.5
       '@typespec/compiler': 0.41.0
+      '@typespec/http': 0.41.0_@typespec+compiler@0.41.0
       '@typespec/rest': 0.41.0_@typespec+compiler@0.41.0
       ajv: 8.11.0
       body-parser: 1.20.0
@@ -218,6 +220,7 @@ importers:
       '@types/node': ^18.7.16
       '@typespec/compiler': ~0.41.0
       '@typespec/eslint-config-typespec': ~0.6.0
+      '@typespec/http': ~0.41.0
       '@typespec/rest': ~0.41.0
       eslint: ^8.23.1
       prettier: ^2.7.1
@@ -225,6 +228,7 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@typespec/compiler': 0.41.0
+      '@typespec/http': 0.41.0_@typespec+compiler@0.41.0
       '@typespec/rest': 0.41.0_@typespec+compiler@0.41.0
     devDependencies:
       '@types/node': 18.7.16
@@ -245,6 +249,7 @@ importers:
       '@types/node': ^18.7.16
       '@typespec/compiler': ~0.41.0
       '@typespec/eslint-config-typespec': ~0.6.0
+      '@typespec/http': ~0.41.0
       '@typespec/openapi': 0.41.0
       '@typespec/openapi3': 0.41.0
       '@typespec/rest': ~0.41.0
@@ -259,6 +264,7 @@ importers:
       '@azure-tools/cadl-ranch-expect': link:../cadl-ranch-expect
       '@azure-tools/typespec-azure-core': 0.27.0_aqh6qkt5rxy2u2tbp67xp4xkui
       '@typespec/compiler': 0.41.0
+      '@typespec/http': 0.41.0_@typespec+compiler@0.41.0
       '@typespec/rest': 0.41.0_@typespec+compiler@0.41.0
       '@typespec/versioning': 0.41.0
     devDependencies:
