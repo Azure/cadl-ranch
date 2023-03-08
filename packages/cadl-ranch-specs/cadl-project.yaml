@@ -1,2 +1,2 @@
 emitters:
-  "@cadl-lang/openapi3": true
+  "@typespec/openapi3": true

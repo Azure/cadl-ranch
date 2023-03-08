@@ -49,6 +49,7 @@ words:
   - safeint
   - strs
   - TSES
+  - typespec
   - Uhoh
   - unassignable
   - Uncapitalize

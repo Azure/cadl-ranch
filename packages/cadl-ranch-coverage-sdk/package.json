@@ -31,7 +31,7 @@
     "@types/node": "^18.7.16"
   },
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "~0.5.0",
+    "@typespec/eslint-config-typespec": "~0.6.0",
     "eslint": "^8.23.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",

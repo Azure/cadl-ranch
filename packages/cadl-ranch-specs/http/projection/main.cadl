@@ -1,7 +1,7 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 import "@azure-tools/cadl-ranch-expect";
 
-using Cadl.Http;
+using TypeSpec.Http;
 
 @doc("Projection")
 @supportedBy("dpg")

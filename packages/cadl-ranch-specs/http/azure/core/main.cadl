@@ -1,15 +1,15 @@
-import "@azure-tools/cadl-azure-core";
+import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
-import "@cadl-lang/rest";
-import "@cadl-lang/versioning";
+import "@typespec/rest";
+import "@typespec/versioning";
 
 using Azure.Core;
 using global.Azure.Core.Traits;
-using Cadl.Rest;
-using Cadl.Http;
-using Cadl.Versioning;
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using TypeSpec.Versioning;
 
-#suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
+#suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core")
 @scenarioService("/azure/core")
 @versioned(_Specs_.Azure.Core.Versions)
@@ -173,7 +173,7 @@ op list is ResourceOperations.ResourceList<
     global.Azure.Core.ExpandQueryParameter>
 >;
 
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
 @scenario
 @doc("List with Azure.Core.Page<>.")
 @route("/page")
