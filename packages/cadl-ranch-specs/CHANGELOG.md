@@ -1,5 +1,20 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Minor Changes
+
+- [#228](https://github.com/Azure/cadl-ranch/pull/228) [`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7) Thanks [@iscai-msft](https://github.com/iscai-msft)! - switch to typespec packages
+
+### Patch Changes
+
+- [#227](https://github.com/Azure/cadl-ranch/pull/227) [`7690e77`](https://github.com/Azure/cadl-ranch/commit/7690e772980bdc68714452bf2e4348c6834bb6ed) Thanks [@chunyu3](https://github.com/chunyu3)! - add collection header test
+
+- Updated dependencies [[`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7)]:
+  - @azure-tools/cadl-ranch@0.4.0
+  - @azure-tools/cadl-ranch-api@0.2.0
+  - @azure-tools/cadl-ranch-expect@0.2.0
+
 ## 0.8.1
 
 ### Patch Changes
