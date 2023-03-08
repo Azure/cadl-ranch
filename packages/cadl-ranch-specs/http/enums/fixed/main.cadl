@@ -11,13 +11,13 @@ namespace Enums.Fixed;
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
 @fixed
 enum DaysOfWeekEnum {
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
 }
 
 @route("/string")

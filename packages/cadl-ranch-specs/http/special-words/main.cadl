@@ -28,7 +28,7 @@ interface Parameter {
   @scenarioDoc("Expect input parameter `if='weekend'`")
   @get
   @route("/if")
-  getWithIf(@header "if": string): void;
+  getWithIf(@header `if`: string): void;
 
   @scenario
   @scenarioDoc("Expect input parameter `filter='abc*.'`")
@@ -43,8 +43,8 @@ model BaseModel {}
 
 @doc("This is a model has property names of special words or characters.")
 model DerivedModel extends BaseModel {
-  "model.kind": "derived";
-  "derived.name": string;
+  `model.kind`: "derived";
+  `derived.name`: string;
   for: string;
 }
 

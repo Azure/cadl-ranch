@@ -7,13 +7,13 @@ using TypeSpec.Http;
 namespace Enums.Extensible;
 
 enum DaysOfWeekExtensibleEnum {
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
 }
 
 @route("/string")

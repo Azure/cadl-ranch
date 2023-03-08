@@ -40,38 +40,38 @@ Scenarios.PostHandwrittenModel = passOnSuccess(
   }),
 );
 
-Scenarios.GetRawPages = passOnSuccess([
-  mockapi.get("/customization/paging/raw/", (req) => {
+Scenarios.GetProtocolPages = passOnSuccess([
+  mockapi.get("/customization/paging/protocol/", (req) => {
     return {
       status: 200,
       body: json({
-        values: [{ received: "raw" }],
-        nextLink: req.baseUrl + "/customization/paging/raw/2",
+        values: [{ received: "protocol" }],
+        nextLink: req.baseUrl + "/customization/paging/protocol/2",
       }),
     };
   }),
-  mockapi.get("/customization/paging/raw/2", (req) => {
+  mockapi.get("/customization/paging/protocol/2", (req) => {
     return {
       status: 200,
-      body: json({ values: [{ received: "raw" }] }),
+      body: json({ values: [{ received: "protocol" }] }),
     };
   }),
 ]);
 
-Scenarios.GetHandwrittenModelPages = passOnSuccess([
-  mockapi.get("/customization/paging/model/", (req) => {
+Scenarios.GetConveniencePages = passOnSuccess([
+  mockapi.get("/customization/paging/convenience/", (req) => {
     return {
       status: 200,
       body: json({
-        values: [{ received: "model" }],
-        nextLink: req.baseUrl + "/customization/paging/model/2",
+        values: [{ received: "convenience" }],
+        nextLink: req.baseUrl + "/customization/paging/convenience/2",
       }),
     };
   }),
-  mockapi.get("/customization/paging/model/2", (req) => {
+  mockapi.get("/customization/paging/convenience/2", (req) => {
     return {
       status: 200,
-      body: json({ values: [{ received: "model" }] }),
+      body: json({ values: [{ received: "convenience" }] }),
     };
   }),
 ]);
