@@ -442,6 +442,18 @@ This test is testing sending a multi collection format array query parameters
 
 This test is testing sending a csv collection format array query parameters
 
+### CollectionFormat_testCsvHeader
+
+- Endpoint: `get /collectionFormat/csvHeader`
+
+This test is testing sending a csv collection format array header parameters
+
+### CollectionFormat_testDefaultHeader
+
+- Endpoint: `get /collectionFormat/defaultHeader`
+
+This test is testing sending a default collection format array header parameters
+
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
