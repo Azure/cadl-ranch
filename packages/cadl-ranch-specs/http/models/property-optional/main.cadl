@@ -1,9 +1,8 @@
-import "@typespec/rest";
+import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
-using TypeSpec.Rest;
 using Azure.ClientGenerator.Core;
 
 @doc("Illustrates models with optional properties.")
