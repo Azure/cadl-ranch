@@ -1,4 +1,4 @@
-import "@typespec/rest";
+import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 
 @doc("DPG Swagger, this is the initial swagger a service could do")

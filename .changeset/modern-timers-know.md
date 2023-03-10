@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-add collection header test
+fix http imports in cadl specs
