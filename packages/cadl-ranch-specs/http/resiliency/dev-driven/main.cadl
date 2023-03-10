@@ -7,12 +7,12 @@ import "@azure-tools/typespec-client-generator-core";
 
 using Azure.Core;
 using Azure.ClientGenerator.Core;
+using TypeSpec.Rest;
+using TypeSpec.Http;
 
 @doc("DPG Swagger that tests our ability to grow up.")
 @scenarioService("/resiliency/devdriven")
 namespace Resiliency.DevDriven;
-using TypeSpec.Rest;
-using TypeSpec.Http;
 
 alias ModeParameter = {
   @OpenAPI.extension("x-ms-parameter-location", "method")
