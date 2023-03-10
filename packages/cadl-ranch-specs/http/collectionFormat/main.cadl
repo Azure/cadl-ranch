@@ -1,7 +1,6 @@
-import "@typespec/rest";
+import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 
-using TypeSpec.Rest;
 using TypeSpec.Http;
 
 @service({

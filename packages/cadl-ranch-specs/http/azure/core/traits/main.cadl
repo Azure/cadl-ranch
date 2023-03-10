@@ -1,12 +1,13 @@
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
+import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/versioning";
 
 using global.Azure.Core;
 using global.Azure.Core.Traits;
-using TypeSpec.Rest;
 using TypeSpec.Http;
+using TypeSpec.Rest;
 using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
