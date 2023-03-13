@@ -162,6 +162,13 @@ model CollectionsIntProperty is ModelTemplate<int32[]>;
 @operationGroup
 interface CollectionsInt extends ModelOperations<CollectionsIntProperty, "[1, 2]"> {}
 
+// Test a model with an int collection property
+@doc("Model with collection int with nullable values")
+model CollectionsIntProperty is ModelTemplate<(int32|null)[]>;
+@route("/collections/nullable-int")
+@operationGroup
+interface CollectionsInt extends ModelOperations<CollectionsIntProperty, "[1, null, 3]"> {}
+
 // Test a model with a model collection property
 @doc("Model with collection model properties")
 model CollectionsModelProperty is ModelTemplate<InnerModel[]>;
