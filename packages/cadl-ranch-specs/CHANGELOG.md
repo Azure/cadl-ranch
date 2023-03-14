@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.9.1
+
+### Patch Changes
+
+- [#231](https://github.com/Azure/cadl-ranch/pull/231) [`affbe52`](https://github.com/Azure/cadl-ranch/commit/affbe52e4d722c8b6f942479c722ae7983226d2e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - fix http imports in cadl specs
+
 ## 0.9.0
 
 ### Minor Changes

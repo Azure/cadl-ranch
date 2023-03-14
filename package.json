@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
-    "@typespec/prettier-plugin-typespec": "~0.41.0",
+    "@typespec/prettier-plugin-typespec": "~0.42.0",
     "@changesets/cli": "^2.24.4",
     "cspell": "^6.8.1",
     "eslint": "^8.23.1",
