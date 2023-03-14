@@ -101,15 +101,14 @@ Show that you can call a POST HTTP endpoint.
 This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 """)
-  @route("/parameters/{contentTypePath}")
+  @route("/parameters")
   @doc("POST a JSON or a JPEG")
   @post
   postParameters(
-    @path contentTypePath: "json" | "jpeg",
-
     @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
     @body
-    parameter: PostInput
+    parameter: PostInput | bytes,
+    @header contentType: "application/json" | "image/jpeg"
   ): MessageResponse;
 
   @scenario
