@@ -1420,7 +1420,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": { "property": null } }
+{ "property": null }
 ```
 
 ### Models_Property_Types_NullableModel_put
@@ -1430,7 +1430,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": { "property": null } }
+{ "property": null }
 ```
 
 ### Models_Property_Types_CollectionsString_get
