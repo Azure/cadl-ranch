@@ -193,10 +193,10 @@ interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'
 
 // Test a model with a nullable dictionary property
 @doc("Model with collection with nullable values")
-model DictionaryNullableProperty is ModelTemplate<Record<string|null>>;
+model DictionaryNullableValue is ModelTemplate<Record<string|null>>;
 @route("/dictionary/nullable-value")
 @operationGroup
-interface DictionaryNullableValue extends DictionaryNullableValueOperations<DictionaryNullableProperty,  "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
+interface DictionaryNullableValue extends DictionaryNullableValueOperations<DictionaryNullableValue,  "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
 
 // Test a model with a never property
 @doc("Model with a property never. (This property should not be included).")

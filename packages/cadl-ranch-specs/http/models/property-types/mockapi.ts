@@ -72,6 +72,10 @@ const modelMock = createMockApis("model", { property: "hello" });
 Scenarios.Models_Property_Types_Model_get = passOnSuccess(modelMock.get);
 Scenarios.Models_Property_Types_Model_put = passOnSuccess(modelMock.put);
 
+const nullableModelMock = createMockApis("nullable-model", { property: null });
+Scenarios.Models_Property_Types_NullableModel_get = passOnSuccess(nullableModelMock.get);
+Scenarios.Models_Property_Types_NullableModel_put = passOnSuccess(nullableModelMock.put);
+
 const collectionsStringMock = createMockApis("collections/string", ["hello", "world"]);
 Scenarios.Models_Property_Types_CollectionsString_get = passOnSuccess(collectionsStringMock.get);
 Scenarios.Models_Property_Types_CollectionsString_put = passOnSuccess(collectionsStringMock.put);
@@ -84,9 +88,17 @@ const collectionsModelMock = createMockApis("collections/model", [{ property: "h
 Scenarios.Models_Property_Types_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
 Scenarios.Models_Property_Types_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
 
+const collectionsNullableItemMock = createMockApis("collections/nullable-item", [1, null, 3]);
+Scenarios.Models_Property_Types_CollectionsNullableItem_get = passOnSuccess(collectionsNullableItemMock.get);
+Scenarios.Models_Property_Types_CollectionsNullableItem_put = passOnSuccess(collectionsNullableItemMock.put);
+
 const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", k2: "world" });
 Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
 Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);
+
+const dictionaryNuallableValueMock = createMockApis("dictionary/nullable-value", { 'k1': 'hello', 'k2': 'world', 'k3': null });
+Scenarios.Models_Property_Types_DictionaryNuallableValue_get = passOnSuccess(dictionaryNuallableValueMock.get);
+Scenarios.Models_Property_Types_DictionaryNuallableValue_put = passOnSuccess(dictionaryNuallableValueMock.put);
 
 const neverMock = createMockApis("never", undefined);
 Scenarios.Models_Property_Types_Never_get = passOnSuccess(neverMock.get);
