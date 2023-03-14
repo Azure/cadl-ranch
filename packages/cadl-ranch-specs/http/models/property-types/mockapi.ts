@@ -96,7 +96,7 @@ const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", 
 Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
 Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);
 
-const dictionaryNullableValueMock = createMockApis("dictionary/nullable-value", { 'k1': 'hello', 'k2': 'world', 'k3': null });
+const dictionaryNullableValueMock = createMockApis("dictionary/nullable-value", { k1: "hello", k2: "world", k3: null });
 Scenarios.Models_Property_Types_DictionaryNullableValue_get = passOnSuccess(dictionaryNullableValueMock.get);
 Scenarios.Models_Property_Types_DictionaryNullableValue_put = passOnSuccess(dictionaryNullableValueMock.put);
 

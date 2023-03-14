@@ -1543,7 +1543,7 @@ Expected response body:
 { "property": { "k1": "hello", "k2": "world", "k3": null } }
 ```
 
-### Models_Property_Types_DictionaryNuallableValue_put
+### Models_Property_Types_DictionaryNullableValue_put
 
 - Endpoint: `put /models/properties/types/dictionary/nullable-value`
 
