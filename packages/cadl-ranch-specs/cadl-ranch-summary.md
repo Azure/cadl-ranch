@@ -1533,7 +1533,7 @@ Expected input body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
-### Models_Property_Types_DictionaryNuallableValue_get
+### Models_Property_Types_DictionaryNullableValue_get
 
 - Endpoint: `get /models/properties/types/dictionary/nullable-value`
 
