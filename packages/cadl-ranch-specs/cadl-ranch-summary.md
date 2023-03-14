@@ -1413,6 +1413,26 @@ Expected input body:
 { "property": { "property": "hello" } }
 ```
 
+### Models_Property_Types_NullableModel_get
+
+- Endpoint: `get /models/properties/types/nullable-model`
+
+Expected response body:
+
+```json
+{ "property": { "property": null } }
+```
+
+### Models_Property_Types_NullableModel_put
+
+- Endpoint: `put /models/properties/types/nullable-model`
+
+Expected input body:
+
+```json
+{ "property": { "property": null } }
+```
+
 ### Models_Property_Types_CollectionsString_get
 
 - Endpoint: `get /models/properties/types/collections/string`
@@ -1473,6 +1493,26 @@ Expected input body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
+### Models_Property_Types_CollectionsNullableItem_get
+
+- Endpoint: `get /models/properties/types/collections/nullable-item`
+
+Expected response body:
+
+```json
+{ "property": [1, null, 3] }
+```
+
+### Models_Property_Types_CollectionsNullableItem_put
+
+- Endpoint: `put /models/properties/types/collections/nullable-item`
+
+Expected input body:
+
+```json
+{ "property": [1, null, 3] }
+```
+
 ### Models_Property_Types_DictionaryString_get
 
 - Endpoint: `get /models/properties/types/dictionary/string`
@@ -1491,6 +1531,26 @@ Expected input body:
 
 ```json
 { "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Models_Property_Types_DictionaryNuallableValue_get
+
+- Endpoint: `get /models/properties/types/dictionary/nullable-value`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world", "k3": null } }
+```
+
+### Models_Property_Types_DictionaryNuallableValue_put
+
+- Endpoint: `put /models/properties/types/dictionary/nullable-value`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world", "k3": null } }
 ```
 
 ### Models_Property_Types_Never_get

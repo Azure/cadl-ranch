@@ -150,10 +150,10 @@ interface Model extends ModelOperations<ModelProperty, "{'property': 'hello'}"> 
 
 // Test a model with a model property which could be nullable
 @doc("Model with nullable model properties")
-model ModelProperty is ModelTemplate<InnerModel | null>;
+model NullableModelProperty is ModelTemplate<InnerModel | null>;
 @route("/nullable-model")
 @operationGroup
-interface NullableModel extends NullableModelOperations<NullableModelProperty, "null"> {}
+interface NullableModel extends ModelOperations<NullableModelProperty, "null"> {}
 
 // Test a model with a string collection property
 @doc("Model with collection string properties")
@@ -179,10 +179,10 @@ interface CollectionsModel
 
 // Test a model with a nullable collection property
 @doc("Model with collection with nullable values")
-model CollectionsNullableProperty is ModelTemplate<(int32|null)[]>;
+model CollectionsNullableItemProperty is ModelTemplate<(int32 | null)[]>;
 @route("/collections/nullable-item")
 @operationGroup
-interface CollectionsNullableItem extends CollectionsNullableItemOperations<CollectionsNullableProperty, "[1, null, 3]"> {}
+interface CollectionsNullableItem extends ModelOperations<CollectionsNullableItemProperty, "[1, null, 3]"> {}
 
 // Test a model with a string dictionary property
 @doc("Model with dictionary string properties")
@@ -193,10 +193,11 @@ interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'
 
 // Test a model with a nullable dictionary property
 @doc("Model with collection with nullable values")
-model DictionaryNullableValue is ModelTemplate<Record<string|null>>;
+model DictionaryNullableValueProperty is ModelTemplate<Record<string | null>>;
 @route("/dictionary/nullable-value")
 @operationGroup
-interface DictionaryNullableValue extends DictionaryNullableValueOperations<DictionaryNullableValue,  "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
+interface DictionaryNullableValue
+  extends ModelOperations<DictionaryNullableValueProperty, "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
 
 // Test a model with a never property
 @doc("Model with a property never. (This property should not be included).")
