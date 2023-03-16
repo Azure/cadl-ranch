@@ -1,9 +1,9 @@
-import "@cadl-lang/rest";
+import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
-import "@azure-tools/cadl-dpg";
+import "@azure-tools/typespec-client-generator-core";
 
-using Cadl.Http;
-using Azure.DPG;
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
 
 @doc("Illustrates various of dictionaries.")
 @scenarioService("/arrays/item-types")
@@ -24,7 +24,6 @@ interface ArrayOperations<TArr, TDoc extends string> {
     }
   )
   @get
-  @convenientAPI(true)
   get(): TArr;
 
   @scenario
@@ -40,7 +39,6 @@ interface ArrayOperations<TArr, TDoc extends string> {
     }
   )
   @put
-  @convenientAPI(true)
   put(@body body: TArr): void;
 }
 

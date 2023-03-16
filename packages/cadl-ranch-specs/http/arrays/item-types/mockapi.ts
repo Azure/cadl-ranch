@@ -12,7 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /dictionary for your function.
  * @param value The value you are expecting and will return.
  */
-function createModelMockApis(route: string, value: any): MockApiGetPut {
+function createModelMockApis(route: string, value: any[]): MockApiGetPut {
   const url = `/arrays/item-types/${route}`;
   return {
     get: mockapi.get(url, (req) => {
@@ -22,7 +22,7 @@ function createModelMockApis(route: string, value: any): MockApiGetPut {
       };
     }),
     put: mockapi.put(url, (req) => {
-      req.expect.bodyEquals(value);
+      req.expect.coercedBodyEquals(value);
       return {
         status: 204,
       };

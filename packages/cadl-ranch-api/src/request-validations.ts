@@ -42,7 +42,7 @@ export const validateCoercedDateBodyEquals = (request: RequestExt, expectedBody:
     return;
   }
 
-  if (!deepEqual(request.body, expectedBody, { strict: true })) {
+  if (!deepEqual(coerceDate(request.body), expectedBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedBody, request.body);
   }
 };
@@ -97,4 +97,10 @@ export const validateQueryParam = (request: RequestExt, paramName: string, expec
   if (actual !== expected) {
     throw new ValidationError(`Expected query param ${paramName}=${expected} but got ${actual}`, expected, actual);
   }
+};
+
+const coerceDate = (targetObject: Record<string, unknown>): Record<string, unknown> => {
+  let stringRep = JSON.stringify(targetObject);
+  stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)(\.\d{3,7})?([Zz]|[+-]00:00)/g, "$1Z");
+  return JSON.parse(stringRep);
 };

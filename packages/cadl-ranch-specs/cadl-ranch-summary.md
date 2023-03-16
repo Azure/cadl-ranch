@@ -237,9 +237,10 @@ Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 
@@ -262,9 +263,10 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected input body:
 
@@ -279,7 +281,8 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -287,16 +290,18 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
 
@@ -304,9 +309,11 @@ Expected response body:
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
 
 Expected response body:
 
@@ -315,15 +322,42 @@ Expected response body:
   "value": [
     {
       "id": 1,
-      "name": "Madge"
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+      "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
     },
     {
       "id": 2,
-      "name": "John"
+      "name": "John",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+      "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
     }
   ]
 }
 ```
+
+### Azure_Core_listWithPage
+
+- Endpoint: `get /azure/core/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
 
 ### Azure_Core_delete
 
@@ -331,25 +365,94 @@ Expected response body:
 
 Expected path parameter: id=1
 
+Expected query parameter: api-version=2022-12-01-preview
+
 Expected response of status code 204 with empty body.
 
 ### Azure_Core_export
 
 - Endpoint: `get /azure/core`
 
-Should only generate one model named User.
+Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
 Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
 
+Expected response body:
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+````
+
+### Azure_Traits_get
+
+- Endpoint: `get /azure/traits`
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+Expected header parameters:
+
+- foo=123
+- if-match=valid
+- if-none-match=invalid
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
+- if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
+- x-ms-client-request-id=<any string>
+
+Expected response header: x-ms-client-request-id=<any string>
 Expected response body:
 
 ```json
 {
   "id": 1,
-  "name": "Madge"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
+
+### Azure_Traits_delete
+
+- Endpoint: `get /azure/traits`
+
+Expected path parameter:
+
+- id=1
+- api-version=2022-12-01-preview
+  Expected header parameters:
+- x-ms-client-request-id=<any string>
+
+Expected response headers:
+
+- x-ms-client-request-id=<any string>
+- Repeatability-Result=Accepted
+
+### CollectionFormat_testMulti
+
+- Endpoint: `get /collectionFormat/multi`
+
+This test is testing sending a multi collection format array query parameters
+
+### CollectionFormat_testCsv
+
+- Endpoint: `get /collectionFormat/csv`
+
+This test is testing sending a csv collection format array query parameters
+
+### CollectionFormat_testCsvHeader
+
+- Endpoint: `get /collectionFormat/csvHeader`
+
+This test is testing sending a csv collection format array header parameters
+
+### CollectionFormat_testDefaultHeader
+
+- Endpoint: `get /collectionFormat/defaultHeader`
+
+This test is testing sending a default collection format array header parameters
 
 ### Dictionary_Int32Value_get
 
@@ -1569,17 +1672,22 @@ This method requires to write 2 tests.
   - With DPG 1.0, write a model Input("world!"), serialize to input write your own model to parse `{"received": "model"}`
   - With DPG 2.0, generate the convenience method to pass Input("world!") and read Product model with "received" to "model"
 
-### Resiliency_DevDriven_getPages
+### Resiliency_DevDriven_getProtocolPages
 
-- Endpoint: `get /resiliency/devdriven/customization/paging/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/paging/protocol`
 
-Show that you can support both protocol methods and convenience method for a Paging operation.
-This method requires to write 2 tests.
+Show that you can support protocol methods for a Paging operation.
+Call with "protocol" and confirm you can read a JSON `{"received": "protocol"}` on page 2.
 
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}` on page 2.
-- Test 2 varies:
-  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+### Resiliency_DevDriven_getConveniencePages
+
+- Endpoint: `get /resiliency/devdriven/customization/paging/convenience`
+
+Show that you can support convenience methods for a Paging operation.
+This test varies:
+
+- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "convenience"}`
+- With DPG 2.0, generate the convenience method to read Product model with "received" to "convenience" on page 2
 
 ### Resiliency_DevDriven_lro
 
@@ -1734,4 +1842,44 @@ Expected input body:
   "derived.name": "my.name",
   "for": "value"
 }
+```
+
+### Unions_sendInt
+
+- Endpoint: `post /unions/int`
+
+This test is testing sending an int value in simple union property.
+
+```json
+{ "simpleUnion": 1 }
+```
+
+### Unions_sendIntArray
+
+- Endpoint: `post /unions/int-array`
+
+This test is testing sending an int array value in simple union property.
+
+```json
+{ "simpleUnion": [1, 2] }
+```
+
+### Unions_sendFirstNamedUnionValue
+
+- Endpoint: `post /unions/model1`
+
+This test is testing sending the first union value in named union property.
+
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+
+### Unions_sendSecondNamedUnionValue
+
+- Endpoint: `post /unions/model2`
+
+This test is testing sending the second union value in named union property.
+
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
 ```

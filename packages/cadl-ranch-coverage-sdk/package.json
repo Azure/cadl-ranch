@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-coverage-sdk",
-  "version": "0.1.4",
+  "version": "0.2.1",
   "description": "Cadl Ranch utility to manage the reported coverage",
   "main": "dist/index.js",
   "type": "module",
@@ -31,7 +31,7 @@
     "@types/node": "^18.7.16"
   },
   "devDependencies": {
-    "@cadl-lang/eslint-config-cadl": "~0.5.0",
+    "@typespec/eslint-config-typespec": "~0.6.0",
     "eslint": "^8.23.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",

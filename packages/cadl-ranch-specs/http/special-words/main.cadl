@@ -1,9 +1,9 @@
-import "@cadl-lang/rest";
+import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
-import "@azure-tools/cadl-dpg";
+import "@azure-tools/typespec-client-generator-core";
 
-using Cadl.Http;
-using Azure.DPG;
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
 
 @doc("Illustrates operation, parameter and property have name of special words or characters.")
 @scenarioService("/special-words")
@@ -28,7 +28,7 @@ interface Parameter {
   @scenarioDoc("Expect input parameter `if='weekend'`")
   @get
   @route("/if")
-  getWithIf(@header "if": string): void;
+  getWithIf(@header `if`: string): void;
 
   @scenario
   @scenarioDoc("Expect input parameter `filter='abc*.'`")
@@ -42,10 +42,9 @@ interface Parameter {
 model BaseModel {}
 
 @doc("This is a model has property names of special words or characters.")
-@discriminator("model.kind")
 model DerivedModel extends BaseModel {
-  "model.kind": "derived";
-  "derived.name": string;
+  `model.kind`: "derived";
+  `derived.name`: string;
   for: string;
 }
 

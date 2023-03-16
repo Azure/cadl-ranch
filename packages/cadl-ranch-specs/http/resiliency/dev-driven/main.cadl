@@ -1,28 +1,30 @@
-import "@cadl-lang/rest";
-import "@cadl-lang/openapi";
-import "@azure-tools/cadl-azure-core";
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/openapi";
+import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-client-generator-core";
 
 using Azure.Core;
+using Azure.ClientGenerator.Core;
+using TypeSpec.Rest;
+using TypeSpec.Http;
 
 @doc("DPG Swagger that tests our ability to grow up.")
 @scenarioService("/resiliency/devdriven")
 namespace Resiliency.DevDriven;
-using Cadl.Http;
-using Cadl.Rest;
 
-@doc("The mode with which you'll be handling your returned body. 'raw' for just dealing with the raw body, and 'model' if you are going to convert the raw body to a customized body before returning to users.")
-model ModeParameter {
+alias ModeParameter = {
   @OpenAPI.extension("x-ms-parameter-location", "method")
   @OpenAPI.extension("x-ms-skip-url-encoding", true)
   @doc("The mode with which you'll be handling your returned body. 'raw' for just dealing with the raw body, and 'model' if you are going to convert the raw body to a customized body before returning to users.")
   @path
   mode: Mode;
-}
+};
 
 enum Mode {
-  "raw",
-  "model",
+  raw,
+  `model`,
 }
 
 @doc("Product resource")
@@ -71,7 +73,7 @@ model LroProductResponse {
   body: LroProduct;
 }
 
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
 @scenario
 @scenarioDoc("""
 Show that you can support both protocol methods and convenience method for a HTTP GET.
@@ -87,7 +89,7 @@ This method requires to write 2 tests.
 @get
 op getModel(...ModeParameter): ProductResponse;
 
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
 @scenario
 @scenarioDoc("""
 Show that you can support both protocol methods and convenience method for a HTTP POST.
@@ -112,19 +114,29 @@ op postModel(
 
 @scenario
 @scenarioDoc("""
-Show that you can support both protocol methods and convenience method for a Paging operation.
-This method requires to write 2 tests.
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}` on page 2.
-- Test 2 varies:
-  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+Show that you can support protocol methods for a Paging operation.
+Call with "protocol" and confirm you can read a JSON `{"received": "protocol"}` on page 2.
 """)
-@route("/customization/paging/{mode}")
-@doc("Get pages that you will either return to users in pages of raw bodies, or pages of models following group.")
-@OpenAPI.operationId("getPages") // Do NOT read this from your CADL emitter, this is here only for Swagger generation accuracy
-op getPages is ResourceList<Product>;
+@route("/customization/paging/protocol")
+@doc("Get pages of protocol bodies.")
+@convenientAPI(false)
+@protocolAPI(true)
+op getProtocolPages is ResourceList<Product>;
 
-#suppress "@azure-tools/cadl-azure-core/use-standard-operations" "For testing"
+@scenario
+@scenarioDoc("""
+Show that you can support convenience methods for a Paging operation.
+This test varies:
+  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "convenience"}`
+  - With DPG 2.0, generate the convenience method to read Product model with "received" to "convenience" on page 2
+""")
+@route("/customization/paging/convenience")
+@doc("Get pages of models.")
+@convenientAPI(true)
+@protocolAPI(false)
+op getConveniencePages is ResourceList<Product>;
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
 // Make me LRO https://github.com/Azure/cadl-azure/issues/1656
 @scenario
 @scenarioDoc("""

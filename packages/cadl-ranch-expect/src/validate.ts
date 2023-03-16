@@ -6,7 +6,7 @@ import {
   navigateProgram,
   Operation,
   Program,
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import { getScenarioDoc, getScenarioName } from "./decorators.js";
 import { reportDiagnostic } from "./lib.js";
 

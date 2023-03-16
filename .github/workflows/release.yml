@@ -7,6 +7,10 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   release:
     name: Release
@@ -20,7 +24,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: npm install -g pnpm
+      - run: npm install -g pnpm@7.27.1
         name: Install PNPM
 
       - run: pnpm install

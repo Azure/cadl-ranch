@@ -1,7 +1,7 @@
 import { logger } from "../logger.js";
 import pc from "picocolors";
 import { findScenarioCadlFiles, loadScenarioMockApiFiles } from "../scenarios-resolver.js";
-import { importCadl, importCadlRanchExpect } from "../cadl-utils/import-cadl.js";
+import { importTypeSpec, importCadlRanchExpect } from "../cadl-utils/import-cadl.js";
 import { createDiagnosticReporter } from "../utils/diagnostic-reporter.js";
 
 export interface ValidateMockApisConfig {
@@ -12,7 +12,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
   const mockApis = await loadScenarioMockApiFiles(scenariosPath);
   const scenarioFiles = await findScenarioCadlFiles(scenariosPath);
 
-  const cadlCompiler = await importCadl(scenariosPath);
+  const cadlCompiler = await importTypeSpec(scenariosPath);
   const cadlRanchExpect = await importCadlRanchExpect(scenariosPath);
   const diagnostics = createDiagnosticReporter();
   for (const { name, cadlFilePath } of scenarioFiles) {
@@ -26,7 +26,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
     const programDiagnostics = program.diagnostics.filter(
       (d) =>
         !(
-          d.code === "@azure-tools/cadl-azure-core/casing-style" &&
+          d.code === "@azure-tools/typespec-azure-core/casing-style" &&
           typeof d.target === "object" &&
           "kind" in d.target &&
           d.target.kind === "Namespace" &&

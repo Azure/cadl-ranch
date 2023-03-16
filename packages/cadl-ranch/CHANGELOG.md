@@ -1,5 +1,53 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.1
+
+### Patch Changes
+
+- [#235](https://github.com/Azure/cadl-ranch/pull/235) [`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump typespec versions to 0.42.0
+
+- Updated dependencies [[`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8)]:
+  - @azure-tools/cadl-ranch-api@0.2.1
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.1
+  - @azure-tools/cadl-ranch-expect@0.2.1
+
+## 0.4.0
+
+### Minor Changes
+
+- [#228](https://github.com/Azure/cadl-ranch/pull/228) [`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7) Thanks [@iscai-msft](https://github.com/iscai-msft)! - switch to typespec packages
+
+### Patch Changes
+
+- Updated dependencies [[`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7)]:
+  - @azure-tools/cadl-ranch-api@0.2.0
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.0
+  - @azure-tools/cadl-ranch-expect@0.2.0
+
+## 0.3.1
+
+### Patch Changes
+
+- [#212](https://github.com/Azure/cadl-ranch/pull/212) [`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c) Thanks [@qiaozha](https://github.com/qiaozha)! - add collection format test
+
+- Updated dependencies [[`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265)]:
+  - @azure-tools/cadl-ranch-api@0.1.13
+
+## 0.3.0
+
+### Minor Changes
+
+- [#203](https://github.com/Azure/cadl-ranch/pull/203) [`68ac3cc`](https://github.com/Azure/cadl-ranch/commit/68ac3ccc553645284f39254c558bc0e4f24c85c8) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Server support application/merge-patch+json
+
+### Patch Changes
+
+- [#208](https://github.com/Azure/cadl-ranch/pull/208) [`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl to 0.40.0
+
+- Updated dependencies [[`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d)]:
+  - @azure-tools/cadl-ranch-api@0.1.12
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.5
+  - @azure-tools/cadl-ranch-expect@0.1.16
+
 ## 0.2.16
 
 ### Patch Changes

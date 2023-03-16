@@ -1,15 +1,15 @@
-import "@cadl-lang/rest";
-import "@cadl-lang/versioning";
+import "@typespec/http";
+import "@typespec/versioning";
 import "@azure-tools/cadl-ranch-expect";
 
-using Cadl.Versioning;
+using TypeSpec.Versioning;
 
 @versioned(Versions)
 @server("http://localhost:3000", "Testserver endpoint")
 @doc("DPG Swagger, this is the initial swagger a service could do")
 @scenarioService("/serviceDriven2")
 namespace Resiliency.ServiceDriven2;
-using Cadl.Http;
+using TypeSpec.Http;
 
 enum Versions {
   v10: "1.0.0",
