@@ -16,7 +16,6 @@ model InternalModel {
   name: string;
 }
 
-
 @scenario
 @scenarioDoc("""
 This test is testing an internal operation with an internal return model. The operation and model should be generated but not exposed.
