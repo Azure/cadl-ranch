@@ -1,0 +1,34 @@
+import "@typespec/http";
+import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-client-generator-core";
+
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
+
+@doc("Test for internal decorator.")
+@supportedBy("dpg")
+@scenarioService("/internal")
+namespace Internal;
+
+@doc("This is a internal model.")
+@internal
+model InternalModel {
+  name: string;
+}
+
+
+@scenario
+@scenarioDoc("""
+This test is testing an internal operation with an internal return model. The operation and model should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+```json
+{
+  "name": <any string>
+}
+```
+""")
+@route("/getInternal")
+@get
+@internal
+op getInternal(@query name: string): InternalModel;
