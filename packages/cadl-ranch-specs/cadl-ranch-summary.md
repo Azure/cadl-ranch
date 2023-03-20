@@ -727,6 +727,169 @@ This test is testing this payload is returned from the server
 
 The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
 
+### Azure_Lro_Core_createOrReplace
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named User.
+
+Expected verb: PUT
+Expected path parameter: name=madge
+
+Expected request body:
+
+```json
+{
+  "role": "contributor"
+}
+```
+
+Expected status code: 201
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response body:
+
+```json
+{
+  "name": "madge"
+  "role": "contributor"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
+}
+```
+
+(The last GET call on resource URL is optional)
+Expected verb: GET
+Expected URL: {endpoint}/users/madge
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "name": "madge"
+  "role": "contributor"
+}
+```
+
+### Azure_Lro_Core_delete
+
+- Endpoint: `get /azure/lro/core`
+
+Expected verb: DELETE
+Expected path parameter: name=madge
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation2
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "Succeeded"
+}
+```
+
+### Azure_Lro_Core_export
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named ExportedUser.
+
+Expected verb: POST
+Expected path parameter: name=madge
+Expected query parameter: format=json
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation3
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "Succeeded",
+  "result": {
+    "name": "madge",
+    "resourceUri": "/users/madge"
+  }
+}
+```
+
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`

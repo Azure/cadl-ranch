@@ -52,8 +52,8 @@ model ExportedUser {
 }
 
 @scenario
-@doc("Creates or repalces a User")
-@summary("Adds a user or repalces a user's fields.")
+@doc("Creates or replaces a User")
+@summary("Adds a user or replaces a user's fields.")
 @scenarioDoc("""
 Should only generate one model named User.
 
@@ -101,6 +101,7 @@ Expected response body:
 }
 ```
 
+(The last GET call on resource URL is optional)
 Expected verb: GET
 Expected URL: {endpoint}/users/madge
 
@@ -124,35 +125,35 @@ Expected verb: DELETE
 Expected path parameter: name=madge
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response header: operation-location={endpoint}/users/madge/operations/operation2
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation2",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
+Expected URL: {endpoint}/users/madge/operations/operation2
 
 Expected status code: 200
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation2",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
+Expected URL: {endpoint}/users/madge/operations/operation2
 
 Expected status code: 200
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation2",
   "status": "Succeeded"
 }
 ```
@@ -171,35 +172,35 @@ Expected path parameter: name=madge
 Expected query parameter: format=json
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response header: operation-location={endpoint}/users/madge/operations/operation3
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation3",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
+Expected URL: {endpoint}/users/madge/operations/operation3
 
 Expected status code: 200
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation3",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
+Expected URL: {endpoint}/users/madge/operations/operation3
 
 Expected status code: 200
 Expected response body:
 ```json
 {
-  "id": "operation1",
+  "id": "operation3",
   "status": "Succeeded",
   "result": {
     "name": "madge",
