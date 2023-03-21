@@ -27,13 +27,13 @@ interface CadlRanchScenarioFile {
 
 export async function findScenarioCadlFiles(scenariosPath: string): Promise<CadlRanchScenarioFile[]> {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = `${normalizePath(scenariosPath)}/**/main.cadl`;
+  const pattern = `${normalizePath(scenariosPath)}/**/main.tsp`;
   logger.debug(`Looking for scenarios in ${pattern}`);
   const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
-    name: normalizePath(relative(scenariosPath, name)).replace("/main.cadl", ""),
+    name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", ""),
     cadlFilePath: resolve(scenariosPath, name),
   }));
 }
