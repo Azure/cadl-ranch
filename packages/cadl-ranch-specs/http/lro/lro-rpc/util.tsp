@@ -2,6 +2,7 @@ import "@azure-tools/typespec-azure-core";
 using Azure.Core;
 
 namespace LocalCore {
+  #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "Will use Azure.Core"
   @doc("Long running RPC operation template")
   op LongRunningRpcOperation<
       TParams extends object,

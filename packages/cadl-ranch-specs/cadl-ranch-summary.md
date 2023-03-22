@@ -890,6 +890,62 @@ Expected response body:
 }
 ```
 
+### Azure_Lro_Rpc_LongRunningRpcOperation
+
+- Endpoints:
+  - `get /azure/lro/rpc/jobs`
+  - `get /azure/lro/rpc`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/jobs/job1
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`
