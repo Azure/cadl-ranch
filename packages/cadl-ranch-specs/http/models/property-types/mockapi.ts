@@ -125,4 +125,4 @@ const nullablePropertyMock = {
   }),
 };
 Scenarios.Models_Property_Types_ModelNullableProperty_get = passOnSuccess(nullablePropertyMock.get);
-Scenarios.Models_Property_Types_ModelNullableProperty_put = passOnSuccess(nullablePropertyMock.patch);
+Scenarios.Models_Property_Types_ModelNullableProperty_patch = passOnSuccess(nullablePropertyMock.patch);
