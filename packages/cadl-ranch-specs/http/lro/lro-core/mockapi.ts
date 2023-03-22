@@ -11,6 +11,7 @@ let exportPollCount = 0;
 Scenarios.Azure_Lro_Core_createOrReplace = passOnSuccess([
   mockapi.put("/azure/lro/core/users/madge", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    req.expect.bodyEquals({ role: "contributor" });
     createOrReplacePollCount = 0;
     return {
       status: 201,
