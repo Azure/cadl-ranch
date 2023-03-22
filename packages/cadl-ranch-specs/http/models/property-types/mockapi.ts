@@ -106,21 +106,23 @@ const nullablePropertyMock = {
     return {
       status: 200,
       body: json({
-        "id": 1,
-        "property": "foo"
+        id: 1,
+        property: "foo",
       }),
     };
   }),
   patch: mockapi.patch(nullablePropertyUrl, (req) => {
-    const expectedBody = JSON.parse(JSON.stringify({
-      "id": 1,
-      "property": null
-    }));
+    const expectedBody = JSON.parse(
+      JSON.stringify({
+        id: 1,
+        property: null,
+      }),
+    );
     req.expect.coercedBodyEquals(expectedBody);
     return {
       status: 204,
     };
   }),
 };
-Scenarios.Models_Property_Types_NullableModel_get = passOnSuccess(nullablePropertyMock.get);
-Scenarios.Models_Property_Types_NullableModel_put = passOnSuccess(nullablePropertyMock.patch);
+Scenarios.Models_Property_Types_ModelNullableProperty_get = passOnSuccess(nullablePropertyMock.get);
+Scenarios.Models_Property_Types_ModelNullableProperty_put = passOnSuccess(nullablePropertyMock.patch);
