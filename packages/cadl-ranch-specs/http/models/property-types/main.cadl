@@ -200,55 +200,46 @@ model NeverProperty is ModelTemplate<never>;
 interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
 
 // Test a model with a model property which could be nullable
-@doc("Model with nullable model properties")
+@doc("Model with nullable properties")
 model ModelWithNullableProperty {
-  modelId: string;
-  foo: string | null;
+  id: string;
+  property: string | null;
 }
 
-@route("/model-with-nullable/{modelId}")
+@doc("Model with a property null. The null value will be set in application/merge-patch+json case.")
+@route("/nullable-property")
 @operationGroup
-interface ModelWithNullable {
+interface ModelNullableProperty {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
+Expected response body::
   ```json
-  {"property": {doc}}
+  {
+    "id": 1,
+    "property": "foo"
+  }
   ```
-  """,
-    {
-      doc: TDoc,
-    }
-  )
+""")
   @get
   @doc("Get call")
-  get(
-    @path
-    modelId: string
-  ): Widget;
+  get(): ModelWithNullableProperty;
 
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
+  Expected input body:
   ```json
-  {"property": {doc}}
+  {"id": 1, "property": null}
   ```
-  """,
-    {
-      doc: TDoc,
-    }
+  """
   )
   @patch
-  @doc("Put operation")
+  @doc("Patch operation")
   patch(
     @header("Content-Type") contentType: "application/merge-patch+json",
-
-    @path
-    id: string,
-    @body @doc("body") body: Widget
+    @body @doc("body") body: ModelWithNullableProperty
   ): void;
 }
