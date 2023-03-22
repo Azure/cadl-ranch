@@ -148,13 +148,6 @@ model ModelProperty is ModelTemplate<InnerModel>;
 @operationGroup
 interface Model extends ModelOperations<ModelProperty, "{'property': 'hello'}"> {}
 
-// Test a model with a model property which could be nullable
-@doc("Model with nullable model properties")
-model NullableModelProperty is ModelTemplate<InnerModel | null>;
-@route("/nullable-model")
-@operationGroup
-interface NullableModel extends ModelOperations<NullableModelProperty, "null"> {}
-
 // Test a model with a string collection property
 @doc("Model with collection string properties")
 model CollectionsStringProperty is ModelTemplate<string[]>;
@@ -205,3 +198,57 @@ model NeverProperty is ModelTemplate<never>;
 @route("/never")
 @operationGroup
 interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
+
+// Test a model with a model property which could be nullable
+@doc("Model with nullable model properties")
+model ModelWithNullableProperty {
+  modelId: string;
+  foo: string | null;
+}
+
+@route("/model-with-nullable/{modelId}")
+@operationGroup
+interface ModelWithNullable {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"property": {doc}}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  @doc("Get call")
+  get(
+    @path
+    modelId: string
+  ): Widget;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {"property": {doc}}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @patch
+  @doc("Put operation")
+  patch(
+    @header("Content-Type") contentType: "application/merge-patch+json",
+
+    @path
+    id: string,
+    @body @doc("body") body: Widget
+  ): void;
+}
