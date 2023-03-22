@@ -722,12 +722,35 @@ This test is testing this payload is returned from the server
 
 - Endpoint: `get /internal/getInternal`
 
-This test is testing an internal operation with an internal return model. The operation and model should be generated but not exposed.
+This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 
 ```json
 {
+  "name": <any string>
+}
+```
+
+### Internal_postInternal
+
+- Endpoint: `post /internal/postInternal`
+
+This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
+Expected body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
   "name": <any string>
 }
 ```
