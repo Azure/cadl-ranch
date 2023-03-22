@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.9.2
+
+### Patch Changes
+
+- [#235](https://github.com/Azure/cadl-ranch/pull/235) [`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump typespec versions to 0.42.0
+
+- Updated dependencies [[`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8)]:
+  - @azure-tools/cadl-ranch@0.4.1
+  - @azure-tools/cadl-ranch-api@0.2.1
+  - @azure-tools/cadl-ranch-expect@0.2.1
+
 ## 0.9.1
 
 ### Patch Changes

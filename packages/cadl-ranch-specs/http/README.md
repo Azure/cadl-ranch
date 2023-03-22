@@ -2,7 +2,7 @@
 
 Structure:
 
-- one folder per scenario with entry point called `main.cadl`
+- one folder per scenario with entry point called `main.tsp`
 
 ## Tests
 
