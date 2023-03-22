@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.9.3
+
+### Patch Changes
+
+- [#240](https://github.com/Azure/cadl-ranch/pull/240) [`6bc4639`](https://github.com/Azure/cadl-ranch/commit/6bc463939a70b57a51e4e0f23039ddf1f0f3e921) Thanks [@tadelesh](https://github.com/tadelesh)! - rename _.cadl to _.tsp
+
+- Updated dependencies [[`6bc4639`](https://github.com/Azure/cadl-ranch/commit/6bc463939a70b57a51e4e0f23039ddf1f0f3e921), [`00e98ee`](https://github.com/Azure/cadl-ranch/commit/00e98eead076345e66a2982f44653ab7084f3e5f)]:
+  - @azure-tools/cadl-ranch@0.4.2
+
 ## 0.9.2
 
 ### Patch Changes
