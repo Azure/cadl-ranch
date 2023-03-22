@@ -750,7 +750,7 @@ Expected response body:
 
 ```json
 {
-  "name": "madge"
+  "name": "madge",
   "role": "contributor"
 }
 ```
@@ -790,7 +790,7 @@ Expected response body:
 
 ```json
 {
-  "name": "madge"
+  "name": "madge",
   "role": "contributor"
 }
 ```

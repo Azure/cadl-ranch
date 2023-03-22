@@ -72,7 +72,7 @@ Expected response header: operation-location={endpoint}/users/madge/operations/o
 Expected response body:
 ```json
 {
-  "name": "madge"
+  "name": "madge",
   "role": "contributor"
 }
 ```
@@ -109,7 +109,7 @@ Expected status code: 200
 Expected response body:
 ```json
 {
-  "name": "madge"
+  "name": "madge",
   "role": "contributor"
 }
 ```
