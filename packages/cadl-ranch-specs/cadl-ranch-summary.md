@@ -1413,26 +1413,6 @@ Expected input body:
 { "property": { "property": "hello" } }
 ```
 
-### Models_Property_Types_NullableModel_get
-
-- Endpoint: `get /models/properties/types/nullable-model`
-
-Expected response body:
-
-```json
-{ "property": null }
-```
-
-### Models_Property_Types_NullableModel_put
-
-- Endpoint: `put /models/properties/types/nullable-model`
-
-Expected input body:
-
-```json
-{ "property": null }
-```
-
 ### Models_Property_Types_CollectionsString_get
 
 - Endpoint: `get /models/properties/types/collections/string`
@@ -1571,6 +1551,29 @@ Expected input body:
 
 ```json
 {"property": <don't include this property>}
+```
+
+### Models_Property_Types_ModelNullableProperty_get
+
+- Endpoint: `get /models/properties/types/nullable-property`
+
+Expected response body::
+
+```json
+{
+  "id": 1,
+  "property": "foo"
+}
+```
+
+### Models_Property_Types_ModelNullableProperty_patch
+
+- Endpoint: `patch /models/properties/types/nullable-property`
+
+Expected input body:
+
+```json
+{ "id": 1, "property": null }
 ```
 
 ### Models_Usage_input
