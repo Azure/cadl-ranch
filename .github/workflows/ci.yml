@@ -28,6 +28,7 @@ jobs:
 
       - run: npx -p @changesets/cli changeset status --since=main
         name: Check changelog
+        if: ${{!contains(github.base_ref, 'publish/')}}
 
   # This workflow contains a single job called "build"
   build:
