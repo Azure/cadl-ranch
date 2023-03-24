@@ -55,6 +55,19 @@ model JobResult {
   results: string[];
 }
 
+@resource("jobs/operations")
+@doc("Result of the poll")
+model JobPollResult {
+  @doc("Operation identifier.")
+  @visibility("read")
+  @key
+  operationId: string;
+
+  @doc("The status of the processing job.")
+  @visibility("read")
+  status: Foundations.OperationState;
+}
+
 @scenario
 @doc("Creates a Job")
 @summary("Creates a Job")
@@ -68,7 +81,7 @@ Expected request body:
 ```
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/jobs/job1
+Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
 Expected response body:
 ```json
 {
@@ -79,7 +92,7 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/jobs/job1
+Expected URL: {endpoint}/same-poll-result/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -92,7 +105,7 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/jobs/job1
+Expected URL: {endpoint}/same-poll-result/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -105,12 +118,85 @@ Expected response body:
 }
 ```
 """)
-interface LongRunningRpcOperation {
+interface SamePollResult {
   @doc("Creates a Job")
-  @route("/jobs")
-  @pollingOperation(LongRunningRpcOperation.getJob)
-  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, RepeatabilityRequestHeaders>;
+  @route("/same-poll-result/jobs")
+  @pollingOperation(SamePollResult.getJob)
+  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult>;
 
   @doc("Gets the status of a Job")
+  @route("/same-poll-result")
   getJob is ResourceOperations.ResourceRead<JobResult>;
+}
+
+@scenario
+@doc("Creates a Job")
+@summary("Creates a Job")
+@scenarioDoc("""
+Expected verb: POST
+Expected request body:
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+""")
+interface DifferentPollResult {
+  @doc("Creates a Job")
+  @route("/different-poll-result/jobs")
+  @pollingOperation(DifferentPollResult.getPoll)
+  createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<JobData, JobResult, JobPollResult, LocalCore.LongRunningFinalLocation<JobResult>>;
+
+  @doc("Gets the status of a Job")
+  @route("/different-poll-result")
+  getPoll is ResourceOperations.ResourceRead<JobPollResult>;
 }

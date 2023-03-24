@@ -890,11 +890,11 @@ Expected response body:
 }
 ```
 
-### Azure_Lro_Rpc_LongRunningRpcOperation
+### Azure_Lro_Rpc_SamePollResult
 
 - Endpoints:
-  - `get /azure/lro/rpc/jobs`
-  - `get /azure/lro/rpc`
+  - `get /azure/lro/rpc/same-poll-result/jobs`
+  - `get /azure/lro/rpc/same-poll-result`
 
 Expected verb: POST
 Expected request body:
@@ -906,7 +906,7 @@ Expected request body:
 ```
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/jobs/job1
+Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
 Expected response body:
 
 ```json
@@ -918,7 +918,7 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/jobs/job1
+Expected URL: {endpoint}/same-poll-result/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -932,7 +932,75 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/jobs/job1
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
+### Azure_Lro_Rpc_DifferentPollResult
+
+- Endpoints:
+  - `get /azure/lro/rpc/different-poll-result/jobs`
+  - `get /azure/lro/rpc/different-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
 
 Expected status code: 200
 Expected response body:
