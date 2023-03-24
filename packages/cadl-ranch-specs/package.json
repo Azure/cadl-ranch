@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
