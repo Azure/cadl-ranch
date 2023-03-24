@@ -104,3 +104,10 @@ interface RecursiveModelValue
       Record<InnerModel>,
       "{'k1': {'property': 'hello', children: {}}, 'k2': {'property': 'world', children: {'k2.1': {'property': 'inner world'}}}}"
     > {}
+
+alias NullableFloat = float32 | null;
+@doc("Dictionary of nullable float values")
+@route("/nullable-float")
+@operationGroup
+interface NullableFloatValue
+  extends DictionaryOperations<Record<NullableFloat>, "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}

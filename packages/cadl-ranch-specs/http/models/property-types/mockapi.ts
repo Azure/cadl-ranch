@@ -84,10 +84,6 @@ const collectionsModelMock = createMockApis("collections/model", [{ property: "h
 Scenarios.Models_Property_Types_CollectionsModel_get = passOnSuccess(collectionsModelMock.get);
 Scenarios.Models_Property_Types_CollectionsModel_put = passOnSuccess(collectionsModelMock.put);
 
-const collectionsNullableItemMock = createMockApis("collections/nullable-item", [1, null, 3]);
-Scenarios.Models_Property_Types_CollectionsNullableItem_get = passOnSuccess(collectionsNullableItemMock.get);
-Scenarios.Models_Property_Types_CollectionsNullableItem_put = passOnSuccess(collectionsNullableItemMock.put);
-
 const dictionaryStringMock = createMockApis("dictionary/string", { k1: "hello", k2: "world" });
 Scenarios.Models_Property_Types_DictionaryString_get = passOnSuccess(dictionaryStringMock.get);
 Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryStringMock.put);

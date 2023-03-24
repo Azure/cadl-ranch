@@ -170,27 +170,12 @@ model CollectionsModelProperty is ModelTemplate<InnerModel[]>;
 interface CollectionsModel
   extends ModelOperations<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
 
-// Test a model with a nullable collection property
-@doc("Model with collection with nullable values")
-model CollectionsNullableItemProperty is ModelTemplate<(int32 | null)[]>;
-@route("/collections/nullable-item")
-@operationGroup
-interface CollectionsNullableItem extends ModelOperations<CollectionsNullableItemProperty, "[1, null, 3]"> {}
-
 // Test a model with a string dictionary property
 @doc("Model with dictionary string properties")
 model DictionaryStringProperty is ModelTemplate<Record<string>>;
 @route("/dictionary/string")
 @operationGroup
 interface DictionaryString extends ModelOperations<DictionaryStringProperty, "{'k1': 'hello', 'k2': 'world'}"> {}
-
-// Test a model with a nullable dictionary property
-@doc("Model with collection with nullable values")
-model DictionaryNullableValueProperty is ModelTemplate<Record<string | null>>;
-@route("/dictionary/nullable-value")
-@operationGroup
-interface DictionaryNullableValue
-  extends ModelOperations<DictionaryNullableValueProperty, "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
 
 // Test a model with a never property
 @doc("Model with a property never. (This property should not be included).")

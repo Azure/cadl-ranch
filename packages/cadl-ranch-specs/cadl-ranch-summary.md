@@ -180,6 +180,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Arrays_ItemTypes_NullableFloatValue_get
+
+- Endpoint: `get /arrays/item-types/nullable-float`
+
+Expected Array response body:
+
+```json
+[1.2, null, 3.0]
+```
+
+### Arrays_ItemTypes_NullableFloatValue_put
+
+- Endpoint: `put /arrays/item-types/nullable-float`
+
+Expected Array input body:
+
+```json
+[1.2, null, 3.0]
+```
+
 ### Authentication_ApiKey_valid
 
 - Endpoint: `get /authentication/api-key/valid`
@@ -664,6 +684,26 @@ Expected dictionary input body:
     "children": { "k2.1": { "property": "inner world" } }
   }
 }
+```
+
+### Dictionary_NullableFloatValue_get
+
+- Endpoint: `get /dictionary/nullable-float`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "hello", "k2": "world", "k3": null }
+```
+
+### Dictionary_NullableFloatValue_put
+
+- Endpoint: `put /dictionary/nullable-float`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "hello", "k2": "world", "k3": null }
 ```
 
 ### Enums_Extensible_String_getKnownValue
@@ -1473,26 +1513,6 @@ Expected input body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
-### Models_Property_Types_CollectionsNullableItem_get
-
-- Endpoint: `get /models/properties/types/collections/nullable-item`
-
-Expected response body:
-
-```json
-{ "property": [1, null, 3] }
-```
-
-### Models_Property_Types_CollectionsNullableItem_put
-
-- Endpoint: `put /models/properties/types/collections/nullable-item`
-
-Expected input body:
-
-```json
-{ "property": [1, null, 3] }
-```
-
 ### Models_Property_Types_DictionaryString_get
 
 - Endpoint: `get /models/properties/types/dictionary/string`
@@ -1511,26 +1531,6 @@ Expected input body:
 
 ```json
 { "property": { "k1": "hello", "k2": "world" } }
-```
-
-### Models_Property_Types_DictionaryNullableValue_get
-
-- Endpoint: `get /models/properties/types/dictionary/nullable-value`
-
-Expected response body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world", "k3": null } }
-```
-
-### Models_Property_Types_DictionaryNullableValue_put
-
-- Endpoint: `put /models/properties/types/dictionary/nullable-value`
-
-Expected input body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world", "k3": null } }
 ```
 
 ### Models_Property_Types_Never_get
