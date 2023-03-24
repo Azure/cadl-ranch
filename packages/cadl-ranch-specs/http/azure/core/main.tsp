@@ -89,8 +89,8 @@ Expected response body:
 op createOrUpdate is ResourceOperations.ResourceCreateOrUpdate<User>;
 
 @scenario
-@doc("Creates or repalces a User")
-@summary("Adds a user or repalces a user's fields.")
+@doc("Creates or replaces a User")
+@summary("Adds a user or replaces a user's fields.")
 @scenarioDoc("""
 Should only generate models named User and UserOrder.
 
