@@ -9,22 +9,35 @@ using Azure.Core;
 @doc("All the basic lro test shall be added in this file")
 namespace Azure.Lro;
 
+@doc("Details about a user.")
+model User {
+  @doc("The name of user.")
+  name: string;
+}
+
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
 @scenario
-@scenarioDoc("The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'")
+@scenarioDoc("""
+Expected final response body:
+```json
+{
+  "name": "bob"
+}
+```
+""")
 @route("/put")
 interface PollingSuccess {
   @doc("Test for basic lro of put")
   @pollingOperation(PollingSuccess.polling)
   @put
-  create(): string;
+  create(): User;
 
   @doc("The polling url")
   @route("/polling")
   @get
-  polling(): string;
+  polling(): User;
 
   @doc("The final url")
   @get
-  get(): string;
+  get(): User;
 }

@@ -725,7 +725,13 @@ This test is testing this payload is returned from the server
   - `put /lro/basic/put/polling`
   - `put /lro/basic/put`
 
-The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
+Expected final response body:
+
+```json
+{
+  "name": "bob"
+}
+```
 
 ### Azure_Lro_Core_createOrReplace
 
