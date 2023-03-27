@@ -1304,7 +1304,7 @@ Generate, send, and receive round-trip bottom model.
 Expected response body:
 
 ```json
-{"nullableProperty": hello, requiredProperty: "foo"}
+{ "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
 ### Models_Property_Nullable_String_getDefault
@@ -1314,7 +1314,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_String_patchAll
@@ -1324,7 +1324,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"requiredProperty": "foo","nullableProperty": hello}
+{ "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
 ### Models_Property_Nullable_String_patchDefault
@@ -1344,7 +1344,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"nullableProperty": aGVsbG8sIHdvcmxkIQ==, requiredProperty: "foo"}
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Nullable_Bytes_getDefault
@@ -1354,7 +1354,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Bytes_patchAll
@@ -1364,7 +1364,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"requiredProperty": "foo","nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Nullable_Bytes_patchDefault
@@ -1384,7 +1384,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"nullableProperty": 2022-08-26T18:38:00Z, requiredProperty: "foo"}
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Nullable_Datetime_getDefault
@@ -1394,7 +1394,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Datetime_patchAll
@@ -1404,7 +1404,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"requiredProperty": "foo","nullableProperty": 2022-08-26T18:38:00Z}
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Nullable_Datetime_patchDefault
@@ -1424,7 +1424,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"nullableProperty": P123DT22H14M12.011S, requiredProperty: "foo"}
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Nullable_Duration_getDefault
@@ -1434,7 +1434,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Duration_patchAll
@@ -1444,7 +1444,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"requiredProperty": "foo","nullableProperty": P123DT22H14M12.011S}
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Nullable_Duration_patchDefault
@@ -1464,7 +1464,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==], requiredProperty: "foo"}
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Nullable_CollectionsByte_getDefault
@@ -1474,7 +1474,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_CollectionsByte_patchAll
@@ -1484,7 +1484,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"requiredProperty": "foo","nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Nullable_CollectionsByte_patchDefault
@@ -1505,8 +1505,8 @@ Expected response body:
 
 ```json
 {
-  "nullableProperty": [{ "property": "hello" }, { "property": "world" }],
-  "requiredProperty": "foo"
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
 }
 ```
 
@@ -1517,7 +1517,7 @@ Expected response body:
 Expected response body:
 
 ```json
-{"nullableProperty": null, requiredProperty: "foo"}}
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_CollectionsModel_patchAll

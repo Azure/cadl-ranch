@@ -26,7 +26,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {"nullableProperty": {allDoc}, requiredProperty: "foo"}
+  { "requiredProperty": "foo", "nullableProperty": {allDoc}}
   ```
   """,
     {
@@ -43,7 +43,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {"nullableProperty": {defaultDoc}, requiredProperty: "foo"}}
+  { "requiredProperty": "foo", "nullableProperty": {defaultDoc}}
   ```
   """,
     {
@@ -60,7 +60,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {"requiredProperty": "foo","nullableProperty": {allDoc}}
+  { "requiredProperty": "foo", "nullableProperty": {allDoc}}
   ```
   """,
     {
@@ -82,7 +82,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {"requiredProperty": "foo","property": {defaultDoc}}
+  { "requiredProperty": "foo", "property": {defaultDoc}}
   ```
   """,
     {
