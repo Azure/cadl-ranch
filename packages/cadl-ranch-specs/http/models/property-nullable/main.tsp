@@ -11,11 +11,11 @@ namespace Models.Property.Nullable;
 
 @doc("Template type for testing models with nullable property. Pass in the type of the property you are looking for")
 model ModelTemplate<TProperty> {
-  @doc("Property")
-  nullableProperty: TProperty | null;
-
   @doc("Required property")
   requiredProperty: string;
+
+  @doc("Property")
+  nullableProperty: TProperty | null;
 }
 
 @doc("Operations associated with getting and putting models with nullable properties.")
@@ -60,7 +60,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {"nullableProperty": {allDoc}, requiredProperty: "1"}}
+  {"requiredProperty": "foo","nullableProperty": {allDoc}}
   ```
   """,
     {
@@ -82,7 +82,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {"property": {defaultDoc}, requiredProperty: "1"}}
+  {"requiredProperty": "foo","property": {defaultDoc}}
   ```
   """,
     {

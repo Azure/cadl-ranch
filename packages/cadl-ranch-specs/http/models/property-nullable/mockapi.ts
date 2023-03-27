@@ -18,8 +18,8 @@ function createMockApis(route: string, value: any): MockApiGetPut {
   const url = `/models/properties/nullable/${route}`;
   const allUrl = `${url}/all`;
   const defaultUrl = `${url}/default`;
-  const allBody = { nullableProperty: value, requiredProperty: "1" };
-  const defaultBody = { nullableProperty: null, requiredProperty: "1" };
+  const allBody = { requiredProperty: "foo", nullableProperty: value };
+  const defaultBody = { requiredProperty: "foo", nullableProperty: null };
   const getAll = mockapi.get(allUrl, (req) => {
     return {
       status: 200,

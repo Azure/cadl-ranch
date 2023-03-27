@@ -1324,7 +1324,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": hello, requiredProperty: "1"}}
+{"requiredProperty": "foo","nullableProperty": hello}
 ```
 
 ### Models_Property_Nullable_String_patchDefault
@@ -1334,7 +1334,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Nullable_Bytes_getAll
@@ -1364,7 +1364,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": aGVsbG8sIHdvcmxkIQ==, requiredProperty: "1"}}
+{"requiredProperty": "foo","nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Nullable_Bytes_patchDefault
@@ -1374,7 +1374,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Nullable_Datetime_getAll
@@ -1404,7 +1404,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": 2022-08-26T18:38:00Z, requiredProperty: "1"}}
+{"requiredProperty": "foo","nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Nullable_Datetime_patchDefault
@@ -1414,7 +1414,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Nullable_Duration_getAll
@@ -1444,7 +1444,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": P123DT22H14M12.011S, requiredProperty: "1"}}
+{"requiredProperty": "foo","nullableProperty": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Nullable_Duration_patchDefault
@@ -1454,7 +1454,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Nullable_CollectionsByte_getAll
@@ -1484,7 +1484,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==], requiredProperty: "1"}}
+{"requiredProperty": "foo","nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Nullable_CollectionsByte_patchDefault
@@ -1494,7 +1494,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Nullable_CollectionsModel_getAll
@@ -1527,7 +1527,10 @@ Expected response body:
 Expected request body:
 
 ```json
-{"nullableProperty": [{'property': 'hello'}, {'property': 'world'}], requiredProperty: "1"}}
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
 ```
 
 ### Models_Property_Nullable_CollectionsModel_patchDefault
@@ -1537,7 +1540,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{"property": null, requiredProperty: "1"}}
+{ "requiredProperty": "foo", "property": null }
 ```
 
 ### Models_Property_Optional_String_getAll
