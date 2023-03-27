@@ -26,7 +26,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {"nullableProperty": {allDoc}, requiredProperty: "1"}
+  {"nullableProperty": {allDoc}, requiredProperty: "foo"}
   ```
   """,
     {
@@ -43,7 +43,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {"nullableProperty": {defaultDoc}, requiredProperty: "1"}}
+  {"nullableProperty": {defaultDoc}, requiredProperty: "foo"}}
   ```
   """,
     {
