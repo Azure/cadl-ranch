@@ -5,25 +5,28 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates models with optional properties.")
+@doc("Illustrates models with nullable properties.")
 @scenarioService("/models/properties/nullable")
-namespace Models.Property.Optional;
+namespace Models.Property.Nullable;
 
-@doc("Template type for testing models with optional property. Pass in the type of the property you are looking for")
+@doc("Template type for testing models with nullable property. Pass in the type of the property you are looking for")
 model ModelTemplate<TProperty> {
   @doc("Property")
-  property: TProperty | null;
+  nullableProperty: TProperty | null;
+
+  @doc("Required property")
+  requiredProperty: string;
 }
 
-@doc("Operations associated with getting and putting models with optional properties.")
-interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends string = "{}"> {
+@doc("Operations associated with getting and putting models with nullable properties.")
+interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends string = "null"> {
   @doc("Get models that will return all properties in the model")
   @scenario
   @scenarioDoc(
     """
   Expected response body:
   ```json
-  {"property": {doc}}
+  {"nullableProperty": {allDoc}, requiredProperty: "1"}
   ```
   """,
     {
@@ -40,7 +43,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {defaultDoc}
+  {"nullableProperty": {defaultDoc}, requiredProperty: "1"}}
   ```
   """,
     {
@@ -57,7 +60,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {allDoc}
+  {"nullableProperty": {allDoc}, requiredProperty: "1"}}
   ```
   """,
     {
@@ -65,8 +68,13 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     }
   )
   @route("/all")
-  @put
-  putAll(@body body: TModel): void;
+  @patch
+  patchAll(
+    @doc("content-type is application/merge-patch+json")
+    @header("Content-Type")
+    contentType: "application/merge-patch+json",
+    @body body: TModel
+  ): void;
 
   @doc("Put a body with default properties.")
   @scenario
@@ -74,7 +82,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {defaultDoc}
+  {"property": {defaultDoc}, requiredProperty: "1"}}
   ```
   """,
     {
@@ -82,37 +90,42 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     }
   )
   @route("/default")
-  @put
-  putDefault(@body body: TModel): void;
+  @patch
+  patchDefault(
+    @doc("content-type is application/merge-patch+json")
+    @header("Content-Type")
+    contentType: "application/merge-patch+json",
+    @body body: TModel
+  ): void;
 }
 
-// Model with optional string property
+// Model with nullable string property
 model StringProperty is ModelTemplate<string>;
 @route("/string")
 @operationGroup
 interface String extends OperationsTemplate<StringProperty, "hello"> {}
 
-// Model with optional bytes property
+// Model with nullable bytes property
 model BytesProperty is ModelTemplate<bytes>;
 @route("/bytes")
 @operationGroup
 interface Bytes extends OperationsTemplate<BytesProperty, "aGVsbG8sIHdvcmxkIQ=="> {}
 
-// Model with optional datetime property
+// Model with nullable datetime property
 @doc("Model with a datetime property")
 model DatetimeProperty is ModelTemplate<zonedDateTime>;
 @route("/datetime")
 @operationGroup
 interface Datetime extends OperationsTemplate<DatetimeProperty, "2022-08-26T18:38:00Z"> {}
 
-// Model with optional duration property
+// Model with nullable duration property
 @doc("Model with a duration property")
 model DurationProperty is ModelTemplate<duration>;
 @route("/duration")
 @operationGroup
 interface Duration extends OperationsTemplate<DurationProperty, "P123DT22H14M12.011S"> {}
 
-// Model with optional collection bytes property
+// Model with nullable collection bytes property
 @doc("Model with collection bytes properties")
 model CollectionsByteProperty is ModelTemplate<bytes[]>;
 @route("/collections/bytes")
@@ -120,71 +133,10 @@ model CollectionsByteProperty is ModelTemplate<bytes[]>;
 interface CollectionsByte
   extends OperationsTemplate<CollectionsByteProperty, "[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]"> {}
 
-// Model with optional collection models property
+// Model with nullable collection models property
 @doc("Model with collection models properties")
 model CollectionsModelProperty is ModelTemplate<StringProperty[]>;
 @route("/collections/model")
 @operationGroup
 interface CollectionsModel
   extends OperationsTemplate<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
-
-@doc("Model with required and optional properties")
-model RequiredAndOptionalProperty {
-  @doc("optional string property")
-  optionalProperty?: string;
-
-  @doc("required int property")
-  requiredProperty: int32;
-}
-@doc("Test optional and required properties")
-@route("/requiredAndOptional")
-@operationGroup
-interface RequiredAndOptional {
-  @doc("Get models that will return all properties in the model")
-  @scenario
-  @scenarioDoc("""
-  Expected response body:
-  ```json
-  {"optionalProperty": "hello", "requiredProperty": 42}
-  ```
-  """)
-  @route("/all")
-  @get
-  getAll(): RequiredAndOptionalProperty;
-
-  @doc("Get models that will return only the required properties")
-  @scenario
-  @scenarioDoc("""
-  Expected response body:
-  ```json
-  {"requiredProperty": 42}
-  ```
-  """)
-  @route("/requiredOnly")
-  @get
-  getRequiredOnly(): RequiredAndOptionalProperty;
-
-  @doc("Put a body with all properties present.")
-  @scenario
-  @scenarioDoc("""
-  Expected request body:
-  ```json
-  {"optionalProperty": "hello", "requiredProperty": 42}
-  ```
-  """)
-  @route("/all")
-  @put
-  putAll(@body body: RequiredAndOptionalProperty): void;
-
-  @doc("Put a body with only required properties.")
-  @scenario
-  @scenarioDoc("""
-  Expected request body:
-  ```json
-  {"requiredProperty": 42}
-  ```
-  """)
-  @route("/requiredOnly")
-  @put
-  putRequiredOnly(@body body: RequiredAndOptionalProperty): void;
-}

@@ -1297,6 +1297,249 @@ Expected response body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Models_Property_Nullable_String_getAll
+
+- Endpoint: `get /models/properties/nullable/string/all`
+
+Expected response body:
+
+```json
+{"nullableProperty": hello, requiredProperty: "1"}
+```
+
+### Models_Property_Nullable_String_getDefault
+
+- Endpoint: `get /models/properties/nullable/string/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_String_patchAll
+
+- Endpoint: `patch /models/properties/nullable/string/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": hello, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_String_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/string/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Bytes_getAll
+
+- Endpoint: `get /models/properties/nullable/bytes/all`
+
+Expected response body:
+
+```json
+{"nullableProperty": aGVsbG8sIHdvcmxkIQ==, requiredProperty: "1"}
+```
+
+### Models_Property_Nullable_Bytes_getDefault
+
+- Endpoint: `get /models/properties/nullable/bytes/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Bytes_patchAll
+
+- Endpoint: `patch /models/properties/nullable/bytes/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": aGVsbG8sIHdvcmxkIQ==, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Bytes_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/bytes/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Datetime_getAll
+
+- Endpoint: `get /models/properties/nullable/datetime/all`
+
+Expected response body:
+
+```json
+{"nullableProperty": 2022-08-26T18:38:00Z, requiredProperty: "1"}
+```
+
+### Models_Property_Nullable_Datetime_getDefault
+
+- Endpoint: `get /models/properties/nullable/datetime/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Datetime_patchAll
+
+- Endpoint: `patch /models/properties/nullable/datetime/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": 2022-08-26T18:38:00Z, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Datetime_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/datetime/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Duration_getAll
+
+- Endpoint: `get /models/properties/nullable/duration/all`
+
+Expected response body:
+
+```json
+{"nullableProperty": P123DT22H14M12.011S, requiredProperty: "1"}
+```
+
+### Models_Property_Nullable_Duration_getDefault
+
+- Endpoint: `get /models/properties/nullable/duration/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Duration_patchAll
+
+- Endpoint: `patch /models/properties/nullable/duration/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": P123DT22H14M12.011S, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_Duration_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/duration/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsByte_getAll
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/all`
+
+Expected response body:
+
+```json
+{"nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==], requiredProperty: "1"}
+```
+
+### Models_Property_Nullable_CollectionsByte_getDefault
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsByte_patchAll
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==], requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsByte_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsModel_getAll
+
+- Endpoint: `get /models/properties/nullable/collections/model/all`
+
+Expected response body:
+
+```json
+{
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }],
+  "requiredProperty": "1"
+}
+```
+
+### Models_Property_Nullable_CollectionsModel_getDefault
+
+- Endpoint: `get /models/properties/nullable/collections/model/default`
+
+Expected response body:
+
+```json
+{"nullableProperty": null, requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsModel_patchAll
+
+- Endpoint: `patch /models/properties/nullable/collections/model/all`
+
+Expected request body:
+
+```json
+{"nullableProperty": [{'property': 'hello'}, {'property': 'world'}], requiredProperty: "1"}}
+```
+
+### Models_Property_Nullable_CollectionsModel_patchDefault
+
+- Endpoint: `patch /models/properties/nullable/collections/model/default`
+
+Expected request body:
+
+```json
+{"property": null, requiredProperty: "1"}}
+```
+
 ### Models_Property_Optional_String_getAll
 
 - Endpoint: `get /models/properties/optional/string/all`
@@ -1324,7 +1567,7 @@ Expected response body:
 Expected request body:
 
 ```json
-hello
+{"property": hello}
 ```
 
 ### Models_Property_Optional_String_putDefault
@@ -1364,7 +1607,7 @@ Expected response body:
 Expected request body:
 
 ```json
-aGVsbG8sIHdvcmxkIQ==
+{"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Optional_Bytes_putDefault
@@ -1404,7 +1647,7 @@ Expected response body:
 Expected request body:
 
 ```json
-2022-08-26T18:38:00Z
+{"property": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Optional_Datetime_putDefault
@@ -1444,7 +1687,7 @@ Expected response body:
 Expected request body:
 
 ```json
-P123DT22H14M12.011S
+{"property": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Optional_Duration_putDefault
@@ -1484,7 +1727,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]
+{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Optional_CollectionsByte_putDefault
@@ -1524,7 +1767,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[{ "property": "hello" }, { "property": "world" }]
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
 ### Models_Property_Optional_CollectionsModel_putDefault
@@ -1875,29 +2118,6 @@ Expected input body:
 
 ```json
 {"property": <don't include this property>}
-```
-
-### Models_Property_Types_ModelNullableProperty_get
-
-- Endpoint: `get /models/properties/types/nullable-property`
-
-Expected response body::
-
-```json
-{
-  "id": 1,
-  "property": "foo"
-}
-```
-
-### Models_Property_Types_ModelNullableProperty_patch
-
-- Endpoint: `patch /models/properties/types/nullable-property`
-
-Expected input body:
-
-```json
-{ "id": 1, "property": null }
 ```
 
 ### Models_Usage_input

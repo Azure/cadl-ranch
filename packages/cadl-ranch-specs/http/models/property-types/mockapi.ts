@@ -91,30 +91,3 @@ Scenarios.Models_Property_Types_DictionaryString_put = passOnSuccess(dictionaryS
 const neverMock = createMockApis("never", undefined);
 Scenarios.Models_Property_Types_Never_get = passOnSuccess(neverMock.get);
 Scenarios.Models_Property_Types_Never_put = passOnSuccess(neverMock.put);
-
-const nullablePropertyUrl = "/models/properties/types/nullable-property";
-const nullablePropertyMock = {
-  get: mockapi.get(nullablePropertyUrl, (req) => {
-    return {
-      status: 200,
-      body: json({
-        id: 1,
-        property: "foo",
-      }),
-    };
-  }),
-  patch: mockapi.patch(nullablePropertyUrl, (req) => {
-    const expectedBody = JSON.parse(
-      JSON.stringify({
-        id: 1,
-        property: null,
-      }),
-    );
-    req.expect.coercedBodyEquals(expectedBody);
-    return {
-      status: 204,
-    };
-  }),
-};
-Scenarios.Models_Property_Types_ModelNullableProperty_get = passOnSuccess(nullablePropertyMock.get);
-Scenarios.Models_Property_Types_ModelNullableProperty_patch = passOnSuccess(nullablePropertyMock.patch);
