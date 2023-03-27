@@ -15,7 +15,7 @@ interface MockApiGetPut {
  * @param value The value you are expecting and will return
  */
 function createMockApis(route: string, value: any): MockApiGetPut {
-  const url = `/models/properties/optional/${route}`;
+  const url = `/models/properties/nullable/${route}`;
   const allUrl = `${url}/all`;
   const defaultUrl = `${url}/default`;
   const allBody = { property: value };

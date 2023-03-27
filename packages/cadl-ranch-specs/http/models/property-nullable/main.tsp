@@ -6,13 +6,13 @@ using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
 @doc("Illustrates models with optional properties.")
-@scenarioService("/models/properties/optional")
+@scenarioService("/models/properties/nullable")
 namespace Models.Property.Optional;
 
 @doc("Template type for testing models with optional property. Pass in the type of the property you are looking for")
 model ModelTemplate<TProperty> {
   @doc("Property")
-  property?: TProperty;
+  property: TProperty | null;
 }
 
 @doc("Operations associated with getting and putting models with optional properties.")
