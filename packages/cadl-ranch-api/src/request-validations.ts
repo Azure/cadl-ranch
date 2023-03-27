@@ -1,6 +1,4 @@
 import deepEqual from "deep-equal";
-import { isString } from "util";
-import { isStringObject } from "util/types";
 import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
@@ -108,7 +106,7 @@ export const validateQueryParam = (
     if (collectionFormat === CollectionFormat.Multi && Array.isArray(actual)) {
       isExpected = deepEqual(actual, expected);
     } else if (collectionFormat === CollectionFormat.CSV && typeof actual === "string") {
-      let expectedString = expected.join(",");
+      const expectedString = expected.join(",");
       isExpected = expectedString === decodeURIComponent(actual);
     }
     if (!isExpected) {
