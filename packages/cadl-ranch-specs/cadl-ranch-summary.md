@@ -2527,6 +2527,20 @@ Expected request body:
 }
 ```
 
+### Spread_spreadAliasNestedSpreadModelParameter
+
+- Endpoint: `put /spread/alias/nested-spread-parameter/{id}`
+
+Test case for spread alias with nested spread model as body parameter.
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Unions_sendInt
 
 - Endpoint: `post /unions/int`
