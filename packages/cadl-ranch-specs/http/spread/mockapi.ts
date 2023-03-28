@@ -47,3 +47,11 @@ Scenarios.Spread_spreadAliasWithMultipleParameters = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Spread_spreadAliasNestedSpreadModelParameter = passOnSuccess(
+  mockapi.put("/spread/alias/nested-spread-parameter/1", (req) => {
+    req.expect.containsHeader("x-ms-test-header", "bar");
+    req.expect.bodyEquals({ name: "foo" });
+    return { status: 200 };
+  }),
+);
