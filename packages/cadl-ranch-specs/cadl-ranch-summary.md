@@ -1297,9 +1297,9 @@ Expected response body:
 
 Generate, send, and receive round-trip bottom model.
 
-### Models_Property_Nullable_String_getAll
+### Models_Property_Nullable_String_getNonNull
 
-- Endpoint: `get /models/properties/nullable/string/all`
+- Endpoint: `get /models/properties/nullable/string/non-null`
 
 Expected response body:
 
@@ -1307,9 +1307,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
-### Models_Property_Nullable_String_getDefault
+### Models_Property_Nullable_String_getNull
 
-- Endpoint: `get /models/properties/nullable/string/default`
+- Endpoint: `get /models/properties/nullable/string/null`
 
 Expected response body:
 
@@ -1317,9 +1317,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_String_patchAll
+### Models_Property_Nullable_String_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/string/all`
+- Endpoint: `patch /models/properties/nullable/string/non-null`
 
 Expected request body:
 
@@ -1327,9 +1327,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
-### Models_Property_Nullable_String_patchDefault
+### Models_Property_Nullable_String_patchNull
 
-- Endpoint: `patch /models/properties/nullable/string/default`
+- Endpoint: `patch /models/properties/nullable/string/null`
 
 Expected request body:
 
@@ -1337,9 +1337,9 @@ Expected request body:
 { "requiredProperty": "foo", "property": null }
 ```
 
-### Models_Property_Nullable_Bytes_getAll
+### Models_Property_Nullable_Bytes_getNonNull
 
-- Endpoint: `get /models/properties/nullable/bytes/all`
+- Endpoint: `get /models/properties/nullable/bytes/non-null`
 
 Expected response body:
 
@@ -1347,9 +1347,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Models_Property_Nullable_Bytes_getDefault
+### Models_Property_Nullable_Bytes_getNull
 
-- Endpoint: `get /models/properties/nullable/bytes/default`
+- Endpoint: `get /models/properties/nullable/bytes/null`
 
 Expected response body:
 
@@ -1357,9 +1357,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_Bytes_patchAll
+### Models_Property_Nullable_Bytes_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/bytes/all`
+- Endpoint: `patch /models/properties/nullable/bytes/non-null`
 
 Expected request body:
 
@@ -1367,9 +1367,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Models_Property_Nullable_Bytes_patchDefault
+### Models_Property_Nullable_Bytes_patchNull
 
-- Endpoint: `patch /models/properties/nullable/bytes/default`
+- Endpoint: `patch /models/properties/nullable/bytes/null`
 
 Expected request body:
 
@@ -1377,9 +1377,9 @@ Expected request body:
 { "requiredProperty": "foo", "property": null }
 ```
 
-### Models_Property_Nullable_Datetime_getAll
+### Models_Property_Nullable_Datetime_getNonNull
 
-- Endpoint: `get /models/properties/nullable/datetime/all`
+- Endpoint: `get /models/properties/nullable/datetime/non-null`
 
 Expected response body:
 
@@ -1387,9 +1387,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Models_Property_Nullable_Datetime_getDefault
+### Models_Property_Nullable_Datetime_getNull
 
-- Endpoint: `get /models/properties/nullable/datetime/default`
+- Endpoint: `get /models/properties/nullable/datetime/null`
 
 Expected response body:
 
@@ -1397,9 +1397,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_Datetime_patchAll
+### Models_Property_Nullable_Datetime_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/datetime/all`
+- Endpoint: `patch /models/properties/nullable/datetime/non-null`
 
 Expected request body:
 
@@ -1407,9 +1407,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Models_Property_Nullable_Datetime_patchDefault
+### Models_Property_Nullable_Datetime_patchNull
 
-- Endpoint: `patch /models/properties/nullable/datetime/default`
+- Endpoint: `patch /models/properties/nullable/datetime/null`
 
 Expected request body:
 
@@ -1417,9 +1417,9 @@ Expected request body:
 { "requiredProperty": "foo", "property": null }
 ```
 
-### Models_Property_Nullable_Duration_getAll
+### Models_Property_Nullable_Duration_getNonNull
 
-- Endpoint: `get /models/properties/nullable/duration/all`
+- Endpoint: `get /models/properties/nullable/duration/non-null`
 
 Expected response body:
 
@@ -1427,9 +1427,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
-### Models_Property_Nullable_Duration_getDefault
+### Models_Property_Nullable_Duration_getNull
 
-- Endpoint: `get /models/properties/nullable/duration/default`
+- Endpoint: `get /models/properties/nullable/duration/null`
 
 Expected response body:
 
@@ -1437,9 +1437,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_Duration_patchAll
+### Models_Property_Nullable_Duration_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/duration/all`
+- Endpoint: `patch /models/properties/nullable/duration/non-null`
 
 Expected request body:
 
@@ -1447,9 +1447,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
-### Models_Property_Nullable_Duration_patchDefault
+### Models_Property_Nullable_Duration_patchNull
 
-- Endpoint: `patch /models/properties/nullable/duration/default`
+- Endpoint: `patch /models/properties/nullable/duration/null`
 
 Expected request body:
 
@@ -1457,9 +1457,9 @@ Expected request body:
 { "requiredProperty": "foo", "property": null }
 ```
 
-### Models_Property_Nullable_CollectionsByte_getAll
+### Models_Property_Nullable_CollectionsByte_getNonNull
 
-- Endpoint: `get /models/properties/nullable/collections/bytes/all`
+- Endpoint: `get /models/properties/nullable/collections/bytes/non-null`
 
 Expected response body:
 
@@ -1467,9 +1467,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
-### Models_Property_Nullable_CollectionsByte_getDefault
+### Models_Property_Nullable_CollectionsByte_getNull
 
-- Endpoint: `get /models/properties/nullable/collections/bytes/default`
+- Endpoint: `get /models/properties/nullable/collections/bytes/null`
 
 Expected response body:
 
@@ -1477,9 +1477,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_CollectionsByte_patchAll
+### Models_Property_Nullable_CollectionsByte_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/collections/bytes/all`
+- Endpoint: `patch /models/properties/nullable/collections/bytes/non-null`
 
 Expected request body:
 
@@ -1487,9 +1487,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
-### Models_Property_Nullable_CollectionsByte_patchDefault
+### Models_Property_Nullable_CollectionsByte_patchNull
 
-- Endpoint: `patch /models/properties/nullable/collections/bytes/default`
+- Endpoint: `patch /models/properties/nullable/collections/bytes/null`
 
 Expected request body:
 
@@ -1497,9 +1497,9 @@ Expected request body:
 { "requiredProperty": "foo", "property": null }
 ```
 
-### Models_Property_Nullable_CollectionsModel_getAll
+### Models_Property_Nullable_CollectionsModel_getNonNull
 
-- Endpoint: `get /models/properties/nullable/collections/model/all`
+- Endpoint: `get /models/properties/nullable/collections/model/non-null`
 
 Expected response body:
 
@@ -1510,9 +1510,9 @@ Expected response body:
 }
 ```
 
-### Models_Property_Nullable_CollectionsModel_getDefault
+### Models_Property_Nullable_CollectionsModel_getNull
 
-- Endpoint: `get /models/properties/nullable/collections/model/default`
+- Endpoint: `get /models/properties/nullable/collections/model/null`
 
 Expected response body:
 
@@ -1520,9 +1520,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Models_Property_Nullable_CollectionsModel_patchAll
+### Models_Property_Nullable_CollectionsModel_patchNonNull
 
-- Endpoint: `patch /models/properties/nullable/collections/model/all`
+- Endpoint: `patch /models/properties/nullable/collections/model/non-null`
 
 Expected request body:
 
@@ -1533,9 +1533,9 @@ Expected request body:
 }
 ```
 
-### Models_Property_Nullable_CollectionsModel_patchDefault
+### Models_Property_Nullable_CollectionsModel_patchNull
 
-- Endpoint: `patch /models/properties/nullable/collections/model/default`
+- Endpoint: `patch /models/properties/nullable/collections/model/null`
 
 Expected request body:
 

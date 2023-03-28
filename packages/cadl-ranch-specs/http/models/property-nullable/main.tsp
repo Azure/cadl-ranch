@@ -33,9 +33,9 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
       allDoc: TDoc,
     }
   )
-  @route("/all")
+  @route("/non-null")
   @get
-  getAll(): TModel;
+  getNonNull(): TModel;
 
   @doc("Get models that will return the default object")
   @scenario
@@ -50,9 +50,9 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
       defaultDoc: TDefaultDoc,
     }
   )
-  @route("/default")
+  @route("/null")
   @get
-  getDefault(): TModel;
+  getNull(): TModel;
 
   @doc("Put a body with all properties present.")
   @scenario
@@ -67,9 +67,9 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
       allDoc: TDoc,
     }
   )
-  @route("/all")
+  @route("/non-null")
   @patch
-  patchAll(
+  patchNonNull(
     @doc("content-type is application/merge-patch+json")
     @header("Content-Type")
     contentType: "application/merge-patch+json",
@@ -89,9 +89,9 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
       defaultDoc: TDefaultDoc,
     }
   )
-  @route("/default")
+  @route("/null")
   @patch
-  patchDefault(
+  patchNull(
     @doc("content-type is application/merge-patch+json")
     @header("Content-Type")
     contentType: "application/merge-patch+json",

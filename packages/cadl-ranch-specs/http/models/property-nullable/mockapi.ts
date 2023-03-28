@@ -3,21 +3,21 @@ import { passOnSuccess, ScenarioMockApi, mockapi, json, MockApi } from "@azure-t
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 interface MockApiGetPut {
-  getAll: MockApi;
-  getDefault: MockApi;
-  patchAll: MockApi;
-  patchDefault: MockApi;
+  getNonNull: MockApi;
+  getNull: MockApi;
+  patchNonNull: MockApi;
+  patchNull: MockApi;
 }
 
 /**
  * Return the get and put operations
- * @param route The route within /models/properties/optional/all/ for your function.
+ * @param route The route within /models/properties/nullable for your function.
  * @param value The value you are expecting and will return
  */
 function createMockApis(route: string, value: any): MockApiGetPut {
   const url = `/models/properties/nullable/${route}`;
-  const allUrl = `${url}/all`;
-  const defaultUrl = `${url}/default`;
+  const allUrl = `${url}/non-null`;
+  const defaultUrl = `${url}/null`;
   const allBody = { requiredProperty: "foo", nullableProperty: value };
   const defaultBody = { requiredProperty: "foo", nullableProperty: null };
   const getAll = mockapi.get(allUrl, (req) => {
@@ -46,45 +46,45 @@ function createMockApis(route: string, value: any): MockApiGetPut {
     };
   });
   return {
-    getAll: getAll,
-    getDefault: getDefault,
-    patchAll: patchAll,
-    patchDefault: patchDefault,
+    getNonNull: getAll,
+    getNull: getDefault,
+    patchNonNull: patchAll,
+    patchNull: patchDefault,
   };
 }
 
 const stringMock = createMockApis("string", "hello");
-Scenarios.Models_Property_Nullable_String_getAll = passOnSuccess(stringMock.getAll);
-Scenarios.Models_Property_Nullable_String_getDefault = passOnSuccess(stringMock.getDefault);
-Scenarios.Models_Property_Nullable_String_patchAll = passOnSuccess(stringMock.patchAll);
-Scenarios.Models_Property_Nullable_String_patchDefault = passOnSuccess(stringMock.patchDefault);
+Scenarios.Models_Property_Nullable_String_getNonNull = passOnSuccess(stringMock.getNonNull);
+Scenarios.Models_Property_Nullable_String_getNull = passOnSuccess(stringMock.getNull);
+Scenarios.Models_Property_Nullable_String_patchNonNull = passOnSuccess(stringMock.patchNonNull);
+Scenarios.Models_Property_Nullable_String_patchNull = passOnSuccess(stringMock.patchNull);
 
 const bytesMock = createMockApis("bytes", "aGVsbG8sIHdvcmxkIQ==");
-Scenarios.Models_Property_Nullable_Bytes_getAll = passOnSuccess(bytesMock.getAll);
-Scenarios.Models_Property_Nullable_Bytes_getDefault = passOnSuccess(bytesMock.getDefault);
-Scenarios.Models_Property_Nullable_Bytes_patchAll = passOnSuccess(bytesMock.patchAll);
-Scenarios.Models_Property_Nullable_Bytes_patchDefault = passOnSuccess(bytesMock.patchDefault);
+Scenarios.Models_Property_Nullable_Bytes_getNonNull = passOnSuccess(bytesMock.getNonNull);
+Scenarios.Models_Property_Nullable_Bytes_getNull = passOnSuccess(bytesMock.getNull);
+Scenarios.Models_Property_Nullable_Bytes_patchNonNull = passOnSuccess(bytesMock.patchNonNull);
+Scenarios.Models_Property_Nullable_Bytes_patchNull = passOnSuccess(bytesMock.patchNull);
 
 const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
-Scenarios.Models_Property_Nullable_Datetime_getAll = passOnSuccess(datetimeMock.getAll);
-Scenarios.Models_Property_Nullable_Datetime_getDefault = passOnSuccess(datetimeMock.getDefault);
-Scenarios.Models_Property_Nullable_Datetime_patchAll = passOnSuccess(datetimeMock.patchAll);
-Scenarios.Models_Property_Nullable_Datetime_patchDefault = passOnSuccess(datetimeMock.patchDefault);
+Scenarios.Models_Property_Nullable_Datetime_getNonNull = passOnSuccess(datetimeMock.getNonNull);
+Scenarios.Models_Property_Nullable_Datetime_getNull = passOnSuccess(datetimeMock.getNull);
+Scenarios.Models_Property_Nullable_Datetime_patchNonNull = passOnSuccess(datetimeMock.patchNonNull);
+Scenarios.Models_Property_Nullable_Datetime_patchNull = passOnSuccess(datetimeMock.patchNull);
 
 const durationMock = createMockApis("duration", "P123DT22H14M12.011S");
-Scenarios.Models_Property_Nullable_Duration_getAll = passOnSuccess(durationMock.getAll);
-Scenarios.Models_Property_Nullable_Duration_getDefault = passOnSuccess(durationMock.getDefault);
-Scenarios.Models_Property_Nullable_Duration_patchAll = passOnSuccess(durationMock.patchAll);
-Scenarios.Models_Property_Nullable_Duration_patchDefault = passOnSuccess(durationMock.patchDefault);
+Scenarios.Models_Property_Nullable_Duration_getNonNull = passOnSuccess(durationMock.getNonNull);
+Scenarios.Models_Property_Nullable_Duration_getNull = passOnSuccess(durationMock.getNull);
+Scenarios.Models_Property_Nullable_Duration_patchNonNull = passOnSuccess(durationMock.patchNonNull);
+Scenarios.Models_Property_Nullable_Duration_patchNull = passOnSuccess(durationMock.patchNull);
 
 const collectionsBytesMock = createMockApis("collections/bytes", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]);
-Scenarios.Models_Property_Nullable_CollectionsByte_getAll = passOnSuccess(collectionsBytesMock.getAll);
-Scenarios.Models_Property_Nullable_CollectionsByte_getDefault = passOnSuccess(collectionsBytesMock.getDefault);
-Scenarios.Models_Property_Nullable_CollectionsByte_patchAll = passOnSuccess(collectionsBytesMock.patchAll);
-Scenarios.Models_Property_Nullable_CollectionsByte_patchDefault = passOnSuccess(collectionsBytesMock.patchDefault);
+Scenarios.Models_Property_Nullable_CollectionsByte_getNonNull = passOnSuccess(collectionsBytesMock.getNonNull);
+Scenarios.Models_Property_Nullable_CollectionsByte_getNull = passOnSuccess(collectionsBytesMock.getNull);
+Scenarios.Models_Property_Nullable_CollectionsByte_patchNonNull = passOnSuccess(collectionsBytesMock.patchNonNull);
+Scenarios.Models_Property_Nullable_CollectionsByte_patchNull = passOnSuccess(collectionsBytesMock.patchNull);
 
 const collectionsModelMock = createMockApis("collections/model", [{ property: "hello" }, { property: "world" }]);
-Scenarios.Models_Property_Nullable_CollectionsModel_getAll = passOnSuccess(collectionsModelMock.getAll);
-Scenarios.Models_Property_Nullable_CollectionsModel_getDefault = passOnSuccess(collectionsModelMock.getDefault);
-Scenarios.Models_Property_Nullable_CollectionsModel_patchAll = passOnSuccess(collectionsModelMock.patchAll);
-Scenarios.Models_Property_Nullable_CollectionsModel_patchDefault = passOnSuccess(collectionsModelMock.patchDefault);
+Scenarios.Models_Property_Nullable_CollectionsModel_getNonNull = passOnSuccess(collectionsModelMock.getNonNull);
+Scenarios.Models_Property_Nullable_CollectionsModel_getNull = passOnSuccess(collectionsModelMock.getNull);
+Scenarios.Models_Property_Nullable_CollectionsModel_patchNonNull = passOnSuccess(collectionsModelMock.patchNonNull);
+Scenarios.Models_Property_Nullable_CollectionsModel_patchNull = passOnSuccess(collectionsModelMock.patchNull);
