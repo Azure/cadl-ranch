@@ -15,36 +15,41 @@ model ModelBodyParameter {
 
 @scenario
 @scenarioDoc("""
-This test is testing sending an int value in simple union property.
+Test case for spread named model. Should generate request body model named ModelBodyParameter.
+
+Expected request body:
 ```json
-{ "simpleUnion": 1 }
+{ "name": "foo" }
 ```
 """)
 @route("/model/request-body")
 @put
 op spreadModelAsRequestBody(...ModelBodyParameter): OkResponse;
 
-@doc("This is a model including path parameter.")
+@doc("This is a simple model including path parameter.")
 model ModelRequestParamter {
   @path
-  @visibility("update")
   id: string;
 
-  @query
-  tag: string;
+  @header
+  `x-ms-test-header`: string;
   name: string;
 }
 
 @scenario
 @scenarioDoc("""
-This test is testing sending an int value in simple union property.
+Test case for spread named model with path and header parameter. 
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
 ```json
-{ "simpleUnion": 1 }
+{ "name": "foo" }
 ```
 """)
-@route("/model/request-parameter")
+@route("/model/request-parameter/{id}")
 @put
-op spreadModelAsParameter(...ModelRequestParamter): OkResponse;
+op spreadModelAsRequestParameter(...ModelRequestParamter): OkResponse;
 
 alias AliasBodyParameter = {
   name: string;
@@ -52,43 +57,47 @@ alias AliasBodyParameter = {
 
 @scenario
 @scenarioDoc("""
-This test is testing sending an int value in simple union property.
+Test case for spread alias. 
+
+Expected request body:
 ```json
-{ "simpleUnion": 1 }
+{ "name": "foo" }
 ```
 """)
 @route("/alias/request-body")
 @put
-op spreadAliasAsBody(...AliasBodyParameter): OkResponse;
+op spreadAliasAsRequestBody(...AliasBodyParameter): OkResponse;
 
 alias AliasRequestParameter = {
   @path
-  @visibility("update")
   id: string;
 
-  @query
-  tag: string;
+  @header
+  `x-ms-test-header`: string;
   name: string;
 };
 
 @scenario
 @scenarioDoc("""
-This test is testing sending an int value in simple union property.
+Test case for spread alias with path and header parameter. 
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
 ```json
-{ "simpleUnion": 1 }
+{ "name": "foo" }
 ```
 """)
-@route("/alias/request-parameter")
+@route("/alias/request-parameter/{id}")
 @put
-op spreadAliasAsParameter(...AliasRequestParameter): OkResponse;
+op spreadAliasAsRequestParameter(...AliasRequestParameter): OkResponse;
 
 alias AliasMultipleRequestParameters = {
   @path
-  @visibility("update")
   id: string;
 
-  @query
-  tag: string;
+  @header
+  `x-ms-test-header`: string;
   prop1: string;
   prop2: string;
   prop3: string;
@@ -99,11 +108,22 @@ alias AliasMultipleRequestParameters = {
 
 @scenario
 @scenarioDoc("""
-This test is testing sending an int value in simple union property.
+Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
 ```json
-{ "simpleUnion": 1 }
+{
+  "prop1":"foo1",
+  "prop2":"foo2",
+  "prop3":"foo3",
+  "prop4":"foo4",
+  "prop5":"foo5",
+  "prop6":"foo6"
+}
 ```
 """)
-@route("/alias/multiple-parameters")
+@route("/alias/multiple-parameters/{id}")
 @put
 op spreadAliasWithMultipleParameters(...AliasMultipleRequestParameters): OkResponse;

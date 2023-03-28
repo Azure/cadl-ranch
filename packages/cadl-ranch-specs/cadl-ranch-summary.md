@@ -2454,6 +2454,79 @@ Expected input body:
 }
 ```
 
+### Spread_spreadModelAsRequestBody
+
+- Endpoint: `put /spread/model/request-body`
+
+Test case for spread named model. Should generate request body model named ModelBodyParameter.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Spread_spreadModelAsRequestParameter
+
+- Endpoint: `put /spread/model/request-parameter/{id}`
+
+Test case for spread named model with path and header parameter.
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Spread_spreadAliasAsRequestBody
+
+- Endpoint: `put /spread/alias/request-body`
+
+Test case for spread alias.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Spread_spreadAliasAsRequestParameter
+
+- Endpoint: `put /spread/alias/request-parameter/{id}`
+
+Test case for spread alias with path and header parameter.
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Spread_spreadAliasWithMultipleParameters
+
+- Endpoint: `put /spread/alias/multiple-parameters/{id}`
+
+Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+
+Expected path parameter: id=1
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "prop1": "foo1",
+  "prop2": "foo2",
+  "prop3": "foo3",
+  "prop4": "foo4",
+  "prop5": "foo5",
+  "prop6": "foo6"
+}
+```
+
 ### Unions_sendInt
 
 - Endpoint: `post /unions/int`
