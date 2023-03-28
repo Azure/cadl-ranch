@@ -57,7 +57,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected request body:
   ```json
-  {allDoc}
+  {"property": {allDoc}}
   ```
   """,
     {
