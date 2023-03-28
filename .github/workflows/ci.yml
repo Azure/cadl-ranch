@@ -29,7 +29,7 @@ jobs:
 
       - run: npx -p @changesets/cli changeset status --since=main
         name: Check changelog
-        if: ${{startsWith(${{ github.event.inputs.from_branch }}, 'publish/') != true}}
+        if: ${{ !startsWith(github.event.inputs.from_branch, 'publish/') }}
 
   # This workflow contains a single job called "build"
   build:
