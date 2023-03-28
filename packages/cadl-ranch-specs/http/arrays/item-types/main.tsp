@@ -93,3 +93,9 @@ model InnerModel {
 @route("/model")
 @operationGroup
 interface ModelValue extends ArrayOperations<InnerModel[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+alias NullableFloat = float32 | null;
+@doc("Array of nullable float values")
+@route("/nullable-float")
+@operationGroup
+interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.2, null, 3.0]"> {}
