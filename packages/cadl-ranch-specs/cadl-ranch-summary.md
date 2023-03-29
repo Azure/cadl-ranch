@@ -180,6 +180,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Arrays_ItemTypes_NullableFloatValue_get
+
+- Endpoint: `get /arrays/item-types/nullable-float`
+
+Expected Array response body:
+
+```json
+[1.2, null, 3.0]
+```
+
+### Arrays_ItemTypes_NullableFloatValue_put
+
+- Endpoint: `put /arrays/item-types/nullable-float`
+
+Expected Array input body:
+
+```json
+[1.2, null, 3.0]
+```
+
 ### Authentication_ApiKey_valid
 
 - Endpoint: `get /authentication/api-key/valid`
@@ -666,6 +686,26 @@ Expected dictionary input body:
 }
 ```
 
+### Dictionary_NullableFloatValue_get
+
+- Endpoint: `get /dictionary/nullable-float`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "hello", "k2": "world", "k3": null }
+```
+
+### Dictionary_NullableFloatValue_put
+
+- Endpoint: `put /dictionary/nullable-float`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "hello", "k2": "world", "k3": null }
+```
+
 ### Enums_Extensible_String_getKnownValue
 
 - Endpoint: `get /enums/extensible/string/known-value`
@@ -718,6 +758,43 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
+### Internal_getInternal
+
+- Endpoint: `get /internal/getInternal`
+
+This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Internal_postInternal
+
+- Endpoint: `post /internal/postInternal`
+
+This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
+Expected body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
 ### Azure_Lro_PollingSuccess
 
 - Endpoints:
@@ -726,6 +803,293 @@ This test is testing this payload is returned from the server
   - `put /lro/basic/put`
 
 The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
+
+### Azure_Lro_Core_createOrReplace
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named User.
+
+Expected verb: PUT
+Expected path parameter: name=madge
+
+Expected request body:
+
+```json
+{
+  "role": "contributor"
+}
+```
+
+Expected status code: 201
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
+}
+```
+
+(The last GET call on resource URL is optional)
+Expected verb: GET
+Expected URL: {endpoint}/users/madge
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+### Azure_Lro_Core_delete
+
+- Endpoint: `get /azure/lro/core`
+
+Expected verb: DELETE
+Expected path parameter: name=madge
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation2
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "Succeeded"
+}
+```
+
+### Azure_Lro_Core_export
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named ExportedUser.
+
+Expected verb: POST
+Expected path parameter: name=madge
+Expected query parameter: format=json
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation3
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "Succeeded",
+  "result": {
+    "name": "madge",
+    "resourceUri": "/users/madge"
+  }
+}
+```
+
+### Azure_Lro_Rpc_SamePollResult
+
+- Endpoints:
+  - `get /azure/lro/rpc/same-poll-result/jobs`
+  - `get /azure/lro/rpc/same-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
+### Azure_Lro_Rpc_DifferentPollResult
+
+- Endpoints:
+  - `get /azure/lro/rpc/different-poll-result/jobs`
+  - `get /azure/lro/rpc/different-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
 
 ### Models_Inheritance_Discriminated_getModel
 
@@ -933,6 +1297,252 @@ Expected response body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Models_Property_Nullable_String_getNonNull
+
+- Endpoint: `get /models/properties/nullable/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Models_Property_Nullable_String_getNull
+
+- Endpoint: `get /models/properties/nullable/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_String_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Models_Property_Nullable_String_patchNull
+
+- Endpoint: `patch /models/properties/nullable/string/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
+### Models_Property_Nullable_Bytes_getNonNull
+
+- Endpoint: `get /models/properties/nullable/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Models_Property_Nullable_Bytes_getNull
+
+- Endpoint: `get /models/properties/nullable/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Bytes_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Models_Property_Nullable_Bytes_patchNull
+
+- Endpoint: `patch /models/properties/nullable/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
+### Models_Property_Nullable_Datetime_getNonNull
+
+- Endpoint: `get /models/properties/nullable/datetime/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Models_Property_Nullable_Datetime_getNull
+
+- Endpoint: `get /models/properties/nullable/datetime/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Datetime_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/datetime/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Models_Property_Nullable_Datetime_patchNull
+
+- Endpoint: `patch /models/properties/nullable/datetime/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
+### Models_Property_Nullable_Duration_getNonNull
+
+- Endpoint: `get /models/properties/nullable/duration/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Models_Property_Nullable_Duration_getNull
+
+- Endpoint: `get /models/properties/nullable/duration/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Duration_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/duration/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Models_Property_Nullable_Duration_patchNull
+
+- Endpoint: `patch /models/properties/nullable/duration/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
+### Models_Property_Nullable_CollectionsByte_getNonNull
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Models_Property_Nullable_CollectionsByte_getNull
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsByte_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Models_Property_Nullable_CollectionsByte_patchNull
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
+### Models_Property_Nullable_CollectionsModel_getNonNull
+
+- Endpoint: `get /models/properties/nullable/collections/model/non-null`
+
+Expected response body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Models_Property_Nullable_CollectionsModel_getNull
+
+- Endpoint: `get /models/properties/nullable/collections/model/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsModel_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/collections/model/non-null`
+
+Expected request body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Models_Property_Nullable_CollectionsModel_patchNull
+
+- Endpoint: `patch /models/properties/nullable/collections/model/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "property": null }
+```
+
 ### Models_Property_Optional_String_getAll
 
 - Endpoint: `get /models/properties/optional/string/all`
@@ -960,7 +1570,7 @@ Expected response body:
 Expected request body:
 
 ```json
-hello
+{"property": hello}
 ```
 
 ### Models_Property_Optional_String_putDefault
@@ -1000,7 +1610,7 @@ Expected response body:
 Expected request body:
 
 ```json
-aGVsbG8sIHdvcmxkIQ==
+{"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Optional_Bytes_putDefault
@@ -1040,7 +1650,7 @@ Expected response body:
 Expected request body:
 
 ```json
-2022-08-26T18:38:00Z
+{"property": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Optional_Datetime_putDefault
@@ -1080,7 +1690,7 @@ Expected response body:
 Expected request body:
 
 ```json
-P123DT22H14M12.011S
+{"property": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Optional_Duration_putDefault
@@ -1120,7 +1730,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]
+{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Optional_CollectionsByte_putDefault
@@ -1160,7 +1770,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[{ "property": "hello" }, { "property": "world" }]
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
 ### Models_Property_Optional_CollectionsModel_putDefault
