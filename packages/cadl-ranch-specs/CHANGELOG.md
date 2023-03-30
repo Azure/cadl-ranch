@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.10.0
+
+### Minor Changes
+
+- ac96083: have lro-basic return a model instead of string
+- 30f8cb7: Add LongRunningResourceCreateOrReplace, LongRunningResourceDelete, LongRunningResourceAction to Azure.Lro.Core operations tests
+
+### Patch Changes
+
+- 4b33715: Add test cases for nullable values
+- 43322db: Add test for internal
+
 ## 0.9.3
 
 ### Patch Changes
