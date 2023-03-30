@@ -8,7 +8,7 @@ import {
   validateHeader,
   validateQueryParam,
 } from "./request-validations.js";
-import { RequestExt } from "./types.js";
+import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 /**
@@ -74,8 +74,12 @@ export class RequestExpectation {
    * @param paramName Name of the query parameter.
    * @param expectedValue Value expected of the query parameter.
    */
-  public containsQueryParam(paramName: string, expectedValue: string): void {
-    validateQueryParam(this.originalRequest, paramName, expectedValue);
+  public containsQueryParam(
+    paramName: string,
+    expectedValue: string | string[],
+    collectionFormat?: CollectionFormat,
+  ): void {
+    validateQueryParam(this.originalRequest, paramName, expectedValue, collectionFormat);
   }
 
   /**
