@@ -40,7 +40,7 @@ model ModelRequestParamter {
 @scenarioDoc("""
 Test case for spread named model with path and header parameter. 
 
-Expected path parameter: id=1
+Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 ```json
@@ -81,7 +81,7 @@ alias AliasRequestParameter = {
 @scenarioDoc("""
 Test case for spread alias with path and header parameter. 
 
-Expected path parameter: id=1
+Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 ```json
@@ -110,7 +110,7 @@ alias AliasMultipleRequestParameters = {
 @scenarioDoc("""
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Expected path parameter: id=1
+Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 ```json
@@ -146,7 +146,7 @@ alias AliasNestedSpreadParameter = {
 @scenarioDoc("""
 Test case for spread alias with nested spread model as body parameter. 
 
-Expected path parameter: id=1
+Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 ```json
