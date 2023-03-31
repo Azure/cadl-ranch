@@ -16,40 +16,40 @@ interface MockApiGetPut {
  */
 function createMockApis(route: string, value: any): MockApiGetPut {
   const url = `/models/properties/nullable/${route}`;
-  const allUrl = `${url}/non-null`;
-  const defaultUrl = `${url}/null`;
-  const allBody = { requiredProperty: "foo", nullableProperty: value };
-  const defaultBody = { requiredProperty: "foo", nullableProperty: null };
-  const getAll = mockapi.get(allUrl, (req) => {
+  const nonNullUrl = `${url}/non-null`;
+  const nullUrl = `${url}/null`;
+  const nonNullBody = { requiredProperty: "foo", nullableProperty: value };
+  const nullBody = { requiredProperty: "foo", nullableProperty: null };
+  const getNonNull = mockapi.get(nonNullUrl, (req) => {
     return {
       status: 200,
-      body: json(allBody),
+      body: json(nonNullBody),
     };
   });
-  const getDefault = mockapi.get(defaultUrl, (req) => {
+  const getNull = mockapi.get(nullUrl, (req) => {
     return {
       status: 200,
-      body: json(defaultBody),
+      body: json(nullBody),
     };
   });
-  const patchAll = mockapi.put(allUrl, (req) => {
-    const expectedBody = JSON.parse(JSON.stringify(allBody)); // deep clone
+  const patchNonNull = mockapi.patch(nonNullUrl, (req) => {
+    const expectedBody = JSON.parse(JSON.stringify(nonNullBody)); // deep clone
     req.expect.coercedBodyEquals(expectedBody);
     return {
       status: 204,
     };
   });
-  const patchDefault = mockapi.patch(defaultUrl, (req) => {
-    req.expect.bodyEquals(defaultBody);
+  const patchNull = mockapi.patch(nullUrl, (req) => {
+    req.expect.bodyEquals(nullBody);
     return {
       status: 204,
     };
   });
   return {
-    getNonNull: getAll,
-    getNull: getDefault,
-    patchNonNull: patchAll,
-    patchNull: patchDefault,
+    getNonNull: getNonNull,
+    getNull: getNull,
+    patchNonNull: patchNonNull,
+    patchNull: patchNull,
   };
 }
 
