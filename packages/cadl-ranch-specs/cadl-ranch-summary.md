@@ -693,7 +693,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": "hello", "k2": "world", "k3": null }
+{ "k1": 1.2, "k2": 0.5, "k3": null }
 ```
 
 ### Dictionary_NullableFloatValue_put
@@ -703,7 +703,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": "hello", "k2": "world", "k3": null }
+{ "k1": 1.2, "k2": 0.5, "k3": null }
 ```
 
 ### Enums_Extensible_String_getKnownValue
