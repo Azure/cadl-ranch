@@ -1340,7 +1340,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Bytes_getNonNull
@@ -1380,7 +1380,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Datetime_getNonNull
@@ -1420,7 +1420,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_Duration_getNonNull
@@ -1460,7 +1460,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_CollectionsByte_getNonNull
@@ -1500,7 +1500,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Nullable_CollectionsModel_getNonNull
@@ -1546,7 +1546,7 @@ Expected request body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "property": null }
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Models_Property_Optional_String_getAll
