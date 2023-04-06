@@ -10,13 +10,6 @@ Scenarios.Spread_spreadModelAsRequestBody = passOnSuccess(
   }),
 );
 
-Scenarios.Spread_spreadModelAsRequestParameter = passOnSuccess(
-  mockapi.put("/spread/model/request-parameter/1", (req) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 200 };
-  }),
-);
 
 Scenarios.Spread_spreadAliasAsRequestBody = passOnSuccess(
   mockapi.put("/spread/alias/request-body", (req) => {

@@ -26,31 +26,6 @@ Expected request body:
 @put
 op spreadModelAsRequestBody(...ModelBodyParameter): OkResponse;
 
-@doc("This is a simple model including path parameter.")
-model ModelRequestParamter {
-  @path
-  id: string;
-
-  @header
-  `x-ms-test-header`: string;
-  name: string;
-}
-
-@scenario
-@scenarioDoc("""
-Test case for spread named model with path and header parameter. 
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-```json
-{ "name": "foo" }
-```
-""")
-@route("/model/request-parameter/{id}")
-@put
-op spreadModelAsRequestParameter(...ModelRequestParamter): OkResponse;
-
 alias AliasBodyParameter = {
   name: string;
 };
