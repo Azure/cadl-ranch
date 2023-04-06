@@ -15,7 +15,14 @@ model ModelBodyParameter {
 
 @scenario
 @scenarioDoc("""
-Test case for spread named model. Should generate request body model named ModelBodyParameter.
+Test case for spread named model. 
+
+Should generate request body model named `ModelBodyParameter`.
+Should generate an operation like below.
+Please note the parameter name is guessed from the model name and it may be various from language to language.
+```
+spreadModelAsRequestBody(modelBodyParameter: ModelBodyParameter)
+```
 
 Expected request body:
 ```json
@@ -33,6 +40,12 @@ alias AliasBodyParameter = {
 @scenario
 @scenarioDoc("""
 Test case for spread alias. 
+
+Should not generate any model named AliasBodyParameter.
+Should generate an operation like:
+```
+spreadAliasAsRequestBody(name: string)
+```
 
 Expected request body:
 ```json
@@ -55,6 +68,12 @@ alias AliasRequestParameter = {
 @scenario
 @scenarioDoc("""
 Test case for spread alias with path and header parameter. 
+
+Should not generate any model named AliasRequestParameter.
+Should generate an operation like:
+```
+spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+```
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
@@ -84,6 +103,13 @@ alias AliasMultipleRequestParameters = {
 @scenario
 @scenarioDoc("""
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+
+Should not generate any model named AliasMultipleRequestParameters.
+Should generate an operation like below.
+Note it's also acceptable if some languages handle it as property bag when # of parameters are more than 5.
+```
+spreadAliasWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+```
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"

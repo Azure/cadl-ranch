@@ -10,7 +10,6 @@ Scenarios.Spread_spreadModelAsRequestBody = passOnSuccess(
   }),
 );
 
-
 Scenarios.Spread_spreadAliasAsRequestBody = passOnSuccess(
   mockapi.put("/spread/alias/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
