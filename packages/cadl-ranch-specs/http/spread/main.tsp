@@ -129,32 +129,3 @@ Expected request body:
 @route("/alias/multiple-parameters/{id}")
 @put
 op spreadAliasWithMultipleParameters(...AliasMultipleRequestParameters): OkResponse;
-
-@doc("This is a simple model.")
-model ModelParameter {
-  name: string;
-}
-
-alias AliasNestedSpreadParameter = {
-  @path
-  id: string;
-
-  @header
-  `x-ms-test-header`: string;
-  ...ModelParameter;
-};
-
-@scenario
-@scenarioDoc("""
-Test case for spread alias with nested spread model as body parameter. 
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-```json
-{ "name": "foo" }
-```
-""")
-@route("/alias/nested-spread-parameter/{id}")
-@put
-op spreadAliasNestedSpreadModelParameter(...AliasNestedSpreadParameter): OkResponse;
