@@ -2486,7 +2486,7 @@ Expected request body:
 
 Test case for spread alias.
 
-Should not generate any model named AliasBodyParameter.
+Should not generate any model named `AliasBodyParameter`.
 Should generate an operation like:
 
 ```
@@ -2505,9 +2505,9 @@ Expected request body:
 
 Test case for spread alias with path and header parameter.
 
-Should not generate any model named AliasRequestParameter.
+Should not generate any model named `AliasRequestParameter`.
 Should generate an operation like below.
-Note the parameter name may be normalized and it may vary by language.
+Note the parameter name may be normalized and vary by language.
 
 ```
 spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
@@ -2527,7 +2527,7 @@ Expected request body:
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named AliasMultipleRequestParameters.
+Should not generate any model named `AliasMultipleRequestParameters`.
 Should generate an operation like below.
 Note it's also acceptable if some languages handle it as property bag.
 

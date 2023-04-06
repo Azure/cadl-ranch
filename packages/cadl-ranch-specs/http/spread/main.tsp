@@ -71,7 +71,7 @@ Test case for spread alias with path and header parameter.
 
 Should not generate any model named `AliasRequestParameter`.
 Should generate an operation like below.
-Note the parameter name may be normalized and it may vary by language.
+Note the parameter name may be normalized and vary by language.
 ```
 spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
 ```
