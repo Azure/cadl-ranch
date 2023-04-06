@@ -2464,22 +2464,16 @@ Expected input body:
 
 - Endpoint: `put /spread/model/request-body`
 
-Test case for spread named model. Should generate request body model named ModelBodyParameter.
+Test case for spread named model.
 
-Expected request body:
+Should generate request body model named `ModelBodyParameter`.
+Should generate an operation like below.
+Note the parameter name is guessed from the model name and it may vary by language.
 
-```json
-{ "name": "foo" }
+```
+spreadModelAsRequestBody(modelBodyParameter: ModelBodyParameter)
 ```
 
-### Spread_spreadModelAsRequestParameter
-
-- Endpoint: `put /spread/model/request-parameter/{id}`
-
-Test case for spread named model with path and header parameter.
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 
 ```json
@@ -2492,6 +2486,13 @@ Expected request body:
 
 Test case for spread alias.
 
+Should not generate any model named AliasBodyParameter.
+Should generate an operation like:
+
+```
+spreadAliasAsRequestBody(name: string)
+```
+
 Expected request body:
 
 ```json
@@ -2503,6 +2504,14 @@ Expected request body:
 - Endpoint: `put /spread/alias/request-parameter/{id}`
 
 Test case for spread alias with path and header parameter.
+
+Should not generate any model named AliasRequestParameter.
+Should generate an operation like below.
+Note the parameter name may be normalized and it may vary by language.
+
+```
+spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+```
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
@@ -2518,6 +2527,14 @@ Expected request body:
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
+Should not generate any model named AliasMultipleRequestParameters.
+Should generate an operation like below.
+Note it's also acceptable if some languages handle it as property bag.
+
+```
+spreadAliasWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+```
+
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
 Expected request body:
@@ -2531,20 +2548,6 @@ Expected request body:
   "prop5": "foo5",
   "prop6": "foo6"
 }
-```
-
-### Spread_spreadAliasNestedSpreadModelParameter
-
-- Endpoint: `put /spread/alias/nested-spread-parameter/{id}`
-
-Test case for spread alias with nested spread model as body parameter.
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-
-```json
-{ "name": "foo" }
 ```
 
 ### Unions_sendInt
