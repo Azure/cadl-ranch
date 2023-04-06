@@ -19,7 +19,7 @@ Test case for spread named model.
 
 Should generate request body model named `ModelBodyParameter`.
 Should generate an operation like below.
-Please note the parameter name is guessed from the model name and it may be various from language to language.
+Note the parameter name is guessed from the model name and it may vary by language.
 ```
 spreadModelAsRequestBody(modelBodyParameter: ModelBodyParameter)
 ```
@@ -70,8 +70,8 @@ alias AliasRequestParameter = {
 Test case for spread alias with path and header parameter. 
 
 Should not generate any model named AliasRequestParameter.
-Should generate an operation like.
-Please note the parameter name is guessed from the model name and it may be various from language to language.
+Should generate an operation like below.
+Note the parameter name may be normalized and it may vary by language.
 ```
 spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
 ```
@@ -107,7 +107,7 @@ Test case for spread alias including 6 parameters. May handle as property bag fo
 
 Should not generate any model named AliasMultipleRequestParameters.
 Should generate an operation like below.
-Note it's also acceptable if some languages handle it as property bag when # of parameters are more than 5.
+Note it's also acceptable if some languages handle it as property bag.
 ```
 spreadAliasWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
 ```
