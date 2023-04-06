@@ -110,4 +110,4 @@ alias NullableFloat = float32 | null;
 @route("/nullable-float")
 @operationGroup
 interface NullableFloatValue
-  extends DictionaryOperations<Record<NullableFloat>, "{'k1': 'hello', 'k2': 'world', 'k3': null}"> {}
+  extends DictionaryOperations<Record<NullableFloat>, "{'k1': 1.2, 'k2': 0.5, 'k3': null}"> {}
