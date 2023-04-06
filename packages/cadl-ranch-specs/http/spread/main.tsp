@@ -41,7 +41,7 @@ alias AliasBodyParameter = {
 @scenarioDoc("""
 Test case for spread alias. 
 
-Should not generate any model named AliasBodyParameter.
+Should not generate any model named `AliasBodyParameter`.
 Should generate an operation like:
 ```
 spreadAliasAsRequestBody(name: string)
@@ -69,7 +69,7 @@ alias AliasRequestParameter = {
 @scenarioDoc("""
 Test case for spread alias with path and header parameter. 
 
-Should not generate any model named AliasRequestParameter.
+Should not generate any model named `AliasRequestParameter`.
 Should generate an operation like below.
 Note the parameter name may be normalized and it may vary by language.
 ```
@@ -105,7 +105,7 @@ alias AliasMultipleRequestParameters = {
 @scenarioDoc("""
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named AliasMultipleRequestParameters.
+Should not generate any model named `AliasMultipleRequestParameters`.
 Should generate an operation like below.
 Note it's also acceptable if some languages handle it as property bag.
 ```
