@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.2.2
+
+### Patch Changes
+
+- ba682b7: Support validating collection format and update related mock tests
+
 ## 0.2.1
 
 ### Patch Changes

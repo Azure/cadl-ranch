@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.10.1
+
+### Patch Changes
+
+- ef38bb8: Fix the nullable path issue
+- ba682b7: Support validating collection format and update related mock tests
+- Updated dependencies [ba682b7]
+  - @azure-tools/cadl-ranch-api@0.2.2
+  - @azure-tools/cadl-ranch@0.4.3
+
 ## 0.10.0
 
 ### Minor Changes
