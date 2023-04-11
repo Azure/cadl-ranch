@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.2.2
+
+### Patch Changes
+
+- a2d916d: update to 0.43.0
+
 ## 0.2.1
 
 ### Patch Changes
