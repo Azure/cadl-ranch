@@ -70,7 +70,7 @@ interface Float32Value extends ArrayOperations<float32[], "[42.42]"> {}
 @doc("Array of datetime values")
 @route("/datetime")
 @operationGroup
-interface DatetimeValue extends ArrayOperations<zonedDateTime[], "['2022-08-26T18:38:00Z']"> {}
+interface DatetimeValue extends ArrayOperations<utcDateTime[], "['2022-08-26T18:38:00Z']"> {}
 
 @doc("Array of duration values")
 @route("/duration")
