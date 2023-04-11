@@ -2408,27 +2408,7 @@ The value you pass for the parameter is not verified by the mock server.
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
 
-### Server_Parameterized_myOp
-
-- Endpoint: `head /server/parameterized/myOp`
-
-An simple operation in a parameterized server.
-
-### Server_Parameters_Path_Core_get
-
-- Endpoint: `get /`
-
-Operation with client and method path parameters.
-
-Expected path parameter: apiVersion=v1.0, id=1
-
-Expected response body:
-
-```json
-{ "id": 1 }
-```
-
-### Server_Parameters_Path_noOperationParams
+### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /`
 
@@ -2436,13 +2416,19 @@ Operation with client path parameters.
 
 Expected path parameter: apiVersion=v1.0
 
-### Server_Parameters_Path_withOperationPathParam
+### Server_Path_Multiple_withOperationPathParam
 
 - Endpoint: `get /`
 
 Operation with client and method path parameters.
 
 Expected path parameter: apiVersion=v1.0, keyword=test
+
+### Server_Path_Single_myOp
+
+- Endpoint: `head /server/path/single/myOp`
+
+An simple operation in a parameterized server.
 
 ### SpecialWords_Operation_for
 

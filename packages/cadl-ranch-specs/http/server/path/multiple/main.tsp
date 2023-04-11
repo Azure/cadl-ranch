@@ -8,10 +8,10 @@ using TypeSpec.Rest;
 
 @versioned(Versions)
 @service({
-  title: "ServerParametersPath",
+  title: "ServerPathMultiple",
 })
 @server(
-  "{endpoint}/server/parameters/path/{apiVersion}",
+  "{endpoint}/server/path/multiple/{apiVersion}",
   "Test server with path parameters.",
   {
     @doc("Pass in http://localhost:3000 for endpoint.")
@@ -21,7 +21,7 @@ using TypeSpec.Rest;
     apiVersion: Versions,
   }
 )
-namespace Server.Parameters.Path;
+namespace Server.Path.Multiple;
 
 enum Versions {
   v1_0: "v1.0",
