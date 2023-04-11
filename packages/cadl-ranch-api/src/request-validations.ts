@@ -1,5 +1,5 @@
 import deepEqual from "deep-equal";
-import { CollectionFormat, RequestExt } from "./types.js";
+import { RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
@@ -91,21 +91,21 @@ export const validateHeader = (request: RequestExt, headerName: string, expected
 
 /**
  * Check whether the query string contains the given parameter name and value.
- * Supports query param as string or collection. e.g. if it's a collection, one can call the method like this: validateQueryParam(request, ["a", "b", "c"], CollectionFormat.Multi)
+ * Supports query param as string or collection. e.g. if it's a collection, one can call the method like this: validateQueryParam(request, ["a", "b", "c"], "multi")
  */
 export const validateQueryParam = (
   request: RequestExt,
   paramName: string,
   expected: string | string[],
-  collectionFormat?: CollectionFormat,
+  collectionFormat?: "multi" | "csv",
 ): void => {
   const actual = request.query[paramName];
   let isExpected = false;
   if (collectionFormat && Array.isArray(expected)) {
     // verify query parameter as collection
-    if (collectionFormat === CollectionFormat.Multi && Array.isArray(actual)) {
+    if (collectionFormat === "multi" && Array.isArray(actual)) {
       isExpected = deepEqual(actual, expected);
-    } else if (collectionFormat === CollectionFormat.CSV && typeof actual === "string") {
+    } else if (collectionFormat === "csv" && typeof actual === "string") {
       const expectedString = expected.join(",");
       isExpected = expectedString === decodeURIComponent(actual);
     }

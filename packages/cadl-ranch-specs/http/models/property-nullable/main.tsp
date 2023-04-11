@@ -113,7 +113,7 @@ interface Bytes extends OperationsTemplate<BytesProperty, "aGVsbG8sIHdvcmxkIQ=="
 
 // Model with nullable datetime property
 @doc("Model with a datetime property")
-model DatetimeProperty is ModelTemplate<zonedDateTime>;
+model DatetimeProperty is ModelTemplate<utcDateTime>;
 @route("/datetime")
 @operationGroup
 interface Datetime extends OperationsTemplate<DatetimeProperty, "2022-08-26T18:38:00Z"> {}

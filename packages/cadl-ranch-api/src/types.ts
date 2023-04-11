@@ -52,8 +52,3 @@ export interface MockResponseBody {
   contentType: string;
   rawContent: string | undefined;
 }
-
-export enum CollectionFormat {
-  Multi = "Multi",
-  CSV = "CSV",
-}
