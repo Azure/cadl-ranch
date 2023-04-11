@@ -32,7 +32,6 @@ enum Versions {
 Operation with client path parameters.
 
 Expected path parameter: apiVersion=v1.0
-```
 """)
 op noOperationParams(): NoContentResponse;
 
@@ -41,6 +40,5 @@ op noOperationParams(): NoContentResponse;
 Operation with client and method path parameters.
 
 Expected path parameter: apiVersion=v1.0, keyword=test
-```
 """)
 op withOperationPathParam(@path keyword: string): NoContentResponse;

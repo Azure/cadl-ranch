@@ -2414,6 +2414,36 @@ This is a totally new operation in this API version.
 
 An simple operation in a parameterized server.
 
+### Server_Parameters_Path_Core_get
+
+- Endpoint: `get /`
+
+Operation with client and method path parameters.
+
+Expected path parameter: apiVersion=v1.0, id=1
+
+Expected response body:
+
+```json
+{ "id": 1 }
+```
+
+### Server_Parameters_Path_noOperationParams
+
+- Endpoint: `get /`
+
+Operation with client path parameters.
+
+Expected path parameter: apiVersion=v1.0
+
+### Server_Parameters_Path_withOperationPathParam
+
+- Endpoint: `get /`
+
+Operation with client and method path parameters.
+
+Expected path parameter: apiVersion=v1.0, keyword=test
+
 ### SpecialWords_Operation_for
 
 - Endpoint: `get /special-words/operation/for`
