@@ -3,8 +3,8 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@doc("Illustrates parameterized @server")
-@scenarioService("/server/parameterized")
+@doc("Illustrates server with a single path parameter @server")
+@scenarioService("/server/path/single")
 @server(
   "{endpoint}",
   "Testserver endpoint",
@@ -13,7 +13,7 @@ using TypeSpec.Http;
     endpoint: url,
   }
 )
-namespace Server.Parameterized;
+namespace Server.Path.Single;
 
 @scenario
 @scenarioDoc("An simple operation in a parameterized server.")
