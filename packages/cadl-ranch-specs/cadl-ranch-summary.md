@@ -180,6 +180,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Arrays_ItemTypes_NullableFloatValue_get
+
+- Endpoint: `get /arrays/item-types/nullable-float`
+
+Expected Array response body:
+
+```json
+[1.2, null, 3.0]
+```
+
+### Arrays_ItemTypes_NullableFloatValue_put
+
+- Endpoint: `put /arrays/item-types/nullable-float`
+
+Expected Array input body:
+
+```json
+[1.2, null, 3.0]
+```
+
 ### Authentication_ApiKey_valid
 
 - Endpoint: `get /authentication/api-key/valid`
@@ -233,15 +253,226 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Clients_Parameters_Path_get
+### Azure_Core_createOrUpdate
 
-- Endpoint: `get /`
+- Endpoint: `get /azure/core`
+
+Should only generate models named User and UserOrder.
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
 
 Expected response body:
 
 ```json
-{ "id": 1 }
+{
+  "id": 1,
+  "name": "Madge"
+}
 ```
+
+### Azure_Core_createOrReplace
+
+- Endpoint: `get /azure/core`
+
+Should only generate models named User and UserOrder.
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+```
+
+### Azure_Core_get
+
+- Endpoint: `get /azure/core`
+
+Should only generate models named User and UserOrder.
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+```
+
+### Azure_Core_list
+
+- Endpoint: `get /azure/core`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+      "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+      "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
+    }
+  ]
+}
+```
+
+### Azure_Core_listWithPage
+
+- Endpoint: `get /azure/core/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_delete
+
+- Endpoint: `get /azure/core`
+
+Expected path parameter: id=1
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response of status code 204 with empty body.
+
+### Azure_Core_export
+
+- Endpoint: `get /azure/core`
+
+Should only generate models named User and UserOrder.
+
+Expected path parameter: id=1
+Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+````
+
+### Azure_Traits_get
+
+- Endpoint: `get /azure/traits`
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+Expected header parameters:
+
+- foo=123
+- if-match=valid
+- if-none-match=invalid
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
+- if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
+- x-ms-client-request-id=<any string>
+
+Expected response header: x-ms-client-request-id=<any string>
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+```
+
+### Azure_Traits_delete
+
+- Endpoint: `get /azure/traits`
+
+Expected path parameter:
+
+- id=1
+- api-version=2022-12-01-preview
+  Expected header parameters:
+- x-ms-client-request-id=<any string>
+
+Expected response headers:
+
+- x-ms-client-request-id=<any string>
+- Repeatability-Result=Accepted
+
+### CollectionFormat_testMulti
+
+- Endpoint: `get /collectionFormat/multi`
+
+This test is testing sending a multi collection format array query parameters
+
+### CollectionFormat_testCsv
+
+- Endpoint: `get /collectionFormat/csv`
+
+This test is testing sending a csv collection format array query parameters
+
+### CollectionFormat_testCsvHeader
+
+- Endpoint: `get /collectionFormat/csvHeader`
+
+This test is testing sending a csv collection format array header parameters
+
+### CollectionFormat_testDefaultHeader
+
+- Endpoint: `get /collectionFormat/defaultHeader`
+
+This test is testing sending a default collection format array header parameters
 
 ### Dictionary_Int32Value_get
 
@@ -455,6 +686,26 @@ Expected dictionary input body:
 }
 ```
 
+### Dictionary_NullableFloatValue_get
+
+- Endpoint: `get /dictionary/nullable-float`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
+```
+
+### Dictionary_NullableFloatValue_put
+
+- Endpoint: `put /dictionary/nullable-float`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
+```
+
 ### Enums_Extensible_String_getKnownValue
 
 - Endpoint: `get /enums/extensible/string/known-value`
@@ -507,6 +758,43 @@ This test is testing this payload is returned from the server
 "hello world"
 ```
 
+### Internal_getInternal
+
+- Endpoint: `get /internal/getInternal`
+
+This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Internal_postInternal
+
+- Endpoint: `post /internal/postInternal`
+
+This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
+Expected body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
 ### Azure_Lro_PollingSuccess
 
 - Endpoints:
@@ -514,7 +802,300 @@ This test is testing this payload is returned from the server
   - `put /lro/basic/put/polling`
   - `put /lro/basic/put`
 
-The polling url is in operation-location of response headers. Mock api finally return 'Test for polling succeed'
+Expected final response body:
+
+```json
+{
+  "name": "bob"
+}
+```
+
+### Azure_Lro_Core_createOrReplace
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named User.
+
+Expected verb: PUT
+Expected path parameter: name=madge
+
+Expected request body:
+
+```json
+{
+  "role": "contributor"
+}
+```
+
+Expected status code: 201
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
+}
+```
+
+(The last GET call on resource URL is optional)
+Expected verb: GET
+Expected URL: {endpoint}/users/madge
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+### Azure_Lro_Core_delete
+
+- Endpoint: `get /azure/lro/core`
+
+Expected verb: DELETE
+Expected path parameter: name=madge
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation2
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "Succeeded"
+}
+```
+
+### Azure_Lro_Core_export
+
+- Endpoint: `get /azure/lro/core`
+
+Should only generate one model named ExportedUser.
+
+Expected verb: POST
+Expected path parameter: name=madge
+Expected query parameter: format=json
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation3
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "Succeeded",
+  "result": {
+    "name": "madge",
+    "resourceUri": "/users/madge"
+  }
+}
+```
+
+### Azure_Lro_Rpc_SamePollResult
+
+- Endpoints:
+  - `get /azure/lro/rpc/same-poll-result/jobs`
+  - `get /azure/lro/rpc/same-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
+### Azure_Lro_Rpc_DifferentPollResult
+
+- Endpoints:
+  - `get /azure/lro/rpc/different-poll-result/jobs`
+  - `get /azure/lro/rpc/different-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
 
 ### Models_Inheritance_Discriminated_getModel
 
@@ -722,6 +1303,252 @@ Expected response body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Models_Property_Nullable_String_getNonNull
+
+- Endpoint: `get /models/properties/nullable/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Models_Property_Nullable_String_getNull
+
+- Endpoint: `get /models/properties/nullable/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_String_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Models_Property_Nullable_String_patchNull
+
+- Endpoint: `patch /models/properties/nullable/string/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Bytes_getNonNull
+
+- Endpoint: `get /models/properties/nullable/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Models_Property_Nullable_Bytes_getNull
+
+- Endpoint: `get /models/properties/nullable/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Bytes_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Models_Property_Nullable_Bytes_patchNull
+
+- Endpoint: `patch /models/properties/nullable/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Datetime_getNonNull
+
+- Endpoint: `get /models/properties/nullable/datetime/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Models_Property_Nullable_Datetime_getNull
+
+- Endpoint: `get /models/properties/nullable/datetime/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Datetime_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/datetime/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Models_Property_Nullable_Datetime_patchNull
+
+- Endpoint: `patch /models/properties/nullable/datetime/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Duration_getNonNull
+
+- Endpoint: `get /models/properties/nullable/duration/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Models_Property_Nullable_Duration_getNull
+
+- Endpoint: `get /models/properties/nullable/duration/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_Duration_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/duration/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Models_Property_Nullable_Duration_patchNull
+
+- Endpoint: `patch /models/properties/nullable/duration/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsByte_getNonNull
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Models_Property_Nullable_CollectionsByte_getNull
+
+- Endpoint: `get /models/properties/nullable/collections/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsByte_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Models_Property_Nullable_CollectionsByte_patchNull
+
+- Endpoint: `patch /models/properties/nullable/collections/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsModel_getNonNull
+
+- Endpoint: `get /models/properties/nullable/collections/model/non-null`
+
+Expected response body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Models_Property_Nullable_CollectionsModel_getNull
+
+- Endpoint: `get /models/properties/nullable/collections/model/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Models_Property_Nullable_CollectionsModel_patchNonNull
+
+- Endpoint: `patch /models/properties/nullable/collections/model/non-null`
+
+Expected request body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Models_Property_Nullable_CollectionsModel_patchNull
+
+- Endpoint: `patch /models/properties/nullable/collections/model/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
 ### Models_Property_Optional_String_getAll
 
 - Endpoint: `get /models/properties/optional/string/all`
@@ -749,7 +1576,7 @@ Expected response body:
 Expected request body:
 
 ```json
-hello
+{"property": hello}
 ```
 
 ### Models_Property_Optional_String_putDefault
@@ -789,7 +1616,7 @@ Expected response body:
 Expected request body:
 
 ```json
-aGVsbG8sIHdvcmxkIQ==
+{"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Models_Property_Optional_Bytes_putDefault
@@ -829,7 +1656,7 @@ Expected response body:
 Expected request body:
 
 ```json
-2022-08-26T18:38:00Z
+{"property": 2022-08-26T18:38:00Z}
 ```
 
 ### Models_Property_Optional_Datetime_putDefault
@@ -869,7 +1696,7 @@ Expected response body:
 Expected request body:
 
 ```json
-P123DT22H14M12.011S
+{"property": P123DT22H14M12.011S}
 ```
 
 ### Models_Property_Optional_Duration_putDefault
@@ -909,7 +1736,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]
+{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Models_Property_Optional_CollectionsByte_putDefault
@@ -949,7 +1776,7 @@ Expected response body:
 Expected request body:
 
 ```json
-[{ "property": "hello" }, { "property": "world" }]
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
 ### Models_Property_Optional_CollectionsModel_putDefault
@@ -1322,7 +2149,7 @@ Send a POST request which return the following body {requiredProp: "example-valu
 
 ### Models_Visibility_Automatic_getModel
 
-- Endpoint: `get /models/visibility`
+- Endpoint: `get /models/visibility/automatic`
 
 Generate and receive output model with readonly properties.
 Expected input body:
@@ -1343,7 +2170,7 @@ Expected response body:
 
 ### Models_Visibility_Automatic_headModel
 
-- Endpoint: `head /models/visibility`
+- Endpoint: `head /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1356,7 +2183,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_putModel
 
-- Endpoint: `put /models/visibility`
+- Endpoint: `put /models/visibility/automatic`
 
 Generate abd send put model with write/create/update properties.
 Expected input body:
@@ -1370,7 +2197,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_patchModel
 
-- Endpoint: `patch /models/visibility`
+- Endpoint: `patch /models/visibility/automatic`
 
 Generate abd send put model with write/update properties.
 Expected input body:
@@ -1383,7 +2210,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_postModel
 
-- Endpoint: `post /models/visibility`
+- Endpoint: `post /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1396,7 +2223,7 @@ Expected input body:
 
 ### Models_Visibility_Automatic_deleteModel
 
-- Endpoint: `delete /models/visibility`
+- Endpoint: `delete /models/visibility/automatic`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1405,6 +2232,36 @@ Expected input body:
 {
   "deleteProp": true
 }
+```
+
+### ProjectedName_jsonProjection
+
+- Endpoint: `post /projection/json`
+
+CADL name is SDK, Projection is JSON name. Send:
+
+```json
+{ "codegen": "DPG" }
+```
+
+### ProjectedName_clientProjection
+
+- Endpoint: `post /projection/client`
+
+CADL name is JSON, Projection is client name. Send:
+
+```json
+{ "builtfrom": "DPG" }
+```
+
+### ProjectedName_languageProjection
+
+- Endpoint: `post /projection/language`
+
+CADL name is JSON, Projection is client name per language override. Send:
+
+```json
+{ "wasMadeFor": "customers" }
 ```
 
 ### Resiliency_DevDriven_getModel
@@ -1431,17 +2288,22 @@ This method requires to write 2 tests.
   - With DPG 1.0, write a model Input("world!"), serialize to input write your own model to parse `{"received": "model"}`
   - With DPG 2.0, generate the convenience method to pass Input("world!") and read Product model with "received" to "model"
 
-### Resiliency_DevDriven_getPages
+### Resiliency_DevDriven_getProtocolPages
 
-- Endpoint: `get /resiliency/devdriven/customization/paging/{mode}`
+- Endpoint: `get /resiliency/devdriven/customization/paging/protocol`
 
-Show that you can support both protocol methods and convenience method for a Paging operation.
-This method requires to write 2 tests.
+Show that you can support protocol methods for a Paging operation.
+Call with "protocol" and confirm you can read a JSON `{"received": "protocol"}` on page 2.
 
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}` on page 2.
-- Test 2 varies:
-  - With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model" on page 2
+### Resiliency_DevDriven_getConveniencePages
+
+- Endpoint: `get /resiliency/devdriven/customization/paging/convenience`
+
+Show that you can support convenience methods for a Paging operation.
+This test varies:
+
+- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "convenience"}`
+- With DPG 2.0, generate the convenience method to read Product model with "received" to "convenience" on page 2
 
 ### Resiliency_DevDriven_lro
 
@@ -1546,6 +2408,12 @@ The value you pass for the parameter is not verified by the mock server.
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
 
+### Server_Parameterized_myOp
+
+- Endpoint: `head /server/parameterized/myOp`
+
+An simple operation in a parameterized server.
+
 ### SpecialWords_Operation_for
 
 - Endpoint: `get /special-words/operation/for`
@@ -1590,4 +2458,44 @@ Expected input body:
   "derived.name": "my.name",
   "for": "value"
 }
+```
+
+### Unions_sendInt
+
+- Endpoint: `post /unions/int`
+
+This test is testing sending an int value in simple union property.
+
+```json
+{ "simpleUnion": 1 }
+```
+
+### Unions_sendIntArray
+
+- Endpoint: `post /unions/int-array`
+
+This test is testing sending an int array value in simple union property.
+
+```json
+{ "simpleUnion": [1, 2] }
+```
+
+### Unions_sendFirstNamedUnionValue
+
+- Endpoint: `post /unions/model1`
+
+This test is testing sending the first union value in named union property.
+
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+
+### Unions_sendSecondNamedUnionValue
+
+- Endpoint: `post /unions/model2`
+
+This test is testing sending the second union value in named union property.
+
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
 ```

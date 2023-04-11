@@ -15,6 +15,6 @@ Scenarios.Azure_Lro_PollingSuccess = passOnSuccess([
     return { status: 200, body: json({ status: "Succeeded" }) };
   }),
   mockapi.get("/lro/basic/put", (req) => {
-    return { status: 200, body: json("Test for polling succeed") };
+    return { status: 200, body: json({ name: "bob" }) };
   }),
 ]);

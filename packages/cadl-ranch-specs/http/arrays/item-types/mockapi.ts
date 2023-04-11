@@ -12,7 +12,7 @@ interface MockApiGetPut {
  * @param route The route within /dictionary for your function.
  * @param value The value you are expecting and will return.
  */
-function createModelMockApis(route: string, value: any): MockApiGetPut {
+function createModelMockApis(route: string, value: any[]): MockApiGetPut {
   const url = `/arrays/item-types/${route}`;
   return {
     get: mockapi.get(url, (req) => {
@@ -22,7 +22,7 @@ function createModelMockApis(route: string, value: any): MockApiGetPut {
       };
     }),
     put: mockapi.put(url, (req) => {
-      req.expect.bodyEquals(value);
+      req.expect.coercedBodyEquals(value);
       return {
         status: 204,
       };
@@ -65,3 +65,7 @@ Scenarios.Arrays_ItemTypes_UnknownValue_put = passOnSuccess(UnknownValueMock.put
 const ModelValueMock = createModelMockApis("model", [{ property: "hello" }, { property: "world" }]);
 Scenarios.Arrays_ItemTypes_ModelValue_get = passOnSuccess(ModelValueMock.get);
 Scenarios.Arrays_ItemTypes_ModelValue_put = passOnSuccess(ModelValueMock.put);
+
+const NullableFloatMock = createModelMockApis("nullable-float", [[1.2, null, 3.0]]);
+Scenarios.Arrays_ItemTypes_NullableFloatValue_get = passOnSuccess(NullableFloatMock.get);
+Scenarios.Arrays_ItemTypes_NullableFloatValue_put = passOnSuccess(NullableFloatMock.put);

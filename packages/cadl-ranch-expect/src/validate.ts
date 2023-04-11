@@ -6,14 +6,14 @@ import {
   navigateProgram,
   Operation,
   Program,
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import { getScenarioDoc, getScenarioName } from "./decorators.js";
 import { reportDiagnostic } from "./lib.js";
 
 export function $onValidate(program: Program) {
   navigateProgram(program, {
     operation: (operation) => {
-      if (isTemplateDeclaration(operation) || (operation.interface && isTemplateDeclaration(operation.interface))) {
+      if ((operation.interface && isTemplateDeclaration(operation.interface)) || isTemplateDeclaration(operation)) {
         return;
       }
       if (getSourceLocation(operation).file.path.includes("/node_modules/")) {

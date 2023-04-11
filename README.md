@@ -79,6 +79,13 @@ Make sure to run the following commands:
 
 Go through [PR checklist](./.github/pull_request_template.md)
 
+### Release a new version
+
+1. Run `pnpm changeset version` to bump the versions according to the changesets.
+2. Make a new branch called `publish/<xyz>`
+3. Make a PR and merge
+4. The packages with a new version should get automatically bumped
+
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft

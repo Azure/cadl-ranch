@@ -1,5 +1,173 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.10.1
+
+### Patch Changes
+
+- ef38bb8: Fix the nullable path issue
+- ba682b7: Support validating collection format and update related mock tests
+- Updated dependencies [ba682b7]
+  - @azure-tools/cadl-ranch-api@0.2.2
+  - @azure-tools/cadl-ranch@0.4.3
+
+## 0.10.0
+
+### Minor Changes
+
+- ac96083: have lro-basic return a model instead of string
+- 30f8cb7: Add LongRunningResourceCreateOrReplace, LongRunningResourceDelete, LongRunningResourceAction to Azure.Lro.Core operations tests
+
+### Patch Changes
+
+- 4b33715: Add test cases for nullable values
+- 43322db: Add test for internal
+
+## 0.9.3
+
+### Patch Changes
+
+- [#240](https://github.com/Azure/cadl-ranch/pull/240) [`6bc4639`](https://github.com/Azure/cadl-ranch/commit/6bc463939a70b57a51e4e0f23039ddf1f0f3e921) Thanks [@tadelesh](https://github.com/tadelesh)! - rename _.cadl to _.tsp
+
+- Updated dependencies [[`6bc4639`](https://github.com/Azure/cadl-ranch/commit/6bc463939a70b57a51e4e0f23039ddf1f0f3e921), [`00e98ee`](https://github.com/Azure/cadl-ranch/commit/00e98eead076345e66a2982f44653ab7084f3e5f)]:
+  - @azure-tools/cadl-ranch@0.4.2
+
+## 0.9.2
+
+### Patch Changes
+
+- [#235](https://github.com/Azure/cadl-ranch/pull/235) [`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump typespec versions to 0.42.0
+
+- Updated dependencies [[`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8)]:
+  - @azure-tools/cadl-ranch@0.4.1
+  - @azure-tools/cadl-ranch-api@0.2.1
+  - @azure-tools/cadl-ranch-expect@0.2.1
+
+## 0.9.1
+
+### Patch Changes
+
+- [#231](https://github.com/Azure/cadl-ranch/pull/231) [`affbe52`](https://github.com/Azure/cadl-ranch/commit/affbe52e4d722c8b6f942479c722ae7983226d2e) Thanks [@iscai-msft](https://github.com/iscai-msft)! - fix http imports in cadl specs
+
+## 0.9.0
+
+### Minor Changes
+
+- [#228](https://github.com/Azure/cadl-ranch/pull/228) [`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7) Thanks [@iscai-msft](https://github.com/iscai-msft)! - switch to typespec packages
+
+### Patch Changes
+
+- [#227](https://github.com/Azure/cadl-ranch/pull/227) [`7690e77`](https://github.com/Azure/cadl-ranch/commit/7690e772980bdc68714452bf2e4348c6834bb6ed) Thanks [@chunyu3](https://github.com/chunyu3)! - add collection header test
+
+- Updated dependencies [[`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7)]:
+  - @azure-tools/cadl-ranch@0.4.0
+  - @azure-tools/cadl-ranch-api@0.2.0
+  - @azure-tools/cadl-ranch-expect@0.2.0
+
+## 0.8.1
+
+### Patch Changes
+
+- [#213](https://github.com/Azure/cadl-ranch/pull/213) [`b47c445`](https://github.com/Azure/cadl-ranch/commit/b47c44524c88aa4a68b67fa9b4fb4c897f97771e) Thanks [@chunyu3](https://github.com/chunyu3)! - Update the collectionFormat mockapi.
+
+- [#216](https://github.com/Azure/cadl-ranch/pull/216) [`2ce9612`](https://github.com/Azure/cadl-ranch/commit/2ce96123f54c412a26d447ebac34d433dbe7b3f4) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - update mock response for collection format test case
+
+- [#214](https://github.com/Azure/cadl-ranch/pull/214) [`ce1ee18`](https://github.com/Azure/cadl-ranch/commit/ce1ee18cea64d665e51d2f3da496adb3bdf57300) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Add cases customizations with azure.core parameters and traits.
+
+- [#218](https://github.com/Azure/cadl-ranch/pull/218) [`2800a19`](https://github.com/Azure/cadl-ranch/commit/2800a19caabbb6bccf89d28492fbd02b234ee50b) Thanks [@archerzz](https://github.com/archerzz)! - fix test case on discriminator
+
+## 0.8.0
+
+### Minor Changes
+
+- [#210](https://github.com/Azure/cadl-ranch/pull/210) [`41a966f`](https://github.com/Azure/cadl-ranch/commit/41a966fefa9c9d32e7afc561ac66a89ac4ea6484) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Support versioning to azure/core test, validate the api-version in mockapi
+
+### Patch Changes
+
+- [#212](https://github.com/Azure/cadl-ranch/pull/212) [`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c) Thanks [@qiaozha](https://github.com/qiaozha)! - add collection format test
+
+- [#204](https://github.com/Azure/cadl-ranch/pull/204) [`7d51edb`](https://github.com/Azure/cadl-ranch/commit/7d51edb53af6363b305562d02b728291abfaa46e) Thanks [@changlong-liu](https://github.com/changlong-liu)! - add test of unions
+
+- [#211](https://github.com/Azure/cadl-ranch/pull/211) [`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265) Thanks [@pshao25](https://github.com/pshao25)! - Fix datetime compare issue
+
+- Updated dependencies [[`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c), [`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265)]:
+  - @azure-tools/cadl-ranch@0.3.1
+  - @azure-tools/cadl-ranch-api@0.1.13
+
+## 0.7.0
+
+### Minor Changes
+
+- [#200](https://github.com/Azure/cadl-ranch/pull/200) [`3cf55c0`](https://github.com/Azure/cadl-ranch/commit/3cf55c07c648b3ac4c93695fcfac6b5a62069c93) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Use ResourceOperations for Azure.Core Preview2
+
+- [#202](https://github.com/Azure/cadl-ranch/pull/202) [`9975660`](https://github.com/Azure/cadl-ranch/commit/997566096547313802830ee1c3d147882bfeabbf) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Add ResourceCreateOrReplace, ResourceRead, ResourceList, ResourceDelete, ResourceAction to Azure.Core operations tests
+
+### Patch Changes
+
+- [#207](https://github.com/Azure/cadl-ranch/pull/207) [`131e76f`](https://github.com/Azure/cadl-ranch/commit/131e76f54230066d7152c7bb3fa170d0a769542d) Thanks [@pshao25](https://github.com/pshao25)! - Remove the convenientAPI decorator from array spec
+
+- [#208](https://github.com/Azure/cadl-ranch/pull/208) [`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl to 0.40.0
+
+- Updated dependencies [[`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d), [`68ac3cc`](https://github.com/Azure/cadl-ranch/commit/68ac3ccc553645284f39254c558bc0e4f24c85c8)]:
+  - @azure-tools/cadl-ranch@0.3.0
+  - @azure-tools/cadl-ranch-api@0.1.12
+  - @azure-tools/cadl-ranch-expect@0.1.16
+
+## 0.6.7
+
+### Patch Changes
+
+- [#195](https://github.com/Azure/cadl-ranch/pull/195) [`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520) Thanks [@lmazuel](https://github.com/lmazuel)! - Update some Readme descriptions for clarity
+
+- [#198](https://github.com/Azure/cadl-ranch/pull/198) [`92503ae`](https://github.com/Azure/cadl-ranch/commit/92503ae7cbf675b5ac4a60e515da00548cf7fce2) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix @convenientAPI in arrays/item-types/main.cadl
+
+- Updated dependencies [[`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520)]:
+  - @azure-tools/cadl-ranch@0.2.16
+
+## 0.6.6
+
+### Patch Changes
+
+- [#191](https://github.com/Azure/cadl-ranch/pull/191) [`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Move to CADL 0.39 as a baseline
+
+- [#192](https://github.com/Azure/cadl-ranch/pull/192) [`2c90d3a`](https://github.com/Azure/cadl-ranch/commit/2c90d3adb812296e7119be4dfa407f75e170e1ab) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix visibility url in cadl.
+
+- [#190](https://github.com/Azure/cadl-ranch/pull/190) [`97a653e`](https://github.com/Azure/cadl-ranch/commit/97a653e4b9765431b4046c8acd961d1a9eb71878) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Adding a testcase for parameterized server.
+
+- Updated dependencies [[`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2), [`2c90d3a`](https://github.com/Azure/cadl-ranch/commit/2c90d3adb812296e7119be4dfa407f75e170e1ab)]:
+  - @azure-tools/cadl-ranch@0.2.15
+  - @azure-tools/cadl-ranch-api@0.1.11
+  - @azure-tools/cadl-ranch-expect@0.1.15
+
+## 0.6.5
+
+### Patch Changes
+
+- [#186](https://github.com/Azure/cadl-ranch/pull/186) [`8b31efb`](https://github.com/Azure/cadl-ranch/commit/8b31efb60165fb72baed943bafc037b94981dad4) Thanks [@lmazuel](https://github.com/lmazuel)! - Add projection tests
+
+- Updated dependencies [[`8b31efb`](https://github.com/Azure/cadl-ranch/commit/8b31efb60165fb72baed943bafc037b94981dad4)]:
+  - @azure-tools/cadl-ranch@0.2.14
+
+## 0.6.4
+
+### Patch Changes
+
+- [#184](https://github.com/Azure/cadl-ranch/pull/184) [`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update templated spec to be under Azure.Core category
+
+- [#162](https://github.com/Azure/cadl-ranch/pull/162) [`1df7329`](https://github.com/Azure/cadl-ranch/commit/1df732912a4785da7a3e692386a3206dccf06b45) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Add template tests
+
+- Updated dependencies [[`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2)]:
+  - @azure-tools/cadl-ranch-expect@0.1.14
+  - @azure-tools/cadl-ranch@0.2.13
+
+## 0.6.3
+
+### Patch Changes
+
+- [#181](https://github.com/Azure/cadl-ranch/pull/181) [`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update url of visibility mock api
+
+- Updated dependencies [[`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba)]:
+  - @azure-tools/cadl-ranch@0.2.12
+
 ## 0.6.2
 
 ### Patch Changes

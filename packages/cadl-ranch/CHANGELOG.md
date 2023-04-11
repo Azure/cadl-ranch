@@ -1,5 +1,108 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [ba682b7]
+  - @azure-tools/cadl-ranch-api@0.2.2
+
+## 0.4.2
+
+### Patch Changes
+
+- [#240](https://github.com/Azure/cadl-ranch/pull/240) [`6bc4639`](https://github.com/Azure/cadl-ranch/commit/6bc463939a70b57a51e4e0f23039ddf1f0f3e921) Thanks [@tadelesh](https://github.com/tadelesh)! - rename _.cadl to _.tsp
+
+- [#241](https://github.com/Azure/cadl-ranch/pull/241) [`00e98ee`](https://github.com/Azure/cadl-ranch/commit/00e98eead076345e66a2982f44653ab7084f3e5f) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Version bump
+
+## 0.4.1
+
+### Patch Changes
+
+- [#235](https://github.com/Azure/cadl-ranch/pull/235) [`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump typespec versions to 0.42.0
+
+- Updated dependencies [[`48d4408`](https://github.com/Azure/cadl-ranch/commit/48d440866691302b1ccb692c4df8f7da581fafa8)]:
+  - @azure-tools/cadl-ranch-api@0.2.1
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.1
+  - @azure-tools/cadl-ranch-expect@0.2.1
+
+## 0.4.0
+
+### Minor Changes
+
+- [#228](https://github.com/Azure/cadl-ranch/pull/228) [`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7) Thanks [@iscai-msft](https://github.com/iscai-msft)! - switch to typespec packages
+
+### Patch Changes
+
+- Updated dependencies [[`324634d`](https://github.com/Azure/cadl-ranch/commit/324634dab77bd46dba5205d29f63ea9294f078f7)]:
+  - @azure-tools/cadl-ranch-api@0.2.0
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.0
+  - @azure-tools/cadl-ranch-expect@0.2.0
+
+## 0.3.1
+
+### Patch Changes
+
+- [#212](https://github.com/Azure/cadl-ranch/pull/212) [`ffbb8f1`](https://github.com/Azure/cadl-ranch/commit/ffbb8f1d53314114d2befc15ec4bcb0c3e48782c) Thanks [@qiaozha](https://github.com/qiaozha)! - add collection format test
+
+- Updated dependencies [[`5ec32d9`](https://github.com/Azure/cadl-ranch/commit/5ec32d9926ad3433c22bdf3648eace31b36c9265)]:
+  - @azure-tools/cadl-ranch-api@0.1.13
+
+## 0.3.0
+
+### Minor Changes
+
+- [#203](https://github.com/Azure/cadl-ranch/pull/203) [`68ac3cc`](https://github.com/Azure/cadl-ranch/commit/68ac3ccc553645284f39254c558bc0e4f24c85c8) Thanks [@weidongxu-microsoft](https://github.com/weidongxu-microsoft)! - Server support application/merge-patch+json
+
+### Patch Changes
+
+- [#208](https://github.com/Azure/cadl-ranch/pull/208) [`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d) Thanks [@iscai-msft](https://github.com/iscai-msft)! - bump cadl to 0.40.0
+
+- Updated dependencies [[`2279600`](https://github.com/Azure/cadl-ranch/commit/22796008a07dcc5eafe3cac5417e0b0ed822b20d)]:
+  - @azure-tools/cadl-ranch-api@0.1.12
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.5
+  - @azure-tools/cadl-ranch-expect@0.1.16
+
+## 0.2.16
+
+### Patch Changes
+
+- [#195](https://github.com/Azure/cadl-ranch/pull/195) [`3ef3ddf`](https://github.com/Azure/cadl-ranch/commit/3ef3ddf99c0a25ecabec8054711724ad73c01520) Thanks [@lmazuel](https://github.com/lmazuel)! - Update some Readme descriptions for clarity
+
+## 0.2.15
+
+### Patch Changes
+
+- [#191](https://github.com/Azure/cadl-ranch/pull/191) [`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2) Thanks [@iscai-msft](https://github.com/iscai-msft)! - Move to CADL 0.39 as a baseline
+
+- [#192](https://github.com/Azure/cadl-ranch/pull/192) [`2c90d3a`](https://github.com/Azure/cadl-ranch/commit/2c90d3adb812296e7119be4dfa407f75e170e1ab) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - fix visibility url in cadl.
+
+- Updated dependencies [[`92449fd`](https://github.com/Azure/cadl-ranch/commit/92449fd5bbf4adf8db9e80a955c311a14a148dd2)]:
+  - @azure-tools/cadl-ranch-api@0.1.11
+  - @azure-tools/cadl-ranch-coverage-sdk@0.1.4
+  - @azure-tools/cadl-ranch-expect@0.1.15
+
+## 0.2.14
+
+### Patch Changes
+
+- [#186](https://github.com/Azure/cadl-ranch/pull/186) [`8b31efb`](https://github.com/Azure/cadl-ranch/commit/8b31efb60165fb72baed943bafc037b94981dad4) Thanks [@lmazuel](https://github.com/lmazuel)! - Add projection tests
+
+## 0.2.13
+
+### Patch Changes
+
+- [#184](https://github.com/Azure/cadl-ranch/pull/184) [`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update templated spec to be under Azure.Core category
+
+- Updated dependencies [[`e3bd97c`](https://github.com/Azure/cadl-ranch/commit/e3bd97cbea74f5171e28b753478fe82ad628f7a2)]:
+  - @azure-tools/cadl-ranch-expect@0.1.14
+
+## 0.2.12
+
+### Patch Changes
+
+- [#181](https://github.com/Azure/cadl-ranch/pull/181) [`311bdaf`](https://github.com/Azure/cadl-ranch/commit/311bdaf58ab691d5f3f4b131561609fdb54686ba) Thanks [@timotheeguerin](https://github.com/timotheeguerin)! - Update url of visibility mock api
+
 ## 0.2.11
 
 ### Patch Changes

@@ -21,7 +21,7 @@
     "generate-scenarios-summary": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run generate-scenarios-summary",
     "upload-manifest": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run upload-manifest",
     "prettier": "prettier --config ./.prettierrc.yaml **/*.{ts,js,cjs,mjs,json,yml,yaml,md,cadl}",
-    "cspell": "cspell **/*.md **/*.ts **/*.cadl"
+    "cspell": "cspell **/*.md **/*.ts **/*.tsp"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
-    "@cadl-lang/prettier-plugin-cadl": "~0.38.0",
+    "@typespec/prettier-plugin-typespec": "~0.42.0",
     "@changesets/cli": "^2.24.4",
     "cspell": "^6.8.1",
     "eslint": "^8.23.1",
@@ -53,8 +53,5 @@
   },
   "syncpack": {
     "workspace": false
-  },
-  "dependencies": {
-    "@changesets/changelog-github": "^0.4.6"
   }
 }

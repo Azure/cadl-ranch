@@ -2,14 +2,14 @@ import {
   $service,
   createDecoratorDefinition,
   DecoratorContext,
-  getServiceNamespace,
   Interface,
+  listServices,
   Model,
   Namespace,
   Operation,
   Program,
-} from "@cadl-lang/compiler";
-import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@cadl-lang/rest/http";
+} from "@typespec/compiler";
+import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
@@ -96,7 +96,7 @@ export interface ScenarioEndpoint {
 }
 
 export function listScenarios(program: Program): Scenario[] {
-  const serviceNamespace = getServiceNamespace(program);
+  const serviceNamespace = listServices(program)[0].type;
   if (serviceNamespace === undefined) {
     return [];
   }
@@ -179,7 +179,10 @@ function resolveScenarioName(target: Operation | Interface | Namespace, name: st
   let current: Operation | Interface | Namespace | undefined = target;
   while (true) {
     current = current.kind === "Operation" && current.interface ? current.interface : current.namespace;
-    if (current === undefined || (current.kind === "Namespace" && current.name === "")) {
+    if (
+      current === undefined ||
+      (current.kind === "Namespace" && (current.name === "" || current.name === "_Specs_"))
+    ) {
       break;
     }
     names.unshift(current.name);

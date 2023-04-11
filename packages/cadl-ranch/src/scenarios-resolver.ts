@@ -1,9 +1,9 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
-import { Operation } from "@cadl-lang/compiler";
+import { Operation } from "@typespec/compiler";
 import { join, relative, resolve } from "path";
 import { pathToFileURL } from "url";
-import { importCadl, importCadlRanchExpect, importCadlRest } from "./cadl-utils/index.js";
+import { importTypeSpec, importCadlRanchExpect, importTypeSpecHttp } from "./cadl-utils/index.js";
 import { logger } from "./logger.js";
 import { findFilesFromPattern } from "./utils/file-utils.js";
 import {
@@ -27,22 +27,22 @@ interface CadlRanchScenarioFile {
 
 export async function findScenarioCadlFiles(scenariosPath: string): Promise<CadlRanchScenarioFile[]> {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = `${normalizePath(scenariosPath)}/**/main.cadl`;
+  const pattern = `${normalizePath(scenariosPath)}/**/main.tsp`;
   logger.debug(`Looking for scenarios in ${pattern}`);
   const scenarios = await findFilesFromPattern(pattern);
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
-    name: normalizePath(relative(scenariosPath, name)).replace("/main.cadl", ""),
+    name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", ""),
     cadlFilePath: resolve(scenariosPath, name),
   }));
 }
 
 export async function loadScenarios(scenariosPath: string): Promise<[Scenario[], readonly Diagnostic[]]> {
   const scenarioFiles = await findScenarioCadlFiles(scenariosPath);
-  const cadlCompiler = await importCadl(scenariosPath);
+  const typespecCompiler = await importTypeSpec(scenariosPath);
   const cadlRanchExpect = await importCadlRanchExpect(scenariosPath);
-  const cadlRest = await importCadlRest(scenariosPath);
+  const typespecHttp = await importTypeSpecHttp(scenariosPath);
 
   const scenarioNames = new Map<string, Scenario[]>();
   const endpoints = new Map<string, Operation[]>();
@@ -50,15 +50,27 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
 
   for (const { name, cadlFilePath } of scenarioFiles) {
     logger.debug(`Found scenario "${cadlFilePath}"`);
-    const program = await cadlCompiler.compile(cadlCompiler.NodeHost, cadlFilePath, {
+    const program = await typespecCompiler.compile(typespecCompiler.NodeHost, cadlFilePath, {
       additionalImports: ["@azure-tools/cadl-ranch-expect"],
       noEmit: true,
       warningAsError: true,
     });
 
-    if (program.diagnostics.length > 0) {
-      for (const item of program.diagnostics) {
-        const sourceLocation = cadlCompiler.getSourceLocation(item.target);
+    // Workaround https://github.com/Azure/cadl-azure/issues/2458
+    const programDiagnostics = program.diagnostics.filter(
+      (d) =>
+        !(
+          d.code === "@azure-tools/typespec-azure-core/casing-style" &&
+          typeof d.target === "object" &&
+          "kind" in d.target &&
+          d.target.kind === "Namespace" &&
+          d.target.name === "DPG"
+        ),
+    );
+
+    if (programDiagnostics.length > 0) {
+      for (const item of programDiagnostics) {
+        const sourceLocation = typespecCompiler.getSourceLocation(item.target);
         diagnostics.reportDiagnostic({
           message: `${item.message}: ${sourceLocation && getSourceLocationStr(sourceLocation)}`,
         });
@@ -80,7 +92,7 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
         scenarioNames.set(scenario.name, [scenario]);
       }
     }
-    for (const route of cadlRest.http.getAllRoutes(program)[0]) {
+    for (const route of typespecCompiler.ignoreDiagnostics(typespecHttp.getAllHttpServices(program))[0].operations) {
       const key = `${route.verb} ${route.path}`;
       const existing = endpoints.get(key);
       if (existing) {

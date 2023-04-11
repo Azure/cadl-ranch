@@ -1,11 +1,16 @@
 name: Release
 
-on:
-  push:
-    branches:
-      - main
+# Disable as MS Org doesn't allow github action to create PR anymore. Can be re-added if a solution is found.
+# on:
+#   push:
+#     branches:
+#       - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   release:
@@ -20,7 +25,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: npm install -g pnpm
+      - run: npm install -g pnpm@7.27.1
         name: Install PNPM
 
       - run: pnpm install
@@ -34,13 +39,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.blog/changelog/2022-09-08-github-actions-use-github_token-with-workflow_dispatch-and-repository_dispatch/
-      - name: Trigger CI
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'ci.yml',
-              ref: "changeset-release/main",
-            })
+      # - name: Trigger CI
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       github.rest.actions.createWorkflowDispatch({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         workflow_id: 'ci.yml',
+      #         ref: "changeset-release/main",
+      #       })

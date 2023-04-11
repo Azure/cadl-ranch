@@ -2,17 +2,21 @@ import { realpath, readFile, stat } from "fs/promises";
 import { pathToFileURL } from "url";
 import { ResolveModuleHost, resolveModule } from "./module-resolver.js";
 
-export async function importCadl(baseDir: string): Promise<typeof import("@cadl-lang/compiler")> {
-  return importCadlLibrary("@cadl-lang/compiler", baseDir);
+export async function importTypeSpec(baseDir: string): Promise<typeof import("@typespec/compiler")> {
+  return importTypeSpecLibrary("@typespec/compiler", baseDir);
 }
 export async function importCadlRanchExpect(baseDir: string): Promise<typeof import("@azure-tools/cadl-ranch-expect")> {
-  return importCadlLibrary("@azure-tools/cadl-ranch-expect", baseDir);
+  return importTypeSpecLibrary("@azure-tools/cadl-ranch-expect", baseDir);
 }
-export async function importCadlRest(baseDir: string): Promise<typeof import("@cadl-lang/rest")> {
-  return importCadlLibrary("@cadl-lang/rest", baseDir);
+export async function importTypeSpecRest(baseDir: string): Promise<typeof import("@typespec/rest")> {
+  return importTypeSpecLibrary("@typespec/rest", baseDir);
 }
 
-export async function importCadlLibrary(name: string, baseDir: string): Promise<any> {
+export async function importTypeSpecHttp(baseDir: string): Promise<typeof import("@typespec/http")> {
+  return importTypeSpecLibrary("@typespec/http", baseDir);
+}
+
+export async function importTypeSpecLibrary(name: string, baseDir: string): Promise<any> {
   try {
     const host: ResolveModuleHost = {
       realpath,

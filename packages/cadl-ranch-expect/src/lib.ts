@@ -1,4 +1,4 @@
-import { createCadlLibrary, paramMessage } from "@cadl-lang/compiler";
+import { createCadlLibrary, paramMessage } from "@typespec/compiler";
 
 const repoUrl = `https://github.com/Azure/cadl-ranch`;
 

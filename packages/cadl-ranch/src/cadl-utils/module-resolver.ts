@@ -1,4 +1,4 @@
-import { getDirectoryPath, joinPaths, resolvePath } from "@cadl-lang/compiler";
+import { getDirectoryPath, joinPaths, resolvePath } from "@typespec/compiler";
 
 export interface ResolveModuleOptions {
   baseDir: string;

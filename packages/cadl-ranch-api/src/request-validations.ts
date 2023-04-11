@@ -1,5 +1,5 @@
 import deepEqual from "deep-equal";
-import { RequestExt } from "./types.js";
+import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
@@ -42,7 +42,7 @@ export const validateCoercedDateBodyEquals = (request: RequestExt, expectedBody:
     return;
   }
 
-  if (!deepEqual(request.body, expectedBody, { strict: true })) {
+  if (!deepEqual(coerceDate(request.body), expectedBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedBody, request.body);
   }
 };
@@ -91,10 +91,38 @@ export const validateHeader = (request: RequestExt, headerName: string, expected
 
 /**
  * Check whether the query string contains the given parameter name and value.
+ * Supports query param as string or collection. e.g. if it's a collection, one can call the method like this: validateQueryParam(request, ["a", "b", "c"], CollectionFormat.Multi)
  */
-export const validateQueryParam = (request: RequestExt, paramName: string, expected: string): void => {
+export const validateQueryParam = (
+  request: RequestExt,
+  paramName: string,
+  expected: string | string[],
+  collectionFormat?: CollectionFormat,
+): void => {
   const actual = request.query[paramName];
-  if (actual !== expected) {
+  let isExpected = false;
+  if (collectionFormat && Array.isArray(expected)) {
+    // verify query parameter as collection
+    if (collectionFormat === CollectionFormat.Multi && Array.isArray(actual)) {
+      isExpected = deepEqual(actual, expected);
+    } else if (collectionFormat === CollectionFormat.CSV && typeof actual === "string") {
+      const expectedString = expected.join(",");
+      isExpected = expectedString === decodeURIComponent(actual);
+    }
+    if (!isExpected) {
+      throw new ValidationError(
+        `Expected query param collection ${paramName}=${expected} in ${collectionFormat}, but got ${actual}`,
+        expected,
+        actual,
+      );
+    }
+  } else if (actual !== expected) {
     throw new ValidationError(`Expected query param ${paramName}=${expected} but got ${actual}`, expected, actual);
   }
+};
+
+const coerceDate = (targetObject: Record<string, unknown>): Record<string, unknown> => {
+  let stringRep = JSON.stringify(targetObject);
+  stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)(\.\d{3,7})?([Zz]|[+-]00:00)/g, "$1Z");
+  return JSON.parse(stringRep);
 };
