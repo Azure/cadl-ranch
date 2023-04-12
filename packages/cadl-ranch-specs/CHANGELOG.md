@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.11.2
+
+### Patch Changes
+
+- dd5b5f1: fix collectionformat tests
+
 ## 0.11.1
 
 ### Patch Changes
