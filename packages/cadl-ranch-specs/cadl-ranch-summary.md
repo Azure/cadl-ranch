@@ -2224,7 +2224,7 @@ This test is testing sending a csv collection format array query parameters
 
 ### Parameters_CollectionFormat_Header_csv
 
-- Endpoint: `get /parameters/collection-format/header/csvHeader`
+- Endpoint: `get /parameters/collection-format/header/csv`
 
 This test is testing sending a csv collection format array header parameters
 
