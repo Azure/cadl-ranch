@@ -66,6 +66,6 @@ const ModelValueMock = createModelMockApis("model", [{ property: "hello" }, { pr
 Scenarios.Arrays_ItemTypes_ModelValue_get = passOnSuccess(ModelValueMock.get);
 Scenarios.Arrays_ItemTypes_ModelValue_put = passOnSuccess(ModelValueMock.put);
 
-const NullableFloatMock = createModelMockApis("nullable-float", [[1.2, null, 3.0]]);
+const NullableFloatMock = createModelMockApis("nullable-float", [1.2, null, 3.0]);
 Scenarios.Arrays_ItemTypes_NullableFloatValue_get = passOnSuccess(NullableFloatMock.get);
 Scenarios.Arrays_ItemTypes_NullableFloatValue_put = passOnSuccess(NullableFloatMock.put);
