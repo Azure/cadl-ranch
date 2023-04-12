@@ -47,7 +47,7 @@ namespace Header {
   @scenarioDoc("""
 This test is testing sending a csv collection format array header parameters
 """)
-  @route("/csvHeader")
+  @route("/csv")
   op csv(
     @doc("Possible values for colors are [blue,red,green]")
     @header({

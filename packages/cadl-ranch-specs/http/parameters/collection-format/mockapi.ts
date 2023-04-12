@@ -7,7 +7,7 @@ Scenarios.Parameters_CollectionFormat_Query_multi = passOnSuccess(
   mockapi.get("/parameters/collection-format/query/multi", (req) => {
     req.expect.containsQueryParam("colors", ["blue", "red", "green"], "multi");
     return {
-      status: 200,
+      status: 204,
     };
   }),
 );
@@ -16,7 +16,7 @@ Scenarios.Parameters_CollectionFormat_Query_csv = passOnSuccess(
   mockapi.get("/parameters/collection-format/query/csv", (req) => {
     req.expect.containsQueryParam("colors", ["blue", "red", "green"], "csv");
     return {
-      status: 200,
+      status: 204,
     };
   }),
 );
@@ -25,7 +25,7 @@ Scenarios.Parameters_CollectionFormat_Header_csv = passOnSuccess(
   mockapi.get("/parameters/collection-format/header/csv", (req) => {
     req.expect.containsHeader("colors", "blue,red,green");
     return {
-      status: 200,
+      status: 204,
     };
   }),
 );
