@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.11.1
+
+### Patch Changes
+
+- 2b5a65a: add collection format test back
+- d2aa86a: Fix mock api issue for nullable array and client path parameter.
+- d2aa86a: Fix nullable collection model definition problem.
+
 ## 0.11.0
 
 ### Minor Changes
