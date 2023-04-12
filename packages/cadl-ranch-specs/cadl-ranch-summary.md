@@ -2210,6 +2210,24 @@ Expected input body:
 }
 ```
 
+### Parameters_CollectionFormat_Query_multi
+
+- Endpoint: `get /parameters/collection-format/query/multi`
+
+This test is testing sending a multi collection format array query parameters
+
+### Parameters_CollectionFormat_Query_csv
+
+- Endpoint: `get /parameters/collection-format/query/csv`
+
+This test is testing sending a csv collection format array query parameters
+
+### Parameters_CollectionFormat_Header_csv
+
+- Endpoint: `get /parameters/collection-format/header/csvHeader`
+
+This test is testing sending a csv collection format array header parameters
+
 ### ProjectedName_jsonProjection
 
 - Endpoint: `post /projection/json`
