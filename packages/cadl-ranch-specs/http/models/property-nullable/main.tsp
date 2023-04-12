@@ -134,8 +134,13 @@ interface CollectionsByte
   extends OperationsTemplate<CollectionsByteProperty, "[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]"> {}
 
 // Model with nullable collection models property
+@doc("Inner model used in collections model property")
+model InnerModel {
+  @doc("Inner model property")
+  property: string;
+}
 @doc("Model with collection models properties")
-model CollectionsModelProperty is ModelTemplate<StringProperty[]>;
+model CollectionsModelProperty is ModelTemplate<InnerModel[]>;
 @route("/collections/model")
 @operationGroup
 interface CollectionsModel
