@@ -1,54 +1,63 @@
 import "@typespec/http";
 import "@typespec/versioning";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Versioning;
-
-@versioned(Versions)
-@server("http://localhost:3000", "Testserver endpoint")
-@doc("DPG Swagger, this is the initial swagger a service could do")
-@scenarioService("/serviceDriven2")
-namespace Resiliency.ServiceDriven2;
+using Azure.ClientGenerator.Core;
 using TypeSpec.Http;
 
+@versioned(Versions)
+@doc("""
+  Test that we can grow up a service spec and service implementation into a multi-versioned service with full client support.
+
+  We test the following configurations:
+  - A client generated from the first service spec can call the first instance of a service with api version v1
+  - A client generated from the first service spec can call the second instance of a service with api version v1
+  - A client generated from the second service spec can call the second instance of a service with api version v1
+  - A client generated from the second service spec can call the second instance of a service with api version v2
+  """)
+@client({
+  name: "ResiliencyServiceDrivenClient",
+})
+@service
+@server(
+  "http://localhost:3000/resiliency/service-driven/client:v2/service:{serviceImplementationVersion}/api-version:{apiVersion}",
+  "Testserver endpoint",
+  {
+    @doc("Pass in either 'v1' or 'v2'. This represents a version of the service implementation in history. 'v1' is for the implementation that was deployed when the service had only one api version. 'v2' is for the implementation when the service had api-versions 'v1' and 'v2'.")
+    serviceImplementationVersion: string,
+
+    @doc("Pass in either 'v1' or 'v2'. This represents the API version of a service.")
+    apiVersion: string,
+  }
+)
+namespace Resiliency.ServiceDriven.V2;
+
 enum Versions {
-  v10: "1.0.0",
-  v11: "1.1.0",
+  v1,
+  v2,
 }
 
 model PostInput {
   url: string;
 }
 
-model Message {
-  message: string;
-}
-
-@doc("Answer from service")
-model MessageResponse {
-  @statusCode statusCode: 200;
-  @body body: Message;
-}
-
-@route("/serviceDriven")
-interface params {
+@route("/add-optional-params")
+interface AddOptionalParams {
   @scenario
   @scenarioDoc("""
-Show that you can call a HEAD HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
+Test that you can add an optional param to an operation with no parameters. Don't pass in anything
 """)
-  @route("/parameters")
+  @route("/from-none")
   @doc("Head request, no params.\n Initially has no query parameters. After evolution, a new optional query parameter is added")
   @head
-  headNoParams(
-    @added(Versions.v11)
+  fromNone(
+    @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    new_parameter?: string
-  ): {
-    @statusCode statusCode: 200;
-  };
+    `new-parameter`?: string
+  ): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -56,73 +65,19 @@ Show that you can call a GET HTTP endpoint.
 This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
 The value you pass for the parameter is not verified by the mock server.
 """)
-  @route("/parameters")
+  @route("/from-one-required")
   @doc("Get true Boolean value on path.\n Initially only has one required Query Parameter. After evolution, a new optional query parameter is added")
   @get
-  getRequired(
+  fromOneRequired(
     @doc("I am a required parameter")
     @query
     parameter: string,
 
-    @added(Versions.v11)
+    @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    new_parameter?: string
-  ): MessageResponse;
-
-  @scenario
-  @scenarioDoc("""
-Show that you can call a PUT HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
-""")
-  @route("/parameters")
-  @doc("Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added")
-  @put
-  putRequiredOptional(
-    @doc("I am a required parameter")
-    @query
-    requiredParam: string,
-
-    @doc("I am an optional parameter")
-    @query
-    optionalParam?: string,
-
-    @added(Versions.v11)
-    @doc("I'm a new input optional parameter")
-    @query
-    new_parameter?: string
-  ): MessageResponse;
-
-  // In the updated version, I can take "image/jpeg" as input as well
-  @scenario
-  @scenarioDoc("""
-Show that you can call a POST HTTP endpoint.
-This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
-Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
-""")
-  @route("/parameters/{contentTypePath}")
-  @doc("POST a JSON or a JPEG")
-  @post
-  postParameters(
-    @path contentTypePath: "json" | "jpeg",
-
-    @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
-    @body
-    parameter: PostInput
-  ): MessageResponse;
-
-  @scenario
-  @scenarioDoc("""
-  Show that you can support a new method in the same operation group.
-  """)
-  @added(Versions.v11)
-  @route("/parameters")
-  @doc("Delete something.\n Initially the path exists but there is no delete method. After evolution this is a new method in a known path")
-  @delete
-  deleteParameters(): {
-    @statusCode statusCode: 204;
-  };
+    `new-parameter`?: string
+  ): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -130,28 +85,45 @@ Show that you can call a GET HTTP endpoint.
 This version has his main parameter optional first, making the grow-up story to two optionals.
 The value you pass for the parameter is not verified by the mock server.
 """)
-  @route("/moreParameters")
+  @route("/from-one-optional")
   @doc("Get true Boolean value on path.\n Initially has one optional query parameter. After evolution, a new optional query parameter is added")
   @get
-  getOptional(
+  fromOneOptional(
     @doc("I am an optional parameter")
     @query
     optionalParam?: string,
 
-    @added(Versions.v11)
+    @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    new_parameter?: string
-  ): MessageResponse;
+    newParameter?: string
+  ): NoContentResponse;
+}
+// In the updated version, I can take "image/jpeg" as input as well
+@scenario
+@scenarioDoc("""
+Show that you can call a POST HTTP endpoint.
+This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
+Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
+""")
+@route("/add-content-type")
+@doc("POST a JSON or a JPEG")
+@post
+op addContentType(
+  @header `content-type`: "application/json" | "image/jpeg",
 
-  @scenario
-  @scenarioDoc("""
+  @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
+  @body
+  parameter: PostInput
+): NoContentResponse;
+
+@scenario
+@scenarioDoc("""
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
 """)
-  @added(Versions.v11)
-  @route("/newPath")
-  @doc("I'm a new operation.\n Initially neither path or method exist for this operation. After evolution, this is a new method in a new path")
-  @get
-  getNewOperation(): MessageResponse;
-}
+@added(Versions.v2)
+@route("/add-operation")
+@doc("I'm a new operation.\n Initially neither path or method exist for this operation. After evolution, this is a new method in a new path")
+@delete
+op addOperation(): NoContentResponse;
