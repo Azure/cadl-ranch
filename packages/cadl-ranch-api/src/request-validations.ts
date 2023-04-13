@@ -1,5 +1,5 @@
 import deepEqual from "deep-equal";
-import { RequestExt } from "./types.js";
+import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
@@ -97,7 +97,7 @@ export const validateQueryParam = (
   request: RequestExt,
   paramName: string,
   expected: string | string[],
-  collectionFormat?: "multi" | "csv",
+  collectionFormat?: CollectionFormat,
 ): void => {
   const actual = request.query[paramName];
   let isExpected = false;
