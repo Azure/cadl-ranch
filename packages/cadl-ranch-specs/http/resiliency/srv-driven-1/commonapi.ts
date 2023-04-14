@@ -1,7 +1,7 @@
 import { mockapi, ValidationError, MockApi, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { HttpVerb } from "@typespec/http";
 
-const commonBase = "/resiliency/servicedriven";
+export const commonBase = "/resiliency/servicedriven";
 
 type PassResiliencyOptions = {
   path: string;

@@ -1,35 +1,36 @@
 import "@typespec/http";
+import "@typespec/versioning";
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
+using TypeSpec.Versioning;
 
+@versioned(Versions)
 @doc("""
-  Test that we can grow up a service spec and service implementation into a multi-versioned service with full client support.
-
-  We test the following configurations:
-  - A client generated from the first service spec can call the first instance of a service with api version v1
-  - A client generated from the first service spec can call the second instance of a service with api version v1
-  - A client generated from the second service spec can call the second instance of a service with api version v1
-  - A client generated from the second service spec can call the second instance of a service with api version v2
+  Test that we can grow up a service spec and service deployment into a multi-versioned service with full client support.
   """)
 @client({
   name: "ResiliencyServiceDrivenClient",
 })
 @service
 @server(
-  "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceImplementationVersion}/api-version:{apiVersion}",
+  "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}",
   "Testserver endpoint",
   {
-    @doc("Pass in either 'v1' or 'v2'. This represents a version of the service implementation in history. 'v1' is for the implementation that was deployed when the service had only one api version. 'v2' is for the implementation when the service had api-versions 'v1' and 'v2'.")
-    serviceImplementationVersion: string,
+    @doc("Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.")
+    serviceDeploymentVersion: string,
 
-    @doc("Pass in either 'v1' or 'v2'. This represents the API version of a service.")
+    @doc("Pass in 'v1'. This represents the API version of the service. Will grow up in the next deployment to be both 'v1' and 'v2'")
     apiVersion: string,
   }
 )
 namespace Resiliency.ServiceDriven.V1;
+
+enum Versions {
+  v1,
+}
 
 model PostInput {
   url: string;
@@ -39,21 +40,45 @@ model PostInput {
 interface AddOptionalParams {
   @scenario
   @scenarioDoc("""
-Test that you can add an optional param to an operation with no parameters. Don't pass in anything
-Will test the following configurations:
-- Test that you can pass 
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v1"` and `apiVersion="v1"` with no parameters.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with no parameters.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the first service spec can call the first deployment of a service with api version v1
+  - A client generated from the first service spec can call the second deployment of a service with api version v1
+
+  In the next service spec, we will test that we can grow this operation from accepting no parameters to accepting an optional parameter.
 """)
-  @route("/parameters")
-  @doc("Head request, no params.\n Initially has no query parameters. After evolution, a new optional query parameter is added")
+  @route("/from-none")
+  @doc("Test that currently accepts no parameters, will be updated in next spec to accept a new optional parameter as well")
   @head
   fromNone(): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-Test that you can add an optional param to an operation with a required parameter.
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v1"` and `apiVersion="v1"` with query parameter `parameter="required"`.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="required"`.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the first service spec can call the first deployment of a service with api version v1
+  - A client generated from the first service spec can call the second deployment of a service with api version v1
+
+  In the next service spec, we will test that we can grow this operation from accepting one required parameter to accepting both a required and an optional parameter.
 """)
-  @route("/parameters")
-  @doc("Get true Boolean value on path.\n Initially only has one required Query Parameter. After evolution, a new optional query parameter is added")
+  @route("/from-one-required")
+  @doc("Test that currently accepts one required parameter, will be updated in next spec to accept a new optional parameter as well")
   @get
   fromOneRequired(
     @doc("I am a required parameter")
@@ -63,28 +88,56 @@ Test that you can add an optional param to an operation with a required paramete
 
   @scenario
   @scenarioDoc("""
-Show that you can call a GET HTTP endpoint.
-This version has his main parameter optional first, making the grow-up story to two optionals.
-The value you pass for the parameter is not verified by the mock server.
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v1"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the first service spec can call the first deployment of a service with api version v1
+  - A client generated from the first service spec can call the second deployment of a service with api version v1
+
+  In the next service spec, we will test that we can grow this operation from accepting one optional parameter to accepting two optional parameters.
 """)
-  @route("/moreParameters")
-  @doc("Get true Boolean value on path.\n Initially has one optional query parameter. After evolution, a new optional query parameter is added")
+  @route("/from-one-optional")
+  @doc("Test that currently accepts one optional parameter, will be updated in next spec to accept a new optional parameter as well")
   @get
   fromOneOptional(
     @doc("I am an optional parameter")
     @query
-    optionalParam?: string
+    parameter?: string
   ): NoContentResponse;
 }
 
 @scenario
 @scenarioDoc("""
-Show that you can call a POST HTTP endpoint.
-This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
-Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v1"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
+  ```json
+  { url: \"http://example.org/myimage.jpeg\" }
+  ```
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
+  ```json
+  { url: \"http://example.org/myimage.jpeg\" }
+  ```
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the first service spec can call the first deployment of a service with api version v1
+  - A client generated from the first service spec can call the second deployment of a service with api version v1
+
+  In the next service spec, we will test that we can grow this operation from accepting one content type to two.
 """)
-@route("/parameters/{contentTypePath}")
-@doc("POST a JSON")
+@route("/add-content-type")
+@doc("Test that currently accepts one content type. Will be updated in next spec to accept a new content type as well.")
 @post
 op addContentType(
   @path contentTypePath: "json",

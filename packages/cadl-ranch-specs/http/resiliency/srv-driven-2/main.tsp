@@ -9,24 +9,27 @@ using TypeSpec.Http;
 
 @versioned(Versions)
 @doc("""
-  Test that we can grow up a service spec and service implementation into a multi-versioned service with full client support.
+  Test that we can grow up a service spec and service deployment into a multi-versioned service with full client support.
 
-  We test the following configurations:
-  - A client generated from the first service spec can call the first instance of a service with api version v1
-  - A client generated from the first service spec can call the second instance of a service with api version v1
-  - A client generated from the second service spec can call the second instance of a service with api version v1
-  - A client generated from the second service spec can call the second instance of a service with api version v2
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  We test the following configurations from this service spec:
+  - A client generated from the second service spec can call the second deployment of a service with api version v1
+  - A client generated from the second service spec can call the second deployment of a service with api version v2
   """)
 @client({
   name: "ResiliencyServiceDrivenClient",
 })
 @service
 @server(
-  "http://localhost:3000/resiliency/service-driven/client:v2/service:{serviceImplementationVersion}/api-version:{apiVersion}",
+  "http://localhost:3000/resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}",
   "Testserver endpoint",
   {
-    @doc("Pass in either 'v1' or 'v2'. This represents a version of the service implementation in history. 'v1' is for the implementation that was deployed when the service had only one api version. 'v2' is for the implementation when the service had api-versions 'v1' and 'v2'.")
-    serviceImplementationVersion: string,
+    @doc("Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.")
+    serviceDeploymentVersion: string,
 
     @doc("Pass in either 'v1' or 'v2'. This represents the API version of a service.")
     apiVersion: string,
@@ -47,10 +50,23 @@ model PostInput {
 interface AddOptionalParams {
   @scenario
   @scenarioDoc("""
-Test that you can add an optional param to an operation with no parameters. Don't pass in anything
-""")
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with no parameters.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `new-parameter="new"`.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the second service spec can call the second deployment of a service with api version v1
+  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+  Tests that we can grow up an operation from accepting no parameters to accepting an optional input parameter.
+  """)
   @route("/from-none")
-  @doc("Head request, no params.\n Initially has no query parameters. After evolution, a new optional query parameter is added")
+  @doc("Test that grew up from accepting no parameters to an optional input parameter")
   @head
   fromNone(
     @added(Versions.v2)
@@ -61,12 +77,23 @@ Test that you can add an optional param to an operation with no parameters. Don'
 
   @scenario
   @scenarioDoc("""
-Show that you can call a GET HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
-""")
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="required"`.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="required"` and query parameter `new-parameter="new"`.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the second service spec can call the second deployment of a service with api version v1
+  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+  Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
+  """)
   @route("/from-one-required")
-  @doc("Get true Boolean value on path.\n Initially only has one required Query Parameter. After evolution, a new optional query parameter is added")
+  @doc("Operation that grew up from accepting one required parameter to accepting a required parameter and an optional parameter.")
   @get
   fromOneRequired(
     @doc("I am a required parameter")
@@ -81,33 +108,66 @@ The value you pass for the parameter is not verified by the mock server.
 
   @scenario
   @scenarioDoc("""
-Show that you can call a GET HTTP endpoint.
-This version has his main parameter optional first, making the grow-up story to two optionals.
-The value you pass for the parameter is not verified by the mock server.
-""")
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="optional"` and query parameter `new-parameter="new"`.
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the second service spec can call the second deployment of a service with api version v1
+  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+  Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters.
+  """)
   @route("/from-one-optional")
-  @doc("Get true Boolean value on path.\n Initially has one optional query parameter. After evolution, a new optional query parameter is added")
+  @doc("Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters.")
   @get
   fromOneOptional(
     @doc("I am an optional parameter")
     @query
-    optionalParam?: string,
+    parameter?: string,
 
     @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    newParameter?: string
+    `new-parameter`?: string
   ): NoContentResponse;
 }
-// In the updated version, I can take "image/jpeg" as input as well
+
 @scenario
 @scenarioDoc("""
 Show that you can call a POST HTTP endpoint.
 This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 """)
+@scenarioDoc("""
+  Need the following two calls:
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
+  ```json
+  { url: \"http://example.org/myimage.jpeg\" }
+  ```
+  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with header `content-type="image/jpeg"` and expected request body:
+  ```json
+  { url: \"http://example.org/myimage.jpeg\" }
+  ```
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the second service spec can call the second deployment of a service with api version v1
+  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+  Tests that we can grow up an operation from accepting one content type to two.
+  """)
 @route("/add-content-type")
-@doc("POST a JSON or a JPEG")
+@doc("Operation that we can grow up an operation from accepting one content type to two.")
 @post
 op addContentType(
   @header `content-type`: "application/json" | "image/jpeg",
@@ -119,11 +179,23 @@ op addContentType(
 
 @scenario
 @scenarioDoc("""
-Show that you can call a GET HTTP endpoint.
-This is a totally new operation in this API version.
-""")
+  Need the following two calls:
+  - Call with client spec version "v1" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
+  - Call with client spec version "v2" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
+
+  There are three concepts that should be clarified:
+  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+  With the above two calls, we test the following configurations from this service spec:
+  - A client generated from the first service spec can break the glass and call the second deployment of a service with api version v2
+  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+  Tests that we can grow up by adding an operation.
+  """)
 @added(Versions.v2)
 @route("/add-operation")
-@doc("I'm a new operation.\n Initially neither path or method exist for this operation. After evolution, this is a new method in a new path")
+@doc("Added operation")
 @delete
 op addOperation(): NoContentResponse;
