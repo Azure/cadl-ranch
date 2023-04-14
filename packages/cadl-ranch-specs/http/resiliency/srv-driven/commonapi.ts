@@ -11,39 +11,35 @@ type PassResiliencyOptions = {
   newApiVersionNewClientValidate: (req: MockRequest) => void;
 };
 
-function createResilientMockApi(options: PassResiliencyOptions): { v1: MockApi[]; v2: MockApi[] } {
-  return {
-    v1: [
-      mockapi.request(options.verb, `${commonBase}/client:v1/service:v1/api-version:v1${options.path}`, (req) => {
-        options.commonValidate(req);
-        return {
-          status: 204,
-        };
-      }),
-    ],
-    v2: [
-      mockapi.request(options.verb, `${commonBase}/client:v1/service:v2/api-version:v1${options.path}`, (req) => {
-        options.commonValidate(req);
-        return {
-          status: 204,
-        };
-      }),
-      mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v1${options.path}`, (req) => {
-        options.commonValidate(req);
-        options.oldApiVersionNewClientValidate(req);
-        return {
-          status: 204,
-        };
-      }),
-      mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v2${options.path}`, (req) => {
-        options.commonValidate(req);
-        options.newApiVersionNewClientValidate(req);
-        return {
-          status: 204,
-        };
-      }),
-    ],
-  };
+function createResilientMockApi(options: PassResiliencyOptions): MockApi[] {
+  return [
+    mockapi.request(options.verb, `${commonBase}/client:v1/service:v1/api-version:v1${options.path}`, (req) => {
+      options.commonValidate(req);
+      return {
+        status: 204,
+      };
+    }),
+    mockapi.request(options.verb, `${commonBase}/client:v1/service:v2/api-version:v1${options.path}`, (req) => {
+      options.commonValidate(req);
+      return {
+        status: 204,
+      };
+    }),
+    mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v1${options.path}`, (req) => {
+      options.commonValidate(req);
+      options.oldApiVersionNewClientValidate(req);
+      return {
+        status: 204,
+      };
+    }),
+    mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v2${options.path}`, (req) => {
+      options.commonValidate(req);
+      options.newApiVersionNewClientValidate(req);
+      return {
+        status: 204,
+      };
+    }),
+  ];
 }
 
 function addOptionalParamsOldApiVersionNewClientValidate(req: MockRequest): void {

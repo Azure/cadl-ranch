@@ -2311,96 +2311,101 @@ This method requires to write 2 tests.
   - With DPG 1.0, poll to final state and write your own model to parse `{"received": "model"}`
   - With DPG 2.0, generate the convenience method to poll a Product model with "received" to "model"
 
-### Resiliency_ServiceDriven1_params_headNoParams
+### Resiliency_ServiceDriven_AddOptionalParams_fromNone
 
-- Endpoint: `head /resiliency/servicedriven1/parameters`
+- Endpoint: `head /add-optional-params/from-none`
 
-Show that you can call a HEAD HTTP endpoint.
-This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
+Need the following two calls:
 
-### Resiliency_ServiceDriven1_params_getRequired
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with no parameters.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `new-parameter="new"`.
 
-- Endpoint: `get /resiliency/servicedriven1/parameters`
+There are three concepts that should be clarified:
 
-Show that you can call a GET HTTP endpoint.
-This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
 
-### Resiliency_ServiceDriven1_params_putRequiredOptional
+With the above two calls, we test the following configurations from this service spec:
 
-- Endpoint: `put /resiliency/servicedriven1/parameters`
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
 
-Show that you can call a PUT HTTP endpoint.
-This test is expected to grow to a new optional parameter while keeping backward compat in srv-driven-2.
-The value you pass for the parameter is not verified by the mock server.
+Tests that we can grow up an operation from accepting no parameters to accepting an optional input parameter.
 
-### Resiliency_ServiceDriven1_params_postParameters
+### Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired
 
-- Endpoint: `post /resiliency/servicedriven1/parameters/{contentTypePath}`
+- Endpoint: `get /add-optional-params/from-one-required`
 
-Show that you can call a POST HTTP endpoint.
-This test is expected to grow to a new content-type as acceptable input while keeping backward compat in srv-driven-2.
-Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}`
+Need the following two calls:
 
-### Resiliency_ServiceDriven1_params_getOptional
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="required"`.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="required"` and query parameter `new-parameter="new"`.
 
-- Endpoint: `get /resiliency/servicedriven1/moreParameters`
+There are three concepts that should be clarified:
 
-Show that you can call a GET HTTP endpoint.
-This version has his main parameter optional first, making the grow-up story to two optionals.
-The value you pass for the parameter is not verified by the mock server.
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
 
-### Resiliency_ServiceDriven2_params_headNoParams
+With the above two calls, we test the following configurations from this service spec:
 
-- Endpoint: `head /serviceDriven2/serviceDriven/parameters`
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
 
-Show that you can call a HEAD HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
+Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
-### Resiliency_ServiceDriven2_params_getRequired
+### Resiliency_ServiceDriven_AddOptionalParams_fromOneOptional
 
-- Endpoint: `get /serviceDriven2/serviceDriven/parameters`
+- Endpoint: `get /add-optional-params/from-one-optional`
 
-Show that you can call a GET HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
+Need the following two calls:
 
-### Resiliency_ServiceDriven2_params_putRequiredOptional
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="optional"` and query parameter `new-parameter="new"`.
 
-- Endpoint: `put /serviceDriven2/serviceDriven/parameters`
+There are three concepts that should be clarified:
 
-Show that you can call a PUT HTTP endpoint.
-This test has grow to a new optional parameter, and the generated code should be backward compatible with srv-driven-1.
-The value you pass for the parameter is not verified by the mock server.
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
 
-### Resiliency_ServiceDriven2_params_postParameters
+With the above two calls, we test the following configurations from this service spec:
 
-- Endpoint: `post /serviceDriven2/serviceDriven/parameters/{contentTypePath}`
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters.
+
+### Resiliency_ServiceDriven_addContentType
+
+- Endpoint: `post /add-content-type`
 
 Show that you can call a POST HTTP endpoint.
 This test now accept both image/jpeg and application/json and is expected keeping backward compat with srv-driven-1.
 Pass the JSON: `{"url": "http://example.org/myimage.jpeg"}` or a binary with content-type image/jpeg. The server do not check the binary.
 
-### Resiliency_ServiceDriven2_params_deleteParameters
+### Resiliency_ServiceDriven_addOperation
 
-- Endpoint: `delete /serviceDriven2/serviceDriven/parameters`
+- Endpoint: `delete /add-operation`
 
-Show that you can support a new method in the same operation group.
+Need the following two calls:
 
-### Resiliency_ServiceDriven2_params_getOptional
+- Call with client spec version "v1" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
+- Call with client spec version "v2" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
 
-- Endpoint: `get /serviceDriven2/serviceDriven/moreParameters`
+There are three concepts that should be clarified:
 
-Show that you can call a GET HTTP endpoint.
-This version has his main parameter optional first, making the grow-up story to two optionals.
-The value you pass for the parameter is not verified by the mock server.
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from srv-driven-1/main.tsp and 'v2' is a client generated from srv-driven-2/main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
 
-### Resiliency_ServiceDriven2_params_getNewOperation
+With the above two calls, we test the following configurations from this service spec:
 
-- Endpoint: `get /serviceDriven2/serviceDriven/newPath`
+- A client generated from the first service spec can break the glass and call the second deployment of a service with api version v2
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
 
-Show that you can call a GET HTTP endpoint.
-This is a totally new operation in this API version.
+Tests that we can grow up by adding an operation.
 
 ### Server_Path_Multiple_noOperationParams
 

@@ -35,7 +35,7 @@ using TypeSpec.Http;
     apiVersion: string,
   }
 )
-namespace Resiliency.ServiceDriven.V2;
+namespace Resiliency.ServiceDriven;
 
 enum Versions {
   v1,
