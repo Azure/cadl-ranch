@@ -221,6 +221,27 @@ Expect error code 403 and error body:
 }
 ```
 
+### Authentication_Http_valid
+
+- Endpoint: `get /authentication/http/valid`
+
+Expects header 'Authorization': 'SharedAccessKey valid-key'
+
+### Authentication_Http_invalid
+
+- Endpoint: `get /authentication/http/invalid`
+
+Expect error code 403 and error body:
+
+```json
+{
+  "error": {
+    "code": "InvalidApiKey",
+    "message": "API key is invalid"
+  }
+}
+```
+
 ### Authentication_OAuth2_valid
 
 - Endpoint: `get /authentication/oauth2/valid`
