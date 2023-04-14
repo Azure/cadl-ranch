@@ -9,19 +9,19 @@ import {
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Resiliency_ServiceDriven_v2_AddOptionalParams_fromNone = passOnSuccess(AddOptionalParams_fromNone.v1);
+Scenarios.Resiliency_ServiceDriven_V2_AddOptionalParams_fromNone = passOnSuccess(AddOptionalParams_fromNone.v1);
 
-Scenarios.Resiliency_ServiceDriven_v2_AddOptionalParams_fromOneRequired = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_V2_AddOptionalParams_fromOneRequired = passOnSuccess(
   AddOptionalParams_fromOneRequired.v1,
 );
 
-Scenarios.Resiliency_ServiceDriven_v2_AddOptionalParams_fromOneOptional = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_V2_AddOptionalParams_fromOneOptional = passOnSuccess(
   AddOptionalParams_fromOneOptional.v1,
 );
 
-Scenarios.Resiliency_ServiceDriven_v2_addContentType = passOnSuccess(AddContentType.v1);
+Scenarios.Resiliency_ServiceDriven_V2_addContentType = passOnSuccess(AddContentType.v1);
 
-Scenarios.Resiliency_ServiceDriven_v2_addOperation = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_V2_addOperation = passOnSuccess(
   mockapi.delete(`${commonBase}/client:v2/service:v2/api-version:v2/add-operation`, (req) => {
     return {
       status: 204,
