@@ -99,14 +99,26 @@ export const validateQueryParam = (
   expected: string | string[],
   collectionFormat?: CollectionFormat,
 ): void => {
-  const actual = request.query[paramName];
+  let actual = request.query[paramName];
+  const splitterMap = {
+    csv: ",",
+    ssv: " ",
+    tsv: "\t",
+    pipes: "|",
+  };
   let isExpected = false;
   if (collectionFormat && Array.isArray(expected)) {
     // verify query parameter as collection
     if (collectionFormat === "multi" && Array.isArray(actual)) {
       isExpected = deepEqual(actual, expected);
-    } else if (collectionFormat === "csv" && typeof actual === "string") {
-      const expectedString = expected.join(",");
+    } else if (
+      (collectionFormat === "csv" ||
+        collectionFormat === "ssv" ||
+        collectionFormat === "tsv" ||
+        collectionFormat === "pipes") &&
+      typeof actual === "string"
+    ) {
+      const expectedString = expected.join(splitterMap[collectionFormat]);
       isExpected = expectedString === decodeURIComponent(actual);
     }
     if (!isExpected) {
