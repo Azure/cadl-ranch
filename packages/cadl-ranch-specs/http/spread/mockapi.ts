@@ -6,14 +6,14 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.Spread_spreadModelAsRequestBody = passOnSuccess(
   mockapi.put("/spread/model/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
 Scenarios.Spread_spreadAliasAsRequestBody = passOnSuccess(
   mockapi.put("/spread/alias/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
@@ -21,7 +21,7 @@ Scenarios.Spread_spreadAliasAsRequestParameter = passOnSuccess(
   mockapi.put("/spread/alias/request-parameter/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({ name: "foo" });
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
@@ -36,6 +36,6 @@ Scenarios.Spread_spreadAliasWithMultipleParameters = passOnSuccess(
       prop5: "foo5",
       prop6: "foo6",
     });
-    return { status: 200 };
+    return { status: 204 };
   }),
 );

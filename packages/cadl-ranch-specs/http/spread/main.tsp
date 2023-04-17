@@ -1,131 +1,141 @@
 import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
 
 @doc("Test for the spread operator.")
 @supportedBy("dpg")
 @scenarioService("/spread")
 namespace Spread;
 
-@doc("This is a simple model.")
-model ModelBodyParameter {
-  name: string;
+@route("/model")
+@operationGroup
+namespace Model {
+  @doc("This is a simple model.")
+  model BodyParameter {
+    name: string;
+  }
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread named model. 
+  
+  Should generate request body model named `BodyParameter`.
+  Should generate an operation like below:
+  ```
+  spreadModelAsRequestBody(bodyParameter: BodyParameter)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+  
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/request-body")
+  @put
+  op spreadModelAsRequestBody(...BodyParameter): NoContentResponse;
 }
 
-@scenario
-@scenarioDoc("""
-Test case for spread named model. 
+@route("/alias")
+@operationGroup
+namespace Alias {
+  alias BodyParameter = {
+    name: string;
+  };
 
-Should generate request body model named `ModelBodyParameter`.
-Should generate an operation like below.
-Note the parameter name is guessed from the model name and it may vary by language.
-```
-spreadModelAsRequestBody(modelBodyParameter: ModelBodyParameter)
-```
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias. 
+  
+  Should not generate any model named `BodyParameter`.
+  Should generate an operation like:
+  ```
+  spreadAsRequestBody(name: string)
+  ```
+  
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/request-body")
+  @put
+  op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 
-Expected request body:
-```json
-{ "name": "foo" }
-```
-""")
-@route("/model/request-body")
-@put
-op spreadModelAsRequestBody(...ModelBodyParameter): OkResponse;
+  alias RequestParameter = {
+    @path
+    id: string;
 
-alias AliasBodyParameter = {
-  name: string;
-};
+    @header
+    `x-ms-test-header`: string;
+    name: string;
+  };
 
-@scenario
-@scenarioDoc("""
-Test case for spread alias. 
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias with path and header parameter. 
+  
+  Should not generate any model named `RequestParameter`.
+  Should generate an operation like below:
+  ```
+  spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+  ```
+  Note the parameter name may be normalized and vary by language.
+  
+  Expected path parameter: id="1"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/request-parameter/{id}")
+  @put
+  op spreadAsRequestParameter(...RequestParameter): NoContentResponse;
 
-Should not generate any model named `AliasBodyParameter`.
-Should generate an operation like:
-```
-spreadAliasAsRequestBody(name: string)
-```
+  alias MultipleRequestParameters = {
+    @path
+    id: string;
 
-Expected request body:
-```json
-{ "name": "foo" }
-```
-""")
-@route("/alias/request-body")
-@put
-op spreadAliasAsRequestBody(...AliasBodyParameter): OkResponse;
+    @header
+    `x-ms-test-header`: string;
+    prop1: string;
+    prop2: string;
+    prop3: string;
+    prop4: string;
+    prop5: string;
+    prop6: string;
+  };
 
-alias AliasRequestParameter = {
-  @path
-  id: string;
-
-  @header
-  `x-ms-test-header`: string;
-  name: string;
-};
-
-@scenario
-@scenarioDoc("""
-Test case for spread alias with path and header parameter. 
-
-Should not generate any model named `AliasRequestParameter`.
-Should generate an operation like below.
-Note the parameter name may be normalized and vary by language.
-```
-spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
-```
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-```json
-{ "name": "foo" }
-```
-""")
-@route("/alias/request-parameter/{id}")
-@put
-op spreadAliasAsRequestParameter(...AliasRequestParameter): OkResponse;
-
-alias AliasMultipleRequestParameters = {
-  @path
-  id: string;
-
-  @header
-  `x-ms-test-header`: string;
-  prop1: string;
-  prop2: string;
-  prop3: string;
-  prop4: string;
-  prop5: string;
-  prop6: string;
-};
-
-@scenario
-@scenarioDoc("""
-Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
-
-Should not generate any model named `AliasMultipleRequestParameters`.
-Should generate an operation like below.
-Note it's also acceptable if some languages handle it as property bag.
-```
-spreadAliasWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
-```
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-```json
-{
-  "prop1":"foo1",
-  "prop2":"foo2",
-  "prop3":"foo3",
-  "prop4":"foo4",
-  "prop5":"foo5",
-  "prop6":"foo6"
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+  
+  Should not generate any model named `AliasMultipleRequestParameters`.
+  Should generate an operation like below:
+  ```
+  spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+  ```
+  Note it's also acceptable if some languages handle it as property bag.
+  
+  Expected path parameter: id="1"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  {
+    "prop1":"foo1",
+    "prop2":"foo2",
+    "prop3":"foo3",
+    "prop4":"foo4",
+    "prop5":"foo5",
+    "prop6":"foo6"
+  }
+  ```
+  """)
+  @route("/multiple-parameters/{id}")
+  @put
+  op spreadWithMultipleParameters(...MultipleRequestParameters): NoContentResponse;
 }
-```
-""")
-@route("/alias/multiple-parameters/{id}")
-@put
-op spreadAliasWithMultipleParameters(...AliasMultipleRequestParameters): OkResponse;
