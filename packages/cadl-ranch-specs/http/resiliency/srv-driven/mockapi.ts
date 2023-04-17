@@ -49,49 +49,49 @@ function createResilientMockApi(options: PassResiliencyOptions): MockApi[] {
   ];
 }
 
-function addOptionalParamsOldApiVersionNewClientValidate(req: MockRequest): void {
+function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
   if (req.params["new-parameter"] !== undefined) {
     throw new ValidationError("Did not expect 'new-parameter'", undefined, req.params["new-parameter"]);
   }
 }
 
-function addOptionalParamsNewApiVersionNewClientValidate(req: MockRequest): void {
+function addOptionalParamNewApiVersionNewClientValidate(req: MockRequest): void {
   req.expect.containsQueryParam("new-parameter", "new");
 }
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromNone = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess(
   createResilientMockApi({
     path: "/add-optional-param/from-none",
     verb: "head",
     commonValidate: function validate(req: MockRequest): void {},
-    oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamsNewApiVersionNewClientValidate,
+    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
+    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
   }),
 );
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSuccess(
   createResilientMockApi({
     path: "/add-optional-param/from-one-required",
     verb: "get",
     commonValidate: function validate(req: MockRequest): void {
       req.expect.containsQueryParam("parameter", "required");
     },
-    oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamsNewApiVersionNewClientValidate,
+    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
+    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
   }),
 );
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromOneOptional = passOnSuccess(
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSuccess(
   createResilientMockApi({
     path: "/add-optional-param/from-one-optional",
     verb: "get",
     commonValidate: function validate(req: MockRequest): void {
       req.expect.containsQueryParam("parameter", "optional");
     },
-    oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamsNewApiVersionNewClientValidate,
+    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
+    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
   }),
 );
 
