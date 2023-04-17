@@ -58,5 +58,5 @@ export enum CollectionFormat {
   CSV = "csv",
   SSV = "ssv",
   TSV = "tsv",
-  PIPES = "pipes"
+  PIPES = "pipes",
 }

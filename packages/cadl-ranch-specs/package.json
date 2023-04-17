@@ -53,7 +53,7 @@
     "@azure-tools/cadl-ranch-expect": "workspace:~",
     "@typespec/compiler": "~0.43.0",
     "@typespec/rest": "~0.43.0",
-    "@typespec/http": "~0.43.0",
+    "@typespec/http": "~0.43.1",
     "@typespec/versioning": "~0.43.0"
   }
 }

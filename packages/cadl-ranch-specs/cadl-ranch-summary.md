@@ -2216,6 +2216,24 @@ Expected input body:
 
 This test is testing sending a multi collection format array query parameters
 
+### Parameters_CollectionFormat_Query_ssv
+
+- Endpoint: `get /parameters/collection-format/query/ssv`
+
+This test is testing sending a ssv collection format array query parameters
+
+### Parameters_CollectionFormat_Query_tsv
+
+- Endpoint: `get /parameters/collection-format/query/tsv`
+
+This test is testing sending a tsv collection format array query parameters
+
+### Parameters_CollectionFormat_Query_pipes
+
+- Endpoint: `get /parameters/collection-format/query/pipes`
+
+This test is testing sending a pipes collection format array query parameters
+
 ### Parameters_CollectionFormat_Query_csv
 
 - Endpoint: `get /parameters/collection-format/query/csv`

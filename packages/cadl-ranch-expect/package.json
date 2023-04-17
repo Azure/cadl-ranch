@@ -36,6 +36,6 @@
   "peerDependencies": {
     "@typespec/compiler": "~0.43.0",
     "@typespec/rest": "~0.43.0",
-    "@typespec/http": "~0.43.0"
+    "@typespec/http": "~0.43.1"
   }
 }
