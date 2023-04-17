@@ -7,8 +7,8 @@ using Azure.ClientGenerator.Core;
 
 @doc("Test for the spread operator.")
 @supportedBy("dpg")
-@scenarioService("/spread")
-namespace Spread;
+@scenarioService("/parameters/spread")
+namespace Parameters.Spread;
 
 @route("/model")
 @operationGroup
@@ -25,7 +25,7 @@ namespace Model {
   Should generate request body model named `BodyParameter`.
   Should generate an operation like below:
   ```
-  spreadModelAsRequestBody(bodyParameter: BodyParameter)
+  spreadAsRequestBody(bodyParameter: BodyParameter)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
   
@@ -36,7 +36,7 @@ namespace Model {
   """)
   @route("/request-body")
   @put
-  op spreadModelAsRequestBody(...BodyParameter): NoContentResponse;
+  op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 }
 
 @route("/alias")

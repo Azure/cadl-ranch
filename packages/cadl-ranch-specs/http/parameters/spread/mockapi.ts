@@ -3,30 +3,30 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Spread_Model_spreadAsRequestBody = passOnSuccess(
-  mockapi.put("/spread/model/request-body", (req) => {
+Scenarios.Parameters_Spread_Model_spreadAsRequestBody = passOnSuccess(
+  mockapi.put("/parameters/spread/model/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
     return { status: 204 };
   }),
 );
 
-Scenarios.Spread_Alias_spreadAsRequestBody = passOnSuccess(
-  mockapi.put("/spread/alias/request-body", (req) => {
+Scenarios.Parameters_Spread_Alias_spreadAsRequestBody = passOnSuccess(
+  mockapi.put("/parameters/spread/alias/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
     return { status: 204 };
   }),
 );
 
-Scenarios.Spread_Alias_spreadAsRequestParameter = passOnSuccess(
-  mockapi.put("/spread/alias/request-parameter/1", (req) => {
+Scenarios.Parameters_Spread_Alias_spreadAsRequestParameter = passOnSuccess(
+  mockapi.put("/parameters/spread/alias/request-parameter/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({ name: "foo" });
     return { status: 204 };
   }),
 );
 
-Scenarios.Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
-  mockapi.put("/spread/alias/multiple-parameters/1", (req) => {
+Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
+  mockapi.put("/parameters/spread/alias/multiple-parameters/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({
       prop1: "foo1",
