@@ -194,7 +194,12 @@ interface DifferentPollResult {
   @doc("Creates a Job")
   @route("/different-poll-result/jobs")
   @pollingOperation(DifferentPollResult.getPoll)
-  createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<JobData, JobResult, JobPollResult, LocalCore.LongRunningFinalLocation<JobResult>>;
+  createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<
+    JobData,
+    JobResult,
+    JobPollResult,
+    LocalCore.LongRunningFinalLocation<JobResult>
+  >;
 
   @doc("Gets the status of a Job")
   @route("/different-poll-result")
