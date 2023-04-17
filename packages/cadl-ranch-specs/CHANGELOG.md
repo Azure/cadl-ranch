@@ -1,5 +1,46 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.11.2
+
+### Patch Changes
+
+- dd5b5f1: fix collectionformat tests
+
+## 0.11.1
+
+### Patch Changes
+
+- 2b5a65a: add collection format test back
+- d2aa86a: Fix mock api issue for nullable array and client path parameter.
+- d2aa86a: Fix nullable collection model definition problem.
+
+## 0.11.0
+
+### Minor Changes
+
+- a2d916d: update to 0.43.0
+- 6440f07: add path tests for server, rearrange structure for existing server tests
+
+### Patch Changes
+
+- 6440f07: add test for clients with path params
+- Updated dependencies [d458e4b]
+- Updated dependencies [a2d916d]
+- Updated dependencies [6440f07]
+  - @azure-tools/cadl-ranch-api@0.2.3
+  - @azure-tools/cadl-ranch@0.4.4
+  - @azure-tools/cadl-ranch-expect@0.2.2
+
+## 0.10.1
+
+### Patch Changes
+
+- ef38bb8: Fix the nullable path issue
+- ba682b7: Support validating collection format and update related mock tests
+- Updated dependencies [ba682b7]
+  - @azure-tools/cadl-ranch-api@0.2.2
+  - @azure-tools/cadl-ranch@0.4.3
+
 ## 0.10.0
 
 ### Minor Changes

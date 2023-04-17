@@ -450,30 +450,6 @@ Expected response headers:
 - x-ms-client-request-id=<any string>
 - Repeatability-Result=Accepted
 
-### CollectionFormat_testMulti
-
-- Endpoint: `get /collectionFormat/multi`
-
-This test is testing sending a multi collection format array query parameters
-
-### CollectionFormat_testCsv
-
-- Endpoint: `get /collectionFormat/csv`
-
-This test is testing sending a csv collection format array query parameters
-
-### CollectionFormat_testCsvHeader
-
-- Endpoint: `get /collectionFormat/csvHeader`
-
-This test is testing sending a csv collection format array header parameters
-
-### CollectionFormat_testDefaultHeader
-
-- Endpoint: `get /collectionFormat/defaultHeader`
-
-This test is testing sending a default collection format array header parameters
-
 ### Dictionary_Int32Value_get
 
 - Endpoint: `get /dictionary/int32`
@@ -2234,6 +2210,24 @@ Expected input body:
 }
 ```
 
+### Parameters_CollectionFormat_Query_multi
+
+- Endpoint: `get /parameters/collection-format/query/multi`
+
+This test is testing sending a multi collection format array query parameters
+
+### Parameters_CollectionFormat_Query_csv
+
+- Endpoint: `get /parameters/collection-format/query/csv`
+
+This test is testing sending a csv collection format array query parameters
+
+### Parameters_CollectionFormat_Header_csv
+
+- Endpoint: `get /parameters/collection-format/header/csv`
+
+This test is testing sending a csv collection format array header parameters
+
 ### ProjectedName_jsonProjection
 
 - Endpoint: `post /projection/json`
@@ -2408,9 +2402,25 @@ The value you pass for the parameter is not verified by the mock server.
 Show that you can call a GET HTTP endpoint.
 This is a totally new operation in this API version.
 
-### Server_Parameterized_myOp
+### Server_Path_Multiple_noOperationParams
 
-- Endpoint: `head /server/parameterized/myOp`
+- Endpoint: `get /`
+
+Operation with client path parameters.
+
+Expected path parameter: apiVersion=v1.0
+
+### Server_Path_Multiple_withOperationPathParam
+
+- Endpoint: `get /`
+
+Operation with client and method path parameters.
+
+Expected path parameter: apiVersion=v1.0, keyword=test
+
+### Server_Path_Single_myOp
+
+- Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
 

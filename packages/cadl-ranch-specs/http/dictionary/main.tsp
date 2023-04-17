@@ -71,7 +71,7 @@ interface Float32Value extends DictionaryOperations<Record<float32>, "{'k1': 42.
 @doc("Dictionary of datetime values")
 @route("/datetime")
 @operationGroup
-interface DatetimeValue extends DictionaryOperations<Record<zonedDateTime>, "{'k1': '2022-08-26T18:38:00Z'}"> {}
+interface DatetimeValue extends DictionaryOperations<Record<utcDateTime>, "{'k1': '2022-08-26T18:38:00Z'}"> {}
 
 @doc("Dictionary of duration values")
 @route("/duration")

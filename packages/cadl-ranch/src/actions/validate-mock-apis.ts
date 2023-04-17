@@ -48,7 +48,7 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       continue;
     }
 
-    const mockApiFile = mockApis.find((x) => x.path.includes(`/${name}`));
+    const mockApiFile = mockApis.find((x) => x.path.endsWith(`/${name}/mockapi.js`));
     if (mockApiFile === undefined) {
       diagnostics.reportDiagnostic({
         message: `Scenario ${name} is missing a mockapi file. Make sure to have a mockapi.ts that is built.`,

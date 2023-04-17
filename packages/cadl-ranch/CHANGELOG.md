@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.4
+
+### Patch Changes
+
+- a2d916d: update to 0.43.0
+- 6440f07: add path tests for server, rearrange structure for existing server tests
+- Updated dependencies [d458e4b]
+- Updated dependencies [a2d916d]
+  - @azure-tools/cadl-ranch-api@0.2.3
+  - @azure-tools/cadl-ranch-expect@0.2.2
+
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [ba682b7]
+  - @azure-tools/cadl-ranch-api@0.2.2
+
 ## 0.4.2
 
 ### Patch Changes
