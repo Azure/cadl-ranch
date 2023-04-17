@@ -2470,19 +2470,20 @@ Expected input body:
 }
 ```
 
-### Spread_spreadModelAsRequestBody
+### Spread_Model_spreadModelAsRequestBody
 
 - Endpoint: `put /spread/model/request-body`
 
 Test case for spread named model.
 
-Should generate request body model named `ModelBodyParameter`.
-Should generate an operation like below.
-Note the parameter name is guessed from the model name and it may vary by language.
+Should generate request body model named `BodyParameter`.
+Should generate an operation like below:
 
 ```
-spreadModelAsRequestBody(modelBodyParameter: ModelBodyParameter)
+spreadModelAsRequestBody(bodyParameter: BodyParameter)
 ```
+
+Note the parameter name is guessed from the model name and it may vary by language.
 
 Expected request body:
 
@@ -2490,17 +2491,17 @@ Expected request body:
 { "name": "foo" }
 ```
 
-### Spread_spreadAliasAsRequestBody
+### Spread_Alias_spreadAsRequestBody
 
 - Endpoint: `put /spread/alias/request-body`
 
 Test case for spread alias.
 
-Should not generate any model named `AliasBodyParameter`.
+Should not generate any model named `BodyParameter`.
 Should generate an operation like:
 
 ```
-spreadAliasAsRequestBody(name: string)
+spreadAsRequestBody(name: string)
 ```
 
 Expected request body:
@@ -2509,19 +2510,20 @@ Expected request body:
 { "name": "foo" }
 ```
 
-### Spread_spreadAliasAsRequestParameter
+### Spread_Alias_spreadAsRequestParameter
 
 - Endpoint: `put /spread/alias/request-parameter/{id}`
 
 Test case for spread alias with path and header parameter.
 
-Should not generate any model named `AliasRequestParameter`.
-Should generate an operation like below.
-Note the parameter name may be normalized and vary by language.
+Should not generate any model named `RequestParameter`.
+Should generate an operation like below:
 
 ```
-spreadAliasAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
 ```
+
+Note the parameter name may be normalized and vary by language.
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
@@ -2531,19 +2533,20 @@ Expected request body:
 { "name": "foo" }
 ```
 
-### Spread_spreadAliasWithMultipleParameters
+### Spread_Alias_spreadWithMultipleParameters
 
 - Endpoint: `put /spread/alias/multiple-parameters/{id}`
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
 Should not generate any model named `AliasMultipleRequestParameters`.
-Should generate an operation like below.
-Note it's also acceptable if some languages handle it as property bag.
+Should generate an operation like below:
 
 ```
-spreadAliasWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
 ```
+
+Note it's also acceptable if some languages handle it as property bag.
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
