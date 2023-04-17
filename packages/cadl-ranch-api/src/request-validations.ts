@@ -99,7 +99,7 @@ export const validateQueryParam = (
   expected: string | string[],
   collectionFormat?: CollectionFormat,
 ): void => {
-  let actual = request.query[paramName];
+  const actual = request.query[paramName];
   const splitterMap = {
     csv: ",",
     ssv: " ",
