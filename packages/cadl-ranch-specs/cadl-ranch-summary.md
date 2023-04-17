@@ -2313,7 +2313,7 @@ This method requires to write 2 tests.
 
 ### Resiliency_ServiceDriven_AddOptionalParams_fromNone
 
-- Endpoint: `head /add-optional-params/from-none`
+- Endpoint: `head /add-optional-param/from-none`
 
 Need the following two calls:
 
@@ -2335,7 +2335,7 @@ Tests that we can grow up an operation from accepting no parameters to accepting
 
 ### Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired
 
-- Endpoint: `get /add-optional-params/from-one-required`
+- Endpoint: `get /add-optional-param/from-one-required`
 
 Need the following two calls:
 
@@ -2357,7 +2357,7 @@ Tests that we can grow up an operation from accepting one required parameter to 
 
 ### Resiliency_ServiceDriven_AddOptionalParams_fromOneOptional
 
-- Endpoint: `get /add-optional-params/from-one-optional`
+- Endpoint: `get /add-optional-param/from-one-optional`
 
 Need the following two calls:
 

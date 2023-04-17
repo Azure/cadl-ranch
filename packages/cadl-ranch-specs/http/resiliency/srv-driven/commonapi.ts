@@ -53,7 +53,7 @@ function addOptionalParamsNewApiVersionNewClientValidate(req: MockRequest): void
 }
 
 export const AddOptionalParams_fromNone = createResilientMockApi({
-  path: "/add-optional-params/from-none",
+  path: "/add-optional-param/from-none",
   verb: "head",
   commonValidate: function validate(req: MockRequest): void {},
   oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
@@ -61,7 +61,7 @@ export const AddOptionalParams_fromNone = createResilientMockApi({
 });
 
 export const AddOptionalParams_fromOneRequired = createResilientMockApi({
-  path: "/add-optional-params/from-one-required",
+  path: "/add-optional-param/from-one-required",
   verb: "get",
   commonValidate: function validate(req: MockRequest): void {
     req.expect.containsQueryParam("new-parameter", "foo");
@@ -71,7 +71,7 @@ export const AddOptionalParams_fromOneRequired = createResilientMockApi({
 });
 
 export const AddOptionalParams_fromOneOptional = createResilientMockApi({
-  path: "/add-optional-params/from-one-optional",
+  path: "/add-optional-param/from-one-optional",
   verb: "get",
   commonValidate: function validate(req: MockRequest): void {
     req.expect.containsQueryParam("new-parameter", "foo");

@@ -8,7 +8,7 @@ import {
 } from "@azure-tools/cadl-ranch-api";
 import { HttpVerb } from "@typespec/http";
 
-export const commonBase = "/resiliency/servicedriven";
+export const commonBase = "/resiliency/service-driven";
 
 type PassResiliencyOptions = {
   path: string;
@@ -56,14 +56,14 @@ function addOptionalParamsOldApiVersionNewClientValidate(req: MockRequest): void
 }
 
 function addOptionalParamsNewApiVersionNewClientValidate(req: MockRequest): void {
-  req.expect.containsQueryParam("new-parameter", "foo");
+  req.expect.containsQueryParam("new-parameter", "new");
 }
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromNone = passOnSuccess(
   createResilientMockApi({
-    path: "/add-optional-params/from-none",
+    path: "/add-optional-param/from-none",
     verb: "head",
     commonValidate: function validate(req: MockRequest): void {},
     oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
@@ -73,10 +73,10 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromNone = passOnSuccess(
 
 Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired = passOnSuccess(
   createResilientMockApi({
-    path: "/add-optional-params/from-one-required",
+    path: "/add-optional-param/from-one-required",
     verb: "get",
     commonValidate: function validate(req: MockRequest): void {
-      req.expect.containsQueryParam("new-parameter", "foo");
+      req.expect.containsQueryParam("parameter", "required");
     },
     oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
     newApiVersionNewClientValidate: addOptionalParamsNewApiVersionNewClientValidate,
@@ -85,10 +85,10 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired = passOnSuc
 
 Scenarios.Resiliency_ServiceDriven_AddOptionalParams_fromOneOptional = passOnSuccess(
   createResilientMockApi({
-    path: "/add-optional-params/from-one-optional",
+    path: "/add-optional-param/from-one-optional",
     verb: "get",
     commonValidate: function validate(req: MockRequest): void {
-      req.expect.containsQueryParam("new-parameter", "foo");
+      req.expect.containsQueryParam("parameter", "optional");
     },
     oldApiVersionNewClientValidate: addOptionalParamsOldApiVersionNewClientValidate,
     newApiVersionNewClientValidate: addOptionalParamsNewApiVersionNewClientValidate,

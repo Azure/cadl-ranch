@@ -36,8 +36,8 @@ model PostInput {
   url: string;
 }
 
-@route("/add-optional-params")
-interface AddOptionalParams {
+@route("/add-optional-param")
+interface AddOptionalParam {
   @scenario
   @scenarioDoc("""
   Need the following two calls:
