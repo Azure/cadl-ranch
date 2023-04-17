@@ -2311,7 +2311,7 @@ This method requires to write 2 tests.
   - With DPG 1.0, poll to final state and write your own model to parse `{"received": "model"}`
   - With DPG 2.0, generate the convenience method to poll a Product model with "received" to "model"
 
-### Resiliency_ServiceDriven_AddOptionalParams_fromNone
+### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
 - Endpoint: `head /add-optional-param/from-none`
 
@@ -2333,7 +2333,7 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting no parameters to accepting an optional input parameter.
 
-### Resiliency_ServiceDriven_AddOptionalParams_fromOneRequired
+### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
 
 - Endpoint: `get /add-optional-param/from-one-required`
 
@@ -2355,7 +2355,7 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
-### Resiliency_ServiceDriven_AddOptionalParams_fromOneOptional
+### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
 
 - Endpoint: `get /add-optional-param/from-one-optional`
 
