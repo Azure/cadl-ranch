@@ -52,3 +52,5 @@ export interface MockResponseBody {
   contentType: string;
   rawContent: string | undefined;
 }
+
+export type CollectionFormat = "multi" | "csv" | "ssv" | "tsv" | "pipes";

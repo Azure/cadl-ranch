@@ -1,5 +1,5 @@
 import deepEqual from "deep-equal";
-import { RequestExt } from "./types.js";
+import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
@@ -97,16 +97,22 @@ export const validateQueryParam = (
   request: RequestExt,
   paramName: string,
   expected: string | string[],
-  collectionFormat?: "multi" | "csv",
+  collectionFormat?: CollectionFormat,
 ): void => {
   const actual = request.query[paramName];
+  const splitterMap = {
+    csv: ",",
+    ssv: " ",
+    tsv: "\t",
+    pipes: "|",
+  };
   let isExpected = false;
   if (collectionFormat && Array.isArray(expected)) {
     // verify query parameter as collection
     if (collectionFormat === "multi" && Array.isArray(actual)) {
       isExpected = deepEqual(actual, expected);
-    } else if (collectionFormat === "csv" && typeof actual === "string") {
-      const expectedString = expected.join(",");
+    } else if (collectionFormat !== "multi" && typeof actual === "string") {
+      const expectedString = expected.join(splitterMap[collectionFormat]);
       isExpected = expectedString === decodeURIComponent(actual);
     }
     if (!isExpected) {

@@ -2216,6 +2216,24 @@ Expected input body:
 
 This test is testing sending a multi collection format array query parameters
 
+### Parameters_CollectionFormat_Query_ssv
+
+- Endpoint: `get /parameters/collection-format/query/ssv`
+
+This test is testing sending a ssv collection format array query parameters
+
+### Parameters_CollectionFormat_Query_tsv
+
+- Endpoint: `get /parameters/collection-format/query/tsv`
+
+This test is testing sending a tsv collection format array query parameters
+
+### Parameters_CollectionFormat_Query_pipes
+
+- Endpoint: `get /parameters/collection-format/query/pipes`
+
+This test is testing sending a pipes collection format array query parameters
+
 ### Parameters_CollectionFormat_Query_csv
 
 - Endpoint: `get /parameters/collection-format/query/csv`
@@ -2227,6 +2245,99 @@ This test is testing sending a csv collection format array query parameters
 - Endpoint: `get /parameters/collection-format/header/csv`
 
 This test is testing sending a csv collection format array header parameters
+
+### Parameters_Spread_Model_spreadAsRequestBody
+
+- Endpoint: `put /parameters/spread/model/request-body`
+
+Test case for spread named model.
+
+Should generate request body model named `BodyParameter`.
+Should generate an operation like below:
+
+```
+spreadAsRequestBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadAsRequestBody
+
+- Endpoint: `put /parameters/spread/alias/request-body`
+
+Test case for spread alias.
+
+Should not generate any model named `BodyParameter`.
+Should generate an operation like:
+
+```
+spreadAsRequestBody(name: string)
+```
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadAsRequestParameter
+
+- Endpoint: `put /parameters/spread/alias/request-parameter/{id}`
+
+Test case for spread alias with path and header parameter.
+
+Should not generate any model named `RequestParameter`.
+Should generate an operation like below:
+
+```
+spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+```
+
+Note the parameter name may be normalized and vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadWithMultipleParameters
+
+- Endpoint: `put /parameters/spread/alias/multiple-parameters/{id}`
+
+Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+
+Should not generate any model named `AliasMultipleRequestParameters`.
+Should generate an operation like below:
+
+```
+spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+```
+
+Note it's also acceptable if some languages handle it as property bag.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "prop1": "foo1",
+  "prop2": "foo2",
+  "prop3": "foo3",
+  "prop4": "foo4",
+  "prop5": "foo5",
+  "prop6": "foo6"
+}
+```
 
 ### ProjectedName_jsonProjection
 
