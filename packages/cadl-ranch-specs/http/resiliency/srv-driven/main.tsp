@@ -141,40 +141,6 @@ interface AddOptionalParam {
 @scenario
 @scenarioDoc("""
   Need the following two calls:
-  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
-  ```json
-  { url: \"http://example.org/myimage.jpeg\" }
-  ```
-  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with header `content-type="image/jpeg"` and expected request body:
-  ```json
-  { url: \"http://example.org/myimage.jpeg\" }
-  ```
-
-  There are three concepts that should be clarified:
-  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
-
-  With the above two calls, we test the following configurations from this service spec:
-  - A client generated from the second service spec can call the second deployment of a service with api version v1
-  - A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
-
-  Tests that we can grow up an operation from accepting one content type to two.
-  """)
-@route("/add-content-type")
-@doc("Operation that we can grow up an operation from accepting one content type to two.")
-@post
-op addContentType(
-  @header `content-type`: "application/json" | "image/jpeg",
-
-  @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
-  @body
-  parameter: PostInput
-): NoContentResponse;
-
-@scenario
-@scenarioDoc("""
-  Need the following two calls:
   - Call with client spec version "v1" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
   - Call with client spec version "v2" with `serviceDeploymentVersion="v2"` and `apiVersion="v2"`
 

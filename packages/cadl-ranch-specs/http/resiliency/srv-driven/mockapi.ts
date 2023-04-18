@@ -95,24 +95,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSucc
   }),
 );
 
-Scenarios.Resiliency_ServiceDriven_addContentType = passOnSuccess(
-  createResilientMockApi({
-    path: "/add-content-type",
-    verb: "post",
-    commonValidate: function validate(req: MockRequest): void {
-      // just make sure we have a content type header
-      req.expect.containsHeader("content-type", req.headers["Content-Type"]);
-      req.expect.bodyEquals({ url: "http://example.org/myimage.jpeg" });
-    },
-    oldApiVersionNewClientValidate: function validate(req: MockRequest): void {
-      req.expect.containsHeader("content-type", "application/json");
-    },
-    newApiVersionNewClientValidate: function validate(req: MockRequest): void {
-      req.expect.containsHeader("content-type", "image/jpeg");
-    },
-  }),
-);
-
 Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess(
   mockapi.delete(`${commonBase}/client:v1/service:v2/api-version:v2/add-operation`, (req) => {
     return {

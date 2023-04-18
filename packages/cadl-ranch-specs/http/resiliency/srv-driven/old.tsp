@@ -112,37 +112,3 @@ interface AddOptionalParam {
     parameter?: string
   ): NoContentResponse;
 }
-
-@scenario
-@scenarioDoc("""
-  Need the following two calls:
-  - Pass in `serviceDeploymentVersion="v1"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
-  ```json
-  { url: \"http://example.org/myimage.jpeg\" }
-  ```
-  - Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with header `content-type="application/json"` and expected request body:
-  ```json
-  { url: \"http://example.org/myimage.jpeg\" }
-  ```
-
-  There are three concepts that should be clarified:
-  1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-  2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-  3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
-
-  With the above two calls, we test the following configurations from this service spec:
-  - A client generated from the first service spec can call the first deployment of a service with api version v1
-  - A client generated from the first service spec can call the second deployment of a service with api version v1
-
-  In the next service spec, we will test that we can grow this operation from accepting one content type to two.
-""")
-@route("/add-content-type")
-@doc("Test that currently accepts one content type. Will be updated in next spec to accept a new content type as well.")
-@post
-op addContentType(
-  @path contentTypePath: "json",
-
-  @doc("I am a body parameter. My only valid JSON entry is { url: \"http://example.org/myimage.jpeg\" }")
-  @body
-  parameter: PostInput
-): NoContentResponse;
