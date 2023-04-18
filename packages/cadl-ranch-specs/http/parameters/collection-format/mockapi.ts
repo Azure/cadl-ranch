@@ -21,6 +21,33 @@ Scenarios.Parameters_CollectionFormat_Query_csv = passOnSuccess(
   }),
 );
 
+Scenarios.Parameters_CollectionFormat_Query_ssv = passOnSuccess(
+  mockapi.get("/parameters/collection-format/query/ssv", (req) => {
+    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "ssv");
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Parameters_CollectionFormat_Query_tsv = passOnSuccess(
+  mockapi.get("/parameters/collection-format/query/tsv", (req) => {
+    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "tsv");
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Parameters_CollectionFormat_Query_pipes = passOnSuccess(
+  mockapi.get("/parameters/collection-format/query/pipes", (req) => {
+    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "pipes");
+    return {
+      status: 204,
+    };
+  }),
+);
+
 Scenarios.Parameters_CollectionFormat_Header_csv = passOnSuccess(
   mockapi.get("/parameters/collection-format/header/csv", (req) => {
     req.expect.containsHeader("colors", "blue,red,green");

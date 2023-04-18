@@ -8,7 +8,7 @@ import {
   validateHeader,
   validateQueryParam,
 } from "./request-validations.js";
-import { RequestExt } from "./types.js";
+import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
 /**
@@ -77,7 +77,7 @@ export class RequestExpectation {
   public containsQueryParam(
     paramName: string,
     expectedValue: string | string[],
-    collectionFormat?: "multi" | "csv",
+    collectionFormat?: CollectionFormat,
   ): void {
     validateQueryParam(this.originalRequest, paramName, expectedValue, collectionFormat);
   }
