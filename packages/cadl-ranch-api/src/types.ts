@@ -53,10 +53,4 @@ export interface MockResponseBody {
   rawContent: string | undefined;
 }
 
-export enum CollectionFormat {
-  MULTI = "multi",
-  CSV = "csv",
-  SSV = "ssv",
-  TSV = "tsv",
-  PIPES = "pipes",
-}
+export type CollectionFormat = "multi" | "csv" | "ssv" | "tsv" | "pipes";
