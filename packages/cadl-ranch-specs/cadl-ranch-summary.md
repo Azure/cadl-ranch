@@ -2369,59 +2369,6 @@ CADL name is JSON, Projection is client name per language override. Send:
 { "wasMadeFor": "customers" }
 ```
 
-### Resiliency_DevDriven_getModel
-
-- Endpoint: `get /resiliency/devdriven/customization/model/{mode}`
-
-Show that you can support both protocol methods and convenience method for a HTTP GET.
-This method requires to write 2 tests.
-
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}`
-- Test 2 varies:
-  - With DPG 1.0, write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to read Product model with "received" to "model"
-
-### Resiliency_DevDriven_postModel
-
-- Endpoint: `post /resiliency/devdriven/customization/model/{mode}`
-
-Show that you can support both protocol methods and convenience method for a HTTP POST.
-This method requires to write 2 tests.
-
-- Test 1 is a call with "raw" with body `{"hello": "world!"}` and confirm you can read a JSON `{"received": "raw"}`
-- Test 2 varies:
-  - With DPG 1.0, write a model Input("world!"), serialize to input write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to pass Input("world!") and read Product model with "received" to "model"
-
-### Resiliency_DevDriven_getProtocolPages
-
-- Endpoint: `get /resiliency/devdriven/customization/paging/protocol`
-
-Show that you can support protocol methods for a Paging operation.
-Call with "protocol" and confirm you can read a JSON `{"received": "protocol"}` on page 2.
-
-### Resiliency_DevDriven_getConveniencePages
-
-- Endpoint: `get /resiliency/devdriven/customization/paging/convenience`
-
-Show that you can support convenience methods for a Paging operation.
-This test varies:
-
-- With DPG 1.0, iterate to page 2 and write your own model to parse `{"received": "convenience"}`
-- With DPG 2.0, generate the convenience method to read Product model with "received" to "convenience" on page 2
-
-### Resiliency_DevDriven_lro
-
-- Endpoint: `put /resiliency/devdriven/customization/lro/{mode}`
-
-Show that you can support both protocol methods and convenience method for a LRO.
-This method requires to write 2 tests.
-
-- Test 1 is a call with "raw" and confirm you can read a JSON `{"received": "raw"}` as final result.
-- Test 2 varies:
-  - With DPG 1.0, poll to final state and write your own model to parse `{"received": "model"}`
-  - With DPG 2.0, generate the convenience method to poll a Product model with "received" to "model"
-
 ### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
 - Endpoint: `head /add-optional-param/from-none`
