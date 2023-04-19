@@ -42,12 +42,6 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       continue;
     }
 
-    // THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
-    if (NOT_IMPLEMENTED.some((x) => name.includes(x))) {
-      logger.warn(`${pc.yellow("✓")} Scenario ${name} is being ignored as not having mock api implemented.`);
-      continue;
-    }
-
     const mockApiFile = mockApis.find((x) => x.path.endsWith(`/${name}/mockapi.js`));
     if (mockApiFile === undefined) {
       diagnostics.reportDiagnostic({
@@ -77,9 +71,3 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
     process.exit(1);
   }
 }
-
-// THIS IS FOR BACK SUPPORT ONLY DO NOT ADD ANY NEW IGNORE. IMPLEMENT THE API.
-const NOT_IMPLEMENTED = [
-  // Laurent
-  "resiliency/dev-driven",
-];
