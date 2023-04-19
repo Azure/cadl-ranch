@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.12.0
+
+### Minor Changes
+
+- debea25: remove dev driven test
+- b58f70f: fix service driven resiliency tests
+
+### Patch Changes
+
+- 5a6d929: Add test case for spread operator
+- 3a6b67d: add tsv, ssv, pipes query collection format test
+- Updated dependencies [debea25]
+- Updated dependencies [3a6b67d]
+  - @azure-tools/cadl-ranch@0.4.5
+  - @azure-tools/cadl-ranch-expect@0.2.3
+  - @azure-tools/cadl-ranch-api@0.2.4
+
 ## 0.11.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-expect",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
   "type": "module",
