@@ -253,9 +253,9 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_Core_createOrUpdate
+### Azure_Core_Basic_createOrUpdate
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
@@ -279,9 +279,9 @@ Expected response body:
 }
 ```
 
-### Azure_Core_createOrReplace
+### Azure_Core_Basic_createOrReplace
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
@@ -306,9 +306,9 @@ Expected response body:
 }
 ```
 
-### Azure_Core_get
+### Azure_Core_Basic_get
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
@@ -325,9 +325,9 @@ Expected response body:
 }
 ```
 
-### Azure_Core_list
+### Azure_Core_Basic_list
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
@@ -356,9 +356,9 @@ Expected response body:
 }
 ```
 
-### Azure_Core_listWithPage
+### Azure_Core_Basic_listWithPage
 
-- Endpoint: `get /azure/core/page`
+- Endpoint: `get /azure/core/basic/page`
 
 Should only generate models named User and UserOrder.
 
@@ -379,9 +379,9 @@ Expected response body:
   ]
 }
 
-### Azure_Core_delete
+### Azure_Core_Basic_delete
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Expected path parameter: id=1
 
@@ -389,9 +389,9 @@ Expected query parameter: api-version=2022-12-01-preview
 
 Expected response of status code 204 with empty body.
 
-### Azure_Core_export
+### Azure_Core_Basic_export
 
-- Endpoint: `get /azure/core`
+- Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
@@ -408,9 +408,296 @@ Expected response body:
 }
 ````
 
-### Azure_Traits_get
+### Azure_Core_Lro_Rpc_SamePollResult
 
-- Endpoint: `get /azure/traits`
+- Endpoints:
+  - `get /azure/core/lro/rpc/same-poll-result/jobs`
+  - `get /azure/core/lro/rpc/same-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/same-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
+### Azure_Core_Lro_Rpc_DifferentPollResult
+
+- Endpoints:
+  - `get /azure/core/lro/rpc/different-poll-result/jobs`
+  - `get /azure/core/lro/rpc/different-poll-result`
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "comment": "async job"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
+
+### Azure_Core_Lro_Standard_createOrReplace
+
+- Endpoint: `get /azure/core/lro/standard`
+
+Should only generate one model named User.
+
+Expected verb: PUT
+Expected path parameter: name=madge
+
+Expected request body:
+
+```json
+{
+  "role": "contributor"
+}
+```
+
+Expected status code: 201
+Expected response header: operation-location={endpoint}/users/madge/operations/operation1
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded"
+}
+```
+
+(The last GET call on resource URL is optional)
+Expected verb: GET
+Expected URL: {endpoint}/users/madge
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "name": "madge",
+  "role": "contributor"
+}
+```
+
+### Azure_Core_Lro_Standard_delete
+
+- Endpoint: `get /azure/core/lro/standard`
+
+Expected verb: DELETE
+Expected path parameter: name=madge
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation2
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation2
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation2",
+  "status": "Succeeded"
+}
+```
+
+### Azure_Core_Lro_Standard_export
+
+- Endpoint: `get /azure/core/lro/standard`
+
+Should only generate one model named ExportedUser.
+
+Expected verb: POST
+Expected path parameter: name=madge
+Expected query parameter: format=json
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/users/madge/operations/operation3
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/users/madge/operations/operation3
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation3",
+  "status": "Succeeded",
+  "result": {
+    "name": "madge",
+    "resourceUri": "/users/madge"
+  }
+}
+```
+
+### Azure_Core_Traits_get
+
+- Endpoint: `get /azure/core/traits`
 
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
@@ -434,9 +721,9 @@ Expected response body:
 }
 ```
 
-### Azure_Traits_delete
+### Azure_Core_Traits_delete
 
-- Endpoint: `get /azure/traits`
+- Endpoint: `get /azure/core/traits`
 
 Expected path parameter:
 
@@ -768,308 +1055,6 @@ Expected response body:
 {
   "id": 1,
   "name": <any string>
-}
-```
-
-### Azure_Lro_PollingSuccess
-
-- Endpoints:
-  - `put /lro/basic/put`
-  - `put /lro/basic/put/polling`
-  - `put /lro/basic/put`
-
-Expected final response body:
-
-```json
-{
-  "name": "bob"
-}
-```
-
-### Azure_Lro_Core_createOrReplace
-
-- Endpoint: `get /azure/lro/core`
-
-Should only generate one model named User.
-
-Expected verb: PUT
-Expected path parameter: name=madge
-
-Expected request body:
-
-```json
-{
-  "role": "contributor"
-}
-```
-
-Expected status code: 201
-Expected response header: operation-location={endpoint}/users/madge/operations/operation1
-Expected response body:
-
-```json
-{
-  "name": "madge",
-  "role": "contributor"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation1",
-  "status": "Succeeded"
-}
-```
-
-(The last GET call on resource URL is optional)
-Expected verb: GET
-Expected URL: {endpoint}/users/madge
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "name": "madge",
-  "role": "contributor"
-}
-```
-
-### Azure_Lro_Core_delete
-
-- Endpoint: `get /azure/lro/core`
-
-Expected verb: DELETE
-Expected path parameter: name=madge
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/users/madge/operations/operation2
-Expected response body:
-
-```json
-{
-  "id": "operation2",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation2
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation2",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation2
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation2",
-  "status": "Succeeded"
-}
-```
-
-### Azure_Lro_Core_export
-
-- Endpoint: `get /azure/lro/core`
-
-Should only generate one model named ExportedUser.
-
-Expected verb: POST
-Expected path parameter: name=madge
-Expected query parameter: format=json
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/users/madge/operations/operation3
-Expected response body:
-
-```json
-{
-  "id": "operation3",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation3
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation3",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/users/madge/operations/operation3
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "id": "operation3",
-  "status": "Succeeded",
-  "result": {
-    "name": "madge",
-    "resourceUri": "/users/madge"
-  }
-}
-```
-
-### Azure_Lro_Rpc_SamePollResult
-
-- Endpoints:
-  - `get /azure/lro/rpc/same-poll-result/jobs`
-  - `get /azure/lro/rpc/same-poll-result`
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-
-### Azure_Lro_Rpc_DifferentPollResult
-
-- Endpoints:
-  - `get /azure/lro/rpc/different-poll-result/jobs`
-  - `get /azure/lro/rpc/different-poll-result`
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
 }
 ```
 

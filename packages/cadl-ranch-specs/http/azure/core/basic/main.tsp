@@ -12,9 +12,9 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core")
-@scenarioService("/azure/core")
-@versioned(_Specs_.Azure.Core.Versions)
-namespace _Specs_.Azure.Core;
+@scenarioService("/azure/core/basic")
+@versioned(Versions)
+namespace _Specs_.Azure.Core.Basic;
 
 enum Versions {
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
