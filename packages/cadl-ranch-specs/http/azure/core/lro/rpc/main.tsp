@@ -10,11 +10,11 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-#suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
+#suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
-@scenarioService("/azure/lro/rpc")
-@versioned(Azure.Lro.Rpc.Versions)
-namespace Azure.Lro.Rpc;
+@scenarioService("/azure/core/lro/rpc")
+@versioned(Versions)
+namespace _Specs_.Azure.Core.Lro.Rpc;
 
 enum Versions {
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
@@ -44,11 +44,11 @@ model JobResult {
 
   @doc("The status of the processing job.")
   @visibility("read")
-  status: Foundations.OperationState;
+  status: global.Azure.Core.Foundations.OperationState;
 
   @doc("Error objects that describes the error when status is \"Failed\".")
   @visibility("read")
-  errors?: Foundations.ErrorResponse[];
+  errors?: global.Azure.Core.Foundations.ErrorResponse[];
 
   @doc("The results.")
   @visibility("read")
@@ -65,7 +65,7 @@ model JobPollResult {
 
   @doc("The status of the processing job.")
   @visibility("read")
-  status: Foundations.OperationState;
+  status: global.Azure.Core.Foundations.OperationState;
 }
 
 @scenario
@@ -121,7 +121,7 @@ Expected response body:
 interface SamePollResult {
   @doc("Creates a Job")
   @route("/same-poll-result/jobs")
-  @pollingOperation(SamePollResult.getJob)
+  @global.Azure.Core.pollingOperation(SamePollResult.getJob)
   createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult>;
 
   @doc("Gets the status of a Job")
@@ -193,7 +193,7 @@ Expected response body:
 interface DifferentPollResult {
   @doc("Creates a Job")
   @route("/different-poll-result/jobs")
-  @pollingOperation(DifferentPollResult.getPoll)
+  @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)
   createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<
     JobData,
     JobResult,

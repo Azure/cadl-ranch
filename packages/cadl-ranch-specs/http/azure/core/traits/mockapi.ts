@@ -9,8 +9,8 @@ const validUser = {
   etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
 };
 
-Scenarios.Azure_Traits_get = passOnSuccess(
-  mockapi.get("/azure/traits/user/:id", (req) => {
+Scenarios.Azure_Core_Traits_get = passOnSuccess(
+  mockapi.get("/azure/core/traits/user/:id", (req) => {
     if (!("x-ms-client-request-id" in req.headers)) {
       throw new ValidationError("Should submit header x-ms-client-request-id", "any uuid", undefined);
     }
@@ -34,8 +34,8 @@ Scenarios.Azure_Traits_get = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Traits_delete = passOnSuccess(
-  mockapi.delete("/azure/traits/api/:apiVersion/user/:id", (req) => {
+Scenarios.Azure_Core_Traits_delete = passOnSuccess(
+  mockapi.delete("/azure/core/traits/api/:apiVersion/user/:id", (req) => {
     if (!("x-ms-client-request-id" in req.headers)) {
       throw new ValidationError("Should submit header x-ms-client-request-id", "any uuid", undefined);
     }

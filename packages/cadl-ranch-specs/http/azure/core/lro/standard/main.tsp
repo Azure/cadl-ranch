@@ -5,15 +5,15 @@ import "@typespec/versioning";
 
 using Azure.Core;
 using global.Azure.Core.Traits;
-using TypeSpec.Rest;
 using TypeSpec.Http;
+using TypeSpec.Rest;
 using TypeSpec.Versioning;
 
-#suppress "@azure-tools/cadl-azure-core/casing-style" "For spec"
+#suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
-@scenarioService("/azure/lro/core")
-@versioned(Azure.Lro.Core.Versions)
-namespace Azure.Lro.Core;
+@scenarioService("/azure/core/lro/standard")
+@versioned(Versions)
+namespace _Specs_.Azure.Core.Lro.Standard;
 
 enum Versions {
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
@@ -114,7 +114,7 @@ Expected response body:
 }
 ```
 """)
-@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
+@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
 @scenario
@@ -158,7 +158,7 @@ Expected response body:
 }
 ```
 """)
-@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
+@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op delete is ResourceOperations.LongRunningResourceDelete<User>;
 
 @scenario
@@ -209,5 +209,5 @@ Expected response body:
 }
 ```
 """)
-@pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
+@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
 op export is ResourceOperations.LongRunningResourceAction<User, UserExportParams, ExportedUser>;

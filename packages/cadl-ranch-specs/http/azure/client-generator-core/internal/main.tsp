@@ -7,11 +7,11 @@ using Azure.ClientGenerator.Core;
 
 @doc("Test for internal decorator.")
 @supportedBy("dpg")
-@scenarioService("/internal")
-namespace Internal;
+@scenarioService("/azure/client-generator-core/internal")
+namespace _Specs_.Azure.ClientGenerator.Core.Internal;
 
 @doc("This is an internal model.")
-@internal
+@global.Azure.ClientGenerator.Core.internal
 model InternalModel {
   name: string;
 }
@@ -35,13 +35,13 @@ Expected response body:
 """)
 @route("/getInternal")
 @get
-@internal
+@global.Azure.ClientGenerator.Core.internal
 op getInternal(@query name: string): InternalModel;
 
 @scenario
 @scenarioDoc("""
 This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
-Expected body: 
+Expected body:
 ```json
 {
   "id": 1,
@@ -58,5 +58,5 @@ Expected response body:
 """)
 @route("/postInternal")
 @post
-@internal
+@global.Azure.ClientGenerator.Core.internal
 op postInternal(@body body: ModelOnlyUsedByInternalOperation): ModelOnlyUsedByInternalOperation;
