@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.13.0
+
+### Minor Changes
+
+- 088b0b5: reconfigure dashboard view of core and tcgc
+
+### Patch Changes
+
+- 70c1a28: add paging test with a custom paging model
+
 ## 0.12.1
 
 ### Patch Changes
