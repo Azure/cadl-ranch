@@ -20,26 +20,26 @@ type PassResiliencyOptions = {
 
 function createResilientMockApi(options: PassResiliencyOptions): MockApi[] {
   return [
-    mockapi.request(options.verb, `${commonBase}/client:v1/service:v1/api-version:v1${options.path}`, (req) => {
+    mockapi.request(options.verb, `${commonBase}/client[:]v1/service[:]v1/api-version[:]v1${options.path}`, (req) => {
       options.commonValidate(req);
       return {
         status: 204,
       };
     }),
-    mockapi.request(options.verb, `${commonBase}/client:v1/service:v2/api-version:v1${options.path}`, (req) => {
+    mockapi.request(options.verb, `${commonBase}/client[:]v1/service[:]v2/api-version[:]v1${options.path}`, (req) => {
       options.commonValidate(req);
       return {
         status: 204,
       };
     }),
-    mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v1${options.path}`, (req) => {
+    mockapi.request(options.verb, `${commonBase}/client[:]v2/service[:]v2/api-version[:]v1${options.path}`, (req) => {
       options.commonValidate(req);
       options.oldApiVersionNewClientValidate(req);
       return {
         status: 204,
       };
     }),
-    mockapi.request(options.verb, `${commonBase}/client:v2/service:v2/api-version:v2${options.path}`, (req) => {
+    mockapi.request(options.verb, `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2${options.path}`, (req) => {
       options.commonValidate(req);
       options.newApiVersionNewClientValidate(req);
       return {
@@ -96,7 +96,7 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSucc
 );
 
 Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess(
-  mockapi.delete(`${commonBase}/client:v1/service:v2/api-version:v2/add-operation`, (req) => {
+  mockapi.delete(`${commonBase}/client[:]v1/service[:]v2/api-version[:]v2/add-operation`, (req) => {
     return {
       status: 204,
     };
@@ -104,7 +104,7 @@ Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess(
 );
 
 Scenarios.Resiliency_ServiceDriven_addOperation = passOnSuccess(
-  mockapi.delete(`${commonBase}/client:v2/service:v2/api-version:v2/add-operation`, (req) => {
+  mockapi.delete(`${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-operation`, (req) => {
     return {
       status: 204,
     };

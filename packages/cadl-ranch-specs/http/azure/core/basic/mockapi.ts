@@ -3,8 +3,8 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 const validUser = { id: 1, name: "Madge", etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59" };
-Scenarios.Azure_Core_createOrUpdate = passOnSuccess(
-  mockapi.patch("/azure/core/users/:id", (req) => {
+Scenarios.Azure_Core_Basic_createOrUpdate = passOnSuccess(
+  mockapi.patch("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
@@ -16,8 +16,8 @@ Scenarios.Azure_Core_createOrUpdate = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_createOrReplace = passOnSuccess(
-  mockapi.put("/azure/core/users/:id", (req) => {
+Scenarios.Azure_Core_Basic_createOrReplace = passOnSuccess(
+  mockapi.put("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
@@ -29,8 +29,8 @@ Scenarios.Azure_Core_createOrReplace = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_get = passOnSuccess(
-  mockapi.get("/azure/core/users/:id", (req) => {
+Scenarios.Azure_Core_Basic_get = passOnSuccess(
+  mockapi.get("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
@@ -39,8 +39,8 @@ Scenarios.Azure_Core_get = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_list = passOnSuccess(
-  mockapi.get("/azure/core/users", (req) => {
+Scenarios.Azure_Core_Basic_list = passOnSuccess(
+  mockapi.get("/azure/core/basic/users", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.containsQueryParam("top", "5");
     req.expect.containsQueryParam("skip", "10");
@@ -74,8 +74,8 @@ Scenarios.Azure_Core_list = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_listWithPage = passOnSuccess(
-  mockapi.get("/azure/core/page", (req) => {
+Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
+  mockapi.get("/azure/core/basic/page", (req) => {
     const responseBody = {
       value: [validUser],
     };
@@ -83,8 +83,8 @@ Scenarios.Azure_Core_listWithPage = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_listWithCustomPageModel = passOnSuccess(
-  mockapi.get("/azure/core/custom-page", (req) => {
+Scenarios.Azure_Core_Basic_listWithCustomPageModel = passOnSuccess(
+  mockapi.get("/azure/core/basic/custom-page", (req) => {
     const responseBody = {
       value: [validUser],
     };
@@ -92,8 +92,8 @@ Scenarios.Azure_Core_listWithCustomPageModel = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_delete = passOnSuccess(
-  mockapi.delete("/azure/core/users/:id", (req) => {
+Scenarios.Azure_Core_Basic_delete = passOnSuccess(
+  mockapi.delete("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
@@ -102,8 +102,8 @@ Scenarios.Azure_Core_delete = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_export = passOnSuccess(
-  mockapi.post("/azure/core/users/:id:export", (req) => {
+Scenarios.Azure_Core_Basic_export = passOnSuccess(
+  mockapi.post("/azure/core/basic/users/:id:export", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
