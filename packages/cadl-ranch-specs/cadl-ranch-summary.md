@@ -253,6 +253,20 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_ClientGenerator_Core_ClientFormat_Duration_iso8601
+
+- Endpoint: `get /azure/client-generator-core/client-format/duration/iso8601`
+
+Test that default client format for a duration parameter is iso8601.
+Expected query parameter `input=P40D`
+
+### Azure_ClientGenerator_Core_ClientFormat_Duration_seconds
+
+- Endpoint: `get /azure/client-generator-core/client-format/duration/seconds`
+
+Test that default client format for a duration parameter is iso8601.
+Expected query parameter `input=35.6`
+
 ### Azure_ClientGenerator_Core_Internal_getInternal
 
 - Endpoint: `get /azure/client-generator-core/internal/getInternal`
