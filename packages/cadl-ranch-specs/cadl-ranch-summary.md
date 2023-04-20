@@ -1048,16 +1048,6 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
-### Hello_world
-
-- Endpoint: `get /hello/world`
-
-This test is testing this payload is returned from the server
-
-```json
-"hello world"
-```
-
 ### Models_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /models/inheritance/discriminated/model`
@@ -2324,35 +2314,75 @@ Expected request body:
 }
 ```
 
-### ProjectedName_jsonProjection
+### Projection_ProjectedName_Property_json
 
-- Endpoint: `post /projection/json`
+- Endpoint: `post /projection/projected-name/property/json`
 
-CADL name is SDK, Projection is JSON name. Send:
+Testing that we can project the JSON name on the wire from defaultName -> wireName.
+Your generated SDK should generate JsonProjectedNameModel with one property `defaultName` with wire name `wireName`.
 
-```json
-{ "codegen": "DPG" }
-```
-
-### ProjectedName_clientProjection
-
-- Endpoint: `post /projection/client`
-
-CADL name is JSON, Projection is client name. Send:
+Expected request body:
 
 ```json
-{ "builtfrom": "DPG" }
+{ "wireName": true }
 ```
 
-### ProjectedName_languageProjection
+### Projection_ProjectedName_Property_client
 
-- Endpoint: `post /projection/language`
+- Endpoint: `post /projection/projected-name/property/client`
 
-CADL name is JSON, Projection is client name per language override. Send:
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate ClientProjectedNameModel with one property `clientName` with wire name `defaultName`.
+
+Expected request body:
 
 ```json
-{ "wasMadeFor": "customers" }
+{ "defaultName": true }
 ```
+
+### Projection_ProjectedName_Property_language
+
+- Endpoint: `post /projection/projected-name/property/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate ClientProjectedNameModel with one property with your language specific property name and wire name `defaultName`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Projection_ProjectedName_Property_jsonAndClient
+
+- Endpoint: `post /projection/projected-name/property/json-and-client`
+
+Testing that we can project the client name and the wire name.
+Your generated SDK should generate JsonAndClientProjectedNameModel with one property with client name `clientName` and wire name `wireName`.
+
+Expected request body:
+
+```json
+{ "wireName": true }
+```
+
+### Projection_ProjectedName_operation
+
+- Endpoint: `post /projection/projected-name/operation`
+
+Testing that we can project the operation name.
+Your generated SDK should generate an operation called `clientName`.
+
+Expected status code: 204
+
+### Projection_ProjectedName_parameter
+
+- Endpoint: `post /projection/projected-name/parameter`
+
+Testing that we can project a parameter name.
+Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
+
+Expected query parameter: `default-name="true"`
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
