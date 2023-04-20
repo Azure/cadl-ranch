@@ -253,6 +253,43 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_ClientGenerator_Core_Internal_getInternal
+
+- Endpoint: `get /azure/client-generator-core/internal/getInternal`
+
+This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Internal_postInternal
+
+- Endpoint: `post /azure/client-generator-core/internal/postInternal`
+
+This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
+Expected body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": <any string>
+}
+```
+
 ### Azure_Core_Basic_createOrUpdate
 
 - Endpoint: `get /azure/core/basic`
@@ -1019,43 +1056,6 @@ This test is testing this payload is returned from the server
 
 ```json
 "hello world"
-```
-
-### Internal_getInternal
-
-- Endpoint: `get /internal/getInternal`
-
-This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Internal_postInternal
-
-- Endpoint: `post /internal/postInternal`
-
-This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
-Expected body:
-
-```json
-{
-  "id": 1,
-  "name": <any string>
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": 1,
-  "name": <any string>
-}
 ```
 
 ### Models_Inheritance_Discriminated_getModel
