@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.12.1
+
+### Patch Changes
+
+- f52d101: fix coverage check for resiliency
+
 ## 0.12.0
 
 ### Minor Changes
