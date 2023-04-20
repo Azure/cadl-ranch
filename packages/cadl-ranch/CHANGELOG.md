@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.5
+
+### Patch Changes
+
+- debea25: remove dev driven test
+- 3a6b67d: add tsv, ssv, pipes query collection format test
+- Updated dependencies [3a6b67d]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.2
+  - @azure-tools/cadl-ranch-expect@0.2.3
+  - @azure-tools/cadl-ranch-api@0.2.4
+
 ## 0.4.4
 
 ### Patch Changes
