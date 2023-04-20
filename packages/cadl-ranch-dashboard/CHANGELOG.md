@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.2.2
+
+### Patch Changes
+
+- 3a6b67d: add tsv, ssv, pipes query collection format test
+- Updated dependencies [3a6b67d]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
