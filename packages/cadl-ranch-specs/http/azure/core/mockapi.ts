@@ -83,6 +83,15 @@ Scenarios.Azure_Core_listWithPage = passOnSuccess(
   }),
 );
 
+Scenarios.Azure_Core_listWithCustomPageModel = passOnSuccess(
+  mockapi.get("/azure/core/custom-page", (req) => {
+    const responseBody = {
+      value: [validUser],
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);
+
 Scenarios.Azure_Core_delete = passOnSuccess(
   mockapi.delete("/azure/core/users/:id", (req) => {
     if (req.params.id !== "1") {

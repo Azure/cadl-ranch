@@ -379,6 +379,26 @@ Expected response body:
   ]
 }
 
+### Azure_Core_listWithCustomPageModel
+
+- Endpoint: `get /azure/core/custom-page`
+
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
 ### Azure_Core_delete
 
 - Endpoint: `get /azure/core`
