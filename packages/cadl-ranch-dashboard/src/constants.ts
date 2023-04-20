@@ -8,3 +8,13 @@ export const Colors = {
   error: "#ef3e36",
   warning: "#f7b32b",
 };
+
+/**
+ * Ratio of coverage for a group
+ */
+export const GroupRatios = {
+  perfect: 1,
+  good: 0.8,
+  meh: 0.5,
+  bad: 0
+}
