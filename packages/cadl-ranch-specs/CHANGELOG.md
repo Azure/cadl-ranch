@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.0
+
+### Minor Changes
+
+- 759070a: remove api version test in azure core traits
+- a29f855: create a Types folder with all of the types moved there
+
+### Patch Changes
+
+- 50c25b9: update internal decorator
+- Updated dependencies [344334c]
+  - @azure-tools/cadl-ranch@0.4.6
+
 ## 0.13.0
 
 ### Minor Changes
