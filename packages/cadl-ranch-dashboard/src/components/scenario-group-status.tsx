@@ -1,19 +1,19 @@
-import { css } from "@emotion/react";
+import { SerializedStyles, css } from "@emotion/react";
 import { FunctionComponent } from "react";
-import { Colors } from "../constants.js";
+import { Colors, GroupRatioColors, GroupRatios } from "../constants.js";
 
 export interface ScenarioGroupStatusRatioBoxProps {
   readonly ratio: number;
 }
 
 export const ScenarioGroupRatioStatusBox: FunctionComponent<ScenarioGroupStatusRatioBoxProps> = ({ ratio }) => {
-  let css = groupRatioStyles.zero;
-  if (ratio === 1) {
-    css = groupRatioStyles.perfect;
-  } else if (ratio > 0.8) {
-    css = groupRatioStyles.ok;
-  } else if (ratio > 0) {
-    css = groupRatioStyles.bad;
+  let css = groupRatioStyles.bad;
+
+  for (const [key, expectedRatio] of Object.entries(GroupRatios)) {
+    if (ratio >= expectedRatio) {
+      css = groupRatioStyles[key as keyof typeof GroupRatios];
+      break;
+    }
   }
   return (
     <div
@@ -35,9 +35,8 @@ export const ScenarioGroupRatioStatusBox: FunctionComponent<ScenarioGroupStatusR
   );
 };
 
-const groupRatioStyles = {
-  perfect: css({ backgroundColor: Colors.good }),
-  ok: css({ backgroundColor: Colors.ok }),
-  bad: css({ backgroundColor: Colors.warning }),
-  zero: css({ backgroundColor: Colors.warning }),
-};
+const groupRatioStyles: Record<keyof typeof GroupRatios, SerializedStyles> = Object.fromEntries(
+  Object.entries(GroupRatioColors).map(([key, value]) => {
+    return [key, css({ backgroundColor: value })];
+  }),
+) as any;
