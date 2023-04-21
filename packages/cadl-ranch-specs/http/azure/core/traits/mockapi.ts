@@ -33,4 +33,3 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
     };
   }),
 );
-
