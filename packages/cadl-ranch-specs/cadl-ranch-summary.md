@@ -552,7 +552,7 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Traits_get
+### Azure_Core_Traits_smokeTest
 
 - Endpoint: `get /azure/core/traits`
 
@@ -577,22 +577,6 @@ Expected response body:
   "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 ```
-
-### Azure_Core_Traits_delete
-
-- Endpoint: `get /azure/core/traits`
-
-Expected path parameter:
-
-- id=1
-- api-version=2022-12-01-preview
-  Expected header parameters:
-- x-ms-client-request-id=<any string>
-
-Expected response headers:
-
-- x-ms-client-request-id=<any string>
-- Repeatability-Result=Accepted
 
 ### Parameters_CollectionFormat_Query_multi
 
