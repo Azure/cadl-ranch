@@ -250,7 +250,7 @@ importers:
       '@azure-tools/cadl-ranch-expect': workspace:~
       '@azure-tools/typespec-autorest': 0.29.0
       '@azure-tools/typespec-azure-core': ~0.29.0
-      '@azure-tools/typespec-client-generator-core': ~0.30.0-dev.9
+      '@azure-tools/typespec-client-generator-core': ~0.29.0
       '@types/node': ^18.7.16
       '@typespec/compiler': ~0.43.0
       '@typespec/eslint-config-typespec': ~0.6.0
@@ -274,7 +274,7 @@ importers:
       '@typespec/versioning': 0.43.0
     devDependencies:
       '@azure-tools/typespec-autorest': 0.29.0_3qd6vjcxydiptupyirxyadoxky
-      '@azure-tools/typespec-client-generator-core': 0.30.0-dev.9_iaqsnjlmblwjtzjnlq5lqg6yfu
+      '@azure-tools/typespec-client-generator-core': 0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu
       '@types/node': 18.7.16
       '@typespec/eslint-config-typespec': 0.6.0_prettier@2.8.7
       '@typespec/openapi': 0.43.0_iaqsnjlmblwjtzjnlq5lqg6yfu
@@ -333,17 +333,16 @@ packages:
       '@typespec/lint': 0.43.0_@typespec+compiler@0.43.0
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
 
-  /@azure-tools/typespec-client-generator-core/0.30.0-dev.9_iaqsnjlmblwjtzjnlq5lqg6yfu:
-    resolution: {integrity: sha512-kiMlynnvzH6Bj2nkfiUDmpAI6jjHslCiGOCgzbJZYPHhLUQ2M436lBI4cFZ2l3Kc+QP0fBsJ93fqC4fgG8stkQ==}
+  /@azure-tools/typespec-client-generator-core/0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu:
+    resolution: {integrity: sha512-dfUNeQWnhrrNErIjC1S6JhxXZW/0tPTK4jPB7eN6QiFlvbD2SMvE7uSRktjzET/bhhJUSfKdLY2kGkWYuRKQsw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/rest': '>=0.43.0'
+      '@typespec/compiler': ~0.43.0
+      '@typespec/http': ~0.43.0
+      '@typespec/rest': ~0.43.0
     dependencies:
       '@typespec/compiler': 0.43.0
       '@typespec/http': 0.43.1_@typespec+compiler@0.43.0
-      '@typespec/lint': 0.43.0_@typespec+compiler@0.43.0
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
     dev: true
 

@@ -39,7 +39,7 @@
   "devDependencies": {
     "@azure-tools/typespec-autorest": "0.29.0",
     "@typespec/eslint-config-typespec": "~0.6.0",
-    "@azure-tools/typespec-client-generator-core": "~0.30.0-dev.9",
+    "@azure-tools/typespec-client-generator-core": "~0.29.0",
     "@typespec/openapi": "0.43.0",
     "@typespec/openapi3": "0.43.0",
     "@types/node": "^18.7.16",
