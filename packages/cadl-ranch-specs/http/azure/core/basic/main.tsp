@@ -199,6 +199,41 @@ Expected response body:
 """)
 op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
+@friendlyName("{name}ListResults", T)
+@global.Azure.Core.pagedResult
+model CustomPageModel<T> {
+  @global.Azure.Core.items
+  @doc("List of items.")
+  items: T[];
+
+  @global.Azure.Core.nextLink
+  @doc("Link to fetch more items.")
+  nextLink?: string;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with custom page model.")
+@route("/custom-page")
+@scenarioDoc("""
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+""")
+op listWithCustomPageModel is global.Azure.Core.Foundations.Operation<{}, CustomPageModel<User>>;
+
 @scenario
 @doc("Deletes a User")
 @summary("Deletes a user.")
