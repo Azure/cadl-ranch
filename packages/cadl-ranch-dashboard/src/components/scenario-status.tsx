@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
-import { Colors } from "../constants.js";
+import { Colors, ScenarioStatusColors } from "../constants.js";
 
 export interface ScenarioStatusBoxProps {
   readonly status: ScenarioStatus | undefined;
@@ -45,36 +45,45 @@ const ScenarioStatusBoxStyles = css({
 });
 
 export const PassStatus = () => (
-  <div title="Pass" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.good })]}>
+  <div title="Pass" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.pass })]}>
     <FontAwesomeIcon icon={faCheck} />
   </div>
 );
 
 export const FailStatus = () => (
-  <div title="Fail" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.error })]}>
+  <div title="Fail" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.fail })]}>
     <FontAwesomeIcon icon={faXmarkCircle} />
   </div>
 );
 
 export const NotSupportedStatus = () => (
-  <div title="Not supported" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.borderDefault })]}>
+  <div
+    title="Not supported"
+    css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notSupported })]}
+  >
     <FontAwesomeIcon icon={faEyeSlash} />
   </div>
 );
 export const NotApplicableStatus = () => (
-  <div title="Not applicable" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.borderDefault })]}>
+  <div
+    title="Not applicable"
+    css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notApplicable })]}
+  >
     <FontAwesomeIcon icon={faEyeSlash} />
   </div>
 );
 
 export const NotImplementedStatus = () => (
-  <div title="Not implemented" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.warning })]}>
+  <div
+    title="Not implemented"
+    css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notImplemented })]}
+  >
     <FontAwesomeIcon icon={faCircleExclamation} />
   </div>
 );
 
 export const NotReportedStatus = () => (
-  <div title="Not reported" css={[ScenarioStatusBoxStyles, css({ backgroundColor: Colors.warning })]}>
+  <div title="Not reported" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notReported })]}>
     <FontAwesomeIcon icon={faTriangleExclamation} />
   </div>
 );
