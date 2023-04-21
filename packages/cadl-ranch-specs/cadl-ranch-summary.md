@@ -933,9 +933,9 @@ Expected input body:
 }
 ```
 
-### Types_Array_Int32Value_get
+### Type_Array_Int32Value_get
 
-- Endpoint: `get /types/array/int32`
+- Endpoint: `get /type/array/int32`
 
 Expected Array response body:
 
@@ -943,9 +943,9 @@ Expected Array response body:
 [1, 2]
 ```
 
-### Types_Array_Int32Value_put
+### Type_Array_Int32Value_put
 
-- Endpoint: `put /types/array/int32`
+- Endpoint: `put /type/array/int32`
 
 Expected Array input body:
 
@@ -953,9 +953,9 @@ Expected Array input body:
 [1, 2]
 ```
 
-### Types_Array_Int64Value_get
+### Type_Array_Int64Value_get
 
-- Endpoint: `get /types/array/int64`
+- Endpoint: `get /type/array/int64`
 
 Expected Array response body:
 
@@ -963,9 +963,9 @@ Expected Array response body:
 [0x7fffffffffffffff, -0x7fffffffffffffff]
 ```
 
-### Types_Array_Int64Value_put
+### Type_Array_Int64Value_put
 
-- Endpoint: `put /types/array/int64`
+- Endpoint: `put /type/array/int64`
 
 Expected Array input body:
 
@@ -973,9 +973,9 @@ Expected Array input body:
 [0x7fffffffffffffff, -0x7fffffffffffffff]
 ```
 
-### Types_Array_BooleanValue_get
+### Type_Array_BooleanValue_get
 
-- Endpoint: `get /types/array/boolean`
+- Endpoint: `get /type/array/boolean`
 
 Expected Array response body:
 
@@ -983,9 +983,9 @@ Expected Array response body:
 [true, false]
 ```
 
-### Types_Array_BooleanValue_put
+### Type_Array_BooleanValue_put
 
-- Endpoint: `put /types/array/boolean`
+- Endpoint: `put /type/array/boolean`
 
 Expected Array input body:
 
@@ -993,9 +993,9 @@ Expected Array input body:
 [true, false]
 ```
 
-### Types_Array_StringValue_get
+### Type_Array_StringValue_get
 
-- Endpoint: `get /types/array/string`
+- Endpoint: `get /type/array/string`
 
 Expected Array response body:
 
@@ -1003,9 +1003,9 @@ Expected Array response body:
 ["hello", ""]
 ```
 
-### Types_Array_StringValue_put
+### Type_Array_StringValue_put
 
-- Endpoint: `put /types/array/string`
+- Endpoint: `put /type/array/string`
 
 Expected Array input body:
 
@@ -1013,9 +1013,9 @@ Expected Array input body:
 ["hello", ""]
 ```
 
-### Types_Array_Float32Value_get
+### Type_Array_Float32Value_get
 
-- Endpoint: `get /types/array/float32`
+- Endpoint: `get /type/array/float32`
 
 Expected Array response body:
 
@@ -1023,9 +1023,9 @@ Expected Array response body:
 [42.42]
 ```
 
-### Types_Array_Float32Value_put
+### Type_Array_Float32Value_put
 
-- Endpoint: `put /types/array/float32`
+- Endpoint: `put /type/array/float32`
 
 Expected Array input body:
 
@@ -1033,9 +1033,9 @@ Expected Array input body:
 [42.42]
 ```
 
-### Types_Array_DatetimeValue_get
+### Type_Array_DatetimeValue_get
 
-- Endpoint: `get /types/array/datetime`
+- Endpoint: `get /type/array/datetime`
 
 Expected Array response body:
 
@@ -1043,9 +1043,9 @@ Expected Array response body:
 ["2022-08-26T18:38:00Z"]
 ```
 
-### Types_Array_DatetimeValue_put
+### Type_Array_DatetimeValue_put
 
-- Endpoint: `put /types/array/datetime`
+- Endpoint: `put /type/array/datetime`
 
 Expected Array input body:
 
@@ -1053,9 +1053,9 @@ Expected Array input body:
 ["2022-08-26T18:38:00Z"]
 ```
 
-### Types_Array_DurationValue_get
+### Type_Array_DurationValue_get
 
-- Endpoint: `get /types/array/duration`
+- Endpoint: `get /type/array/duration`
 
 Expected Array response body:
 
@@ -1063,9 +1063,9 @@ Expected Array response body:
 ["P123DT22H14M12.011S"]
 ```
 
-### Types_Array_DurationValue_put
+### Type_Array_DurationValue_put
 
-- Endpoint: `put /types/array/duration`
+- Endpoint: `put /type/array/duration`
 
 Expected Array input body:
 
@@ -1073,9 +1073,9 @@ Expected Array input body:
 ["P123DT22H14M12.011S"]
 ```
 
-### Types_Array_UnknownValue_get
+### Type_Array_UnknownValue_get
 
-- Endpoint: `get /types/array/unknown`
+- Endpoint: `get /type/array/unknown`
 
 Expected Array response body:
 
@@ -1083,9 +1083,9 @@ Expected Array response body:
 [1, 'hello', 'k3': null]
 ```
 
-### Types_Array_UnknownValue_put
+### Type_Array_UnknownValue_put
 
-- Endpoint: `put /types/array/unknown`
+- Endpoint: `put /type/array/unknown`
 
 Expected Array input body:
 
@@ -1093,9 +1093,9 @@ Expected Array input body:
 [1, 'hello', 'k3': null]
 ```
 
-### Types_Array_ModelValue_get
+### Type_Array_ModelValue_get
 
-- Endpoint: `get /types/array/model`
+- Endpoint: `get /type/array/model`
 
 Expected Array response body:
 
@@ -1103,9 +1103,9 @@ Expected Array response body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
-### Types_Array_ModelValue_put
+### Type_Array_ModelValue_put
 
-- Endpoint: `put /types/array/model`
+- Endpoint: `put /type/array/model`
 
 Expected Array input body:
 
@@ -1113,9 +1113,9 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
-### Types_Array_NullableFloatValue_get
+### Type_Array_NullableFloatValue_get
 
-- Endpoint: `get /types/array/nullable-float`
+- Endpoint: `get /type/array/nullable-float`
 
 Expected Array response body:
 
@@ -1123,9 +1123,9 @@ Expected Array response body:
 [1.2, null, 3.0]
 ```
 
-### Types_Array_NullableFloatValue_put
+### Type_Array_NullableFloatValue_put
 
-- Endpoint: `put /types/array/nullable-float`
+- Endpoint: `put /type/array/nullable-float`
 
 Expected Array input body:
 
@@ -1133,9 +1133,9 @@ Expected Array input body:
 [1.2, null, 3.0]
 ```
 
-### Types_Dictionary_Int32Value_get
+### Type_Dictionary_Int32Value_get
 
-- Endpoint: `get /types/dictionary/int32`
+- Endpoint: `get /type/dictionary/int32`
 
 Expected dictionary response body:
 
@@ -1143,9 +1143,9 @@ Expected dictionary response body:
 { "k1": 1, "k2": 2 }
 ```
 
-### Types_Dictionary_Int32Value_put
+### Type_Dictionary_Int32Value_put
 
-- Endpoint: `put /types/dictionary/int32`
+- Endpoint: `put /type/dictionary/int32`
 
 Expected dictionary input body:
 
@@ -1153,9 +1153,9 @@ Expected dictionary input body:
 { "k1": 1, "k2": 2 }
 ```
 
-### Types_Dictionary_Int64Value_get
+### Type_Dictionary_Int64Value_get
 
-- Endpoint: `get /types/dictionary/int64`
+- Endpoint: `get /type/dictionary/int64`
 
 Expected dictionary response body:
 
@@ -1163,9 +1163,9 @@ Expected dictionary response body:
 { "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
 ```
 
-### Types_Dictionary_Int64Value_put
+### Type_Dictionary_Int64Value_put
 
-- Endpoint: `put /types/dictionary/int64`
+- Endpoint: `put /type/dictionary/int64`
 
 Expected dictionary input body:
 
@@ -1173,9 +1173,9 @@ Expected dictionary input body:
 { "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
 ```
 
-### Types_Dictionary_BooleanValue_get
+### Type_Dictionary_BooleanValue_get
 
-- Endpoint: `get /types/dictionary/boolean`
+- Endpoint: `get /type/dictionary/boolean`
 
 Expected dictionary response body:
 
@@ -1183,9 +1183,9 @@ Expected dictionary response body:
 { "k1": true, "k2": false }
 ```
 
-### Types_Dictionary_BooleanValue_put
+### Type_Dictionary_BooleanValue_put
 
-- Endpoint: `put /types/dictionary/boolean`
+- Endpoint: `put /type/dictionary/boolean`
 
 Expected dictionary input body:
 
@@ -1193,9 +1193,9 @@ Expected dictionary input body:
 { "k1": true, "k2": false }
 ```
 
-### Types_Dictionary_StringValue_get
+### Type_Dictionary_StringValue_get
 
-- Endpoint: `get /types/dictionary/string`
+- Endpoint: `get /type/dictionary/string`
 
 Expected dictionary response body:
 
@@ -1203,9 +1203,9 @@ Expected dictionary response body:
 { "k1": "hello", "k2": "" }
 ```
 
-### Types_Dictionary_StringValue_put
+### Type_Dictionary_StringValue_put
 
-- Endpoint: `put /types/dictionary/string`
+- Endpoint: `put /type/dictionary/string`
 
 Expected dictionary input body:
 
@@ -1213,9 +1213,9 @@ Expected dictionary input body:
 { "k1": "hello", "k2": "" }
 ```
 
-### Types_Dictionary_Float32Value_get
+### Type_Dictionary_Float32Value_get
 
-- Endpoint: `get /types/dictionary/float32`
+- Endpoint: `get /type/dictionary/float32`
 
 Expected dictionary response body:
 
@@ -1223,9 +1223,9 @@ Expected dictionary response body:
 { "k1": 42.42 }
 ```
 
-### Types_Dictionary_Float32Value_put
+### Type_Dictionary_Float32Value_put
 
-- Endpoint: `put /types/dictionary/float32`
+- Endpoint: `put /type/dictionary/float32`
 
 Expected dictionary input body:
 
@@ -1233,9 +1233,9 @@ Expected dictionary input body:
 { "k1": 42.42 }
 ```
 
-### Types_Dictionary_DatetimeValue_get
+### Type_Dictionary_DatetimeValue_get
 
-- Endpoint: `get /types/dictionary/datetime`
+- Endpoint: `get /type/dictionary/datetime`
 
 Expected dictionary response body:
 
@@ -1243,9 +1243,9 @@ Expected dictionary response body:
 { "k1": "2022-08-26T18:38:00Z" }
 ```
 
-### Types_Dictionary_DatetimeValue_put
+### Type_Dictionary_DatetimeValue_put
 
-- Endpoint: `put /types/dictionary/datetime`
+- Endpoint: `put /type/dictionary/datetime`
 
 Expected dictionary input body:
 
@@ -1253,9 +1253,9 @@ Expected dictionary input body:
 { "k1": "2022-08-26T18:38:00Z" }
 ```
 
-### Types_Dictionary_DurationValue_get
+### Type_Dictionary_DurationValue_get
 
-- Endpoint: `get /types/dictionary/duration`
+- Endpoint: `get /type/dictionary/duration`
 
 Expected dictionary response body:
 
@@ -1263,9 +1263,9 @@ Expected dictionary response body:
 { "k1": "P123DT22H14M12.011S" }
 ```
 
-### Types_Dictionary_DurationValue_put
+### Type_Dictionary_DurationValue_put
 
-- Endpoint: `put /types/dictionary/duration`
+- Endpoint: `put /type/dictionary/duration`
 
 Expected dictionary input body:
 
@@ -1273,9 +1273,9 @@ Expected dictionary input body:
 { "k1": "P123DT22H14M12.011S" }
 ```
 
-### Types_Dictionary_UnknownValue_get
+### Type_Dictionary_UnknownValue_get
 
-- Endpoint: `get /types/dictionary/unknown`
+- Endpoint: `get /type/dictionary/unknown`
 
 Expected dictionary response body:
 
@@ -1283,9 +1283,9 @@ Expected dictionary response body:
 { "k1": 1, "k2": "hello", "k3": null }
 ```
 
-### Types_Dictionary_UnknownValue_put
+### Type_Dictionary_UnknownValue_put
 
-- Endpoint: `put /types/dictionary/unknown`
+- Endpoint: `put /type/dictionary/unknown`
 
 Expected dictionary input body:
 
@@ -1293,9 +1293,9 @@ Expected dictionary input body:
 { "k1": 1, "k2": "hello", "k3": null }
 ```
 
-### Types_Dictionary_ModelValue_get
+### Type_Dictionary_ModelValue_get
 
-- Endpoint: `get /types/dictionary/model`
+- Endpoint: `get /type/dictionary/model`
 
 Expected dictionary response body:
 
@@ -1303,9 +1303,9 @@ Expected dictionary response body:
 { "k1": { "property": "hello" }, "k2": { "property": "world" } }
 ```
 
-### Types_Dictionary_ModelValue_put
+### Type_Dictionary_ModelValue_put
 
-- Endpoint: `put /types/dictionary/model`
+- Endpoint: `put /type/dictionary/model`
 
 Expected dictionary input body:
 
@@ -1313,9 +1313,9 @@ Expected dictionary input body:
 { "k1": { "property": "hello" }, "k2": { "property": "world" } }
 ```
 
-### Types_Dictionary_RecursiveModelValue_get
+### Type_Dictionary_RecursiveModelValue_get
 
-- Endpoint: `get /types/dictionary/model/recursive`
+- Endpoint: `get /type/dictionary/model/recursive`
 
 Expected dictionary response body:
 
@@ -1329,9 +1329,9 @@ Expected dictionary response body:
 }
 ```
 
-### Types_Dictionary_RecursiveModelValue_put
+### Type_Dictionary_RecursiveModelValue_put
 
-- Endpoint: `put /types/dictionary/model/recursive`
+- Endpoint: `put /type/dictionary/model/recursive`
 
 Expected dictionary input body:
 
@@ -1345,9 +1345,9 @@ Expected dictionary input body:
 }
 ```
 
-### Types_Dictionary_NullableFloatValue_get
+### Type_Dictionary_NullableFloatValue_get
 
-- Endpoint: `get /types/dictionary/nullable-float`
+- Endpoint: `get /type/dictionary/nullable-float`
 
 Expected dictionary response body:
 
@@ -1355,9 +1355,9 @@ Expected dictionary response body:
 { "k1": 1.2, "k2": 0.5, "k3": null }
 ```
 
-### Types_Dictionary_NullableFloatValue_put
+### Type_Dictionary_NullableFloatValue_put
 
-- Endpoint: `put /types/dictionary/nullable-float`
+- Endpoint: `put /type/dictionary/nullable-float`
 
 Expected dictionary input body:
 
@@ -1365,51 +1365,51 @@ Expected dictionary input body:
 { "k1": 1.2, "k2": 0.5, "k3": null }
 ```
 
-### Types_Enum_Extensible_String_getKnownValue
+### Type_Enum_Extensible_String_getKnownValue
 
-- Endpoint: `get /types/enum/extensible/string/known-value`
+- Endpoint: `get /type/enum/extensible/string/known-value`
 
 Expect to handle a known value. Mock api will return 'Monday'
 
-### Types_Enum_Extensible_String_getUnknownValue
+### Type_Enum_Extensible_String_getUnknownValue
 
-- Endpoint: `get /types/enum/extensible/string/unknown-value`
+- Endpoint: `get /type/enum/extensible/string/unknown-value`
 
 Expect to handle an unknown value. Mock api will return 'Weekend'
 
-### Types_Enum_Extensible_String_putKnownValue
+### Type_Enum_Extensible_String_putKnownValue
 
-- Endpoint: `put /types/enum/extensible/string/known-value`
+- Endpoint: `put /type/enum/extensible/string/known-value`
 
 Expect to send a known value. Mock api expect to receive 'Monday'
 
-### Types_Enum_Extensible_String_putUnknownValue
+### Type_Enum_Extensible_String_putUnknownValue
 
-- Endpoint: `put /types/enum/extensible/string/unknown-value`
+- Endpoint: `put /type/enum/extensible/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
-### Types_Enum_Fixed_String_getKnownValue
+### Type_Enum_Fixed_String_getKnownValue
 
-- Endpoint: `get /types/enum/fixed/string/known-value`
+- Endpoint: `get /type/enum/fixed/string/known-value`
 
 Expect to handle a known value. Mock api will return 'Monday'
 
-### Types_Enum_Fixed_String_putKnownValue
+### Type_Enum_Fixed_String_putKnownValue
 
-- Endpoint: `put /types/enum/fixed/string/known-value`
+- Endpoint: `put /type/enum/fixed/string/known-value`
 
 Expect to send a known value. Mock api expect to receive 'Monday'
 
-### Types_Enum_Fixed_String_putUnknownValue
+### Type_Enum_Fixed_String_putUnknownValue
 
-- Endpoint: `put /types/enum/fixed/string/unknown-value`
+- Endpoint: `put /type/enum/fixed/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
-### Types_Model_Inheritance_Discriminated_getModel
+### Type_Model_Inheritance_Discriminated_getModel
 
-- Endpoint: `get /types/model/inheritance/discriminated/model`
+- Endpoint: `get /type/model/inheritance/discriminated/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
@@ -1418,9 +1418,9 @@ Expected response body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Types_Model_Inheritance_Discriminated_putModel
+### Type_Model_Inheritance_Discriminated_putModel
 
-- Endpoint: `put /types/model/inheritance/discriminated/model`
+- Endpoint: `put /type/model/inheritance/discriminated/model`
 
 Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected input body:
@@ -1429,9 +1429,9 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Types_Model_Inheritance_Discriminated_getRecursiveModel
+### Type_Model_Inheritance_Discriminated_getRecursiveModel
 
-- Endpoint: `get /types/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `get /type/model/inheritance/discriminated/recursivemodel`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected response body:
@@ -1496,9 +1496,9 @@ Expected response body:
 }
 ```
 
-### Types_Model_Inheritance_Discriminated_putRecursiveModel
+### Type_Model_Inheritance_Discriminated_putRecursiveModel
 
-- Endpoint: `put /types/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `put /type/model/inheritance/discriminated/recursivemodel`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input body:
@@ -1563,9 +1563,9 @@ Expected input body:
 }
 ```
 
-### Types_Model_Inheritance_Discriminated_getMissingDiscriminator
+### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
 
-- Endpoint: `get /types/model/inheritance/discriminated/missingdiscriminator`
+- Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
 
 Get a model omitting the discriminator.
 Expected response body:
@@ -1574,9 +1574,9 @@ Expected response body:
 { "age": 1 }
 ```
 
-### Types_Model_Inheritance_Discriminated_getWrongDiscriminator
+### Type_Model_Inheritance_Discriminated_getWrongDiscriminator
 
-- Endpoint: `get /types/model/inheritance/discriminated/wrongdiscriminator`
+- Endpoint: `get /type/model/inheritance/discriminated/wrongdiscriminator`
 
 Get a model containing discriminator value never defined.
 Expected response body:
@@ -1585,9 +1585,9 @@ Expected response body:
 { "age": 1, "kind": "wrongKind" }
 ```
 
-### Types_Model_Inheritance_postValid
+### Type_Model_Inheritance_postValid
 
-- Endpoint: `post /types/model/inheritance/valid`
+- Endpoint: `post /type/model/inheritance/valid`
 
 Generate and send model.
 Expected input body:
@@ -1596,9 +1596,9 @@ Expected input body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Types_Model_Inheritance_getValid
+### Type_Model_Inheritance_getValid
 
-- Endpoint: `get /types/model/inheritance/valid`
+- Endpoint: `get /type/model/inheritance/valid`
 
 Generate and receive model.
 Expected response body:
@@ -1607,33 +1607,33 @@ Expected response body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Types_Model_Inheritance_putValid
+### Type_Model_Inheritance_putValid
 
-- Endpoint: `put /types/model/inheritance/valid`
+- Endpoint: `put /type/model/inheritance/valid`
 
 Generate, send, and receive round-trip bottom model.
 
-### Types_Model_Usage_input
+### Type_Model_Usage_input
 
-- Endpoint: `get /types/model/usage/input`
+- Endpoint: `get /type/model/usage/input`
 
 Send a POST request with the following body {requiredProp: "example-value"}
 
-### Types_Model_Usage_output
+### Type_Model_Usage_output
 
-- Endpoint: `get /types/model/usage/output`
+- Endpoint: `get /type/model/usage/output`
 
 Send a GET request which return the following body {requiredProp: "example-value"}
 
-### Types_Model_Usage_inputAndOutput
+### Type_Model_Usage_inputAndOutput
 
-- Endpoint: `get /types/model/usage/input-output`
+- Endpoint: `get /type/model/usage/input-output`
 
 Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
 
-### Types_Model_Visibility_getModel
+### Type_Model_Visibility_getModel
 
-- Endpoint: `get /types/model/visibility`
+- Endpoint: `get /type/model/visibility`
 
 Generate and receive output model with readonly properties.
 Expected input body:
@@ -1652,9 +1652,9 @@ Expected response body:
 }
 ```
 
-### Types_Model_Visibility_headModel
+### Type_Model_Visibility_headModel
 
-- Endpoint: `head /types/model/visibility`
+- Endpoint: `head /type/model/visibility`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1665,9 +1665,9 @@ Expected input body:
 }
 ```
 
-### Types_Model_Visibility_putModel
+### Type_Model_Visibility_putModel
 
-- Endpoint: `put /types/model/visibility`
+- Endpoint: `put /type/model/visibility`
 
 Generate abd send put model with write/create/update properties.
 Expected input body:
@@ -1679,9 +1679,9 @@ Expected input body:
 }
 ```
 
-### Types_Model_Visibility_patchModel
+### Type_Model_Visibility_patchModel
 
-- Endpoint: `patch /types/model/visibility`
+- Endpoint: `patch /type/model/visibility`
 
 Generate abd send put model with write/update properties.
 Expected input body:
@@ -1692,9 +1692,9 @@ Expected input body:
 }
 ```
 
-### Types_Model_Visibility_postModel
+### Type_Model_Visibility_postModel
 
-- Endpoint: `post /types/model/visibility`
+- Endpoint: `post /type/model/visibility`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1705,9 +1705,9 @@ Expected input body:
 }
 ```
 
-### Types_Model_Visibility_deleteModel
+### Type_Model_Visibility_deleteModel
 
-- Endpoint: `delete /types/model/visibility`
+- Endpoint: `delete /type/model/visibility`
 
 Generate abd send put model with write/create properties.
 Expected input body:
@@ -1718,9 +1718,9 @@ Expected input body:
 }
 ```
 
-### Types_Property_Nullable_String_getNonNull
+### Type_Property_Nullable_String_getNonNull
 
-- Endpoint: `get /types/property/nullable/string/non-null`
+- Endpoint: `get /type/property/nullable/string/non-null`
 
 Expected response body:
 
@@ -1728,9 +1728,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
-### Types_Property_Nullable_String_getNull
+### Type_Property_Nullable_String_getNull
 
-- Endpoint: `get /types/property/nullable/string/null`
+- Endpoint: `get /type/property/nullable/string/null`
 
 Expected response body:
 
@@ -1738,9 +1738,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_String_patchNonNull
+### Type_Property_Nullable_String_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/string/non-null`
+- Endpoint: `patch /type/property/nullable/string/non-null`
 
 Expected request body:
 
@@ -1748,9 +1748,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": hello}
 ```
 
-### Types_Property_Nullable_String_patchNull
+### Type_Property_Nullable_String_patchNull
 
-- Endpoint: `patch /types/property/nullable/string/null`
+- Endpoint: `patch /type/property/nullable/string/null`
 
 Expected request body:
 
@@ -1758,9 +1758,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Bytes_getNonNull
+### Type_Property_Nullable_Bytes_getNonNull
 
-- Endpoint: `get /types/property/nullable/bytes/non-null`
+- Endpoint: `get /type/property/nullable/bytes/non-null`
 
 Expected response body:
 
@@ -1768,9 +1768,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Types_Property_Nullable_Bytes_getNull
+### Type_Property_Nullable_Bytes_getNull
 
-- Endpoint: `get /types/property/nullable/bytes/null`
+- Endpoint: `get /type/property/nullable/bytes/null`
 
 Expected response body:
 
@@ -1778,9 +1778,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Bytes_patchNonNull
+### Type_Property_Nullable_Bytes_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/bytes/non-null`
+- Endpoint: `patch /type/property/nullable/bytes/non-null`
 
 Expected request body:
 
@@ -1788,9 +1788,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Types_Property_Nullable_Bytes_patchNull
+### Type_Property_Nullable_Bytes_patchNull
 
-- Endpoint: `patch /types/property/nullable/bytes/null`
+- Endpoint: `patch /type/property/nullable/bytes/null`
 
 Expected request body:
 
@@ -1798,9 +1798,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Datetime_getNonNull
+### Type_Property_Nullable_Datetime_getNonNull
 
-- Endpoint: `get /types/property/nullable/datetime/non-null`
+- Endpoint: `get /type/property/nullable/datetime/non-null`
 
 Expected response body:
 
@@ -1808,9 +1808,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Types_Property_Nullable_Datetime_getNull
+### Type_Property_Nullable_Datetime_getNull
 
-- Endpoint: `get /types/property/nullable/datetime/null`
+- Endpoint: `get /type/property/nullable/datetime/null`
 
 Expected response body:
 
@@ -1818,9 +1818,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Datetime_patchNonNull
+### Type_Property_Nullable_Datetime_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/datetime/non-null`
+- Endpoint: `patch /type/property/nullable/datetime/non-null`
 
 Expected request body:
 
@@ -1828,9 +1828,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Types_Property_Nullable_Datetime_patchNull
+### Type_Property_Nullable_Datetime_patchNull
 
-- Endpoint: `patch /types/property/nullable/datetime/null`
+- Endpoint: `patch /type/property/nullable/datetime/null`
 
 Expected request body:
 
@@ -1838,9 +1838,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Duration_getNonNull
+### Type_Property_Nullable_Duration_getNonNull
 
-- Endpoint: `get /types/property/nullable/duration/non-null`
+- Endpoint: `get /type/property/nullable/duration/non-null`
 
 Expected response body:
 
@@ -1848,9 +1848,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
-### Types_Property_Nullable_Duration_getNull
+### Type_Property_Nullable_Duration_getNull
 
-- Endpoint: `get /types/property/nullable/duration/null`
+- Endpoint: `get /type/property/nullable/duration/null`
 
 Expected response body:
 
@@ -1858,9 +1858,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_Duration_patchNonNull
+### Type_Property_Nullable_Duration_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/duration/non-null`
+- Endpoint: `patch /type/property/nullable/duration/non-null`
 
 Expected request body:
 
@@ -1868,9 +1868,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
 ```
 
-### Types_Property_Nullable_Duration_patchNull
+### Type_Property_Nullable_Duration_patchNull
 
-- Endpoint: `patch /types/property/nullable/duration/null`
+- Endpoint: `patch /type/property/nullable/duration/null`
 
 Expected request body:
 
@@ -1878,9 +1878,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_CollectionsByte_getNonNull
+### Type_Property_Nullable_CollectionsByte_getNonNull
 
-- Endpoint: `get /types/property/nullable/collections/bytes/non-null`
+- Endpoint: `get /type/property/nullable/collections/bytes/non-null`
 
 Expected response body:
 
@@ -1888,9 +1888,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
-### Types_Property_Nullable_CollectionsByte_getNull
+### Type_Property_Nullable_CollectionsByte_getNull
 
-- Endpoint: `get /types/property/nullable/collections/bytes/null`
+- Endpoint: `get /type/property/nullable/collections/bytes/null`
 
 Expected response body:
 
@@ -1898,9 +1898,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_CollectionsByte_patchNonNull
+### Type_Property_Nullable_CollectionsByte_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/collections/bytes/non-null`
+- Endpoint: `patch /type/property/nullable/collections/bytes/non-null`
 
 Expected request body:
 
@@ -1908,9 +1908,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
-### Types_Property_Nullable_CollectionsByte_patchNull
+### Type_Property_Nullable_CollectionsByte_patchNull
 
-- Endpoint: `patch /types/property/nullable/collections/bytes/null`
+- Endpoint: `patch /type/property/nullable/collections/bytes/null`
 
 Expected request body:
 
@@ -1918,9 +1918,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_CollectionsModel_getNonNull
+### Type_Property_Nullable_CollectionsModel_getNonNull
 
-- Endpoint: `get /types/property/nullable/collections/model/non-null`
+- Endpoint: `get /type/property/nullable/collections/model/non-null`
 
 Expected response body:
 
@@ -1931,9 +1931,9 @@ Expected response body:
 }
 ```
 
-### Types_Property_Nullable_CollectionsModel_getNull
+### Type_Property_Nullable_CollectionsModel_getNull
 
-- Endpoint: `get /types/property/nullable/collections/model/null`
+- Endpoint: `get /type/property/nullable/collections/model/null`
 
 Expected response body:
 
@@ -1941,9 +1941,9 @@ Expected response body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Nullable_CollectionsModel_patchNonNull
+### Type_Property_Nullable_CollectionsModel_patchNonNull
 
-- Endpoint: `patch /types/property/nullable/collections/model/non-null`
+- Endpoint: `patch /type/property/nullable/collections/model/non-null`
 
 Expected request body:
 
@@ -1954,9 +1954,9 @@ Expected request body:
 }
 ```
 
-### Types_Property_Nullable_CollectionsModel_patchNull
+### Type_Property_Nullable_CollectionsModel_patchNull
 
-- Endpoint: `patch /types/property/nullable/collections/model/null`
+- Endpoint: `patch /type/property/nullable/collections/model/null`
 
 Expected request body:
 
@@ -1964,9 +1964,9 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Types_Property_Optional_String_getAll
+### Type_Property_Optional_String_getAll
 
-- Endpoint: `get /types/property/optional/string/all`
+- Endpoint: `get /type/property/optional/string/all`
 
 Expected response body:
 
@@ -1974,9 +1974,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_String_getDefault
+### Type_Property_Optional_String_getDefault
 
-- Endpoint: `get /types/property/optional/string/default`
+- Endpoint: `get /type/property/optional/string/default`
 
 Expected response body:
 
@@ -1984,9 +1984,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_String_putAll
+### Type_Property_Optional_String_putAll
 
-- Endpoint: `put /types/property/optional/string/all`
+- Endpoint: `put /type/property/optional/string/all`
 
 Expected request body:
 
@@ -1994,9 +1994,9 @@ Expected request body:
 {"property": hello}
 ```
 
-### Types_Property_Optional_String_putDefault
+### Type_Property_Optional_String_putDefault
 
-- Endpoint: `put /types/property/optional/string/default`
+- Endpoint: `put /type/property/optional/string/default`
 
 Expected request body:
 
@@ -2004,9 +2004,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_Bytes_getAll
+### Type_Property_Optional_Bytes_getAll
 
-- Endpoint: `get /types/property/optional/bytes/all`
+- Endpoint: `get /type/property/optional/bytes/all`
 
 Expected response body:
 
@@ -2014,9 +2014,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_Bytes_getDefault
+### Type_Property_Optional_Bytes_getDefault
 
-- Endpoint: `get /types/property/optional/bytes/default`
+- Endpoint: `get /type/property/optional/bytes/default`
 
 Expected response body:
 
@@ -2024,9 +2024,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_Bytes_putAll
+### Type_Property_Optional_Bytes_putAll
 
-- Endpoint: `put /types/property/optional/bytes/all`
+- Endpoint: `put /type/property/optional/bytes/all`
 
 Expected request body:
 
@@ -2034,9 +2034,9 @@ Expected request body:
 {"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Types_Property_Optional_Bytes_putDefault
+### Type_Property_Optional_Bytes_putDefault
 
-- Endpoint: `put /types/property/optional/bytes/default`
+- Endpoint: `put /type/property/optional/bytes/default`
 
 Expected request body:
 
@@ -2044,9 +2044,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_Datetime_getAll
+### Type_Property_Optional_Datetime_getAll
 
-- Endpoint: `get /types/property/optional/datetime/all`
+- Endpoint: `get /type/property/optional/datetime/all`
 
 Expected response body:
 
@@ -2054,9 +2054,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_Datetime_getDefault
+### Type_Property_Optional_Datetime_getDefault
 
-- Endpoint: `get /types/property/optional/datetime/default`
+- Endpoint: `get /type/property/optional/datetime/default`
 
 Expected response body:
 
@@ -2064,9 +2064,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_Datetime_putAll
+### Type_Property_Optional_Datetime_putAll
 
-- Endpoint: `put /types/property/optional/datetime/all`
+- Endpoint: `put /type/property/optional/datetime/all`
 
 Expected request body:
 
@@ -2074,9 +2074,9 @@ Expected request body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
-### Types_Property_Optional_Datetime_putDefault
+### Type_Property_Optional_Datetime_putDefault
 
-- Endpoint: `put /types/property/optional/datetime/default`
+- Endpoint: `put /type/property/optional/datetime/default`
 
 Expected request body:
 
@@ -2084,9 +2084,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_Duration_getAll
+### Type_Property_Optional_Duration_getAll
 
-- Endpoint: `get /types/property/optional/duration/all`
+- Endpoint: `get /type/property/optional/duration/all`
 
 Expected response body:
 
@@ -2094,9 +2094,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_Duration_getDefault
+### Type_Property_Optional_Duration_getDefault
 
-- Endpoint: `get /types/property/optional/duration/default`
+- Endpoint: `get /type/property/optional/duration/default`
 
 Expected response body:
 
@@ -2104,9 +2104,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_Duration_putAll
+### Type_Property_Optional_Duration_putAll
 
-- Endpoint: `put /types/property/optional/duration/all`
+- Endpoint: `put /type/property/optional/duration/all`
 
 Expected request body:
 
@@ -2114,9 +2114,9 @@ Expected request body:
 {"property": P123DT22H14M12.011S}
 ```
 
-### Types_Property_Optional_Duration_putDefault
+### Type_Property_Optional_Duration_putDefault
 
-- Endpoint: `put /types/property/optional/duration/default`
+- Endpoint: `put /type/property/optional/duration/default`
 
 Expected request body:
 
@@ -2124,9 +2124,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_CollectionsByte_getAll
+### Type_Property_Optional_CollectionsByte_getAll
 
-- Endpoint: `get /types/property/optional/collections/bytes/all`
+- Endpoint: `get /type/property/optional/collections/bytes/all`
 
 Expected response body:
 
@@ -2134,9 +2134,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_CollectionsByte_getDefault
+### Type_Property_Optional_CollectionsByte_getDefault
 
-- Endpoint: `get /types/property/optional/collections/bytes/default`
+- Endpoint: `get /type/property/optional/collections/bytes/default`
 
 Expected response body:
 
@@ -2144,9 +2144,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_CollectionsByte_putAll
+### Type_Property_Optional_CollectionsByte_putAll
 
-- Endpoint: `put /types/property/optional/collections/bytes/all`
+- Endpoint: `put /type/property/optional/collections/bytes/all`
 
 Expected request body:
 
@@ -2154,9 +2154,9 @@ Expected request body:
 {"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
-### Types_Property_Optional_CollectionsByte_putDefault
+### Type_Property_Optional_CollectionsByte_putDefault
 
-- Endpoint: `put /types/property/optional/collections/bytes/default`
+- Endpoint: `put /type/property/optional/collections/bytes/default`
 
 Expected request body:
 
@@ -2164,9 +2164,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_CollectionsModel_getAll
+### Type_Property_Optional_CollectionsModel_getAll
 
-- Endpoint: `get /types/property/optional/collections/model/all`
+- Endpoint: `get /type/property/optional/collections/model/all`
 
 Expected response body:
 
@@ -2174,9 +2174,9 @@ Expected response body:
 {"property": doc}
 ```
 
-### Types_Property_Optional_CollectionsModel_getDefault
+### Type_Property_Optional_CollectionsModel_getDefault
 
-- Endpoint: `get /types/property/optional/collections/model/default`
+- Endpoint: `get /type/property/optional/collections/model/default`
 
 Expected response body:
 
@@ -2184,9 +2184,9 @@ Expected response body:
 {}
 ```
 
-### Types_Property_Optional_CollectionsModel_putAll
+### Type_Property_Optional_CollectionsModel_putAll
 
-- Endpoint: `put /types/property/optional/collections/model/all`
+- Endpoint: `put /type/property/optional/collections/model/all`
 
 Expected request body:
 
@@ -2194,9 +2194,9 @@ Expected request body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
-### Types_Property_Optional_CollectionsModel_putDefault
+### Type_Property_Optional_CollectionsModel_putDefault
 
-- Endpoint: `put /types/property/optional/collections/model/default`
+- Endpoint: `put /type/property/optional/collections/model/default`
 
 Expected request body:
 
@@ -2204,9 +2204,9 @@ Expected request body:
 {}
 ```
 
-### Types_Property_Optional_RequiredAndOptional_getAll
+### Type_Property_Optional_RequiredAndOptional_getAll
 
-- Endpoint: `get /types/property/optional/requiredAndOptional/all`
+- Endpoint: `get /type/property/optional/requiredAndOptional/all`
 
 Expected response body:
 
@@ -2214,9 +2214,9 @@ Expected response body:
 { "optionalProperty": "hello", "requiredProperty": 42 }
 ```
 
-### Types_Property_Optional_RequiredAndOptional_getRequiredOnly
+### Type_Property_Optional_RequiredAndOptional_getRequiredOnly
 
-- Endpoint: `get /types/property/optional/requiredAndOptional/requiredOnly`
+- Endpoint: `get /type/property/optional/requiredAndOptional/requiredOnly`
 
 Expected response body:
 
@@ -2224,9 +2224,9 @@ Expected response body:
 { "requiredProperty": 42 }
 ```
 
-### Types_Property_Optional_RequiredAndOptional_putAll
+### Type_Property_Optional_RequiredAndOptional_putAll
 
-- Endpoint: `put /types/property/optional/requiredAndOptional/all`
+- Endpoint: `put /type/property/optional/requiredAndOptional/all`
 
 Expected request body:
 
@@ -2234,9 +2234,9 @@ Expected request body:
 { "optionalProperty": "hello", "requiredProperty": 42 }
 ```
 
-### Types_Property_Optional_RequiredAndOptional_putRequiredOnly
+### Type_Property_Optional_RequiredAndOptional_putRequiredOnly
 
-- Endpoint: `put /types/property/optional/requiredAndOptional/requiredOnly`
+- Endpoint: `put /type/property/optional/requiredAndOptional/requiredOnly`
 
 Expected request body:
 
@@ -2244,9 +2244,9 @@ Expected request body:
 { "requiredProperty": 42 }
 ```
 
-### Types_Property_ValueTypes_Boolean_get
+### Type_Property_ValueTypes_Boolean_get
 
-- Endpoint: `get /types/property/value-types/boolean`
+- Endpoint: `get /type/property/value-types/boolean`
 
 Expected response body:
 
@@ -2254,9 +2254,9 @@ Expected response body:
 { "property": true }
 ```
 
-### Types_Property_ValueTypes_Boolean_put
+### Type_Property_ValueTypes_Boolean_put
 
-- Endpoint: `put /types/property/value-types/boolean`
+- Endpoint: `put /type/property/value-types/boolean`
 
 Expected input body:
 
@@ -2264,9 +2264,9 @@ Expected input body:
 { "property": true }
 ```
 
-### Types_Property_ValueTypes_String_get
+### Type_Property_ValueTypes_String_get
 
-- Endpoint: `get /types/property/value-types/string`
+- Endpoint: `get /type/property/value-types/string`
 
 Expected response body:
 
@@ -2274,9 +2274,9 @@ Expected response body:
 {"property": hello}
 ```
 
-### Types_Property_ValueTypes_String_put
+### Type_Property_ValueTypes_String_put
 
-- Endpoint: `put /types/property/value-types/string`
+- Endpoint: `put /type/property/value-types/string`
 
 Expected input body:
 
@@ -2284,9 +2284,9 @@ Expected input body:
 {"property": hello}
 ```
 
-### Types_Property_ValueTypes_Bytes_get
+### Type_Property_ValueTypes_Bytes_get
 
-- Endpoint: `get /types/property/value-types/bytes`
+- Endpoint: `get /type/property/value-types/bytes`
 
 Expected response body:
 
@@ -2294,9 +2294,9 @@ Expected response body:
 {"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Types_Property_ValueTypes_Bytes_put
+### Type_Property_ValueTypes_Bytes_put
 
-- Endpoint: `put /types/property/value-types/bytes`
+- Endpoint: `put /type/property/value-types/bytes`
 
 Expected input body:
 
@@ -2304,9 +2304,9 @@ Expected input body:
 {"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Types_Property_ValueTypes_Int_get
+### Type_Property_ValueTypes_Int_get
 
-- Endpoint: `get /types/property/value-types/int`
+- Endpoint: `get /type/property/value-types/int`
 
 Expected response body:
 
@@ -2314,9 +2314,9 @@ Expected response body:
 { "property": 42 }
 ```
 
-### Types_Property_ValueTypes_Int_put
+### Type_Property_ValueTypes_Int_put
 
-- Endpoint: `put /types/property/value-types/int`
+- Endpoint: `put /type/property/value-types/int`
 
 Expected input body:
 
@@ -2324,9 +2324,9 @@ Expected input body:
 { "property": 42 }
 ```
 
-### Types_Property_ValueTypes_Float_get
+### Type_Property_ValueTypes_Float_get
 
-- Endpoint: `get /types/property/value-types/float`
+- Endpoint: `get /type/property/value-types/float`
 
 Expected response body:
 
@@ -2334,9 +2334,9 @@ Expected response body:
 { "property": 42.42 }
 ```
 
-### Types_Property_ValueTypes_Float_put
+### Type_Property_ValueTypes_Float_put
 
-- Endpoint: `put /types/property/value-types/float`
+- Endpoint: `put /type/property/value-types/float`
 
 Expected input body:
 
@@ -2344,9 +2344,9 @@ Expected input body:
 { "property": 42.42 }
 ```
 
-### Types_Property_ValueTypes_Datetime_get
+### Type_Property_ValueTypes_Datetime_get
 
-- Endpoint: `get /types/property/value-types/datetime`
+- Endpoint: `get /type/property/value-types/datetime`
 
 Expected response body:
 
@@ -2354,9 +2354,9 @@ Expected response body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
-### Types_Property_ValueTypes_Datetime_put
+### Type_Property_ValueTypes_Datetime_put
 
-- Endpoint: `put /types/property/value-types/datetime`
+- Endpoint: `put /type/property/value-types/datetime`
 
 Expected input body:
 
@@ -2364,9 +2364,9 @@ Expected input body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
-### Types_Property_ValueTypes_Duration_get
+### Type_Property_ValueTypes_Duration_get
 
-- Endpoint: `get /types/property/value-types/duration`
+- Endpoint: `get /type/property/value-types/duration`
 
 Expected response body:
 
@@ -2374,9 +2374,9 @@ Expected response body:
 {"property": P123DT22H14M12.011S}
 ```
 
-### Types_Property_ValueTypes_Duration_put
+### Type_Property_ValueTypes_Duration_put
 
-- Endpoint: `put /types/property/value-types/duration`
+- Endpoint: `put /type/property/value-types/duration`
 
 Expected input body:
 
@@ -2384,9 +2384,9 @@ Expected input body:
 {"property": P123DT22H14M12.011S}
 ```
 
-### Types_Property_ValueTypes_Enum_get
+### Type_Property_ValueTypes_Enum_get
 
-- Endpoint: `get /types/property/value-types/enum`
+- Endpoint: `get /type/property/value-types/enum`
 
 Expected response body:
 
@@ -2394,9 +2394,9 @@ Expected response body:
 {"property": ValueOne}
 ```
 
-### Types_Property_ValueTypes_Enum_put
+### Type_Property_ValueTypes_Enum_put
 
-- Endpoint: `put /types/property/value-types/enum`
+- Endpoint: `put /type/property/value-types/enum`
 
 Expected input body:
 
@@ -2404,9 +2404,9 @@ Expected input body:
 {"property": ValueOne}
 ```
 
-### Types_Property_ValueTypes_ExtensibleEnum_get
+### Type_Property_ValueTypes_ExtensibleEnum_get
 
-- Endpoint: `get /types/property/value-types/extensible-enum`
+- Endpoint: `get /type/property/value-types/extensible-enum`
 
 Expected response body:
 
@@ -2414,9 +2414,9 @@ Expected response body:
 {"property": UnknownValue}
 ```
 
-### Types_Property_ValueTypes_ExtensibleEnum_put
+### Type_Property_ValueTypes_ExtensibleEnum_put
 
-- Endpoint: `put /types/property/value-types/extensible-enum`
+- Endpoint: `put /type/property/value-types/extensible-enum`
 
 Expected input body:
 
@@ -2424,9 +2424,9 @@ Expected input body:
 {"property": UnknownValue}
 ```
 
-### Types_Property_ValueTypes_Model_get
+### Type_Property_ValueTypes_Model_get
 
-- Endpoint: `get /types/property/value-types/model`
+- Endpoint: `get /type/property/value-types/model`
 
 Expected response body:
 
@@ -2434,9 +2434,9 @@ Expected response body:
 { "property": { "property": "hello" } }
 ```
 
-### Types_Property_ValueTypes_Model_put
+### Type_Property_ValueTypes_Model_put
 
-- Endpoint: `put /types/property/value-types/model`
+- Endpoint: `put /type/property/value-types/model`
 
 Expected input body:
 
@@ -2444,9 +2444,9 @@ Expected input body:
 { "property": { "property": "hello" } }
 ```
 
-### Types_Property_ValueTypes_CollectionsString_get
+### Type_Property_ValueTypes_CollectionsString_get
 
-- Endpoint: `get /types/property/value-types/collections/string`
+- Endpoint: `get /type/property/value-types/collections/string`
 
 Expected response body:
 
@@ -2454,9 +2454,9 @@ Expected response body:
 { "property": ["hello", "world"] }
 ```
 
-### Types_Property_ValueTypes_CollectionsString_put
+### Type_Property_ValueTypes_CollectionsString_put
 
-- Endpoint: `put /types/property/value-types/collections/string`
+- Endpoint: `put /type/property/value-types/collections/string`
 
 Expected input body:
 
@@ -2464,9 +2464,9 @@ Expected input body:
 { "property": ["hello", "world"] }
 ```
 
-### Types_Property_ValueTypes_CollectionsInt_get
+### Type_Property_ValueTypes_CollectionsInt_get
 
-- Endpoint: `get /types/property/value-types/collections/int`
+- Endpoint: `get /type/property/value-types/collections/int`
 
 Expected response body:
 
@@ -2474,9 +2474,9 @@ Expected response body:
 { "property": [1, 2] }
 ```
 
-### Types_Property_ValueTypes_CollectionsInt_put
+### Type_Property_ValueTypes_CollectionsInt_put
 
-- Endpoint: `put /types/property/value-types/collections/int`
+- Endpoint: `put /type/property/value-types/collections/int`
 
 Expected input body:
 
@@ -2484,9 +2484,9 @@ Expected input body:
 { "property": [1, 2] }
 ```
 
-### Types_Property_ValueTypes_CollectionsModel_get
+### Type_Property_ValueTypes_CollectionsModel_get
 
-- Endpoint: `get /types/property/value-types/collections/model`
+- Endpoint: `get /type/property/value-types/collections/model`
 
 Expected response body:
 
@@ -2494,9 +2494,9 @@ Expected response body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
-### Types_Property_ValueTypes_CollectionsModel_put
+### Type_Property_ValueTypes_CollectionsModel_put
 
-- Endpoint: `put /types/property/value-types/collections/model`
+- Endpoint: `put /type/property/value-types/collections/model`
 
 Expected input body:
 
@@ -2504,9 +2504,9 @@ Expected input body:
 { "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
-### Types_Property_ValueTypes_DictionaryString_get
+### Type_Property_ValueTypes_DictionaryString_get
 
-- Endpoint: `get /types/property/value-types/dictionary/string`
+- Endpoint: `get /type/property/value-types/dictionary/string`
 
 Expected response body:
 
@@ -2514,9 +2514,9 @@ Expected response body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
-### Types_Property_ValueTypes_DictionaryString_put
+### Type_Property_ValueTypes_DictionaryString_put
 
-- Endpoint: `put /types/property/value-types/dictionary/string`
+- Endpoint: `put /type/property/value-types/dictionary/string`
 
 Expected input body:
 
@@ -2524,9 +2524,9 @@ Expected input body:
 { "property": { "k1": "hello", "k2": "world" } }
 ```
 
-### Types_Property_ValueTypes_Never_get
+### Type_Property_ValueTypes_Never_get
 
-- Endpoint: `get /types/property/value-types/never`
+- Endpoint: `get /type/property/value-types/never`
 
 Expected response body:
 
@@ -2534,9 +2534,9 @@ Expected response body:
 {"property": <don't include this property>}
 ```
 
-### Types_Property_ValueTypes_Never_put
+### Type_Property_ValueTypes_Never_put
 
-- Endpoint: `put /types/property/value-types/never`
+- Endpoint: `put /type/property/value-types/never`
 
 Expected input body:
 
@@ -2544,9 +2544,9 @@ Expected input body:
 {"property": <don't include this property>}
 ```
 
-### Types_Union_sendInt
+### Type_Union_sendInt
 
-- Endpoint: `post /types/union/int`
+- Endpoint: `post /type/union/int`
 
 This test is testing sending an int value in simple union property.
 
@@ -2554,9 +2554,9 @@ This test is testing sending an int value in simple union property.
 { "simpleUnion": 1 }
 ```
 
-### Types_Union_sendIntArray
+### Type_Union_sendIntArray
 
-- Endpoint: `post /types/union/int-array`
+- Endpoint: `post /type/union/int-array`
 
 This test is testing sending an int array value in simple union property.
 
@@ -2564,9 +2564,9 @@ This test is testing sending an int array value in simple union property.
 { "simpleUnion": [1, 2] }
 ```
 
-### Types_Union_sendFirstNamedUnionValue
+### Type_Union_sendFirstNamedUnionValue
 
-- Endpoint: `post /types/union/model1`
+- Endpoint: `post /type/union/model1`
 
 This test is testing sending the first union value in named union property.
 
@@ -2574,9 +2574,9 @@ This test is testing sending the first union value in named union property.
 { "namedUnion": { "name": "model1", "prop1": 1 } }
 ```
 
-### Types_Union_sendSecondNamedUnionValue
+### Type_Union_sendSecondNamedUnionValue
 
-- Endpoint: `post /types/union/model2`
+- Endpoint: `post /type/union/model2`
 
 This test is testing sending the second union value in named union property.
 
