@@ -1,205 +1,5 @@
 # Cadl Ranch Project summary
 
-### Arrays_ItemTypes_Int32Value_get
-
-- Endpoint: `get /arrays/item-types/int32`
-
-Expected Array response body:
-
-```json
-[1, 2]
-```
-
-### Arrays_ItemTypes_Int32Value_put
-
-- Endpoint: `put /arrays/item-types/int32`
-
-Expected Array input body:
-
-```json
-[1, 2]
-```
-
-### Arrays_ItemTypes_Int64Value_get
-
-- Endpoint: `get /arrays/item-types/int64`
-
-Expected Array response body:
-
-```json
-[0x7fffffffffffffff, -0x7fffffffffffffff]
-```
-
-### Arrays_ItemTypes_Int64Value_put
-
-- Endpoint: `put /arrays/item-types/int64`
-
-Expected Array input body:
-
-```json
-[0x7fffffffffffffff, -0x7fffffffffffffff]
-```
-
-### Arrays_ItemTypes_BooleanValue_get
-
-- Endpoint: `get /arrays/item-types/boolean`
-
-Expected Array response body:
-
-```json
-[true, false]
-```
-
-### Arrays_ItemTypes_BooleanValue_put
-
-- Endpoint: `put /arrays/item-types/boolean`
-
-Expected Array input body:
-
-```json
-[true, false]
-```
-
-### Arrays_ItemTypes_StringValue_get
-
-- Endpoint: `get /arrays/item-types/string`
-
-Expected Array response body:
-
-```json
-["hello", ""]
-```
-
-### Arrays_ItemTypes_StringValue_put
-
-- Endpoint: `put /arrays/item-types/string`
-
-Expected Array input body:
-
-```json
-["hello", ""]
-```
-
-### Arrays_ItemTypes_Float32Value_get
-
-- Endpoint: `get /arrays/item-types/float32`
-
-Expected Array response body:
-
-```json
-[42.42]
-```
-
-### Arrays_ItemTypes_Float32Value_put
-
-- Endpoint: `put /arrays/item-types/float32`
-
-Expected Array input body:
-
-```json
-[42.42]
-```
-
-### Arrays_ItemTypes_DatetimeValue_get
-
-- Endpoint: `get /arrays/item-types/datetime`
-
-Expected Array response body:
-
-```json
-["2022-08-26T18:38:00Z"]
-```
-
-### Arrays_ItemTypes_DatetimeValue_put
-
-- Endpoint: `put /arrays/item-types/datetime`
-
-Expected Array input body:
-
-```json
-["2022-08-26T18:38:00Z"]
-```
-
-### Arrays_ItemTypes_DurationValue_get
-
-- Endpoint: `get /arrays/item-types/duration`
-
-Expected Array response body:
-
-```json
-["P123DT22H14M12.011S"]
-```
-
-### Arrays_ItemTypes_DurationValue_put
-
-- Endpoint: `put /arrays/item-types/duration`
-
-Expected Array input body:
-
-```json
-["P123DT22H14M12.011S"]
-```
-
-### Arrays_ItemTypes_UnknownValue_get
-
-- Endpoint: `get /arrays/item-types/unknown`
-
-Expected Array response body:
-
-```json
-[1, 'hello', 'k3': null]
-```
-
-### Arrays_ItemTypes_UnknownValue_put
-
-- Endpoint: `put /arrays/item-types/unknown`
-
-Expected Array input body:
-
-```json
-[1, 'hello', 'k3': null]
-```
-
-### Arrays_ItemTypes_ModelValue_get
-
-- Endpoint: `get /arrays/item-types/model`
-
-Expected Array response body:
-
-```json
-[{ "property": "hello" }, { "property": "world" }]
-```
-
-### Arrays_ItemTypes_ModelValue_put
-
-- Endpoint: `put /arrays/item-types/model`
-
-Expected Array input body:
-
-```json
-[{ "property": "hello" }, { "property": "world" }]
-```
-
-### Arrays_ItemTypes_NullableFloatValue_get
-
-- Endpoint: `get /arrays/item-types/nullable-float`
-
-Expected Array response body:
-
-```json
-[1.2, null, 3.0]
-```
-
-### Arrays_ItemTypes_NullableFloatValue_put
-
-- Endpoint: `put /arrays/item-types/nullable-float`
-
-Expected Array input body:
-
-```json
-[1.2, null, 3.0]
-```
-
 ### Authentication_ApiKey_valid
 
 - Endpoint: `get /authentication/api-key/valid`
@@ -778,1417 +578,6 @@ Expected response body:
 }
 ```
 
-### Dictionary_Int32Value_get
-
-- Endpoint: `get /dictionary/int32`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 1, "k2": 2 }
-```
-
-### Dictionary_Int32Value_put
-
-- Endpoint: `put /dictionary/int32`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 1, "k2": 2 }
-```
-
-### Dictionary_Int64Value_get
-
-- Endpoint: `get /dictionary/int64`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
-```
-
-### Dictionary_Int64Value_put
-
-- Endpoint: `put /dictionary/int64`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
-```
-
-### Dictionary_BooleanValue_get
-
-- Endpoint: `get /dictionary/boolean`
-
-Expected dictionary response body:
-
-```json
-{ "k1": true, "k2": false }
-```
-
-### Dictionary_BooleanValue_put
-
-- Endpoint: `put /dictionary/boolean`
-
-Expected dictionary input body:
-
-```json
-{ "k1": true, "k2": false }
-```
-
-### Dictionary_StringValue_get
-
-- Endpoint: `get /dictionary/string`
-
-Expected dictionary response body:
-
-```json
-{ "k1": "hello", "k2": "" }
-```
-
-### Dictionary_StringValue_put
-
-- Endpoint: `put /dictionary/string`
-
-Expected dictionary input body:
-
-```json
-{ "k1": "hello", "k2": "" }
-```
-
-### Dictionary_Float32Value_get
-
-- Endpoint: `get /dictionary/float32`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 42.42 }
-```
-
-### Dictionary_Float32Value_put
-
-- Endpoint: `put /dictionary/float32`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 42.42 }
-```
-
-### Dictionary_DatetimeValue_get
-
-- Endpoint: `get /dictionary/datetime`
-
-Expected dictionary response body:
-
-```json
-{ "k1": "2022-08-26T18:38:00Z" }
-```
-
-### Dictionary_DatetimeValue_put
-
-- Endpoint: `put /dictionary/datetime`
-
-Expected dictionary input body:
-
-```json
-{ "k1": "2022-08-26T18:38:00Z" }
-```
-
-### Dictionary_DurationValue_get
-
-- Endpoint: `get /dictionary/duration`
-
-Expected dictionary response body:
-
-```json
-{ "k1": "P123DT22H14M12.011S" }
-```
-
-### Dictionary_DurationValue_put
-
-- Endpoint: `put /dictionary/duration`
-
-Expected dictionary input body:
-
-```json
-{ "k1": "P123DT22H14M12.011S" }
-```
-
-### Dictionary_UnknownValue_get
-
-- Endpoint: `get /dictionary/unknown`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 1, "k2": "hello", "k3": null }
-```
-
-### Dictionary_UnknownValue_put
-
-- Endpoint: `put /dictionary/unknown`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 1, "k2": "hello", "k3": null }
-```
-
-### Dictionary_ModelValue_get
-
-- Endpoint: `get /dictionary/model`
-
-Expected dictionary response body:
-
-```json
-{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
-```
-
-### Dictionary_ModelValue_put
-
-- Endpoint: `put /dictionary/model`
-
-Expected dictionary input body:
-
-```json
-{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
-```
-
-### Dictionary_RecursiveModelValue_get
-
-- Endpoint: `get /dictionary/model/recursive`
-
-Expected dictionary response body:
-
-```json
-{
-  "k1": { "property": "hello", "children": {} },
-  "k2": {
-    "property": "world",
-    "children": { "k2.1": { "property": "inner world" } }
-  }
-}
-```
-
-### Dictionary_RecursiveModelValue_put
-
-- Endpoint: `put /dictionary/model/recursive`
-
-Expected dictionary input body:
-
-```json
-{
-  "k1": { "property": "hello", "children": {} },
-  "k2": {
-    "property": "world",
-    "children": { "k2.1": { "property": "inner world" } }
-  }
-}
-```
-
-### Dictionary_NullableFloatValue_get
-
-- Endpoint: `get /dictionary/nullable-float`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
-```
-
-### Dictionary_NullableFloatValue_put
-
-- Endpoint: `put /dictionary/nullable-float`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
-```
-
-### Enums_Extensible_String_getKnownValue
-
-- Endpoint: `get /enums/extensible/string/known-value`
-
-Expect to handle a known value. Mock api will return 'Monday'
-
-### Enums_Extensible_String_getUnknownValue
-
-- Endpoint: `get /enums/extensible/string/unknown-value`
-
-Expect to handle an unknown value. Mock api will return 'Weekend'
-
-### Enums_Extensible_String_putKnownValue
-
-- Endpoint: `put /enums/extensible/string/known-value`
-
-Expect to send a known value. Mock api expect to receive 'Monday'
-
-### Enums_Extensible_String_putUnknownValue
-
-- Endpoint: `put /enums/extensible/string/unknown-value`
-
-Expect to handle an unknown value. Mock api expect to receive 'Weekend'
-
-### Enums_Fixed_String_getKnownValue
-
-- Endpoint: `get /enums/fixed/string/known-value`
-
-Expect to handle a known value. Mock api will return 'Monday'
-
-### Enums_Fixed_String_putKnownValue
-
-- Endpoint: `put /enums/fixed/string/known-value`
-
-Expect to send a known value. Mock api expect to receive 'Monday'
-
-### Enums_Fixed_String_putUnknownValue
-
-- Endpoint: `put /enums/fixed/string/unknown-value`
-
-Expect to handle an unknown value. Mock api expect to receive 'Weekend'
-
-### Models_Inheritance_Discriminated_getModel
-
-- Endpoint: `get /models/inheritance/discriminated/model`
-
-Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
-Expected response body:
-
-```json
-{ "age": 1, "kind": "shark", "sharktype": "goblin" }
-```
-
-### Models_Inheritance_Discriminated_putModel
-
-- Endpoint: `put /models/inheritance/discriminated/model`
-
-Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
-Expected input body:
-
-```json
-{ "age": 1, "kind": "shark", "sharktype": "goblin" }
-```
-
-### Models_Inheritance_Discriminated_getRecursiveModel
-
-- Endpoint: `get /models/inheritance/discriminated/recursivemodel`
-
-Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected response body:
-
-```json
-{
-  "age": 1,
-  "kind": "salmon",
-  "partner": {
-    "age": 2,
-    "kind": "shark",
-    "sharktype": "saw"
-  },
-  "friends": [
-    {
-      "age": 2,
-      "kind": "salmon",
-      "partner": {
-        "age": 3,
-        "kind": "salmon"
-      },
-      "hate": {
-        "key1": {
-          "age": 4,
-          "kind": "salmon"
-        },
-        "key2": {
-          "age": 2,
-          "kind": "shark",
-          "sharktype": "goblin"
-        }
-      }
-    },
-    {
-      "age": 3,
-      "kind": "shark",
-      "sharktype": "goblin"
-    }
-  ],
-  "hate": {
-    "key3": {
-      "age": 3,
-      "kind": "shark",
-      "sharktype": "saw"
-    },
-    "key4": {
-      "age": 2,
-      "kind": "salmon",
-      "friends": [
-        {
-          "age": 1,
-          "kind": "salmon"
-        },
-        {
-          "age": 4,
-          "kind": "shark",
-          "sharktype": "goblin"
-        }
-      ]
-    }
-  }
-}
-```
-
-### Models_Inheritance_Discriminated_putRecursiveModel
-
-- Endpoint: `put /models/inheritance/discriminated/recursivemodel`
-
-Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected input body:
-
-```json
-{
-  "age": 1,
-  "kind": "salmon",
-  "partner": {
-    "age": 2,
-    "kind": "shark",
-    "sharktype": "saw"
-  },
-  "friends": [
-    {
-      "age": 2,
-      "kind": "salmon",
-      "partner": {
-        "age": 3,
-        "kind": "salmon"
-      },
-      "hate": {
-        "key1": {
-          "age": 4,
-          "kind": "salmon"
-        },
-        "key2": {
-          "age": 2,
-          "kind": "shark",
-          "sharktype": "goblin"
-        }
-      }
-    },
-    {
-      "age": 3,
-      "kind": "shark",
-      "sharktype": "goblin"
-    }
-  ],
-  "hate": {
-    "key3": {
-      "age": 3,
-      "kind": "shark",
-      "sharktype": "saw"
-    },
-    "key4": {
-      "age": 2,
-      "kind": "salmon",
-      "friends": [
-        {
-          "age": 1,
-          "kind": "salmon"
-        },
-        {
-          "age": 4,
-          "kind": "shark",
-          "sharktype": "goblin"
-        }
-      ]
-    }
-  }
-}
-```
-
-### Models_Inheritance_Discriminated_getMissingDiscriminator
-
-- Endpoint: `get /models/inheritance/discriminated/missingdiscriminator`
-
-Get a model omitting the discriminator.
-Expected response body:
-
-```json
-{ "age": 1 }
-```
-
-### Models_Inheritance_Discriminated_getWrongDiscriminator
-
-- Endpoint: `get /models/inheritance/discriminated/wrongdiscriminator`
-
-Get a model containing discriminator value never defined.
-Expected response body:
-
-```json
-{ "age": 1, "kind": "wrongKind" }
-```
-
-### Models_Inheritance_postValid
-
-- Endpoint: `post /models/inheritance/valid`
-
-Generate and send model.
-Expected input body:
-
-```json
-{ "name": "abc", "age": 32, "smart": true }
-```
-
-### Models_Inheritance_getValid
-
-- Endpoint: `get /models/inheritance/valid`
-
-Generate and receive model.
-Expected response body:
-
-```json
-{ "name": "abc", "age": 32, "smart": true }
-```
-
-### Models_Inheritance_putValid
-
-- Endpoint: `put /models/inheritance/valid`
-
-Generate, send, and receive round-trip bottom model.
-
-### Models_Property_Nullable_String_getNonNull
-
-- Endpoint: `get /models/properties/nullable/string/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": hello}
-```
-
-### Models_Property_Nullable_String_getNull
-
-- Endpoint: `get /models/properties/nullable/string/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_String_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/string/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": hello}
-```
-
-### Models_Property_Nullable_String_patchNull
-
-- Endpoint: `patch /models/properties/nullable/string/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Bytes_getNonNull
-
-- Endpoint: `get /models/properties/nullable/bytes/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
-```
-
-### Models_Property_Nullable_Bytes_getNull
-
-- Endpoint: `get /models/properties/nullable/bytes/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Bytes_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/bytes/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
-```
-
-### Models_Property_Nullable_Bytes_patchNull
-
-- Endpoint: `patch /models/properties/nullable/bytes/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Datetime_getNonNull
-
-- Endpoint: `get /models/properties/nullable/datetime/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
-```
-
-### Models_Property_Nullable_Datetime_getNull
-
-- Endpoint: `get /models/properties/nullable/datetime/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Datetime_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/datetime/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
-```
-
-### Models_Property_Nullable_Datetime_patchNull
-
-- Endpoint: `patch /models/properties/nullable/datetime/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Duration_getNonNull
-
-- Endpoint: `get /models/properties/nullable/duration/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
-```
-
-### Models_Property_Nullable_Duration_getNull
-
-- Endpoint: `get /models/properties/nullable/duration/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_Duration_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/duration/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
-```
-
-### Models_Property_Nullable_Duration_patchNull
-
-- Endpoint: `patch /models/properties/nullable/duration/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_CollectionsByte_getNonNull
-
-- Endpoint: `get /models/properties/nullable/collections/bytes/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
-```
-
-### Models_Property_Nullable_CollectionsByte_getNull
-
-- Endpoint: `get /models/properties/nullable/collections/bytes/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_CollectionsByte_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/collections/bytes/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
-```
-
-### Models_Property_Nullable_CollectionsByte_patchNull
-
-- Endpoint: `patch /models/properties/nullable/collections/bytes/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_CollectionsModel_getNonNull
-
-- Endpoint: `get /models/properties/nullable/collections/model/non-null`
-
-Expected response body:
-
-```json
-{
-  "requiredProperty": "foo",
-  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
-}
-```
-
-### Models_Property_Nullable_CollectionsModel_getNull
-
-- Endpoint: `get /models/properties/nullable/collections/model/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Nullable_CollectionsModel_patchNonNull
-
-- Endpoint: `patch /models/properties/nullable/collections/model/non-null`
-
-Expected request body:
-
-```json
-{
-  "requiredProperty": "foo",
-  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
-}
-```
-
-### Models_Property_Nullable_CollectionsModel_patchNull
-
-- Endpoint: `patch /models/properties/nullable/collections/model/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Models_Property_Optional_String_getAll
-
-- Endpoint: `get /models/properties/optional/string/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_String_getDefault
-
-- Endpoint: `get /models/properties/optional/string/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_String_putAll
-
-- Endpoint: `put /models/properties/optional/string/all`
-
-Expected request body:
-
-```json
-{"property": hello}
-```
-
-### Models_Property_Optional_String_putDefault
-
-- Endpoint: `put /models/properties/optional/string/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Bytes_getAll
-
-- Endpoint: `get /models/properties/optional/bytes/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_Bytes_getDefault
-
-- Endpoint: `get /models/properties/optional/bytes/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Bytes_putAll
-
-- Endpoint: `put /models/properties/optional/bytes/all`
-
-Expected request body:
-
-```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
-```
-
-### Models_Property_Optional_Bytes_putDefault
-
-- Endpoint: `put /models/properties/optional/bytes/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Datetime_getAll
-
-- Endpoint: `get /models/properties/optional/datetime/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_Datetime_getDefault
-
-- Endpoint: `get /models/properties/optional/datetime/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Datetime_putAll
-
-- Endpoint: `put /models/properties/optional/datetime/all`
-
-Expected request body:
-
-```json
-{"property": 2022-08-26T18:38:00Z}
-```
-
-### Models_Property_Optional_Datetime_putDefault
-
-- Endpoint: `put /models/properties/optional/datetime/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Duration_getAll
-
-- Endpoint: `get /models/properties/optional/duration/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_Duration_getDefault
-
-- Endpoint: `get /models/properties/optional/duration/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_Duration_putAll
-
-- Endpoint: `put /models/properties/optional/duration/all`
-
-Expected request body:
-
-```json
-{"property": P123DT22H14M12.011S}
-```
-
-### Models_Property_Optional_Duration_putDefault
-
-- Endpoint: `put /models/properties/optional/duration/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_CollectionsByte_getAll
-
-- Endpoint: `get /models/properties/optional/collections/bytes/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_CollectionsByte_getDefault
-
-- Endpoint: `get /models/properties/optional/collections/bytes/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_CollectionsByte_putAll
-
-- Endpoint: `put /models/properties/optional/collections/bytes/all`
-
-Expected request body:
-
-```json
-{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
-```
-
-### Models_Property_Optional_CollectionsByte_putDefault
-
-- Endpoint: `put /models/properties/optional/collections/bytes/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_CollectionsModel_getAll
-
-- Endpoint: `get /models/properties/optional/collections/model/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Models_Property_Optional_CollectionsModel_getDefault
-
-- Endpoint: `get /models/properties/optional/collections/model/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_CollectionsModel_putAll
-
-- Endpoint: `put /models/properties/optional/collections/model/all`
-
-Expected request body:
-
-```json
-{ "property": [{ "property": "hello" }, { "property": "world" }] }
-```
-
-### Models_Property_Optional_CollectionsModel_putDefault
-
-- Endpoint: `put /models/properties/optional/collections/model/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Models_Property_Optional_RequiredAndOptional_getAll
-
-- Endpoint: `get /models/properties/optional/requiredAndOptional/all`
-
-Expected response body:
-
-```json
-{ "optionalProperty": "hello", "requiredProperty": 42 }
-```
-
-### Models_Property_Optional_RequiredAndOptional_getRequiredOnly
-
-- Endpoint: `get /models/properties/optional/requiredAndOptional/requiredOnly`
-
-Expected response body:
-
-```json
-{ "requiredProperty": 42 }
-```
-
-### Models_Property_Optional_RequiredAndOptional_putAll
-
-- Endpoint: `put /models/properties/optional/requiredAndOptional/all`
-
-Expected request body:
-
-```json
-{ "optionalProperty": "hello", "requiredProperty": 42 }
-```
-
-### Models_Property_Optional_RequiredAndOptional_putRequiredOnly
-
-- Endpoint: `put /models/properties/optional/requiredAndOptional/requiredOnly`
-
-Expected request body:
-
-```json
-{ "requiredProperty": 42 }
-```
-
-### Models_Property_Types_Boolean_get
-
-- Endpoint: `get /models/properties/types/boolean`
-
-Expected response body:
-
-```json
-{ "property": true }
-```
-
-### Models_Property_Types_Boolean_put
-
-- Endpoint: `put /models/properties/types/boolean`
-
-Expected input body:
-
-```json
-{ "property": true }
-```
-
-### Models_Property_Types_String_get
-
-- Endpoint: `get /models/properties/types/string`
-
-Expected response body:
-
-```json
-{"property": hello}
-```
-
-### Models_Property_Types_String_put
-
-- Endpoint: `put /models/properties/types/string`
-
-Expected input body:
-
-```json
-{"property": hello}
-```
-
-### Models_Property_Types_Bytes_get
-
-- Endpoint: `get /models/properties/types/bytes`
-
-Expected response body:
-
-```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
-```
-
-### Models_Property_Types_Bytes_put
-
-- Endpoint: `put /models/properties/types/bytes`
-
-Expected input body:
-
-```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
-```
-
-### Models_Property_Types_Int_get
-
-- Endpoint: `get /models/properties/types/int`
-
-Expected response body:
-
-```json
-{ "property": 42 }
-```
-
-### Models_Property_Types_Int_put
-
-- Endpoint: `put /models/properties/types/int`
-
-Expected input body:
-
-```json
-{ "property": 42 }
-```
-
-### Models_Property_Types_Float_get
-
-- Endpoint: `get /models/properties/types/float`
-
-Expected response body:
-
-```json
-{ "property": 42.42 }
-```
-
-### Models_Property_Types_Float_put
-
-- Endpoint: `put /models/properties/types/float`
-
-Expected input body:
-
-```json
-{ "property": 42.42 }
-```
-
-### Models_Property_Types_Datetime_get
-
-- Endpoint: `get /models/properties/types/datetime`
-
-Expected response body:
-
-```json
-{"property": 2022-08-26T18:38:00Z}
-```
-
-### Models_Property_Types_Datetime_put
-
-- Endpoint: `put /models/properties/types/datetime`
-
-Expected input body:
-
-```json
-{"property": 2022-08-26T18:38:00Z}
-```
-
-### Models_Property_Types_Duration_get
-
-- Endpoint: `get /models/properties/types/duration`
-
-Expected response body:
-
-```json
-{"property": P123DT22H14M12.011S}
-```
-
-### Models_Property_Types_Duration_put
-
-- Endpoint: `put /models/properties/types/duration`
-
-Expected input body:
-
-```json
-{"property": P123DT22H14M12.011S}
-```
-
-### Models_Property_Types_Enum_get
-
-- Endpoint: `get /models/properties/types/enum`
-
-Expected response body:
-
-```json
-{"property": ValueOne}
-```
-
-### Models_Property_Types_Enum_put
-
-- Endpoint: `put /models/properties/types/enum`
-
-Expected input body:
-
-```json
-{"property": ValueOne}
-```
-
-### Models_Property_Types_ExtensibleEnum_get
-
-- Endpoint: `get /models/properties/types/extensible-enum`
-
-Expected response body:
-
-```json
-{"property": UnknownValue}
-```
-
-### Models_Property_Types_ExtensibleEnum_put
-
-- Endpoint: `put /models/properties/types/extensible-enum`
-
-Expected input body:
-
-```json
-{"property": UnknownValue}
-```
-
-### Models_Property_Types_Model_get
-
-- Endpoint: `get /models/properties/types/model`
-
-Expected response body:
-
-```json
-{ "property": { "property": "hello" } }
-```
-
-### Models_Property_Types_Model_put
-
-- Endpoint: `put /models/properties/types/model`
-
-Expected input body:
-
-```json
-{ "property": { "property": "hello" } }
-```
-
-### Models_Property_Types_CollectionsString_get
-
-- Endpoint: `get /models/properties/types/collections/string`
-
-Expected response body:
-
-```json
-{ "property": ["hello", "world"] }
-```
-
-### Models_Property_Types_CollectionsString_put
-
-- Endpoint: `put /models/properties/types/collections/string`
-
-Expected input body:
-
-```json
-{ "property": ["hello", "world"] }
-```
-
-### Models_Property_Types_CollectionsInt_get
-
-- Endpoint: `get /models/properties/types/collections/int`
-
-Expected response body:
-
-```json
-{ "property": [1, 2] }
-```
-
-### Models_Property_Types_CollectionsInt_put
-
-- Endpoint: `put /models/properties/types/collections/int`
-
-Expected input body:
-
-```json
-{ "property": [1, 2] }
-```
-
-### Models_Property_Types_CollectionsModel_get
-
-- Endpoint: `get /models/properties/types/collections/model`
-
-Expected response body:
-
-```json
-{ "property": [{ "property": "hello" }, { "property": "world" }] }
-```
-
-### Models_Property_Types_CollectionsModel_put
-
-- Endpoint: `put /models/properties/types/collections/model`
-
-Expected input body:
-
-```json
-{ "property": [{ "property": "hello" }, { "property": "world" }] }
-```
-
-### Models_Property_Types_DictionaryString_get
-
-- Endpoint: `get /models/properties/types/dictionary/string`
-
-Expected response body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world" } }
-```
-
-### Models_Property_Types_DictionaryString_put
-
-- Endpoint: `put /models/properties/types/dictionary/string`
-
-Expected input body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world" } }
-```
-
-### Models_Property_Types_Never_get
-
-- Endpoint: `get /models/properties/types/never`
-
-Expected response body:
-
-```json
-{"property": <don't include this property>}
-```
-
-### Models_Property_Types_Never_put
-
-- Endpoint: `put /models/properties/types/never`
-
-Expected input body:
-
-```json
-{"property": <don't include this property>}
-```
-
-### Models_Usage_input
-
-- Endpoint: `get /models/usage/input`
-
-Send a POST request with the following body {requiredProp: "example-value"}
-
-### Models_Usage_output
-
-- Endpoint: `get /models/usage/output`
-
-Send a GET request which return the following body {requiredProp: "example-value"}
-
-### Models_Usage_inputAndOutput
-
-- Endpoint: `get /models/usage/input-output`
-
-Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
-
-### Models_Visibility_Automatic_getModel
-
-- Endpoint: `get /models/visibility/automatic`
-
-Generate and receive output model with readonly properties.
-Expected input body:
-
-```json
-{
-  "queryProp": 123
-}
-```
-
-Expected response body:
-
-```json
-{
-  "readProp": "abc"
-}
-```
-
-### Models_Visibility_Automatic_headModel
-
-- Endpoint: `head /models/visibility/automatic`
-
-Generate abd send put model with write/create properties.
-Expected input body:
-
-```json
-{
-  "queryProp": 123
-}
-```
-
-### Models_Visibility_Automatic_putModel
-
-- Endpoint: `put /models/visibility/automatic`
-
-Generate abd send put model with write/create/update properties.
-Expected input body:
-
-```json
-{
-  "createProp": ["foo", "bar"],
-  "updateProp": [1, 2]
-}
-```
-
-### Models_Visibility_Automatic_patchModel
-
-- Endpoint: `patch /models/visibility/automatic`
-
-Generate abd send put model with write/update properties.
-Expected input body:
-
-```json
-{
-  "updateProp": [1, 2]
-}
-```
-
-### Models_Visibility_Automatic_postModel
-
-- Endpoint: `post /models/visibility/automatic`
-
-Generate abd send put model with write/create properties.
-Expected input body:
-
-```json
-{
-  "createProp": ["foo", "bar"]
-}
-```
-
-### Models_Visibility_Automatic_deleteModel
-
-- Endpoint: `delete /models/visibility/automatic`
-
-Generate abd send put model with write/create properties.
-Expected input body:
-
-```json
-{
-  "deleteProp": true
-}
-```
-
 ### Parameters_CollectionFormat_Query_multi
 
 - Endpoint: `get /parameters/collection-format/query/multi`
@@ -2544,9 +933,1620 @@ Expected input body:
 }
 ```
 
-### Unions_sendInt
+### Types_Array_Int32Value_get
 
-- Endpoint: `post /unions/int`
+- Endpoint: `get /types/array/int32`
+
+Expected Array response body:
+
+```json
+[1, 2]
+```
+
+### Types_Array_Int32Value_put
+
+- Endpoint: `put /types/array/int32`
+
+Expected Array input body:
+
+```json
+[1, 2]
+```
+
+### Types_Array_Int64Value_get
+
+- Endpoint: `get /types/array/int64`
+
+Expected Array response body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
+```
+
+### Types_Array_Int64Value_put
+
+- Endpoint: `put /types/array/int64`
+
+Expected Array input body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
+```
+
+### Types_Array_BooleanValue_get
+
+- Endpoint: `get /types/array/boolean`
+
+Expected Array response body:
+
+```json
+[true, false]
+```
+
+### Types_Array_BooleanValue_put
+
+- Endpoint: `put /types/array/boolean`
+
+Expected Array input body:
+
+```json
+[true, false]
+```
+
+### Types_Array_StringValue_get
+
+- Endpoint: `get /types/array/string`
+
+Expected Array response body:
+
+```json
+["hello", ""]
+```
+
+### Types_Array_StringValue_put
+
+- Endpoint: `put /types/array/string`
+
+Expected Array input body:
+
+```json
+["hello", ""]
+```
+
+### Types_Array_Float32Value_get
+
+- Endpoint: `get /types/array/float32`
+
+Expected Array response body:
+
+```json
+[42.42]
+```
+
+### Types_Array_Float32Value_put
+
+- Endpoint: `put /types/array/float32`
+
+Expected Array input body:
+
+```json
+[42.42]
+```
+
+### Types_Array_DatetimeValue_get
+
+- Endpoint: `get /types/array/datetime`
+
+Expected Array response body:
+
+```json
+["2022-08-26T18:38:00Z"]
+```
+
+### Types_Array_DatetimeValue_put
+
+- Endpoint: `put /types/array/datetime`
+
+Expected Array input body:
+
+```json
+["2022-08-26T18:38:00Z"]
+```
+
+### Types_Array_DurationValue_get
+
+- Endpoint: `get /types/array/duration`
+
+Expected Array response body:
+
+```json
+["P123DT22H14M12.011S"]
+```
+
+### Types_Array_DurationValue_put
+
+- Endpoint: `put /types/array/duration`
+
+Expected Array input body:
+
+```json
+["P123DT22H14M12.011S"]
+```
+
+### Types_Array_UnknownValue_get
+
+- Endpoint: `get /types/array/unknown`
+
+Expected Array response body:
+
+```json
+[1, 'hello', 'k3': null]
+```
+
+### Types_Array_UnknownValue_put
+
+- Endpoint: `put /types/array/unknown`
+
+Expected Array input body:
+
+```json
+[1, 'hello', 'k3': null]
+```
+
+### Types_Array_ModelValue_get
+
+- Endpoint: `get /types/array/model`
+
+Expected Array response body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
+### Types_Array_ModelValue_put
+
+- Endpoint: `put /types/array/model`
+
+Expected Array input body:
+
+```json
+[{ "property": "hello" }, { "property": "world" }]
+```
+
+### Types_Array_NullableFloatValue_get
+
+- Endpoint: `get /types/array/nullable-float`
+
+Expected Array response body:
+
+```json
+[1.2, null, 3.0]
+```
+
+### Types_Array_NullableFloatValue_put
+
+- Endpoint: `put /types/array/nullable-float`
+
+Expected Array input body:
+
+```json
+[1.2, null, 3.0]
+```
+
+### Types_Dictionary_Int32Value_get
+
+- Endpoint: `get /types/dictionary/int32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Types_Dictionary_Int32Value_put
+
+- Endpoint: `put /types/dictionary/int32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Types_Dictionary_Int64Value_get
+
+- Endpoint: `get /types/dictionary/int64`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Types_Dictionary_Int64Value_put
+
+- Endpoint: `put /types/dictionary/int64`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Types_Dictionary_BooleanValue_get
+
+- Endpoint: `get /types/dictionary/boolean`
+
+Expected dictionary response body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Types_Dictionary_BooleanValue_put
+
+- Endpoint: `put /types/dictionary/boolean`
+
+Expected dictionary input body:
+
+```json
+{ "k1": true, "k2": false }
+```
+
+### Types_Dictionary_StringValue_get
+
+- Endpoint: `get /types/dictionary/string`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Types_Dictionary_StringValue_put
+
+- Endpoint: `put /types/dictionary/string`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "hello", "k2": "" }
+```
+
+### Types_Dictionary_Float32Value_get
+
+- Endpoint: `get /types/dictionary/float32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Types_Dictionary_Float32Value_put
+
+- Endpoint: `put /types/dictionary/float32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 42.42 }
+```
+
+### Types_Dictionary_DatetimeValue_get
+
+- Endpoint: `get /types/dictionary/datetime`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Types_Dictionary_DatetimeValue_put
+
+- Endpoint: `put /types/dictionary/datetime`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "2022-08-26T18:38:00Z" }
+```
+
+### Types_Dictionary_DurationValue_get
+
+- Endpoint: `get /types/dictionary/duration`
+
+Expected dictionary response body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Types_Dictionary_DurationValue_put
+
+- Endpoint: `put /types/dictionary/duration`
+
+Expected dictionary input body:
+
+```json
+{ "k1": "P123DT22H14M12.011S" }
+```
+
+### Types_Dictionary_UnknownValue_get
+
+- Endpoint: `get /types/dictionary/unknown`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Types_Dictionary_UnknownValue_put
+
+- Endpoint: `put /types/dictionary/unknown`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Types_Dictionary_ModelValue_get
+
+- Endpoint: `get /types/dictionary/model`
+
+Expected dictionary response body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Types_Dictionary_ModelValue_put
+
+- Endpoint: `put /types/dictionary/model`
+
+Expected dictionary input body:
+
+```json
+{ "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Types_Dictionary_RecursiveModelValue_get
+
+- Endpoint: `get /types/dictionary/model/recursive`
+
+Expected dictionary response body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
+
+### Types_Dictionary_RecursiveModelValue_put
+
+- Endpoint: `put /types/dictionary/model/recursive`
+
+Expected dictionary input body:
+
+```json
+{
+  "k1": { "property": "hello", "children": {} },
+  "k2": {
+    "property": "world",
+    "children": { "k2.1": { "property": "inner world" } }
+  }
+}
+```
+
+### Types_Dictionary_NullableFloatValue_get
+
+- Endpoint: `get /types/dictionary/nullable-float`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
+```
+
+### Types_Dictionary_NullableFloatValue_put
+
+- Endpoint: `put /types/dictionary/nullable-float`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
+```
+
+### Types_Enum_Extensible_String_getKnownValue
+
+- Endpoint: `get /types/enum/extensible/string/known-value`
+
+Expect to handle a known value. Mock api will return 'Monday'
+
+### Types_Enum_Extensible_String_getUnknownValue
+
+- Endpoint: `get /types/enum/extensible/string/unknown-value`
+
+Expect to handle an unknown value. Mock api will return 'Weekend'
+
+### Types_Enum_Extensible_String_putKnownValue
+
+- Endpoint: `put /types/enum/extensible/string/known-value`
+
+Expect to send a known value. Mock api expect to receive 'Monday'
+
+### Types_Enum_Extensible_String_putUnknownValue
+
+- Endpoint: `put /types/enum/extensible/string/unknown-value`
+
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### Types_Enum_Fixed_String_getKnownValue
+
+- Endpoint: `get /types/enum/fixed/string/known-value`
+
+Expect to handle a known value. Mock api will return 'Monday'
+
+### Types_Enum_Fixed_String_putKnownValue
+
+- Endpoint: `put /types/enum/fixed/string/known-value`
+
+Expect to send a known value. Mock api expect to receive 'Monday'
+
+### Types_Enum_Fixed_String_putUnknownValue
+
+- Endpoint: `put /types/enum/fixed/string/unknown-value`
+
+Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### Types_Model_Inheritance_Discriminated_getModel
+
+- Endpoint: `get /types/model/inheritance/discriminated/model`
+
+Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
+
+### Types_Model_Inheritance_Discriminated_putModel
+
+- Endpoint: `put /types/model/inheritance/discriminated/model`
+
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected input body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
+
+### Types_Model_Inheritance_Discriminated_getRecursiveModel
+
+- Endpoint: `get /types/model/inheritance/discriminated/recursivemodel`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected response body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Types_Model_Inheritance_Discriminated_putRecursiveModel
+
+- Endpoint: `put /types/model/inheritance/discriminated/recursivemodel`
+
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input body:
+
+```json
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Types_Model_Inheritance_Discriminated_getMissingDiscriminator
+
+- Endpoint: `get /types/model/inheritance/discriminated/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "age": 1 }
+```
+
+### Types_Model_Inheritance_Discriminated_getWrongDiscriminator
+
+- Endpoint: `get /types/model/inheritance/discriminated/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "wrongKind" }
+```
+
+### Types_Model_Inheritance_postValid
+
+- Endpoint: `post /types/model/inheritance/valid`
+
+Generate and send model.
+Expected input body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Types_Model_Inheritance_getValid
+
+- Endpoint: `get /types/model/inheritance/valid`
+
+Generate and receive model.
+Expected response body:
+
+```json
+{ "name": "abc", "age": 32, "smart": true }
+```
+
+### Types_Model_Inheritance_putValid
+
+- Endpoint: `put /types/model/inheritance/valid`
+
+Generate, send, and receive round-trip bottom model.
+
+### Types_Model_Usage_input
+
+- Endpoint: `get /types/model/usage/input`
+
+Send a POST request with the following body {requiredProp: "example-value"}
+
+### Types_Model_Usage_output
+
+- Endpoint: `get /types/model/usage/output`
+
+Send a GET request which return the following body {requiredProp: "example-value"}
+
+### Types_Model_Usage_inputAndOutput
+
+- Endpoint: `get /types/model/usage/input-output`
+
+Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
+
+### Types_Model_Visibility_getModel
+
+- Endpoint: `get /types/model/visibility`
+
+Generate and receive output model with readonly properties.
+Expected input body:
+
+```json
+{
+  "queryProp": 123
+}
+```
+
+Expected response body:
+
+```json
+{
+  "readProp": "abc"
+}
+```
+
+### Types_Model_Visibility_headModel
+
+- Endpoint: `head /types/model/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "queryProp": 123
+}
+```
+
+### Types_Model_Visibility_putModel
+
+- Endpoint: `put /types/model/visibility`
+
+Generate abd send put model with write/create/update properties.
+Expected input body:
+
+```json
+{
+  "createProp": ["foo", "bar"],
+  "updateProp": [1, 2]
+}
+```
+
+### Types_Model_Visibility_patchModel
+
+- Endpoint: `patch /types/model/visibility`
+
+Generate abd send put model with write/update properties.
+Expected input body:
+
+```json
+{
+  "updateProp": [1, 2]
+}
+```
+
+### Types_Model_Visibility_postModel
+
+- Endpoint: `post /types/model/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "createProp": ["foo", "bar"]
+}
+```
+
+### Types_Model_Visibility_deleteModel
+
+- Endpoint: `delete /types/model/visibility`
+
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "deleteProp": true
+}
+```
+
+### Types_Property_Nullable_String_getNonNull
+
+- Endpoint: `get /types/property/nullable/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Types_Property_Nullable_String_getNull
+
+- Endpoint: `get /types/property/nullable/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_String_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Types_Property_Nullable_String_patchNull
+
+- Endpoint: `patch /types/property/nullable/string/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Bytes_getNonNull
+
+- Endpoint: `get /types/property/nullable/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Types_Property_Nullable_Bytes_getNull
+
+- Endpoint: `get /types/property/nullable/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Bytes_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Types_Property_Nullable_Bytes_patchNull
+
+- Endpoint: `patch /types/property/nullable/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Datetime_getNonNull
+
+- Endpoint: `get /types/property/nullable/datetime/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Types_Property_Nullable_Datetime_getNull
+
+- Endpoint: `get /types/property/nullable/datetime/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Datetime_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/datetime/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
+```
+
+### Types_Property_Nullable_Datetime_patchNull
+
+- Endpoint: `patch /types/property/nullable/datetime/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Duration_getNonNull
+
+- Endpoint: `get /types/property/nullable/duration/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Types_Property_Nullable_Duration_getNull
+
+- Endpoint: `get /types/property/nullable/duration/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_Duration_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/duration/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Types_Property_Nullable_Duration_patchNull
+
+- Endpoint: `patch /types/property/nullable/duration/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_CollectionsByte_getNonNull
+
+- Endpoint: `get /types/property/nullable/collections/bytes/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Types_Property_Nullable_CollectionsByte_getNull
+
+- Endpoint: `get /types/property/nullable/collections/bytes/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_CollectionsByte_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/collections/bytes/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Types_Property_Nullable_CollectionsByte_patchNull
+
+- Endpoint: `patch /types/property/nullable/collections/bytes/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_CollectionsModel_getNonNull
+
+- Endpoint: `get /types/property/nullable/collections/model/non-null`
+
+Expected response body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Types_Property_Nullable_CollectionsModel_getNull
+
+- Endpoint: `get /types/property/nullable/collections/model/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Nullable_CollectionsModel_patchNonNull
+
+- Endpoint: `patch /types/property/nullable/collections/model/non-null`
+
+Expected request body:
+
+```json
+{
+  "requiredProperty": "foo",
+  "nullableProperty": [{ "property": "hello" }, { "property": "world" }]
+}
+```
+
+### Types_Property_Nullable_CollectionsModel_patchNull
+
+- Endpoint: `patch /types/property/nullable/collections/model/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Types_Property_Optional_String_getAll
+
+- Endpoint: `get /types/property/optional/string/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_String_getDefault
+
+- Endpoint: `get /types/property/optional/string/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_String_putAll
+
+- Endpoint: `put /types/property/optional/string/all`
+
+Expected request body:
+
+```json
+{"property": hello}
+```
+
+### Types_Property_Optional_String_putDefault
+
+- Endpoint: `put /types/property/optional/string/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Bytes_getAll
+
+- Endpoint: `get /types/property/optional/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_Bytes_getDefault
+
+- Endpoint: `get /types/property/optional/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Bytes_putAll
+
+- Endpoint: `put /types/property/optional/bytes/all`
+
+Expected request body:
+
+```json
+{"property": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Types_Property_Optional_Bytes_putDefault
+
+- Endpoint: `put /types/property/optional/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Datetime_getAll
+
+- Endpoint: `get /types/property/optional/datetime/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_Datetime_getDefault
+
+- Endpoint: `get /types/property/optional/datetime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Datetime_putAll
+
+- Endpoint: `put /types/property/optional/datetime/all`
+
+Expected request body:
+
+```json
+{"property": 2022-08-26T18:38:00Z}
+```
+
+### Types_Property_Optional_Datetime_putDefault
+
+- Endpoint: `put /types/property/optional/datetime/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Duration_getAll
+
+- Endpoint: `get /types/property/optional/duration/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_Duration_getDefault
+
+- Endpoint: `get /types/property/optional/duration/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_Duration_putAll
+
+- Endpoint: `put /types/property/optional/duration/all`
+
+Expected request body:
+
+```json
+{"property": P123DT22H14M12.011S}
+```
+
+### Types_Property_Optional_Duration_putDefault
+
+- Endpoint: `put /types/property/optional/duration/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_CollectionsByte_getAll
+
+- Endpoint: `get /types/property/optional/collections/bytes/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_CollectionsByte_getDefault
+
+- Endpoint: `get /types/property/optional/collections/bytes/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_CollectionsByte_putAll
+
+- Endpoint: `put /types/property/optional/collections/bytes/all`
+
+Expected request body:
+
+```json
+{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+```
+
+### Types_Property_Optional_CollectionsByte_putDefault
+
+- Endpoint: `put /types/property/optional/collections/bytes/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_CollectionsModel_getAll
+
+- Endpoint: `get /types/property/optional/collections/model/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Types_Property_Optional_CollectionsModel_getDefault
+
+- Endpoint: `get /types/property/optional/collections/model/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_CollectionsModel_putAll
+
+- Endpoint: `put /types/property/optional/collections/model/all`
+
+Expected request body:
+
+```json
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Types_Property_Optional_CollectionsModel_putDefault
+
+- Endpoint: `put /types/property/optional/collections/model/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Types_Property_Optional_RequiredAndOptional_getAll
+
+- Endpoint: `get /types/property/optional/requiredAndOptional/all`
+
+Expected response body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Types_Property_Optional_RequiredAndOptional_getRequiredOnly
+
+- Endpoint: `get /types/property/optional/requiredAndOptional/requiredOnly`
+
+Expected response body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
+### Types_Property_Optional_RequiredAndOptional_putAll
+
+- Endpoint: `put /types/property/optional/requiredAndOptional/all`
+
+Expected request body:
+
+```json
+{ "optionalProperty": "hello", "requiredProperty": 42 }
+```
+
+### Types_Property_Optional_RequiredAndOptional_putRequiredOnly
+
+- Endpoint: `put /types/property/optional/requiredAndOptional/requiredOnly`
+
+Expected request body:
+
+```json
+{ "requiredProperty": 42 }
+```
+
+### Types_Property_ValueTypes_Boolean_get
+
+- Endpoint: `get /types/property/value-types/boolean`
+
+Expected response body:
+
+```json
+{ "property": true }
+```
+
+### Types_Property_ValueTypes_Boolean_put
+
+- Endpoint: `put /types/property/value-types/boolean`
+
+Expected input body:
+
+```json
+{ "property": true }
+```
+
+### Types_Property_ValueTypes_String_get
+
+- Endpoint: `get /types/property/value-types/string`
+
+Expected response body:
+
+```json
+{"property": hello}
+```
+
+### Types_Property_ValueTypes_String_put
+
+- Endpoint: `put /types/property/value-types/string`
+
+Expected input body:
+
+```json
+{"property": hello}
+```
+
+### Types_Property_ValueTypes_Bytes_get
+
+- Endpoint: `get /types/property/value-types/bytes`
+
+Expected response body:
+
+```json
+{"property": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Types_Property_ValueTypes_Bytes_put
+
+- Endpoint: `put /types/property/value-types/bytes`
+
+Expected input body:
+
+```json
+{"property": aGVsbG8sIHdvcmxkIQ==}
+```
+
+### Types_Property_ValueTypes_Int_get
+
+- Endpoint: `get /types/property/value-types/int`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Types_Property_ValueTypes_Int_put
+
+- Endpoint: `put /types/property/value-types/int`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Types_Property_ValueTypes_Float_get
+
+- Endpoint: `get /types/property/value-types/float`
+
+Expected response body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Types_Property_ValueTypes_Float_put
+
+- Endpoint: `put /types/property/value-types/float`
+
+Expected input body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Types_Property_ValueTypes_Datetime_get
+
+- Endpoint: `get /types/property/value-types/datetime`
+
+Expected response body:
+
+```json
+{"property": 2022-08-26T18:38:00Z}
+```
+
+### Types_Property_ValueTypes_Datetime_put
+
+- Endpoint: `put /types/property/value-types/datetime`
+
+Expected input body:
+
+```json
+{"property": 2022-08-26T18:38:00Z}
+```
+
+### Types_Property_ValueTypes_Duration_get
+
+- Endpoint: `get /types/property/value-types/duration`
+
+Expected response body:
+
+```json
+{"property": P123DT22H14M12.011S}
+```
+
+### Types_Property_ValueTypes_Duration_put
+
+- Endpoint: `put /types/property/value-types/duration`
+
+Expected input body:
+
+```json
+{"property": P123DT22H14M12.011S}
+```
+
+### Types_Property_ValueTypes_Enum_get
+
+- Endpoint: `get /types/property/value-types/enum`
+
+Expected response body:
+
+```json
+{"property": ValueOne}
+```
+
+### Types_Property_ValueTypes_Enum_put
+
+- Endpoint: `put /types/property/value-types/enum`
+
+Expected input body:
+
+```json
+{"property": ValueOne}
+```
+
+### Types_Property_ValueTypes_ExtensibleEnum_get
+
+- Endpoint: `get /types/property/value-types/extensible-enum`
+
+Expected response body:
+
+```json
+{"property": UnknownValue}
+```
+
+### Types_Property_ValueTypes_ExtensibleEnum_put
+
+- Endpoint: `put /types/property/value-types/extensible-enum`
+
+Expected input body:
+
+```json
+{"property": UnknownValue}
+```
+
+### Types_Property_ValueTypes_Model_get
+
+- Endpoint: `get /types/property/value-types/model`
+
+Expected response body:
+
+```json
+{ "property": { "property": "hello" } }
+```
+
+### Types_Property_ValueTypes_Model_put
+
+- Endpoint: `put /types/property/value-types/model`
+
+Expected input body:
+
+```json
+{ "property": { "property": "hello" } }
+```
+
+### Types_Property_ValueTypes_CollectionsString_get
+
+- Endpoint: `get /types/property/value-types/collections/string`
+
+Expected response body:
+
+```json
+{ "property": ["hello", "world"] }
+```
+
+### Types_Property_ValueTypes_CollectionsString_put
+
+- Endpoint: `put /types/property/value-types/collections/string`
+
+Expected input body:
+
+```json
+{ "property": ["hello", "world"] }
+```
+
+### Types_Property_ValueTypes_CollectionsInt_get
+
+- Endpoint: `get /types/property/value-types/collections/int`
+
+Expected response body:
+
+```json
+{ "property": [1, 2] }
+```
+
+### Types_Property_ValueTypes_CollectionsInt_put
+
+- Endpoint: `put /types/property/value-types/collections/int`
+
+Expected input body:
+
+```json
+{ "property": [1, 2] }
+```
+
+### Types_Property_ValueTypes_CollectionsModel_get
+
+- Endpoint: `get /types/property/value-types/collections/model`
+
+Expected response body:
+
+```json
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Types_Property_ValueTypes_CollectionsModel_put
+
+- Endpoint: `put /types/property/value-types/collections/model`
+
+Expected input body:
+
+```json
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Types_Property_ValueTypes_DictionaryString_get
+
+- Endpoint: `get /types/property/value-types/dictionary/string`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Types_Property_ValueTypes_DictionaryString_put
+
+- Endpoint: `put /types/property/value-types/dictionary/string`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Types_Property_ValueTypes_Never_get
+
+- Endpoint: `get /types/property/value-types/never`
+
+Expected response body:
+
+```json
+{"property": <don't include this property>}
+```
+
+### Types_Property_ValueTypes_Never_put
+
+- Endpoint: `put /types/property/value-types/never`
+
+Expected input body:
+
+```json
+{"property": <don't include this property>}
+```
+
+### Types_Union_sendInt
+
+- Endpoint: `post /types/union/int`
 
 This test is testing sending an int value in simple union property.
 
@@ -2554,9 +2554,9 @@ This test is testing sending an int value in simple union property.
 { "simpleUnion": 1 }
 ```
 
-### Unions_sendIntArray
+### Types_Union_sendIntArray
 
-- Endpoint: `post /unions/int-array`
+- Endpoint: `post /types/union/int-array`
 
 This test is testing sending an int array value in simple union property.
 
@@ -2564,9 +2564,9 @@ This test is testing sending an int array value in simple union property.
 { "simpleUnion": [1, 2] }
 ```
 
-### Unions_sendFirstNamedUnionValue
+### Types_Union_sendFirstNamedUnionValue
 
-- Endpoint: `post /unions/model1`
+- Endpoint: `post /types/union/model1`
 
 This test is testing sending the first union value in named union property.
 
@@ -2574,9 +2574,9 @@ This test is testing sending the first union value in named union property.
 { "namedUnion": { "name": "model1", "prop1": 1 } }
 ```
 
-### Unions_sendSecondNamedUnionValue
+### Types_Union_sendSecondNamedUnionValue
 
-- Endpoint: `post /unions/model2`
+- Endpoint: `post /types/union/model2`
 
 This test is testing sending the second union value in named union property.
 
