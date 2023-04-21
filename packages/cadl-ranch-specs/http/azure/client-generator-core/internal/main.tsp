@@ -11,7 +11,6 @@ using Azure.ClientGenerator.Core;
 namespace _Specs_.Azure.ClientGenerator.Core.Internal;
 
 @doc("This is an internal model.")
-@global.Azure.ClientGenerator.Core.internal
 model InternalModel {
   name: string;
 }
