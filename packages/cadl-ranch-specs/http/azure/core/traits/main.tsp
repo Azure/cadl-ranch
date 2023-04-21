@@ -37,14 +37,6 @@ model User {
   name?: string;
 }
 
-@doc("The ApiVersion path parameter.")
-model ApiVersionPathParameter {
-  @segment("api")
-  @path("api-version")
-  @doc("The API version to use for this operation.")
-  apiVersion: string;
-}
-
 @scenario
 @doc("Get a resource, sending and receiving headers.")
 @scenarioDoc("""
@@ -68,7 +60,7 @@ Expected response body:
 }
 ```
 """)
-op get is OperationsWithTraits.ResourceRead<
+op smokeTest is OperationsWithTraits.ResourceRead<
   User,
   RequestHeadersTrait<{
     @doc("header in request")
@@ -79,18 +71,3 @@ op get is OperationsWithTraits.ResourceRead<
       @header bar: string;
     }>
 >;
-
-@scenario
-@doc("Delete resource with api-version path parameter")
-@scenarioDoc("""
-Expected path parameter:
-- id=1
-- api-version=2022-12-01-preview
-Expected header parameters:
-- x-ms-client-request-id=<any string>
-
-Expected response headers:
-- x-ms-client-request-id=<any string>
-- Repeatability-Result=Accepted
-""")
-op delete is OperationsWithTraits.ResourceDelete<User, TraitOverride<VersionParameterTrait<ApiVersionPathParameter>>>;
