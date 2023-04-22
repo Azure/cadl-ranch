@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.1
+
+### Patch Changes
+
+- 555f9f7: rename types -> type
+
 ## 0.14.0
 
 ### Minor Changes
