@@ -91,7 +91,7 @@ Scenarios.Type_Property_Optional_CollectionsModel_putDefault = passOnSuccess(col
 
 // TEST REQUIRED AND OPTIONAL PROPERTIES
 
-const requiredAndOptionalBaseUrl = `/models/properties/optional/requiredAndOptional`;
+const requiredAndOptionalBaseUrl = `/type/property/optional/requiredAndOptional`;
 Scenarios.Type_Property_Optional_RequiredAndOptional_getAll = passOnSuccess(
   mockapi.get(`${requiredAndOptionalBaseUrl}/all`, (req) => {
     return {
