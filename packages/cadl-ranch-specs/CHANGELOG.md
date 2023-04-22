@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.2
+
+### Patch Changes
+
+- 69904c9: fix url for required optional in property
+
 ## 0.14.1
 
 ### Patch Changes
