@@ -3,6 +3,18 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
+Scenarios.Azure_ClientGenerator_Core_Internal_get = passOnSuccess(
+  mockapi.get("/azure/client-generator-core/internal/get", (req) => {
+    if (!("name" in req.query)) {
+      throw new ValidationError("Should submit name query", "any string", undefined);
+    }
+    return {
+      status: 200,
+      body: json({ name: req.query["name"] }),
+    };
+  }),
+);
+
 Scenarios.Azure_ClientGenerator_Core_Internal_getInternal = passOnSuccess(
   mockapi.get("/azure/client-generator-core/internal/getInternal", (req) => {
     if (!("name" in req.query)) {
