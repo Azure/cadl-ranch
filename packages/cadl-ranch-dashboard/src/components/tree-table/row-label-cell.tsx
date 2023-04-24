@@ -2,6 +2,8 @@ import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
 import { TreeTableRow } from "./types.js";
+import { TooltipHost } from "@fluentui/react/lib/Tooltip";
+import ReactMarkdown from "react-markdown";
 
 interface RowLabelCellProps {
   row: TreeTableRow;
@@ -19,25 +21,32 @@ export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
         },
         row.hasChildren ? { cursor: "pointer" } : undefined,
       ]}
-      title={row.item.scenarioDoc}
       onClick={row.toggleExpand}
     >
-      <div style={{ marginLeft, display: "flex", alignItems: "center" }}>
-        <div
-          css={{
-            transition: "transform 0.2s linear",
-          }}
-        >
-          {caret}
+      <TooltipHost
+        content={
+          row.item.scenario?.scenarioDoc && (
+            <ReactMarkdown children={row.item.scenario?.scenarioDoc} remarkPlugins={[]} />
+          )
+        }
+      >
+        <div style={{ marginLeft, display: "flex", alignItems: "center" }}>
+          <div
+            css={{
+              transition: "transform 0.2s linear",
+            }}
+          >
+            {caret}
+          </div>
+          <div
+            css={{
+              marginLeft: "10px",
+            }}
+          >
+            {row.item.name}
+          </div>
         </div>
-        <div
-          css={{
-            marginLeft: "10px",
-          }}
-        >
-          {row.item.name}
-        </div>
-      </div>
+      </TooltipHost>
     </td>
   );
 };
