@@ -21,6 +21,7 @@ export default defineConfig({
     }),
     visualizer({
       template: "treemap", // or sunburst
+      open: true,
       gzipSize: true,
       filename: "temp/bundle-size.html",
     }),
