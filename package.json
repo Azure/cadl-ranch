@@ -52,6 +52,13 @@
     "typescript": "^5.0.4"
   },
   "syncpack": {
-    "workspace": false
+    "dependencyTypes": [
+      "dev",
+      "overrides",
+      "peer",
+      "pnpmOverrides",
+      "prod",
+      "resolutions"
+    ]
   }
 }
