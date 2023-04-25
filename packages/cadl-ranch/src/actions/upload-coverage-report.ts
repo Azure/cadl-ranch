@@ -1,4 +1,4 @@
-import { CadlRanchCoverageClient, CoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { CadlRanchCoverageClient, CoverageReport, GeneratorMetadata } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { logger } from "../logger.js";
 import pc from "picocolors";
 import { readFile } from "fs/promises";
@@ -9,6 +9,7 @@ export interface UploadCoverageReportConfig {
   storageAccountName: string;
   generatorName: string;
   generatorVersion: string;
+  generatorCommit?: string;
 }
 
 export async function uploadCoverageReport({
@@ -16,12 +17,18 @@ export async function uploadCoverageReport({
   storageAccountName,
   generatorName,
   generatorVersion,
+  generatorCommit: geenratorCommit,
 }: UploadCoverageReportConfig) {
   const content = await readFile(coverageFile);
   const coverage: CoverageReport = JSON.parse(content.toString());
 
   const client = new CadlRanchCoverageClient(storageAccountName, new AzureCliCredential());
-  await client.coverage.upload(generatorName, generatorVersion, coverage);
+  const generatorMetadata: GeneratorMetadata = {
+    name: generatorName,
+    version: generatorVersion,
+    commit: geenratorCommit,
+  };
+  await client.coverage.upload(generatorMetadata, coverage);
 
   logger.info(
     `${pc.green(

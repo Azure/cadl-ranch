@@ -1,18 +1,21 @@
 import { ResolvedCoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { Caption1, Text } from "@fluentui/react-components";
 import { FunctionComponent } from "react";
+import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 
 export type GeneratorInformationProps = {
+  status: number;
   report: ResolvedCoverageReport;
 };
 
-export const GeneratorInformation: FunctionComponent<GeneratorInformationProps> = ({ report }) => {
+export const GeneratorInformation: FunctionComponent<GeneratorInformationProps> = ({ status, report }) => {
   return (
     <table>
       <InfoRow
-        label="Generator version"
-        caption="This is the version of the generator used to create this report."
-        value={report.generatorMetadata.version}
+        label="Reported date"
+        caption="Date this report was created"
+        value={new Date(report.createdAt).toDateString()}
+        valueTitle={report.createdAt}
       />
       <InfoRow
         label="Cadl Ranch Spec version"
@@ -20,10 +23,27 @@ export const GeneratorInformation: FunctionComponent<GeneratorInformationProps> 
         value={report.scenariosMetadata.version}
       />
       <InfoRow
-        label="Reported date"
-        caption="Date this report was created"
-        value={new Date(report.createdAt).toDateString()}
-        valueTitle={report.createdAt}
+        label="Generator version"
+        caption="This is the version of the generator used to create this report."
+        value={report.generatorMetadata.version}
+      />
+      <InfoRow
+        label="Generator commit"
+        caption="Git Sha of the generator used to create this report."
+        value={report.generatorMetadata.commit?.slice(0, 8) ?? "?"}
+        valueTitle={report.generatorMetadata.commit}
+      />
+
+      <InfoRow
+        label="Status at time of report"
+        caption="Coverage when the report was completed"
+        value={<ScenarioGroupRatioStatusBox ratio={getCompletedRatioAtTimeOfReport(report)} />}
+      />
+
+      <InfoRow
+        label="Current status"
+        caption="Coverage of the current scenarios"
+        value={<ScenarioGroupRatioStatusBox ratio={status} />}
       />
     </table>
   );
@@ -32,7 +52,7 @@ export const GeneratorInformation: FunctionComponent<GeneratorInformationProps> 
 type InfoEntryProps = {
   label: string;
   caption: string;
-  value: string;
+  value: string | any;
   valueTitle?: string;
 };
 const InfoRow: FunctionComponent<InfoEntryProps> = ({ label, caption, value, valueTitle }) => {
@@ -53,3 +73,15 @@ const InfoRow: FunctionComponent<InfoEntryProps> = ({ label, caption, value, val
     </tr>
   );
 };
+
+function getCompletedRatioAtTimeOfReport(report: ResolvedCoverageReport) {
+  let coveredCount = 0;
+  const statues = Object.values(report.results);
+  for (const status of statues) {
+    if (status === "pass" || status === "not-applicable" || status === "not-supported") {
+      coveredCount++;
+    }
+  }
+
+  return coveredCount / statues.length;
+}

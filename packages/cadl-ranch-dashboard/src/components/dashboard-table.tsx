@@ -200,7 +200,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             <PopoverTrigger>
               <Button icon={<Info16Filled />} appearance="transparent"></Button>
             </PopoverTrigger>
-            <PopoverSurface>{report && <GeneratorInformation report={report} />}</PopoverSurface>
+            <PopoverSurface>{report && <GeneratorInformation status={status} report={report} />}</PopoverSurface>
           </Popover>
         </div>
         <div

@@ -62,4 +62,5 @@ export interface ScenariosMetadata {
 export interface GeneratorMetadata {
   name: string;
   version: string;
+  commit?: string;
 }
