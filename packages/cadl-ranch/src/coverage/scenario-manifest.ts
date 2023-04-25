@@ -2,7 +2,9 @@ import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { loadScenarios } from "../scenarios-resolver.js";
 import { Diagnostic } from "../utils/diagnostic-reporter.js";
 import { getCommit, getPackageJson } from "../utils/misc-utils.js";
-import { ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { ScenarioLocation, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { getSourceLocation, normalizePath } from "@typespec/compiler";
+import { relative } from "path";
 
 export async function computeScenarioManifest(
   scenariosPath: string,
@@ -14,15 +16,26 @@ export async function computeScenarioManifest(
 
   const commit = getCommit(scenariosPath);
   const pkg = await getPackageJson(scenariosPath);
-  return [createScenarioManifest(pkg?.version ?? "?", commit, scenarios), []];
+  return [createScenarioManifest(scenariosPath, pkg?.version ?? "?", commit, scenarios), []];
 }
 
-export function createScenarioManifest(version: string, commit: string, scenarios: Scenario[]): ScenarioManifest {
+export function createScenarioManifest(
+  scenariosPath: string,
+  version: string,
+  commit: string,
+  scenarios: Scenario[],
+): ScenarioManifest {
   return {
     version,
     commit,
-    scenarios: scenarios.map(({ name, scenarioDoc }) => {
-      return { name, scenarioDoc };
+    scenarios: scenarios.map(({ name, scenarioDoc, target }) => {
+      const tspLocation = getSourceLocation(target);
+      const location: ScenarioLocation = {
+        path: normalizePath(relative(scenariosPath, tspLocation.file.path)),
+        start: tspLocation.file.getLineAndCharacterOfPosition(tspLocation.pos),
+        end: tspLocation.file.getLineAndCharacterOfPosition(tspLocation.end),
+      };
+      return { name, scenarioDoc, location };
     }),
   };
 }

@@ -3,6 +3,7 @@ import { CadlRanchCoverageClient } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { AzureCliCredential } from "@azure/identity";
 import { logger } from "../logger.js";
 import pc from "picocolors";
+import { writeFile } from "fs/promises";
 
 export interface UploadScenarioManifestConfig {
   scenariosPath: string;
@@ -11,10 +12,11 @@ export interface UploadScenarioManifestConfig {
 
 export async function uploadScenarioManifest({ scenariosPath, storageAccountName }: UploadScenarioManifestConfig) {
   const [manifest, diagnostics] = await computeScenarioManifest(scenariosPath);
-
   if (manifest === undefined || diagnostics.length > 0) {
     process.exit(-1);
   }
+
+  await writeFile("manifest.json", JSON.stringify(manifest, null, 2));
   const client = new CadlRanchCoverageClient(storageAccountName, new AzureCliCredential());
   await client.createIfNotExists();
   await client.manifest.upload(manifest);

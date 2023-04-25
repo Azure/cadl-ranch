@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { CoverageSummary, getCoverageSummary } from "./apis.js";
 import { Dashboard } from "./components/dashboard.js";
 import { useEffectAsync } from "./utils.js";
+import "./icon-registration.jsx";
 
 export const App: FunctionComponent = () => {
   const [coverageSummary, setCoverageSummary] = useState<CoverageSummary | undefined>(undefined);
