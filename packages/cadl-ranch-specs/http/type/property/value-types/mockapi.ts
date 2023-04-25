@@ -91,3 +91,15 @@ Scenarios.Type_Property_ValueTypes_DictionaryString_put = passOnSuccess(dictiona
 const neverMock = createMockApis("never", undefined);
 Scenarios.Type_Property_ValueTypes_Never_get = passOnSuccess(neverMock.get);
 Scenarios.Type_Property_ValueTypes_Never_put = passOnSuccess(neverMock.put);
+
+const unknownStringMock = createMockApis("unknown/string", { property: "hello" });
+Scenarios.Type_Property_ValueTypes_UnknownString_get = passOnSuccess(unknownStringMock.get);
+Scenarios.Type_Property_ValueTypes_UnknownString_put = passOnSuccess(unknownStringMock.put);
+
+const unknownIntMock = createMockApis("unknown/int", { property: 42 });
+Scenarios.Type_Property_ValueTypes_UnknownInt_get = passOnSuccess(unknownIntMock.get);
+Scenarios.Type_Property_ValueTypes_UnknownInt_put = passOnSuccess(unknownIntMock.put);
+
+const unknownDictMock = createMockApis("unknown/int", { property: { k1: "hello", k2: 42 } });
+Scenarios.Type_Property_ValueTypes_UnknownDict_get = passOnSuccess(unknownDictMock.get);
+Scenarios.Type_Property_ValueTypes_UnknownDict_put = passOnSuccess(unknownDictMock.put);

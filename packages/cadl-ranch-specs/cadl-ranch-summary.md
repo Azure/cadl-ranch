@@ -2544,6 +2544,66 @@ Expected input body:
 {"property": hello}
 ```
 
+### Type_Property_ValueTypes_UnknownDict_get
+
+- Endpoint: `get /type/property/value-types/unkwown-dict`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": 42 } }
+```
+
+### Type_Property_ValueTypes_UnknownDict_put
+
+- Endpoint: `put /type/property/value-types/unkwown-dict`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": 42 } }
+```
+
+### Type_Property_ValueTypes_UnknownInt_get
+
+- Endpoint: `get /type/property/value-types/unkwown-int`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnknownInt_put
+
+- Endpoint: `put /type/property/value-types/unkwown-int`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnknownString_get
+
+- Endpoint: `get /type/property/value-types/unkwown-string`
+
+Expected response body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_ValueTypes_UnknownString_put
+
+- Endpoint: `put /type/property/value-types/unkwown-string`
+
+Expected input body:
+
+```json
+{"property": hello}
+```
+
 ### Type_Union_sendFirstNamedUnionValue
 
 - Endpoint: `post /type/union/model1`
