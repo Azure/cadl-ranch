@@ -1,13 +1,12 @@
 import { ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
 import {
-  faCheck,
-  faCircleExclamation,
-  faEyeSlash,
-  faTriangleExclamation,
-  faXmarkCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  AcceptMediumIcon,
+  AlertSolidIcon,
+  HideIcon,
+  StatusErrorFullIcon,
+  WarningSolidIcon,
+} from "@fluentui/react-icons-mdl2";
 import { FunctionComponent } from "react";
 import { Colors, ScenarioStatusColors } from "../constants.js";
 
@@ -46,13 +45,13 @@ const ScenarioStatusBoxStyles = css({
 
 export const PassStatus = () => (
   <div title="Pass" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.pass })]}>
-    <FontAwesomeIcon icon={faCheck} />
+    <AcceptMediumIcon />
   </div>
 );
 
 export const FailStatus = () => (
   <div title="Fail" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.fail })]}>
-    <FontAwesomeIcon icon={faXmarkCircle} />
+    <StatusErrorFullIcon />
   </div>
 );
 
@@ -61,7 +60,7 @@ export const NotSupportedStatus = () => (
     title="Not supported"
     css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notSupported })]}
   >
-    <FontAwesomeIcon icon={faEyeSlash} />
+    <HideIcon />
   </div>
 );
 export const NotApplicableStatus = () => (
@@ -69,7 +68,7 @@ export const NotApplicableStatus = () => (
     title="Not applicable"
     css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notApplicable })]}
   >
-    <FontAwesomeIcon icon={faEyeSlash} />
+    <HideIcon />
   </div>
 );
 
@@ -78,12 +77,12 @@ export const NotImplementedStatus = () => (
     title="Not implemented"
     css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notImplemented })]}
   >
-    <FontAwesomeIcon icon={faCircleExclamation} />
+    <AlertSolidIcon />
   </div>
 );
 
 export const NotReportedStatus = () => (
   <div title="Not reported" css={[ScenarioStatusBoxStyles, css({ backgroundColor: ScenarioStatusColors.notReported })]}>
-    <FontAwesomeIcon icon={faTriangleExclamation} />
+    <WarningSolidIcon />
   </div>
 );

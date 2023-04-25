@@ -1,7 +1,5 @@
 import { ResolvedCoverageReport, ScenarioData, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
-import { faCow, faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { CoverageSummary, GeneratorNames } from "../apis.js";
 import { Colors } from "../constants.js";
@@ -9,6 +7,7 @@ import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
 import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
+import { FileCodeIcon, PrintIcon } from "@fluentui/react-icons-mdl2";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -206,7 +205,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faPencil} css={{ marginRight: 5 }} />
+          <PrintIcon css={{ marginRight: 5 }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -219,7 +218,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faCow} css={{ marginRight: 5 }} />
+          <FileCodeIcon css={{ marginRight: 5 }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div

@@ -1,8 +1,6 @@
-import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
 import { TreeTableRow } from "./types.js";
-import { Text, IconButton, Callout } from "@fluentui/react";
+import { Text, IconButton, Callout, Icon, TooltipHost } from "@fluentui/react";
 import ReactMarkdown from "react-markdown";
 import { ScenarioData } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { useBoolean, useId } from "@fluentui/react-hooks";
@@ -12,7 +10,7 @@ export interface RowLabelCellProps {
 }
 const INDENT_SIZE = 24;
 export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
-  const caret = row.hasChildren ? <FontAwesomeIcon icon={row.expanded ? faChevronDown : faChevronRight} /> : null;
+  const caret = row.hasChildren ? <Icon iconName={row.expanded ? "ChevronDown" : "ChevronRight"} /> : null;
   const marginLeft = row.depth * INDENT_SIZE;
   return (
     <td
@@ -59,7 +57,7 @@ const ScenarioInfoButton: FunctionComponent<ScenarioInfoButtonProps> = ({ scenar
   const buttonId = useId("callout-button");
 
   return (
-    <>
+    <TooltipHost content="Show scenario documentation">
       <IconButton
         id={buttonId}
         iconProps={{ iconName: "Documentation" }}
@@ -81,7 +79,7 @@ const ScenarioInfoButton: FunctionComponent<ScenarioInfoButtonProps> = ({ scenar
           <ReactMarkdown children={scenario.scenarioDoc} remarkPlugins={[]} />
         </Callout>
       )}
-    </>
+    </TooltipHost>
   );
 };
 
@@ -93,7 +91,11 @@ const GotoSourceButton: FunctionComponent<ShowSourceButtonProps> = ({ scenario }
   const start = getGithubLineNumber(scenario.location.start.line);
   const end = getGithubLineNumber(scenario.location.end.line);
   const url = `${baseUrl}/${scenario.location.path}#${start}-${end}`;
-  return <IconButton iconProps={{ iconName: "Code" }} aria-label="Go to source" href={url} target="_blank" />;
+  return (
+    <TooltipHost content="Go to source">
+      <IconButton iconProps={{ iconName: "Code" }} aria-label="Go to source" href={url} target="_blank" />
+    </TooltipHost>
+  );
 };
 
 function getGithubLineNumber(value: number): `L${number}` {
