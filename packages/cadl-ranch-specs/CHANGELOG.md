@@ -1,5 +1,40 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.2
+
+### Patch Changes
+
+- 69904c9: fix url for required optional in property
+
+## 0.14.1
+
+### Patch Changes
+
+- 555f9f7: rename types -> type
+
+## 0.14.0
+
+### Minor Changes
+
+- 759070a: remove api version test in azure core traits
+- a29f855: create a Types folder with all of the types moved there
+
+### Patch Changes
+
+- 50c25b9: update internal decorator
+- Updated dependencies [344334c]
+  - @azure-tools/cadl-ranch@0.4.6
+
+## 0.13.0
+
+### Minor Changes
+
+- 088b0b5: reconfigure dashboard view of core and tcgc
+
+### Patch Changes
+
+- 70c1a28: add paging test with a custom paging model
+
 ## 0.12.1
 
 ### Patch Changes
