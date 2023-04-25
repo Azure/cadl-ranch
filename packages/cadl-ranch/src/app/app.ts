@@ -7,6 +7,7 @@ import { loadScenarioMockApis } from "../scenarios-resolver.js";
 import { MockApiServer } from "../server/index.js";
 import { ApiMockAppConfig } from "./config.js";
 import { processRequest } from "./request-processor.js";
+import { logger } from "../logger.js";
 
 export class MockApiApp {
   private router = Router();
@@ -36,8 +37,11 @@ export class MockApiApp {
 
   private registerScenario(name: string, scenario: ScenarioMockApi) {
     for (const endpoint of scenario.apis) {
-      this.router.route(endpoint.uri)[endpoint.method](async (req: RequestExt, res: Response) => {
-        await processRequest(this.coverageTracker, name, endpoint.uri, req, res, endpoint.handler);
+      this.router.route(endpoint.uri)[endpoint.method]((req: RequestExt, res: Response) => {
+        processRequest(this.coverageTracker, name, endpoint.uri, req, res, endpoint.handler).catch((e) => {
+          logger.error("Unexpected request error", e);
+          res.status(500).end();
+        });
       });
     }
   }
