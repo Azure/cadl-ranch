@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { TreeTableRow } from "./types.js";
-import { Button, Popover, PopoverSurface, PopoverTrigger, Title1, Title3, Tooltip } from "@fluentui/react-components";
+import { Button, Popover, PopoverSurface, PopoverTrigger, Title3, Tooltip } from "@fluentui/react-components";
 import ReactMarkdown from "react-markdown";
 import { ScenarioData } from "@azure-tools/cadl-ranch-coverage-sdk";
 import {
