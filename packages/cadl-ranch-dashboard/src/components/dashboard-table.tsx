@@ -7,7 +7,9 @@ import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
 import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
-import { CodeBlock16Filled, Print16Filled } from "@fluentui/react-icons";
+import { CodeBlock16Filled, Info16Filled, Print16Filled } from "@fluentui/react-icons";
+import { Button, Popover, PopoverSurface, PopoverTrigger } from "@fluentui/react-components";
+import { GeneratorInformation } from "./generator-information.js";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -191,9 +193,15 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
       >
         <div
           title="Generator name"
-          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5 }}
+          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5, textAlign: "center" }}
         >
           {report?.generatorMetadata?.name}
+          <Popover withArrow>
+            <PopoverTrigger>
+              <Button icon={<Info16Filled />} appearance="transparent"></Button>
+            </PopoverTrigger>
+            <PopoverSurface>{report && <GeneratorInformation status={status} report={report} />}</PopoverSurface>
+          </Popover>
         </div>
         <div
           title="Generator version used in this coverage."

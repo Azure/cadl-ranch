@@ -43,6 +43,11 @@ export interface CoverageReport {
    * Coverage result.
    */
   results: Record<string, ScenarioStatus>;
+
+  /**
+   * UTC datetime the report was created.
+   */
+  createdAt: string;
 }
 
 export interface ResolvedCoverageReport extends CoverageReport {
@@ -57,4 +62,5 @@ export interface ScenariosMetadata {
 export interface GeneratorMetadata {
   name: string;
   version: string;
+  commit?: string;
 }
