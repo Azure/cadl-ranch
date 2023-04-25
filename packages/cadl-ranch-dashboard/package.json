@@ -45,8 +45,9 @@
     "@vitejs/plugin-react": "^4.0.0",
     "eslint": "^8.39.0",
     "prettier": "^2.8.8",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.9.5",
+    "rimraf": "^5.0.0",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "typescript": "^5.0.4",
     "vite": "^4.3.1"
   }
 }

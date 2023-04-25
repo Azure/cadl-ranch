@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +18,11 @@ export default defineConfig({
       babel: {
         plugins: ["@emotion/babel-plugin"],
       },
+    }),
+    visualizer({
+      template: "treemap", // or sunburst
+      gzipSize: true,
+      filename: "temp/bundle-size.html",
     }),
   ],
 });
