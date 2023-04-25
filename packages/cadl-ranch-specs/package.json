@@ -43,8 +43,8 @@
     "@typespec/openapi": "0.43.0",
     "@typespec/openapi3": "0.43.0",
     "@types/node": "^18.7.16",
-    "eslint": "^8.38.0",
-    "prettier": "^2.8.7",
+    "eslint": "^8.39.0",
+    "prettier": "^2.8.8",
     "rimraf": "^3.0.2",
     "typescript": "^4.9.5"
   },
