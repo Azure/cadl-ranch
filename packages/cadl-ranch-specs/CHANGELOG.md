@@ -1,5 +1,63 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.2
+
+### Patch Changes
+
+- 69904c9: fix url for required optional in property
+
+## 0.14.1
+
+### Patch Changes
+
+- 555f9f7: rename types -> type
+
+## 0.14.0
+
+### Minor Changes
+
+- 759070a: remove api version test in azure core traits
+- a29f855: create a Types folder with all of the types moved there
+
+### Patch Changes
+
+- 50c25b9: update internal decorator
+- Updated dependencies [344334c]
+  - @azure-tools/cadl-ranch@0.4.6
+
+## 0.13.0
+
+### Minor Changes
+
+- 088b0b5: reconfigure dashboard view of core and tcgc
+
+### Patch Changes
+
+- 70c1a28: add paging test with a custom paging model
+
+## 0.12.1
+
+### Patch Changes
+
+- f52d101: fix coverage check for resiliency
+
+## 0.12.0
+
+### Minor Changes
+
+- debea25: remove dev driven test
+- b58f70f: fix service driven resiliency tests
+
+### Patch Changes
+
+- 5a6d929: Add test case for spread operator
+- 3a6b67d: add tsv, ssv, pipes query collection format test
+- Updated dependencies [debea25]
+- Updated dependencies [3a6b67d]
+  - @azure-tools/cadl-ranch@0.4.5
+  - @azure-tools/cadl-ranch-expect@0.2.3
+  - @azure-tools/cadl-ranch-api@0.2.4
+
 ## 0.11.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-api",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Cadl Ranch set of api to implement mock api",
   "main": "dist/index.js",
   "type": "module",
@@ -26,32 +26,32 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
-    "deep-equal": "^2.0.5",
-    "express": "^4.18.1",
+    "body-parser": "^1.20.2",
+    "deep-equal": "^2.2.0",
+    "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
-    "glob": "^8.0.3",
+    "glob": "^10.2.2",
     "morgan": "^1.10.0",
     "picocolors": "^1.0.0",
     "winston": "^3.8.2",
-    "yargs": "^17.5.1"
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
     "@types/chai": "^4.3.4",
     "@types/deep-equal": "^1.0.1",
-    "@types/express": "^4.17.13",
-    "@types/glob": "^8.0.0",
+    "@types/express": "^4.17.17",
+    "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
-    "@types/morgan": "^1.9.3",
-    "@types/node": "^18.7.16",
-    "@types/yargs": "^17.0.12",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.16.0",
+    "@types/yargs": "^17.0.24",
     "chai": "^4.3.7",
-    "eslint": "^8.23.1",
+    "eslint": "^8.39.0",
     "mocha": "^10.2.0",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.3"
+    "typescript": "^5.0.4"
   }
 }

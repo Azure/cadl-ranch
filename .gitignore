@@ -188,3 +188,7 @@ obj/
 *.vsix
 *.zip
 
+
+
+
+packages/cadl-ranch-specs/manifest.json

@@ -25,7 +25,7 @@ export async function generateScenarioSummary({ scenariosPath, outputFile }: Gen
 export function createScenarioSummary(scenarios: Scenario[]): string {
   const lines = [`# Cadl Ranch Project summary`];
 
-  for (const scenario of scenarios) {
+  for (const scenario of scenarios.sort((a, b) => a.name.localeCompare(b.name))) {
     lines.push(`### ${scenario.name}`);
     lines.push("");
     const endpoints = renderEndpoints(scenario.endpoints);

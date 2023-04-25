@@ -1,14 +1,13 @@
 import { ResolvedCoverageReport, ScenarioData, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
-import { faCow, faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { CoverageSummary, GeneratorNames } from "../apis.js";
 import { Colors } from "../constants.js";
 import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
-import { TreeTableRow } from "./tree-table/types.js";
+import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
+import { CodeBlock16Filled, Print16Filled } from "@fluentui/react-icons";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -206,7 +205,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faPencil} css={{ marginRight: 5 }} />
+          <Print16Filled css={{ marginRight: 5 }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -219,7 +218,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faCow} css={{ marginRight: 5 }} />
+          <CodeBlock16Filled css={{ marginRight: 5 }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div
@@ -240,14 +239,8 @@ const versionStyles = css({
   padding: 5,
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  display: "flex",
 });
-
-interface ManifestTreeNode {
-  name: string;
-  fullName: string;
-  scenario?: ScenarioData;
-  children: Record<string, ManifestTreeNode>;
-}
 
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {
   const root: ManifestTreeNode = { name: "", fullName: "", children: {} };

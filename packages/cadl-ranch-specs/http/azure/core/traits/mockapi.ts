@@ -9,8 +9,8 @@ const validUser = {
   etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
 };
 
-Scenarios.Azure_Traits_get = passOnSuccess(
-  mockapi.get("/azure/traits/user/:id", (req) => {
+Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
+  mockapi.get("/azure/core/traits/user/:id", (req) => {
     if (!("x-ms-client-request-id" in req.headers)) {
       throw new ValidationError("Should submit header x-ms-client-request-id", "any uuid", undefined);
     }
@@ -29,31 +29,6 @@ Scenarios.Azure_Traits_get = passOnSuccess(
         "bar": "456",
         "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
-      },
-    };
-  }),
-);
-
-Scenarios.Azure_Traits_delete = passOnSuccess(
-  mockapi.delete("/azure/traits/api/:apiVersion/user/:id", (req) => {
-    if (!("x-ms-client-request-id" in req.headers)) {
-      throw new ValidationError("Should submit header x-ms-client-request-id", "any uuid", undefined);
-    }
-    if (req.params.id !== "1") {
-      throw new ValidationError("Expected path param id=1", "1", req.params.id);
-    }
-    if (req.params.apiVersion !== "2022-12-01-preview") {
-      throw new ValidationError(
-        "Expected path param apiVersion=2022-12-01-preview",
-        "2022-12-01-preview",
-        req.params.apiVersion,
-      );
-    }
-    return {
-      status: 204,
-      headers: {
-        "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
-        "Repeatability-Result": "Accepted",
       },
     };
   }),
