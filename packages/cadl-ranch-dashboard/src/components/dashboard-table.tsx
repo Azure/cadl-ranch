@@ -8,7 +8,7 @@ import { Colors } from "../constants.js";
 import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
-import { TreeTableRow } from "./tree-table/types.js";
+import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -241,13 +241,6 @@ const versionStyles = css({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
 });
-
-interface ManifestTreeNode {
-  name: string;
-  fullName: string;
-  scenario?: ScenarioData;
-  children: Record<string, ManifestTreeNode>;
-}
 
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {
   const root: ManifestTreeNode = { name: "", fullName: "", children: {} };

@@ -31,7 +31,9 @@
   "dependencies": {
     "@azure-tools/cadl-ranch-coverage-sdk": "workspace:~",
     "@emotion/react": "^11.10.4",
+    "@fluentui/font-icons-mdl2": "^8.5.13",
     "@fluentui/react": "^8.108.1",
+    "@fluentui/react-hooks": "^8.6.20",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",

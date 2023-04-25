@@ -187,7 +187,9 @@ importers:
     specifiers:
       '@azure-tools/cadl-ranch-coverage-sdk': workspace:~
       '@emotion/react': ^11.10.4
+      '@fluentui/font-icons-mdl2': ^8.5.13
       '@fluentui/react': ^8.108.1
+      '@fluentui/react-hooks': ^8.6.20
       '@fortawesome/fontawesome-svg-core': ^6.2.0
       '@fortawesome/free-solid-svg-icons': ^6.2.0
       '@fortawesome/react-fontawesome': ^0.2.0
@@ -206,7 +208,9 @@ importers:
     dependencies:
       '@azure-tools/cadl-ranch-coverage-sdk': link:../cadl-ranch-coverage-sdk
       '@emotion/react': 11.10.4_x7zurldxbgw7tt2jlvalir45jm
+      '@fluentui/font-icons-mdl2': 8.5.13_w5j4k42lgipnm43s3brx6h3c34
       '@fluentui/react': 8.108.1_6hrpdt74nuubt2lijsfizev3cu
+      '@fluentui/react-hooks': 8.6.20_w5j4k42lgipnm43s3brx6h3c34
       '@fortawesome/fontawesome-svg-core': 6.2.0
       '@fortawesome/free-solid-svg-icons': 6.2.0
       '@fortawesome/react-fontawesome': 0.2.0_6j2wdqxompc6mcokhxkpep2gqu
