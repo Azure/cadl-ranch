@@ -27,7 +27,7 @@ model SharedModel {
 
 @scenario
 @scenarioDoc("""
-This is a public operation. It should be generatated and exported.
+This scenario contains a public operation. It should be generatated and exported.
 Expected query parameter: name=<any string>
 Expected response body:
 ```json
@@ -42,7 +42,7 @@ op publicOnly(@query name: string): PublicModel;
 
 @scenario
 @scenarioDoc("""
-This is an internal operation. It should be generated but not exposed.
+This scenario contains an internal operation. It should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 ```json
@@ -57,33 +57,22 @@ Expected response body:
 op internalOnly(@query name: string): PublicModel;
 
 @route("/shared")
+@scenario
+@scenarioDoc("""
+This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+```json
+{
+  "name": <any string>
+}
+```
+""")
 interface Shared {
-  @scenario
-  @scenarioDoc("""
-  This is a public operation. It should be generatated and exported.
-  Expected query parameter: name=<any string>
-  Expected response body:
-  ```json
-  {
-    "name": <any string>
-  }
-  ```
-  """)
   @route("/public")
   @get
   public(@query name: string): SharedModel;
 
-  @scenario
-  @scenarioDoc("""
-  This is an internal operation. It should be generated but not exposed.
-  Expected query parameter: name=<any string>
-  Expected response body:
-  ```json
-  {
-    "name": <any string>
-  }
-  ```
-  """)
   @route("/internal")
   @get
   @global.Azure.ClientGenerator.Core.internal

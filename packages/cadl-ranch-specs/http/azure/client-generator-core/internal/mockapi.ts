@@ -18,5 +18,7 @@ function createInternalMockApis(route: string): MockApi {
 
 Scenarios.Azure_ClientGenerator_Core_Internal_publicOnly = passOnSuccess(createInternalMockApis("public"));
 Scenarios.Azure_ClientGenerator_Core_Internal_internalOnly = passOnSuccess(createInternalMockApis("internal"));
-Scenarios.Azure_ClientGenerator_Core_Internal_Shared_public = passOnSuccess(createInternalMockApis("shared/public"));
-Scenarios.Azure_ClientGenerator_Core_Internal_Shared_internal = passOnSuccess(createInternalMockApis("shared/internal"));
+Scenarios.Azure_ClientGenerator_Core_Internal_Shared = passOnSuccess([
+  createInternalMockApis("shared/public"),
+  createInternalMockApis("shared/internal"),
+]);
