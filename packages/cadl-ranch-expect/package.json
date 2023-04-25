@@ -26,16 +26,16 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
+    "@types/node": "^18.16.0",
     "@typespec/eslint-config-typespec": "~0.6.0",
-    "@types/node": "^18.7.16",
     "eslint": "^8.39.0",
     "prettier": "^2.8.8",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.9.5"
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "@typespec/compiler": "~0.43.0",
-    "@typespec/rest": "~0.43.0",
-    "@typespec/http": "~0.43.1"
+    "@typespec/http": "~0.43.1",
+    "@typespec/rest": "~0.43.0"
   }
 }

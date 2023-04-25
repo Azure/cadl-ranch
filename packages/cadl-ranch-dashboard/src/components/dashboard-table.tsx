@@ -7,7 +7,7 @@ import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
 import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
-import { FileCodeIcon, PrintIcon } from "@fluentui/react-icons-mdl2";
+import { CodeBlock16Filled, Print16Filled } from "@fluentui/react-icons";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -205,7 +205,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <PrintIcon css={{ marginRight: 5 }} />
+          <Print16Filled css={{ marginRight: 5 }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -218,7 +218,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FileCodeIcon css={{ marginRight: 5 }} />
+          <CodeBlock16Filled css={{ marginRight: 5 }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div
@@ -239,6 +239,7 @@ const versionStyles = css({
   padding: 5,
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  display: "flex",
 });
 
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {

@@ -7,11 +7,10 @@ export const CadlRanchConfigJsonSchema: JSONSchemaType<CadlRanchConfig> = {
   properties: {
     unsupportedScenarios: {
       type: "array",
-      nullable: true,
       items: {
         type: "string",
       },
     },
   },
   required: [],
-};
+} as const;

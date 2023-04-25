@@ -1,16 +1,21 @@
 import { FunctionComponent } from "react";
 import { TreeTableRow } from "./types.js";
-import { Text, IconButton, Callout, Icon, TooltipHost } from "@fluentui/react";
+import { Button, Popover, PopoverSurface, PopoverTrigger, Title3, Tooltip } from "@fluentui/react-components";
 import ReactMarkdown from "react-markdown";
 import { ScenarioData } from "@azure-tools/cadl-ranch-coverage-sdk";
-import { useBoolean, useId } from "@fluentui/react-hooks";
+import {
+  BookInformation20Regular,
+  ChevronDown20Filled,
+  ChevronRight20Filled,
+  Braces20Filled,
+} from "@fluentui/react-icons";
 
 export interface RowLabelCellProps {
   row: TreeTableRow;
 }
-const INDENT_SIZE = 24;
+const INDENT_SIZE = 20;
 export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
-  const caret = row.hasChildren ? <Icon iconName={row.expanded ? "ChevronDown" : "ChevronRight"} /> : null;
+  const caret = row.hasChildren ? row.expanded ? <ChevronDown20Filled /> : <ChevronRight20Filled /> : null;
   const marginLeft = row.depth * INDENT_SIZE;
   return (
     <td
@@ -53,33 +58,18 @@ type ScenarioInfoButtonProps = {
 };
 
 const ScenarioInfoButton: FunctionComponent<ScenarioInfoButtonProps> = ({ scenario }) => {
-  const [isCalloutVisible, { toggle: toggleIsCalloutVisible }] = useBoolean(false);
-  const buttonId = useId("callout-button");
-
   return (
-    <TooltipHost content="Show scenario documentation">
-      <IconButton
-        id={buttonId}
-        iconProps={{ iconName: "Documentation" }}
-        aria-label="Show information"
-        onClick={toggleIsCalloutVisible}
-      />
-      {isCalloutVisible && (
-        <Callout
-          role="dialog"
-          gapSpace={0}
-          target={`#${buttonId}`}
-          onDismiss={toggleIsCalloutVisible}
-          setInitialFocus
-          css={{ padding: 20 }}
-        >
-          <Text as="h1" block variant="xLarge">
-            Scenario documentation
-          </Text>
-          <ReactMarkdown children={scenario.scenarioDoc} remarkPlugins={[]} />
-        </Callout>
-      )}
-    </TooltipHost>
+    <Popover withArrow>
+      <PopoverTrigger disableButtonEnhancement>
+        <Tooltip content="Show scenario documentation" relationship="label">
+          <Button icon={<BookInformation20Regular />} aria-label="Show information" appearance="transparent" />
+        </Tooltip>
+      </PopoverTrigger>
+      <PopoverSurface>
+        <Title3>Scenario documentation</Title3>
+        <ReactMarkdown children={scenario.scenarioDoc} remarkPlugins={[]} />
+      </PopoverSurface>
+    </Popover>
   );
 };
 
@@ -92,9 +82,16 @@ const GotoSourceButton: FunctionComponent<ShowSourceButtonProps> = ({ scenario }
   const end = getGithubLineNumber(scenario.location.end.line);
   const url = `${baseUrl}/${scenario.location.path}#${start}-${end}`;
   return (
-    <TooltipHost content="Go to source">
-      <IconButton iconProps={{ iconName: "Code" }} aria-label="Go to source" href={url} target="_blank" />
-    </TooltipHost>
+    <Tooltip content="Go to source" relationship="label">
+      <Button
+        icon={<Braces20Filled />}
+        as="a"
+        appearance="transparent"
+        aria-label="Go to source"
+        href={url}
+        target="_blank"
+      />
+    </Tooltip>
   );
 };
 
