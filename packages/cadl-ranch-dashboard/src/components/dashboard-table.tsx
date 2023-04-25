@@ -253,7 +253,8 @@ const versionStyles = css({
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {
   const root: ManifestTreeNode = { name: "", fullName: "", children: {} };
 
-  for (const scenario of manifest.scenarios) {
+  const sortedScenarios = [...manifest.scenarios].sort((a, b) => a.name.localeCompare(b.name));
+  for (const scenario of sortedScenarios) {
     const segments = scenario.name.split("_");
     let current: ManifestTreeNode = root;
 
