@@ -3,16 +3,16 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@scenarioService("/authentication/http")
+@scenarioService("/authentication/http/bearer")
 @doc("Illustrates clients generated with generic HTTP auth.")
 @useAuth({
   type: AuthType.http,
-  scheme: "SharedAccessKey",
+  scheme: "Bearer",
 })
-namespace Authentication.Http;
+namespace Authentication.Http.Bearer;
 
 @scenario
-@scenarioDoc("Expects header 'Authorization': 'SharedAccessKey valid-key'")
+@scenarioDoc("Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'")
 @doc("Check whether client is authenticated")
 @get
 @route("/valid")
@@ -23,10 +23,7 @@ op valid(): NoContentResponse;
 Expect error code 403 and error body:
   ```json
   {
-    "error": {
-      "code": "InvalidApiKey",
-      "message": "API key is invalid"
-    }
+    "error": "invalid-grant"
   }
   ```
 """)
