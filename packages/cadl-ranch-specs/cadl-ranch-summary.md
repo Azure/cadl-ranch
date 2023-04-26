@@ -242,7 +242,7 @@ Expected response body:
 
 ````json
 {
-  "value":[
+  "items":[
      {
         "id":1,
         "name":"Madge",
