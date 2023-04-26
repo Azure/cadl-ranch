@@ -92,7 +92,13 @@ const neverMock = createMockApis("never", undefined);
 Scenarios.Type_Property_ValueTypes_Never_get = passOnSuccess(neverMock.get);
 Scenarios.Type_Property_ValueTypes_Never_put = passOnSuccess(neverMock.put);
 
-
-const recordUnknownMock = createMockApis("record/unknown", { "k1": "hello", "k2": 42, "k3": { "k3k1": 1, "k3k2": "test" }, "k4": [1, 2, 3], "k5": true, "k6": 3.1415 });
+const recordUnknownMock = createMockApis("record/unknown", {
+  k1: "hello",
+  k2: 42,
+  k3: { k3k1: 1, k3k2: "test" },
+  k4: [1, 2, 3],
+  k5: true,
+  k6: 3.1415,
+});
 Scenarios.Type_Property_ValueTypes_RecordUnknown_get = passOnSuccess(recordUnknownMock.get);
 Scenarios.Type_Property_ValueTypes_RecordUnknown_put = passOnSuccess(recordUnknownMock.put);
