@@ -8,5 +8,6 @@ export async function createCoverageReport(
   return {
     scenariosMetadata: await getScenarioMetadata(scenariosPath),
     results,
+    createdAt: new Date().toISOString(),
   };
 }
