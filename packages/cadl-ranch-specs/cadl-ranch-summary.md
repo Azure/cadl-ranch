@@ -53,13 +53,11 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_ClientGenerator_Core_Internal_Shared
+### Azure_ClientGenerator_Core_Internal_internalOnly
 
-- Endpoints:
-  - `get /azure/client-generator-core/internal/shared/public`
-  - `get /azure/client-generator-core/internal/shared/internal`
+- Endpoint: `get /azure/client-generator-core/internal/internal`
 
-This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
+This scenario contains an internal operation. It should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 
@@ -83,11 +81,13 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_internalOnly
+### Azure_ClientGenerator_Core_Internal_Shared
 
-- Endpoint: `get /azure/client-generator-core/internal/internal`
+- Endpoints:
+  - `get /azure/client-generator-core/internal/shared/public`
+  - `get /azure/client-generator-core/internal/shared/internal`
 
-This scenario contains an internal operation. It should be generated but not exposed.
+This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 
