@@ -187,20 +187,20 @@ interface Never extends ModelOperations<NeverProperty, "<don't include this prop
 // Test a model with unknown and string
 @doc("Model with a property unknown, and the data is a string.")
 model UnknownStringProperty is ModelTemplate<unknown>;
-@route("/unkwown-string")
+@route("/unknown/string")
 @operationGroup
 interface UnknownString extends ModelOperations<UnknownStringProperty, "hello"> {}
 
 // Test a model with unknown and int
 @doc("Model with a property unknown, and the data is a int32.")
 model UnknownIntProperty is ModelTemplate<unknown>;
-@route("/unkwown-int")
+@route("/unknown/int")
 @operationGroup
 interface UnknownInt extends ModelOperations<UnknownIntProperty, "42"> {}
 
 // Test a model with unknown and a dictionnary
 @doc("Model with a property unknown, and the data is a dictionnary.")
 model UnknownDictProperty is ModelTemplate<unknown>;
-@route("/unkwown-dict")
+@route("/unknown/dict")
 @operationGroup
 interface UnknownDict extends ModelOperations<UnknownDictProperty, "{'k1': 'hello', 'k2': 42}"> {}
