@@ -1,14 +1,15 @@
 import { ResolvedCoverageReport, ScenarioData, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { css } from "@emotion/react";
-import { faCow, faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent, useCallback, useMemo, useState } from "react";
 import { CoverageSummary, GeneratorNames } from "../apis.js";
 import { Colors } from "../constants.js";
 import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
-import { TreeTableRow } from "./tree-table/types.js";
+import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
+import { CodeBlock16Filled, Info16Filled, Print16Filled } from "@fluentui/react-icons";
+import { Button, Popover, PopoverSurface, PopoverTrigger } from "@fluentui/react-components";
+import { GeneratorInformation } from "./generator-information.js";
 
 export interface DashboardTableProps {
   coverageSummary: CoverageSummary;
@@ -192,9 +193,15 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
       >
         <div
           title="Generator name"
-          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5 }}
+          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5, textAlign: "center" }}
         >
           {report?.generatorMetadata?.name}
+          <Popover withArrow>
+            <PopoverTrigger>
+              <Button icon={<Info16Filled />} appearance="transparent"></Button>
+            </PopoverTrigger>
+            <PopoverSurface>{report && <GeneratorInformation status={status} report={report} />}</PopoverSurface>
+          </Popover>
         </div>
         <div
           title="Generator version used in this coverage."
@@ -206,7 +213,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faPencil} css={{ marginRight: 5 }} />
+          <Print16Filled css={{ marginRight: 5 }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -219,7 +226,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <FontAwesomeIcon icon={faCow} css={{ marginRight: 5 }} />
+          <CodeBlock16Filled css={{ marginRight: 5 }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div
@@ -240,19 +247,14 @@ const versionStyles = css({
   padding: 5,
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  display: "flex",
 });
-
-interface ManifestTreeNode {
-  name: string;
-  fullName: string;
-  scenario?: ScenarioData;
-  children: Record<string, ManifestTreeNode>;
-}
 
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {
   const root: ManifestTreeNode = { name: "", fullName: "", children: {} };
 
-  for (const scenario of manifest.scenarios) {
+  const sortedScenarios = [...manifest.scenarios].sort((a, b) => a.name.localeCompare(b.name));
+  for (const scenario of sortedScenarios) {
     const segments = scenario.name.split("_");
     let current: ManifestTreeNode = root;
 

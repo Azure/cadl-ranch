@@ -14,7 +14,7 @@ export async function ensureScenariosPathExists(scenariosPath: string) {
   }
 }
 
-export function getCommit(path: string) {
+export function getCommit(path: string): string {
   return execSync("git rev-parse HEAD", { cwd: path }).toString().trim();
 }
 

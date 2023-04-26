@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import { CoverageSummary } from "../apis.js";
 import { DashboardTable } from "./dashboard-table.js";
-
 export interface DashboardProps {
   coverageSummary: CoverageSummary;
 }

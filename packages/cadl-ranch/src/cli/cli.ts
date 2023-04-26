@@ -9,6 +9,7 @@ import { checkCoverage } from "../actions/check-coverage.js";
 import { generateScenarioSummary } from "../actions/generate-scenario-summary.js";
 import { uploadScenarioManifest } from "../actions/upload-scenario-manifest.js";
 import { uploadCoverageReport } from "../actions/upload-coverage-report.js";
+import { getCommit } from "../utils/misc-utils.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -253,7 +254,11 @@ async function main() {
             type: "string",
             description: "Version of generator",
           })
-          .demandOption("generatorVersion");
+          .demandOption("generatorVersion")
+          .option("generatorCommit", {
+            type: "string",
+            description: "Git sha of the generator. Resolved automatically if command is run inside of repository.",
+          });
       },
       async (args) => {
         await uploadCoverageReport({
@@ -261,6 +266,7 @@ async function main() {
           storageAccountName: args.storageAccountName,
           generatorName: args.generatorName,
           generatorVersion: args.generatorVersion,
+          generatorCommit: args.generatorCommit ?? getCommit(process.cwd()),
         });
       },
     )
