@@ -53,11 +53,11 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_ClientGenerator_Core_Internal_getInternal
+### Azure_ClientGenerator_Core_Internal_internalOnly
 
-- Endpoint: `get /azure/client-generator-core/internal/getInternal`
+- Endpoint: `get /azure/client-generator-core/internal/internal`
 
-This test is testing an internal operation using an internal response model. The operation and model should be generated but not exposed.
+This scenario contains an internal operation. It should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 
@@ -67,25 +67,32 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_postInternal
+### Azure_ClientGenerator_Core_Internal_publicOnly
 
-- Endpoint: `post /azure/client-generator-core/internal/postInternal`
+- Endpoint: `get /azure/client-generator-core/internal/public`
 
-This test is testing an internal operation using a non-internal model. The model is only used in this internal operation. The operation and model should be generated but not exposed.
-Expected body:
-
-```json
-{
-  "id": 1,
-  "name": <any string>
-}
-```
-
+This scenario contains a public operation. It should be generatated and exported.
+Expected query parameter: name=<any string>
 Expected response body:
 
 ```json
 {
-  "id": 1,
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Internal_Shared
+
+- Endpoints:
+  - `get /azure/client-generator-core/internal/shared/public`
+  - `get /azure/client-generator-core/internal/shared/internal`
+
+This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
   "name": <any string>
 }
 ```
