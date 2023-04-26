@@ -2546,7 +2546,7 @@ Expected input body:
 
 ### Type_Property_ValueTypes_UnknownDict_get
 
-- Endpoint: `get /type/property/value-types/unkwown-dict`
+- Endpoint: `get /type/property/value-types/unknown/dict`
 
 Expected response body:
 
@@ -2556,7 +2556,7 @@ Expected response body:
 
 ### Type_Property_ValueTypes_UnknownDict_put
 
-- Endpoint: `put /type/property/value-types/unkwown-dict`
+- Endpoint: `put /type/property/value-types/unknown/dict`
 
 Expected input body:
 
@@ -2566,7 +2566,7 @@ Expected input body:
 
 ### Type_Property_ValueTypes_UnknownInt_get
 
-- Endpoint: `get /type/property/value-types/unkwown-int`
+- Endpoint: `get /type/property/value-types/unknown/int`
 
 Expected response body:
 
@@ -2576,7 +2576,7 @@ Expected response body:
 
 ### Type_Property_ValueTypes_UnknownInt_put
 
-- Endpoint: `put /type/property/value-types/unkwown-int`
+- Endpoint: `put /type/property/value-types/unknown/int`
 
 Expected input body:
 
@@ -2586,7 +2586,7 @@ Expected input body:
 
 ### Type_Property_ValueTypes_UnknownString_get
 
-- Endpoint: `get /type/property/value-types/unkwown-string`
+- Endpoint: `get /type/property/value-types/unknown/string`
 
 Expected response body:
 
@@ -2596,7 +2596,7 @@ Expected response body:
 
 ### Type_Property_ValueTypes_UnknownString_put
 
-- Endpoint: `put /type/property/value-types/unkwown-string`
+- Endpoint: `put /type/property/value-types/unknown/string`
 
 Expected input body:
 
