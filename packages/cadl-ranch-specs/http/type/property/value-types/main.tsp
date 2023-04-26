@@ -183,3 +183,14 @@ model NeverProperty is ModelTemplate<never>;
 @route("/never")
 @operationGroup
 interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
+
+// Test a model with Record<unknown> property
+@doc("Model with Record<unknown> property, and the data is a json object.")
+model RecordUnknownProperty is ModelTemplate<unknown>;
+@route("/record/unknown")
+@operationGroup
+interface RecordUnknown
+  extends ModelOperations<
+      RecordUnknownProperty,
+      "{'k1': 'hello', 'k2': 42, 'k3': {'k3k1': 1, 'k3k2': 'test'}, 'k4': [1, 2, 3], 'k5': true, 'k6': 3.1415}"
+    > {}

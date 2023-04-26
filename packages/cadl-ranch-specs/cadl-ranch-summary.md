@@ -2531,6 +2531,44 @@ Expected input body:
 {"property": <don't include this property>}
 ```
 
+### Type_Property_ValueTypes_RecordUnknown_get
+
+- Endpoint: `get /type/property/value-types/record/unknown`
+
+Expected response body:
+
+```json
+{
+  "property": {
+    "k1": "hello",
+    "k2": 42,
+    "k3": { "k3k1": 1, "k3k2": "test" },
+    "k4": [1, 2, 3],
+    "k5": true,
+    "k6": 3.1415
+  }
+}
+```
+
+### Type_Property_ValueTypes_RecordUnknown_put
+
+- Endpoint: `put /type/property/value-types/record/unknown`
+
+Expected input body:
+
+```json
+{
+  "property": {
+    "k1": "hello",
+    "k2": 42,
+    "k3": { "k3k1": 1, "k3k2": "test" },
+    "k4": [1, 2, 3],
+    "k5": true,
+    "k6": 3.1415
+  }
+}
+```
+
 ### Type_Property_ValueTypes_String_get
 
 - Endpoint: `get /type/property/value-types/string`
