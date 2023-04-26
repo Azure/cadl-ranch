@@ -57,6 +57,7 @@ Expected response body:
 op internalOnly(@query name: string): PublicModel;
 
 @route("/shared")
+@global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
 This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
