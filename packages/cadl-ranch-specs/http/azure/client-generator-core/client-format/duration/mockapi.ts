@@ -23,20 +23,20 @@ Scenarios.Azure_ClientGenerator_Core_ClientFormat_Duration_Query_seconds = passO
 
 Scenarios.Azure_ClientGenerator_Core_ClientFormat_Duration_Property_iso8601 = passOnSuccess(
   mockapi.post("/azure/client-generator-core/client-format/duration/property/iso8601", (req) => {
-    req.expect.coercedBodyEquals({ "value": "P40D" });
+    req.expect.coercedBodyEquals({ value: "P40D" });
     return {
       status: 200,
-      body: json({ "value": "P40D" }),
+      body: json({ value: "P40D" }),
     };
   }),
 );
 
 Scenarios.Azure_ClientGenerator_Core_ClientFormat_Duration_Property_seconds = passOnSuccess(
   mockapi.post("/azure/client-generator-core/client-format/duration/property/seconds", (req) => {
-    req.expect.coercedBodyEquals({ "value": 35.6 });
+    req.expect.coercedBodyEquals({ value: 35.6 });
     return {
       status: 200,
-      body: json({ "value": 35.6 }),
+      body: json({ value: 35.6 }),
     };
   }),
 );
