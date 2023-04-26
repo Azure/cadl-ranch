@@ -1,15 +1,8 @@
 import { mkdir } from "fs/promises";
-import glob from "glob";
+import { glob } from "glob";
 
 export async function findFilesFromPattern(pattern: string): Promise<string[]> {
-  return new Promise((resolve, reject) => {
-    glob(pattern, (err, matches) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(matches);
-    });
-  });
+  return glob(pattern);
 }
 
 /**

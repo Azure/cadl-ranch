@@ -1,11 +1,5 @@
 # Cadl Ranch Project summary
 
-### Authentication_ApiKey_valid
-
-- Endpoint: `get /authentication/api-key/valid`
-
-Expects header 'x-ms-api-key': 'valid-key'
-
 ### Authentication_ApiKey_invalid
 
 - Endpoint: `get /authentication/api-key/invalid`
@@ -21,11 +15,11 @@ Expect error code 403 and error body:
 }
 ```
 
-### Authentication_OAuth2_valid
+### Authentication_ApiKey_valid
 
-- Endpoint: `get /authentication/oauth2/valid`
+- Endpoint: `get /authentication/api-key/valid`
 
-Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
+Expects header 'x-ms-api-key': 'valid-key'
 
 ### Authentication_OAuth2_invalid
 
@@ -40,6 +34,12 @@ Expect error code 400 and error body:
   "actual": "Bearer y"
 }
 ```
+
+### Authentication_OAuth2_valid
+
+- Endpoint: `get /authentication/oauth2/valid`
+
+Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
 ### Authentication_Union_validKey
 
@@ -97,6 +97,33 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Basic_createOrReplace
+
+- Endpoint: `get /azure/core/basic`
+
+Should only generate models named User and UserOrder.
+
+Expected path parameter: id=1
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected input body:
+
+```json
+{
+  "name": "Madge"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+}
+```
+
 ### Azure_Core_Basic_createOrUpdate
 
 - Endpoint: `get /azure/core/basic`
@@ -123,22 +150,25 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_createOrReplace
+### Azure_Core_Basic_delete
+
+- Endpoint: `get /azure/core/basic`
+
+Expected path parameter: id=1
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response of status code 204 with empty body.
+
+### Azure_Core_Basic_export
 
 - Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 
 Expected path parameter: id=1
+Expected query parameter: format=json
 Expected query parameter: api-version=2022-12-01-preview
-
-Expected input body:
-
-```json
-{
-  "name": "Madge"
-}
-```
 
 Expected response body:
 
@@ -200,13 +230,11 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_listWithPage
+### Azure_Core_Basic_listWithCustomPageModel
 
-- Endpoint: `get /azure/core/basic/page`
+- Endpoint: `get /azure/core/basic/custom-page`
 
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like Page.
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
 
 Expected query parameter: api-version=2022-12-01-preview
 
@@ -223,11 +251,13 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Basic_listWithCustomPageModel
+### Azure_Core_Basic_listWithPage
 
-- Endpoint: `get /azure/core/basic/custom-page`
+- Endpoint: `get /azure/core/basic/page`
 
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
 
 Expected query parameter: api-version=2022-12-01-preview
 
@@ -243,34 +273,72 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Basic_delete
+### Azure_Core_Lro_Rpc_DifferentPollResult
 
-- Endpoint: `get /azure/core/basic`
+- Endpoints:
+  - `get /azure/core/lro/rpc/different-poll-result/jobs`
+  - `get /azure/core/lro/rpc/different-poll-result`
 
-Expected path parameter: id=1
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response of status code 204 with empty body.
-
-### Azure_Core_Basic_export
-
-- Endpoint: `get /azure/core/basic`
-
-Should only generate models named User and UserOrder.
-
-Expected path parameter: id=1
-Expected query parameter: format=json
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
+Expected verb: POST
+Expected request body:
 ```json
 {
-  "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "comment": "async job"
 }
 ````
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
+Expected response header: location={endpoint}/different-poll-result/jobs/job1
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "operation1",
+  "status": "Succeeded"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/different-poll-result/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "Succeeded",
+  "results": ["job1 result"]
+}
+```
 
 ### Azure_Core_Lro_Rpc_SamePollResult
 
@@ -315,74 +383,6 @@ Expected response body:
 
 Expected verb: GET
 Expected URL: {endpoint}/same-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-
-### Azure_Core_Lro_Rpc_DifferentPollResult
-
-- Endpoints:
-  - `get /azure/core/lro/rpc/different-poll-result/jobs`
-  - `get /azure/core/lro/rpc/different-poll-result`
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -585,11 +585,29 @@ Expected response body:
 }
 ```
 
+### Parameters_CollectionFormat_Header_csv
+
+- Endpoint: `get /parameters/collection-format/header/csv`
+
+This test is testing sending a csv collection format array header parameters
+
+### Parameters_CollectionFormat_Query_csv
+
+- Endpoint: `get /parameters/collection-format/query/csv`
+
+This test is testing sending a csv collection format array query parameters
+
 ### Parameters_CollectionFormat_Query_multi
 
 - Endpoint: `get /parameters/collection-format/query/multi`
 
 This test is testing sending a multi collection format array query parameters
+
+### Parameters_CollectionFormat_Query_pipes
+
+- Endpoint: `get /parameters/collection-format/query/pipes`
+
+This test is testing sending a pipes collection format array query parameters
 
 ### Parameters_CollectionFormat_Query_ssv
 
@@ -602,45 +620,6 @@ This test is testing sending a ssv collection format array query parameters
 - Endpoint: `get /parameters/collection-format/query/tsv`
 
 This test is testing sending a tsv collection format array query parameters
-
-### Parameters_CollectionFormat_Query_pipes
-
-- Endpoint: `get /parameters/collection-format/query/pipes`
-
-This test is testing sending a pipes collection format array query parameters
-
-### Parameters_CollectionFormat_Query_csv
-
-- Endpoint: `get /parameters/collection-format/query/csv`
-
-This test is testing sending a csv collection format array query parameters
-
-### Parameters_CollectionFormat_Header_csv
-
-- Endpoint: `get /parameters/collection-format/header/csv`
-
-This test is testing sending a csv collection format array header parameters
-
-### Parameters_Spread_Model_spreadAsRequestBody
-
-- Endpoint: `put /parameters/spread/model/request-body`
-
-Test case for spread named model.
-
-Should generate request body model named `BodyParameter`.
-Should generate an operation like below:
-
-```
-spreadAsRequestBody(bodyParameter: BodyParameter)
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected request body:
-
-```json
-{ "name": "foo" }
-```
 
 ### Parameters_Spread_Alias_spreadAsRequestBody
 
@@ -714,56 +693,25 @@ Expected request body:
 }
 ```
 
-### Projection_ProjectedName_Property_json
+### Parameters_Spread_Model_spreadAsRequestBody
 
-- Endpoint: `post /projection/projected-name/property/json`
+- Endpoint: `put /parameters/spread/model/request-body`
 
-Testing that we can project the JSON name on the wire from defaultName -> wireName.
-Your generated SDK should generate JsonProjectedNameModel with one property `defaultName` with wire name `wireName`.
+Test case for spread named model.
 
-Expected request body:
+Should generate request body model named `BodyParameter`.
+Should generate an operation like below:
 
-```json
-{ "wireName": true }
+```
+spreadAsRequestBody(bodyParameter: BodyParameter)
 ```
 
-### Projection_ProjectedName_Property_client
-
-- Endpoint: `post /projection/projected-name/property/client`
-
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property `clientName` with wire name `defaultName`.
+Note the parameter name is guessed from the model name and it may vary by language.
 
 Expected request body:
 
 ```json
-{ "defaultName": true }
-```
-
-### Projection_ProjectedName_Property_language
-
-- Endpoint: `post /projection/projected-name/property/language`
-
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property with your language specific property name and wire name `defaultName`.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
-```
-
-### Projection_ProjectedName_Property_jsonAndClient
-
-- Endpoint: `post /projection/projected-name/property/json-and-client`
-
-Testing that we can project the client name and the wire name.
-Your generated SDK should generate JsonAndClientProjectedNameModel with one property with client name `clientName` and wire name `wireName`.
-
-Expected request body:
-
-```json
-{ "wireName": true }
+{ "name": "foo" }
 ```
 
 ### Projection_ProjectedName_operation
@@ -784,71 +732,57 @@ Your generated SDK should generate an operation `parameter` with a single parame
 
 Expected query parameter: `default-name="true"`
 
-### Resiliency_ServiceDriven_AddOptionalParam_fromNone
+### Projection_ProjectedName_Property_client
 
-- Endpoint: `head /add-optional-param/from-none`
+- Endpoint: `post /projection/projected-name/property/client`
 
-Need the following two calls:
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate ClientProjectedNameModel with one property `clientName` with wire name `defaultName`.
 
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with no parameters.
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `new-parameter="new"`.
+Expected request body:
 
-There are three concepts that should be clarified:
+```json
+{ "defaultName": true }
+```
 
-1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+### Projection_ProjectedName_Property_json
 
-With the above two calls, we test the following configurations from this service spec:
+- Endpoint: `post /projection/projected-name/property/json`
 
-- A client generated from the second service spec can call the second deployment of a service with api version v1
-- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+Testing that we can project the JSON name on the wire from defaultName -> wireName.
+Your generated SDK should generate JsonProjectedNameModel with one property `defaultName` with wire name `wireName`.
 
-Tests that we can grow up an operation from accepting no parameters to accepting an optional input parameter.
+Expected request body:
 
-### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
+```json
+{ "wireName": true }
+```
 
-- Endpoint: `get /add-optional-param/from-one-required`
+### Projection_ProjectedName_Property_jsonAndClient
 
-Need the following two calls:
+- Endpoint: `post /projection/projected-name/property/json-and-client`
 
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="required"`.
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="required"` and query parameter `new-parameter="new"`.
+Testing that we can project the client name and the wire name.
+Your generated SDK should generate JsonAndClientProjectedNameModel with one property with client name `clientName` and wire name `wireName`.
 
-There are three concepts that should be clarified:
+Expected request body:
 
-1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+```json
+{ "wireName": true }
+```
 
-With the above two calls, we test the following configurations from this service spec:
+### Projection_ProjectedName_Property_language
 
-- A client generated from the second service spec can call the second deployment of a service with api version v1
-- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+- Endpoint: `post /projection/projected-name/property/language`
 
-Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate ClientProjectedNameModel with one property with your language specific property name and wire name `defaultName`.
 
-### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
+Expected request body:
 
-- Endpoint: `get /add-optional-param/from-one-optional`
-
-Need the following two calls:
-
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
-- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="optional"` and query parameter `new-parameter="new"`.
-
-There are three concepts that should be clarified:
-
-1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
-
-With the above two calls, we test the following configurations from this service spec:
-
-- A client generated from the second service spec can call the second deployment of a service with api version v1
-- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
-
-Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters.
+```json
+{ "defaultName": true }
+```
 
 ### Resiliency_ServiceDriven_addOperation
 
@@ -872,6 +806,72 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up by adding an operation.
 
+### Resiliency_ServiceDriven_AddOptionalParam_fromNone
+
+- Endpoint: `head /add-optional-param/from-none`
+
+Need the following two calls:
+
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with no parameters.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `new-parameter="new"`.
+
+There are three concepts that should be clarified:
+
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+With the above two calls, we test the following configurations from this service spec:
+
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+Tests that we can grow up an operation from accepting no parameters to accepting an optional input parameter.
+
+### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
+
+- Endpoint: `get /add-optional-param/from-one-optional`
+
+Need the following two calls:
+
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="optional"`.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="optional"` and query parameter `new-parameter="new"`.
+
+There are three concepts that should be clarified:
+
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+With the above two calls, we test the following configurations from this service spec:
+
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters.
+
+### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
+
+- Endpoint: `get /add-optional-param/from-one-required`
+
+Need the following two calls:
+
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v1"` with query parameter `parameter="required"`.
+- Pass in `serviceDeploymentVersion="v2"` and `apiVersion="v2"` with query parameter `parameter="required"` and query parameter `new-parameter="new"`.
+
+There are three concepts that should be clarified:
+
+1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
+2. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
+3. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
+
+With the above two calls, we test the following configurations from this service spec:
+
+- A client generated from the second service spec can call the second deployment of a service with api version v1
+- A client generated from the second service spec can call the second deployment of a service with api version v2 with the updated changes
+
+Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /`
@@ -893,24 +893,6 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 - Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
-
-### SpecialWords_Operation_for
-
-- Endpoint: `get /special-words/operation/for`
-
-A operation name of `for` should work.
-
-### SpecialWords_Parameter_getWithIf
-
-- Endpoint: `get /special-words/parameter/if`
-
-Expect input parameter `if='weekend'`
-
-### SpecialWords_Parameter_getWithFilter
-
-- Endpoint: `get /special-words/parameter/filter`
-
-Expect input parameter `filter='abc*.'`
 
 ### SpecialWords_Model_get
 
@@ -940,45 +922,23 @@ Expected input body:
 }
 ```
 
-### Type_Array_Int32Value_get
+### SpecialWords_Operation_for
 
-- Endpoint: `get /type/array/int32`
+- Endpoint: `get /special-words/operation/for`
 
-Expected Array response body:
+A operation name of `for` should work.
 
-```json
-[1, 2]
-```
+### SpecialWords_Parameter_getWithFilter
 
-### Type_Array_Int32Value_put
+- Endpoint: `get /special-words/parameter/filter`
 
-- Endpoint: `put /type/array/int32`
+Expect input parameter `filter='abc*.'`
 
-Expected Array input body:
+### SpecialWords_Parameter_getWithIf
 
-```json
-[1, 2]
-```
+- Endpoint: `get /special-words/parameter/if`
 
-### Type_Array_Int64Value_get
-
-- Endpoint: `get /type/array/int64`
-
-Expected Array response body:
-
-```json
-[0x7fffffffffffffff, -0x7fffffffffffffff]
-```
-
-### Type_Array_Int64Value_put
-
-- Endpoint: `put /type/array/int64`
-
-Expected Array input body:
-
-```json
-[0x7fffffffffffffff, -0x7fffffffffffffff]
-```
+Expect input parameter `if='weekend'`
 
 ### Type_Array_BooleanValue_get
 
@@ -998,46 +958,6 @@ Expected Array input body:
 
 ```json
 [true, false]
-```
-
-### Type_Array_StringValue_get
-
-- Endpoint: `get /type/array/string`
-
-Expected Array response body:
-
-```json
-["hello", ""]
-```
-
-### Type_Array_StringValue_put
-
-- Endpoint: `put /type/array/string`
-
-Expected Array input body:
-
-```json
-["hello", ""]
-```
-
-### Type_Array_Float32Value_get
-
-- Endpoint: `get /type/array/float32`
-
-Expected Array response body:
-
-```json
-[42.42]
-```
-
-### Type_Array_Float32Value_put
-
-- Endpoint: `put /type/array/float32`
-
-Expected Array input body:
-
-```json
-[42.42]
 ```
 
 ### Type_Array_DatetimeValue_get
@@ -1080,24 +1000,64 @@ Expected Array input body:
 ["P123DT22H14M12.011S"]
 ```
 
-### Type_Array_UnknownValue_get
+### Type_Array_Float32Value_get
 
-- Endpoint: `get /type/array/unknown`
+- Endpoint: `get /type/array/float32`
 
 Expected Array response body:
 
 ```json
-[1, 'hello', 'k3': null]
+[42.42]
 ```
 
-### Type_Array_UnknownValue_put
+### Type_Array_Float32Value_put
 
-- Endpoint: `put /type/array/unknown`
+- Endpoint: `put /type/array/float32`
 
 Expected Array input body:
 
 ```json
-[1, 'hello', 'k3': null]
+[42.42]
+```
+
+### Type_Array_Int32Value_get
+
+- Endpoint: `get /type/array/int32`
+
+Expected Array response body:
+
+```json
+[1, 2]
+```
+
+### Type_Array_Int32Value_put
+
+- Endpoint: `put /type/array/int32`
+
+Expected Array input body:
+
+```json
+[1, 2]
+```
+
+### Type_Array_Int64Value_get
+
+- Endpoint: `get /type/array/int64`
+
+Expected Array response body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
+```
+
+### Type_Array_Int64Value_put
+
+- Endpoint: `put /type/array/int64`
+
+Expected Array input body:
+
+```json
+[0x7fffffffffffffff, -0x7fffffffffffffff]
 ```
 
 ### Type_Array_ModelValue_get
@@ -1140,44 +1100,44 @@ Expected Array input body:
 [1.2, null, 3.0]
 ```
 
-### Type_Dictionary_Int32Value_get
+### Type_Array_StringValue_get
 
-- Endpoint: `get /type/dictionary/int32`
+- Endpoint: `get /type/array/string`
 
-Expected dictionary response body:
+Expected Array response body:
 
 ```json
-{ "k1": 1, "k2": 2 }
+["hello", ""]
 ```
 
-### Type_Dictionary_Int32Value_put
+### Type_Array_StringValue_put
 
-- Endpoint: `put /type/dictionary/int32`
+- Endpoint: `put /type/array/string`
 
-Expected dictionary input body:
+Expected Array input body:
 
 ```json
-{ "k1": 1, "k2": 2 }
+["hello", ""]
 ```
 
-### Type_Dictionary_Int64Value_get
+### Type_Array_UnknownValue_get
 
-- Endpoint: `get /type/dictionary/int64`
+- Endpoint: `get /type/array/unknown`
 
-Expected dictionary response body:
+Expected Array response body:
 
 ```json
-{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+[1, 'hello', 'k3': null]
 ```
 
-### Type_Dictionary_Int64Value_put
+### Type_Array_UnknownValue_put
 
-- Endpoint: `put /type/dictionary/int64`
+- Endpoint: `put /type/array/unknown`
 
-Expected dictionary input body:
+Expected Array input body:
 
 ```json
-{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+[1, 'hello', 'k3': null]
 ```
 
 ### Type_Dictionary_BooleanValue_get
@@ -1198,46 +1158,6 @@ Expected dictionary input body:
 
 ```json
 { "k1": true, "k2": false }
-```
-
-### Type_Dictionary_StringValue_get
-
-- Endpoint: `get /type/dictionary/string`
-
-Expected dictionary response body:
-
-```json
-{ "k1": "hello", "k2": "" }
-```
-
-### Type_Dictionary_StringValue_put
-
-- Endpoint: `put /type/dictionary/string`
-
-Expected dictionary input body:
-
-```json
-{ "k1": "hello", "k2": "" }
-```
-
-### Type_Dictionary_Float32Value_get
-
-- Endpoint: `get /type/dictionary/float32`
-
-Expected dictionary response body:
-
-```json
-{ "k1": 42.42 }
-```
-
-### Type_Dictionary_Float32Value_put
-
-- Endpoint: `put /type/dictionary/float32`
-
-Expected dictionary input body:
-
-```json
-{ "k1": 42.42 }
 ```
 
 ### Type_Dictionary_DatetimeValue_get
@@ -1280,24 +1200,64 @@ Expected dictionary input body:
 { "k1": "P123DT22H14M12.011S" }
 ```
 
-### Type_Dictionary_UnknownValue_get
+### Type_Dictionary_Float32Value_get
 
-- Endpoint: `get /type/dictionary/unknown`
+- Endpoint: `get /type/dictionary/float32`
 
 Expected dictionary response body:
 
 ```json
-{ "k1": 1, "k2": "hello", "k3": null }
+{ "k1": 42.42 }
 ```
 
-### Type_Dictionary_UnknownValue_put
+### Type_Dictionary_Float32Value_put
 
-- Endpoint: `put /type/dictionary/unknown`
+- Endpoint: `put /type/dictionary/float32`
 
 Expected dictionary input body:
 
 ```json
-{ "k1": 1, "k2": "hello", "k3": null }
+{ "k1": 42.42 }
+```
+
+### Type_Dictionary_Int32Value_get
+
+- Endpoint: `get /type/dictionary/int32`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Type_Dictionary_Int32Value_put
+
+- Endpoint: `put /type/dictionary/int32`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": 2 }
+```
+
+### Type_Dictionary_Int64Value_get
+
+- Endpoint: `get /type/dictionary/int64`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
+```
+
+### Type_Dictionary_Int64Value_put
+
+- Endpoint: `put /type/dictionary/int64`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 0x7fffffffffffffff, "k2": -0x7fffffffffffffff }
 ```
 
 ### Type_Dictionary_ModelValue_get
@@ -1318,6 +1278,26 @@ Expected dictionary input body:
 
 ```json
 { "k1": { "property": "hello" }, "k2": { "property": "world" } }
+```
+
+### Type_Dictionary_NullableFloatValue_get
+
+- Endpoint: `get /type/dictionary/nullable-float`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
+```
+
+### Type_Dictionary_NullableFloatValue_put
+
+- Endpoint: `put /type/dictionary/nullable-float`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1.2, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_RecursiveModelValue_get
@@ -1352,24 +1332,44 @@ Expected dictionary input body:
 }
 ```
 
-### Type_Dictionary_NullableFloatValue_get
+### Type_Dictionary_StringValue_get
 
-- Endpoint: `get /type/dictionary/nullable-float`
+- Endpoint: `get /type/dictionary/string`
 
 Expected dictionary response body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": "hello", "k2": "" }
 ```
 
-### Type_Dictionary_NullableFloatValue_put
+### Type_Dictionary_StringValue_put
 
-- Endpoint: `put /type/dictionary/nullable-float`
+- Endpoint: `put /type/dictionary/string`
 
 Expected dictionary input body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": "hello", "k2": "" }
+```
+
+### Type_Dictionary_UnknownValue_get
+
+- Endpoint: `get /type/dictionary/unknown`
+
+Expected dictionary response body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
+```
+
+### Type_Dictionary_UnknownValue_put
+
+- Endpoint: `put /type/dictionary/unknown`
+
+Expected dictionary input body:
+
+```json
+{ "k1": 1, "k2": "hello", "k3": null }
 ```
 
 ### Type_Enum_Extensible_String_getKnownValue
@@ -1414,23 +1414,23 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
+### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "age": 1 }
+```
+
 ### Type_Model_Inheritance_Discriminated_getModel
 
 - Endpoint: `get /type/model/inheritance/discriminated/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
-
-```json
-{ "age": 1, "kind": "shark", "sharktype": "goblin" }
-```
-
-### Type_Model_Inheritance_Discriminated_putModel
-
-- Endpoint: `put /type/model/inheritance/discriminated/model`
-
-Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
-Expected input body:
 
 ```json
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
@@ -1503,6 +1503,28 @@ Expected response body:
 }
 ```
 
+### Type_Model_Inheritance_Discriminated_getWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/discriminated/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "age": 1, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_Discriminated_putModel
+
+- Endpoint: `put /type/model/inheritance/discriminated/model`
+
+Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
+Expected input body:
+
+```json
+{ "age": 1, "kind": "shark", "sharktype": "goblin" }
+```
+
 ### Type_Model_Inheritance_Discriminated_putRecursiveModel
 
 - Endpoint: `put /type/model/inheritance/discriminated/recursivemodel`
@@ -1570,26 +1592,15 @@ Expected input body:
 }
 ```
 
-### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
+### Type_Model_Inheritance_getValid
 
-- Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
+- Endpoint: `get /type/model/inheritance/valid`
 
-Get a model omitting the discriminator.
+Generate and receive model.
 Expected response body:
 
 ```json
-{ "age": 1 }
-```
-
-### Type_Model_Inheritance_Discriminated_getWrongDiscriminator
-
-- Endpoint: `get /type/model/inheritance/discriminated/wrongdiscriminator`
-
-Get a model containing discriminator value never defined.
-Expected response body:
-
-```json
-{ "age": 1, "kind": "wrongKind" }
+{ "name": "abc", "age": 32, "smart": true }
 ```
 
 ### Type_Model_Inheritance_postValid
@@ -1598,17 +1609,6 @@ Expected response body:
 
 Generate and send model.
 Expected input body:
-
-```json
-{ "name": "abc", "age": 32, "smart": true }
-```
-
-### Type_Model_Inheritance_getValid
-
-- Endpoint: `get /type/model/inheritance/valid`
-
-Generate and receive model.
-Expected response body:
 
 ```json
 { "name": "abc", "age": 32, "smart": true }
@@ -1626,17 +1626,30 @@ Generate, send, and receive round-trip bottom model.
 
 Send a POST request with the following body {requiredProp: "example-value"}
 
+### Type_Model_Usage_inputAndOutput
+
+- Endpoint: `get /type/model/usage/input-output`
+
+Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
+
 ### Type_Model_Usage_output
 
 - Endpoint: `get /type/model/usage/output`
 
 Send a GET request which return the following body {requiredProp: "example-value"}
 
-### Type_Model_Usage_inputAndOutput
+### Type_Model_Visibility_deleteModel
 
-- Endpoint: `get /type/model/usage/input-output`
+- Endpoint: `delete /type/model/visibility`
 
-Send a POST request which return the following body {requiredProp: "example-value"} and return the same.
+Generate abd send put model with write/create properties.
+Expected input body:
+
+```json
+{
+  "deleteProp": true
+}
+```
 
 ### Type_Model_Visibility_getModel
 
@@ -1672,20 +1685,6 @@ Expected input body:
 }
 ```
 
-### Type_Model_Visibility_putModel
-
-- Endpoint: `put /type/model/visibility`
-
-Generate abd send put model with write/create/update properties.
-Expected input body:
-
-```json
-{
-  "createProp": ["foo", "bar"],
-  "updateProp": [1, 2]
-}
-```
-
 ### Type_Model_Visibility_patchModel
 
 - Endpoint: `patch /type/model/visibility`
@@ -1712,57 +1711,18 @@ Expected input body:
 }
 ```
 
-### Type_Model_Visibility_deleteModel
+### Type_Model_Visibility_putModel
 
-- Endpoint: `delete /type/model/visibility`
+- Endpoint: `put /type/model/visibility`
 
-Generate abd send put model with write/create properties.
+Generate abd send put model with write/create/update properties.
 Expected input body:
 
 ```json
 {
-  "deleteProp": true
+  "createProp": ["foo", "bar"],
+  "updateProp": [1, 2]
 }
-```
-
-### Type_Property_Nullable_String_getNonNull
-
-- Endpoint: `get /type/property/nullable/string/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": hello}
-```
-
-### Type_Property_Nullable_String_getNull
-
-- Endpoint: `get /type/property/nullable/string/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Type_Property_Nullable_String_patchNonNull
-
-- Endpoint: `patch /type/property/nullable/string/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": hello}
-```
-
-### Type_Property_Nullable_String_patchNull
-
-- Endpoint: `patch /type/property/nullable/string/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Type_Property_Nullable_Bytes_getNonNull
@@ -1798,86 +1758,6 @@ Expected request body:
 ### Type_Property_Nullable_Bytes_patchNull
 
 - Endpoint: `patch /type/property/nullable/bytes/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Type_Property_Nullable_Datetime_getNonNull
-
-- Endpoint: `get /type/property/nullable/datetime/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
-```
-
-### Type_Property_Nullable_Datetime_getNull
-
-- Endpoint: `get /type/property/nullable/datetime/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Type_Property_Nullable_Datetime_patchNonNull
-
-- Endpoint: `patch /type/property/nullable/datetime/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
-```
-
-### Type_Property_Nullable_Datetime_patchNull
-
-- Endpoint: `patch /type/property/nullable/datetime/null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Type_Property_Nullable_Duration_getNonNull
-
-- Endpoint: `get /type/property/nullable/duration/non-null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
-```
-
-### Type_Property_Nullable_Duration_getNull
-
-- Endpoint: `get /type/property/nullable/duration/null`
-
-Expected response body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": null }
-```
-
-### Type_Property_Nullable_Duration_patchNonNull
-
-- Endpoint: `patch /type/property/nullable/duration/non-null`
-
-Expected request body:
-
-```json
-{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
-```
-
-### Type_Property_Nullable_Duration_patchNull
-
-- Endpoint: `patch /type/property/nullable/duration/null`
 
 Expected request body:
 
@@ -1971,44 +1851,124 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
-### Type_Property_Optional_String_getAll
+### Type_Property_Nullable_Datetime_getNonNull
 
-- Endpoint: `get /type/property/optional/string/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Type_Property_Optional_String_getDefault
-
-- Endpoint: `get /type/property/optional/string/default`
+- Endpoint: `get /type/property/nullable/datetime/non-null`
 
 Expected response body:
 
 ```json
-{}
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Type_Property_Optional_String_putAll
+### Type_Property_Nullable_Datetime_getNull
 
-- Endpoint: `put /type/property/optional/string/all`
+- Endpoint: `get /type/property/nullable/datetime/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_Datetime_patchNonNull
+
+- Endpoint: `patch /type/property/nullable/datetime/non-null`
 
 Expected request body:
 
 ```json
-{"property": hello}
+{ "requiredProperty": "foo", "nullableProperty": 2022-08-26T18:38:00Z}
 ```
 
-### Type_Property_Optional_String_putDefault
+### Type_Property_Nullable_Datetime_patchNull
 
-- Endpoint: `put /type/property/optional/string/default`
+- Endpoint: `patch /type/property/nullable/datetime/null`
 
 Expected request body:
 
 ```json
-{}
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_Duration_getNonNull
+
+- Endpoint: `get /type/property/nullable/duration/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Type_Property_Nullable_Duration_getNull
+
+- Endpoint: `get /type/property/nullable/duration/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_Duration_patchNonNull
+
+- Endpoint: `patch /type/property/nullable/duration/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": P123DT22H14M12.011S}
+```
+
+### Type_Property_Nullable_Duration_patchNull
+
+- Endpoint: `patch /type/property/nullable/duration/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_String_getNonNull
+
+- Endpoint: `get /type/property/nullable/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Type_Property_Nullable_String_getNull
+
+- Endpoint: `get /type/property/nullable/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_String_patchNonNull
+
+- Endpoint: `patch /type/property/nullable/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": hello}
+```
+
+### Type_Property_Nullable_String_patchNull
+
+- Endpoint: `patch /type/property/nullable/string/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
 ```
 
 ### Type_Property_Optional_Bytes_getAll
@@ -2044,86 +2004,6 @@ Expected request body:
 ### Type_Property_Optional_Bytes_putDefault
 
 - Endpoint: `put /type/property/optional/bytes/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Type_Property_Optional_Datetime_getAll
-
-- Endpoint: `get /type/property/optional/datetime/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Type_Property_Optional_Datetime_getDefault
-
-- Endpoint: `get /type/property/optional/datetime/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Type_Property_Optional_Datetime_putAll
-
-- Endpoint: `put /type/property/optional/datetime/all`
-
-Expected request body:
-
-```json
-{"property": 2022-08-26T18:38:00Z}
-```
-
-### Type_Property_Optional_Datetime_putDefault
-
-- Endpoint: `put /type/property/optional/datetime/default`
-
-Expected request body:
-
-```json
-{}
-```
-
-### Type_Property_Optional_Duration_getAll
-
-- Endpoint: `get /type/property/optional/duration/all`
-
-Expected response body:
-
-```json
-{"property": doc}
-```
-
-### Type_Property_Optional_Duration_getDefault
-
-- Endpoint: `get /type/property/optional/duration/default`
-
-Expected response body:
-
-```json
-{}
-```
-
-### Type_Property_Optional_Duration_putAll
-
-- Endpoint: `put /type/property/optional/duration/all`
-
-Expected request body:
-
-```json
-{"property": P123DT22H14M12.011S}
-```
-
-### Type_Property_Optional_Duration_putDefault
-
-- Endpoint: `put /type/property/optional/duration/default`
 
 Expected request body:
 
@@ -2211,6 +2091,86 @@ Expected request body:
 {}
 ```
 
+### Type_Property_Optional_Datetime_getAll
+
+- Endpoint: `get /type/property/optional/datetime/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_Datetime_getDefault
+
+- Endpoint: `get /type/property/optional/datetime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Datetime_putAll
+
+- Endpoint: `put /type/property/optional/datetime/all`
+
+Expected request body:
+
+```json
+{"property": 2022-08-26T18:38:00Z}
+```
+
+### Type_Property_Optional_Datetime_putDefault
+
+- Endpoint: `put /type/property/optional/datetime/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Duration_getAll
+
+- Endpoint: `get /type/property/optional/duration/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_Duration_getDefault
+
+- Endpoint: `get /type/property/optional/duration/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Duration_putAll
+
+- Endpoint: `put /type/property/optional/duration/all`
+
+Expected request body:
+
+```json
+{"property": P123DT22H14M12.011S}
+```
+
+### Type_Property_Optional_Duration_putDefault
+
+- Endpoint: `put /type/property/optional/duration/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_Optional_RequiredAndOptional_getAll
 
 - Endpoint: `get /type/property/optional/requiredAndOptional/all`
@@ -2251,6 +2211,46 @@ Expected request body:
 { "requiredProperty": 42 }
 ```
 
+### Type_Property_Optional_String_getAll
+
+- Endpoint: `get /type/property/optional/string/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_String_getDefault
+
+- Endpoint: `get /type/property/optional/string/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_String_putAll
+
+- Endpoint: `put /type/property/optional/string/all`
+
+Expected request body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_Optional_String_putDefault
+
+- Endpoint: `put /type/property/optional/string/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_ValueTypes_Boolean_get
 
 - Endpoint: `get /type/property/value-types/boolean`
@@ -2269,26 +2269,6 @@ Expected input body:
 
 ```json
 { "property": true }
-```
-
-### Type_Property_ValueTypes_String_get
-
-- Endpoint: `get /type/property/value-types/string`
-
-Expected response body:
-
-```json
-{"property": hello}
-```
-
-### Type_Property_ValueTypes_String_put
-
-- Endpoint: `put /type/property/value-types/string`
-
-Expected input body:
-
-```json
-{"property": hello}
 ```
 
 ### Type_Property_ValueTypes_Bytes_get
@@ -2311,44 +2291,64 @@ Expected input body:
 {"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
-### Type_Property_ValueTypes_Int_get
+### Type_Property_ValueTypes_CollectionsInt_get
 
-- Endpoint: `get /type/property/value-types/int`
-
-Expected response body:
-
-```json
-{ "property": 42 }
-```
-
-### Type_Property_ValueTypes_Int_put
-
-- Endpoint: `put /type/property/value-types/int`
-
-Expected input body:
-
-```json
-{ "property": 42 }
-```
-
-### Type_Property_ValueTypes_Float_get
-
-- Endpoint: `get /type/property/value-types/float`
+- Endpoint: `get /type/property/value-types/collections/int`
 
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": [1, 2] }
 ```
 
-### Type_Property_ValueTypes_Float_put
+### Type_Property_ValueTypes_CollectionsInt_put
 
-- Endpoint: `put /type/property/value-types/float`
+- Endpoint: `put /type/property/value-types/collections/int`
 
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": [1, 2] }
+```
+
+### Type_Property_ValueTypes_CollectionsModel_get
+
+- Endpoint: `get /type/property/value-types/collections/model`
+
+Expected response body:
+
+```json
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Type_Property_ValueTypes_CollectionsModel_put
+
+- Endpoint: `put /type/property/value-types/collections/model`
+
+Expected input body:
+
+```json
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
+```
+
+### Type_Property_ValueTypes_CollectionsString_get
+
+- Endpoint: `get /type/property/value-types/collections/string`
+
+Expected response body:
+
+```json
+{ "property": ["hello", "world"] }
+```
+
+### Type_Property_ValueTypes_CollectionsString_put
+
+- Endpoint: `put /type/property/value-types/collections/string`
+
+Expected input body:
+
+```json
+{ "property": ["hello", "world"] }
 ```
 
 ### Type_Property_ValueTypes_Datetime_get
@@ -2369,6 +2369,26 @@ Expected input body:
 
 ```json
 {"property": 2022-08-26T18:38:00Z}
+```
+
+### Type_Property_ValueTypes_DictionaryString_get
+
+- Endpoint: `get /type/property/value-types/dictionary/string`
+
+Expected response body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
+```
+
+### Type_Property_ValueTypes_DictionaryString_put
+
+- Endpoint: `put /type/property/value-types/dictionary/string`
+
+Expected input body:
+
+```json
+{ "property": { "k1": "hello", "k2": "world" } }
 ```
 
 ### Type_Property_ValueTypes_Duration_get
@@ -2431,6 +2451,46 @@ Expected input body:
 {"property": UnknownValue}
 ```
 
+### Type_Property_ValueTypes_Float_get
+
+- Endpoint: `get /type/property/value-types/float`
+
+Expected response body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Type_Property_ValueTypes_Float_put
+
+- Endpoint: `put /type/property/value-types/float`
+
+Expected input body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Type_Property_ValueTypes_Int_get
+
+- Endpoint: `get /type/property/value-types/int`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_Int_put
+
+- Endpoint: `put /type/property/value-types/int`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
 ### Type_Property_ValueTypes_Model_get
 
 - Endpoint: `get /type/property/value-types/model`
@@ -2449,86 +2509,6 @@ Expected input body:
 
 ```json
 { "property": { "property": "hello" } }
-```
-
-### Type_Property_ValueTypes_CollectionsString_get
-
-- Endpoint: `get /type/property/value-types/collections/string`
-
-Expected response body:
-
-```json
-{ "property": ["hello", "world"] }
-```
-
-### Type_Property_ValueTypes_CollectionsString_put
-
-- Endpoint: `put /type/property/value-types/collections/string`
-
-Expected input body:
-
-```json
-{ "property": ["hello", "world"] }
-```
-
-### Type_Property_ValueTypes_CollectionsInt_get
-
-- Endpoint: `get /type/property/value-types/collections/int`
-
-Expected response body:
-
-```json
-{ "property": [1, 2] }
-```
-
-### Type_Property_ValueTypes_CollectionsInt_put
-
-- Endpoint: `put /type/property/value-types/collections/int`
-
-Expected input body:
-
-```json
-{ "property": [1, 2] }
-```
-
-### Type_Property_ValueTypes_CollectionsModel_get
-
-- Endpoint: `get /type/property/value-types/collections/model`
-
-Expected response body:
-
-```json
-{ "property": [{ "property": "hello" }, { "property": "world" }] }
-```
-
-### Type_Property_ValueTypes_CollectionsModel_put
-
-- Endpoint: `put /type/property/value-types/collections/model`
-
-Expected input body:
-
-```json
-{ "property": [{ "property": "hello" }, { "property": "world" }] }
-```
-
-### Type_Property_ValueTypes_DictionaryString_get
-
-- Endpoint: `get /type/property/value-types/dictionary/string`
-
-Expected response body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world" } }
-```
-
-### Type_Property_ValueTypes_DictionaryString_put
-
-- Endpoint: `put /type/property/value-types/dictionary/string`
-
-Expected input body:
-
-```json
-{ "property": { "k1": "hello", "k2": "world" } }
 ```
 
 ### Type_Property_ValueTypes_Never_get
@@ -2551,6 +2531,36 @@ Expected input body:
 {"property": <don't include this property>}
 ```
 
+### Type_Property_ValueTypes_String_get
+
+- Endpoint: `get /type/property/value-types/string`
+
+Expected response body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_ValueTypes_String_put
+
+- Endpoint: `put /type/property/value-types/string`
+
+Expected input body:
+
+```json
+{"property": hello}
+```
+
+### Type_Union_sendFirstNamedUnionValue
+
+- Endpoint: `post /type/union/model1`
+
+This test is testing sending the first union value in named union property.
+
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+
 ### Type_Union_sendInt
 
 - Endpoint: `post /type/union/int`
@@ -2569,16 +2579,6 @@ This test is testing sending an int array value in simple union property.
 
 ```json
 { "simpleUnion": [1, 2] }
-```
-
-### Type_Union_sendFirstNamedUnionValue
-
-- Endpoint: `post /type/union/model1`
-
-This test is testing sending the first union value in named union property.
-
-```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
 ```
 
 ### Type_Union_sendSecondNamedUnionValue

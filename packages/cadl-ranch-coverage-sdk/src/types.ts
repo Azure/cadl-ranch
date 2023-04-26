@@ -1,13 +1,25 @@
-export interface ScenarioManifest {
+export type ScenarioManifest = {
   commit: string;
   version: string;
   scenarios: ScenarioData[];
-}
+};
 
-export interface ScenarioData {
+export type ScenarioData = {
   name: string;
   scenarioDoc: string;
-}
+  location: ScenarioLocation;
+};
+
+export type ScenarioLocation = {
+  path: string;
+  start: LineAndCharacter;
+  end: LineAndCharacter;
+};
+
+export type LineAndCharacter = {
+  line: number;
+  character: number;
+};
 
 export type ScenarioStatus =
   // Scenario was tested and passed
@@ -31,6 +43,11 @@ export interface CoverageReport {
    * Coverage result.
    */
   results: Record<string, ScenarioStatus>;
+
+  /**
+   * UTC datetime the report was created.
+   */
+  createdAt: string;
 }
 
 export interface ResolvedCoverageReport extends CoverageReport {
@@ -45,4 +62,5 @@ export interface ScenariosMetadata {
 export interface GeneratorMetadata {
   name: string;
   version: string;
+  commit?: string;
 }
