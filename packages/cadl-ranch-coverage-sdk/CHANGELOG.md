@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.2.3
+
+### Patch Changes
+
+- d10d1b2: Show additional information about the generator coverage
+- 9d6d265: Dashboard: Show scenario documentation and add link to scenario source
+  SDK: Include scenario location in manifest
+- 441c974: Bump all dependencies - April 2023
+
 ## 0.2.2
 
 ### Patch Changes

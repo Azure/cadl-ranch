@@ -1,5 +1,20 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.3
+
+### Patch Changes
+
+- 3bce56a: refine internal tests
+- 23e6b35: Fix discrepancy between custom page model definition and mock response.
+- 441c974: Bump all dependencies - April 2023
+- a0036b4: Fix datetime issue in dictionary
+- Updated dependencies [d10d1b2]
+- Updated dependencies [441c974]
+- Updated dependencies [18773ec]
+  - @azure-tools/cadl-ranch@0.4.7
+  - @azure-tools/cadl-ranch-api@0.2.5
+  - @azure-tools/cadl-ranch-expect@0.2.4
+
 ## 0.14.2
 
 ### Patch Changes
