@@ -189,7 +189,7 @@ interface Never extends ModelOperations<NeverProperty, "<don't include this prop
 model UnknownStringProperty is ModelTemplate<unknown>;
 @route("/unknown/string")
 @operationGroup
-interface UnknownString extends ModelOperations<UnknownStringProperty, "hello"> {}
+interface UnknownString extends ModelOperations<UnknownStringProperty, "\"hello\""> {}
 
 // Test a model with unknown and int
 @doc("Model with a property unknown, and the data is a int32.")

@@ -2598,7 +2598,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_UnknownString_put
@@ -2608,7 +2608,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Union_sendFirstNamedUnionValue
