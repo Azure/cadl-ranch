@@ -77,7 +77,7 @@ Scenarios.Azure_Core_Basic_list = passOnSuccess(
 Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   mockapi.get("/azure/core/basic/page", (req) => {
     const responseBody = {
-      value: [validUser],
+      items: [validUser],
     };
     return { status: 200, body: json(responseBody) };
   }),
