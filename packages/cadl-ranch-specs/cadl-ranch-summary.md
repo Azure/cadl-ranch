@@ -53,6 +53,62 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_ClientGenerator_Core_ClientFormat_Duration_Property_iso8601
+
+- Endpoint: `post /azure/client-generator-core/client-format/duration/property/iso8601`
+
+Test operation with request and response model contains iso8601 format duration property.
+Expected request body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+### Azure_ClientGenerator_Core_ClientFormat_Duration_Property_seconds
+
+- Endpoint: `get /azure/client-generator-core/client-format/duration/property/seconds`
+
+Test operation with request and response model contains seconds format duration property.
+Expected request body:
+
+```json
+{
+  "value": 35.6
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 35.6
+}
+```
+
+### Azure_ClientGenerator_Core_ClientFormat_Duration_Query_iso8601
+
+- Endpoint: `get /azure/client-generator-core/client-format/duration/query/iso8601`
+
+Test that default client format for a duration parameter is iso8601.
+Expected query parameter `input=P40D`
+
+### Azure_ClientGenerator_Core_ClientFormat_Duration_Query_seconds
+
+- Endpoint: `get /azure/client-generator-core/client-format/duration/query/seconds`
+
+Test seconds client format for a duration parameter.
+Expected query parameter `input=35.6`
+
 ### Azure_ClientGenerator_Core_Internal_internalOnly
 
 - Endpoint: `get /azure/client-generator-core/internal/internal`
