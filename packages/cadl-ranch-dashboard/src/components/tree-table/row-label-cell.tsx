@@ -13,7 +13,7 @@ import {
 export interface RowLabelCellProps {
   row: TreeTableRow;
 }
-const INDENT_SIZE = 20;
+const INDENT_SIZE = 14;
 export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
   const caret = row.hasChildren ? row.expanded ? <ChevronDown20Filled /> : <ChevronRight20Filled /> : null;
   const marginLeft = row.depth * INDENT_SIZE;

@@ -40,6 +40,7 @@ export class CoverageTracker {
     return {
       scenariosMetadata: this.scenariosMetadata,
       results,
+      createdAt: new Date().toISOString(),
     };
   }
 

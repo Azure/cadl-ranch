@@ -25,10 +25,11 @@ export function createScenarioManifest(
   commit: string,
   scenarios: Scenario[],
 ): ScenarioManifest {
+  const sortedScenarios = [...scenarios].sort((a, b) => a.name.localeCompare(b.name));
   return {
     version,
     commit,
-    scenarios: scenarios.map(({ name, scenarioDoc, target }) => {
+    scenarios: sortedScenarios.map(({ name, scenarioDoc, target }) => {
       const tspLocation = getSourceLocation(target);
       const location: ScenarioLocation = {
         path: normalizePath(relative(scenariosPath, tspLocation.file.path)),
