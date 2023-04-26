@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.6
+
+### Patch Changes
+
+- 344334c: Show error color dashboard
+
 ## 0.4.5
 
 ### Patch Changes

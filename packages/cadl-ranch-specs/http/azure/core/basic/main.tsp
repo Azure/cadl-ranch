@@ -223,7 +223,7 @@ Expected query parameter: api-version=2022-12-01-preview
 Expected response body:
 ```json
 {
-  "value":[
+  "items":[
      {
         "id":1,
         "name":"Madge",

@@ -6,7 +6,7 @@ import {
   StorageSharedKeyCredential,
 } from "@azure/storage-blob";
 import { TokenCredential } from "@azure/identity";
-import { CoverageReport, ResolvedCoverageReport, ScenarioManifest } from "./types.js";
+import { CoverageReport, GeneratorMetadata, ResolvedCoverageReport, ScenarioManifest } from "./types.js";
 
 export class CadlRanchCoverageClient {
   #container: ContainerClient;
@@ -59,20 +59,23 @@ export class CadlRanchCoverageOperations {
     this.#container = container;
   }
 
-  public async upload(generatorName: string, version: string, manifest: CoverageReport): Promise<void> {
-    const blob = this.#container.getBlockBlobClient(`${generatorName}/reports/${version}.json`);
-    const content = JSON.stringify(manifest, null, 2);
+  public async upload(generatorMetadata: GeneratorMetadata, report: CoverageReport): Promise<void> {
+    const blob = this.#container.getBlockBlobClient(
+      `${generatorMetadata.name}/reports/${generatorMetadata.version}.json`,
+    );
+    const resolvedReport: ResolvedCoverageReport = { ...report, generatorMetadata };
+    const content = JSON.stringify(resolvedReport, null, 2);
     await blob.upload(content, content.length, {
       metadata: {
-        generatorName: generatorName,
-        generatorVersion: version,
+        generatorName: generatorMetadata.name,
+        generatorVersion: generatorMetadata.version,
       },
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
       },
     });
 
-    await this.updateIndex(generatorName, version);
+    await this.updateIndex(generatorMetadata.name, generatorMetadata.version);
   }
 
   public async getLatestCoverageFor(generatorName: string): Promise<ResolvedCoverageReport> {
