@@ -103,3 +103,7 @@ Scenarios.Type_Property_ValueTypes_UnknownInt_put = passOnSuccess(unknownIntMock
 const unknownDictMock = createMockApis("unknown/dict", { k1: "hello", k2: 42 });
 Scenarios.Type_Property_ValueTypes_UnknownDict_get = passOnSuccess(unknownDictMock.get);
 Scenarios.Type_Property_ValueTypes_UnknownDict_put = passOnSuccess(unknownDictMock.put);
+
+const unknownArrayMock = createMockApis("unknown/array", { property: ["hello", "world"] });
+Scenarios.Type_Property_ValueTypes_UnknownArray_get = passOnSuccess(unknownArrayMock.get);
+Scenarios.Type_Property_ValueTypes_UnknownArray_put = passOnSuccess(unknownArrayMock.put);

@@ -2551,6 +2551,26 @@ Expected input body:
 {"property": hello}
 ```
 
+### Type_Property_ValueTypes_UnknownArray_get
+
+- Endpoint: `get /type/property/value-types/unkwown-array`
+
+Expected response body:
+
+```json
+{ "property": ["hello", "world"] }
+```
+
+### Type_Property_ValueTypes_UnknownArray_put
+
+- Endpoint: `put /type/property/value-types/unkwown-array`
+
+Expected input body:
+
+```json
+{ "property": ["hello", "world"] }
+```
+
 ### Type_Property_ValueTypes_UnknownDict_get
 
 - Endpoint: `get /type/property/value-types/unknown/dict`
