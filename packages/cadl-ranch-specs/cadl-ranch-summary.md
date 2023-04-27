@@ -2553,7 +2553,7 @@ Expected input body:
 
 ### Type_Property_ValueTypes_UnknownArray_get
 
-- Endpoint: `get /type/property/value-types/unkwown-array`
+- Endpoint: `get /type/property/value-types/unknown-array`
 
 Expected response body:
 
@@ -2563,7 +2563,7 @@ Expected response body:
 
 ### Type_Property_ValueTypes_UnknownArray_put
 
-- Endpoint: `put /type/property/value-types/unkwown-array`
+- Endpoint: `put /type/property/value-types/unknown-array`
 
 Expected input body:
 
