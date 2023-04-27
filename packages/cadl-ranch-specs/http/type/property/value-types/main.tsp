@@ -183,3 +183,31 @@ model NeverProperty is ModelTemplate<never>;
 @route("/never")
 @operationGroup
 interface Never extends ModelOperations<NeverProperty, "<don't include this property>"> {}
+
+// Test a model with unknown and string
+@doc("Model with a property unknown, and the data is a string.")
+model UnknownStringProperty is ModelTemplate<unknown>;
+@route("/unknown/string")
+@operationGroup
+interface UnknownString extends ModelOperations<UnknownStringProperty, "\"hello\""> {}
+
+// Test a model with unknown and int
+@doc("Model with a property unknown, and the data is a int32.")
+model UnknownIntProperty is ModelTemplate<unknown>;
+@route("/unknown/int")
+@operationGroup
+interface UnknownInt extends ModelOperations<UnknownIntProperty, "42"> {}
+
+// Test a model with unknown and a dictionnary
+@doc("Model with a property unknown, and the data is a dictionnary.")
+model UnknownDictProperty is ModelTemplate<unknown>;
+@route("/unknown/dict")
+@operationGroup
+interface UnknownDict extends ModelOperations<UnknownDictProperty, "{'k1': 'hello', 'k2': 42}"> {}
+
+// Test a model with unknown and an array
+@doc("Model with a property unknown, and the data is an array.")
+model UnknownArrayProperty is ModelTemplate<unknown>;
+@route("/unknown-array")
+@operationGroup
+interface UnknownArray extends ModelOperations<UnknownArrayProperty, "['hello', 'world']"> {}
