@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.2.5
+
+### Patch Changes
+
+- 92da20e: Fix validation for presence of `@scenario` giving false positive when doing local link of Azure.Core package.
+
 ## 0.2.4
 
 ### Patch Changes
