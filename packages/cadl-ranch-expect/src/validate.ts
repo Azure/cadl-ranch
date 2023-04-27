@@ -1,7 +1,9 @@
 import {
   getSourceLocation,
   Interface,
+  isDeclaredInNamespace,
   isTemplateDeclaration,
+  listServices,
   Namespace,
   navigateProgram,
   Operation,
@@ -11,12 +13,14 @@ import { getScenarioDoc, getScenarioName } from "./decorators.js";
 import { reportDiagnostic } from "./lib.js";
 
 export function $onValidate(program: Program) {
+  const services = listServices(program);
   navigateProgram(program, {
     operation: (operation) => {
       if ((operation.interface && isTemplateDeclaration(operation.interface)) || isTemplateDeclaration(operation)) {
         return;
       }
-      if (getSourceLocation(operation).file.path.includes("/node_modules/")) {
+      //  If the scenario is not defined in one of the scenario service then we can ignore it.
+      if (!services.some((x) => isDeclaredInNamespace(operation, x.type))) {
         return;
       }
       const scenarioType = checkIsInScenario(program, operation);
