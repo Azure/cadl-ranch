@@ -1,5 +1,4 @@
 import {
-  getSourceLocation,
   Interface,
   isDeclaredInNamespace,
   isTemplateDeclaration,
