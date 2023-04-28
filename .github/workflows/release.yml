@@ -1,10 +1,11 @@
 name: Release
 
 # Disable as MS Org doesn't allow github action to create PR anymore. Can be re-added if a solution is found.
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
+      - auto-publish
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -31,12 +32,14 @@ jobs:
       - run: pnpm install
         name: Install dependencies
 
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
-        with:
-          title: "Bump package versions for release"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release branch
+        run: node ./eng/publish.mjs
+      # - name: Create Release Pull Request
+      #   uses: changesets/action@v1
+      #   with:
+      #     title: "Bump package versions for release"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.blog/changelog/2022-09-08-github-actions-use-github_token-with-workflow_dispatch-and-repository_dispatch/
       # - name: Trigger CI
