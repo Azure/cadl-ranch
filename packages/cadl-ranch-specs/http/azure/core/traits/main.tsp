@@ -12,7 +12,12 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates Azure Core operation customizations by traits")
-@scenarioService("/azure/core/traits")
+@scenarioService(
+  "/azure/core/traits",
+  {
+    noVersion: true,
+  }
+)
 @versioned(Versions)
 namespace _Specs_.Azure.Core.Traits;
 

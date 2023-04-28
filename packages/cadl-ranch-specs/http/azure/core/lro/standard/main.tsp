@@ -11,7 +11,12 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
-@scenarioService("/azure/core/lro/standard")
+@scenarioService(
+  "/azure/core/lro/standard",
+  {
+    noVersion: true,
+  }
+)
 @versioned(Versions)
 namespace _Specs_.Azure.Core.Lro.Standard;
 

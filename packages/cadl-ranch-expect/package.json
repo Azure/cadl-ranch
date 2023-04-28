@@ -3,6 +3,7 @@
   "version": "0.2.5",
   "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
+  "tspMain": "lib/lib.tsp",
   "type": "module",
   "scripts": {
     "watch": "tsc -p ./tsconfig.build.json --watch",
