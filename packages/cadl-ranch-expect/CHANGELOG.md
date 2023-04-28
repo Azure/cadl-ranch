@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.3.0
+
+### Minor Changes
+
+- 0f1b3e3: Add `extern dec` decorator definition and remove deprecated decorator validation
+
+### Patch Changes
+
+- 0f1b3e3: Fix: cannot have @service version and @versioned
+
 ## 0.2.5
 
 ### Patch Changes
