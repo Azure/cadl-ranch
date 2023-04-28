@@ -29,4 +29,4 @@ extern dec supportedBy(target: Namespace, value: string);
  * @param doc Documentation
  * @param formatArgs Format arguments
  */
-extern dec scenarioDoc(target: Namespace | Interface | Operation, doc: string, formatArgs: {});
+extern dec scenarioDoc(target: Namespace | Interface | Operation, doc: string, formatArgs?: {});
