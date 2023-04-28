@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.4
+
+### Patch Changes
+
+- fa057af: Add Unknown tests
+- Updated dependencies [92da20e]
+- Updated dependencies [fa057af]
+  - @azure-tools/cadl-ranch-expect@0.2.5
+  - @azure-tools/cadl-ranch@0.4.8
+
 ## 0.14.3
 
 ### Patch Changes
