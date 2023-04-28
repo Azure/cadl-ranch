@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Patch Changes
+
+- 0f1b3e3: Fix: cannot have @service version and @versioned
+- Updated dependencies [0f1b3e3]
+- Updated dependencies [0f1b3e3]
+  - @azure-tools/cadl-ranch-expect@0.3.0
+  - @azure-tools/cadl-ranch@0.4.9
+
 ## 0.14.5
 
 ### Patch Changes
