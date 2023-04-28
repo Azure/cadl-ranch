@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - auto-publish
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -34,6 +33,7 @@ jobs:
 
       - name: Create release branch
         run: node ./eng/publish.mjs
+
       # - name: Create Release Pull Request
       #   uses: changesets/action@v1
       #   with:
