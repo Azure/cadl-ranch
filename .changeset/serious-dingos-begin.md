@@ -1,5 +1,5 @@
 ---
-"@azure-tools/cadl-ranch-specs": minor
+"@azure-tools/cadl-ranch-specs": patch
 ---
 
 fix for unknown test
