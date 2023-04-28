@@ -178,14 +178,14 @@ export function getScenarioName(program: Program, target: Operation | Interface 
 }
 
 const ScenarioServiceKey = Symbol("ScenarioService");
-export function $scenarioService(context: DecoratorContext, target: Namespace, route: string, options: Model) {
+export function $scenarioService(context: DecoratorContext, target: Namespace, route: string, options?: Model) {
   const properties = new Map().set("title", {
     type: { kind: "String", value: getNamespaceFullName(target).replace(/\./g, "") },
   });
 
   context.program.stateSet(ScenarioServiceKey).add(target);
 
-  const noVersionType = options.properties.get("noVersion")?.type;
+  const noVersionType = options?.properties.get("noVersion")?.type;
   const includeVersion = noVersionType === undefined || (noVersionType.kind === "Boolean" && noVersionType.value);
   if (includeVersion) {
     properties.set("version", { type: { kind: "String", value: "1.0.0" } });
