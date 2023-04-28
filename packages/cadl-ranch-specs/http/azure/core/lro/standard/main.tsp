@@ -14,10 +14,9 @@ using TypeSpec.Versioning;
 @scenarioService(
   "/azure/core/lro/standard",
   {
-    noVersion: true,
+    versioned: Versions,
   }
 )
-@versioned(Versions)
 namespace _Specs_.Azure.Core.Lro.Standard;
 
 enum Versions {

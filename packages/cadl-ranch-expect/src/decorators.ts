@@ -1,6 +1,7 @@
 import {
   $service,
   DecoratorContext,
+  Enum,
   getNamespaceFullName,
   Interface,
   listServices,
@@ -10,6 +11,7 @@ import {
   Program,
 } from "@typespec/compiler";
 import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
+import { $versioned } from "@typespec/versioning";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
@@ -185,10 +187,11 @@ export function $scenarioService(context: DecoratorContext, target: Namespace, r
 
   context.program.stateSet(ScenarioServiceKey).add(target);
 
-  const noVersionType = options?.properties.get("noVersion")?.type;
-  const includeVersion = noVersionType === undefined || (noVersionType.kind === "Boolean" && noVersionType.value);
-  if (includeVersion) {
+  const versions = options?.properties.get("versioned")?.type;
+  if (versions === undefined) {
     properties.set("version", { type: { kind: "String", value: "1.0.0" } });
+  } else {
+    context.call($versioned, target, versions as Enum);
   }
   context.call($service, target, {
     kind: "Model",

@@ -15,7 +15,7 @@ using TypeSpec.Versioning;
 @scenarioService(
   "/azure/core/traits",
   {
-    noVersion: true,
+    versioned: Versions,
   }
 )
 @versioned(Versions)

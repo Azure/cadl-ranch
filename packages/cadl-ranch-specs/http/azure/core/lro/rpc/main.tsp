@@ -15,10 +15,9 @@ using TypeSpec.Versioning;
 @scenarioService(
   "/azure/core/lro/rpc",
   {
-    noVersion: true,
+    versioned: Versions,
   }
 )
-@versioned(Versions)
 namespace _Specs_.Azure.Core.Lro.Rpc;
 
 enum Versions {

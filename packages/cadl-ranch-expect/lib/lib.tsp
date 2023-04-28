@@ -3,7 +3,10 @@ import "../dist/index.js";
 using TypeSpec.Reflection;
 
 alias ScenarioServiceOptions = {
-  noVersion?: boolean;
+  /**
+   * Version enum that would be used on the $versioned decorator
+   */
+  versioned?: Enum;
 };
 
 /**

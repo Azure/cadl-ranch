@@ -15,10 +15,9 @@ using TypeSpec.Versioning;
 @scenarioService(
   "/azure/core/basic",
   {
-    noVersion: true,
+    versioned: Versions,
   }
 )
-@versioned(Versions)
 namespace _Specs_.Azure.Core.Basic;
 
 enum Versions {
