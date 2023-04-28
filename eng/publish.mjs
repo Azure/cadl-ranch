@@ -6,4 +6,4 @@ execSync(`git config --global user.email "noreply@microsoft.com"`);
 execSync(`git config --global user.name "Auto Changeset Bot"`);
 execSync(`pnpm changeset version`);
 execSync(`git commit -am "Bump versions"`);
-execSync(`git push --set-upstream origin ${branchName} --force`);
+execSync(`git push origin HEAD:${branchName} --force`);
