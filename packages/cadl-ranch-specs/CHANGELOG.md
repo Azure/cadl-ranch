@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.7
+
+### Patch Changes
+
+- dbd8f21: minor fix for internal test
+- Updated dependencies [7449ace]
+  - @azure-tools/cadl-ranch@0.4.10
+
 ## 1.0.0
 
 ### Patch Changes
