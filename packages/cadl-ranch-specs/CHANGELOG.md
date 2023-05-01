@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- dbd8f21: minor fix for internal test
+- dbd8f21: Fix internal test mock api
 - Updated dependencies [7449ace]
   - @azure-tools/cadl-ranch@0.4.10
 
