@@ -208,6 +208,6 @@ interface UnknownDict extends ModelOperations<UnknownDictProperty, "{'k1': 'hell
 // Test a model with unknown and an array
 @doc("Model with a property unknown, and the data is an array.")
 model UnknownArrayProperty is ModelTemplate<unknown>;
-@route("/unknown-array")
+@route("/unknown/array")
 @operationGroup
 interface UnknownArray extends ModelOperations<UnknownArrayProperty, "['hello', 'world']"> {}

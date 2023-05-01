@@ -81,6 +81,14 @@ Go through [PR checklist](./.github/pull_request_template.md)
 
 ### Release a new version
 
+**Semi-auto:**
+
+Branch `publish/auto-release` should be automatically updated with the latest changelog. Give it 5min after merging a PR or check the status of the [Release action](https://github.com/Azure/cadl-ranch/actions/workflows/release.yml)
+
+Then go to https://github.com/Azure/cadl-ranch/pull/new/publish/auto-release and create this PR.
+
+**Manual**
+
 1. Run `pnpm changeset version` to bump the versions according to the changesets.
 2. Make a new branch called `publish/<xyz>`
 3. Make a PR and merge

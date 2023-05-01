@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.9
+
+### Patch Changes
+
+- Updated dependencies [0f1b3e3]
+- Updated dependencies [0f1b3e3]
+  - @azure-tools/cadl-ranch-expect@0.3.0
+
+## 0.4.8
+
+### Patch Changes
+
+- 92da20e: Fix validation for presence of `@scenario` giving false positive when doing local link of Azure.Core package.
+- fa057af: Add Unknown tests
+- Updated dependencies [92da20e]
+  - @azure-tools/cadl-ranch-expect@0.2.5
+
 ## 0.4.7
 
 ### Patch Changes

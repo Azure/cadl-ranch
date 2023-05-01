@@ -229,6 +229,7 @@ importers:
       '@typespec/eslint-config-typespec': ~0.6.0
       '@typespec/http': ~0.43.1
       '@typespec/rest': ~0.43.0
+      '@typespec/versioning': ~0.43.0
       eslint: ^8.39.0
       prettier: ^2.8.8
       rimraf: ^5.0.0
@@ -237,6 +238,7 @@ importers:
       '@typespec/compiler': 0.43.0
       '@typespec/http': 0.43.1_@typespec+compiler@0.43.0
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
+      '@typespec/versioning': 0.43.0
     devDependencies:
       '@types/node': 18.16.0
       '@typespec/eslint-config-typespec': 0.6.0_prettier@2.8.8
