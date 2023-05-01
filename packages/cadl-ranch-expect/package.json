@@ -1,8 +1,9 @@
 {
   "name": "@azure-tools/cadl-ranch-expect",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
+  "tspMain": "lib/lib.tsp",
   "type": "module",
   "scripts": {
     "watch": "tsc -p ./tsconfig.build.json --watch",
@@ -35,6 +36,7 @@
   },
   "peerDependencies": {
     "@typespec/compiler": "~0.43.0",
+    "@typespec/versioning": "~0.43.0",
     "@typespec/http": "~0.43.1",
     "@typespec/rest": "~0.43.0"
   }

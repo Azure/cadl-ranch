@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.2.5
+
+### Patch Changes
+
+- 441c974: Bump all dependencies - April 2023
+
 ## 0.2.4
 
 ### Patch Changes

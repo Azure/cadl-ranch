@@ -1,5 +1,46 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Patch Changes
+
+- 0f1b3e3: Fix: cannot have @service version and @versioned
+- Updated dependencies [0f1b3e3]
+- Updated dependencies [0f1b3e3]
+  - @azure-tools/cadl-ranch-expect@0.3.0
+  - @azure-tools/cadl-ranch@0.4.9
+
+## 0.14.5
+
+### Patch Changes
+
+- c17efa4: fix for unknown test
+
+## 0.14.4
+
+### Patch Changes
+
+- fa057af: Add Unknown tests
+- Updated dependencies [92da20e]
+- Updated dependencies [fa057af]
+  - @azure-tools/cadl-ranch-expect@0.2.5
+  - @azure-tools/cadl-ranch@0.4.8
+
+## 0.14.3
+
+### Patch Changes
+
+- 3bce56a: refine internal tests
+- 23e6b35: Fix discrepancy between custom page model definition and mock response.
+- 441c974: Bump all dependencies - April 2023
+- a0036b4: Fix datetime issue in dictionary
+- Updated dependencies [d10d1b2]
+- Updated dependencies [441c974]
+- Updated dependencies [18773ec]
+  - @azure-tools/cadl-ranch@0.4.7
+  - @azure-tools/cadl-ranch-api@0.2.5
+  - @azure-tools/cadl-ranch-expect@0.2.4
+
 ## 0.14.2
 
 ### Patch Changes

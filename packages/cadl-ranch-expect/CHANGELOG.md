@@ -1,5 +1,27 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.3.0
+
+### Minor Changes
+
+- 0f1b3e3: Add `extern dec` decorator definition and remove deprecated decorator validation
+
+### Patch Changes
+
+- 0f1b3e3: Fix: cannot have @service version and @versioned
+
+## 0.2.5
+
+### Patch Changes
+
+- 92da20e: Fix validation for presence of `@scenario` giving false positive when doing local link of Azure.Core package.
+
+## 0.2.4
+
+### Patch Changes
+
+- 441c974: Bump all dependencies - April 2023
+
 ## 0.2.3
 
 ### Patch Changes

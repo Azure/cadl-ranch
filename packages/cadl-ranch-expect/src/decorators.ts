@@ -1,7 +1,8 @@
 import {
   $service,
-  createDecoratorDefinition,
   DecoratorContext,
+  Enum,
+  getNamespaceFullName,
   Interface,
   listServices,
   Model,
@@ -10,21 +11,13 @@ import {
   Program,
 } from "@typespec/compiler";
 import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
+import { $versioned } from "@typespec/versioning";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
 const SupportedByOptions: Set<string> = new Set(["arm", "dpg"]);
 const SupportedBy = Symbol("SupportedBy");
-const decoratorSignature = createDecoratorDefinition({
-  name: "@scenario",
-  target: "Namespace",
-  args: [{ kind: "String" }],
-} as const);
 export function $supportedBy(context: DecoratorContext, target: Namespace, catgory: string) {
-  if (!decoratorSignature.validate(context, target, [catgory])) {
-    return;
-  }
-
   if (!SupportedByOptions.has(catgory)) {
     reportDiagnostic(context.program, {
       code: "category-invalid",
@@ -40,20 +33,12 @@ export function getSupportedBy(program: Program, target: Namespace): SupportedBy
 }
 
 const ScenarioDocKey = Symbol("ScenarioDoc");
-const scenarioDocSignature = createDecoratorDefinition({
-  name: "@scenarioDoc",
-  target: ["Operation", "Namespace", "Interface"],
-  args: [{ kind: "String" }, { kind: "Model", optional: true }],
-} as const);
 export function $scenarioDoc(
   context: DecoratorContext,
   target: Namespace | Operation | Interface,
   doc: string,
   formatArgs?: Model,
 ) {
-  if (!scenarioDocSignature.validate(context, target, [doc, formatArgs])) {
-    return;
-  }
   const formattedDoc = formatArgs ? replaceTemplatedStringFromProperties(doc, formatArgs) : doc;
   context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
@@ -70,15 +55,7 @@ function replaceTemplatedStringFromProperties(formatString: string, formatArgs: 
 }
 
 const ScenarioKey = Symbol("Scenario");
-const scenarioSignature = createDecoratorDefinition({
-  name: "@scenario",
-  target: ["Operation", "Namespace", "Interface"],
-  args: [{ kind: "String", optional: true }],
-} as const);
 export function $scenario(context: DecoratorContext, target: Namespace | Operation | Interface, name?: string) {
-  if (!scenarioSignature.validate(context, target, [name])) {
-    return;
-  }
   context.program.stateMap(ScenarioKey).set(target, name ?? target.name);
 }
 
@@ -203,23 +180,22 @@ export function getScenarioName(program: Program, target: Operation | Interface 
 }
 
 const ScenarioServiceKey = Symbol("ScenarioService");
-const scenarioServiceSignature = createDecoratorDefinition({
-  name: "@scenarioService",
-  target: "Namespace",
-  args: [{ kind: "String" }],
-} as const);
-export function $scenarioService(context: DecoratorContext, target: Namespace, route: string) {
-  if (!scenarioServiceSignature.validate(context, target, [route])) {
-    return;
-  }
+export function $scenarioService(context: DecoratorContext, target: Namespace, route: string, options?: Model) {
+  const properties = new Map().set("title", {
+    type: { kind: "String", value: getNamespaceFullName(target).replace(/\./g, "") },
+  });
+
   context.program.stateSet(ScenarioServiceKey).add(target);
+
+  const versions = options?.properties.get("versioned")?.type;
+  if (versions === undefined) {
+    properties.set("version", { type: { kind: "String", value: "1.0.0" } });
+  } else {
+    context.call($versioned, target, versions as Enum);
+  }
   context.call($service, target, {
     kind: "Model",
-    properties: new Map()
-      .set("title", {
-        type: { kind: "String", value: context.program.checker.getNamespaceString(target).replace(/\./g, "") },
-      })
-      .set("version", { type: { kind: "String", value: "1.0.0" } }),
+    properties,
     decorators: [],
     projections: [],
     name: "Service",

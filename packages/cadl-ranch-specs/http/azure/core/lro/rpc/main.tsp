@@ -12,8 +12,12 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
-@scenarioService("/azure/core/lro/rpc")
-@versioned(Versions)
+@scenarioService(
+  "/azure/core/lro/rpc",
+  {
+    versioned: Versions,
+  }
+)
 namespace _Specs_.Azure.Core.Lro.Rpc;
 
 enum Versions {

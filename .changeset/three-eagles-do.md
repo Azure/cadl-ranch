@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Fix datetime issue in dictionary
+minor fix for internal test

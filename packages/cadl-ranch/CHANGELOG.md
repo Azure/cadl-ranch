@@ -1,5 +1,36 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.9
+
+### Patch Changes
+
+- Updated dependencies [0f1b3e3]
+- Updated dependencies [0f1b3e3]
+  - @azure-tools/cadl-ranch-expect@0.3.0
+
+## 0.4.8
+
+### Patch Changes
+
+- 92da20e: Fix validation for presence of `@scenario` giving false positive when doing local link of Azure.Core package.
+- fa057af: Add Unknown tests
+- Updated dependencies [92da20e]
+  - @azure-tools/cadl-ranch-expect@0.2.5
+
+## 0.4.7
+
+### Patch Changes
+
+- d10d1b2: Show additional information about the generator coverage
+- 441c974: Bump all dependencies - April 2023
+- 18773ec: Sort manifest and dashboard
+- Updated dependencies [d10d1b2]
+- Updated dependencies [9d6d265]
+- Updated dependencies [441c974]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.3
+  - @azure-tools/cadl-ranch-api@0.2.5
+  - @azure-tools/cadl-ranch-expect@0.2.4
+
 ## 0.4.6
 
 ### Patch Changes
