@@ -57,6 +57,7 @@ importers:
       express: ^4.18.2
       express-promise-router: ^4.1.1
       glob: ^10.2.2
+      jackspeak: 2.1.1
       js-yaml: ^4.1.0
       morgan: ^1.10.0
       node-fetch: ^3.3.1
@@ -83,6 +84,7 @@ importers:
       express: 4.18.2
       express-promise-router: 4.1.1_ggo4t6aanj3kpaprsqb37ppxvm
       glob: 10.2.2
+      jackspeak: 2.1.1
       js-yaml: 4.1.0
       morgan: 1.10.0
       node-fetch: 3.3.1
@@ -6277,6 +6279,15 @@ packages:
       cliui: 7.0.4
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
+
+  /jackspeak/2.1.1:
+    resolution: {integrity: sha512-juf9stUEwUaILepraGOWIJTLwg48bUnBmRqd2ln2Os1sW987zeoj/hzhbvRB95oMuS2ZTpjULmdwHNX4rzZIZw==}
+    engines: {node: '>=14'}
+    dependencies:
+      cliui: 8.0.1
+    optionalDependencies:
+      '@pkgjs/parseargs': 0.11.0
+    dev: false
 
   /jest-changed-files/29.5.0:
     resolution: {integrity: sha512-IFG34IUMUaNBIxjQXF/iu7g6EcdMrGRRxaUSw92I/2g2YC6vCdTltl4nHvt7Ci5nSJwXIkCu8Ka1DKF+X7Z1Ag==}
