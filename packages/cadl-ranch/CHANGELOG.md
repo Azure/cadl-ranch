@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.10
+
+### Patch Changes
+
+- 7449ace: Fix: pin jackspeak(dep of glob) with new version causing global install issues
+
 ## 0.4.9
 
 ### Patch Changes
