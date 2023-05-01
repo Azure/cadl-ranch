@@ -3,13 +3,13 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@scenarioService("/authentication/http/basic")
+@scenarioService("/authentication/http/custom")
 @doc("Illustrates clients generated with generic HTTP auth.")
 @useAuth({
   type: AuthType.http,
   scheme: "SharedAccessKey",
 })
-namespace Authentication.Http.Basic;
+namespace Authentication.Http.Custom;
 
 @scenario
 @scenarioDoc("Expects header 'Authorization': 'SharedAccessKey valid-key'")
