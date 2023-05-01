@@ -21,24 +21,21 @@ Expect error code 403 and error body:
 
 Expects header 'x-ms-api-key': 'valid-key'
 
-### Authentication_Http_invalid
+### Authentication_Http_Custom_invalid
 
-- Endpoint: `get /authentication/http/invalid`
+- Endpoint: `get /authentication/http/custom/invalid`
 
 Expect error code 403 and error body:
 
 ```json
 {
-  "error": {
-    "code": "InvalidApiKey",
-    "message": "API key is invalid"
-  }
+  "error": "invalid-api-key"
 }
 ```
 
-### Authentication_Http_valid
+### Authentication_Http_Custom_valid
 
-- Endpoint: `get /authentication/http/valid`
+- Endpoint: `get /authentication/http/custom/valid`
 
 Expects header 'Authorization': 'SharedAccessKey valid-key'
 
