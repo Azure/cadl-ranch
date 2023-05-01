@@ -54,7 +54,7 @@ Expected response body:
 @route("/internal")
 @get
 @global.Azure.ClientGenerator.Core.internal
-op internalOnly(@query name: string): PublicModel;
+op internalOnly(@query name: string): InternalModel;
 
 @route("/shared")
 @global.Azure.ClientGenerator.Core.operationGroup
