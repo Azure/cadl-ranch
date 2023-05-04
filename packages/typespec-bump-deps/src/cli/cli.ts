@@ -9,15 +9,19 @@ const knownPackages = [
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
   "@typespec/eslint-config-typespec",
-]
+];
 
 async function getKnownPackageVersion(packageName: string): Promise<string> {
   return (await pacote.manifest(`${packageName}@next`)).version;
 }
 
 async function main() {
-  const packageToVersionRecord = Object.fromEntries(await Promise.all(knownPackages.map(async x => [x, await getKnownPackageVersion(x)])));
+  const packageToVersionRecord = Object.fromEntries(
+    await Promise.all(knownPackages.map(async (x) => [x, await getKnownPackageVersion(x)])),
+  );
+  // eslint-disable-next-line no-console
   console.log("The following is a mapping between packages and the versions we will update them to");
+  // eslint-disable-next-line no-console
   console.log(packageToVersionRecord);
   const packageJsonPaths = process.argv.slice(2);
   for (const packageJsonPath of packageJsonPaths) {
@@ -33,6 +37,7 @@ async function main() {
         }
       }
     }
+    // eslint-disable-next-line no-console
     console.log(`Updated ${packageJsonPath}`);
     await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
   }
