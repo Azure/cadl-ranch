@@ -18,8 +18,8 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
     req.expect.containsHeader("foo", "123");
-    req.expect.containsHeader("if-match", "\"valid\"");
-    req.expect.containsHeader("if-none-match", "\"invalid\"");
+    req.expect.containsHeader("if-match", '"valid"');
+    req.expect.containsHeader("if-none-match", '"invalid"');
     req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
     req.expect.containsHeader("if-modified-since", "Thu, 26 Aug 2021 14:38:00 GMT");
     return {
