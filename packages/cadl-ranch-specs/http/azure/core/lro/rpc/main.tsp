@@ -10,6 +10,11 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
+/**
+ * WARNING this scenario is using some non standard Azure.Core operation to get Long running Rpc operation working.
+ * THIS WILL MOST LIKELY BE CHANGED.
+ * BE READY TO BREAK IF YOU IMPLEMENT THIS SCENARIO.
+ */
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
 @scenarioService(
