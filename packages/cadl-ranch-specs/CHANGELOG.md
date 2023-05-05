@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.14.8
+
+### Patch Changes
+
+- b89eab9: Fix RpcOperation template to work with incoming version of Azure.Core
+- 3787945: Fix format of if-match and if-none-match
+- Updated dependencies [b89eab9]
+  - @azure-tools/cadl-ranch@0.4.11
+
 ## 0.14.7
 
 ### Patch Changes
