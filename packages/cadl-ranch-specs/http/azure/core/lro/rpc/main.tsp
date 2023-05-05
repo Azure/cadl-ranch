@@ -10,6 +10,11 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
+/**
+ * WARNING this scenario is using some non standard Azure.Core operation to get Long running Rpc operation working.
+ * THIS WILL MOST LIKELY BE CHANGED.
+ * BE READY TO BREAK IF YOU IMPLEMENT THIS SCENARIO.
+ */
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
 @scenarioService(
@@ -123,6 +128,7 @@ Expected response body:
 ```
 """)
 interface SamePollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/same-poll-result/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
@@ -195,6 +201,7 @@ Expected response body:
 ```
 """)
 interface DifferentPollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/different-poll-result/jobs")
   @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)

@@ -35,4 +35,12 @@ namespace LocalCore {
       Foundations.RetryAfterHeader> | TResponse,
     Traits
   >;
+
+  @Foundations.Private.needsRoute
+  op RpcOperation<
+    TParams,
+    TResponse,
+    Traits extends object = {},
+    TErrorResponse = Azure.Core.Foundations.ErrorResponse
+  > is Foundations.Operation<TParams, TResponse, Traits, TErrorResponse>;
 }
