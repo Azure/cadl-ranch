@@ -123,6 +123,7 @@ Expected response body:
 ```
 """)
 interface SamePollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/same-poll-result/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
@@ -195,6 +196,7 @@ Expected response body:
 ```
 """)
 interface DifferentPollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/different-poll-result/jobs")
   @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)

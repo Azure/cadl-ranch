@@ -20,7 +20,6 @@ namespace LocalCore {
     location: Rest.ResourceLocation<TResponse>;
   }
 
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "This is a templated operation https://github.com/Azure/typespec-azure/issues/2936"
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "Will use Azure.Core when LongRunningRpcOperation is ready"
   #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Long running RPC operation template")
@@ -31,7 +30,17 @@ namespace LocalCore {
     Traits extends object = {}
   > is RpcOperation<
     TParams & Traits,
-    Foundations.AcceptedResponse<Traits & LongRunningStatusLocation<TPollResponse> & Foundations.RetryAfterHeader>,
+    Foundations.AcceptedResponse<Traits &
+      LongRunningStatusLocation<TPollResponse> &
+      Foundations.RetryAfterHeader> | TResponse,
     Traits
   >;
+
+  @Foundations.Private.needsRoute
+  op RpcOperation<
+    TParams,
+    TResponse,
+    Traits extends object = {},
+    TErrorResponse = Azure.Core.Foundations.ErrorResponse
+  > is Foundations.Operation<TParams, TResponse, Traits, TErrorResponse>;
 }
