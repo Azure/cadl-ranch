@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.11
+
+### Patch Changes
+
+- b89eab9: Fix RpcOperation template to work with incoming version of Azure.Core
+
 ## 0.4.10
 
 ### Patch Changes
