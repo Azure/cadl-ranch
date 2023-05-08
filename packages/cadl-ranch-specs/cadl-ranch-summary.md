@@ -585,6 +585,118 @@ Expected response body:
 }
 ```
 
+### Encode_Duration_Property_default
+
+- Endpoint: `post /encode/duration/property/default`
+
+Test operation with request and response model contains default format duration property.
+Expected request body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+### Encode_Duration_Property_float_seconds
+
+- Endpoint: `get /encode/duration/property/float_seconds`
+
+Test operation with request and response model contains float seconds format duration property.
+Expected request body:
+
+```json
+{
+  "value": 35.621
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 35.621
+}
+```
+
+### Encode_Duration_Property_int32_seconds
+
+- Endpoint: `get /encode/duration/property/int32_seconds`
+
+Test operation with request and response model contains int32 seconds format duration property.
+Expected request body:
+
+```json
+{
+  "value": 36
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 36
+}
+```
+
+### Encode_Duration_Property_iso8601
+
+- Endpoint: `post /encode/duration/property/iso8601`
+
+Test operation with request and response model contains iso8601 format duration property.
+Expected request body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+### Encode_Duration_Query_default
+
+- Endpoint: `get /encode/duration/query/default`
+
+Test default encode for a duration parameter.
+Expected query parameter `input=P40D`
+
+### Encode_Duration_Query_float_seconds
+
+- Endpoint: `get /encode/duration/query/float_seconds`
+
+Test float seconds encode for a duration parameter.
+Expected query parameter `input=35.621`
+
+### Encode_Duration_Query_int32_seconds
+
+- Endpoint: `get /encode/duration/query/int32_seconds`
+
+Test int32 seconds encode for a duration parameter.
+Expected query parameter `input=36`
+
+### Encode_Duration_Query_iso8601
+
+- Endpoint: `get /encode/duration/query/iso8601`
+
+Test iso8601 encode for a duration parameter.
+Expected query parameter `input=P40D`
+
 ### Parameters_CollectionFormat_Header_csv
 
 - Endpoint: `get /parameters/collection-format/header/csv`

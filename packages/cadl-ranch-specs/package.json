@@ -50,10 +50,10 @@
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure-tools/typespec-azure-core": "~0.29.0",
-    "@typespec/compiler": "~0.43.0",
-    "@typespec/http": "~0.43.1",
-    "@typespec/rest": "~0.43.0",
-    "@typespec/versioning": "~0.43.0"
+    "@azure-tools/typespec-azure-core": "0.30.0-dev.27",
+    "@typespec/compiler": "0.44.0-dev.21",
+    "@typespec/http": "0.44.0-dev.6",
+    "@typespec/rest": "0.44.0-dev.6",
+    "@typespec/versioning": "0.44.0-dev.7"
   }
 }
