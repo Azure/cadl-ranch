@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.12
+
+### Patch Changes
+
+- b719133: Fix: Azure.Core test should use `alias` instead of interface extends for the operation factory
+
 ## 0.4.11
 
 ### Patch Changes
