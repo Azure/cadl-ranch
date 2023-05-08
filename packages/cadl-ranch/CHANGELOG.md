@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.13
+
+### Patch Changes
+
+- c76c649: Fix more interface extends instead of alias
+
 ## 0.4.12
 
 ### Patch Changes
