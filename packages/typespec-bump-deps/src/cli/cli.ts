@@ -27,7 +27,7 @@ async function main() {
   for (const packageJsonPath of packageJsonPaths) {
     const content = await readFile(packageJsonPath);
     const packageJson = JSON.parse(content.toString());
-    const depTypes = ["dependencies", "devDependencies", "peerDependencies"];
+    const depTypes = ["dependencies", "devDependencies", "peerDependencies", "overrides"];
     for (const depType of depTypes) {
       const deps = packageJson[depType];
       if (deps === undefined) continue;
