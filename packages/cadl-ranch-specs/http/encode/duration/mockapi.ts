@@ -15,7 +15,7 @@ function createQueryMockApis(route: string, value: any): MockApi {
 
 function createPropertyMockApis(route: string, value: any): MockApi {
   const url = `/encode/duration/property/${route}`;
-  return mockapi.get(url, (req) => {
+  return mockapi.post(url, (req) => {
     req.expect.coercedBodyEquals({ value: value });
     return {
       status: 200,
