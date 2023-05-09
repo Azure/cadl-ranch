@@ -606,9 +606,9 @@ Expected response body:
 }
 ```
 
-### Encode_Duration_Property_float_seconds
+### Encode_Duration_Property_floatSeconds
 
-- Endpoint: `get /encode/duration/property/float_seconds`
+- Endpoint: `get /encode/duration/property/float-seconds`
 
 Test operation with request and response model contains float seconds format duration property.
 Expected request body:
@@ -627,9 +627,9 @@ Expected response body:
 }
 ```
 
-### Encode_Duration_Property_int32_seconds
+### Encode_Duration_Property_int32Seconds
 
-- Endpoint: `get /encode/duration/property/int32_seconds`
+- Endpoint: `get /encode/duration/property/int32-seconds`
 
 Test operation with request and response model contains int32 seconds format duration property.
 Expected request body:
@@ -676,16 +676,16 @@ Expected response body:
 Test default encode for a duration parameter.
 Expected query parameter `input=P40D`
 
-### Encode_Duration_Query_float_seconds
+### Encode_Duration_Query_floatSeconds
 
-- Endpoint: `get /encode/duration/query/float_seconds`
+- Endpoint: `get /encode/duration/query/float-seconds`
 
 Test float seconds encode for a duration parameter.
 Expected query parameter `input=35.621`
 
-### Encode_Duration_Query_int32_seconds
+### Encode_Duration_Query_int32Seconds
 
-- Endpoint: `get /encode/duration/query/int32_seconds`
+- Endpoint: `get /encode/duration/query/int32-seconds`
 
 Test int32 seconds encode for a duration parameter.
 Expected query parameter `input=36`

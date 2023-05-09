@@ -36,25 +36,25 @@ namespace Query {
     input: duration
   ): NoContentResponse;
 
-  @route("/int32_seconds")
+  @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
   Test int32 seconds encode for a duration parameter.
   Expected query parameter `input=36`
   """)
-  op int32_seconds(
+  op int32Seconds(
     @query
     @encode(DurationKnownEncoding.seconds, int32)
     input: duration
   ): NoContentResponse;
 
-  @route("/float_seconds")
+  @route("/float-seconds")
   @scenario
   @scenarioDoc("""
   Test float seconds encode for a duration parameter.
   Expected query parameter `input=35.621`
   """)
-  op float_seconds(
+  op floatSeconds(
     @query
     @encode(DurationKnownEncoding.seconds, float)
     input: duration
@@ -123,7 +123,7 @@ namespace Property {
   @post
   op iso8601(@body body: ISO8601DurationProperty): ISO8601DurationProperty;
 
-  @route("/int32_seconds")
+  @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
   Test operation with request and response model contains int32 seconds format duration property.
@@ -140,9 +140,9 @@ namespace Property {
   }
   ```
   """)
-  op int32_seconds(@body body: Int32SecondsDurationProperty): Int32SecondsDurationProperty;
+  op int32Seconds(@body body: Int32SecondsDurationProperty): Int32SecondsDurationProperty;
 
-  @route("/float_seconds")
+  @route("/float-seconds")
   @scenario
   @scenarioDoc("""
   Test operation with request and response model contains float seconds format duration property.
@@ -159,5 +159,5 @@ namespace Property {
   }
   ```
   """)
-  op float_seconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
+  op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
 }
