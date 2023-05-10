@@ -86,7 +86,7 @@ namespace Property {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains default format duration property.
+  Test operation with request and response model contains a duration property with default encode.
   Expected request body:
   ```json
   {
@@ -101,12 +101,12 @@ namespace Property {
   ```
   """)
   @post
-  op default(@body body: ISO8601DurationProperty): ISO8601DurationProperty;
+  op default(@body body: DefaultDurationProperty): DefaultDurationProperty;
 
   @route("/iso8601")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains iso8601 format duration property.
+  Test operation with request and response model contains a duration property with iso8601 encode.
   Expected request body:
   ```json
   {
@@ -126,7 +126,7 @@ namespace Property {
   @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains int32 seconds format duration property.
+  Test operation with request and response model contains a duration property with int32 seconds encode.
   Expected request body:
   ```json
   {
@@ -145,7 +145,7 @@ namespace Property {
   @route("/float-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains float seconds format duration property.
+  Test operation with request and response model contains a duration property with float seconds encode.
   Expected request body:
   ```json
   {
