@@ -18,7 +18,7 @@ Scenarios.Azure_Core_Lro_Rpc_SamePollResult = passOnSuccess([
     createPollCount = 0;
     return {
       status: 202,
-      headers: { "operation-location": "http://localhost:3000/azure/core/lro/rpc/same-poll-result/jobs/job1" },
+      headers: { "operation-location": `${req.baseUrl}/azure/core/lro/rpc/same-poll-result/jobs/job1` },
       body: json(jobInProgress),
     };
   }),
@@ -37,9 +37,8 @@ Scenarios.Azure_Core_Lro_Rpc_DifferentPollResult = passOnSuccess([
     return {
       status: 202,
       headers: {
-        "operation-location":
-          "http://localhost:3000/azure/core/lro/rpc/different-poll-result/jobs/operations/operation1",
-        "location": "http://localhost:3000/azure/core/lro/rpc/different-poll-result/jobs/job1",
+        "operation-location": `${req.baseUrl}/azure/core/lro/rpc/different-poll-result/jobs/operations/operation1`,
+        "location": `${req.baseUrl}/azure/core/lro/rpc/different-poll-result/jobs/job1`,
       },
       body: json(operationInProgress),
     };
