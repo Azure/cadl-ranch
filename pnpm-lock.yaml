@@ -1,17 +1,5 @@
 lockfileVersion: '6.0'
 
-overrides:
-  '@azure-tools/typespec-autorest': 0.30.0-dev.6
-  '@azure-tools/typespec-client-generator-core': 0.30.0-dev.13
-  '@typespec/eslint-config-typespec': ~0.6.0
-  '@typespec/openapi': 0.44.0-dev.2
-  '@typespec/openapi3': 0.44.0-dev.7
-  '@azure-tools/typespec-azure-core': 0.30.0-dev.27
-  '@typespec/compiler': 0.44.0-dev.21
-  '@typespec/http': 0.44.0-dev.6
-  '@typespec/rest': 0.44.0-dev.6
-  '@typespec/versioning': 0.44.0-dev.7
-
 importers:
 
   .:
@@ -20,8 +8,8 @@ importers:
         specifier: ^2.26.1
         version: 2.26.1
       '@typespec/prettier-plugin-typespec':
-        specifier: ~0.43.0
-        version: 0.43.0
+        specifier: ~0.44.0
+        version: 0.44.0
       cspell:
         specifier: ^6.31.1
         version: 6.31.1
@@ -71,14 +59,14 @@ importers:
         specifier: ^4.0.5
         version: 4.0.5
       '@typespec/compiler':
-        specifier: 0.44.0-dev.21
-        version: 0.44.0-dev.21
+        specifier: ~0.44.0
+        version: 0.44.0
       '@typespec/http':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       ajv:
         specifier: 8.12.0
         version: 8.12.0
@@ -156,8 +144,8 @@ importers:
         specifier: ^17.0.24
         version: 17.0.24
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
       eslint:
         specifier: ^8.39.0
         version: 8.39.0
@@ -260,8 +248,8 @@ importers:
         version: 18.16.0
     devDependencies:
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
       eslint:
         specifier: ^8.39.0
         version: 8.39.0
@@ -306,8 +294,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
       '@vitejs/plugin-react':
         specifier: ^4.0.0
         version: 4.0.0(vite@4.3.2)
@@ -333,24 +321,24 @@ importers:
   packages/cadl-ranch-expect:
     dependencies:
       '@typespec/compiler':
-        specifier: 0.44.0-dev.21
-        version: 0.44.0-dev.21
+        specifier: ~0.44.0
+        version: 0.44.0
       '@typespec/http':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/versioning':
-        specifier: 0.44.0-dev.7
-        version: 0.44.0-dev.7
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
     devDependencies:
       '@types/node':
         specifier: ^18.16.0
         version: 18.16.0
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
       eslint:
         specifier: ^8.39.0
         version: 8.39.0
@@ -376,39 +364,39 @@ importers:
         specifier: workspace:~
         version: link:../cadl-ranch-expect
       '@azure-tools/typespec-azure-core':
-        specifier: 0.30.0-dev.27
-        version: 0.30.0-dev.27(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
+        specifier: ~0.30.0
+        version: 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
       '@typespec/compiler':
-        specifier: 0.44.0-dev.21
-        version: 0.44.0-dev.21
+        specifier: ~0.44.0
+        version: 0.44.0
       '@typespec/http':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest':
-        specifier: 0.44.0-dev.6
-        version: 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/versioning':
-        specifier: 0.44.0-dev.7
-        version: 0.44.0-dev.7
+        specifier: ~0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)
     devDependencies:
       '@azure-tools/typespec-autorest':
-        specifier: 0.30.0-dev.6
-        version: 0.30.0-dev.6(@azure-tools/typespec-azure-core@0.30.0-dev.27)(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/openapi@0.44.0-dev.2)(@typespec/rest@0.44.0-dev.6)(@typespec/versioning@0.44.0-dev.7)
+        specifier: 0.30.0
+        version: 0.30.0(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/openapi@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: 0.30.0-dev.13
-        version: 0.30.0-dev.13(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
+        specifier: ~0.30.0
+        version: 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
       '@types/node':
         specifier: ^18.16.0
         version: 18.16.0
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
       '@typespec/openapi':
-        specifier: 0.44.0-dev.2
-        version: 0.44.0-dev.2(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
+        specifier: 0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
       '@typespec/openapi3':
-        specifier: 0.44.0-dev.7
-        version: 0.44.0-dev.7(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/openapi@0.44.0-dev.2)(@typespec/rest@0.44.0-dev.6)(@typespec/versioning@0.44.0-dev.7)
+        specifier: 0.44.0
+        version: 0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/openapi@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       eslint:
         specifier: ^8.39.0
         version: 8.39.0
@@ -435,8 +423,8 @@ importers:
         specifier: 11.1.5
         version: 11.1.5
       '@typespec/eslint-config-typespec':
-        specifier: ~0.6.0
-        version: 0.6.0(prettier@2.8.8)
+        specifier: ~0.7.0
+        version: 0.7.0(prettier@2.8.8)
 
 packages:
 
@@ -448,50 +436,50 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
     dev: true
 
-  /@azure-tools/typespec-autorest@0.30.0-dev.6(@azure-tools/typespec-azure-core@0.30.0-dev.27)(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/openapi@0.44.0-dev.2)(@typespec/rest@0.44.0-dev.6)(@typespec/versioning@0.44.0-dev.7):
-    resolution: {integrity: sha512-0wRO/9tZp9SnewpMw2tyzmcfztv8vz6g3UhPpbKM2D5NYN2c/i2q167cpE81yJbyi+qo3H6yDyGjq0VMXNTLvQ==}
+  /@azure-tools/typespec-autorest@0.30.0(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/openapi@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-Eww0EecO7te6r89djVK+mhcDJbCTjVUz3YneoCbuSftyAVGoj+OJPMS4fbkrKFKLpmV+b3YKGTH5e52jtD4YYA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': '>=0.29.0'
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/openapi': '>=0.43.0'
-      '@typespec/rest': '>=0.43.0'
-      '@typespec/versioning': '>=0.43.0'
+      '@azure-tools/typespec-azure-core': ~0.30.0
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/openapi': ~0.44.0
+      '@typespec/rest': ~0.44.0
+      '@typespec/versioning': ~0.44.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.30.0-dev.27(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
-      '@typespec/compiler': 0.44.0-dev.21
-      '@typespec/http': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/openapi': 0.44.0-dev.2(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
-      '@typespec/rest': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/versioning': 0.44.0-dev.7
+      '@azure-tools/typespec-azure-core': 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
+      '@typespec/compiler': 0.44.0
+      '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/openapi': 0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
+      '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/versioning': 0.44.0(@typespec/compiler@0.44.0)
     dev: true
 
-  /@azure-tools/typespec-azure-core@0.30.0-dev.27(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6):
-    resolution: {integrity: sha512-ui4vgcXomu2iUKDEuLs1fB0v+2RwOXWXRiuaICbephOYE7NpGYICOIFq82e6xFv+cJfgefPq4MMs3r2WlaJsig==}
+  /@azure-tools/typespec-azure-core@0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0):
+    resolution: {integrity: sha512-OsLI/opkv3JO+tkdHa04/fL84qSNvRLHDsRQ+Q3VK8rLul9WXHa74yAqn5r3D8WuK+h2KG2dDNtJhhew5ehlgg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/rest': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/rest': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
-      '@typespec/http': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/lint': 0.43.0(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/rest': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+      '@typespec/compiler': 0.44.0
+      '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/lint': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
 
-  /@azure-tools/typespec-client-generator-core@0.30.0-dev.13(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6):
-    resolution: {integrity: sha512-qDn2nYt4JnmSBzCeeYuQ7F4UIN6RYRWNMn4cX3lAvBJRSOIFveO69xtIZrzLs7v1WtMD4AnYppLwPDWNPeFadg==}
+  /@azure-tools/typespec-client-generator-core@0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0):
+    resolution: {integrity: sha512-2CyCrIPXL/k6vXGWixWCYlA8gENErIUncdN9IFUBlqyqWlgb8GBpjl2RhIqbQCo2PGS6U3s1NEdZffzD0tNSdw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/rest': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/rest': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
-      '@typespec/http': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/lint': 0.43.0(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/rest': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+      '@typespec/compiler': 0.44.0
+      '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/lint': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
     dev: true
 
   /@azure/abort-controller@1.1.0:
@@ -3741,7 +3729,7 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: true
 
-  /@typescript-eslint/eslint-plugin@5.59.1(@typescript-eslint/parser@5.59.1)(eslint@8.39.0)(typescript@4.9.5):
+  /@typescript-eslint/eslint-plugin@5.59.1(@typescript-eslint/parser@5.59.1)(eslint@8.39.0)(typescript@5.0.4):
     resolution: {integrity: sha512-AVi0uazY5quFB9hlp2Xv+ogpfpk77xzsgsIEWyVS7uK/c7MZ5tw7ZPbapa0SbfkqE0fsAMkz5UwtgMLVk2BQAg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3755,16 +3743,16 @@ packages:
       '@eslint-community/regexpp': 4.5.0
       '@typescript-eslint/parser': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
       '@typescript-eslint/scope-manager': 5.59.1
-      '@typescript-eslint/type-utils': 5.59.1(eslint@8.39.0)(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@4.9.5)
+      '@typescript-eslint/type-utils': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
       debug: 4.3.4(supports-color@8.1.1)
       eslint: 8.39.0
       grapheme-splitter: 1.0.4
       ignore: 5.2.4
       natural-compare-lite: 1.4.0
       semver: 7.5.0
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
+      tsutils: 3.21.0(typescript@5.0.4)
+      typescript: 5.0.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3797,7 +3785,7 @@ packages:
       '@typescript-eslint/visitor-keys': 5.59.1
     dev: true
 
-  /@typescript-eslint/type-utils@5.59.1(eslint@8.39.0)(typescript@4.9.5):
+  /@typescript-eslint/type-utils@5.59.1(eslint@8.39.0)(typescript@5.0.4):
     resolution: {integrity: sha512-ZMWQ+Oh82jWqWzvM3xU+9y5U7MEMVv6GLioM3R5NJk6uvP47kZ7YvlgSHJ7ERD6bOY7Q4uxWm25c76HKEwIjZw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3807,12 +3795,12 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/typescript-estree': 5.59.1(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.59.1(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
       debug: 4.3.4(supports-color@8.1.1)
       eslint: 8.39.0
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
+      tsutils: 3.21.0(typescript@5.0.4)
+      typescript: 5.0.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3820,27 +3808,6 @@ packages:
   /@typescript-eslint/types@5.59.1:
     resolution: {integrity: sha512-dg0ICB+RZwHlysIy/Dh1SP+gnXNzwd/KS0JprD3Lmgmdq+dJAJnUPe1gNG34p0U19HvRlGX733d/KqscrGC1Pg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
-  /@typescript-eslint/typescript-estree@5.59.1(typescript@4.9.5):
-    resolution: {integrity: sha512-lYLBBOCsFltFy7XVqzX0Ju+Lh3WPIAWxYpmH/Q7ZoqzbscLiCW00LeYCdsUnnfnj29/s1WovXKh2gwCoinHNGA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.59.1
-      '@typescript-eslint/visitor-keys': 5.59.1
-      debug: 4.3.4(supports-color@8.1.1)
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.5.0
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@typescript-eslint/typescript-estree@5.59.1(typescript@5.0.4):
@@ -3864,7 +3831,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/utils@5.59.1(eslint@8.39.0)(typescript@4.9.5):
+  /@typescript-eslint/utils@5.59.1(eslint@8.39.0)(typescript@5.0.4):
     resolution: {integrity: sha512-MkTe7FE+K1/GxZkP5gRj3rCztg45bEhsd8HYjczBuYm+qFHP5vtZmjx3B0yUCDotceQ4sHgTyz60Ycl225njmA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -3875,7 +3842,7 @@ packages:
       '@types/semver': 7.3.13
       '@typescript-eslint/scope-manager': 5.59.1
       '@typescript-eslint/types': 5.59.1
-      '@typescript-eslint/typescript-estree': 5.59.1(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.59.1(typescript@5.0.4)
       eslint: 8.39.0
       eslint-scope: 5.1.1
       semver: 7.5.0
@@ -3892,8 +3859,8 @@ packages:
       eslint-visitor-keys: 3.4.0
     dev: true
 
-  /@typespec/compiler@0.44.0-dev.21:
-    resolution: {integrity: sha512-j5eadBDuebOmb9Q5j6214Vr7i1DQrsahN7xl+wZ9LDKH6THr5g8h9RPVPibRThHLAe+hFwKnvObB8EtHwY+CjQ==}
+  /@typespec/compiler@0.44.0:
+    resolution: {integrity: sha512-NESRujXwHHhJZsHn+Bf4zOlJ2eTJB/oYRIFMqV7lAOut3OILngQfmO3iVLpTVrHjwgrUdetU1GXt1Ref3rmATA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -3913,89 +3880,92 @@ packages:
       vscode-languageserver-textdocument: 1.0.8
       yargs: 17.7.1
 
-  /@typespec/eslint-config-typespec@0.6.0(prettier@2.8.8):
-    resolution: {integrity: sha512-ZjANoGn+kLr8lDlP5RijeTqKLvVMjq7Vr98dQT8jrz41i+Oal6eCLwHc7JdmssFF9d/czsVaWlBcLH//r3KMLg==}
+  /@typespec/eslint-config-typespec@0.7.0(prettier@2.8.8):
+    resolution: {integrity: sha512-FkBHQFA6RfpSKkkHV4N8rT0SH9fXQPuGwzjSQkbrDV5QoWtbMU7JBbdbIotXnaXCsf/VEMPPXQKrZvjwgPhd+Q==}
     dependencies:
       '@rushstack/eslint-patch': 1.1.0
-      '@typescript-eslint/eslint-plugin': 5.59.1(@typescript-eslint/parser@5.59.1)(eslint@8.39.0)(typescript@4.9.5)
+      '@typescript-eslint/eslint-plugin': 5.59.1(@typescript-eslint/parser@5.59.1)(eslint@8.39.0)(typescript@5.0.4)
       '@typescript-eslint/parser': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
       eslint: 8.39.0
       eslint-config-prettier: 8.8.0(eslint@8.39.0)
+      eslint-plugin-deprecation: 1.4.1(eslint@8.39.0)(typescript@5.0.4)
       eslint-plugin-mocha: 10.1.0(eslint@8.39.0)
       eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.39.0)(prettier@2.8.8)
       eslint-plugin-unicorn: 42.0.0(eslint@8.39.0)
-      typescript: 4.9.5
+      typescript: 5.0.4
     transitivePeerDependencies:
       - prettier
       - supports-color
     dev: true
 
-  /@typespec/http@0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21):
-    resolution: {integrity: sha512-beAC6UCdZJIBLL2HkzfGB8aaV7V122/TFvLV+6rb1XNksiCEfjtIHNNxr815yTZFarNxf56rJFsgaUkjZ195vg==}
+  /@typespec/http@0.44.0(@typespec/compiler@0.44.0):
+    resolution: {integrity: sha512-isIcg0/fidnbUeSp9qX1ir5XXThrKrdhwXle1Y4f+sR0DcTf4gJSEesjiZkV+Ea7u5nHjJ3/f+/Stp6XyuwOZw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
+      '@typespec/compiler': 0.44.0
 
-  /@typespec/lint@0.43.0(@typespec/compiler@0.44.0-dev.21):
-    resolution: {integrity: sha512-Hs4zEws8+ZOu3wuN32dmAKOkvlmQzdpkd96Wyx8tT4j3aovf1APqlGjozgp9DZcKxpT+jAxpS+GLpjBTZEeUnQ==}
+  /@typespec/lint@0.44.0(@typespec/compiler@0.44.0):
+    resolution: {integrity: sha512-IEmaP7+PLDQOeZPqwH0XZe+Llt1P/SUzIj4zLEARBaAbBSGmekwUrXRlwrrDyZEPmmsnuIRuZNuXolG+REUh5g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.43.0
+      '@typespec/compiler': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
+      '@typespec/compiler': 0.44.0
 
-  /@typespec/openapi3@0.44.0-dev.7(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/openapi@0.44.0-dev.2)(@typespec/rest@0.44.0-dev.6)(@typespec/versioning@0.44.0-dev.7):
-    resolution: {integrity: sha512-1+nHCXHhiKY1pQv4W/MjaXbYCGFJQRasEmVqV7/KZm6an/nMQU/pXdgQqZzdapajQSxmTHUjy/0jCBZCkreAsQ==}
+  /@typespec/openapi3@0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/openapi@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-VhjwPFFgBPY1eSn3OoerinxLGDldmHVp2NzQLMIT48n1/7MXTzxzggoKNRt3NXjkqM/C3YvoE0kYzpQLUa5JFQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/openapi': '>=0.43.0'
-      '@typespec/rest': '>=0.43.0'
-      '@typespec/versioning': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/openapi': ~0.44.0
+      '@typespec/rest': ~0.44.0
+      '@typespec/versioning': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
-      '@typespec/http': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/openapi': 0.44.0-dev.2(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6)
-      '@typespec/rest': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/versioning': 0.44.0-dev.7
+      '@typespec/compiler': 0.44.0
+      '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/openapi': 0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
+      '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/versioning': 0.44.0(@typespec/compiler@0.44.0)
       js-yaml: 4.1.0
     dev: true
 
-  /@typespec/openapi@0.44.0-dev.2(@typespec/compiler@0.44.0-dev.21)(@typespec/http@0.44.0-dev.6)(@typespec/rest@0.44.0-dev.6):
-    resolution: {integrity: sha512-n0KvakoqMejZPd0ohYNl3Op2sDEbSPeYVDEqbFMb8gLdXSHFnS6GKzidpIbdyf248RFVxsWHUqyuk5FD4ypd5w==}
+  /@typespec/openapi@0.44.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0):
+    resolution: {integrity: sha512-uZ8rZ4cIWDsBKGbmUODu5HjAimnePmajQ5xO5QJGji9E/nK8LuEsJEnQA/qXaahEbiZTwZCH5J+ooPFLbEzXEA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
-      '@typespec/http': '>=0.43.1'
-      '@typespec/rest': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/rest': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
-      '@typespec/http': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
-      '@typespec/rest': 0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21)
+      '@typespec/compiler': 0.44.0
+      '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
     dev: true
 
-  /@typespec/prettier-plugin-typespec@0.43.0:
-    resolution: {integrity: sha512-00Cqq0oBpE5nngex8m2se+3MZNQaAP+YRLwFjy+sGN5WgLGQtjxyO9Mr4zIj1TyMSXhpNoIab8MpTjN+xLvtQg==}
+  /@typespec/prettier-plugin-typespec@0.44.0:
+    resolution: {integrity: sha512-dDvvW446FcqOkDuLV8wepTpyZT5y0sI2Crhmp7kUbqpU2GznKd8hkxLVRXQxlUtga63vqiEYuZwvFd109OWttQ==}
     dependencies:
       prettier: 2.8.8
     dev: true
 
-  /@typespec/rest@0.44.0-dev.6(@typespec/compiler@0.44.0-dev.21):
-    resolution: {integrity: sha512-Ti5NIHGJAzHFbZPDTBpeQ/luO9rq9h8hETxc66F0hUTBVymblUoA8f3n2BZCpIh+QEGqSCvmTWMZHPaUXhtwoQ==}
+  /@typespec/rest@0.44.0(@typespec/compiler@0.44.0):
+    resolution: {integrity: sha512-frHx0cKyvrtB3CST4x/38QevoSWj+anSmCDW2mvdUwV7PEkTzC5b3d0O3LDbCECT/WHp09PCkKqMEODe03xBlQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': '>=0.43.0'
+      '@typespec/compiler': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
+      '@typespec/compiler': 0.44.0
 
-  /@typespec/versioning@0.44.0-dev.7:
-    resolution: {integrity: sha512-SvIXLiesoIH3BllS3+zWCMp4cwlbwqZw2B/rCqu+I+zQmMY9fTi3EDS8cInBNZf1mjARvjvoe/EFdZYt8ucGSA==}
+  /@typespec/versioning@0.44.0(@typespec/compiler@0.44.0):
+    resolution: {integrity: sha512-7Z+1wV3XM4W+QbkWFVyOsoQXtS9y4aUcpq5rbLtUCUTvI26IcTOv94b2+HbPJl2x7j3o+KYfvVLVj8fiCqxXJg==}
     engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.44.0
     dependencies:
-      '@typespec/compiler': 0.44.0-dev.21
+      '@typespec/compiler': 0.44.0
 
   /@vitejs/plugin-react@4.0.0(vite@4.3.2):
     resolution: {integrity: sha512-HX0XzMjL3hhOYm+0s95pb0Z7F8O81G7joUHgfDd/9J/ZZf5k4xX6QAMFkKsHFxaHlf6X7GD7+XuaZ66ULiJuhQ==}
@@ -5445,6 +5415,21 @@ packages:
       debug: 3.2.7
       eslint: 8.39.0
       eslint-import-resolver-node: 0.3.7
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint-plugin-deprecation@1.4.1(eslint@8.39.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-4vxTghWzxsBukPJVQupi6xlTuDc8Pyi1QlRCrFiLgwLPMJQW3cJCNaehJUKQqQFvuue5m4W27e179Y3Qjzeghg==}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
+      eslint: 8.39.0
+      tslib: 2.5.0
+      tsutils: 3.21.0(typescript@5.0.4)
+      typescript: 5.0.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9597,16 +9582,6 @@ packages:
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
-  /tsutils@3.21.0(typescript@4.9.5):
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 4.9.5
-    dev: true
-
   /tsutils@3.21.0(typescript@5.0.4):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -9703,12 +9678,6 @@ packages:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
     dependencies:
       is-typedarray: 1.0.0
-    dev: true
-
-  /typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
     dev: true
 
   /typescript@5.0.4:

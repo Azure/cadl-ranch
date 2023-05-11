@@ -25,8 +25,9 @@ enum Versions {
   v2022_12_01_preview: "2022-12-01-preview",
 }
 
-interface ResourceOperations
-  extends global.Azure.Core.ResourceOperations<NoConditionalRequests & NoRepeatableRequests & NoClientRequestId> {}
+alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
+  NoRepeatableRequests &
+  NoClientRequestId>;
 
 @resource("users")
 @doc("Details about a user.")
