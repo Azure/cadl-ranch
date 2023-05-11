@@ -589,7 +589,7 @@ Expected response body:
 
 - Endpoint: `post /encode/duration/property/default`
 
-Test operation with request and response model contains default format duration property.
+Test operation with request and response model contains a duration property with default encode.
 Expected request body:
 
 ```json
@@ -610,7 +610,7 @@ Expected response body:
 
 - Endpoint: `get /encode/duration/property/float-seconds`
 
-Test operation with request and response model contains float seconds format duration property.
+Test operation with request and response model contains a duration property with float seconds encode.
 Expected request body:
 
 ```json
@@ -631,7 +631,7 @@ Expected response body:
 
 - Endpoint: `get /encode/duration/property/int32-seconds`
 
-Test operation with request and response model contains int32 seconds format duration property.
+Test operation with request and response model contains a duration property with int32 seconds encode.
 Expected request body:
 
 ```json
@@ -652,7 +652,7 @@ Expected response body:
 
 - Endpoint: `post /encode/duration/property/iso8601`
 
-Test operation with request and response model contains iso8601 format duration property.
+Test operation with request and response model contains a duration property with iso8601 encode.
 Expected request body:
 
 ```json
