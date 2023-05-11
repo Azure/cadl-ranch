@@ -47,8 +47,7 @@ async function main() {
     let overridesType: string | undefined = undefined;
     if (addNpmOverrides) {
       overridesType = "overrides";
-    }
-    if (addRushOverrides) {
+    } else if (addRushOverrides) {
       overridesType = "globalOverrides";
     }
     if (overridesType) {
@@ -57,8 +56,8 @@ async function main() {
         deps = {};
         packageJson[overridesType] = deps;
       }
-      for (const packageName in packageToVersionRecord) {
-        deps[packageName] = packageToVersionRecord[packageName];
+      for (const [packageName, version] of Object.entries(packageToVersionRecord)) {
+        deps[packageName] = version;
       }
     }
 
