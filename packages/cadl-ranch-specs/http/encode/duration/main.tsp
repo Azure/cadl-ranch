@@ -61,7 +61,7 @@ namespace Query {
   ): NoContentResponse;
 }
 
-@global.Azure.ClientGenerator.Core.operationGroup
+@operationGroup
 @route("/property")
 namespace Property {
   model DefaultDurationProperty {
