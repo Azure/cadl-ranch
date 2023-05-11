@@ -1,8 +1,8 @@
-import { createCadlLibrary, paramMessage } from "@typespec/compiler";
+import { createTypeSpecLibrary, paramMessage } from "@typespec/compiler";
 
 const repoUrl = `https://github.com/Azure/cadl-ranch`;
 
-export const $lib = createCadlLibrary({
+export const $lib = createTypeSpecLibrary({
   name: "@azure-tools/cadl-ranch-expect",
   diagnostics: {
     "category-invalid": {
