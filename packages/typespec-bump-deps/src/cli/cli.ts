@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import pacote from "pacote";
+import { parseArgs } from "util";
 
 const knownPackages = [
   "@typespec/compiler",
@@ -24,11 +25,19 @@ async function main() {
   // eslint-disable-next-line no-console
   console.log(packageToVersionRecord);
   const args = process.argv.slice(2);
-  const addRushOverridesArg = "--add-rush-overrides";
-  const addNpmOverridesArg = "--add-npm-overrides";
-  const addRushOverrides = args.includes(addRushOverridesArg);
-  const addNpmOverrides = args.includes(addNpmOverridesArg);
-  const packageJsonPaths = args.filter((arg) => arg !== addRushOverridesArg && arg !== addNpmOverridesArg);
+  const booleanUnionType: "string" | "boolean" = "boolean";
+  const options = {
+    "add-rush-overrides": {
+      type: booleanUnionType,
+    },
+    "add-npm-overrides": {
+      type: booleanUnionType,
+    },
+  };
+  const { values, positionals } = parseArgs({ args, options, allowPositionals: true });
+  const packageJsonPaths = positionals;
+  const addRushOverrides = values["add-rush-overrides"];
+  const addNpmOverrides = values["add-npm-overrides"];
   for (const packageJsonPath of packageJsonPaths) {
     const content = await readFile(packageJsonPath);
     const packageJson = JSON.parse(content.toString());
