@@ -39,8 +39,10 @@ words:
   - onwarn
   - openapi
   - openapiv
+  - pacote
   - picocolors
   - pnpm
+  - positionals
   - proto
   - protobuf
   - protoc
