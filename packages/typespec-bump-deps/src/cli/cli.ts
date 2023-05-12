@@ -25,15 +25,14 @@ async function main() {
   // eslint-disable-next-line no-console
   console.log(packageToVersionRecord);
   const args = process.argv.slice(2);
-  const booleanUnionType: "string" | "boolean" = "boolean";
   const options = {
     "add-rush-overrides": {
-      type: booleanUnionType,
+      type: "boolean",
     },
     "add-npm-overrides": {
-      type: booleanUnionType,
+      type: "boolean",
     },
-  };
+  } as const;
   const { values, positionals } = parseArgs({ args, options, allowPositionals: true });
   const packageJsonPaths = positionals;
   const addRushOverrides = values["add-rush-overrides"];
