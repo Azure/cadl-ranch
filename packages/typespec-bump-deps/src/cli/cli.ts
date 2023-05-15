@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import pacote from "pacote";
+import { parseArgs } from "util";
 
 const knownPackages = [
   "@typespec/compiler",
@@ -23,7 +24,19 @@ async function main() {
   console.log("The following is a mapping between packages and the versions we will update them to");
   // eslint-disable-next-line no-console
   console.log(packageToVersionRecord);
-  const packageJsonPaths = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  const options = {
+    "add-rush-overrides": {
+      type: "boolean",
+    },
+    "add-npm-overrides": {
+      type: "boolean",
+    },
+  } as const;
+  const { values, positionals } = parseArgs({ args, options, allowPositionals: true });
+  const packageJsonPaths = positionals;
+  const addRushOverrides = values["add-rush-overrides"];
+  const addNpmOverrides = values["add-npm-overrides"];
   for (const packageJsonPath of packageJsonPaths) {
     const content = await readFile(packageJsonPath);
     const packageJson = JSON.parse(content.toString());
@@ -37,6 +50,25 @@ async function main() {
         }
       }
     }
+
+    // add/merge package versions into "overrides" or "globalOverrides"
+    let overridesType: string | undefined = undefined;
+    if (addNpmOverrides) {
+      overridesType = "overrides";
+    } else if (addRushOverrides) {
+      overridesType = "globalOverrides";
+    }
+    if (overridesType) {
+      let deps = packageJson[overridesType];
+      if (deps === undefined) {
+        deps = {};
+        packageJson[overridesType] = deps;
+      }
+      for (const [packageName, version] of Object.entries(packageToVersionRecord)) {
+        deps[packageName] = version;
+      }
+    }
+
     // eslint-disable-next-line no-console
     console.log(`Updated ${packageJsonPath}`);
     await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
