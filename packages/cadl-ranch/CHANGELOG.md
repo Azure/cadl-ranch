@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.14
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+- Updated dependencies [440c7ab]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.4
+  - @azure-tools/cadl-ranch-expect@0.3.1
+
 ## 0.4.13
 
 ### Patch Changes

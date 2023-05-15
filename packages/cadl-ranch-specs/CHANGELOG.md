@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.0
+
+### Minor Changes
+
+- 895cd7b: Bug fix for baseUrl in LRO mockapi
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+- 63506e3: Add test for encode on duration.
+- Updated dependencies [440c7ab]
+  - @azure-tools/cadl-ranch-expect@0.3.1
+  - @azure-tools/cadl-ranch@0.4.14
+
 ## 0.14.10
 
 ### Patch Changes

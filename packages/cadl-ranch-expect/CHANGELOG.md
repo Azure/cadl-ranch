@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.3.1
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+
 ## 0.3.0
 
 ### Minor Changes
