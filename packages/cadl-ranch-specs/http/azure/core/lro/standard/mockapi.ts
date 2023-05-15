@@ -16,7 +16,7 @@ Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
     return {
       status: 201,
       headers: {
-        "operation-location": "http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation1",
+        "operation-location": `${req.baseUrl}/azure/core/lro/standard/users/madge/operations/operation1`,
       },
       body: json(validUser),
     };
@@ -41,7 +41,7 @@ Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
     return {
       status: 202,
       headers: {
-        "operation-location": "http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation2",
+        "operation-location": `${req.baseUrl}/azure/core/lro/standard/users/madge/operations/operation2`,
       },
       body: json({ id: "operation2", status: "InProgress" }),
     };
@@ -62,7 +62,7 @@ Scenarios.Azure_Core_Lro_Standard_export = passOnSuccess([
     return {
       status: 202,
       headers: {
-        "operation-location": "http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation3",
+        "operation-location": `${req.baseUrl}/azure/core/lro/standard/users/madge/operations/operation3`,
       },
       body: json({ id: "operation3", status: "InProgress" }),
     };
