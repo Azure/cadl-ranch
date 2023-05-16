@@ -183,7 +183,7 @@ namespace Header {
   Expected header `duration: P40D`
   """)
   op iso8601(
-    @query
+    @header
     @encode(DurationKnownEncoding.ISO8601)
     duration: duration
   ): NoContentResponse;
@@ -195,7 +195,7 @@ namespace Header {
   Expected header `duration: 36`
   """)
   op int32Seconds(
-    @query
+    @header
     @encode(DurationKnownEncoding.seconds, int32)
     duration: duration
   ): NoContentResponse;
@@ -207,7 +207,7 @@ namespace Header {
   Expected header `duration: 35.621`
   """)
   op floatSeconds(
-    @query
+    @header
     @encode(DurationKnownEncoding.seconds, float)
     duration: duration
   ): NoContentResponse;
