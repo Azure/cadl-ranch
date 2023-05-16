@@ -590,7 +590,7 @@ Expected response body:
 - Endpoint: `get /encode/duration/head/default`
 
 Test default encode for a duration header.
-Expected query parameter `input=P40D`
+Expected header `input=P40D`
 
 ### Encode_Duration_Head_floatSeconds
 

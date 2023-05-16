@@ -169,7 +169,7 @@ namespace Head {
   @scenario
   @scenarioDoc("""
   Test default encode for a duration header.
-  Expected query parameter `input=P40D`
+  Expected header `input=P40D`
   """)
   op default(
     @header
