@@ -585,30 +585,30 @@ Expected response body:
 }
 ```
 
-### Encode_Duration_Head_default
+### Encode_Duration_Header_default
 
-- Endpoint: `get /encode/duration/head/default`
+- Endpoint: `get /encode/duration/header/default`
 
 Test default encode for a duration header.
 Expected header `input=P40D`
 
-### Encode_Duration_Head_floatSeconds
+### Encode_Duration_Header_floatSeconds
 
-- Endpoint: `get /encode/duration/head/float-seconds`
+- Endpoint: `get /encode/duration/header/float-seconds`
 
 Test float seconds encode for a duration header.
 Expected header `duration: 35.621`
 
-### Encode_Duration_Head_int32Seconds
+### Encode_Duration_Header_int32Seconds
 
-- Endpoint: `get /encode/duration/head/int32-seconds`
+- Endpoint: `get /encode/duration/header/int32-seconds`
 
 Test int32 seconds encode for a duration header.
 Expected header `duration: 36`
 
-### Encode_Duration_Head_iso8601
+### Encode_Duration_Header_iso8601
 
-- Endpoint: `get /encode/duration/head/iso8601`
+- Endpoint: `get /encode/duration/header/iso8601`
 
 Test iso8601 encode for a duration header.
 Expected header `duration: P40D`

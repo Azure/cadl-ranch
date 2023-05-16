@@ -163,8 +163,8 @@ namespace Property {
 }
 
 @operationGroup
-@route("/head")
-namespace Head {
+@route("/header")
+namespace Header {
   @route("/default")
   @scenario
   @scenarioDoc("""
