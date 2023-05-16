@@ -161,3 +161,54 @@ namespace Property {
   """)
   op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
 }
+
+@operationGroup
+@route("/head")
+namespace Head {
+  @route("/default")
+  @scenario
+  @scenarioDoc("""
+  Test default encode for a duration header.
+  Expected query parameter `input=P40D`
+  """)
+  op default(
+    @header
+    duration: duration
+  ): NoContentResponse;
+
+  @route("/iso8601")
+  @scenario
+  @scenarioDoc("""
+  Test iso8601 encode for a duration header.
+  Expected header `duration: P40D`
+  """)
+  op iso8601(
+    @query
+    @encode(DurationKnownEncoding.ISO8601)
+    duration: duration
+  ): NoContentResponse;
+
+  @route("/int32-seconds")
+  @scenario
+  @scenarioDoc("""
+  Test int32 seconds encode for a duration header.
+  Expected header `duration: 36`
+  """)
+  op int32Seconds(
+    @query
+    @encode(DurationKnownEncoding.seconds, int32)
+    duration: duration
+  ): NoContentResponse;
+
+  @route("/float-seconds")
+  @scenario
+  @scenarioDoc("""
+  Test float seconds encode for a duration header.
+  Expected header `duration: 35.621`
+  """)
+  op floatSeconds(
+    @query
+    @encode(DurationKnownEncoding.seconds, float)
+    duration: duration
+  ): NoContentResponse;
+}
