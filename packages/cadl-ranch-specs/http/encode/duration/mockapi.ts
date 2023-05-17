@@ -24,6 +24,16 @@ function createPropertyMockApis(route: string, value: any): MockApi {
   });
 }
 
+function createHeaderMockApis(route: string, value: any): MockApi {
+  const url = `/encode/duration/header/${route}`;
+  return mockapi.get(url, (req) => {
+    req.expect.containsHeader("duration", value);
+    return {
+      status: 204,
+    };
+  });
+}
+
 Scenarios.Encode_Duration_Query_default = passOnSuccess(createQueryMockApis("default", "P40D"));
 Scenarios.Encode_Duration_Query_iso8601 = passOnSuccess(createQueryMockApis("iso8601", "P40D"));
 Scenarios.Encode_Duration_Query_int32Seconds = passOnSuccess(createQueryMockApis("int32-seconds", "36"));
@@ -33,3 +43,8 @@ Scenarios.Encode_Duration_Property_default = passOnSuccess(createPropertyMockApi
 Scenarios.Encode_Duration_Property_iso8601 = passOnSuccess(createPropertyMockApis("iso8601", "P40D"));
 Scenarios.Encode_Duration_Property_int32Seconds = passOnSuccess(createPropertyMockApis("int32-seconds", 36));
 Scenarios.Encode_Duration_Property_floatSeconds = passOnSuccess(createPropertyMockApis("float-seconds", 35.621));
+
+Scenarios.Encode_Duration_Header_default = passOnSuccess(createHeaderMockApis("default", "P40D"));
+Scenarios.Encode_Duration_Header_iso8601 = passOnSuccess(createHeaderMockApis("iso8601", "P40D"));
+Scenarios.Encode_Duration_Header_int32Seconds = passOnSuccess(createHeaderMockApis("int32-seconds", "36"));
+Scenarios.Encode_Duration_Header_floatSeconds = passOnSuccess(createHeaderMockApis("float-seconds", "35.621"));
