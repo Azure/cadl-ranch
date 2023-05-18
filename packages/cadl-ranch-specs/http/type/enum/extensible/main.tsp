@@ -6,13 +6,21 @@ using TypeSpec.Http;
 @scenarioService("/type/enum/extensible")
 namespace Type.Enum.Extensible;
 
+@doc("Days of the week")
 enum DaysOfWeekExtensibleEnum {
+  @doc("Monday.")
   Monday,
+  @doc("Tuesday.")
   Tuesday,
+  @doc("Wednesday.")
   Wednesday,
+  @doc("Thursday.")
   Thursday,
+  @doc("Friday.")
   Friday,
+  @doc("Saturday.")
   Saturday,
+  @doc("Sunday.")
   Sunday,
 }
 

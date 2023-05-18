@@ -10,13 +10,21 @@ namespace Type.Enum.Fixed;
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
 @fixed
+@doc("Days of the week")
 enum DaysOfWeekEnum {
+  @doc("Monday.")
   Monday,
+  @doc("Tuesday.")
   Tuesday,
+  @doc("Wednesday.")
   Wednesday,
+  @doc("Thursday.")
   Thursday,
+  @doc("Friday.")
   Friday,
+  @doc("Saturday.")
   Saturday,
+  @doc("Sunday.")
   Sunday,
 }
 

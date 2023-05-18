@@ -28,7 +28,9 @@ using TypeSpec.Versioning;
 )
 namespace Resiliency.ServiceDriven;
 
+@doc("Service versions.")
 enum Versions {
+  @doc("Version 1")
   v1,
 }
 
