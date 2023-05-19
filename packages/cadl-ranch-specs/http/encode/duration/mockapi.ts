@@ -44,7 +44,7 @@ Scenarios.Encode_Duration_Property_iso8601 = passOnSuccess(createPropertyMockApi
 Scenarios.Encode_Duration_Property_int32Seconds = passOnSuccess(createPropertyMockApis("int32-seconds", 36));
 Scenarios.Encode_Duration_Property_floatSeconds = passOnSuccess(createPropertyMockApis("float-seconds", 35.621));
 Scenarios.Encode_Duration_Property_floatSecondsArray = passOnSuccess(
-  createPropertyMockApis("float-seconds", [35.621, 46.781]),
+  createPropertyMockApis("float-seconds-array", [35.621, 46.781]),
 );
 
 Scenarios.Encode_Duration_Header_default = passOnSuccess(createHeaderMockApis("default", "P40D"));
