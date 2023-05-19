@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.1
+
+### Patch Changes
+
+- 53d3826: Add docs to enums and enum values.
+- 33a9d16: Add test for @encode on duration header
+- Updated dependencies [53d3826]
+  - @azure-tools/cadl-ranch@0.4.15
+
 ## 0.15.0
 
 ### Minor Changes
