@@ -122,3 +122,11 @@ Scenarios.Type_Model_Inheritance_Discriminated_getWrongDiscriminator = passOnSuc
     return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
   }),
 );
+
+const putModelRecordUnknownBody = {name: "ModelRecordUnknown", prop1: 32, prop2: true, prop3: "abc"}
+Scenarios.Type_Model_Inheritance_putModelRecordUnknown = passOnSuccess(
+  mockapi.put("/type/model/inheritance/record/unknown", (req) => {
+    req.expect.bodyEquals(putModelRecordUnknownBody);
+    return { status: 200, body: json(putModelRecordUnknownBody) };
+  }),
+);

@@ -52,6 +52,11 @@ model GoblinShark extends Shark {
   sharktype: "goblin";
 }
 
+@doc("The model extends from Record<unknown> type.")
+model ModelRecordUnknown extends Record<unknown> {
+  name: string;
+}
+
 @scenario
 @scenarioDoc("""
 Generate and send model.
@@ -268,3 +273,15 @@ interface Discriminated {
   @get
   getWrongDiscriminator(): Fish;
 }
+
+@scenario
+@scenarioDoc("""
+Generate and receive model.
+Expeted request and response body:
+```json
+{"name": "ModelRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc"}
+```
+""")
+@route("/record/unknown")
+@put
+op putModelRecordUnknown(@body input: ModelRecordUnknown): ModelRecordUnknown;
