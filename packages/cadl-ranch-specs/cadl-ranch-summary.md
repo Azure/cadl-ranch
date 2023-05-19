@@ -655,6 +655,27 @@ Expected response body:
 }
 ```
 
+### Encode_Duration_Property_floatSecondsArray
+
+- Endpoint: `get /encode/duration/property/float-seconds-array`
+
+Test operation with request and response model contains a duration property with float seconds encode.
+Expected request body:
+
+```json
+{
+  "value": [35.621, 46.781]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": [35.621, 46.781]
+}
+```
+
 ### Encode_Duration_Property_int32Seconds
 
 - Endpoint: `get /encode/duration/property/int32-seconds`

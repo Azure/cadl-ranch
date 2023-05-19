@@ -83,6 +83,13 @@ namespace Property {
     value: duration;
   }
 
+  @encode("seconds", float32)
+  scalar Float32Duration extends duration;
+
+  model FloatSecondsDurationArrayProperty {
+    value: Float32Duration[];
+  }
+
   @route("/default")
   @scenario
   @scenarioDoc("""
@@ -160,6 +167,25 @@ namespace Property {
   ```
   """)
   op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
+
+  @route("/float-seconds-array")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains a duration property with float seconds encode.
+  Expected request body:
+  ```json
+  {
+    "value": [35.621, 46.781]
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": [35.621, 46.781]
+  }
+  ```
+  """)
+  op floatSecondsArray(@body body: FloatSecondsDurationArrayProperty): FloatSecondsDurationArrayProperty;
 }
 
 @operationGroup
