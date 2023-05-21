@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.15
+
+### Patch Changes
+
+- 53d3826: Add docs to enums and enum values.
+
 ## 0.4.14
 
 ### Patch Changes
