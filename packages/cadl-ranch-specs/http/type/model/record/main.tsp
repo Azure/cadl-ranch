@@ -5,7 +5,7 @@ using TypeSpec.Http;
 
 @doc("Illustrates model that extends from record.")
 @scenarioService("/type/model/record")
-namespace Type.Model.Record;
+namespace Type.Model.RecordTest;
 
 @doc("The model extends from Record<unknown> type.")
 model ModelRecordUnknown extends Record<unknown> {
@@ -22,8 +22,8 @@ interface RecordUnknown {
   ```
   """)
   @post
-  op postModelRecordUnknown(@body input: ModelRecordUnknown): OkResponse;
-  
+  postModelRecordUnknown(@body input: ModelRecordUnknown): OkResponse;
+
   @scenario
   @scenarioDoc("""
   Expeted response body:
@@ -32,6 +32,5 @@ interface RecordUnknown {
   ```
   """)
   @get
-  op getModelRecordUnknown(): ModelRecordUnknown;
+  getModelRecordUnknown(): ModelRecordUnknown;
 }
-

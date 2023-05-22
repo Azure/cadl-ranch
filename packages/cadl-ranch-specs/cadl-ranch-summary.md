@@ -1760,6 +1760,26 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Type_Model_RecordTest_RecordUnknown_getModelRecordUnknown
+
+- Endpoint: `get /type/model/record/unknown`
+
+Expeted response body:
+
+```json
+{ "name": "ModelRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
+```
+
+### Type_Model_RecordTest_RecordUnknown_postModelRecordUnknown
+
+- Endpoint: `post /type/model/record/unknown`
+
+Expeted request body:
+
+```json
+{ "name": "ModelRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
+```
+
 ### Type_Model_Usage_input
 
 - Endpoint: `get /type/model/usage/input`
