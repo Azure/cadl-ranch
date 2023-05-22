@@ -59,6 +59,22 @@ namespace Query {
     @encode(DurationKnownEncoding.seconds, float)
     input: duration
   ): NoContentResponse;
+
+  @encode(DurationKnownEncoding.seconds, int32)
+  scalar Int32Duration extends duration;
+
+  @route("/int32-seconds-array")
+  @scenario
+  @scenarioDoc("""
+  Test int32 seconds encode for a duration array parameter.
+  Expected query parameter `input=36,47`
+  """)
+  op int32SecondsArray(
+    @query({
+      format: "csv",
+    })
+    input: Int32Duration[]
+  ): NoContentResponse;
 }
 
 @operationGroup
@@ -81,6 +97,13 @@ namespace Property {
   model FloatSecondsDurationProperty {
     @encode(DurationKnownEncoding.seconds, float)
     value: duration;
+  }
+
+  @encode(DurationKnownEncoding.seconds, float32)
+  scalar Float32Duration extends duration;
+
+  model FloatSecondsDurationArrayProperty {
+    value: Float32Duration[];
   }
 
   @route("/default")
@@ -160,6 +183,25 @@ namespace Property {
   ```
   """)
   op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
+
+  @route("/float-seconds-array")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains an array property which elements are duration with float seconds encode.
+  Expected request body:
+  ```json
+  {
+    "value": [35.621, 46.781]
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": [35.621, 46.781]
+  }
+  ```
+  """)
+  op floatSecondsArray(@body body: FloatSecondsDurationArrayProperty): FloatSecondsDurationArrayProperty;
 }
 
 @operationGroup
@@ -186,6 +228,22 @@ namespace Header {
     @header
     @encode(DurationKnownEncoding.ISO8601)
     duration: duration
+  ): NoContentResponse;
+
+  @encode(DurationKnownEncoding.ISO8601)
+  scalar Iso8601Duration extends duration;
+
+  @route("/iso8601-array")
+  @scenario
+  @scenarioDoc("""
+  Test iso8601 encode for a duration array header.
+  Expected header `duration: [P40D,P50D]`
+  """)
+  op iso8601Array(
+    @header({
+      format: "csv",
+    })
+    duration: Iso8601Duration[]
   ): NoContentResponse;
 
   @route("/int32-seconds")

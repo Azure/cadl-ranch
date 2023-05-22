@@ -613,6 +613,13 @@ Expected header `duration: 36`
 Test iso8601 encode for a duration header.
 Expected header `duration: P40D`
 
+### Encode_Duration_Header_iso8601Array
+
+- Endpoint: `get /encode/duration/header/iso8601-array`
+
+Test iso8601 encode for a duration array header.
+Expected header `duration: [P40D,P50D]`
+
 ### Encode_Duration_Property_default
 
 - Endpoint: `post /encode/duration/property/default`
@@ -652,6 +659,27 @@ Expected response body:
 ```json
 {
   "value": 35.621
+}
+```
+
+### Encode_Duration_Property_floatSecondsArray
+
+- Endpoint: `get /encode/duration/property/float-seconds-array`
+
+Test operation with request and response model contains an array property which elements are duration with float seconds encode.
+Expected request body:
+
+```json
+{
+  "value": [35.621, 46.781]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": [35.621, 46.781]
 }
 ```
 
@@ -717,6 +745,13 @@ Expected query parameter `input=35.621`
 
 Test int32 seconds encode for a duration parameter.
 Expected query parameter `input=36`
+
+### Encode_Duration_Query_int32SecondsArray
+
+- Endpoint: `get /encode/duration/query/int32-seconds-array`
+
+Test int32 seconds encode for a duration array parameter.
+Expected query parameter `input=36,47`
 
 ### Encode_Duration_Query_iso8601
 
