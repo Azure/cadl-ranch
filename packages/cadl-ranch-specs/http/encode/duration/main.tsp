@@ -59,6 +59,22 @@ namespace Query {
     @encode(DurationKnownEncoding.seconds, float)
     input: duration
   ): NoContentResponse;
+
+  @encode(DurationKnownEncoding.seconds, int32)
+  scalar Int32Duration extends duration;
+
+  @route("/int32-seconds-array")
+  @scenario
+  @scenarioDoc("""
+  Test int32 seconds encode for a duration array parameter.
+  Expected query parameter `input=36,47`
+  """)
+  op int32SecondsArray(
+    @query({
+      format: "csv",
+    })
+    input: Int32Duration[]
+  ): NoContentResponse;
 }
 
 @operationGroup
@@ -83,7 +99,7 @@ namespace Property {
     value: duration;
   }
 
-  @encode("seconds", float32)
+  @encode(DurationKnownEncoding.seconds, float32)
   scalar Float32Duration extends duration;
 
   model FloatSecondsDurationArrayProperty {
@@ -171,7 +187,7 @@ namespace Property {
   @route("/float-seconds-array")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with float seconds encode.
+  Test operation with request and response model contains an array property which elements are duration with float seconds encode.
   Expected request body:
   ```json
   {
@@ -212,6 +228,22 @@ namespace Header {
     @header
     @encode(DurationKnownEncoding.ISO8601)
     duration: duration
+  ): NoContentResponse;
+
+  @encode(DurationKnownEncoding.ISO8601)
+  scalar Iso8601Duration extends duration;
+
+  @route("/iso8601-array")
+  @scenario
+  @scenarioDoc("""
+  Test iso8601 encode for a duration array header.
+  Expected header `duration: [P40D,P50D]`
+  """)
+  op iso8601Array(
+    @header({
+      format: "csv",
+    })
+    duration: Iso8601Duration[]
   ): NoContentResponse;
 
   @route("/int32-seconds")
