@@ -76,7 +76,7 @@ interface FooOp {
 @route("/cadl-bar")
 interface BarOp {
   // binary
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
   @scenario
   @scenarioDoc("get binary data")
   @doc("get binary data")
@@ -87,16 +87,17 @@ interface BarOp {
     @body body: bytes;
   };
 
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
   @scenario
   @scenarioDoc("get array data")
   @doc("get array data")
   getArray(): ResourceArray;
 
   // response with headers
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
   @scenario
   @scenarioDoc("create with headers")
+  @global.Azure.Core.pollingOperation(BarOp.getStatus)
   @doc("create with headers")
   @route("/create-with-headers")
   @put
@@ -107,9 +108,10 @@ interface BarOp {
     body: Resource;
   };
 
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
   @scenario
   @scenarioDoc("delete with headers")
+  @global.Azure.Core.pollingOperation(BarOp.getStatus)
   @doc("delete with headers")
   @route("/delete-with-headers")
   @delete
@@ -118,7 +120,7 @@ interface BarOp {
     operationLocation: ResourceLocation<Resource>;
   };
 
-  @pollingOperation
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
   @scenario
   @scenarioDoc("polling operation")
   @doc("polling operation")

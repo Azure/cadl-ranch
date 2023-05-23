@@ -585,6 +585,60 @@ Expected response body:
 }
 ```
 
+### Cadl_MultiClient_BarOp_createWithHeaders
+
+- Endpoint: `put /multi-clients/cadl-bar/create-with-headers`
+
+create with headers
+
+### Cadl_MultiClient_BarOp_deleteWithHeaders
+
+- Endpoint: `delete /multi-clients/cadl-bar/delete-with-headers`
+
+delete with headers
+
+### Cadl_MultiClient_BarOp_getArray
+
+- Endpoint: `get /multi-clients/cadl-bar`
+
+get array data
+
+### Cadl_MultiClient_BarOp_getBinary
+
+- Endpoint: `get /multi-clients/cadl-bar/get-binary`
+
+get binary data
+
+### Cadl_MultiClient_BarOp_getStatus
+
+- Endpoint: `get /multi-clients/cadl-bar/status`
+
+polling operation
+
+### Cadl_MultiClient_FooOp_createOrUpdate
+
+- Endpoint: `get /multi-clients/cadl-foo`
+
+Creates a new resource or updates an existing one.
+
+### Cadl_MultiClient_FooOp_delete
+
+- Endpoint: `get /multi-clients/cadl-foo`
+
+Deletes a resource.
+
+### Cadl_MultiClient_FooOp_get
+
+- Endpoint: `get /multi-clients/cadl-foo`
+
+Gets the details of a resource.
+
+### Cadl_MultiClient_FooOp_list
+
+- Endpoint: `get /multi-clients/cadl-foo`
+
+Lists the existing resources.
+
 ### Encode_Duration_Header_default
 
 - Endpoint: `get /encode/duration/header/default`
