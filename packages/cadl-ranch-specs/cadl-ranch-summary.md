@@ -1760,26 +1760,6 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
-### Type_Model_RecordTest_RecordUnknown_getModelRecordUnknown
-
-- Endpoint: `get /type/model/record/unknown`
-
-Expeted response body:
-
-```json
-{ "name": "ModelRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
-```
-
-### Type_Model_RecordTest_RecordUnknown_postModelRecordUnknown
-
-- Endpoint: `post /type/model/record/unknown`
-
-Expeted request body:
-
-```json
-{ "name": "ModelRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
-```
-
 ### Type_Model_Usage_input
 
 - Endpoint: `get /type/model/usage/input`
@@ -1883,6 +1863,56 @@ Expected input body:
   "createProp": ["foo", "bar"],
   "updateProp": [1, 2]
 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsRecordUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/extends/record/unknown`
+
+Expected response body:
+
+```json
+{
+  "name": "ModelExtendsRecordUnknown",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsRecordUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/extends/record/unknown`
+
+Expected input body:
+
+```json
+{
+  "name": "ModelExtendsRecordUnknown",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsRecordUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/is/record/unknown`
+
+Expected response body:
+
+```json
+{ "name": "ModelIsRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsRecordUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/is/record/unknown`
+
+Expected input body:
+
+```json
+{ "name": "ModelIsRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
 ```
 
 ### Type_Property_Nullable_Bytes_getNonNull
