@@ -4,11 +4,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "./util.tsp";
 
-using Azure.Core;
-using global.Azure.Core.Traits;
 using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using global.Azure.Core;
+using global.Azure.Core.Traits;
 
 /**
  * WARNING this scenario is using some non standard Azure.Core operation to get Long running Rpc operation working.
@@ -45,6 +45,9 @@ model JobData {
 @resource("jobs")
 @doc("Result of the job")
 model JobResult {
+  @doc("PollingLocation")
+  @header location?: ResourceLocation<JobResult>;
+  
   @doc("A processing job identifier.")
   @visibility("read")
   @key
@@ -56,28 +59,16 @@ model JobResult {
 
   @doc("The status of the processing job.")
   @visibility("read")
-  status: global.Azure.Core.Foundations.OperationState;
+  @lroStatus
+  status: "Succeeded" | "Canceled" | "Failed" | "Running";
 
   @doc("Error objects that describes the error when status is \"Failed\".")
   @visibility("read")
-  errors?: global.Azure.Core.Foundations.ErrorResponse[];
+  errors?: Foundations.ErrorResponse[];
 
   @doc("The results.")
   @visibility("read")
-  results: string[];
-}
-
-@resource("jobs/operations")
-@doc("Result of the poll")
-model JobPollResult {
-  @doc("Operation identifier.")
-  @visibility("read")
-  @key
-  operationId: string;
-
-  @doc("The status of the processing job.")
-  @visibility("read")
-  status: global.Azure.Core.Foundations.OperationState;
+  results?: string[];
 }
 
 @scenario
@@ -135,87 +126,9 @@ interface SamePollResult {
   @doc("Creates a Job")
   @route("/same-poll-result/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
-  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult>;
+  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, JobResult>;
 
   @doc("Gets the status of a Job")
   @route("/same-poll-result")
   getJob is ResourceOperations.ResourceRead<JobResult>;
-}
-
-@scenario
-@doc("Creates a Job")
-@summary("Creates a Job")
-@scenarioDoc("""
-Expected verb: POST
-Expected request body:
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-""")
-interface DifferentPollResult {
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
-  @doc("Creates a Job")
-  @route("/different-poll-result/jobs")
-  @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)
-  createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<
-    JobData,
-    JobResult,
-    JobPollResult,
-    LocalCore.LongRunningFinalLocation<JobResult>
-  >;
-
-  @doc("Gets the status of a Job")
-  @route("/different-poll-result")
-  getPoll is ResourceOperations.ResourceRead<JobPollResult>;
 }
