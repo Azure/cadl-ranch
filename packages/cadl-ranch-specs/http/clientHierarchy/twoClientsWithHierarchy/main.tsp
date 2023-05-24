@@ -7,6 +7,7 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
 using Azure.ClientGenerator;
+using Azure.ClientGenerator.Core;
 using TypeSpec.Versioning;
 @doc("Illustrates multple sub clients")
 @scenarioService("/multi-clients")
@@ -39,11 +40,6 @@ model Resource {
 @doc("the resource array model")
 model ResourceArray is Resource[];
 
-// operation using Azure.Core
-@Azure.ClientGenerator.Core.client({
-  name: "FooClient",
-  service: Cadl.MultiClient,
-})
 @route("/cadl-foo")
 @doc("Cadl Foo")
 interface FooOp {
@@ -68,10 +64,6 @@ interface FooOp {
   list is ResourceList<Resource>;
 }
 
-@Azure.ClientGenerator.Core.client({
-  name: "BarClient",
-  service: Cadl.MultiClient,
-})
 @doc("Bar")
 @route("/cadl-bar")
 interface BarOp {
@@ -129,4 +121,27 @@ interface BarOp {
   getStatus(): OkResponse & {
 
   }
+}
+
+@client({ name: "ResourceClient", service: Cadl.MultiClient})
+@operationGroup
+interface WriteOperations {
+    createOrUpdateResource is FooOp.createOrUpdate;
+    deleteResource is FooOp.delete;
+    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+    createWithHeaders is BarOp.createWithHeaders;
+    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+    deleteWithHeaders is BarOp.deleteWithHeaders;
+
+}
+
+@client({ name: "Read.ReadResourceClient", service: Cadl.MultiClient})
+@operationGroup 
+interface ReadOperations {
+    getResource is FooOp.get;
+    listResources is FooOp.list;
+    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+    getArray is BarOp.getArray;
+    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+    getBinary is BarOp.getBinary;
 }
