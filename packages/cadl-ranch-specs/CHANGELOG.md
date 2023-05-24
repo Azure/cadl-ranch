@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.2
+
+### Patch Changes
+
+- 5ddb20c: add test for duration array
+
 ## 0.15.1
 
 ### Patch Changes
