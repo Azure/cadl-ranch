@@ -62,7 +62,7 @@ interface ModelOperations<TModel, TDoc extends string> {
   put(@body @doc("body") body: TModel): void;
 }
 
-@route("/extends/record/unknown")
+@route("/extendsRecordUnknown")
 @operationGroup
 interface ExtendsRecordUnknown
   extends ModelOperations<
@@ -70,7 +70,7 @@ interface ExtendsRecordUnknown
       "{'name': 'ModelExtendsRecordUnknown', 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
-@route("/is/record/unknown")
+@route("/isRecordUnknown")
 @operationGroup
 interface IsRecordUnknown
   extends ModelOperations<

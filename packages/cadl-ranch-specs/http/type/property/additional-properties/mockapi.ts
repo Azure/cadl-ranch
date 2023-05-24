@@ -32,7 +32,7 @@ function createMockApis(route: string, value: any): MockApiGetPut {
   };
 }
 
-const extendRecordUnknown = createMockApis("extends/record/unknown", {
+const extendRecordUnknown = createMockApis("extendsRecordUnknown", {
   name: "ModelExtendsRecordUnknown",
   prop1: 32,
   prop2: true,
@@ -41,7 +41,7 @@ const extendRecordUnknown = createMockApis("extends/record/unknown", {
 Scenarios.Type_Property_AdditionalProperties_ExtendsRecordUnknown_get = passOnSuccess(extendRecordUnknown.get);
 Scenarios.Type_Property_AdditionalProperties_ExtendsRecordUnknown_put = passOnSuccess(extendRecordUnknown.put);
 
-const isRecordUnknown = createMockApis("is/record/unknown", {
+const isRecordUnknown = createMockApis("isRecordUnknown", {
   name: "ModelIsRecordUnknown",
   prop1: 32,
   prop2: true,

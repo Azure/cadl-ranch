@@ -1867,7 +1867,7 @@ Expected input body:
 
 ### Type_Property_AdditionalProperties_ExtendsRecordUnknown_get
 
-- Endpoint: `get /type/property/additionalProperties/extends/record/unknown`
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknown`
 
 Expected response body:
 
@@ -1882,7 +1882,7 @@ Expected response body:
 
 ### Type_Property_AdditionalProperties_ExtendsRecordUnknown_put
 
-- Endpoint: `put /type/property/additionalProperties/extends/record/unknown`
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknown`
 
 Expected input body:
 
@@ -1897,7 +1897,7 @@ Expected input body:
 
 ### Type_Property_AdditionalProperties_IsRecordUnknown_get
 
-- Endpoint: `get /type/property/additionalProperties/is/record/unknown`
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknown`
 
 Expected response body:
 
@@ -1907,7 +1907,7 @@ Expected response body:
 
 ### Type_Property_AdditionalProperties_IsRecordUnknown_put
 
-- Endpoint: `put /type/property/additionalProperties/is/record/unknown`
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknown`
 
 Expected input body:
 
