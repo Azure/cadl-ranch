@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.3.2
+
+### Patch Changes
+
+- 63d7510: Add transition for `valueof` breaking change in Decorator API
+
 ## 0.3.1
 
 ### Patch Changes
