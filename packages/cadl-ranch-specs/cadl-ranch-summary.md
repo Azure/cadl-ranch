@@ -1599,7 +1599,7 @@ Send a GET request which returns the following body {}
 
 - Endpoint: `post /type/model/empty/round-trip`
 
-Send a POST request which returns the following body {} and returns the same.
+Send a POST request with the following body {} which returns the same.
 
 ### Type_Model_Empty_putEmpty
 

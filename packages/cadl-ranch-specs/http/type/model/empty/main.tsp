@@ -29,7 +29,7 @@ op putEmpty(@body input: EmptyInput): void;
 op getEmpty(): EmptyOutput;
 
 @scenario
-@scenarioDoc("Send a POST request which returns the following body {} and returns the same.")
+@scenarioDoc("Send a POST request with the following body {} which returns the same.")
 @route("/round-trip")
 @post
 op postRoundTripEmpty(@body body: EmptyInputOutput): EmptyInputOutput;
