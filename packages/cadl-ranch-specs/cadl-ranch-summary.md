@@ -1589,6 +1589,24 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
 
+### Type_Model_Empty_getEmpty
+
+- Endpoint: `get /type/model/empty/alone`
+
+Send a GET request which returns the following body {}
+
+### Type_Model_Empty_postRoundTripEmpty
+
+- Endpoint: `post /type/model/empty/round-trip`
+
+Send a POST request with the following body {} which returns the same.
+
+### Type_Model_Empty_putEmpty
+
+- Endpoint: `put /type/model/empty/alone`
+
+Send a PUT request with the following body {}
+
 ### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
 
 - Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
