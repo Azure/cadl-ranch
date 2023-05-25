@@ -4,7 +4,8 @@
     { "path": "packages/cadl-ranch/tsconfig.build.json" },
     { "path": "packages/cadl-ranch-api/tsconfig.build.json" },
     { "path": "packages/cadl-ranch-coverage-sdk/tsconfig.build.json" },
-    { "path": "packages/cadl-ranch-expect/tsconfig.build.json" }
+    { "path": "packages/cadl-ranch-expect/tsconfig.build.json" },
+    { "path": "packages/typespec-bump-deps/tsconfig.build.json" }
   ],
   "files": []
 }

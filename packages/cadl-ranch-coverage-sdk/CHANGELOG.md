@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.2.4
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+
 ## 0.2.3
 
 ### Patch Changes

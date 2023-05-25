@@ -603,6 +603,181 @@ Expected response body:
 }
 ```
 
+### Encode_Duration_Header_default
+
+- Endpoint: `get /encode/duration/header/default`
+
+Test default encode for a duration header.
+Expected header `input=P40D`
+
+### Encode_Duration_Header_floatSeconds
+
+- Endpoint: `get /encode/duration/header/float-seconds`
+
+Test float seconds encode for a duration header.
+Expected header `duration: 35.621`
+
+### Encode_Duration_Header_int32Seconds
+
+- Endpoint: `get /encode/duration/header/int32-seconds`
+
+Test int32 seconds encode for a duration header.
+Expected header `duration: 36`
+
+### Encode_Duration_Header_iso8601
+
+- Endpoint: `get /encode/duration/header/iso8601`
+
+Test iso8601 encode for a duration header.
+Expected header `duration: P40D`
+
+### Encode_Duration_Header_iso8601Array
+
+- Endpoint: `get /encode/duration/header/iso8601-array`
+
+Test iso8601 encode for a duration array header.
+Expected header `duration: [P40D,P50D]`
+
+### Encode_Duration_Property_default
+
+- Endpoint: `post /encode/duration/property/default`
+
+Test operation with request and response model contains a duration property with default encode.
+Expected request body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+### Encode_Duration_Property_floatSeconds
+
+- Endpoint: `get /encode/duration/property/float-seconds`
+
+Test operation with request and response model contains a duration property with float seconds encode.
+Expected request body:
+
+```json
+{
+  "value": 35.621
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 35.621
+}
+```
+
+### Encode_Duration_Property_floatSecondsArray
+
+- Endpoint: `get /encode/duration/property/float-seconds-array`
+
+Test operation with request and response model contains an array property which elements are duration with float seconds encode.
+Expected request body:
+
+```json
+{
+  "value": [35.621, 46.781]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": [35.621, 46.781]
+}
+```
+
+### Encode_Duration_Property_int32Seconds
+
+- Endpoint: `get /encode/duration/property/int32-seconds`
+
+Test operation with request and response model contains a duration property with int32 seconds encode.
+Expected request body:
+
+```json
+{
+  "value": 36
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 36
+}
+```
+
+### Encode_Duration_Property_iso8601
+
+- Endpoint: `post /encode/duration/property/iso8601`
+
+Test operation with request and response model contains a duration property with iso8601 encode.
+Expected request body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "P40D"
+}
+```
+
+### Encode_Duration_Query_default
+
+- Endpoint: `get /encode/duration/query/default`
+
+Test default encode for a duration parameter.
+Expected query parameter `input=P40D`
+
+### Encode_Duration_Query_floatSeconds
+
+- Endpoint: `get /encode/duration/query/float-seconds`
+
+Test float seconds encode for a duration parameter.
+Expected query parameter `input=35.621`
+
+### Encode_Duration_Query_int32Seconds
+
+- Endpoint: `get /encode/duration/query/int32-seconds`
+
+Test int32 seconds encode for a duration parameter.
+Expected query parameter `input=36`
+
+### Encode_Duration_Query_int32SecondsArray
+
+- Endpoint: `get /encode/duration/query/int32-seconds-array`
+
+Test int32 seconds encode for a duration array parameter.
+Expected query parameter `input=36,47`
+
+### Encode_Duration_Query_iso8601
+
+- Endpoint: `get /encode/duration/query/iso8601`
+
+Test iso8601 encode for a duration parameter.
+Expected query parameter `input=P40D`
+
 ### Parameters_CollectionFormat_Header_csv
 
 - Endpoint: `get /parameters/collection-format/header/csv`
@@ -1431,6 +1606,24 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 - Endpoint: `put /type/enum/fixed/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### Type_Model_Empty_getEmpty
+
+- Endpoint: `get /type/model/empty/alone`
+
+Send a GET request which returns the following body {}
+
+### Type_Model_Empty_postRoundTripEmpty
+
+- Endpoint: `post /type/model/empty/round-trip`
+
+Send a POST request with the following body {} which returns the same.
+
+### Type_Model_Empty_putEmpty
+
+- Endpoint: `put /type/model/empty/alone`
+
+Send a PUT request with the following body {}
 
 ### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
 

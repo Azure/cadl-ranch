@@ -1,5 +1,52 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.16
+
+### Patch Changes
+
+- 63d7510: Add transition for `valueof` breaking change in Decorator API
+- Updated dependencies [63d7510]
+  - @azure-tools/cadl-ranch-expect@0.3.2
+
+## 0.4.15
+
+### Patch Changes
+
+- 53d3826: Add docs to enums and enum values.
+
+## 0.4.14
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+- Updated dependencies [440c7ab]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.2.4
+  - @azure-tools/cadl-ranch-expect@0.3.1
+
+## 0.4.13
+
+### Patch Changes
+
+- c76c649: Fix more interface extends instead of alias
+
+## 0.4.12
+
+### Patch Changes
+
+- b719133: Fix: Azure.Core test should use `alias` instead of interface extends for the operation factory
+
+## 0.4.11
+
+### Patch Changes
+
+- b89eab9: Fix RpcOperation template to work with incoming version of Azure.Core
+
+## 0.4.10
+
+### Patch Changes
+
+- 7449ace: Fix: pin jackspeak(dep of glob) with new version causing global install issues
+
 ## 0.4.9
 
 ### Patch Changes

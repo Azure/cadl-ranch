@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-minor fix for internal test
+Add test cases for empty model

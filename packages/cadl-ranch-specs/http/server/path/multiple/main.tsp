@@ -23,7 +23,9 @@ using TypeSpec.Rest;
 )
 namespace Server.Path.Multiple;
 
+@doc("Service versions")
 enum Versions {
+  @doc("Version 1.0")
   v1_0: "v1.0",
 }
 

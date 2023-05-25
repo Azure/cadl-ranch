@@ -1,5 +1,75 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.3
+
+### Patch Changes
+
+- Updated dependencies [63d7510]
+  - @azure-tools/cadl-ranch-expect@0.3.2
+  - @azure-tools/cadl-ranch@0.4.16
+
+## 0.15.2
+
+### Patch Changes
+
+- 5ddb20c: add test for duration array
+
+## 0.15.1
+
+### Patch Changes
+
+- 53d3826: Add docs to enums and enum values.
+- 33a9d16: Add test for @encode on duration header
+- Updated dependencies [53d3826]
+  - @azure-tools/cadl-ranch@0.4.15
+
+## 0.15.0
+
+### Minor Changes
+
+- 895cd7b: Bug fix for baseUrl in LRO mockapi
+
+### Patch Changes
+
+- 440c7ab: Update TypeSpec dependencies
+- 63506e3: Add test for encode on duration.
+- Updated dependencies [440c7ab]
+  - @azure-tools/cadl-ranch-expect@0.3.1
+  - @azure-tools/cadl-ranch@0.4.14
+
+## 0.14.10
+
+### Patch Changes
+
+- c76c649: Fix more interface extends instead of alias
+- Updated dependencies [c76c649]
+  - @azure-tools/cadl-ranch@0.4.13
+
+## 0.14.9
+
+### Patch Changes
+
+- b719133: Fix: Azure.Core test should use `alias` instead of interface extends for the operation factory
+- Updated dependencies [b719133]
+  - @azure-tools/cadl-ranch@0.4.12
+
+## 0.14.8
+
+### Patch Changes
+
+- b89eab9: Fix RpcOperation template to work with incoming version of Azure.Core
+- 3787945: Fix format of if-match and if-none-match
+- Updated dependencies [b89eab9]
+  - @azure-tools/cadl-ranch@0.4.11
+
+## 0.14.7
+
+### Patch Changes
+
+- dbd8f21: Fix internal test mock api
+- Updated dependencies [7449ace]
+  - @azure-tools/cadl-ranch@0.4.10
+
 ## 1.0.0
 
 ### Patch Changes

@@ -1,6 +1,8 @@
 import "@azure-tools/typespec-azure-core";
 using Azure.Core;
+using TypeSpec.Versioning;
 
+@useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
 namespace LocalCore {
   @doc("Metadata for long running operation status monitor locations")
   model LongRunningStatusLocation<TPollResponse extends object> {
@@ -35,4 +37,14 @@ namespace LocalCore {
       Foundations.RetryAfterHeader> | TResponse,
     Traits
   >;
+
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Will use Azure.Core when LongRunningRpcOperation is ready"
+  @Foundations.Private.needsRoute
+  @doc("RPC operation placeholder needed until LongRunningRpcOperation is ready")
+  op RpcOperation<
+    TParams,
+    TResponse,
+    Traits extends object = {},
+    TErrorResponse = Azure.Core.Foundations.ErrorResponse
+  > is Foundations.Operation<TParams, TResponse, Traits, TErrorResponse>;
 }

@@ -10,6 +10,11 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
+/**
+ * WARNING this scenario is using some non standard Azure.Core operation to get Long running Rpc operation working.
+ * THIS WILL MOST LIKELY BE CHANGED.
+ * BE READY TO BREAK IF YOU IMPLEMENT THIS SCENARIO.
+ */
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
 @scenarioService(
@@ -20,13 +25,16 @@ using TypeSpec.Versioning;
 )
 namespace _Specs_.Azure.Core.Lro.Rpc;
 
+@doc("Versions of the service")
 enum Versions {
+  @doc("2022-12-01-preview")
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
   v2022_12_01_preview: "2022-12-01-preview",
 }
 
-interface ResourceOperations
-  extends global.Azure.Core.ResourceOperations<NoConditionalRequests & NoRepeatableRequests & NoClientRequestId> {}
+alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
+  NoRepeatableRequests &
+  NoClientRequestId>;
 
 @doc("Data of the job")
 model JobData {
@@ -123,6 +131,7 @@ Expected response body:
 ```
 """)
 interface SamePollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/same-poll-result/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
@@ -195,6 +204,7 @@ Expected response body:
 ```
 """)
 interface DifferentPollResult {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/different-poll-result/jobs")
   @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)

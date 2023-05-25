@@ -37,8 +37,12 @@ using TypeSpec.Http;
 )
 namespace Resiliency.ServiceDriven;
 
+@doc("Service versions")
 enum Versions {
+  @doc("Version 1")
   v1,
+
+  @doc("Version 2")
   v2,
 }
 
