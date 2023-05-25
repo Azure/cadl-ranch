@@ -13,12 +13,23 @@ model EmptyInput {}
 @doc("Empty model used in operation return type")
 model EmptyOutput {}
 
-@scenario
-@scenarioDoc("Send a POST request with the following body {}")
-@route("/input")
-op input(@body input: EmptyInput): void;
+@doc("Empty model used in both parameter and return type")
+model EmptyInputOutput {}
 
 @scenario
-@scenarioDoc("Send a GET request which return the following body {}")
-@route("/output")
-op output(): EmptyOutput;
+@scenarioDoc("Send a PUT request with the following body {}")
+@route("/alone")
+@put
+op putEmpty(@body input: EmptyInput): void;
+
+@scenario
+@scenarioDoc("Send a GET request which returns the following body {}")
+@route("/alone")
+@get
+op getEmpty(): EmptyOutput;
+
+@scenario
+@scenarioDoc("Send a POST request which returns the following body {} and returns the same.")
+@route("/round-trip")
+@post
+op postRoundTripEmpty(@body body: EmptyInputOutput): EmptyInputOutput;
