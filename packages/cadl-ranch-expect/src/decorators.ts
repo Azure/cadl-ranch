@@ -9,23 +9,30 @@ import {
   Namespace,
   Operation,
   Program,
+  StringLiteral,
 } from "@typespec/compiler";
 import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
 import { $versioned } from "@typespec/versioning";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
 
+// Allow transition for breaking change https://github.com/microsoft/typespec/pull/1877
+function unifyString(type: string | StringLiteral) {
+  return typeof type === "string" ? type : type.value;
+}
+
 const SupportedByOptions: Set<string> = new Set(["arm", "dpg"]);
 const SupportedBy = Symbol("SupportedBy");
-export function $supportedBy(context: DecoratorContext, target: Namespace, catgory: string) {
-  if (!SupportedByOptions.has(catgory)) {
+export function $supportedBy(context: DecoratorContext, target: Namespace, catgoryType: string | StringLiteral) {
+  const category = unifyString(catgoryType);
+  if (!SupportedByOptions.has(category)) {
     reportDiagnostic(context.program, {
       code: "category-invalid",
-      format: { catgory, allowed: [...SupportedByOptions].join(", ") },
+      format: { category, allowed: [...SupportedByOptions].join(", ") },
       target: context.getArgumentTarget(0)!,
     });
   }
-  context.program.stateMap(SupportedBy).set(target, catgory);
+  context.program.stateMap(SupportedBy).set(target, category);
 }
 
 export function getSupportedBy(program: Program, target: Namespace): SupportedBy | undefined {
@@ -36,9 +43,10 @@ const ScenarioDocKey = Symbol("ScenarioDoc");
 export function $scenarioDoc(
   context: DecoratorContext,
   target: Namespace | Operation | Interface,
-  doc: string,
+  docType: string | StringLiteral,
   formatArgs?: Model,
 ) {
+  const doc = unifyString(docType);
   const formattedDoc = formatArgs ? replaceTemplatedStringFromProperties(doc, formatArgs) : doc;
   context.program.stateMap(ScenarioDocKey).set(target, formattedDoc);
 }
@@ -55,7 +63,12 @@ function replaceTemplatedStringFromProperties(formatString: string, formatArgs: 
 }
 
 const ScenarioKey = Symbol("Scenario");
-export function $scenario(context: DecoratorContext, target: Namespace | Operation | Interface, name?: string) {
+export function $scenario(
+  context: DecoratorContext,
+  target: Namespace | Operation | Interface,
+  nameType?: string | StringLiteral,
+) {
+  const name = nameType && unifyString(nameType);
   context.program.stateMap(ScenarioKey).set(target, name ?? target.name);
 }
 
@@ -180,7 +193,13 @@ export function getScenarioName(program: Program, target: Operation | Interface 
 }
 
 const ScenarioServiceKey = Symbol("ScenarioService");
-export function $scenarioService(context: DecoratorContext, target: Namespace, route: string, options?: Model) {
+export function $scenarioService(
+  context: DecoratorContext,
+  target: Namespace,
+  routeType: string | StringLiteral,
+  options?: Model,
+) {
+  const route = unifyString(routeType);
   const properties = new Map().set("title", {
     type: { kind: "String", value: getNamespaceFullName(target).replace(/\./g, "") },
   });
