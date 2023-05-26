@@ -83,6 +83,7 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
     }
 
     const scenarios = cadlRanchExpect.listScenarios(program);
+    logger.debug(`  ${scenarios.length} scenarios`);
 
     for (const scenario of scenarios) {
       const existing = scenarioNames.get(scenario.name);
@@ -92,13 +93,20 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
         scenarioNames.set(scenario.name, [scenario]);
       }
     }
-    for (const route of typespecCompiler.ignoreDiagnostics(typespecHttp.getAllHttpServices(program))[0].operations) {
-      const key = `${route.verb} ${route.path}`;
-      const existing = endpoints.get(key);
-      if (existing) {
-        existing.push(route.operation);
-      } else {
-        endpoints.set(key, [route.operation]);
+
+    const service = typespecCompiler.ignoreDiagnostics(typespecHttp.getAllHttpServices(program))[0];
+    const server = typespecHttp.getServers(program, service.namespace)?.[0];
+    if (server?.url === undefined || !server?.url.includes("{")) {
+      const serverPath = server ? new URL(server.url).pathname : "";
+      for (const route of service.operations) {
+        const path = serverPath + route.path;
+        const key = `${route.verb} ${path}`;
+        const existing = endpoints.get(key);
+        if (existing) {
+          existing.push(route.operation);
+        } else {
+          endpoints.set(key, [route.operation]);
+        }
       }
     }
   }

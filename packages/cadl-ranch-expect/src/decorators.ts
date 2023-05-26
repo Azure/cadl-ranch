@@ -4,7 +4,6 @@ import {
   Enum,
   getNamespaceFullName,
   Interface,
-  listServices,
   Model,
   Namespace,
   Operation,
@@ -86,11 +85,7 @@ export interface ScenarioEndpoint {
 }
 
 export function listScenarios(program: Program): Scenario[] {
-  const serviceNamespace = listServices(program)[0].type;
-  if (serviceNamespace === undefined) {
-    return [];
-  }
-  return listScenarioIn(program, serviceNamespace);
+  return listScenarioIn(program, program.getGlobalNamespaceType());
 }
 
 export function getScenarioEndpoints(program: Program, target: Namespace | Interface | Operation): ScenarioEndpoint[] {

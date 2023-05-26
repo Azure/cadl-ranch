@@ -603,59 +603,100 @@ Expected response body:
 }
 ```
 
-### Cadl_MultiClient_BarOp_createWithHeaders
+### Client_Structure_MutliClient
 
-- Endpoint: `put /multi-clients/cadl-bar/create-with-headers`
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /three`
+  - `get /one`
+  - `get /three`
+  - `get /three`
 
-create with headers
+Include multiple clients in the same spec.
 
-### Cadl_MultiClient_BarOp_deleteWithHeaders
+```ts
+const clientA = new ClientAClient();
+const clientB = new ClientBClient();
 
-- Endpoint: `delete /multi-clients/cadl-bar/delete-with-headers`
+clientA.renamedOne();
+clientA.renamedThree();
+clientA.renamedFive();
 
-delete with headers
+clientB.renamedTwo();
+clientB.renamedFour();
+clientB.renamedSix();
+```
 
-### Cadl_MultiClient_BarOp_getArray
+### Client_Structure_RenamedOperation
 
-- Endpoint: `get /multi-clients/cadl-bar`
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /three`
+  - `get /one`
+  - `get /three`
+  - `get /three`
 
-get array data
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
-### Cadl_MultiClient_BarOp_getBinary
+```ts
+const client = new RenamedOperationClient();
 
-- Endpoint: `get /multi-clients/cadl-bar/get-binary`
+client.renamedOne();
+client.renamedThree();
+client.renamedFive();
 
-get binary data
+client.group.renamedTwo();
+client.group.renamedFour();
+client.group.renamedSix();
+```
 
-### Cadl_MultiClient_BarOp_getStatus
+### Client_Structure_Service
 
-- Endpoint: `get /multi-clients/cadl-bar/status`
+- Endpoints:
+  - `get /three`
+  - `get /four`
+  - `get /five`
+  - `get /six`
+  - `get /one`
+  - `get /two`
 
-polling operation
+This is to show that if we don't do any customization. The client side should be able to call the api like
 
-### Cadl_MultiClient_FooOp_createOrUpdate
+```ts
+const client = new MultiClient();
+client.one();
+client.two();
+client.three();
+client.four();
+client.five();
+client.six();
+```
 
-- Endpoint: `get /multi-clients/cadl-foo`
+### Client_Structure_TwoOperationGroup
 
-Creates a new resource or updates an existing one.
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /four`
+  - `get /two`
+  - `get /five`
+  - `get /six`
 
-### Cadl_MultiClient_FooOp_delete
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
-- Endpoint: `get /multi-clients/cadl-foo`
+```ts
+const client = new TwoOperationGroupClient();
 
-Deletes a resource.
+client.group1.one();
+client.group1.three();
+client.group1.four();
 
-### Cadl_MultiClient_FooOp_get
-
-- Endpoint: `get /multi-clients/cadl-foo`
-
-Gets the details of a resource.
-
-### Cadl_MultiClient_FooOp_list
-
-- Endpoint: `get /multi-clients/cadl-foo`
-
-Lists the existing resources.
+client.group2.two();
+client.group2.five();
+client.group2.six();
+```
 
 ### Encode_Duration_Header_default
 
