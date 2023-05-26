@@ -1900,7 +1900,47 @@ Expected input body:
 }
 ```
 
-### Type_Property_AdditionalProperties_ExtendsRecordUnknown_get
+### Type_Property_AdditionalProperties_ExtendsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordString`
+
+Expected response body:
+
+```json
+{ "name": "ExtendsStringAddtionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordString`
+
+Expected input body:
+
+```json
+{ "name": "ExtendsStringAddtionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsRecordUnknown`
 
@@ -1908,14 +1948,14 @@ Expected response body:
 
 ```json
 {
-  "name": "ModelExtendsRecordUnknown",
+  "name": "ExtendsUnknownAddtionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
 }
 ```
 
-### Type_Property_AdditionalProperties_ExtendsRecordUnknown_put
+### Type_Property_AdditionalProperties_ExtendsUnknown_put
 
 - Endpoint: `put /type/property/additionalProperties/extendsRecordUnknown`
 
@@ -1923,31 +1963,81 @@ Expected input body:
 
 ```json
 {
-  "name": "ModelExtendsRecordUnknown",
+  "name": "ExtendsUnknownAddtionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
 }
 ```
 
-### Type_Property_AdditionalProperties_IsRecordUnknown_get
+### Type_Property_AdditionalProperties_IsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsString_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordstring`
+
+Expected response body:
+
+```json
+{ "name": "IsStringAddtionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsString_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordstring`
+
+Expected input body:
+
+```json
+{ "name": "IsStringAddtionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordUnknown`
 
 Expected response body:
 
 ```json
-{ "name": "ModelIsRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
+{
+  "name": "IsUnknownAddtionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
 ```
 
-### Type_Property_AdditionalProperties_IsRecordUnknown_put
+### Type_Property_AdditionalProperties_IsUnknown_put
 
 - Endpoint: `put /type/property/additionalProperties/isRecordUnknown`
 
 Expected input body:
 
 ```json
-{ "name": "ModelIsRecordUnknown", "prop1": 32, "prop2": true, "prop3": "abc" }
+{
+  "name": "IsUnknownAddtionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
 ```
 
 ### Type_Property_Nullable_Bytes_getNonNull

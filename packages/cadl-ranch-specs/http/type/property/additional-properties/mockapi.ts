@@ -31,21 +31,49 @@ function createMockApis(route: string, value: any): MockApiGetPut {
     }),
   };
 }
-
-const extendRecordUnknown = createMockApis("extendsRecordUnknown", {
-  name: "ModelExtendsRecordUnknown",
+// **************************************************** Record<unknown> ****************************************************
+const extendsUnknown = createMockApis("extendsRecordUnknown", {
+  name: "ExtendsUnknownAddtionalProperties",
   prop1: 32,
   prop2: true,
   prop3: "abc",
 });
-Scenarios.Type_Property_AdditionalProperties_ExtendsRecordUnknown_get = passOnSuccess(extendRecordUnknown.get);
-Scenarios.Type_Property_AdditionalProperties_ExtendsRecordUnknown_put = passOnSuccess(extendRecordUnknown.put);
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_get = passOnSuccess(extendsUnknown.get);
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_put = passOnSuccess(extendsUnknown.put);
 
-const isRecordUnknown = createMockApis("isRecordUnknown", {
-  name: "ModelIsRecordUnknown",
+const isUnknown = createMockApis("isRecordUnknown", {
+  name: "IsUnknownAddtionalProperties",
   prop1: 32,
   prop2: true,
   prop3: "abc",
 });
-Scenarios.Type_Property_AdditionalProperties_IsRecordUnknown_get = passOnSuccess(isRecordUnknown.get);
-Scenarios.Type_Property_AdditionalProperties_IsRecordUnknown_put = passOnSuccess(isRecordUnknown.put);
+Scenarios.Type_Property_AdditionalProperties_IsUnknown_get = passOnSuccess(isUnknown.get);
+Scenarios.Type_Property_AdditionalProperties_IsUnknown_put = passOnSuccess(isUnknown.put);
+
+// **************************************************** Record<string> ****************************************************
+const extendsString = createMockApis("extendsRecordString", {
+  name: "ExtendsStringAddtionalProperties",
+  prop: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_ExtendsString_get = passOnSuccess(extendsString.get);
+Scenarios.Type_Property_AdditionalProperties_ExtendsString_put = passOnSuccess(extendsString.put);
+
+const isString = createMockApis("isRecordString", {
+  name: "IsStringAddtionalProperties",
+  prop: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_IsString_get = passOnSuccess(isString.get);
+Scenarios.Type_Property_AdditionalProperties_IsString_put = passOnSuccess(isString.put);
+
+// **************************************************** Record<float32> ****************************************************
+const body = {
+  id: 42.42,
+  prop: 42.42,
+};
+const extendsFloat = createMockApis("extendsRecordFloat", body);
+Scenarios.Type_Property_AdditionalProperties_ExtendsFloat_get = passOnSuccess(extendsFloat.get);
+Scenarios.Type_Property_AdditionalProperties_ExtendsFloat_put = passOnSuccess(extendsFloat.put);
+
+const isFloat = createMockApis("isRecordFloat", body);
+Scenarios.Type_Property_AdditionalProperties_IsFloat_get = passOnSuccess(isFloat.get);
+Scenarios.Type_Property_AdditionalProperties_IsFloat_put = passOnSuccess(isFloat.put);
