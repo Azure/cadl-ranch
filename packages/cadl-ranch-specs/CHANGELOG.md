@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.4
+
+### Patch Changes
+
+- 013ef77: Add test cases for empty model
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 158ca21: Minor adjustments to enable Azure Core changes
+- Updated dependencies [13809e4]
+  - @azure-tools/cadl-ranch@0.4.17
+
 ## 0.15.3
 
 ### Patch Changes
