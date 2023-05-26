@@ -13,23 +13,28 @@ using Azure.ClientGenerator.Core;
   client2.get() 
   client2.getArray() 
   """)
-@client({ name: "FooClient", service: Cadl.MultiClient})
+@client({
+  name: "FooClient",
+  service: Cadl.MultiClient,
+})
 interface WriteOperations {
-    createOrUpdate is FooOp.createOrUpdate;
-    delete is FooOp.delete;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    createWithHeaders is BarOp.createWithHeaders;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    deleteWithHeaders is BarOp.deleteWithHeaders;
-
+  createOrUpdate is FooOp.createOrUpdate;
+  delete is FooOp.delete;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  createWithHeaders is BarOp.createWithHeaders;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  deleteWithHeaders is BarOp.deleteWithHeaders;
 }
 
-@client({ name: "BarClient", service: Cadl.MultiClient})
+@client({
+  name: "BarClient",
+  service: Cadl.MultiClient,
+})
 interface ReadOperations {
-    get is FooOp.get;
-    list is FooOp.list;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    getArray is BarOp.getArray;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    getBinary is BarOp.getBinary;
+  get is FooOp.get;
+  list is FooOp.list;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  getArray is BarOp.getArray;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  getBinary is BarOp.getBinary;
 }

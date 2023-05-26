@@ -19,7 +19,6 @@ using TypeSpec.Versioning;
   5. have two clients with operations come from different interfaces
   6. have two clients with a hierarchy relation.
   """)
-  
 @scenarioService("/multi-clients")
 @service({
   title: "MultiClient",
@@ -58,7 +57,7 @@ interface FooOp {
   @doc("Creates a new resource or updates an existing one.")
   createOrUpdate is ResourceCreateOrReplace<Resource>;
 
-  @scenario 
+  @scenario
   @scenarioDoc("Gets the details of a resource.")
   @doc("Gets the details of a resource.")
   get is ResourceRead<Resource>;
@@ -106,6 +105,7 @@ interface BarOp {
   createWithHeaders(): TypeSpec.Http.CreatedResponse & {
     @header("operation-location")
     operationLocation: ResourceLocation<Resource>;
+
     @body
     body: Resource;
   };
@@ -128,7 +128,5 @@ interface BarOp {
   @doc("polling operation")
   @route("/status")
   @get
-  getStatus(): OkResponse & {
-
-  }
+  getStatus(): OkResponse & {};
 }

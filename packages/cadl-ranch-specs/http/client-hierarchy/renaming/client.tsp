@@ -11,11 +11,14 @@ using Azure.ClientGenerator.Core;
   client.fooOperations.getResource() 
   client.fooOperations.deleteResource() 
   """)
-@client({ name: "ResourceClient", service: Cadl.MultiClient})
+@client({
+  name: "ResourceClient",
+  service: Cadl.MultiClient,
+})
 @operationGroup
 interface FooOperations {
-    createOrUpdateResource is FooOp.createOrUpdate;
-    getResource is FooOp.get;
-    listResources is FooOp.list;
-    deleteResource is FooOp.delete
+  createOrUpdateResource is FooOp.createOrUpdate;
+  getResource is FooOp.get;
+  listResources is FooOp.list;
+  deleteResource is FooOp.delete;
 }

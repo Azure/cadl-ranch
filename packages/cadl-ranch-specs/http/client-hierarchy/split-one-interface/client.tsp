@@ -4,7 +4,6 @@ import "@azure-tools/typespec-client-generator-core";
 using Cadl.MultiClient;
 using Azure.ClientGenerator.Core;
 
-
 @doc("""
   This is to show how we can split one interface into two sub clients. The client side should be able to call the api like
   const client1 = new FooClient();
@@ -14,15 +13,20 @@ using Azure.ClientGenerator.Core;
   client2.get() 
   client1.delete() 
   """)
-@client({ name: "FooClient", service: Cadl.MultiClient})
+@client({
+  name: "FooClient",
+  service: Cadl.MultiClient,
+})
 interface WriteOperations {
-    createOrUpdate is FooOp.createOrUpdate;
-    delete is FooOp.delete;
-
+  createOrUpdate is FooOp.createOrUpdate;
+  delete is FooOp.delete;
 }
 
-@client({ name: "BarClient", service: Cadl.MultiClient})
+@client({
+  name: "BarClient",
+  service: Cadl.MultiClient,
+})
 interface ReadOperations {
-    get is FooOp.get;
-    list is FooOp.list;
+  get is FooOp.get;
+  list is FooOp.list;
 }

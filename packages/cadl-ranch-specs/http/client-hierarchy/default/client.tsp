@@ -8,7 +8,7 @@ using Azure.ClientGenerator.Core;
 //   This is to show that if we don't do any customization. The client side should be able to call the api like
 //   const client = new MultipleClient();
 //   client.createOrUpdate()
-//   client.get() 
+//   client.get()
 //   client.createWithHeaders()
 //   client.getArray()
 //   """)

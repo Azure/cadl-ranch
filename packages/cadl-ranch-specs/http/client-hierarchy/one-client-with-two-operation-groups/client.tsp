@@ -12,32 +12,26 @@ using Azure.ClientGenerator.Core;
   client.readOperations.get() 
   client.readOperations.getArray() 
   """)
-@client({ name: "ResourceClient", service: Cadl.MultiClient})
+@client({
+  name: "ResourceClient",
+  service: Cadl.MultiClient,
+})
 @operationGroup
 interface WriteOperations {
-  @scenario
-  @scenarioDoc("Creates a new resource or updates an existing one.")
   createOrUpdate is FooOp.createOrUpdate;
-  @scenario
-  @scenarioDoc("Deletes a resource.")
   delete is FooOp.delete;
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-  @scenario
-  @scenarioDoc("Creates a new resource or updates an existing one with headers.")
   createWithHeaders is BarOp.createWithHeaders;
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-  @scenario
-  @scenarioDoc("Deletes a resource.")
   deleteWithHeaders is BarOp.deleteWithHeaders;
-
 }
 
-@operationGroup 
+@operationGroup
 interface ReadOperations {
-    get is FooOp.get;
-    list is FooOp.list;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    getArray is BarOp.getArray;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    getBinary is BarOp.getBinary;
+  get is FooOp.get;
+  list is FooOp.list;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  getArray is BarOp.getArray;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  getBinary is BarOp.getBinary;
 }
