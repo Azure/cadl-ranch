@@ -15,12 +15,20 @@ using Azure.ClientGenerator.Core;
 @client({ name: "ResourceClient", service: Cadl.MultiClient})
 @operationGroup
 interface WriteOperations {
-    createOrUpdate is FooOp.createOrUpdate;
-    delete is FooOp.delete;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    createWithHeaders is BarOp.createWithHeaders;
-    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
-    deleteWithHeaders is BarOp.deleteWithHeaders;
+  @scenario
+  @scenarioDoc("Creates a new resource or updates an existing one.")
+  createOrUpdate is FooOp.createOrUpdate;
+  @scenario
+  @scenarioDoc("Deletes a resource.")
+  delete is FooOp.delete;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  @scenario
+  @scenarioDoc("Creates a new resource or updates an existing one with headers.")
+  createWithHeaders is BarOp.createWithHeaders;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing multiple subclients"
+  @scenario
+  @scenarioDoc("Deletes a resource.")
+  deleteWithHeaders is BarOp.deleteWithHeaders;
 
 }
 
