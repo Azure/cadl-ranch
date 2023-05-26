@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.3
+
+### Patch Changes
+
+- Updated dependencies [63d7510]
+  - @azure-tools/cadl-ranch-expect@0.3.2
+  - @azure-tools/cadl-ranch@0.4.16
+
+## 0.15.2
+
+### Patch Changes
+
+- 5ddb20c: add test for duration array
+
 ## 0.15.1
 
 ### Patch Changes

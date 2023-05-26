@@ -21,6 +21,24 @@ Expect error code 403 and error body:
 
 Expects header 'x-ms-api-key': 'valid-key'
 
+### Authentication_Http_Custom_invalid
+
+- Endpoint: `get /authentication/http/custom/invalid`
+
+Expect error code 403 and error body:
+
+```json
+{
+  "error": "invalid-api-key"
+}
+```
+
+### Authentication_Http_Custom_valid
+
+- Endpoint: `get /authentication/http/custom/valid`
+
+Expects header 'Authorization': 'SharedAccessKey valid-key'
+
 ### Authentication_OAuth2_invalid
 
 - Endpoint: `get /authentication/oauth2/invalid`
@@ -1642,6 +1660,24 @@ Expect to send a known value. Mock api expect to receive 'Monday'
 - Endpoint: `put /type/enum/fixed/string/unknown-value`
 
 Expect to handle an unknown value. Mock api expect to receive 'Weekend'
+
+### Type_Model_Empty_getEmpty
+
+- Endpoint: `get /type/model/empty/alone`
+
+Send a GET request which returns the following body {}
+
+### Type_Model_Empty_postRoundTripEmpty
+
+- Endpoint: `post /type/model/empty/round-trip`
+
+Send a POST request with the following body {} which returns the same.
+
+### Type_Model_Empty_putEmpty
+
+- Endpoint: `put /type/model/empty/alone`
+
+Send a PUT request with the following body {}
 
 ### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
 
