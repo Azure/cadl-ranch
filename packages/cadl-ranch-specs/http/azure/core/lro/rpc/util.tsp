@@ -26,7 +26,7 @@ namespace LocalCore {
   #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Long running RPC operation template")
   op LongRunningRpcOperation<
-    TParams extends object,
+    TParams extends TypeSpec.Reflection.Model,
     TResponse extends object,
     TPollResponse extends object = TResponse,
     Traits extends object = {}
@@ -42,7 +42,7 @@ namespace LocalCore {
   @Foundations.Private.needsRoute
   @doc("RPC operation placeholder needed until LongRunningRpcOperation is ready")
   op RpcOperation<
-    TParams,
+    TParams extends TypeSpec.Reflection.Model,
     TResponse,
     Traits extends object = {},
     TErrorResponse = Azure.Core.Foundations.ErrorResponse

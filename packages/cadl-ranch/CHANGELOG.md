@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.17
+
+### Patch Changes
+
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+
+## 0.4.16
+
+### Patch Changes
+
+- 63d7510: Add transition for `valueof` breaking change in Decorator API
+- Updated dependencies [63d7510]
+  - @azure-tools/cadl-ranch-expect@0.3.2
+
 ## 0.4.15
 
 ### Patch Changes

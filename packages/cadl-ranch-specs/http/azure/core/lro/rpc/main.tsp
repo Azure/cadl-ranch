@@ -130,15 +130,15 @@ Expected response body:
 }
 ```
 """)
+@route("/same-poll-result")
 interface SamePollResult {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
-  @route("/same-poll-result/jobs")
+  @route("/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
   createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult>;
 
   @doc("Gets the status of a Job")
-  @route("/same-poll-result")
   getJob is ResourceOperations.ResourceRead<JobResult>;
 }
 
@@ -203,10 +203,11 @@ Expected response body:
 }
 ```
 """)
+@route("/different-poll-result")
 interface DifferentPollResult {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
-  @route("/different-poll-result/jobs")
+  @route("/jobs")
   @global.Azure.Core.pollingOperation(DifferentPollResult.getPoll)
   createJobFinalOnLocation is LocalCore.LongRunningRpcOperation<
     JobData,
@@ -216,6 +217,5 @@ interface DifferentPollResult {
   >;
 
   @doc("Gets the status of a Job")
-  @route("/different-poll-result")
   getPoll is ResourceOperations.ResourceRead<JobPollResult>;
 }

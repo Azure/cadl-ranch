@@ -1,23 +1,17 @@
-import { passOnSuccess, passOnCode, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import { getValidAndInvalidScenarios } from "../commonapi.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Authentication_OAuth2_valid = passOnSuccess(
-  mockapi.get("/authentication/oauth2/valid", (req) => {
+const validAndInvalidScenarios = getValidAndInvalidScenarios(
+  "oauth2",
+  "invalid-grant",
+  function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
     req.expect.containsHeader("authorization", "Bearer https://security.microsoft.com/.default");
-    return { status: 204 };
-  }),
+  },
 );
 
-Scenarios.Authentication_OAuth2_invalid = passOnCode(
-  403,
-  mockapi.get("/authentication/oauth2/invalid", (req) => {
-    return {
-      status: 403,
-      body: json({
-        error: "invalid-grant",
-      }),
-    };
-  }),
-);
+Scenarios.Authentication_OAuth2_valid = validAndInvalidScenarios.valid;
+
+Scenarios.Authentication_OAuth2_invalid = validAndInvalidScenarios.invalid;
