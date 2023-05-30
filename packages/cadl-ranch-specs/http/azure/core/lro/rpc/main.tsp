@@ -127,7 +127,20 @@ interface SamePollResult {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
   @doc("Creates a Job")
   @route("/jobs")
-  @global.Azure.Core.pollingOperation(SamePollResult.getJob)
+  @global.Azure.Core.pollingOperation(
+    SamePollResult.getJob,
+    {
+      jobId: RequestParameter<string>,
+      apiVersion: RequestParameter<string>,
+    }
+  )
+  @global.Azure.Core.finalOperation(
+    SamePollResult.getJob,
+    {
+      jobId: RequestParameter<string>,
+      apiVersion: RequestParameter<string>,
+    }
+  )
   createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, never>;
 
   @doc("Gets the status of a Job")
