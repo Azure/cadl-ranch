@@ -1,17 +1,17 @@
 import { MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { getValidAndInvalidScenarios } from "../commonapi.js";
+import { getValidAndInvalidScenarios } from "../../commonapi.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const validAndInvalidScenarios = getValidAndInvalidScenarios(
-  "api-key",
+  "http/custom",
   "invalid-api-key",
   function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
-    req.expect.containsHeader("x-ms-api-key", "valid-key");
+    req.expect.containsHeader("authorization", "SharedAccessKey valid-key");
   },
 );
 
-Scenarios.Authentication_ApiKey_valid = validAndInvalidScenarios.valid;
+Scenarios.Authentication_Http_Custom_valid = validAndInvalidScenarios.valid;
 
-Scenarios.Authentication_ApiKey_invalid = validAndInvalidScenarios.invalid;
+Scenarios.Authentication_Http_Custom_invalid = validAndInvalidScenarios.invalid;
