@@ -291,11 +291,11 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Lro_Rpc_DifferentPollResult
+### Azure_Core_Lro_Rpc_SamePollResult
 
 - Endpoints:
-  - `get /azure/core/lro/rpc/different-poll-result/jobs`
-  - `get /azure/core/lro/rpc/different-poll-result`
+  - `post /azure/core/lro/rpc/same-poll-result/jobs`
+  - `post /azure/core/lro/rpc/same-poll-result`
 
 Expected verb: POST
 Expected request body:
@@ -304,74 +304,6 @@ Expected request body:
   "comment": "async job"
 }
 ````
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-
-### Azure_Core_Lro_Rpc_SamePollResult
-
-- Endpoints:
-  - `get /azure/core/lro/rpc/same-poll-result/jobs`
-  - `get /azure/core/lro/rpc/same-poll-result`
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1

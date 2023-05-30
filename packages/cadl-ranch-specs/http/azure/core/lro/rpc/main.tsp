@@ -46,8 +46,9 @@ model JobData {
 @doc("Result of the job")
 model JobResult {
   @doc("PollingLocation")
-  @header location?: ResourceLocation<JobResult>;
-  
+  @header
+  location?: ResourceLocation<JobResult>;
+
   @doc("A processing job identifier.")
   @visibility("read")
   @key
