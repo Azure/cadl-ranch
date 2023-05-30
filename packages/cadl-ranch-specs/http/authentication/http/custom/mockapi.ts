@@ -8,7 +8,7 @@ const validAndInvalidScenarios = getValidAndInvalidScenarios(
   "http/custom",
   "invalid-api-key",
   function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
-    req.expect.containsHeader("Authorization", "SharedAccessKey valid-key");
+    req.expect.containsHeader("authorization", "SharedAccessKey valid-key");
   },
 );
 
