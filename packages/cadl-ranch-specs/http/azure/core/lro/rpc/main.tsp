@@ -128,7 +128,7 @@ interface SamePollResult {
   @doc("Creates a Job")
   @route("/jobs")
   @global.Azure.Core.pollingOperation(SamePollResult.getJob)
-  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, JobResult>;
+  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, never>;
 
   @doc("Gets the status of a Job")
   getJob is ResourceOperations.ResourceRead<JobResult>;
