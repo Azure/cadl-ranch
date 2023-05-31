@@ -6,7 +6,7 @@ import "@azure-tools/typespec-azure-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates various property types for models")
+@doc("Tests for additional properties of models")
 @scenarioService("/type/property/additionalProperties")
 namespace Type.Property.AdditionalProperties;
 
