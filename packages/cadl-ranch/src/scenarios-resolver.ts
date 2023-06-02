@@ -29,28 +29,19 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
   await ensureScenariosPathExists(scenariosPath);
   const pattern = [`${normalizePath(scenariosPath)}/**/client.tsp`, `${normalizePath(scenariosPath)}/**/main.tsp`];
   logger.debug(`Looking for scenarios in ${pattern}`);
-  const scenarios = await findFilesFromPattern(pattern);
+  let scenarios = await findFilesFromPattern(pattern);
   scenarios.sort();
-  const result: string[] = [];
-  let shouldSkip = false;
-  scenarios.forEach((scenario, index) => {
-    if (shouldSkip) {
-      shouldSkip = false;
-    } else {
-      if (index + 1 < scenarios.length) {
-        if (scenario.replace("client.tsp", "main.tsp") === scenarios[index + 1]) {
-          result.push(scenario);
-          shouldSkip = true;
-        }
-      }
-      if (!shouldSkip) {
-        result.push(scenario);
+  scenarios = scenarios.filter((scenario, index) => {
+    if (index - 1 >= 0) {
+      if (scenario.replace("main.tsp", "client.tsp") === scenarios[index - 1]) {
+        return false;
       }
     }
+    return true;
   });
-  logger.info(`Found ${result.length} scenarios.`);
+  logger.info(`Found ${scenarios.length} scenarios.`);
 
-  return result.map((name) => ({
+  return scenarios.map((name) => ({
     name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", "").replace("/client.tsp", ""),
     cadlFilePath: resolve(scenariosPath, name),
   }));
