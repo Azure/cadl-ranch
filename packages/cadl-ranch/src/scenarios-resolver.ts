@@ -27,18 +27,16 @@ interface CadlRanchScenarioFile {
 
 export async function findScenarioCadlFiles(scenariosPath: string): Promise<CadlRanchScenarioFile[]> {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = [`${normalizePath(scenariosPath)}/**/client.tsp`, `${normalizePath(scenariosPath)}/**/main.tsp`];
+  const normalizedScenarioPath = normalizePath(scenariosPath);
+  const pattern = [`${normalizedScenarioPath}/**/client.tsp`, `${normalizedScenarioPath}/**/main.tsp`];
   logger.debug(`Looking for scenarios in ${pattern}`);
   const fullScenarios = await findFilesFromPattern(pattern);
-  const filteredScenairos = fullScenarios.filter((scenario) => {
-    return scenario.endsWith("client.tsp");
-  }).map(scenarioPath => {
-    return join(dirname(scenarioPath), "main.tsp");
+  const scenarioSet = new Set(fullScenarios);
+  const scenarios = fullScenarios.filter((scenario) => {
+    // Exclude main.tsp that have a client.tsp next to it, we should use that instead
+    return scenario.endsWith("/main.tsp") && scenarioSet.has(normalizePath(join(dirname(scenario), "client.tsp")));
   });
 
-  const scenarios = fullScenarios.filter((scenario => {
-    return filteredScenairos.indexOf(scenario) < 0;
-  }))
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
