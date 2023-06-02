@@ -56,6 +56,8 @@ Expected header parameters:
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
 - x-ms-client-request-id=<any string>
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
 
 Expected response header: x-ms-client-request-id=<any string>
 Expected response body:

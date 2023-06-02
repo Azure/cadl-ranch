@@ -17,6 +17,14 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
+
+    if (!("repeatability-request-id" in req.headers)) {
+      throw new ValidationError("Repeatability-Request-ID is missing", "A UUID string", undefined);
+    }
+    if (!("repeatability-first-sent" in req.headers)) {
+      throw new ValidationError("Repeatability-First-Sent is missing", "A date-time in headers format", undefined);
+    }
+
     req.expect.containsHeader("foo", "123");
     req.expect.containsHeader("if-match", '"valid"');
     req.expect.containsHeader("if-none-match", '"invalid"');
@@ -29,6 +37,7 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
         "bar": "456",
         "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
+        "repeatability-result": "accepted",
       },
     };
   }),
