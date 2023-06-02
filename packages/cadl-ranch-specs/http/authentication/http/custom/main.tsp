@@ -12,7 +12,7 @@ using TypeSpec.Http;
 namespace Authentication.Http.Custom;
 
 @scenario
-@scenarioDoc("Expects header 'Authorization': 'SharedAccessKey valid-key'")
+@scenarioDoc("Expects header 'authorization': 'SharedAccessKey valid-key'")
 @doc("Check whether client is authenticated")
 @get
 @route("/valid")

@@ -37,7 +37,7 @@ Expect error code 403 and error body:
 
 - Endpoint: `get /authentication/http/custom/valid`
 
-Expects header 'Authorization': 'SharedAccessKey valid-key'
+Expects header 'authorization': 'SharedAccessKey valid-key'
 
 ### Authentication_OAuth2_invalid
 
