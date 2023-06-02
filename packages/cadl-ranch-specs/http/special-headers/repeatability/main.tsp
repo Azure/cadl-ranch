@@ -12,10 +12,10 @@ namespace SpecialHeaders.Repeatability;
 
 @scenario
 @scenarioDoc("""
-Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
+Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 """)
 @doc("""
-Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
+Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 """)
 @post
 @route("/doSomething")
