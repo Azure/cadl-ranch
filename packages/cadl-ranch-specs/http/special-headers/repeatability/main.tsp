@@ -21,26 +21,24 @@ alias ServiceTraits = SupportsRepeatableRequests & NoClientRequestId & NoConditi
 
 alias Operations = ResourceOperations<ServiceTraits>;
 
-namespace Repeatability {
-  @doc("A widget.")
-  @resource("widgets")
-  model Widget {
-    @key("widgetName")
-    @doc("The widget name.")
-    @visibility("read")
-    name: string;
+@doc("A widget.")
+@resource("widgets")
+model Widget {
+  @key("widgetName")
+  @doc("The widget name.")
+  @visibility("read")
+  name: string;
 
-    @doc("The ID of the widget's manufacturer.")
-    manufacturerId: string;
-  }
-
-  @scenario
-  @scenarioDoc("""
-  Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
-  """)
-  @doc("""
-  Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
-  Any widget name is valid.
-  """)
-  op doSomething is Operations.ResourceAction<Widget, {}, {}>;
+  @doc("The ID of the widget's manufacturer.")
+  manufacturerId: string;
 }
+
+@scenario
+@scenarioDoc("""
+Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
+""")
+@doc("""
+Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
+Any widget name is valid.
+""")
+op doSomething is Operations.ResourceAction<Widget, {}, {}>;
