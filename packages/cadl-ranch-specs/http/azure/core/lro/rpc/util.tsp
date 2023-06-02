@@ -5,7 +5,7 @@ using TypeSpec.Versioning;
 @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
 namespace LocalCore {
   @doc("Metadata for long running operation status monitor locations")
-  model LongRunningStatusLocation<TPollResponse extends object> {
+  model LongRunningStatusLocation<TPollResponse extends TypeSpec.Reflection.Model> {
     @visibility("read")
     @pollingLocation
     @doc("The location for monitoring the operation state.")
@@ -14,7 +14,7 @@ namespace LocalCore {
   }
 
   @doc("Metadata for long running operation final resource locations")
-  model LongRunningFinalLocation<TResponse extends object> {
+  model LongRunningFinalLocation<TResponse extends TypeSpec.Reflection.Model> {
     @visibility("read")
     @finalLocation
     @doc("The location for final resource location.")
@@ -27,9 +27,9 @@ namespace LocalCore {
   @doc("Long running RPC operation template")
   op LongRunningRpcOperation<
     TParams extends TypeSpec.Reflection.Model,
-    TResponse extends object,
-    TPollResponse extends object = TResponse,
-    Traits extends object = {}
+    TResponse extends TypeSpec.Reflection.Model,
+    TPollResponse extends TypeSpec.Reflection.Model = TResponse,
+    Traits extends TypeSpec.Reflection.Model = {}
   > is RpcOperation<
     TParams & Traits,
     Foundations.AcceptedResponse<Traits &
@@ -44,7 +44,7 @@ namespace LocalCore {
   op RpcOperation<
     TParams extends TypeSpec.Reflection.Model,
     TResponse,
-    Traits extends object = {},
+    Traits extends TypeSpec.Reflection.Model = {},
     TErrorResponse = Azure.Core.Foundations.ErrorResponse
   > is Foundations.Operation<TParams, TResponse, Traits, TErrorResponse>;
 }
