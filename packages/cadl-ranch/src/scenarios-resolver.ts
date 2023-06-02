@@ -1,7 +1,7 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { Operation } from "@typespec/compiler";
-import { join, relative, resolve } from "path";
+import { join, relative, resolve, dirname } from "path";
 import { pathToFileURL } from "url";
 import { importTypeSpec, importCadlRanchExpect, importTypeSpecHttp } from "./cadl-utils/index.js";
 import { logger } from "./logger.js";
@@ -29,16 +29,16 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
   await ensureScenariosPathExists(scenariosPath);
   const pattern = [`${normalizePath(scenariosPath)}/**/client.tsp`, `${normalizePath(scenariosPath)}/**/main.tsp`];
   logger.debug(`Looking for scenarios in ${pattern}`);
-  let scenarios = await findFilesFromPattern(pattern);
-  scenarios.sort();
-  scenarios = scenarios.filter((scenario, index) => {
-    if (index - 1 >= 0) {
-      if (scenario.replace("main.tsp", "client.tsp") === scenarios[index - 1]) {
-        return false;
-      }
-    }
-    return true;
+  const fullScenarios = await findFilesFromPattern(pattern);
+  const filteredScenairos = fullScenarios.filter((scenario) => {
+    return scenario.endsWith("client.tsp");
+  }).map(scenarioPath => {
+    return join(dirname(scenarioPath), "main.tsp");
   });
+
+  const scenarios = fullScenarios.filter((scenario => {
+    return filteredScenairos.indexOf(scenario) < 0;
+  }))
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
