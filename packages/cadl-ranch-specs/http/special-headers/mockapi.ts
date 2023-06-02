@@ -7,7 +7,7 @@ Scenarios.SpecialWords_Operation_for = passOnSuccess(
     if (!("repeatability-request-id" in req.headers)) {
       throw new ValidationError(
         "Repeatability-Request-ID is missing",
-        req.headers,
+        "A UUID string",
         req.headers["Repeatability-Request-ID"],
       );
     }
