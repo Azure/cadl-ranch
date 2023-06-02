@@ -1087,6 +1087,12 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
+### SpecialHeaders_Repeatability_Repeatability_doSomething
+
+- Endpoint: `get /special-headers/repeatability`
+
+Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
+
 ### SpecialWords_Model_get
 
 - Endpoint: `get /special-words/model/get`
