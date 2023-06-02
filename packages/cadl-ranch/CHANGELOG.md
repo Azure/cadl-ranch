@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.4.18
+
+### Patch Changes
+
+- b550dd7: Remove usage of `object` that is being deprecated
+
 ## 0.4.17
 
 ### Patch Changes
