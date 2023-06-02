@@ -1087,7 +1087,7 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### SpecialHeaders_Repeatability_Repeatability_doSomething
+### SpecialHeaders_Repeatability_doSomething
 
 - Endpoint: `get /special-headers/repeatability`
 
