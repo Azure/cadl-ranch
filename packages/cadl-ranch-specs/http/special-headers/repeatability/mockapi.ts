@@ -3,7 +3,7 @@ import { passOnSuccess, ScenarioMockApi, mockapi, ValidationError } from "@azure
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.SpecialHeaders_Repeatability_doSomething = passOnSuccess(
-  mockapi.post("/special-headers/repeatability[:]doSomething", (req) => {
+  mockapi.post("/special-headers/repeatability/doSomething", (req) => {
     if (!("repeatability-request-id" in req.headers)) {
       throw new ValidationError(
         "Repeatability-Request-ID is missing",

@@ -18,7 +18,7 @@ Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repe
 Trait SupportsRepeatableRequests, that defines Repeatability-Request-ID and Repeatability-First-Sent.
 """)
 @post
-@route(":doSomething")
+@route("/doSomething")
 op doSomething(
   @header("Repeatability-Request-ID")
   repeatabilityRequestID: string,
