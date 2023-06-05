@@ -778,6 +778,46 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Parameters_BodyOptionality_OptionalExplicit
+
+- Endpoints:
+  - `put /parameters/body-optionality/optional-explicit/set`
+  - `put /parameters/body-optionality/optional-explicit/omit`
+
+Scenario defining how an explicit optional body parameter is specified.
+
+Expected request body for `set`
+
+```json
+{ "name": "foo" }
+```
+
+Expected no request body for `omit`
+
+### Parameters_BodyOptionality_requiredExplicit
+
+- Endpoint: `put /parameters/body-optionality/required-explicit`
+
+Scenario defining how an explicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_BodyOptionality_requiredImplicit
+
+- Endpoint: `put /parameters/body-optionality/required-implicit`
+
+Scenario defining how an implicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_CollectionFormat_Header_csv
 
 - Endpoint: `get /parameters/collection-format/header/csv`
