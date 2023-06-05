@@ -781,8 +781,8 @@ Expected query parameter `input=P40D`
 ### Parameters_BodyOptionality_OptionalExplicit
 
 - Endpoints:
-  - `put /parameters/body-optionality/optional-explicit/set`
-  - `put /parameters/body-optionality/optional-explicit/omit`
+  - `post /parameters/body-optionality/optional-explicit/set`
+  - `post /parameters/body-optionality/optional-explicit/omit`
 
 Scenario defining how an explicit optional body parameter is specified.
 
@@ -796,7 +796,7 @@ Expected no request body for `omit`
 
 ### Parameters_BodyOptionality_requiredExplicit
 
-- Endpoint: `put /parameters/body-optionality/required-explicit`
+- Endpoint: `post /parameters/body-optionality/required-explicit`
 
 Scenario defining how an explicit required body parameter is specified.
 
@@ -808,7 +808,7 @@ Expected request body:
 
 ### Parameters_BodyOptionality_requiredImplicit
 
-- Endpoint: `put /parameters/body-optionality/required-implicit`
+- Endpoint: `post /parameters/body-optionality/required-implicit`
 
 Scenario defining how an implicit required body parameter is specified.
 
