@@ -20,6 +20,9 @@ Scenarios.SpecialHeaders_Repeatability_immediateSuccess = passOnSuccess(
     }
     return {
       status: 204,
+      headers: {
+        "repeatability-result": "accepted",
+      },
     };
   }),
 );

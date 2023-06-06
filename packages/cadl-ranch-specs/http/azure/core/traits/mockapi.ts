@@ -36,7 +36,7 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
 );
 
 Scenarios.Azure_Core_Traits_repeatableAction = passOnSuccess(
-  mockapi.post("/azure/core/traits/user/:id", (req) => {
+  mockapi.post("/azure/core/traits/user/:id:repeatableAction", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
