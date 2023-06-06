@@ -577,6 +577,34 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Traits_repeatableAction
+
+- Endpoint: `get /azure/core/traits`
+
+Expected path parameter: id=1
+Expected header parameters:
+
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+  Expected request body:
+
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+
+- repeatability-result=accepted
+  Expected response body:
+
+```json
+{
+  "userActionResult": "test"
+}
+```
+
 ### Azure_Core_Traits_smokeTest
 
 - Endpoint: `get /azure/core/traits`
@@ -591,8 +619,6 @@ Expected header parameters:
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
 - x-ms-client-request-id=<any string>
-- repeatability-request-id=<any uuid>
-- repeatability-first-sent=<any HTTP header date>
 
 Expected response header: x-ms-client-request-id=<any string>
 Expected response body:
@@ -1129,9 +1155,9 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### SpecialHeaders_Repeatability_doSomething
+### SpecialHeaders_Repeatability_immediateSuccess
 
-- Endpoint: `post /special-headers/repeatability/doSomething`
+- Endpoint: `post /special-headers/repeatability/immediateSuccess`
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 

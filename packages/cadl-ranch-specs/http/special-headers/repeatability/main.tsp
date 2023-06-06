@@ -18,8 +18,8 @@ Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 """)
 @post
-@route("/doSomething")
-op doSomething(
+@route("/immediateSuccess")
+op immediateSuccess(
   @header("Repeatability-Request-ID")
   repeatabilityRequestID: string,
 

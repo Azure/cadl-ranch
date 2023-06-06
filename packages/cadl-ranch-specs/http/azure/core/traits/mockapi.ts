@@ -42,3 +42,44 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Azure_Core_Traits_repeatableUpdate = passOnSuccess(
+  mockapi.post("/azure/core/traits/user/:id", (req) => {
+    if (req.params.id !== "1") {
+      throw new ValidationError("Expected path param id=1", "1", req.params.id);
+    }
+
+    if (!("repeatability-request-id" in req.headers)) {
+      throw new ValidationError("Repeatability-Request-ID is missing", "A UUID string", undefined);
+    }
+    if (!("repeatability-first-sent" in req.headers)) {
+      throw new ValidationError("Repeatability-First-Sent is missing", "A date-time in headers format", undefined);
+    }
+
+    if (!/^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(req.headers["repeatability-request-id"])) {
+      throw new ValidationError(
+        `Repeatability-Request-ID should be a UUID string`,
+        "A UUID string",
+        req.headers["repeatability-request-id"],
+      );
+    }
+    if (isNaN(Date.parse(req.headers["repeatability-first-sent"]))) {
+      throw new ValidationError(
+        `Repeatability-First-Sent should be a date-time in headers format`,
+        "A date-time in headers format",
+        req.headers["repeatability-first-sent"],
+      );
+    }
+
+    const validBody = { userActionValue: "test" };
+    req.expect.bodyEquals(validBody);
+
+    return {
+      status: 200,
+      body: json({ userActionResult: "test" }),
+      headers: {
+        "repeatability-result": "accepted",
+      },
+    };
+  }),
+);
