@@ -29,7 +29,6 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
         "bar": "456",
         "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
         "x-ms-client-request-id": req.headers["x-ms-client-request-id"],
-        "repeatability-result": "accepted",
       },
     };
   }),
