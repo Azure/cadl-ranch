@@ -577,6 +577,34 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Traits_repeatableAction
+
+- Endpoint: `get /azure/core/traits`
+
+Expected path parameter: id=1
+Expected header parameters:
+
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+  Expected request body:
+
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+
+- repeatability-result=accepted
+  Expected response body:
+
+```json
+{
+  "userActionResult": "test"
+}
+```
+
 ### Azure_Core_Traits_smokeTest
 
 - Endpoint: `get /azure/core/traits`
@@ -1126,6 +1154,12 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 - Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
+
+### SpecialHeaders_Repeatability_immediateSuccess
+
+- Endpoint: `post /special-headers/repeatability/immediateSuccess`
+
+Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
 ### SpecialWords_Model_get
 
