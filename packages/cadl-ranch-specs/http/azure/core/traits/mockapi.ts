@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json, ValidationError, validateValueFormat } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -47,20 +47,8 @@ Scenarios.Azure_Core_Traits_repeatableAction = passOnSuccess(
       throw new ValidationError("Repeatability-First-Sent is missing", "A date-time in headers format", undefined);
     }
 
-    if (!/^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(req.headers["repeatability-request-id"])) {
-      throw new ValidationError(
-        `Repeatability-Request-ID should be a UUID string`,
-        "A UUID string",
-        req.headers["repeatability-request-id"],
-      );
-    }
-    if (isNaN(Date.parse(req.headers["repeatability-first-sent"]))) {
-      throw new ValidationError(
-        `Repeatability-First-Sent should be a date-time in headers format`,
-        "A date-time in headers format",
-        req.headers["repeatability-first-sent"],
-      );
-    }
+    validateValueFormat(req.headers["repeatability-request-id"], "uuid");
+    validateValueFormat(req.headers["repeatability-first-sent"], "rfc7123");
 
     const validBody = { userActionValue: "test" };
     req.expect.bodyEquals(validBody);
