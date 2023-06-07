@@ -1,6 +1,5 @@
 import "@azure-tools/typespec-azure-core";
 
-using TypeSpec.Http;
 using TypeSpec.Versioning;
 using Azure.Core;
 
@@ -13,9 +12,15 @@ namespace Local {
   @doc("Long running RPC operation template")
   op LongRunningLegacyOperation<
     TParams extends TypeSpec.Reflection.Model,
-    TResponse
+    TResponse,
+    TPollResponse extends TypeSpec.Reflection.Model = Foundations.OperationStatus<TResponse>
   > is Azure.Core.Foundations.Operation<
     TParams,
-    Foundations.AcceptedResponse<Foundations.LongRunningStatusLocation & Foundations.RetryAfterHeader> | TResponse
+    Foundations.AcceptedResponse<{
+      @pollingLocation
+      @doc("The location for monitoring the operation state.")
+      @TypeSpec.Http.header("Operation-Location")
+      operationLocation: TypeSpec.Rest.ResourceLocation<TPollResponse>;
+    } & Foundations.RetryAfterHeader> | TResponse
   >;
 }
