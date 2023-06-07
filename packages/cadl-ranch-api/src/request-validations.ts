@@ -145,7 +145,7 @@ export const validateValueFormat = (value: string, format: "uuid" | "rfc7123" | 
       break;
     case "rfc7123":
       if (
-        !/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s\\d{2}\\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s(\\+|-)\\d{4}$/i.test(
+        !/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s\d{2}\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\s(\+|-)\d{4}$/i.test(
           value,
         )
       ) {
