@@ -45,9 +45,6 @@ model JobData {
 @resource("jobs")
 @doc("Result of the job")
 model JobResult {
-  @doc("PollingLocation")
-  @header location?: ResourceLocation<JobResult>;
-  
   @doc("A processing job identifier.")
   @visibility("read")
   @key
@@ -123,12 +120,10 @@ Expected response body:
 """)
 @route("/same-poll-result")
 interface SamePollResult {
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Legacy LRO uses local template"
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for getLroMetadata"
   @doc("Creates a Job")
   @route("/jobs")
-  @global.Azure.Core.pollingOperation(SamePollResult.getJob)
-  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, JobResult>;
-
-  @doc("Gets the status of a Job")
-  getJob is ResourceOperations.ResourceRead<JobResult>;
+  @post
+  createJob is Local.LongRunningLegacyOperation<JobData, JobResult>;
 }
