@@ -27,7 +27,7 @@ namespace LocalCore {
     TResponse,
     TStatusResult,
     TStatusError = Foundations.Error,
-    Traits extends object = {},
+    Traits extends TypeSpec.Reflection.Model = {},
     TErrorResponse = Azure.Core.Foundations.ErrorResponse
   > is Foundations.Operation<
     TParams & TraitProperties<Traits, TraitLocation.Parameters>,

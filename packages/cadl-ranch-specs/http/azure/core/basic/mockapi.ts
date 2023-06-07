@@ -103,7 +103,7 @@ Scenarios.Azure_Core_Basic_delete = passOnSuccess(
 );
 
 Scenarios.Azure_Core_Basic_export = passOnSuccess(
-  mockapi.post("/azure/core/basic/users/:id:export", (req) => {
+  mockapi.post("/azure/core/basic/users/:id[:]export", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }

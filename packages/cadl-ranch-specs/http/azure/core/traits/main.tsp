@@ -28,9 +28,13 @@ enum Versions {
   v2022_12_01_preview: "2022-12-01-preview",
 }
 
-alias ServiceTraits = SupportsRepeatableRequests & SupportsConditionalRequests & SupportsClientRequestId;
+alias SmokeOperationsWithTraits = global.Azure.Core.ResourceOperations<NoRepeatableRequests &
+  SupportsConditionalRequests &
+  SupportsClientRequestId>;
 
-alias OperationsWithTraits = global.Azure.Core.ResourceOperations<ServiceTraits>;
+alias RepeatableOperationsWithTraits = global.Azure.Core.ResourceOperations<SupportsRepeatableRequests &
+  NoConditionalRequests &
+  NoClientRequestId>;
 
 @doc("Sample Model")
 @resource("user")
@@ -67,7 +71,7 @@ Expected response body:
 }
 ```
 """)
-op smokeTest is OperationsWithTraits.ResourceRead<
+op smokeTest is SmokeOperationsWithTraits.ResourceRead<
   User,
   RequestHeadersTrait<{
     @doc("header in request")
@@ -78,3 +82,40 @@ op smokeTest is OperationsWithTraits.ResourceRead<
       @header bar: string;
     }>
 >;
+
+@doc("User action param")
+model UserActionParam {
+  @doc("User action value.")
+  userActionValue: string;
+}
+
+@doc("User action response")
+model UserActionResponse {
+  @doc("User action result.")
+  userActionResult: string;
+}
+
+@scenario
+@doc("Test for repeatable requests")
+@scenarioDoc("""
+Expected path parameter: id=1
+Expected header parameters:
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+Expected request body:
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+- repeatability-result=accepted
+Expected response body:
+```json
+{
+  "userActionResult": "test"
+}
+```
+""")
+op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<User, UserActionParam, UserActionResponse>;
