@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.3.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
 ## 0.2.4
 
 ### Patch Changes

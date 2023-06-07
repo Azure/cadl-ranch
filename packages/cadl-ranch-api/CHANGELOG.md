@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.3.0
+
+### Minor Changes
+
+- b8f7f66: Add value format validation helper.
+
 ## 0.2.5
 
 ### Patch Changes
