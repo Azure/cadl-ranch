@@ -153,7 +153,7 @@ export const validateValueFormat = (value: string, format: "uuid" | "rfc7123" | 
       }
       break;
     case "rfc3339":
-      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[\+-]\d{2}:\d{2})?$/i.test(value)) {
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$/i.test(value)) {
         throw new ValidationError(`Expected rfc3339 format but got ${value}`, "rfc3339", value);
       }
       break;
