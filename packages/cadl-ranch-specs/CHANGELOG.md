@@ -1,5 +1,24 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.16.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
+### Patch Changes
+
+- b8f7f66: Add repeatability tests
+- fdbcc4f: Add new scenario describing different optionality of the http request body
+- 9e404d1: Escape colon in POST url
+- Updated dependencies [b8f7f66]
+- Updated dependencies [8ad5461]
+- Updated dependencies [9e404d1]
+- Updated dependencies [b8f7f66]
+  - @azure-tools/cadl-ranch@0.5.0
+  - @azure-tools/cadl-ranch-expect@0.4.0
+  - @azure-tools/cadl-ranch-api@0.3.0
+
 ## 0.15.5
 
 ### Patch Changes
