@@ -317,7 +317,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "InProgress"
+  "status": "running"
 }
 ```
 
@@ -331,7 +331,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "Succeeded",
+  "status": "succeeded",
   "results": ["job1 result"]
 }
 ```

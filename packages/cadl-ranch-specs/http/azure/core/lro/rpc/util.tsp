@@ -9,7 +9,7 @@ namespace Local {
   // Ref https://github.com/Azure/typespec-azure/issues/3108
   #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This is a template"
   @Foundations.Private.needsRoute
-  @doc("Long running RPC operation template")
+  @doc("Long running legacy operation template")
   op LongRunningLegacyOperation<
     TParams extends TypeSpec.Reflection.Model,
     TResponse,
