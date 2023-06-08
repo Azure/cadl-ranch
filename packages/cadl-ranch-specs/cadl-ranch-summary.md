@@ -293,9 +293,7 @@ Expected response body:
 
 ### Azure_Core_Lro_Rpc_SamePollResult
 
-- Endpoints:
-  - `post /azure/core/lro/rpc/same-poll-result/jobs`
-  - `post /azure/core/lro/rpc/same-poll-result`
+- Endpoint: `post /azure/core/lro/rpc/same-poll-result/jobs`
 
 Expected verb: POST
 Expected request body:
@@ -307,15 +305,7 @@ Expected request body:
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "InProgress"
-}
-```
+No response body.
 
 Expected verb: GET
 Expected URL: {endpoint}/same-poll-result/jobs/job1
@@ -506,6 +496,34 @@ Expected response body:
     "name": "madge",
     "resourceUri": "/users/madge"
   }
+}
+```
+
+### Azure_Core_Traits_repeatableAction
+
+- Endpoint: `get /azure/core/traits`
+
+Expected path parameter: id=1
+Expected header parameters:
+
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+  Expected request body:
+
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+
+- repeatability-result=accepted
+  Expected response body:
+
+```json
+{
+  "userActionResult": "test"
 }
 ```
 
@@ -709,6 +727,46 @@ Expected query parameter `input=36,47`
 
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
+
+### Parameters_BodyOptionality_OptionalExplicit
+
+- Endpoints:
+  - `post /parameters/body-optionality/optional-explicit/set`
+  - `post /parameters/body-optionality/optional-explicit/omit`
+
+Scenario defining how an explicit optional body parameter is specified.
+
+Expected request body for `set`
+
+```json
+{ "name": "foo" }
+```
+
+Expected no request body for `omit`
+
+### Parameters_BodyOptionality_requiredExplicit
+
+- Endpoint: `post /parameters/body-optionality/required-explicit`
+
+Scenario defining how an explicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_BodyOptionality_requiredImplicit
+
+- Endpoint: `post /parameters/body-optionality/required-implicit`
+
+Scenario defining how an implicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
 
 ### Parameters_CollectionFormat_Header_csv
 
@@ -1018,6 +1076,12 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 - Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
+
+### SpecialHeaders_Repeatability_immediateSuccess
+
+- Endpoint: `post /special-headers/repeatability/immediateSuccess`
+
+Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
 ### SpecialWords_Model_get
 

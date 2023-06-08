@@ -57,7 +57,7 @@ model JobResult {
   @doc("The status of the processing job.")
   @visibility("read")
   @lroStatus
-  status: "Succeeded" | "Canceled" | "Failed" | "Running";
+  status: JobStatus;
 
   @doc("Error objects that describes the error when status is \"Failed\".")
   @visibility("read")
@@ -66,6 +66,27 @@ model JobResult {
   @doc("The results.")
   @visibility("read")
   results?: string[];
+}
+
+@doc("The status of the processing job.")
+enum JobStatus {
+  @doc("The operation is not started.")
+  NotStarted: "notStarted",
+
+  @doc("The operation is in progress.")
+  Running: "running",
+
+  @doc("The operation has completed successfully.")
+  Succeeded: "succeeded",
+
+  @doc("The operation has failed.")
+  Failed: "failed",
+
+  @doc("The operation has been canceled by the user.")
+  Canceled: "canceled",
+
+  @doc("The operation has partially completed.")
+  PartiallyCompleted: "partiallyCompleted",
 }
 
 @scenario
@@ -82,14 +103,7 @@ Expected request body:
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
-Expected response body:
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "InProgress"
-}
-```
+No response body.
 
 Expected verb: GET
 Expected URL: {endpoint}/same-poll-result/jobs/job1
@@ -120,25 +134,10 @@ Expected response body:
 """)
 @route("/same-poll-result")
 interface SamePollResult {
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Will use Azure.Core when LongRunningRpcOperation is ready"
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Legacy LRO uses local template"
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for getLroMetadata"
   @doc("Creates a Job")
   @route("/jobs")
-  @global.Azure.Core.pollingOperation(
-    SamePollResult.getJob,
-    {
-      jobId: RequestParameter<string>,
-      apiVersion: RequestParameter<string>,
-    }
-  )
-  @global.Azure.Core.finalOperation(
-    SamePollResult.getJob,
-    {
-      jobId: RequestParameter<string>,
-      apiVersion: RequestParameter<string>,
-    }
-  )
-  createJob is LocalCore.LongRunningRpcOperation<JobData, JobResult, never>;
-
-  @doc("Gets the status of a Job")
-  getJob is ResourceOperations.ResourceRead<JobResult>;
+  @post
+  createJob is Local.LongRunningLegacyOperation<JobData, JobResult, JobResult>;
 }

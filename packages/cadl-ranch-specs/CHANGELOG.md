@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.15.5
+
+### Patch Changes
+
+- 11d1b63: fix wrong header check for custom http
+- b550dd7: Remove usage of `object` that is being deprecated
+- Updated dependencies [b550dd7]
+  - @azure-tools/cadl-ranch@0.4.18
+
 ## 0.15.4
 
 ### Patch Changes
