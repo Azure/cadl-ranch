@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch
 
+## 0.5.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
+### Patch Changes
+
+- b8f7f66: Add repeatability tests
+- 9e404d1: Escape colon in POST url
+- Updated dependencies [8ad5461]
+- Updated dependencies [b8f7f66]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.0
+  - @azure-tools/cadl-ranch-expect@0.4.0
+  - @azure-tools/cadl-ranch-api@0.3.0
+
 ## 0.4.18
 
 ### Patch Changes
