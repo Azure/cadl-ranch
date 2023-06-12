@@ -48,7 +48,7 @@ Scenarios.Azure_Core_Traits_repeatableAction = passOnSuccess(
     }
 
     validateValueFormat(req.headers["repeatability-request-id"], "uuid");
-    validateValueFormat(req.headers["repeatability-first-sent"], "rfc7123");
+    validateValueFormat(req.headers["repeatability-first-sent"], "rfc7231");
 
     const validBody = { userActionValue: "test" };
     req.expect.bodyEquals(validBody);
