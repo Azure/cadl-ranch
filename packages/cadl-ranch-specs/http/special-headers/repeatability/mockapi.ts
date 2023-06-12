@@ -17,7 +17,7 @@ Scenarios.SpecialHeaders_Repeatability_immediateSuccess = passOnSuccess(
       throw new ValidationError("Repeatability-First-Sent is missing", "A date-time in headers format", undefined);
     }
     validateValueFormat(req.headers["repeatability-request-id"], "uuid");
-    validateValueFormat(req.headers["repeatability-first-sent"], "rfc7123");
+    validateValueFormat(req.headers["repeatability-first-sent"], "rfc7231");
     return {
       status: 204,
       headers: {
