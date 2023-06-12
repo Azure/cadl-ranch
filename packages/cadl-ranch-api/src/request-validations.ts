@@ -136,20 +136,20 @@ const coerceDate = (targetObject: Record<string, unknown>): Record<string, unkno
 /**
  * Check whether the value follow the right format.
  */
-export const validateValueFormat = (value: string, format: "uuid" | "rfc7123" | "rfc3339"): void => {
+export const validateValueFormat = (value: string, format: "uuid" | "rfc7231" | "rfc3339"): void => {
   switch (format) {
     case "uuid":
       if (!/^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value)) {
         throw new ValidationError(`Expected uuid format but got ${value}`, "uuid", value);
       }
       break;
-    case "rfc7123":
+    case "rfc7231":
       if (
         !/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s\d{2}\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT$/i.test(
           value,
         )
       ) {
-        throw new ValidationError(`Expected rfc7123 format but got ${value}`, "rfc7123", value);
+        throw new ValidationError(`Expected rfc7231 format but got ${value}`, "rfc7231", value);
       }
       break;
     case "rfc3339":
