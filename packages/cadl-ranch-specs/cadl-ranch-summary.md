@@ -631,6 +631,108 @@ Expected response body:
 }
 ```
 
+### Encode_Bytes_header
+
+- Endpoint: `get /encode/bytes/header`
+
+Test different encode for bytes headers.
+Expected header:
+default=dGVzdA==
+base64=dGVzdA==
+base64url=dGVzdA
+base64-array=dGVzdA==,dGVzdA==
+
+### Encode_Bytes_property
+
+- Endpoint: `post /encode/bytes/property`
+
+Test operation with request and response model contains bytes properties with different encode.
+Expected request body:
+
+```json
+{
+  "default": "dGVzdA==",
+  "base64": "dGVzdA==",
+  "base64url": "dGVzdA",
+  "base64Array": ["dGVzdA==", "dGVzdA=="]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "default": "dGVzdA==",
+  "base64": "dGVzdA==",
+  "base64url": "dGVzdA",
+  "base64Array": ["dGVzdA==", "dGVzdA=="]
+}
+```
+
+### Encode_Bytes_query
+
+- Endpoint: `get /encode/bytes/query`
+
+Test different encode for bytes query parameters.
+Expected query parameter:
+default=dGVzdA== (base64 encode of test)
+base64=dGVzdA==
+base64url=dGVzdA (base64url encode of test)
+base64-array=dGVzdA==, dGVzdA==
+
+### Encode_Datetime_header
+
+- Endpoint: `get /encode/datetime/header`
+
+Test different encode for datetime headers.
+Expected header:
+default=Fri, 26 Aug 2022 14:38:00 GMT
+rfc3339=2022-08-26T18:38:00.000Z
+rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
+unix-timestamp=1686566864
+rfc3339-array=2022-08-26T18:38:00.000Z,2022-09-26T18:38:00.000Z
+
+### Encode_Datetime_property
+
+- Endpoint: `post /encode/datetime/property`
+
+Test operation with request and response model contains datetime properties with different encode.
+Expected request body:
+
+```json
+{
+  "default": "2022-08-26T18:38:00.000Z",
+  "rfc3339": "2022-08-26T18:38:00.000Z",
+  "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
+  "unixTimestamp": 1686566864,
+  "rfc3339Array": ["2022-08-26T18:38:00.000Z", "2022-09-26T18:38:00.000Z"]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "default": "2022-08-26T18:38:00.000Z",
+  "rfc3339": "2022-08-26T18:38:00.000Z",
+  "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
+  "unixTimestamp": 1686566864,
+  "rfc3339Array": ["2022-08-26T18:38:00.000Z", "2022-09-26T18:38:00.000Z"]
+}
+```
+
+### Encode_Datetime_query
+
+- Endpoint: `get /encode/datetime/query`
+
+Test different encode for datetime query parameters.
+Expected query parameter:
+default=2022-08-26T18:38:00.000Z
+rfc3339=2022-08-26T18:38:00.000Z
+rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
+unix-timestamp=1686566864
+rfc3339-array=2022-08-26T18:38:00.000Z,2022-09-26T18:38:00.000Z
+
 ### Encode_Duration_Header_default
 
 - Endpoint: `get /encode/duration/header/default`
