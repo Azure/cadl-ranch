@@ -10,37 +10,41 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/encode/bytes")
 namespace Encode.Bytes;
 
-@encode(BytesKnownEncoding.base64)
-scalar base64Bytes extends bytes;
+@encode(BytesKnownEncoding.base64url)
+scalar base64urlBytes extends bytes;
 
+@operationGroup
 @route("/query")
-@scenario
-@scenarioDoc("""
-Test different encode for bytes query parameters.
-Expected query parameter: 
-default=dGVzdA== (base64 encode of test)
-base64=dGVzdA==
-base64url=dGVzdA (base64url encode of test)
-base64-array=dGVzdA==, dGVzdA==
-""")
-op query(
-  @query
-  default: bytes,
+namespace Query {
+  @route("/get")
+  @scenario
+  @scenarioDoc("""
+  Test different encode for bytes query parameters.
+  Expected query parameter: 
+  default=dGVzdA== (base64 encode of test)
+  base64=dGVzdA==
+  base64url=dGVzdA (base64url encode of test)
+  base64url-array=dGVzdA, dGVzdA
+  """)
+  op get(
+    @query
+    default: bytes,
 
-  @query
-  @encode(BytesKnownEncoding.base64)
-  base64: bytes,
+    @query
+    @encode(BytesKnownEncoding.base64)
+    base64: bytes,
 
-  @query
-  @encode(BytesKnownEncoding.base64url)
-  base64url: bytes,
+    @query
+    @encode(BytesKnownEncoding.base64url)
+    base64url: bytes,
 
-  @query({
-    name: "base64-array",
-    format: "csv",
-  })
-  base64Array: base64Bytes[]
-): NoContentResponse;
+    @query({
+      name: "base64url-array",
+      format: "csv",
+    })
+    base64urlArray: base64urlBytes[]
+  ): NoContentResponse;
+}
 
 model BytesProperty {
   default: bytes;
@@ -50,60 +54,68 @@ model BytesProperty {
 
   @encode(BytesKnownEncoding.base64url)
   base64url: bytes;
-  base64Array: base64Bytes[];
+  base64urlArray: base64urlBytes[];
 }
 
+@operationGroup
 @route("/property")
-@scenario
-@scenarioDoc("""
-Test operation with request and response model contains bytes properties with different encode.
-Expected request body:
-```json
-{
-  "default": "dGVzdA==",
-  "base64": "dGVzdA==",
-  "base64url": "dGVzdA",
-  "base64Array": ["dGVzdA==", "dGVzdA=="]
+namespace Property {
+  @route("/post")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains bytes properties with different encode.
+  Expected request body:
+  ```json
+  {
+    "default": "dGVzdA==",
+    "base64": "dGVzdA==",
+    "base64url": "dGVzdA",
+    "base64urlArray": ["dGVzdA", "dGVzdA"]
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "default": "dGVzdA==",
+    "base64": "dGVzdA==",
+    "base64url": "dGVzdA",
+    "base64urlArray": ["dGVzdA", "dGVzdA"]
+  }
+  ```
+  """)
+  @post
+  op post(@body body: BytesProperty): BytesProperty;
 }
-```
-Expected response body:
-```json
-{
-  "default": "dGVzdA==",
-  "base64": "dGVzdA==",
-  "base64url": "dGVzdA",
-  "base64Array": ["dGVzdA==", "dGVzdA=="]
-}
-```
-""")
-@post
-op property(@body body: BytesProperty): BytesProperty;
 
+@operationGroup
 @route("/header")
-@scenario
-@scenarioDoc("""
-Test different encode for bytes headers.
-Expected header:
-default=dGVzdA==
-base64=dGVzdA==
-base64url=dGVzdA
-base64-array=dGVzdA==,dGVzdA==
-""")
-op header(
-  @header
-  default: bytes,
+namespace Header {
+  @route("/get")
+  @scenario
+  @scenarioDoc("""
+  Test different encode for bytes headers.
+  Expected header:
+  default=dGVzdA==
+  base64=dGVzdA==
+  base64url=dGVzdA
+  base64url-array=dGVzdA,dGVzdA
+  """)
+  op get(
+    @header
+    default: bytes,
 
-  @header
-  @encode(BytesKnownEncoding.base64)
-  base64: bytes,
+    @header
+    @encode(BytesKnownEncoding.base64)
+    base64: bytes,
 
-  @header
-  @encode(BytesKnownEncoding.base64url)
-  base64url: bytes,
+    @header
+    @encode(BytesKnownEncoding.base64url)
+    base64url: bytes,
 
-  @header({
-    name: "base64-array",
-    format: "csv",
-  })
-  base64Array: base64Bytes[]
-): NoContentResponse;
+    @header({
+      name: "base64url-array",
+      format: "csv",
+    })
+    base64urlArray: base64urlBytes[]
+  ): NoContentResponse;
+}
