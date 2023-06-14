@@ -61,13 +61,16 @@ Expected header parameters:
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
 - x-ms-client-request-id=<any string>
 
-Expected response header: x-ms-client-request-id=<any string>
+Expected response header:
+- bar="456"
+- x-ms-client-request-id=<any string>
+- etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+
 Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "name": "Madge"
 }
 ```
 """)
