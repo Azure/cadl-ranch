@@ -631,20 +631,20 @@ Expected response body:
 }
 ```
 
-### Encode_Bytes_header
+### Encode_Bytes_Header_get
 
-- Endpoint: `get /encode/bytes/header`
+- Endpoint: `get /encode/bytes/header/get`
 
 Test different encode for bytes headers.
 Expected header:
 default=dGVzdA==
 base64=dGVzdA==
 base64url=dGVzdA
-base64-array=dGVzdA==,dGVzdA==
+base64url-array=dGVzdA,dGVzdA
 
-### Encode_Bytes_property
+### Encode_Bytes_Property_post
 
-- Endpoint: `post /encode/bytes/property`
+- Endpoint: `post /encode/bytes/property/post`
 
 Test operation with request and response model contains bytes properties with different encode.
 Expected request body:
@@ -654,7 +654,7 @@ Expected request body:
   "default": "dGVzdA==",
   "base64": "dGVzdA==",
   "base64url": "dGVzdA",
-  "base64Array": ["dGVzdA==", "dGVzdA=="]
+  "base64urlArray": ["dGVzdA", "dGVzdA"]
 }
 ```
 
@@ -665,24 +665,24 @@ Expected response body:
   "default": "dGVzdA==",
   "base64": "dGVzdA==",
   "base64url": "dGVzdA",
-  "base64Array": ["dGVzdA==", "dGVzdA=="]
+  "base64urlArray": ["dGVzdA", "dGVzdA"]
 }
 ```
 
-### Encode_Bytes_query
+### Encode_Bytes_Query_get
 
-- Endpoint: `get /encode/bytes/query`
+- Endpoint: `get /encode/bytes/query/get`
 
 Test different encode for bytes query parameters.
 Expected query parameter:
 default=dGVzdA== (base64 encode of test)
 base64=dGVzdA==
 base64url=dGVzdA (base64url encode of test)
-base64-array=dGVzdA==, dGVzdA==
+base64url-array=dGVzdA, dGVzdA
 
-### Encode_Datetime_header
+### Encode_Datetime_Header_get
 
-- Endpoint: `get /encode/datetime/header`
+- Endpoint: `get /encode/datetime/header/get`
 
 Test different encode for datetime headers.
 Expected header:
@@ -690,11 +690,11 @@ default=Fri, 26 Aug 2022 14:38:00 GMT
 rfc3339=2022-08-26T18:38:00.000Z
 rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
 unix-timestamp=1686566864
-rfc3339-array=2022-08-26T18:38:00.000Z,2022-09-26T18:38:00.000Z
+unix-timestamp-array=1686566864,1686734256
 
-### Encode_Datetime_property
+### Encode_Datetime_Property_post
 
-- Endpoint: `post /encode/datetime/property`
+- Endpoint: `post /encode/datetime/property/post`
 
 Test operation with request and response model contains datetime properties with different encode.
 Expected request body:
@@ -705,7 +705,7 @@ Expected request body:
   "rfc3339": "2022-08-26T18:38:00.000Z",
   "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
   "unixTimestamp": 1686566864,
-  "rfc3339Array": ["2022-08-26T18:38:00.000Z", "2022-09-26T18:38:00.000Z"]
+  "unixTimestampArray": [1686566864, 1686734256]
 }
 ```
 
@@ -717,13 +717,13 @@ Expected response body:
   "rfc3339": "2022-08-26T18:38:00.000Z",
   "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
   "unixTimestamp": 1686566864,
-  "rfc3339Array": ["2022-08-26T18:38:00.000Z", "2022-09-26T18:38:00.000Z"]
+  "unixTimestampArray": [1686566864, 1686734256]
 }
 ```
 
-### Encode_Datetime_query
+### Encode_Datetime_Query_get
 
-- Endpoint: `get /encode/datetime/query`
+- Endpoint: `get /encode/datetime/query/get`
 
 Test different encode for datetime query parameters.
 Expected query parameter:
@@ -731,7 +731,7 @@ default=2022-08-26T18:38:00.000Z
 rfc3339=2022-08-26T18:38:00.000Z
 rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
 unix-timestamp=1686566864
-rfc3339-array=2022-08-26T18:38:00.000Z,2022-09-26T18:38:00.000Z
+unix-timestamp-array=1686566864, 1686734256
 
 ### Encode_Duration_Header_default
 

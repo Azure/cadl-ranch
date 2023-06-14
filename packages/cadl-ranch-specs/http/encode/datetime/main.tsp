@@ -10,8 +10,8 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/encode/datetime")
 namespace Encode.Datetime;
 
-@encode(DateTimeKnownEncoding.rfc7231)
-scalar rfc7231Datetime extends utcDateTime;
+@encode(DateTimeKnownEncoding.unixTimestamp, int64)
+scalar unixTimestampDatetime extends utcDateTime;
 
 @operationGroup
 @route("/query")
@@ -25,7 +25,7 @@ namespace Query {
   rfc3339=2022-08-26T18:38:00.000Z
   rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
   unix-timestamp=1686566864
-  rfc7231-array=Fri, 26 Aug 2022 14:38:00 GMT, Fri, 26 Aug 2022 16:38:00 GMT
+  unix-timestamp-array=1686566864, 1686734256
   """)
   op get(
     @query
@@ -44,10 +44,10 @@ namespace Query {
     unixTimestamp: utcDateTime,
 
     @query({
-      name: "rfc7231-array",
+      name: "unix-timestamp-array",
       format: "csv",
     })
-    rfc7231Array: rfc7231Datetime[]
+    unixTimestampArray: unixTimestampDatetime[]
   ): NoContentResponse;
 }
 
@@ -62,7 +62,7 @@ model DatetimeProperty {
 
   @encode(DateTimeKnownEncoding.unixTimestamp, int64)
   unixTimestamp: utcDateTime;
-  rfc7231Array: rfc7231Datetime[];
+  unixTimestampArray: unixTimestampDatetime[];
 }
 
 @operationGroup
@@ -79,7 +79,7 @@ namespace Property {
     "rfc3339": "2022-08-26T18:38:00.000Z",
     "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
     "unixTimestamp": 1686566864,
-    "rfc7231Array": ["Fri, 26 Aug 2022 14:38:00 GMT", "Fri, 26 Aug 2022 16:38:00 GMT"]
+    "unixTimestampArray": [1686566864, 1686734256]
   }
   ```
   Expected response body:
@@ -89,7 +89,7 @@ namespace Property {
     "rfc3339": "2022-08-26T18:38:00.000Z",
     "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
     "unixTimestamp": 1686566864,
-    "rfc7231Array": ["Fri, 26 Aug 2022 14:38:00 GMT", "Fri, 26 Aug 2022 16:38:00 GMT"]
+    "unixTimestampArray": [1686566864, 1686734256]
   }
   ```
   """)
@@ -109,7 +109,7 @@ namespace Header {
   rfc3339=2022-08-26T18:38:00.000Z
   rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
   unix-timestamp=1686566864
-  rfc7231-array=Fri, 26 Aug 2022 14:38:00 GMT,Fri, 26 Aug 2022 16:38:00 GMT
+  unix-timestamp-array=1686566864,1686734256
   """)
   op get(
     @header
@@ -128,9 +128,9 @@ namespace Header {
     unixTimestamp: utcDateTime,
 
     @header({
-      name: "rfc7231-array",
+      name: "unix-timestamp-array",
       format: "csv",
     })
-    rfc7231Array: rfc7231Datetime[]
+    unixTimestampArray: unixTimestampDatetime[]
   ): NoContentResponse;
 }
