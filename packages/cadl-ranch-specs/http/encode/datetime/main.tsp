@@ -10,127 +10,273 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/encode/datetime")
 namespace Encode.Datetime;
 
+@encode(DateTimeKnownEncoding.rfc7231)
+scalar rfc7231Datetime extends utcDateTime;
+
 @encode(DateTimeKnownEncoding.unixTimestamp, int64)
 scalar unixTimestampDatetime extends utcDateTime;
 
 @operationGroup
 @route("/query")
 namespace Query {
-  @route("/get")
+  @route("/default")
   @scenario
   @scenarioDoc("""
-  Test different encode for datetime query parameters.
+  Test default encode for datetime query parameter.
   Expected query parameter: 
-  default=2022-08-26T18:38:00.000Z
-  rfc3339=2022-08-26T18:38:00.000Z
-  rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
-  unix-timestamp=1686566864
-  unix-timestamp-array=1686566864, 1686734256
+  value=2022-08-26T18:38:00.000Z
   """)
-  op get(
+  op default(
     @query
-    default: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/rfc3339")
+  @scenario
+  @scenarioDoc("""
+  Test rfc3339 encode for datetime query parameter.
+  Expected query parameter: 
+  value=2022-08-26T18:38:00.000Z
+  """)
+  op rfc3339(
     @query
     @encode(DateTimeKnownEncoding.rfc3339)
-    rfc3339: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/rfc7231")
+  @scenario
+  @scenarioDoc("""
+  Test rfc7231 encode for datetime query parameter.
+  Expected query parameter: 
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op rfc7231(
     @query
     @encode(DateTimeKnownEncoding.rfc7231)
-    rfc7231: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
-    @query("unix-timestamp")
+  @route("/unix-timestamp")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime query parameter.
+  Expected query parameter: 
+  value=1686566864
+  """)
+  op unixTimestamp(
+    @query
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    unixTimestamp: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/rfc7231-array")
+  @scenario
+  @scenarioDoc("""
+  Test rfc7231 encode for datetime array query parameter.
+  Expected query parameter: 
+  value=Fri, 26 Aug 2022 14:38:00 GMT, Fri, 26 Aug 2022 16:38:00 GMT
+  """)
+  op rfc7231Array(
     @query({
-      name: "unix-timestamp-array",
       format: "csv",
     })
-    unixTimestampArray: unixTimestampDatetime[]
+    value: rfc7231Datetime[]
   ): NoContentResponse;
 }
 
-model DatetimeProperty {
-  default: utcDateTime;
+model DefaultDatetimeProperty {
+  value: utcDateTime;
+}
 
+model Rfc3339DatetimeProperty {
   @encode(DateTimeKnownEncoding.rfc3339)
-  rfc3339: utcDateTime;
+  value: utcDateTime;
+}
 
+model Rfc7231DatetimeProperty {
   @encode(DateTimeKnownEncoding.rfc7231)
-  rfc7231: utcDateTime;
+  value: utcDateTime;
+}
 
+model UnixTimestampDatetimeProperty {
   @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-  unixTimestamp: utcDateTime;
-  unixTimestampArray: unixTimestampDatetime[];
+  value: utcDateTime;
+}
+
+model UnixTimestampArrayDatetimeProperty {
+  value: unixTimestampDatetime[];
 }
 
 @operationGroup
 @route("/property")
 namespace Property {
-  @route("/post")
+  @route("/default")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains datetime properties with different encode.
+  Test operation with request and response model contains datetime property with default encode.
   Expected request body:
   ```json
   {
-    "default": "2022-08-26T18:38:00.000Z",
-    "rfc3339": "2022-08-26T18:38:00.000Z",
-    "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
-    "unixTimestamp": 1686566864,
-    "unixTimestampArray": [1686566864, 1686734256]
+    "value": "2022-08-26T18:38:00.000Z"
   }
   ```
   Expected response body:
   ```json
   {
-    "default": "2022-08-26T18:38:00.000Z",
-    "rfc3339": "2022-08-26T18:38:00.000Z",
-    "rfc7231": "Fri, 26 Aug 2022 14:38:00 GMT",
-    "unixTimestamp": 1686566864,
-    "unixTimestampArray": [1686566864, 1686734256]
+    "value": "2022-08-26T18:38:00.000Z"
   }
   ```
   """)
   @post
-  op post(@body body: DatetimeProperty): DatetimeProperty;
+  op default(@body body: DefaultDatetimeProperty): DefaultDatetimeProperty;
+
+  @route("/rfc3339")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains datetime property with rfc3339 encode.
+  Expected request body:
+  ```json
+  {
+    "value": "2022-08-26T18:38:00.000Z"
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": "2022-08-26T18:38:00.000Z"
+  }
+  ```
+  """)
+  @post
+  op rfc3339(@body body: Rfc3339DatetimeProperty): Rfc3339DatetimeProperty;
+
+  @route("/rfc7231")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains datetime property with rfc7231 encode.
+  Expected request body:
+  ```json
+  {
+    "value": "Fri, 26 Aug 2022 14:38:00 GMT"
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": "Fri, 26 Aug 2022 14:38:00 GMT"
+  }
+  ```
+  """)
+  @post
+  op rfc7231(@body body: Rfc7231DatetimeProperty): Rfc7231DatetimeProperty;
+
+  @route("/unix-timestamp")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains datetime property with unixTimestamp encode.
+  Expected request body:
+  ```json
+  {
+    "value": 1686566864
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": 1686566864
+  }
+  ```
+  """)
+  @post
+  op unixTimestamp(@body body: UnixTimestampDatetimeProperty): UnixTimestampDatetimeProperty;
+
+  @route("/unix-timestamp-array")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains datetime array property with unixTimestamp encode.
+  Expected request body:
+  ```json
+  {
+    "value": [1686566864, 1686734256]
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": [1686566864, 1686734256]
+  }
+  ```
+  """)
+  @post
+  op unixTimestampArray(@body body: UnixTimestampArrayDatetimeProperty): UnixTimestampArrayDatetimeProperty;
 }
 
 @operationGroup
 @route("/header")
 namespace Header {
-  @route("/get")
+  @route("/default")
   @scenario
   @scenarioDoc("""
-  Test different encode for datetime headers.
-  Expected header:
-  default=Fri, 26 Aug 2022 14:38:00 GMT
-  rfc3339=2022-08-26T18:38:00.000Z
-  rfc7231=Fri, 26 Aug 2022 14:38:00 GMT
-  unix-timestamp=1686566864
-  unix-timestamp-array=1686566864,1686734256
+  Test default encode for datetime header.
+  Expected header: 
+  value=Fri, 26 Aug 2022 14:38:00 GMT
   """)
-  op get(
+  op default(
     @header
-    default: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/rfc3339")
+  @scenario
+  @scenarioDoc("""
+  Test rfc3339 encode for datetime header.
+  Expected header: 
+  value=2022-08-26T18:38:00.000Z
+  """)
+  op rfc3339(
     @header
     @encode(DateTimeKnownEncoding.rfc3339)
-    rfc3339: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/rfc7231")
+  @scenario
+  @scenarioDoc("""
+  Test rfc7231 encode for datetime header.
+  Expected header: 
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op rfc7231(
     @header
     @encode(DateTimeKnownEncoding.rfc7231)
-    rfc7231: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
-    @header("unix-timestamp")
+  @route("/unix-timestamp")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime header.
+  Expected header: 
+  value=1686566864
+  """)
+  op unixTimestamp(
+    @header
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    unixTimestamp: utcDateTime,
+    value: utcDateTime
+  ): NoContentResponse;
 
+  @route("/unix-timestamp-array")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime array header.
+  Expected header: 
+  value=1686566864, 1686734256
+  """)
+  op unixTimestampArray(
     @header({
-      name: "unix-timestamp-array",
       format: "csv",
     })
-    unixTimestampArray: unixTimestampDatetime[]
+    value: unixTimestampDatetime[]
   ): NoContentResponse;
 }

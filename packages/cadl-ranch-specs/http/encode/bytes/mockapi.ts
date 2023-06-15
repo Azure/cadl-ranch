@@ -1,44 +1,54 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json, CollectionFormat, MockApi } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Encode_Bytes_Query_get = passOnSuccess(
-  mockapi.get("/encode/bytes/query/get", (req) => {
-    req.expect.containsQueryParam("default", "dGVzdA==");
-    req.expect.containsQueryParam("base64", "dGVzdA==");
-    req.expect.containsQueryParam("base64url", "dGVzdA");
-    req.expect.containsQueryParam("base64url-array", ["dGVzdA", "dGVzdA"], "csv");
+function createQueryMockApis(route: string, value: any, collectionFormat?: CollectionFormat): MockApi {
+  const url = `/encode/bytes/query/${route}`;
+  return mockapi.get(url, (req) => {
+    req.expect.containsQueryParam("value", value, collectionFormat);
     return {
       status: 204,
     };
-  }),
-);
+  });
+}
 
-Scenarios.Encode_Bytes_Property_post = passOnSuccess(
-  mockapi.post("/encode/bytes/property/post", (req) => {
-    const body = {
-      default: "dGVzdA==",
-      base64: "dGVzdA==",
-      base64url: "dGVzdA",
-      base64urlArray: ["dGVzdA", "dGVzdA"],
-    };
-    req.expect.coercedBodyEquals(body);
+function createPropertyMockApis(route: string, value: any): MockApi {
+  const url = `/encode/bytes/property/${route}`;
+  return mockapi.post(url, (req) => {
+    req.expect.coercedBodyEquals({ value: value });
     return {
       status: 200,
-      body: json(body),
+      body: json({ value: value }),
     };
-  }),
-);
+  });
+}
 
-Scenarios.Encode_Bytes_Header_get = passOnSuccess(
-  mockapi.get("/encode/bytes/header/get", (req) => {
-    req.expect.containsHeader("default", "dGVzdA==");
-    req.expect.containsHeader("base64", "dGVzdA==");
-    req.expect.containsHeader("base64url", "dGVzdA");
-    req.expect.containsHeader("base64url-array", "dGVzdA,dGVzdA");
+function createHeaderMockApis(route: string, value: any): MockApi {
+  const url = `/encode/bytes/header/${route}`;
+  return mockapi.get(url, (req) => {
+    req.expect.containsHeader("value", value);
     return {
       status: 204,
     };
-  }),
+  });
+}
+
+Scenarios.Encode_Bytes_Query_default = passOnSuccess(createQueryMockApis("default", "dGVzdA=="));
+Scenarios.Encode_Bytes_Query_base64 = passOnSuccess(createQueryMockApis("base64", "dGVzdA=="));
+Scenarios.Encode_Bytes_Query_base64url = passOnSuccess(createQueryMockApis("base64url", "dGVzdA"));
+Scenarios.Encode_Bytes_Query_base64urlArray = passOnSuccess(
+  createQueryMockApis("base64url-array", ["dGVzdA", "dGVzdA"], "csv"),
 );
+
+Scenarios.Encode_Bytes_Property_default = passOnSuccess(createPropertyMockApis("default", "dGVzdA=="));
+Scenarios.Encode_Bytes_Property_base64 = passOnSuccess(createPropertyMockApis("base64", "dGVzdA=="));
+Scenarios.Encode_Bytes_Property_base64url = passOnSuccess(createPropertyMockApis("base64url", "dGVzdA"));
+Scenarios.Encode_Bytes_Property_base64urlArray = passOnSuccess(
+  createPropertyMockApis("base64url-array", ["dGVzdA", "dGVzdA"]),
+);
+
+Scenarios.Encode_Bytes_Header_default = passOnSuccess(createHeaderMockApis("default", "dGVzdA=="));
+Scenarios.Encode_Bytes_Header_base64 = passOnSuccess(createHeaderMockApis("base64", "dGVzdA=="));
+Scenarios.Encode_Bytes_Header_base64url = passOnSuccess(createHeaderMockApis("base64url", "dGVzdA"));
+Scenarios.Encode_Bytes_Header_base64urlArray = passOnSuccess(createHeaderMockApis("base64url-array", "dGVzdA,dGVzdA"));
