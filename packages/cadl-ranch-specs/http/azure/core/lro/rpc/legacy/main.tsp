@@ -18,12 +18,12 @@ using global.Azure.Core.Traits;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with long-running operation")
 @scenarioService(
-  "/azure/core/lro/rpc",
+  "/azure/core/lro/rpc/legacy",
   {
     versioned: Versions,
   }
 )
-namespace _Specs_.Azure.Core.Lro.Rpc;
+namespace _Specs_.Azure.Core.Lro.Rpc.Legacy;
 
 @doc("Versions of the service")
 enum Versions {
@@ -90,9 +90,13 @@ enum JobStatus {
 }
 
 @scenario
-@doc("Creates a Job")
-@summary("Creates a Job")
+@doc("POST to create resource, poll URL via operation-location header.")
+@summary("POST to create resource, poll URL via operation-location header.")
 @scenarioDoc("""
+POST to create resource.
+Poll URL via operation-location header in response.
+Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
+
 Expected verb: POST
 Expected request body:
 ```json
@@ -102,11 +106,11 @@ Expected request body:
 ```
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
 No response body.
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -119,7 +123,7 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -132,8 +136,8 @@ Expected response body:
 }
 ```
 """)
-@route("/same-poll-result")
-interface SamePollResult {
+@route("/create-resource-poll-via-operation-location")
+interface CreateResourcePollViaOperationLocation {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Legacy LRO uses local template"
   #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for getLroMetadata"
   @doc("Creates a Job")

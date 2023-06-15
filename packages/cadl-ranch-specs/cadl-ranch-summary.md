@@ -291,9 +291,13 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Lro_Rpc_SamePollResult
+### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoint: `post /azure/core/lro/rpc/same-poll-result/jobs`
+- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+
+POST to create resource.
+Poll URL via operation-location header in response.
+Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
 
 Expected verb: POST
 Expected request body:
@@ -304,11 +308,11 @@ Expected request body:
 ````
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
 No response body.
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -322,7 +326,7 @@ Expected response body:
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
