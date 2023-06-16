@@ -19,7 +19,7 @@ namespace Query {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for bytes query parameter.
+  Test default encode (base64) for bytes query parameter.
   Expected query parameter: 
   value=dGVzdA== (base64 encode of test)
   """)
@@ -93,7 +93,7 @@ namespace Property {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains bytes properties with default encode.
+  Test operation with request and response model contains bytes properties with default encode (base64).
   Expected request body:
   ```json
   {
@@ -177,7 +177,7 @@ namespace Header {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for bytes header.
+  Test default encode (base64) for bytes header.
   Expected header: 
   value=dGVzdA== (base64 encode of test)
   """)

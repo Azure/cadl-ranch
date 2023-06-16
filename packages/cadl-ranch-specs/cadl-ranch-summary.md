@@ -663,7 +663,7 @@ value=dGVzdA, dGVzdA
 
 - Endpoint: `get /encode/bytes/header/default`
 
-Test default encode for bytes header.
+Test default encode (base64) for bytes header.
 Expected header:
 value=dGVzdA== (base64 encode of test)
 
@@ -734,7 +734,7 @@ Expected response body:
 
 - Endpoint: `post /encode/bytes/property/default`
 
-Test operation with request and response model contains bytes properties with default encode.
+Test operation with request and response model contains bytes properties with default encode (base64).
 Expected request body:
 
 ```json
@@ -779,7 +779,7 @@ value=dGVzdA, dGVzdA
 
 - Endpoint: `get /encode/bytes/query/default`
 
-Test default encode for bytes query parameter.
+Test default encode (base64) for bytes query parameter.
 Expected query parameter:
 value=dGVzdA== (base64 encode of test)
 
@@ -787,7 +787,7 @@ value=dGVzdA== (base64 encode of test)
 
 - Endpoint: `get /encode/datetime/header/default`
 
-Test default encode for datetime header.
+Test default encode (rfc7231) for datetime header.
 Expected header:
 value=Fri, 26 Aug 2022 14:38:00 GMT
 
@@ -827,7 +827,7 @@ value=1686566864, 1686734256
 
 - Endpoint: `post /encode/datetime/property/default`
 
-Test operation with request and response model contains datetime property with default encode.
+Test operation with request and response model contains datetime property with default encode (rfc3339).
 Expected request body:
 
 ```json
@@ -932,7 +932,7 @@ Expected response body:
 
 - Endpoint: `get /encode/datetime/query/default`
 
-Test default encode for datetime query parameter.
+Test default encode (rfc3339) for datetime query parameter.
 Expected query parameter:
 value=2022-08-26T18:38:00.000Z
 

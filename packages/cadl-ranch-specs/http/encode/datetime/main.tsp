@@ -22,7 +22,7 @@ namespace Query {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for datetime query parameter.
+  Test default encode (rfc3339) for datetime query parameter.
   Expected query parameter: 
   value=2022-08-26T18:38:00.000Z
   """)
@@ -114,7 +114,7 @@ namespace Property {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains datetime property with default encode.
+  Test operation with request and response model contains datetime property with default encode (rfc3339).
   Expected request body:
   ```json
   {
@@ -218,7 +218,7 @@ namespace Header {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for datetime header.
+  Test default encode (rfc7231) for datetime header.
   Expected header: 
   value=Fri, 26 Aug 2022 14:38:00 GMT
   """)
