@@ -13,16 +13,17 @@ using TypeSpec.Versioning;
   {
     @doc("Need to be set as 'http://localhost:3000' in client.")
     endpoint: url,
+
     @doc("Api Version")
     @path
-    apiVersion: APIVersion
+    apiVersion: APIVersion,
   }
 )
 namespace Server.Version.Path;
 
 enum Versions {
   v1_1: "v1.1",
-  v1_2: "v1.2"
+  v1_2: "v1.2",
 }
 
 @knownValues(Versions)
@@ -31,7 +32,7 @@ scalar APIVersion extends string;
 model Options {
   versioned: Versions;
 }
-  
+
 @scenario
 @scenarioDoc("An simple operation in a parameterized server.")
 @route("/myOp")
