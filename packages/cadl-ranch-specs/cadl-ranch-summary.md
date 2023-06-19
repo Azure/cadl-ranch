@@ -657,7 +657,7 @@ value=dGVzdA (base64url encode of test)
 
 Test base64url encode for bytes array header.
 Expected header:
-value=dGVzdA, dGVzdA
+value=dGVzdA,dGVzdA
 
 ### Encode_Bytes_Header_default
 
@@ -821,7 +821,7 @@ value=1686566864
 
 Test unixTimestamp encode for datetime array header.
 Expected header:
-value=1686566864, 1686734256
+value=1686566864,1686734256
 
 ### Encode_Datetime_Property_default
 
@@ -912,7 +912,7 @@ Expected response body:
 - Endpoint: `post /encode/datetime/property/unix-timestamp-array`
 
 Test operation with request and response model contains datetime array property with unixTimestamp encode.
-Expected request body:
+Expected request body:f
 
 ```json
 {
@@ -952,14 +952,6 @@ Test rfc7231 encode for datetime query parameter.
 Expected query parameter:
 value=Fri, 26 Aug 2022 14:38:00 GMT
 
-### Encode_Datetime_Query_rfc7231Array
-
-- Endpoint: `get /encode/datetime/query/rfc7231-array`
-
-Test rfc7231 encode for datetime array query parameter.
-Expected query parameter:
-value=Fri, 26 Aug 2022 14:38:00 GMT, Fri, 26 Aug 2022 16:38:00 GMT
-
 ### Encode_Datetime_Query_unixTimestamp
 
 - Endpoint: `get /encode/datetime/query/unix-timestamp`
@@ -967,6 +959,14 @@ value=Fri, 26 Aug 2022 14:38:00 GMT, Fri, 26 Aug 2022 16:38:00 GMT
 Test unixTimestamp encode for datetime query parameter.
 Expected query parameter:
 value=1686566864
+
+### Encode_Datetime_Query_unixTimestampArray
+
+- Endpoint: `get /encode/datetime/query/unix-timestamp-array`
+
+Test unixTimestamp encode for datetime array query parameter.
+Expected query parameter:
+value=1686566864, 1686734256
 
 ### Encode_Duration_Header_default
 
