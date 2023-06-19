@@ -20,7 +20,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test default encode (base64) for bytes query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=dGVzdA== (base64 encode of test)
   """)
   op default(
@@ -32,7 +32,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test base64 encode for bytes query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=dGVzdA== (base64 encode of test)
   """)
   op base64(
@@ -45,7 +45,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test base64url encode for bytes query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=dGVzdA (base64url encode of test)
   """)
   op base64url(
@@ -58,7 +58,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test base64url encode for bytes array query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=dGVzdA, dGVzdA
   """)
   op base64urlArray(
@@ -178,7 +178,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test default encode (base64) for bytes header.
-  Expected header: 
+  Expected header:
   value=dGVzdA== (base64 encode of test)
   """)
   op default(
@@ -190,7 +190,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test base64 encode for bytes header.
-  Expected header: 
+  Expected header:
   value=dGVzdA== (base64 encode of test)
   """)
   op base64(
@@ -203,7 +203,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test base64url encode for bytes header.
-  Expected header: 
+  Expected header:
   value=dGVzdA (base64url encode of test)
   """)
   op base64url(
@@ -216,8 +216,8 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test base64url encode for bytes array header.
-  Expected header: 
-  value=dGVzdA, dGVzdA
+  Expected header:
+  value=dGVzdA,dGVzdA
   """)
   op base64urlArray(
     @header({

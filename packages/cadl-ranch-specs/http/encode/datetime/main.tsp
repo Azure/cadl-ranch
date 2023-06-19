@@ -10,9 +10,6 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/encode/datetime")
 namespace Encode.Datetime;
 
-@encode(DateTimeKnownEncoding.rfc7231)
-scalar rfc7231Datetime extends utcDateTime;
-
 @encode(DateTimeKnownEncoding.unixTimestamp, int64)
 scalar unixTimestampDatetime extends utcDateTime;
 
@@ -23,7 +20,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test default encode (rfc3339) for datetime query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=2022-08-26T18:38:00.000Z
   """)
   op default(
@@ -35,7 +32,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test rfc3339 encode for datetime query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=2022-08-26T18:38:00.000Z
   """)
   op rfc3339(
@@ -48,7 +45,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test rfc7231 encode for datetime query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=Fri, 26 Aug 2022 14:38:00 GMT
   """)
   op rfc7231(
@@ -61,7 +58,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test unixTimestamp encode for datetime query parameter.
-  Expected query parameter: 
+  Expected query parameter:
   value=1686566864
   """)
   op unixTimestamp(
@@ -70,18 +67,18 @@ namespace Query {
     value: utcDateTime
   ): NoContentResponse;
 
-  @route("/rfc7231-array")
+  @route("/unix-timestamp-array")
   @scenario
   @scenarioDoc("""
-  Test rfc7231 encode for datetime array query parameter.
-  Expected query parameter: 
-  value=Fri, 26 Aug 2022 14:38:00 GMT, Fri, 26 Aug 2022 16:38:00 GMT
+  Test unixTimestamp encode for datetime array query parameter.
+  Expected query parameter:
+  value=1686566864, 1686734256
   """)
-  op rfc7231Array(
+  op unixTimestampArray(
     @query({
       format: "csv",
     })
-    value: rfc7231Datetime[]
+    value: unixTimestampDatetime[]
   ): NoContentResponse;
 }
 
@@ -195,7 +192,7 @@ namespace Property {
   @scenario
   @scenarioDoc("""
   Test operation with request and response model contains datetime array property with unixTimestamp encode.
-  Expected request body:
+  Expected request body:f
   ```json
   {
     "value": [1686566864, 1686734256]
@@ -219,7 +216,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test default encode (rfc7231) for datetime header.
-  Expected header: 
+  Expected header:
   value=Fri, 26 Aug 2022 14:38:00 GMT
   """)
   op default(
@@ -231,7 +228,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test rfc3339 encode for datetime header.
-  Expected header: 
+  Expected header:
   value=2022-08-26T18:38:00.000Z
   """)
   op rfc3339(
@@ -244,7 +241,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test rfc7231 encode for datetime header.
-  Expected header: 
+  Expected header:
   value=Fri, 26 Aug 2022 14:38:00 GMT
   """)
   op rfc7231(
@@ -257,7 +254,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test unixTimestamp encode for datetime header.
-  Expected header: 
+  Expected header:
   value=1686566864
   """)
   op unixTimestamp(
@@ -270,8 +267,8 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test unixTimestamp encode for datetime array header.
-  Expected header: 
-  value=1686566864, 1686734256
+  Expected header:
+  value=1686566864,1686734256
   """)
   op unixTimestampArray(
     @header({

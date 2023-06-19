@@ -40,8 +40,8 @@ Scenarios.Encode_Datetime_Query_rfc7231 = passOnSuccess(
   createQueryMockApis("rfc7231", "Fri, 26 Aug 2022 14:38:00 GMT"),
 );
 Scenarios.Encode_Datetime_Query_unixTimestamp = passOnSuccess(createQueryMockApis("unix-timestamp", "1686566864"));
-Scenarios.Encode_Datetime_Query_rfc7231Array = passOnSuccess(
-  createQueryMockApis("rfc7231-array", ["Fri, 26 Aug 2022 14:38:00 GMT", "Fri, 26 Aug 2022 16:38:00 GMT"], "csv"),
+Scenarios.Encode_Datetime_Query_unixTimestampArray = passOnSuccess(
+  createQueryMockApis("unix-timestamp-array", ["1686566864", "1686734256"], "csv"),
 );
 
 Scenarios.Encode_Datetime_Property_default = passOnSuccess(
