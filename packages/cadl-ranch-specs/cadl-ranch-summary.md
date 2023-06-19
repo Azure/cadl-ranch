@@ -1492,6 +1492,18 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
+### Server_Version_Path_myOp
+
+- Endpoint: `head /server/version/path/myOp`
+
+An simple operation in a parameterized server.
+
+### Server_Version_Query_myOp
+
+- Endpoint: `head /server/version/query/myOp`
+
+An simple operation in a parameterized server.
+
 ### SpecialHeaders_Repeatability_immediateSuccess
 
 - Endpoint: `post /special-headers/repeatability/immediateSuccess`
