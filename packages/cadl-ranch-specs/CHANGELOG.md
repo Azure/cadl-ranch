@@ -1,13 +1,10 @@
 # @azure-tools/cadl-ranch-specs
 
-## 0.17.0
-
-### Minor Changes
-
-- 143d65f: Fix traits test case by removing etag in reponse body which is not defined
+## 0.16.1
 
 ### Patch Changes
 
+- 143d65f: Fix traits test case by removing etag in reponse body which is not defined
 - effb3cb: Add encode test for datetime and bytes
 - e087dfd: Fix typo of datetime format.
 - Updated dependencies [e087dfd]
