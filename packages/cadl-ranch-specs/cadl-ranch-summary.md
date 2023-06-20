@@ -1492,17 +1492,45 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### Server_Version_Path_myOp
+### Server_Version_Path_valid
 
-- Endpoint: `head /server/version/path/myOp`
+- Endpoint: `head /server/version/path/valid`
 
-An simple operation in a parameterized server.
+Server with multiple api versions and the version is in path.
 
-### Server_Version_Query_myOp
+Expected path with api version parameter: /v1.1/server/version/path/valid
 
-- Endpoint: `head /server/version/query/myOp`
+### Server_Version_Query_valid
 
-An simple operation in a parameterized server.
+- Endpoint: `head /server/version/query/valid`
+
+Server with multiple api versions and the version is in query.
+
+Expected path with api version parameter: /server/version/query/valid?api-version=v1.1
+
+### Server_Version_Union_customerDefined
+
+- Endpoint: `head /server/version/union/customerDefined`
+
+Server with multiple api versions and operation with customer-defined api version.
+
+Expected path with api version parameter: /server/version/union/customerDefined?api-version=1.0.0
+
+### Server_Version_Union_customerDefinedWithDefault
+
+- Endpoint: `head /server/version/union/customerDefinedWithDefault`
+
+Server with multiple api versions and operation with customer-defined api version.
+
+Expected path with api version parameter: /server/version/union/customerDefined?api-version=2.0.0
+
+### Server_Version_Union_templateDefined
+
+- Endpoint: `delete /server/version/union`
+
+Server with multiple api versions and operation with template-defined api version.
+
+Expected path with api version parameter: /server/version/union/Pet/dog?api-version=1.0.0
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
