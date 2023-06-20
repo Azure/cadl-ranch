@@ -2,9 +2,9 @@ import { passOnSuccess, ScenarioMockApi, mockapi } from "@azure-tools/cadl-ranch
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Server_Version_Query_myOp = passOnSuccess(
-  mockapi.head("/server/version/query/myOp", (req) => {
+Scenarios.Server_Version_Query_valid = passOnSuccess(
+  mockapi.head("/server/version/query/valid", (req) => {
     req.expect.containsQueryParam("api-version", "v1.1");
-    return { status: 200 };
+    return { status: 204 };
   }),
 );

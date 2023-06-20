@@ -19,7 +19,7 @@ namespace Server.Version.Query;
 
 enum Versions {
   v1_1: "v1.1",
-  v1_2: "v1.2",
+  v1_2: "v1.2"
 }
 
 model Options {
@@ -27,7 +27,11 @@ model Options {
 }
 
 @scenario
-@scenarioDoc("An simple operation in a parameterized server.")
-@route("/myOp")
+@scenarioDoc("""
+Server with multiple api versions and the version is in query.
+
+Expected path with api version parameter: /server/version/query/valid?api-version=v1.1
+""")
+@route("/valid")
 @head
-op myOp(): OkResponse;
+op valid(): NoContentResponse;

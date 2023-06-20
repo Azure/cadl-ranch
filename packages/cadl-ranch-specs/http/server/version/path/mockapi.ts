@@ -2,8 +2,8 @@ import { passOnSuccess, ScenarioMockApi, mockapi } from "@azure-tools/cadl-ranch
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Server_Version_Path_myOp = passOnSuccess(
-  mockapi.head("/v1.1/server/version/path/myOp", (req) => {
-    return { status: 200 };
+Scenarios.Server_Version_Path_valid = passOnSuccess(
+  mockapi.head("/v1.1/server/version/path/valid", (req) => {
+    return { status: 204 };
   }),
 );
