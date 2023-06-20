@@ -34,7 +34,8 @@ Expected path with api version parameter: /server/version/union/customerDefined?
 @head
 op customerDefined(
   @doc("Api version.")
-  @query apiVersion: string
+  @query
+  apiVersion: string
 ): NoContentResponse;
 
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing purpose"
@@ -49,7 +50,8 @@ Expected path with api version parameter: /server/version/union/customerDefined?
 @head
 op customerDefinedWithDefault(
   @doc("Api version.")
-  @query apiVersion: "2.0.0"
+  @query
+  apiVersion: "2.0.0"
 ): NoContentResponse;
 
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing purpose"
