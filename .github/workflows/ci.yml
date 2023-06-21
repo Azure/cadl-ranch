@@ -106,7 +106,7 @@ jobs:
       - run: npx -y @azure-tools/typespec-bump-deps@latest ./packages/cadl-ranch-specs/package.json ./packages/cadl-ranch/package.json ./packages/cadl-ranch-expect/package.json
         name: Bump package versions
 
-      - run: pnpm install
+      - run: pnpm install --no-frozen-lockfile
         name: Install dependencies
 
       - run: pnpm run build
