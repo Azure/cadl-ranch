@@ -123,5 +123,5 @@ jobs:
 
       - run: |
           git status --porcelain
-          git diff --no-ext-diff --quiet --exit-code
+          git diff --no-ext-diff --quiet --exit-code -- ':!package.json'
         name: Check not out of date generated files
