@@ -33,7 +33,7 @@ jobs:
 
   # This workflow contains a single job called "build"
   build:
-    name: Build And Test
+    name: Build And Test (latest)
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -79,7 +79,7 @@ jobs:
         name: Check not out of date generated files
 
   build-dev:
-    name: Build And Test (With typespec -dev.x)
+    name: Build And Test (-dev.x)
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -95,7 +95,15 @@ jobs:
       - run: npm install -g pnpm@7.27.1
         name: Install PNPM
 
-      - run: npx @azure-tools/typespec-bump-deps ./packages/cadl-ranch-specs/package.json ./packages/cadl-ranch/package.json ./packages/cadl-ranch-expect/package.json
+      # Install deps and build the bump package first
+      # - run: pnpm install
+      #   name: Install dependencies
+
+      # - run: npm run build
+      #   name: Build
+      #   working-directory: ./typespec-bump-deps
+
+      - run: npx @azure-tools/typespec-bump-deps@latest -y ./packages/cadl-ranch-specs/package.json ./packages/cadl-ranch/package.json ./packages/cadl-ranch-expect/package.json
         name: Bump package versions
 
       - run: pnpm install
