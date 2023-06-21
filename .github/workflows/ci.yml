@@ -103,7 +103,7 @@ jobs:
       #   name: Build
       #   working-directory: ./typespec-bump-deps
 
-      - run: npx @azure-tools/typespec-bump-deps@latest -y ./packages/cadl-ranch-specs/package.json ./packages/cadl-ranch/package.json ./packages/cadl-ranch-expect/package.json
+      - run: npx -y @azure-tools/typespec-bump-deps@latest ./packages/cadl-ranch-specs/package.json ./packages/cadl-ranch/package.json ./packages/cadl-ranch-expect/package.json
         name: Bump package versions
 
       - run: pnpm install
