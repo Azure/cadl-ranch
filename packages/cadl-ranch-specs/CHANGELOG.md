@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.16.2
+
+### Patch Changes
+
+- 58e9aba: Update lro/rpc test scenario. Move the test case to lro/rpc/legacy folder.
+- 71ab426: Enhance validation for datetime format test
+
 ## 0.16.1
 
 ### Patch Changes
