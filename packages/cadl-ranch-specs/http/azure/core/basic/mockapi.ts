@@ -83,6 +83,23 @@ Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   }),
 );
 
+Scenarios.Azure_Core_Basic_listWithPageNextLink = passOnSuccess([
+  mockapi.get("/azure/core/basic/page/nextLink", (req) => {
+    const responseBody = {
+      value: [validUser],
+      nextLink: '/azure/core/basic/page/nextLink/containBrace?%24skiptoken={"bar"%3a"foo"}',
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+  mockapi.get("/azure/core/basic/page/nextLink/containBrace", (req) => {
+    req.expect.containsQueryParam("$skiptoken", '{"bar":"foo"}');
+    const responseBody = {
+      value: [validUser],
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+]);
+
 Scenarios.Azure_Core_Basic_listWithCustomPageModel = passOnSuccess(
   mockapi.get("/azure/core/basic/custom-page", (req) => {
     const responseBody = {
