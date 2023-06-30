@@ -291,6 +291,38 @@ Expected response body:
   ]
 }
 
+### Azure_Core_Basic_listWithPageNextLink
+
+- Endpoint: `get /azure/core/basic/page/nextLink`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     },
+     "nextLink": "/azure/core/basic/page/nextLink/containBrace?%24skiptoken={"bar"%3a"foo"}"
+  ]
+}
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
 - Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
