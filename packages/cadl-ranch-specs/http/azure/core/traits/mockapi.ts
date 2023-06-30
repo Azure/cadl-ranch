@@ -22,8 +22,8 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
     if (if_none_match !== '"invalid"' && if_match !== '"valid"') {
       throw new ValidationError(
         `Expected header "if-none-match" equals "invalid" but got ${if_none_match} or "if-match" equals "valid" but got ${if_match}`,
-        if_none_match,
-        if_match,
+        `"if-match": "valid" or "if-none-match": "invalid"`,
+        `"if-match": ${if_match} or "if-none-match": ${if_none_match}`,
       );
     }
     req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
