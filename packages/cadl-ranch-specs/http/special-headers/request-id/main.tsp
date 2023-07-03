@@ -19,7 +19,7 @@ Default situation: if no request id header configured, we use standard request i
   @doc("""
 Default request id header.
 """)
-  @post
+  @get
   @route("/default")
   op default(): NoContentResponse;
 }
@@ -33,7 +33,7 @@ Standard request id header. SDK should not genreate `clientRequestId` paramerter
   @doc("""
 Standard request id header.
 """)
-  @post
+  @get
   @route("/standard")
   op standard(
     @header("x-ms-client-request-id")
@@ -50,7 +50,7 @@ Non-standard request id header. SDK should not genreate `clientRequestId` parame
   @doc("""
 Non-standard request id header.
 """)
-  @post
+  @get
   @route("/non-standard")
   op nonStandard(
     @header("client-request-id")

@@ -1426,19 +1426,19 @@ Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
 ### SpecialHeaders_RequestId_DefaultClient_default
 
-- Endpoint: `post /special-headers/request-id/default`
+- Endpoint: `get /special-headers/request-id/default`
 
 Default situation: if no request id header configured, we use standard request id header.
 
 ### SpecialHeaders_RequestId_NonStandardClient_nonStandard
 
-- Endpoint: `post /special-headers/request-id/non-standard`
+- Endpoint: `get /special-headers/request-id/non-standard`
 
 Non-standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 
 ### SpecialHeaders_RequestId_StandardClient_standard
 
-- Endpoint: `post /special-headers/request-id/standard`
+- Endpoint: `get /special-headers/request-id/standard`
 
 Standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 
