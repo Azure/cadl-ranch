@@ -28,7 +28,7 @@ Default request id header.
 namespace StandardClient {
   @scenario
   @scenarioDoc("""
-Standard request id header. SDK should not genreate `requestId` paramerter but use policy to auto-set the header.
+Standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 """)
   @doc("""
 Standard request id header.
@@ -36,8 +36,8 @@ Standard request id header.
   @post
   @route("/standard")
   op standard(
-    @header("x-ms-request-id")
-    requestId: string
+    @header("x-ms-client-request-id")
+    clientRequestId: string
   ): NoContentResponse;
 }
 

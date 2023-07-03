@@ -1440,7 +1440,7 @@ Non-standard request id header. SDK should not genreate `clientRequestId` parame
 
 - Endpoint: `post /special-headers/request-id/standard`
 
-Standard request id header. SDK should not genreate `requestId` paramerter but use policy to auto-set the header.
+Standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 
 ### SpecialWords_Model_get
 
