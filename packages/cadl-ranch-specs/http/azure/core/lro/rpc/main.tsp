@@ -48,6 +48,7 @@ model GenerationResult {
 @summary("Generate data.")
 @scenarioDoc("""
 Should generate model GenerationOptions and GenerationResult.
+GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
