@@ -36,7 +36,7 @@ model GenerationResponse is global.Azure.Core.Foundations.OperationStatus<Genera
 // fix warning in Azure.Core.Foundations.OperationStatus
 @@visibility(global.Azure.Core.Foundations.OperationStatus.id, "read");
 
-@doc("Response of the generation.")
+@doc("Result of the generation.")
 model GeneratonResult {
   @doc("The data.")
   data: string;
