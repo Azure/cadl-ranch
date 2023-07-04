@@ -32,12 +32,12 @@ model GenerationOptions {
   prompt: string;
 }
 
-model GenerationResponse is global.Azure.Core.Foundations.OperationStatus<GeneratonResult>;
+model GenerationResponse is global.Azure.Core.Foundations.OperationStatus<GenerationResult>;
 // fix warning in Azure.Core.Foundations.OperationStatus
 @@visibility(global.Azure.Core.Foundations.OperationStatus.id, "read");
 
 @doc("Result of the generation.")
-model GeneratonResult {
+model GenerationResult {
   @doc("The data.")
   data: string;
 }
@@ -47,7 +47,7 @@ model GeneratonResult {
 @doc("Generate data.")
 @summary("Generate data.")
 @scenarioDoc("""
-Should generate model GenerationOptions and GeneratonResult.
+Should generate model GenerationOptions and GenerationResult.
 
 Expected verb: POST
 Expected request body:
@@ -95,4 +95,4 @@ Expected response body:
 ```
 """)
 @route("/generations:submit")
-op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<GenerationOptions, GenerationResponse, GeneratonResult>;
+op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<GenerationOptions, GenerationResponse, GenerationResult>;

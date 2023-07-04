@@ -344,7 +344,7 @@ Expected response body:
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
 
-Should generate model GenerationOptions and GeneratonResult.
+Should generate model GenerationOptions and GenerationResult.
 
 Expected verb: POST
 Expected request body:
