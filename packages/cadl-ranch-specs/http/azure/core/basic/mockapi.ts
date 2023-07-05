@@ -83,7 +83,7 @@ Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_ListWithIntParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithIntParameter = passOnSuccess(
   mockapi.get("/azure/core/basic/int-page", (req) => {
     req.expect.containsQueryParam("another", "1");
 
@@ -97,7 +97,7 @@ Scenarios.Azure_Core_Basic_ListWithIntParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_ListWithFixedEnumParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithFixedEnumParameter = passOnSuccess(
   mockapi.get("/azure/core/basic/fixed-enum-page", (req) => {
     req.expect.containsQueryParam("another", "Second");
 
@@ -111,7 +111,7 @@ Scenarios.Azure_Core_Basic_ListWithFixedEnumParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_ListWithExtensibleEnumParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithExtensibleEnumParameter = passOnSuccess(
   mockapi.get("/azure/core/basic/extensible-enum-page", (req) => {
     req.expect.containsQueryParam("another", "Second");
 
@@ -125,7 +125,7 @@ Scenarios.Azure_Core_Basic_ListWithExtensibleEnumParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_ListFirstItem = passOnSuccess(
+Scenarios.Azure_Core_Basic_TwoModelsAsPageItem_listFirstItem = passOnSuccess(
   mockapi.get("/azure/core/basic/first-item", () => {
     const responseBody = {
       value: [{ id: 1 }],
@@ -134,7 +134,7 @@ Scenarios.Azure_Core_Basic_ListFirstItem = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_ListSecondItem = passOnSuccess(
+Scenarios.Azure_Core_Basic_TwoModelsAsPageItem_listSecondItem = passOnSuccess(
   mockapi.get("/azure/core/basic/second-item", () => {
     const responseBody = {
       value: [{ name: "Madge" }],
