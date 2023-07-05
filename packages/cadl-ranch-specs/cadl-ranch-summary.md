@@ -535,6 +535,7 @@ Expected response header:
 
 - Endpoint: `get /azure/core/traits`
 
+SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 Expected header parameters:
@@ -544,12 +545,12 @@ Expected header parameters:
 - if-none-match=invalid
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<any uuid string>
 
 Expected response header:
 
 - bar="456"
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<uuid string same with request header>
 - etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 
 Expected response body:
@@ -1424,23 +1425,14 @@ An simple operation in a parameterized server.
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-### SpecialHeaders_RequestId_DefaultClient_default
-
-- Endpoint: `get /special-headers/request-id/default`
-
-Default situation: if no request id header configured, we use standard request id header.
-
-### SpecialHeaders_RequestId_NonStandardClient_nonStandard
+### SpecialHeaders_RequestId_nonStandard
 
 - Endpoint: `get /special-headers/request-id/non-standard`
 
 Non-standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
 
-### SpecialHeaders_RequestId_StandardClient_standard
-
-- Endpoint: `get /special-headers/request-id/standard`
-
-Standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+- x-ms-client-request-id=<any uuid string>
 
 ### SpecialWords_Model_get
 
