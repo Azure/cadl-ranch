@@ -206,6 +206,120 @@ Expected response body:
 """)
 op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
+model ListItemInput<Type> {
+  @doc("The body of the input.")
+  @body
+  bodyInput: ListItemInputBody;
+
+  @doc("Another query parameter.")
+  @query
+  another?: Type;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
+@doc("A fixed enum input paramter.")
+@global.Azure.Core.fixed
+enum ListItemInputFixedEnum {
+  @doc("The first enum value.")
+  First,
+
+  @doc("The second enum value.")
+  Second,
+}
+
+@doc("An extensible enum input paramter.")
+enum ListItemInputExtensibleEnum {
+  @doc("The first enum value.")
+  First,
+
+  @doc("The second enum value.")
+  Second,
+}
+
+@doc("The body of the input.")
+model ListItemInputBody {
+  @doc("The name of the input.")
+  inputName: string;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with int32 parameter Azure.Core.Page<>.")
+@route("/int-page")
+@scenarioDoc("""
+Expected query parameter: api-version=2022-12-01-preview&another=1
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+""")
+@get
+op listWithIntParameters is global.Azure.Core.Foundations.Operation<ListItemInput<int32>, global.Azure.Core.Page<User>>;
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with fixed enum parameter Azure.Core.Page<>.")
+@route("/fixed-enum-page")
+@scenarioDoc("""
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+""")
+@get
+op listWithFixedEnumParameters is global.Azure.Core.Foundations.Operation<
+  ListItemInput<ListItemInputFixedEnum>,
+  global.Azure.Core.Page<User>
+>;
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+@scenario
+@doc("List with extensible enum parameter Azure.Core.Page<>.")
+@route("/extensible-enum-page")
+@scenarioDoc("""
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+""")
+@get
+op listWithExtensibleEnumParameters is global.Azure.Core.Foundations.Operation<
+  ListItemInput<ListItemInputExtensibleEnum>,
+  global.Azure.Core.Page<User>
+>;
+
 @friendlyName("{name}ListResults", T)
 @global.Azure.Core.pagedResult
 model CustomPageModel<T> {
@@ -240,6 +354,62 @@ Expected response body:
 }
 """)
 op listWithCustomPageModel is global.Azure.Core.Foundations.Operation<{}, CustomPageModel<User>>;
+
+@doc("First item.")
+@resource("first-item")
+model FirstItem {
+  @doc("The id of the item.")
+  @key
+  @visibility("read")
+  id: int32;
+}
+
+@doc("Second item.")
+@resource("second-item")
+model SecondItem {
+  @doc("The name of the item.")
+  @key
+  @visibility("read")
+  name: string;
+}
+
+interface TwoModelsAsPageItem {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  @scenario
+  @doc("Two operations with two different page item types should be successfully generated.")
+  @scenarioDoc("""
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "id": 1
+       }
+    ]
+  }
+  """)
+  listFirstItem is global.Azure.Core.Foundations.ResourceList<FirstItem, {}, global.Azure.Core.Page<FirstItem>>;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
+  @scenario
+  @doc("Two operations with two different page item types should be successfully generated.")
+  @scenarioDoc("""
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "name": "Madge"
+       }
+    ]
+  }
+  """)
+  listSecondItem is global.Azure.Core.Foundations.ResourceList<SecondItem, {}, global.Azure.Core.Page<SecondItem>>;
+}
 
 @scenario
 @doc("Deletes a User")
