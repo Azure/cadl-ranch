@@ -83,7 +83,7 @@ Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_listWithIntParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithIntParameters = passOnSuccess(
   mockapi.get("/azure/core/basic/int-page", (req) => {
     req.expect.containsQueryParam("another", "1");
 
@@ -97,7 +97,7 @@ Scenarios.Azure_Core_Basic_listWithIntParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_listWithFixedEnumParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithFixedEnumParameters = passOnSuccess(
   mockapi.get("/azure/core/basic/fixed-enum-page", (req) => {
     req.expect.containsQueryParam("another", "Second");
 
@@ -111,7 +111,7 @@ Scenarios.Azure_Core_Basic_listWithFixedEnumParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_listWithExtensibleEnumParameter = passOnSuccess(
+Scenarios.Azure_Core_Basic_listWithExtensibleEnumParameters = passOnSuccess(
   mockapi.get("/azure/core/basic/extensible-enum-page", (req) => {
     req.expect.containsQueryParam("another", "Second");
 
