@@ -15,6 +15,4 @@ function createGetMockApis(route: string, header: string): MockApi {
   });
 }
 
-Scenarios.SpecialHeaders_RequestId_nonStandard = passOnSuccess(
-  createGetMockApis("non-standard", "client-request-id"),
-);
+Scenarios.SpecialHeaders_RequestId_nonStandard = passOnSuccess(createGetMockApis("non-standard", "client-request-id"));
