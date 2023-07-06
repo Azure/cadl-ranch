@@ -254,10 +254,7 @@ Expected response body:
 }
 """)
 @get
-op listWithParameters is global.Azure.Core.Foundations.Operation<
-  ListItemInput,
-  global.Azure.Core.Page<User>
->;
+op listWithParameters is global.Azure.Core.Foundations.Operation<ListItemInput, global.Azure.Core.Page<User>>;
 
 @friendlyName("{name}ListResults", T)
 @global.Azure.Core.pagedResult
