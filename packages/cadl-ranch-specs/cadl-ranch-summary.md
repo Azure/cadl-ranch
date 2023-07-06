@@ -269,66 +269,6 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Basic_listWithExtensibleEnumParameters
-
-- Endpoint: `get /azure/core/basic/extensible-enum-page`
-
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithFixedEnumParameters
-
-- Endpoint: `get /azure/core/basic/fixed-enum-page`
-
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithIntParameters
-
-- Endpoint: `get /azure/core/basic/int-page`
-
-Expected query parameter: api-version=2022-12-01-preview&another=1
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
 ### Azure_Core_Basic_listWithPage
 
 - Endpoint: `get /azure/core/basic/page`
@@ -346,6 +286,26 @@ Expected response body:
      {
         "id":1,
         "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_listWithParameters
+
+- Endpoint: `get /azure/core/basic/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
         "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
      }
   ]

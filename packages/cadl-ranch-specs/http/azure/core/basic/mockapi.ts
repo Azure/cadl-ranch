@@ -83,36 +83,8 @@ Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_listWithIntParameters = passOnSuccess(
-  mockapi.get("/azure/core/basic/int-page", (req) => {
-    req.expect.containsQueryParam("another", "1");
-
-    const validBody = { inputName: "Madge" };
-    req.expect.bodyEquals(validBody);
-
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
-
-Scenarios.Azure_Core_Basic_listWithFixedEnumParameters = passOnSuccess(
-  mockapi.get("/azure/core/basic/fixed-enum-page", (req) => {
-    req.expect.containsQueryParam("another", "Second");
-
-    const validBody = { inputName: "Madge" };
-    req.expect.bodyEquals(validBody);
-
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
-
-Scenarios.Azure_Core_Basic_listWithExtensibleEnumParameters = passOnSuccess(
-  mockapi.get("/azure/core/basic/extensible-enum-page", (req) => {
+Scenarios.Azure_Core_Basic_listWithParameters = passOnSuccess(
+  mockapi.get("/azure/core/basic/parameters", (req) => {
     req.expect.containsQueryParam("another", "Second");
 
     const validBody = { inputName: "Madge" };

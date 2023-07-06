@@ -206,25 +206,15 @@ Expected response body:
 """)
 op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
-model ListItemInput<Type> {
+@doc("The parameters for listing users.")
+model ListItemInput {
   @doc("The body of the input.")
   @body
   bodyInput: ListItemInputBody;
 
   @doc("Another query parameter.")
   @query
-  another?: Type;
-}
-
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
-@doc("A fixed enum input paramter.")
-@global.Azure.Core.fixed
-enum ListItemInputFixedEnum {
-  @doc("The first enum value.")
-  First,
-
-  @doc("The second enum value.")
-  Second,
+  another?: ListItemInputExtensibleEnum;
 }
 
 @doc("An extensible enum input paramter.")
@@ -244,59 +234,8 @@ model ListItemInputBody {
 
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
 @scenario
-@doc("List with int32 parameter Azure.Core.Page<>.")
-@route("/int-page")
-@scenarioDoc("""
-Expected query parameter: api-version=2022-12-01-preview&another=1
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-""")
-@get
-op listWithIntParameters is global.Azure.Core.Foundations.Operation<ListItemInput<int32>, global.Azure.Core.Page<User>>;
-
-#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
-@scenario
-@doc("List with fixed enum parameter Azure.Core.Page<>.")
-@route("/fixed-enum-page")
-@scenarioDoc("""
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-""")
-@get
-op listWithFixedEnumParameters is global.Azure.Core.Foundations.Operation<
-  ListItemInput<ListItemInputFixedEnum>,
-  global.Azure.Core.Page<User>
->;
-
-#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
-@scenario
 @doc("List with extensible enum parameter Azure.Core.Page<>.")
-@route("/extensible-enum-page")
+@route("/parameters")
 @scenarioDoc("""
 Expected query parameter: api-version=2022-12-01-preview&another=Second
 
@@ -315,8 +254,8 @@ Expected response body:
 }
 """)
 @get
-op listWithExtensibleEnumParameters is global.Azure.Core.Foundations.Operation<
-  ListItemInput<ListItemInputExtensibleEnum>,
+op listWithParameters is global.Azure.Core.Foundations.Operation<
+  ListItemInput,
   global.Azure.Core.Page<User>
 >;
 
@@ -376,7 +315,7 @@ model SecondItem {
 interface TwoModelsAsPageItem {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @scenario
-  @doc("Two operations with two different page item types should be successfully generated.")
+  @doc("Two operations with two different page item types should be successfully generated. Should generate model for FirstItem.")
   @scenarioDoc("""
   Expected query parameter: api-version=2022-12-01-preview
   
@@ -394,7 +333,7 @@ interface TwoModelsAsPageItem {
 
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @scenario
-  @doc("Two operations with two different page item types should be successfully generated.")
+  @doc("Two operations with two different page item types should be successfully generated. Should generate model for SecondItem.")
   @scenarioDoc("""
   Expected query parameter: api-version=2022-12-01-preview
   
