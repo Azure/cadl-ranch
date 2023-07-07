@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createInternalMockApis(route: string): MockApi {
+function createInternalGetMockApis(route: string): MockApi {
   const url = `/azure/client-generator-core/internal/${route}`;
   return mockapi.get(url, (req) => {
     if (!("name" in req.query)) {
@@ -16,9 +16,19 @@ function createInternalMockApis(route: string): MockApi {
   });
 }
 
-Scenarios.Azure_ClientGenerator_Core_Internal_publicOnly = passOnSuccess(createInternalMockApis("public"));
-Scenarios.Azure_ClientGenerator_Core_Internal_internalOnly = passOnSuccess(createInternalMockApis("internal"));
+Scenarios.Azure_ClientGenerator_Core_Internal_publicOnly = passOnSuccess(createInternalGetMockApis("public"));
+Scenarios.Azure_ClientGenerator_Core_Internal_internalOnly = passOnSuccess(createInternalGetMockApis("internal"));
 Scenarios.Azure_ClientGenerator_Core_Internal_Shared = passOnSuccess([
-  createInternalMockApis("shared/public"),
-  createInternalMockApis("shared/internal"),
+  createInternalGetMockApis("shared/public"),
+  createInternalGetMockApis("shared/internal"),
 ]);
+
+Scenarios.Azure_ClientGenerator_Core_Internal_postInternalOnly = passOnSuccess(
+  mockapi.post("/azure/client-generator-core/internal/internal", (req) => {
+    req.expect.bodyNotEmpty();
+    return {
+      status: 200,
+      body: json({ result: req.body["name"] }),
+    };
+  }),
+);

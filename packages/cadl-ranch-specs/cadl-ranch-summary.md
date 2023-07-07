@@ -85,6 +85,24 @@ Expected response body:
 }
 ```
 
+### Azure_ClientGenerator_Core_Internal_postInternalOnly
+
+- Endpoint: `post /azure/client-generator-core/internal/internal`
+
+This scenario contains an internal operation. It should be generated but not exposed.
+Expected body parameter:
+
+````json
+{
+  "name": <any string>
+}
+Expected response body:
+```json
+{
+  "result": <any string>
+}
+````
+
 ### Azure_ClientGenerator_Core_Internal_publicOnly
 
 - Endpoint: `get /azure/client-generator-core/internal/public`

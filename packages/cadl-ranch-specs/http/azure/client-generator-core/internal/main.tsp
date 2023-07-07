@@ -20,6 +20,12 @@ model InternalModel {
   name: string;
 }
 
+@doc("This is a model only used by internal operation. Also, it is decorated with @include. It should be generated and exported.")
+@global.Azure.ClientGenerator.Core.include
+model InternaIncludelModel {
+  name: string;
+}
+
 @doc("This is a model used by both public and internal operation. It should be generated and exported.")
 model SharedModel {
   name: string;
@@ -55,6 +61,26 @@ Expected response body:
 @get
 @global.Azure.ClientGenerator.Core.internal
 op internalOnly(@query name: string): InternalModel;
+
+@scenario
+@scenarioDoc("""
+This scenario contains an internal operation. It should be generated but not exposed.
+Expected body parameter:
+```json
+{
+  "name": <any string>
+}
+Expected response body:
+```json
+{
+  "result": <any string>
+}
+```
+""")
+@route("/internal")
+@post
+@global.Azure.ClientGenerator.Core.internal
+op postInternalOnly(@body body: InternalModel): InternaIncludelModel;
 
 @route("/shared")
 @global.Azure.ClientGenerator.Core.operationGroup
