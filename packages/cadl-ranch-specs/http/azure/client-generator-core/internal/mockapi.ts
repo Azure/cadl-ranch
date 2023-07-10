@@ -23,7 +23,7 @@ Scenarios.Azure_ClientGenerator_Core_Internal_Shared = passOnSuccess([
   createInternalGetMockApis("shared/internal"),
 ]);
 
-Scenarios.Azure_ClientGenerator_Core_Internal_postInternalOnly = passOnSuccess(
+Scenarios.Azure_ClientGenerator_Core_Internal_internalWithIncludeModel = passOnSuccess(
   mockapi.post("/azure/client-generator-core/internal/internal", (req) => {
     req.expect.bodyNotEmpty();
     return {
