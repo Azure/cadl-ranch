@@ -27,6 +27,7 @@ model InternalIncludeModel {
   nested: NestedIncludeModel;
 }
 
+@doc("This is a model referred by model decorated with @include. It should be generated and exported.")
 model NestedIncludeModel {
   comment: string;
 }
