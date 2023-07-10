@@ -291,11 +291,13 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Lro_Rpc_DifferentPollResult
+### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoints:
-  - `get /azure/core/lro/rpc/different-poll-result/jobs`
-  - `get /azure/core/lro/rpc/different-poll-result`
+- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+
+POST to create resource.
+Poll URL via operation-location header in response.
+Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
 
 Expected verb: POST
 Expected request body:
@@ -306,45 +308,11 @@ Expected request body:
 ````
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
+Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
+No response body.
 
 Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -353,40 +321,12 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-
-### Azure_Core_Lro_Rpc_SamePollResult
-
-- Endpoints:
-  - `get /azure/core/lro/rpc/same-poll-result/jobs`
-  - `get /azure/core/lro/rpc/same-poll-result`
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "InProgress"
+  "status": "running"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -395,21 +335,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
+  "status": "succeeded",
   "results": ["job1 result"]
 }
 ```
