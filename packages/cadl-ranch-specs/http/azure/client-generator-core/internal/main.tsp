@@ -24,6 +24,11 @@ model InternalModel {
 @global.Azure.ClientGenerator.Core.include
 model InternalIncludeModel {
   name: string;
+  nested: NestedIncludeModel;
+}
+
+model NestedIncludeModel {
+  comment: string;
 }
 
 @doc("This is a model used by both public and internal operation. It should be generated and exported.")
