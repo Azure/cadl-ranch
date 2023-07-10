@@ -22,7 +22,7 @@ model InternalModel {
 
 @doc("This is a model only used by internal operation. Also, it is decorated with @include. It should be generated and exported.")
 @global.Azure.ClientGenerator.Core.include
-model InternaIncludelModel {
+model InternalIncludeModel {
   name: string;
 }
 
@@ -73,14 +73,14 @@ Expected body parameter:
 Expected response body:
 ```json
 {
-  "result": <any string>
+  "name": <any string>
 }
 ```
 """)
 @route("/internal")
 @post
 @global.Azure.ClientGenerator.Core.internal
-op postInternalOnly(@body body: InternalModel): InternaIncludelModel;
+op internalWithIncludeModel(@body body: InternalIncludeModel): InternalIncludeModel;
 
 @route("/shared")
 @global.Azure.ClientGenerator.Core.operationGroup

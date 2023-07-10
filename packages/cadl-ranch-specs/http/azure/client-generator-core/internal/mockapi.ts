@@ -28,7 +28,7 @@ Scenarios.Azure_ClientGenerator_Core_Internal_postInternalOnly = passOnSuccess(
     req.expect.bodyNotEmpty();
     return {
       status: 200,
-      body: json({ result: req.body["name"] }),
+      body: json({ name: req.body["name"] }),
     };
   }),
 );

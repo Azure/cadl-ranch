@@ -85,7 +85,7 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_postInternalOnly
+### Azure_ClientGenerator_Core_Internal_internalWithIncludeModel
 
 - Endpoint: `post /azure/client-generator-core/internal/internal`
 
@@ -99,7 +99,7 @@ Expected body parameter:
 Expected response body:
 ```json
 {
-  "result": <any string>
+  "name": <any string>
 }
 ````
 
