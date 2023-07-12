@@ -11,7 +11,7 @@ const query = new URLSearchParams(window.location.search);
 const generatorNames: GeneratorNames[] = [
   "python",
   "typescript/rlc",
-  "typescript-modular",
+  "typescript/modular",
   "csharp",
   "java",
   ...(query.has("showtest") ? (["test"] as const) : []),
