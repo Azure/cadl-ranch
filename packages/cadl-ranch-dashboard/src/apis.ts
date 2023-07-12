@@ -6,7 +6,7 @@ import {
 
 const storageAccountName = "azuresdkcadlranch";
 
-export type GeneratorNames = "python" | "typescript-rlc" | "typescript-modular" | "csharp" | "java" | "test";
+export type GeneratorNames = "python" | "typescript/rlc" | "typescript/modular" | "csharp" | "java" | "test";
 const query = new URLSearchParams(window.location.search);
 const generatorNames: GeneratorNames[] = [
   "python",
