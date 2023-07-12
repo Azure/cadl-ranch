@@ -10,7 +10,7 @@ export type GeneratorNames = "python" | "typescript/rlc" | "typescript/modular" 
 const query = new URLSearchParams(window.location.search);
 const generatorNames: GeneratorNames[] = [
   "python",
-  "typescript-rlc",
+  "typescript/rlc",
   "typescript-modular",
   "csharp",
   "java",
