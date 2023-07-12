@@ -37,12 +37,12 @@
     "@azure-tools/cadl-ranch-api": "workspace:~"
   },
   "devDependencies": {
-    "@azure-tools/typespec-autorest": "0.31.0",
-    "@azure-tools/typespec-client-generator-core": "~0.31.0",
+    "@azure-tools/typespec-autorest": "0.32.0",
+    "@azure-tools/typespec-client-generator-core": "~0.32.0",
     "@types/node": "^18.16.0",
     "@typespec/eslint-config-typespec": "~0.7.0",
-    "@typespec/openapi": "0.45.0",
-    "@typespec/openapi3": "0.45.0",
+    "@typespec/openapi": "0.46.0",
+    "@typespec/openapi3": "0.46.0",
     "eslint": "^8.39.0",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
@@ -50,10 +50,10 @@
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure-tools/typespec-azure-core": "~0.31.0",
-    "@typespec/compiler": "~0.45.0",
-    "@typespec/http": "~0.45.0",
-    "@typespec/rest": "~0.45.0",
-    "@typespec/versioning": "~0.45.0"
+    "@azure-tools/typespec-azure-core": "~0.32.0",
+    "@typespec/compiler": "~0.46.0",
+    "@typespec/http": "~0.46.0",
+    "@typespec/rest": "~0.46.0",
+    "@typespec/versioning": "~0.46.0"
   }
 }
