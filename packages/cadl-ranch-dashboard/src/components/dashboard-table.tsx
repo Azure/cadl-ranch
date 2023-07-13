@@ -193,7 +193,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
       >
         <div
           title="Generator name"
-          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5, textAlign: "center" }}
+          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5, textAlign: "center", minWidth: "160px" }}
         >
           {report?.generatorMetadata?.name}
           <Popover withArrow>
