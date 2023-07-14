@@ -1419,20 +1419,20 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
+### SpecialHeaders_ClientRequestId
+
+- Endpoint: `get /special-headers/client-request-id/`
+
+Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- client-request-id=<any uuid string>
+
 ### SpecialHeaders_Repeatability_immediateSuccess
 
 - Endpoint: `post /special-headers/repeatability/immediateSuccess`
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
-
-### SpecialHeaders_RequestId_nonStandard
-
-- Endpoint: `get /special-headers/request-id/non-standard`
-
-Non-standard request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
-Expected header parameters:
-
-- x-ms-client-request-id=<any uuid string>
 
 ### SpecialWords_Model_get
 
