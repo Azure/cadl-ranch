@@ -1427,6 +1427,8 @@ Test case for azure client request id header. SDK should not genreate `clientReq
 Expected header parameters:
 
 - client-request-id=<any uuid string>
+  Expected response header:
+- client-request-id=<uuid string same with request header>
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
