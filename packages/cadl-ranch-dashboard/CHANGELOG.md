@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.3.1
+
+### Patch Changes
+
+- b63ed94: Add a new tab for typescript-modular in dashboard
+
 ## 0.3.0
 
 ### Minor Changes
