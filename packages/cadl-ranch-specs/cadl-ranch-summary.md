@@ -535,6 +535,7 @@ Expected response header:
 
 - Endpoint: `get /azure/core/traits`
 
+SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 Expected header parameters:
@@ -544,12 +545,12 @@ Expected header parameters:
 - if-none-match=invalid
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<any uuid string>
 
 Expected response header:
 
 - bar="456"
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<uuid string same with request header>
 - etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 
 Expected response body:
@@ -1417,6 +1418,17 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 - Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
+
+### SpecialHeaders_ClientRequestId
+
+- Endpoint: `get /special-headers/client-request-id/`
+
+Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- client-request-id=<any uuid string>
+  Expected response header:
+- client-request-id=<uuid string same with request header>
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
