@@ -30,3 +30,17 @@ Scenarios.Type_Union_sendSecondNamedUnionValue = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Type_Union_sendEnumUnionValue = passOnSuccess(
+  mockapi.post("/type/union/enumValue", (req) => {
+    req.expect.bodyEquals({ unionWithEnum: "auto" });
+    return { status: 200 };
+  }),
+);
+
+Scenarios.Type_Union_sendModelUnionValue = passOnSuccess(
+  mockapi.post("/type/union/modelValue", (req) => {
+    req.expect.bodyEquals({ unionWithEnum: { name: "model" } });
+    return { status: 200 };
+  }),
+);

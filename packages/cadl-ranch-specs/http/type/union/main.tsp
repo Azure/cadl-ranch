@@ -36,6 +36,19 @@ model ModelWithNamedUnionProperty {
   namedUnion: MyNamedUnion;
 }
 
+enum EnumInUnion {
+  auto: "auto",
+  none: "none",
+}
+
+model ModelInUnion {
+  name: string;
+}
+
+model ModelWithEnumUnionProperty {
+  unionWithEnum: EnumInUnion | ModelInUnion;
+}
+
 @scenario
 @scenarioDoc("""
 This test is testing sending an int value in simple union property.
@@ -79,3 +92,25 @@ This test is testing sending the second union value in named union property.
 @route("/model2")
 @post
 op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending the first union value in enum union property.
+```json
+{ "unionWithEnum": "auto" }
+```
+""")
+@route("/enumValue")
+@post
+op sendEnumUnionValue(@body input: ModelWithEnumUnionProperty): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing sending the second union value in enum union property.
+```json
+{ "unionWithEnum": { "name": "model" } }
+```
+""")
+@route("/modelValue")
+@post
+op sendModelUnionValue(@body input: ModelWithEnumUnionProperty): OkResponse;
