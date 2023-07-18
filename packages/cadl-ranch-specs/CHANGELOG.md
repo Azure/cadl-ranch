@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.17.1
+
+### Minor Changes
+
+- f3f23a4: optimize etag check logic
+
+### Patch Changes
+
+- 564ad17: Add test for request id header
+
 ## 0.17.0
 
 ### Minor Changes
