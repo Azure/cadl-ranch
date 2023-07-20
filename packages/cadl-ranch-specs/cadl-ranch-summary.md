@@ -340,6 +340,62 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Lro_Rpc_longRunningRpc
+
+- Endpoint: `post /azure/core/lro/rpc/generations:submit`
+
+Should generate model GenerationOptions and GenerationResult.
+GenerationResponse could be generated, depending on implementation.
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "prompt": "text"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/generations/operations/operation1
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/generations/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/generations/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded",
+  "result": {
+    "data": "text data"
+  }
+}
+```
+
 ### Azure_Core_Lro_Standard_createOrReplace
 
 - Endpoint: `get /azure/core/lro/standard`
