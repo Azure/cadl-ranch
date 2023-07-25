@@ -1,5 +1,83 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.17.1
+
+### Minor Changes
+
+- f3f23a4: optimize etag check logic
+
+### Patch Changes
+
+- 564ad17: Add test for request id header
+
+## 0.17.0
+
+### Minor Changes
+
+- b52997c: Update Dependencies for TypeSpec July release
+
+### Patch Changes
+
+- Updated dependencies [b52997c]
+  - @azure-tools/cadl-ranch-expect@0.5.0
+  - @azure-tools/cadl-ranch@0.6.0
+
+## 0.16.2
+
+### Patch Changes
+
+- 58e9aba: Update lro/rpc test scenario. Move the test case to lro/rpc/legacy folder.
+- 71ab426: Enhance validation for datetime format test
+
+## 0.16.1
+
+### Patch Changes
+
+- 143d65f: Fix traits test case by removing etag in reponse body which is not defined
+- effb3cb: Add encode test for datetime and bytes
+- e087dfd: Fix typo of datetime format.
+- Updated dependencies [e087dfd]
+  - @azure-tools/cadl-ranch-api@0.3.1
+  - @azure-tools/cadl-ranch@0.5.1
+
+## 0.16.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
+### Patch Changes
+
+- b8f7f66: Add repeatability tests
+- fdbcc4f: Add new scenario describing different optionality of the http request body
+- 9e404d1: Escape colon in POST url
+- Updated dependencies [b8f7f66]
+- Updated dependencies [8ad5461]
+- Updated dependencies [9e404d1]
+- Updated dependencies [b8f7f66]
+  - @azure-tools/cadl-ranch@0.5.0
+  - @azure-tools/cadl-ranch-expect@0.4.0
+  - @azure-tools/cadl-ranch-api@0.3.0
+
+## 0.15.5
+
+### Patch Changes
+
+- 11d1b63: fix wrong header check for custom http
+- b550dd7: Remove usage of `object` that is being deprecated
+- Updated dependencies [b550dd7]
+  - @azure-tools/cadl-ranch@0.4.18
+
+## 0.15.4
+
+### Patch Changes
+
+- 013ef77: Add test cases for empty model
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 158ca21: Minor adjustments to enable Azure Core changes
+- Updated dependencies [13809e4]
+  - @azure-tools/cadl-ranch@0.4.17
+
 ## 0.15.3
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.3.1
+
+### Patch Changes
+
+- b63ed94: Add a new tab for typescript-modular in dashboard
+
+## 0.3.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
+### Patch Changes
+
+- Updated dependencies [8ad5461]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.0
+
 ## 0.2.5
 
 ### Patch Changes

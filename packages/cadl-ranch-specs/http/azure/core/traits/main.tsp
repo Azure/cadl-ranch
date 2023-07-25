@@ -28,9 +28,13 @@ enum Versions {
   v2022_12_01_preview: "2022-12-01-preview",
 }
 
-alias ServiceTraits = SupportsRepeatableRequests & SupportsConditionalRequests & SupportsClientRequestId;
+alias SmokeOperationsWithTraits = global.Azure.Core.ResourceOperations<NoRepeatableRequests &
+  SupportsConditionalRequests &
+  SupportsClientRequestId>;
 
-alias OperationsWithTraits = global.Azure.Core.ResourceOperations<ServiceTraits>;
+alias RepeatableOperationsWithTraits = global.Azure.Core.ResourceOperations<SupportsRepeatableRequests &
+  NoConditionalRequests &
+  NoClientRequestId>;
 
 @doc("Sample Model")
 @resource("user")
@@ -47,6 +51,7 @@ model User {
 @scenario
 @doc("Get a resource, sending and receiving headers.")
 @scenarioDoc("""
+SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 Expected header parameters:
@@ -55,19 +60,22 @@ Expected header parameters:
 - if-none-match=invalid
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<any uuid string>
 
-Expected response header: x-ms-client-request-id=<any string>
+Expected response header:
+- bar="456"
+- x-ms-client-request-id=<uuid string same with request header>
+- etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+
 Expected response body:
 ```json
 {
   "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "name": "Madge"
 }
 ```
 """)
-op smokeTest is OperationsWithTraits.ResourceRead<
+op smokeTest is SmokeOperationsWithTraits.ResourceRead<
   User,
   RequestHeadersTrait<{
     @doc("header in request")
@@ -78,3 +86,40 @@ op smokeTest is OperationsWithTraits.ResourceRead<
       @header bar: string;
     }>
 >;
+
+@doc("User action param")
+model UserActionParam {
+  @doc("User action value.")
+  userActionValue: string;
+}
+
+@doc("User action response")
+model UserActionResponse {
+  @doc("User action result.")
+  userActionResult: string;
+}
+
+@scenario
+@doc("Test for repeatable requests")
+@scenarioDoc("""
+Expected path parameter: id=1
+Expected header parameters:
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+Expected request body:
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+- repeatability-result=accepted
+Expected response body:
+```json
+{
+  "userActionResult": "test"
+}
+```
+""")
+op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<User, UserActionParam, UserActionResponse>;

@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.5.0
+
+### Minor Changes
+
+- b52997c: Update Dependencies for TypeSpec July release
+
+## 0.4.0
+
+### Minor Changes
+
+- 8ad5461: Update Dependencies for TypeSpec June release
+
 ## 0.3.2
 
 ### Patch Changes

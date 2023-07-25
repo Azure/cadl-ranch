@@ -291,11 +291,13 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Lro_Rpc_DifferentPollResult
+### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoints:
-  - `get /azure/core/lro/rpc/different-poll-result/jobs`
-  - `get /azure/core/lro/rpc/different-poll-result`
+- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+
+POST to create resource.
+Poll URL via operation-location header in response.
+Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
 
 Expected verb: POST
 Expected request body:
@@ -306,45 +308,11 @@ Expected request body:
 ````
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/different-poll-result/jobs/operations/operation1
-Expected response header: location={endpoint}/different-poll-result/jobs/job1
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
+Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
+No response body.
 
 Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/operations/operation1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "operationId": "operation1",
-  "status": "Succeeded"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/different-poll-result/jobs/job1
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
 
 Expected status code: 200
 Expected response body:
@@ -353,64 +321,78 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "Succeeded",
+  "status": "running"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "jobId": "job1",
+  "comment": "async job",
+  "status": "succeeded",
   "results": ["job1 result"]
 }
 ```
 
-### Azure_Core_Lro_Rpc_SamePollResult
+### Azure_Core_Lro_Rpc_longRunningRpc
 
-- Endpoints:
-  - `get /azure/core/lro/rpc/same-poll-result/jobs`
-  - `get /azure/core/lro/rpc/same-poll-result`
+- Endpoint: `post /azure/core/lro/rpc/generations:submit`
+
+Should generate model GenerationOptions and GenerationResult.
+GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
 
 ```json
 {
-  "comment": "async job"
+  "prompt": "text"
 }
 ```
 
 Expected status code: 202
-Expected response header: operation-location={endpoint}/same-poll-result/jobs/job1
+Expected response header: operation-location={endpoint}/generations/operations/operation1
 Expected response body:
 
 ```json
 {
-  "jobId": "job1",
-  "comment": "async job",
+  "id": "operation1",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/generations/operations/operation1
 
 Expected status code: 200
 Expected response body:
 
 ```json
 {
-  "jobId": "job1",
-  "comment": "async job",
+  "id": "operation1",
   "status": "InProgress"
 }
 ```
 
 Expected verb: GET
-Expected URL: {endpoint}/same-poll-result/jobs/job1
+Expected URL: {endpoint}/generations/operations/operation1
 
 Expected status code: 200
 Expected response body:
 
 ```json
 {
-  "jobId": "job1",
-  "comment": "async job",
+  "id": "operation1",
   "status": "Succeeded",
-  "results": ["job1 result"]
+  "result": {
+    "data": "text data"
+  }
 }
 ```
 
@@ -577,10 +559,39 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Traits_repeatableAction
+
+- Endpoint: `get /azure/core/traits`
+
+Expected path parameter: id=1
+Expected header parameters:
+
+- repeatability-request-id=<any uuid>
+- repeatability-first-sent=<any HTTP header date>
+  Expected request body:
+
+```json
+{
+  "userActionValue": "test"
+}
+```
+
+Expected response header:
+
+- repeatability-result=accepted
+  Expected response body:
+
+```json
+{
+  "userActionResult": "test"
+}
+```
+
 ### Azure_Core_Traits_smokeTest
 
 - Endpoint: `get /azure/core/traits`
 
+SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 Expected header parameters:
@@ -590,113 +601,355 @@ Expected header parameters:
 - if-none-match=invalid
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<any uuid string>
 
-Expected response header: x-ms-client-request-id=<any string>
+Expected response header:
+
+- bar="456"
+- x-ms-client-request-id=<uuid string same with request header>
+- etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+
 Expected response body:
 
 ```json
 {
   "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  "name": "Madge"
 }
 ```
 
-### Client_Structure_MutliClient
+### Encode_Bytes_Header_base64
 
-- Endpoints:
-  - `get /one`
-  - `get /three`
-  - `get /three`
-  - `get /one`
-  - `get /three`
-  - `get /three`
+- Endpoint: `get /encode/bytes/header/base64`
 
-Include multiple clients in the same spec.
+Test base64 encode for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
 
-```ts
-const clientA = new ClientAClient();
-const clientB = new ClientBClient();
+### Encode_Bytes_Header_base64url
 
-clientA.renamedOne();
-clientA.renamedThree();
-clientA.renamedFive();
+- Endpoint: `get /encode/bytes/header/base64url`
 
-clientB.renamedTwo();
-clientB.renamedFour();
-clientB.renamedSix();
+Test base64url encode for bytes header.
+Expected header:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_Header_base64urlArray
+
+- Endpoint: `get /encode/bytes/header/base64url-array`
+
+Test base64url encode for bytes array header.
+Expected header:
+value=dGVzdA,dGVzdA
+
+### Encode_Bytes_Header_default
+
+- Endpoint: `get /encode/bytes/header/default`
+
+Test default encode (base64) for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_Property_base64
+
+- Endpoint: `post /encode/bytes/property/base64`
+
+Test operation with request and response model contains bytes properties with base64 encode.
+Expected request body:
+
+```json
+{
+  "value": "dGVzdA==" // base64 encode of test
+}
 ```
 
-### Client_Structure_RenamedOperation
+Expected response body:
 
-- Endpoints:
-  - `get /one`
-  - `get /three`
-  - `get /three`
-  - `get /one`
-  - `get /three`
-  - `get /three`
-
-This is to show we can have more than one operation group in a client. The client side should be able to call the api like
-
-```ts
-const client = new RenamedOperationClient();
-
-client.renamedOne();
-client.renamedThree();
-client.renamedFive();
-
-client.group.renamedTwo();
-client.group.renamedFour();
-client.group.renamedSix();
+```json
+{
+  "value": "dGVzdA=="
+}
 ```
 
-### Client_Structure_Service
+### Encode_Bytes_Property_base64url
 
-- Endpoints:
-  - `get /three`
-  - `get /four`
-  - `get /five`
-  - `get /six`
-  - `get /one`
-  - `get /two`
+- Endpoint: `post /encode/bytes/property/base64url`
 
-This is to show that if we don't do any customization. The client side should be able to call the api like
+Test operation with request and response model contains bytes properties with base64url encode.
+Expected request body:
 
-```ts
-const client = new MultiClient();
-client.one();
-client.two();
-client.three();
-client.four();
-client.five();
-client.six();
+```json
+{
+  "value": "dGVzdA" // base64url encode of test
+}
 ```
 
-### Client_Structure_TwoOperationGroup
+Expected response body:
 
-- Endpoints:
-  - `get /one`
-  - `get /three`
-  - `get /four`
-  - `get /two`
-  - `get /five`
-  - `get /six`
-
-This is to show we can have more than one operation group in a client. The client side should be able to call the api like
-
-```ts
-const client = new TwoOperationGroupClient();
-
-client.group1.one();
-client.group1.three();
-client.group1.four();
-
-client.group2.two();
-client.group2.five();
-client.group2.six();
+```json
+{
+  "value": "dGVzdA"
+}
 ```
+
+### Encode_Bytes_Property_base64urlArray
+
+- Endpoint: `post /encode/bytes/property/base64url-array`
+
+Test operation with request and response model contains bytes array properties with base64url encode.
+Expected request body:
+
+```json
+{
+  "value": ["dGVzdA", "dGVzdA"]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": ["dGVzdA", "dGVzdA"]
+}
+```
+
+### Encode_Bytes_Property_default
+
+- Endpoint: `post /encode/bytes/property/default`
+
+Test operation with request and response model contains bytes properties with default encode (base64).
+Expected request body:
+
+```json
+{
+  "value": "dGVzdA==" // base64 encode of test
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "dGVzdA=="
+}
+```
+
+### Encode_Bytes_Query_base64
+
+- Endpoint: `get /encode/bytes/query/base64`
+
+Test base64 encode for bytes query parameter.
+Expected query parameter:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_Query_base64url
+
+- Endpoint: `get /encode/bytes/query/base64url`
+
+Test base64url encode for bytes query parameter.
+Expected query parameter:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_Query_base64urlArray
+
+- Endpoint: `get /encode/bytes/query/base64url-array`
+
+Test base64url encode for bytes array query parameter.
+Expected query parameter:
+value=dGVzdA, dGVzdA
+
+### Encode_Bytes_Query_default
+
+- Endpoint: `get /encode/bytes/query/default`
+
+Test default encode (base64) for bytes query parameter.
+Expected query parameter:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Datetime_Header_default
+
+- Endpoint: `get /encode/datetime/header/default`
+
+Test default encode (rfc7231) for datetime header.
+Expected header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_Header_rfc3339
+
+- Endpoint: `get /encode/datetime/header/rfc3339`
+
+Test rfc3339 encode for datetime header.
+Expected header:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_Header_rfc7231
+
+- Endpoint: `get /encode/datetime/header/rfc7231`
+
+Test rfc7231 encode for datetime header.
+Expected header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_Header_unixTimestamp
+
+- Endpoint: `get /encode/datetime/header/unix-timestamp`
+
+Test unixTimestamp encode for datetime header.
+Expected header:
+value=1686566864
+
+### Encode_Datetime_Header_unixTimestampArray
+
+- Endpoint: `get /encode/datetime/header/unix-timestamp-array`
+
+Test unixTimestamp encode for datetime array header.
+Expected header:
+value=1686566864,1686734256
+
+### Encode_Datetime_Property_default
+
+- Endpoint: `post /encode/datetime/property/default`
+
+Test operation with request and response model contains datetime property with default encode (rfc3339).
+Expected request body:
+
+```json
+{
+  "value": "2022-08-26T18:38:00.000Z"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "2022-08-26T18:38:00.000Z"
+}
+```
+
+### Encode_Datetime_Property_rfc3339
+
+- Endpoint: `post /encode/datetime/property/rfc3339`
+
+Test operation with request and response model contains datetime property with rfc3339 encode.
+Expected request body:
+
+```json
+{
+  "value": "2022-08-26T18:38:00.000Z"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "2022-08-26T18:38:00.000Z"
+}
+```
+
+### Encode_Datetime_Property_rfc7231
+
+- Endpoint: `post /encode/datetime/property/rfc7231`
+
+Test operation with request and response model contains datetime property with rfc7231 encode.
+Expected request body:
+
+```json
+{
+  "value": "Fri, 26 Aug 2022 14:38:00 GMT"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "Fri, 26 Aug 2022 14:38:00 GMT"
+}
+```
+
+### Encode_Datetime_Property_unixTimestamp
+
+- Endpoint: `post /encode/datetime/property/unix-timestamp`
+
+Test operation with request and response model contains datetime property with unixTimestamp encode.
+Expected request body:
+
+```json
+{
+  "value": 1686566864
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 1686566864
+}
+```
+
+### Encode_Datetime_Property_unixTimestampArray
+
+- Endpoint: `post /encode/datetime/property/unix-timestamp-array`
+
+Test operation with request and response model contains datetime array property with unixTimestamp encode.
+Expected request body:f
+
+```json
+{
+  "value": [1686566864, 1686734256]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": [1686566864, 1686734256]
+}
+```
+
+### Encode_Datetime_Query_default
+
+- Endpoint: `get /encode/datetime/query/default`
+
+Test default encode (rfc3339) for datetime query parameter.
+Expected query parameter:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_Query_rfc3339
+
+- Endpoint: `get /encode/datetime/query/rfc3339`
+
+Test rfc3339 encode for datetime query parameter.
+Expected query parameter:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_Query_rfc7231
+
+- Endpoint: `get /encode/datetime/query/rfc7231`
+
+Test rfc7231 encode for datetime query parameter.
+Expected query parameter:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_Query_unixTimestamp
+
+- Endpoint: `get /encode/datetime/query/unix-timestamp`
+
+Test unixTimestamp encode for datetime query parameter.
+Expected query parameter:
+value=1686566864
+
+### Encode_Datetime_Query_unixTimestampArray
+
+- Endpoint: `get /encode/datetime/query/unix-timestamp-array`
+
+Test unixTimestamp encode for datetime array query parameter.
+Expected query parameter:
+value=1686566864, 1686734256
 
 ### Encode_Duration_Header_default
 
@@ -872,6 +1125,46 @@ Expected query parameter `input=36,47`
 
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
+
+### Parameters_BodyOptionality_OptionalExplicit
+
+- Endpoints:
+  - `post /parameters/body-optionality/optional-explicit/set`
+  - `post /parameters/body-optionality/optional-explicit/omit`
+
+Scenario defining how an explicit optional body parameter is specified.
+
+Expected request body for `set`
+
+```json
+{ "name": "foo" }
+```
+
+Expected no request body for `omit`
+
+### Parameters_BodyOptionality_requiredExplicit
+
+- Endpoint: `post /parameters/body-optionality/required-explicit`
+
+Scenario defining how an explicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_BodyOptionality_requiredImplicit
+
+- Endpoint: `post /parameters/body-optionality/required-implicit`
+
+Scenario defining how an implicit required body parameter is specified.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
 
 ### Parameters_CollectionFormat_Header_csv
 
@@ -1181,6 +1474,23 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 - Endpoint: `head /server/path/single/myOp`
 
 An simple operation in a parameterized server.
+
+### SpecialHeaders_ClientRequestId
+
+- Endpoint: `get /special-headers/client-request-id/`
+
+Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- client-request-id=<any uuid string>
+  Expected response header:
+- client-request-id=<uuid string same with request header>
+
+### SpecialHeaders_Repeatability_immediateSuccess
+
+- Endpoint: `post /special-headers/repeatability/immediateSuccess`
+
+Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
 ### SpecialWords_Model_get
 
