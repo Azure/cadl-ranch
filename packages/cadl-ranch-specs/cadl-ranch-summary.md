@@ -618,6 +618,101 @@ Expected response body:
 }
 ```
 
+### Client_Structure_MutliClient
+
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /three`
+  - `get /one`
+  - `get /three`
+  - `get /three`
+
+Include multiple clients in the same spec.
+
+```ts
+const clientA = new ClientAClient();
+const clientB = new ClientBClient();
+
+clientA.renamedOne();
+clientA.renamedThree();
+clientA.renamedFive();
+
+clientB.renamedTwo();
+clientB.renamedFour();
+clientB.renamedSix();
+```
+
+### Client_Structure_RenamedOperation
+
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /three`
+  - `get /one`
+  - `get /three`
+  - `get /three`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new RenamedOperationClient();
+
+client.renamedOne();
+client.renamedThree();
+client.renamedFive();
+
+client.group.renamedTwo();
+client.group.renamedFour();
+client.group.renamedSix();
+```
+
+### Client_Structure_Service
+
+- Endpoints:
+  - `get /three`
+  - `get /four`
+  - `get /five`
+  - `get /six`
+  - `get /one`
+  - `get /two`
+
+This is to show that if we don't do any customization. The client side should be able to call the api like
+
+```ts
+const client = new MultiClient();
+client.one();
+client.two();
+client.three();
+client.four();
+client.five();
+client.six();
+```
+
+### Client_Structure_TwoOperationGroup
+
+- Endpoints:
+  - `get /one`
+  - `get /three`
+  - `get /four`
+  - `get /two`
+  - `get /five`
+  - `get /six`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new TwoOperationGroupClient();
+
+client.group1.one();
+client.group1.three();
+client.group1.four();
+
+client.group2.two();
+client.group2.five();
+client.group2.six();
+```
+
 ### Encode_Bytes_Header_base64
 
 - Endpoint: `get /encode/bytes/header/base64`

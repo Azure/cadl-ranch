@@ -31,16 +31,20 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
   const pattern = [`${normalizedScenarioPath}/**/client.tsp`, `${normalizedScenarioPath}/**/main.tsp`];
   logger.debug(`Looking for scenarios in ${pattern}`);
   const fullScenarios = await findFilesFromPattern(pattern);
+  logger.info(`Found ${fullScenarios.length} full scenarios.`);
   const scenarioSet = new Set(fullScenarios);
   const scenarios = fullScenarios.filter((scenario) => {
     // Exclude main.tsp that have a client.tsp next to it, we should use that instead
-    return scenario.endsWith("/main.tsp") && scenarioSet.has(normalizePath(join(dirname(scenario), "client.tsp")));
+    return (
+      scenario.endsWith("client.tsp") ||
+      (scenario.endsWith("main.tsp") && !scenarioSet.has(scenario.replace("main.tsp", "client.tsp")))
+    );
   });
 
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
-    name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", "").replace("/client.tsp", ""),
+    name: normalizePath(relative(scenariosPath, name)).replace("main.tsp", "").replace("client.tsp", ""),
     cadlFilePath: resolve(scenariosPath, name),
   }));
 }
