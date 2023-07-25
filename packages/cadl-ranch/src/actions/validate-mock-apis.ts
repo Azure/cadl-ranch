@@ -3,6 +3,7 @@ import pc from "picocolors";
 import { findScenarioCadlFiles, loadScenarioMockApiFiles } from "../scenarios-resolver.js";
 import { importTypeSpec, importCadlRanchExpect } from "../cadl-utils/import-cadl.js";
 import { createDiagnosticReporter } from "../utils/diagnostic-reporter.js";
+import { sep } from "path";
 
 export interface ValidateMockApisConfig {
   scenariosPath: string;
@@ -42,7 +43,8 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       continue;
     }
 
-    const mockApiFile = mockApis.find((x) => x.path.endsWith(`/${name}/mockapi.js`));
+    const mockFilePath = `${name.replace(/\//g, sep)}mockapi.js`;
+    const mockApiFile = mockApis.find((x) => x.path.includes(mockFilePath));
     if (mockApiFile === undefined) {
       diagnostics.reportDiagnostic({
         message: `Scenario ${name} is missing a mockapi file. Make sure to have a mockapi.ts that is built.`,

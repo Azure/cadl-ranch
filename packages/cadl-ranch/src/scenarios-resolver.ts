@@ -165,6 +165,7 @@ export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<M
       logger.debug(`File '${file}' is not exporting any scenarios.`);
     }
   }
+  logger.info("result length: " + results.length);
   return results;
 }
 
