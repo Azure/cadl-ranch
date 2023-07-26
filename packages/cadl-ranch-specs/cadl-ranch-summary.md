@@ -2030,7 +2030,7 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
-### Type_Model_Inheritance_EnumDiscriminator_getExtensibleEnum
+### Type_Model_Inheritance_EnumDiscriminator_getModel
 
 - Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
 
@@ -2041,7 +2041,7 @@ Expected response body:
 { "kind": "golden", "weight": 10 }
 ```
 
-### Type_Model_Inheritance_EnumDiscriminator_putExtensibleEnum
+### Type_Model_Inheritance_EnumDiscriminator_putModel
 
 - Endpoint: `put /type/model/inheritance/enum-discriminator/extensible-enum`
 

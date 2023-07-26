@@ -7,13 +7,13 @@ const validExtensibleEnumBody = {
   weight: 10,
   kind: "golden",
 };
-Scenarios.Type_Model_Inheritance_EnumDiscriminator_getExtensibleEnum = passOnSuccess(
+Scenarios.Type_Model_Inheritance_EnumDiscriminator_getModel = passOnSuccess(
   mockapi.get("/type/model/inheritance/enum-discriminator/extensible-enum", (req) => {
     return { status: 200, body: json(validExtensibleEnumBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_EnumDiscriminator_putExtensibleEnum = passOnSuccess(
+Scenarios.Type_Model_Inheritance_EnumDiscriminator_putModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/enum-discriminator/extensible-enum", (req) => {
     req.expect.bodyEquals(validExtensibleEnumBody);
     return { status: 200 };

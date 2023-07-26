@@ -34,7 +34,7 @@ Expected response body:
 """)
 @route("/extensible-enum")
 @get
-op getExtensibleEnum(): Dog;
+op getModel(): Dog;
 
 @scenario
 @scenarioDoc("""
@@ -47,4 +47,4 @@ Expected request body:
 """)
 @route("/extensible-enum")
 @put
-op putExtensibleEnum(@body input: Dog): OkResponse;
+op putModel(@body input: Dog): OkResponse;
