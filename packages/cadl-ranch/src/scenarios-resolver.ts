@@ -34,7 +34,7 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
 
   return scenarios.map((name) => ({
     name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", ""),
-    cadlFilePath: resolve(scenariosPath, name),
+    cadlFilePath: normalizePath(resolve(scenariosPath, name)),
   }));
 }
 
