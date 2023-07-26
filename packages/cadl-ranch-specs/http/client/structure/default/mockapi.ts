@@ -3,22 +3,22 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.Client_Structure_Service = passOnSuccess([
-  mockapi.patch("client/structure/default/one", (req) => {
+  mockapi.patch("/one", (req) => {
     return { status: 200 };
   }),
-  mockapi.patch("/client/structure/default/two", (req) => {
+  mockapi.patch("/two", (req) => {
     return { status: 200 };
   }),
-  mockapi.patch("/client/structure/default/three", (req) => {
+  mockapi.patch("/three", (req) => {
     return { status: 200 };
   }),
-  mockapi.patch("/client/structure/default/four", (req) => {
+  mockapi.patch("/four", (req) => {
     return { status: 200 };
   }),
-  mockapi.patch("/client/structure/default/five", (req) => {
+  mockapi.patch("/five", (req) => {
     return { status: 200 };
   }),
-  mockapi.patch("/client/structure/default/six", (req) => {
+  mockapi.patch("/six", (req) => {
     return { status: 200 };
   }),
 ]);

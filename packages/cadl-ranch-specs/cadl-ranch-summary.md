@@ -618,7 +618,7 @@ Expected response body:
 }
 ```
 
-### Client_Structure_MutliClient
+### Client_Structure_MultiClient
 
 - Endpoints:
   - `get /one`

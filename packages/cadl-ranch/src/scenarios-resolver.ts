@@ -40,7 +40,6 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
     );
   });
 
-  logger.info(JSON.stringify(scenarios));
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
