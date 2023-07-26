@@ -1,7 +1,7 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { Operation } from "@typespec/compiler";
-import { join, relative, resolve, dirname } from "path";
+import { join, relative, resolve, dirname, sep } from "path";
 import { pathToFileURL } from "url";
 import { importTypeSpec, importCadlRanchExpect, importTypeSpecHttp } from "./cadl-utils/index.js";
 import { logger } from "./logger.js";
@@ -35,12 +35,12 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
   const scenarioSet = new Set(fullScenarios);
   const scenarios = fullScenarios.filter((scenario) => {
     // Exclude main.tsp that have a client.tsp next to it, we should use that instead
-    return (
-      scenario.endsWith("client.tsp") ||
-      (scenario.endsWith("main.tsp") && !scenarioSet.has(scenario.replace("main.tsp", "client.tsp")))
+    return !(
+      scenario.endsWith(sep + "main.tsp") && scenarioSet.has(normalizePath(join(dirname(scenario), "client.tsp")))
     );
   });
 
+  logger.info(JSON.stringify(scenarios));
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
