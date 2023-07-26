@@ -7,13 +7,13 @@ const validPolymorphicBody = {
   wingspan: 1,
   kind: "sparrow",
 };
-Scenarios.Type_Model_Inheritance_Single_Discriminator_getModel = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_getModel = passOnSuccess(
   mockapi.get("/type/model/inheritance/single-discriminator/model", (req) => {
     return { status: 200, body: json(validPolymorphicBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Single_Discriminator_putModel = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_putModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/single-discriminator/model", (req) => {
     req.expect.bodyEquals(validPolymorphicBody);
     return { status: 200 };
@@ -40,26 +40,26 @@ const validRecursiveBody = {
     },
   },
 };
-Scenarios.Type_Model_Inheritance_Single_Discriminator_getRecursiveModel = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_getRecursiveModel = passOnSuccess(
   mockapi.get("/type/model/inheritance/single-discriminator/recursivemodel", (req) => {
     return { status: 200, body: json(validRecursiveBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Single_Discriminator_putRecursiveModel = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_putRecursiveModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/single-discriminator/recursivemodel", (req) => {
     req.expect.bodyEquals(validRecursiveBody);
     return { status: 200 };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Single_Discriminator_getMissingDiscriminator = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_getMissingDiscriminator = passOnSuccess(
   mockapi.get("/type/model/inheritance/single-discriminator/missingdiscriminator", (req) => {
     return { status: 200, body: json({ wingspan: 1 }) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Single_Discriminator_getWrongDiscriminator = passOnSuccess(
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_getWrongDiscriminator = passOnSuccess(
   mockapi.get("/type/model/inheritance/single-discriminator/wrongdiscriminator", (req) => {
     return { status: 200, body: json({ wingspan: 1, kind: "wrongKind" }) };
   }),

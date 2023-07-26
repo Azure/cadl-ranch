@@ -4,20 +4,20 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const inheritanceValidBody = { name: "abc", age: 32, smart: true };
-Scenarios.Type_Model_Inheritance_Non_Discriminator_postValid = passOnSuccess(
+Scenarios.Type_Model_Inheritance_NonDiscriminator_postValid = passOnSuccess(
   mockapi.post("/type/model/inheritance/non-discriminator/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
     return { status: 200 };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Non_Discriminator_getValid = passOnSuccess(
+Scenarios.Type_Model_Inheritance_NonDiscriminator_getValid = passOnSuccess(
   mockapi.get("/type/model/inheritance/non-discriminator/valid", (req) => {
     return { status: 200, body: json(inheritanceValidBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_Non_Discriminator_putValid = passOnSuccess(
+Scenarios.Type_Model_Inheritance_NonDiscriminator_putValid = passOnSuccess(
   mockapi.put("/type/model/inheritance/non-discriminator/valid", (req) => {
     return { status: 200, body: json(req.body) };
   }),
