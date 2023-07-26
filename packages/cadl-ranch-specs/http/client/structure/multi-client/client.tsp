@@ -19,7 +19,7 @@ using Azure.ClientGenerator.Core;
   ```
   """)
 @scenario
-namespace Client.Structure.MutliClient;
+namespace Client.Structure.MultiClient;
 
 @client({
   name: "ClientAClient",
