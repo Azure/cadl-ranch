@@ -59,7 +59,7 @@ Expected input body:
 ```
 """)
 @put
-op putModel(@body input: Fish): OkResponse;
+op putModel(@body input: Fish): NoContentResponse;
 
 @scenario
 @route("/recursivemodel")
@@ -195,7 +195,7 @@ Expected input body:
 ```
 """)
 @put
-op putRecursiveModel(@body input: Fish): OkResponse;
+op putRecursiveModel(@body input: Fish): NoContentResponse;
 
 @scenario
 @route("/missingdiscriminator")

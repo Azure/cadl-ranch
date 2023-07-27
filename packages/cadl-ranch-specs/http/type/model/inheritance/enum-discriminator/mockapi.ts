@@ -16,7 +16,7 @@ Scenarios.Type_Model_Inheritance_EnumDiscriminator_getModel = passOnSuccess(
 Scenarios.Type_Model_Inheritance_EnumDiscriminator_putModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/enum-discriminator/extensible-enum", (req) => {
     req.expect.bodyEquals(validExtensibleEnumBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 

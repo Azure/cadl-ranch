@@ -47,7 +47,7 @@ Expected request body:
 """)
 @route("/extensible-enum")
 @put
-op putModel(@body input: Dog): OkResponse;
+op putModel(@body input: Dog): NoContentResponse;
 
 @scenario
 @route("/missingdiscriminator")

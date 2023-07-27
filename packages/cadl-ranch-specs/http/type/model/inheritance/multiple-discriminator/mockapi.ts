@@ -17,7 +17,7 @@ Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getModel = passOnSuccess(
 Scenarios.Type_Model_Inheritance_MultipleDiscriminator_putModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/multiple-discriminator/model", (req) => {
     req.expect.bodyEquals(validPolymorphicBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
@@ -87,7 +87,7 @@ Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getRecursiveModel = passO
 Scenarios.Type_Model_Inheritance_MultipleDiscriminator_putRecursiveModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/multiple-discriminator/recursivemodel", (req) => {
     req.expect.bodyEquals(validRecursiveBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 

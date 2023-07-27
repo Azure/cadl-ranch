@@ -16,7 +16,7 @@ Scenarios.Type_Model_Inheritance_SingleDiscriminator_getModel = passOnSuccess(
 Scenarios.Type_Model_Inheritance_SingleDiscriminator_putModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/single-discriminator/model", (req) => {
     req.expect.bodyEquals(validPolymorphicBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
@@ -49,7 +49,7 @@ Scenarios.Type_Model_Inheritance_SingleDiscriminator_getRecursiveModel = passOnS
 Scenarios.Type_Model_Inheritance_SingleDiscriminator_putRecursiveModel = passOnSuccess(
   mockapi.put("/type/model/inheritance/single-discriminator/recursivemodel", (req) => {
     req.expect.bodyEquals(validRecursiveBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
