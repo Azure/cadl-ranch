@@ -2030,18 +2030,7 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
-### Type_Model_Inheritance_EnumDiscriminator_getMissingDiscriminator
-
-- Endpoint: `get /type/model/inheritance/enum-discriminator/missingdiscriminator`
-
-Get a model omitting the discriminator.
-Expected response body:
-
-```json
-{ "weight": 10 }
-```
-
-### Type_Model_Inheritance_EnumDiscriminator_getModel
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
 - Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
 
@@ -2052,9 +2041,20 @@ Expected response body:
 { "kind": "golden", "weight": 10 }
 ```
 
-### Type_Model_Inheritance_EnumDiscriminator_getWrongDiscriminator
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelMissingDiscriminator
 
-- Endpoint: `get /type/model/inheritance/enum-discriminator/wrongdiscriminator`
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator`
 
 Get a model containing discriminator value never defined.
 Expected response body:
@@ -2063,7 +2063,40 @@ Expected response body:
 { "weight": 8, "kind": "wrongKind" }
 ```
 
-### Type_Model_Inheritance_EnumDiscriminator_putModel
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModel
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Receive model with fixed enum discriminator type.
+Expected response body:
+
+```json
+{ "kind": "cobra", "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "length": 8, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putExtensibleModel
 
 - Endpoint: `put /type/model/inheritance/enum-discriminator/extensible-enum`
 
@@ -2072,6 +2105,17 @@ Expected request body:
 
 ```json
 { "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putFixedModel
+
+- Endpoint: `put /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Send model with fixed enum discriminator type.
+Expected request body:
+
+```json
+{ "kind": "cobra", "length": 10 }
 ```
 
 ### Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator
