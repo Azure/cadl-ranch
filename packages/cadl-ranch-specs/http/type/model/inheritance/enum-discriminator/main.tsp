@@ -48,3 +48,27 @@ Expected request body:
 @route("/extensible-enum")
 @put
 op putModel(@body input: Dog): OkResponse;
+
+@scenario
+@route("/missingdiscriminator")
+@scenarioDoc("""
+Get a model omitting the discriminator.
+Expected response body:
+```json
+{"weight": 10}
+```
+""")
+@get
+op getMissingDiscriminator(): Dog;
+
+@scenario
+@route("/wrongdiscriminator")
+@scenarioDoc("""
+Get a model containing discriminator value never defined.
+Expected response body:
+```json
+{"weight": 8, "kind": "wrongKind" }
+```
+""")
+@get
+op getWrongDiscriminator(): Dog;

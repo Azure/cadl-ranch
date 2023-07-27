@@ -2030,6 +2030,17 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
+### Type_Model_Inheritance_EnumDiscriminator_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "weight": 10 }
+```
+
 ### Type_Model_Inheritance_EnumDiscriminator_getModel
 
 - Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
@@ -2039,6 +2050,17 @@ Expected response body:
 
 ```json
 { "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "weight": 8, "kind": "wrongKind" }
 ```
 
 ### Type_Model_Inheritance_EnumDiscriminator_putModel

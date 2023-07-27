@@ -19,3 +19,15 @@ Scenarios.Type_Model_Inheritance_EnumDiscriminator_putModel = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Type_Model_Inheritance_EnumDiscriminator_getMissingDiscriminator = passOnSuccess(
+  mockapi.get("/type/model/inheritance/enum-discriminator/missingdiscriminator", (req) => {
+    return { status: 200, body: json({ weight: 10 }) };
+  }),
+);
+
+Scenarios.Type_Model_Inheritance_EnumDiscriminator_getWrongDiscriminator = passOnSuccess(
+  mockapi.get("/type/model/inheritance/enum-discriminator/wrongdiscriminator", (req) => {
+    return { status: 200, body: json({ weight: 8, kind: "wrongKind" }) };
+  }),
+);
