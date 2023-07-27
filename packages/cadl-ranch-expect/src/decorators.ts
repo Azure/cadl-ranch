@@ -11,7 +11,7 @@ import {
   Program,
   StringLiteral,
 } from "@typespec/compiler";
-import { $route, $server, getOperationVerb, getRoutePath, HttpVerb } from "@typespec/http";
+import { $route, $server, getOperationVerb, getRoutePath, getServers, HttpVerb } from "@typespec/http";
 import { $versioned } from "@typespec/versioning";
 import { reportDiagnostic } from "./lib.js";
 import { SupportedBy } from "./types.js";
@@ -133,8 +133,20 @@ function getRouteSegments(program: Program, target: Operation | Interface | Name
 }
 
 function getOperationRoute(program: Program, target: Operation): string {
+  const template = getHostTemplate(program, target.namespace);
   const segments = getRouteSegments(program, target);
-  return "/" + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+  return (template ? template : "/") + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+}
+
+function getHostTemplate(program: Program, namespace?: Namespace): string | undefined {
+  if (namespace === undefined) {
+    return undefined;
+  }
+  const server = getServers(program, namespace);
+  if (server && server.length === 1) {
+    return server[0].url.split("localhost:3000")[1];
+  }
+  return undefined;
 }
 
 export function listScenarioIn(program: Program, target: Namespace | Interface | Operation): Scenario[] {
