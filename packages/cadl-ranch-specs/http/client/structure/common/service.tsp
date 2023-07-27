@@ -23,7 +23,6 @@ using Azure.ClientGenerator.Core;
     client: ClientTypeString,
   }
 )
-
 @service({
   title: "MultiClient",
   version: "1.0.0",
@@ -34,8 +33,8 @@ enum ClientType {
   Default: "default",
   MultiClient: "multi-client",
   RenamedOperation: "renamed-operation",
-  TwoOperationGroup: "two-operation-group"
-};
+  TwoOperationGroup: "two-operation-group",
+}
 @knownValues(ClientType)
 scalar ClientTypeString extends string;
 
