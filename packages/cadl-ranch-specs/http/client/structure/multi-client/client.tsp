@@ -6,8 +6,8 @@ using Azure.ClientGenerator.Core;
 @scenarioDoc("""
   Include multiple clients in the same spec.
   ```ts
-  const clientA = new ClientAClient();
-  const clientB = new ClientBClient();
+  const clientA = new ClientAClient("multi-client");
+  const clientB = new ClientBClient("multi-client");
 
   clientA.renamedOne();
   clientA.renamedThree();

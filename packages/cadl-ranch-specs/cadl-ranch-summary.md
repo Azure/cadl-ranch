@@ -631,8 +631,8 @@ Expected response body:
 Include multiple clients in the same spec.
 
 ```ts
-const clientA = new ClientAClient();
-const clientB = new ClientBClient();
+const clientA = new ClientAClient("multi-client");
+const clientB = new ClientBClient("multi-client");
 
 clientA.renamedOne();
 clientA.renamedThree();
@@ -656,7 +656,7 @@ clientB.renamedSix();
 This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
 ```ts
-const client = new RenamedOperationClient();
+const client = new RenamedOperationClient("renamed-operation");
 
 client.renamedOne();
 client.renamedThree();
@@ -680,7 +680,7 @@ client.group.renamedSix();
 This is to show that if we don't do any customization. The client side should be able to call the api like
 
 ```ts
-const client = new MultiClient();
+const client = new MultiClient("default");
 client.one();
 client.two();
 client.three();
@@ -702,7 +702,7 @@ client.six();
 This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
 ```ts
-const client = new TwoOperationGroupClient();
+const client = new TwoOperationGroupClient("two-operation-group");
 
 client.group1.one();
 client.group1.three();

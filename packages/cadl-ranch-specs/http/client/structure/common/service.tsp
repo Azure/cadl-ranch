@@ -20,14 +20,24 @@ using Azure.ClientGenerator.Core;
   "http://localhost:3000/client/structure/{client}",
   "",
   {
-    client: string,
+    client: ClientTypeString,
   }
 )
+
 @service({
   title: "MultiClient",
   version: "1.0.0",
 })
 namespace Client.Structure.Service;
+
+enum ClientType {
+  Default: "default",
+  MultiClient: "multi-client",
+  RenamedOperation: "renamed-operation",
+  TwoOperationGroup: "two-operation-group"
+};
+@knownValues(ClientType)
+scalar ClientTypeString extends string;
 
 #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
 @route("/one") op one(): void;
