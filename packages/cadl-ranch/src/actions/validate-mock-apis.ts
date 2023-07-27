@@ -47,6 +47,8 @@ export async function validateMockApis({ scenariosPath }: ValidateMockApisConfig
       diagnostics.reportDiagnostic({
         message: `Scenario ${name} is missing a mockapi file. Make sure to have a mockapi.ts that is built.`,
       });
+      logger.debug(`Expected mock api file at "${name}/mockapi.js"`);
+
       continue;
     }
 

@@ -34,7 +34,7 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
 
   return scenarios.map((name) => ({
     name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", ""),
-    cadlFilePath: resolve(scenariosPath, name),
+    cadlFilePath: normalizePath(resolve(scenariosPath, name)),
   }));
 }
 
@@ -139,7 +139,7 @@ export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<M
     if (result.Scenarios) {
       logger.debug(`File '${file}' contains ${Object.keys(result.Scenarios).length} scenarios.`);
       results.push({
-        path: file,
+        path: normalizePath(file),
         scenarios: result.Scenarios,
       });
     } else {
