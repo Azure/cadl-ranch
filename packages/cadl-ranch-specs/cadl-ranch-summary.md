@@ -2280,6 +2280,17 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
+
+Generate and receive polymorphic model defined in legacy way.
+Expected response body:
+
+```json
+{ "size": 20, "kind": "trex" }
+```
+
 ### Type_Model_Inheritance_SingleDiscriminator_getMissingDiscriminator
 
 - Endpoint: `get /type/model/inheritance/single-discriminator/missingdiscriminator`

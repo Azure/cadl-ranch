@@ -37,6 +37,17 @@ model Eagle extends Bird {
   partner?: Bird;
 }
 
+@doc("Define a base class in the legacy way. Discriminator property is not explicitly defined in the model.")
+@discriminator("kind")
+model Dinosaur {
+  size: int32;
+}
+
+@doc("The second level legacy model in polymorphic single level inheritance.")
+model TRex extends Dinosaur {
+  kind: "t-rex";
+}
+
 @scenario
 @route("/model")
 @scenarioDoc("""
@@ -146,3 +157,15 @@ Expected response body:
 """)
 @get
 op getWrongDiscriminator(): Bird;
+
+@scenario
+@route("/legacy-model")
+@scenarioDoc("""
+Generate and receive polymorphic model defined in legacy way.
+Expected response body:
+```json
+{"size": 20, "kind": "t-rex"}
+```
+""")
+@get
+op getLegacyModel(): Dinosaur;

@@ -64,3 +64,9 @@ Scenarios.Type_Model_Inheritance_SingleDiscriminator_getWrongDiscriminator = pas
     return { status: 200, body: json({ wingspan: 1, kind: "wrongKind" }) };
   }),
 );
+
+Scenarios.Type_Model_Inheritance_SingleDiscriminator_getLegacyModel = passOnSuccess(
+  mockapi.get("/type/model/inheritance/single-discriminator/legacy-model", (req) => {
+    return { status: 200, body: json({ size: 20, kind: "t-rex" }) };
+  }),
+);
