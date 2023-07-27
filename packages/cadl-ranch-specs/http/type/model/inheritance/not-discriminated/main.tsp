@@ -3,11 +3,11 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@doc("Illustrates non-discriminator inheritance model.")
-@scenarioService("/type/model/inheritance/non-discriminator")
-namespace Type.Model.Inheritance.NonDiscriminator;
+@doc("Illustrates not-discriminated inheritance model.")
+@scenarioService("/type/model/inheritance/not-discriminated")
+namespace Type.Model.Inheritance.NotDiscriminated;
 
-@doc("This is base model for non-discriminator normal multiple levels inheritance.")
+@doc("This is base model for not-discriminated normal multiple levels inheritance.")
 model Pet {
   name: string;
 }
@@ -32,7 +32,7 @@ Expected input body:
 """)
 @route("/valid")
 @post
-op postValid(@body input: Siamese): OkResponse;
+op postValid(@body input: Siamese): NoContentResponse;
 
 @scenario
 @scenarioDoc("""

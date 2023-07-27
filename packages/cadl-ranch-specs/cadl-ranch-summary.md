@@ -2252,9 +2252,9 @@ Expected input body:
 }
 ```
 
-### Type_Model_Inheritance_NonDiscriminator_getValid
+### Type_Model_Inheritance_NotDiscriminated_getValid
 
-- Endpoint: `get /type/model/inheritance/non-discriminator/valid`
+- Endpoint: `get /type/model/inheritance/not-discriminated/valid`
 
 Generate and receive model.
 Expected response body:
@@ -2263,9 +2263,9 @@ Expected response body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_NonDiscriminator_postValid
+### Type_Model_Inheritance_NotDiscriminated_postValid
 
-- Endpoint: `post /type/model/inheritance/non-discriminator/valid`
+- Endpoint: `post /type/model/inheritance/not-discriminated/valid`
 
 Generate and send model.
 Expected input body:
@@ -2274,9 +2274,9 @@ Expected input body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_NonDiscriminator_putValid
+### Type_Model_Inheritance_NotDiscriminated_putValid
 
-- Endpoint: `put /type/model/inheritance/non-discriminator/valid`
+- Endpoint: `put /type/model/inheritance/not-discriminated/valid`
 
 Generate, send, and receive round-trip bottom model.
 
