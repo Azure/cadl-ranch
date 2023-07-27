@@ -2288,7 +2288,7 @@ Generate and receive polymorphic model defined in legacy way.
 Expected response body:
 
 ```json
-{ "size": 20, "kind": "trex" }
+{ "size": 20, "kind": "t-rex" }
 ```
 
 ### Type_Model_Inheritance_SingleDiscriminator_getMissingDiscriminator
