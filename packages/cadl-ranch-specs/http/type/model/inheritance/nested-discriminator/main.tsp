@@ -4,8 +4,8 @@ import "@azure-tools/cadl-ranch-expect";
 using TypeSpec.Http;
 
 @doc("Illustrates multiple level inheritance with multiple discriminators.")
-@scenarioService("/type/model/inheritance/multiple-discriminator")
-namespace Type.Model.Inheritance.MultipleDiscriminator;
+@scenarioService("/type/model/inheritance/nested-discriminator")
+namespace Type.Model.Inheritance.NestedDiscriminator;
 
 @doc("This is base model for polymorphic multiple levels inheritance with a discriminator.")
 @discriminator("kind")
@@ -17,6 +17,7 @@ model Fish {
 @discriminator("sharktype")
 model Shark extends Fish {
   kind: "shark";
+  sharktype: string;
 }
 
 @doc("The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances.")

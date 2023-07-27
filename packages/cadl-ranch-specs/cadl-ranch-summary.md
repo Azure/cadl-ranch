@@ -2074,9 +2074,9 @@ Expected request body:
 { "kind": "golden", "weight": 10 }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_getMissingDiscriminator
+### Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator
 
-- Endpoint: `get /type/model/inheritance/multiple-discriminator/missingdiscriminator`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/missingdiscriminator`
 
 Get a model omitting the discriminator.
 Expected response body:
@@ -2085,9 +2085,9 @@ Expected response body:
 { "age": 1 }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_getModel
+### Type_Model_Inheritance_NestedDiscriminator_getModel
 
-- Endpoint: `get /type/model/inheritance/multiple-discriminator/model`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
@@ -2096,9 +2096,9 @@ Expected response body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_getRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel
 
-- Endpoint: `get /type/model/inheritance/multiple-discriminator/recursivemodel`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected response body:
@@ -2163,9 +2163,9 @@ Expected response body:
 }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_getWrongDiscriminator
+### Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator
 
-- Endpoint: `get /type/model/inheritance/multiple-discriminator/wrongdiscriminator`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/wrongdiscriminator`
 
 Get a model containing discriminator value never defined.
 Expected response body:
@@ -2174,9 +2174,9 @@ Expected response body:
 { "age": 1, "kind": "wrongKind" }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_putModel
+### Type_Model_Inheritance_NestedDiscriminator_putModel
 
-- Endpoint: `put /type/model/inheritance/multiple-discriminator/model`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/model`
 
 Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected input body:
@@ -2185,9 +2185,9 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_MultipleDiscriminator_putRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel
 
-- Endpoint: `put /type/model/inheritance/multiple-discriminator/recursivemodel`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input body:

@@ -8,14 +8,14 @@ const validPolymorphicBody = {
   kind: "shark",
   sharktype: "goblin",
 };
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getModel = passOnSuccess(
-  mockapi.get("/type/model/inheritance/multiple-discriminator/model", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getModel = passOnSuccess(
+  mockapi.get("/type/model/inheritance/nested-discriminator/model", (req) => {
     return { status: 200, body: json(validPolymorphicBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_putModel = passOnSuccess(
-  mockapi.put("/type/model/inheritance/multiple-discriminator/model", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_putModel = passOnSuccess(
+  mockapi.put("/type/model/inheritance/nested-discriminator/model", (req) => {
     req.expect.bodyEquals(validPolymorphicBody);
     return { status: 204 };
   }),
@@ -78,27 +78,27 @@ const validRecursiveBody = {
     },
   },
 };
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getRecursiveModel = passOnSuccess(
-  mockapi.get("/type/model/inheritance/multiple-discriminator/recursivemodel", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel = passOnSuccess(
+  mockapi.get("/type/model/inheritance/nested-discriminator/recursivemodel", (req) => {
     return { status: 200, body: json(validRecursiveBody) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_putRecursiveModel = passOnSuccess(
-  mockapi.put("/type/model/inheritance/multiple-discriminator/recursivemodel", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel = passOnSuccess(
+  mockapi.put("/type/model/inheritance/nested-discriminator/recursivemodel", (req) => {
     req.expect.bodyEquals(validRecursiveBody);
     return { status: 204 };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getMissingDiscriminator = passOnSuccess(
-  mockapi.get("/type/model/inheritance/multiple-discriminator/missingdiscriminator", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator = passOnSuccess(
+  mockapi.get("/type/model/inheritance/nested-discriminator/missingdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1 }) };
   }),
 );
 
-Scenarios.Type_Model_Inheritance_MultipleDiscriminator_getWrongDiscriminator = passOnSuccess(
-  mockapi.get("/type/model/inheritance/multiple-discriminator/wrongdiscriminator", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator = passOnSuccess(
+  mockapi.get("/type/model/inheritance/nested-discriminator/wrongdiscriminator", (req) => {
     return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
   }),
 );
