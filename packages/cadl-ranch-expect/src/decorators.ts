@@ -144,7 +144,13 @@ function getHostTemplate(program: Program, namespace?: Namespace): string | unde
   }
   const server = getServers(program, namespace);
   if (server && server.length === 1) {
-    return server[0].url.split("localhost:3000")[1];
+    if (server[0].url.indexOf("localhost:3000") > -1) {
+      return server[0].url.split("localhost:3000")[1];
+    } else if (server[0].url.indexOf("{endpoint}") > -1) {
+      return server[0].url.split("{endpoint}")[1];
+    } else {
+      return server[0].url;
+    }
   }
   return undefined;
 }

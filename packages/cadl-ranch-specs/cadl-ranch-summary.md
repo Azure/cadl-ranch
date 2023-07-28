@@ -1455,7 +1455,7 @@ Tests that we can grow up an operation from accepting one required parameter to 
 
 ### Server_Path_Multiple_noOperationParams
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client path parameters.
 
@@ -1463,7 +1463,7 @@ Expected path parameter: apiVersion=v1.0
 
 ### Server_Path_Multiple_withOperationPathParam
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client and method path parameters.
 
