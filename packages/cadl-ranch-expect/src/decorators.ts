@@ -133,12 +133,12 @@ function getRouteSegments(program: Program, target: Operation | Interface | Name
 }
 
 function getOperationRoute(program: Program, target: Operation): string {
-  const template = getHostTemplate(program, target.namespace);
+  const template = getRouteSegmentFromServer(program, target.namespace);
   const segments = getRouteSegments(program, target);
   return (template ? template : "/") + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
 }
 
-function getHostTemplate(program: Program, namespace?: Namespace): string | undefined {
+function getRouteSegmentFromServer(program: Program, namespace?: Namespace): string | undefined {
   if (namespace === undefined) {
     return undefined;
   }
