@@ -2030,9 +2030,97 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
-### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
+
+Receive model with extensible enum discriminator type.
+Expected response body:
+
+```json
+{ "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "weight": 8, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModel
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Receive model with fixed enum discriminator type.
+Expected response body:
+
+```json
+{ "kind": "cobra", "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "length": 8, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putExtensibleModel
+
+- Endpoint: `put /type/model/inheritance/enum-discriminator/extensible-enum`
+
+Send model with extensible enum discriminator type.
+Expected request body:
+
+```json
+{ "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putFixedModel
+
+- Endpoint: `put /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Send model with fixed enum discriminator type.
+Expected request body:
+
+```json
+{ "kind": "cobra", "length": 10 }
+```
+
+### Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/nested-discriminator/missingdiscriminator`
 
 Get a model omitting the discriminator.
 Expected response body:
@@ -2041,9 +2129,9 @@ Expected response body:
 { "age": 1 }
 ```
 
-### Type_Model_Inheritance_Discriminated_getModel
+### Type_Model_Inheritance_NestedDiscriminator_getModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/model`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
@@ -2052,9 +2140,9 @@ Expected response body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_Discriminated_getRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected response body:
@@ -2119,9 +2207,9 @@ Expected response body:
 }
 ```
 
-### Type_Model_Inheritance_Discriminated_getWrongDiscriminator
+### Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator
 
-- Endpoint: `get /type/model/inheritance/discriminated/wrongdiscriminator`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/wrongdiscriminator`
 
 Get a model containing discriminator value never defined.
 Expected response body:
@@ -2130,9 +2218,9 @@ Expected response body:
 { "age": 1, "kind": "wrongKind" }
 ```
 
-### Type_Model_Inheritance_Discriminated_putModel
+### Type_Model_Inheritance_NestedDiscriminator_putModel
 
-- Endpoint: `put /type/model/inheritance/discriminated/model`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/model`
 
 Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected input body:
@@ -2141,9 +2229,9 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_Discriminated_putRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel
 
-- Endpoint: `put /type/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input body:
@@ -2208,9 +2296,9 @@ Expected input body:
 }
 ```
 
-### Type_Model_Inheritance_getValid
+### Type_Model_Inheritance_NotDiscriminated_getValid
 
-- Endpoint: `get /type/model/inheritance/valid`
+- Endpoint: `get /type/model/inheritance/not-discriminated/valid`
 
 Generate and receive model.
 Expected response body:
@@ -2219,9 +2307,9 @@ Expected response body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_postValid
+### Type_Model_Inheritance_NotDiscriminated_postValid
 
-- Endpoint: `post /type/model/inheritance/valid`
+- Endpoint: `post /type/model/inheritance/not-discriminated/valid`
 
 Generate and send model.
 Expected input body:
@@ -2230,11 +2318,126 @@ Expected input body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_putValid
+### Type_Model_Inheritance_NotDiscriminated_putValid
 
-- Endpoint: `put /type/model/inheritance/valid`
+- Endpoint: `put /type/model/inheritance/not-discriminated/valid`
 
 Generate, send, and receive round-trip bottom model.
+
+### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
+
+Generate and receive polymorphic model defined in legacy way.
+Expected response body:
+
+```json
+{ "size": 20, "kind": "t-rex" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "wingspan": 1 }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/model`
+
+Generate and receive polymorphic model in single level inheritance with 1 discriminator.
+Expected response body:
+
+```json
+{ "wingspan": 1, "kind": "sparrow" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getRecursiveModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/recursivemodel`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected response body:
+
+```json
+{
+  "wingspan": 5,
+  "kind": "eagle",
+  "partner": {
+    "wingspan": 2,
+    "kind": "goose"
+  },
+  "friends": [
+    {
+      "wingspan": 2,
+      "kind": "seagull"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "wingspan": 1,
+      "kind": "sparrow"
+    }
+  }
+}
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "wingspan": 1, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_putModel
+
+- Endpoint: `put /type/model/inheritance/single-discriminator/model`
+
+Generate and send polymorphic model in single level inheritance with 1 discriminator.
+Expected input body:
+
+```json
+{ "wingspan": 1, "kind": "sparrow" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_putRecursiveModel
+
+- Endpoint: `put /type/model/inheritance/single-discriminator/recursivemodel`
+
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input body:
+
+```json
+{
+  "wingspan": 5,
+  "kind": "eagle",
+  "partner": {
+    "wingspan": 2,
+    "kind": "goose"
+  },
+  "friends": [
+    {
+      "wingspan": 2,
+      "kind": "seagull"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "wingspan": 1,
+      "kind": "sparrow"
+    }
+  }
+}
+```
 
 ### Type_Model_Usage_input
 
