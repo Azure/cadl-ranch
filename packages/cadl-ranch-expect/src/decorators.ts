@@ -4,6 +4,7 @@ import {
   Enum,
   getNamespaceFullName,
   Interface,
+  listServices,
   Model,
   Namespace,
   Operation,
@@ -128,16 +129,17 @@ function getRouteSegments(program: Program, target: Operation | Interface | Name
 }
 
 function getOperationRoute(program: Program, target: Operation): string {
-  const template = getRouteSegmentFromServer(program, target.namespace);
+  const template = getRouteSegmentFromServer(program);
   const segments = getRouteSegments(program, target);
-  return (template ? template : "/") + segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/");
+  return (
+    (template ? (template.endsWith("/") || segments.length === 0 ? template : template + "/") : "/") +
+    segments.map((x) => (x.startsWith("/") ? x.substring(1) : x)).join("/")
+  );
 }
 
-function getRouteSegmentFromServer(program: Program, namespace?: Namespace): string | undefined {
-  if (namespace === undefined) {
-    return undefined;
-  }
-  const server = getServers(program, namespace);
+function getRouteSegmentFromServer(program: Program): string | undefined {
+  const serviceNs = listServices(program)[0]?.type;
+  const server = getServers(program, serviceNs);
   if (server && server.length === 1) {
     if (server[0].url.indexOf("localhost:3000") > -1) {
       return server[0].url.split("localhost:3000")[1];

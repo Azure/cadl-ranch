@@ -35,7 +35,7 @@ export async function findScenarioCadlFiles(scenariosPath: string): Promise<Cadl
   const scenarioSet = new Set(fullScenarios);
   const scenarios = fullScenarios.filter((scenario) => {
     // Exclude main.tsp that have a client.tsp next to it, we should use that instead
-    return !(scenario.endsWith("/main.tsp") && scenarioSet.has(normalizePath(join(dirname(scenario), "client.tsp"))));
+    return !(normalizePath(scenario).endsWith("/main.tsp") && scenarioSet.has(join(dirname(scenario), "client.tsp")));
   });
 
   logger.info(`Found ${scenarios.length} scenarios.`);
