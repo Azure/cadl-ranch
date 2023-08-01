@@ -623,10 +623,10 @@ Expected response body:
 - Endpoints:
   - `get /one`
   - `get /three`
-  - `get /three`
+  - `get /five`
   - `get /one`
   - `get /three`
-  - `get /three`
+  - `get /five`
 
 Include multiple clients in the same spec.
 
@@ -648,10 +648,10 @@ clientB.renamedSix();
 - Endpoints:
   - `get /one`
   - `get /three`
-  - `get /three`
+  - `get /five`
   - `get /one`
   - `get /three`
-  - `get /three`
+  - `get /five`
 
 This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
