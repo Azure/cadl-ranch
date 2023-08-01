@@ -1462,7 +1462,7 @@ Expected request body:
 
 ### Resiliency_ServiceDriven_addOperation
 
-- Endpoint: `delete /add-operation`
+- Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-operation`
 
 Need the following two calls:
 
@@ -1484,7 +1484,7 @@ Tests that we can grow up by adding an operation.
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
-- Endpoint: `head /add-optional-param/from-none`
+- Endpoint: `head /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-none`
 
 Need the following two calls:
 
@@ -1506,7 +1506,7 @@ Tests that we can grow up an operation from accepting no parameters to accepting
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
 
-- Endpoint: `get /add-optional-param/from-one-optional`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-one-optional`
 
 Need the following two calls:
 
@@ -1528,7 +1528,7 @@ Tests that we can grow up an operation from accepting one optional parameter to 
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
 
-- Endpoint: `get /add-optional-param/from-one-required`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-one-required`
 
 Need the following two calls:
 
@@ -1550,7 +1550,7 @@ Tests that we can grow up an operation from accepting one required parameter to 
 
 ### Server_Path_Multiple_noOperationParams
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client path parameters.
 
@@ -1558,7 +1558,7 @@ Expected path parameter: apiVersion=v1.0
 
 ### Server_Path_Multiple_withOperationPathParam
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client and method path parameters.
 
