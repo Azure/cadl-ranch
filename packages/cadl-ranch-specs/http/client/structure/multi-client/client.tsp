@@ -28,7 +28,7 @@ namespace Client.Structure.MultiClient;
 interface ClientA {
   renamedOne is Client.Structure.Service.one;
   renamedThree is Client.Structure.Service.Foo.three;
-  renamedFive is Client.Structure.Service.Foo.five;
+  renamedFive is Client.Structure.Service.Bar.five;
 }
 
 @client({
@@ -38,5 +38,5 @@ interface ClientA {
 interface ClientB {
   renamedOne is Client.Structure.Service.one;
   renamedThree is Client.Structure.Service.Foo.three;
-  renamedFive is Client.Structure.Service.Foo.five;
+  renamedFour is Client.Structure.Service.Bar.five;
 }

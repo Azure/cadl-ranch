@@ -27,12 +27,12 @@ namespace Client.Structure.RenamedOperation;
 // Those operations are renamed at the root
 op renamedOne is Client.Structure.Service.one;
 op renamedThree is Client.Structure.Service.Foo.three;
-op renamedFive is Client.Structure.Service.Foo.five;
+op renamedFive is Client.Structure.Service.Bar.five;
 
 // Those operations are renamed inside an operation group
 @operationGroup
 interface Group {
   renamedOne is Client.Structure.Service.one;
   renamedThree is Client.Structure.Service.Foo.three;
-  renamedFive is Client.Structure.Service.Foo.five;
+  renamedFive is Client.Structure.Service.Bar.five;
 }
