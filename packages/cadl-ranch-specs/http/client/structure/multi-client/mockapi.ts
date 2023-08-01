@@ -12,9 +12,9 @@ Scenarios.Client_Structure_MultiClient = passOnSuccess([
   mockapi.patch("/client/structure/multi-client/three", (req) => {
     return { status: 204 };
   }),
-  // mockapi.patch("/client/structure/multi-client/four", (req) => {
-  //   return { status: 204 };
-  // }),
+  mockapi.patch("/client/structure/multi-client/four", (req) => {
+    return { status: 204 };
+  }),
   mockapi.patch("/client/structure/multi-client/five", (req) => {
     return { status: 204 };
   }),

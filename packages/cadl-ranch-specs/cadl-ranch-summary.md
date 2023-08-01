@@ -626,7 +626,7 @@ Expected response body:
   - `get /client/structure/{client}/five`
   - `get /client/structure/{client}/one`
   - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/five`
+  - `get /client/structure/{client}/four`
 
 Include multiple clients in the same spec.
 
