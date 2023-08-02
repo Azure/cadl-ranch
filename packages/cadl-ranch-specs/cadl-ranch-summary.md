@@ -618,6 +618,101 @@ Expected response body:
 }
 ```
 
+### Client_Structure_MultiClient
+
+- Endpoints:
+  - `get /client/structure/{client}/one`
+  - `get /client/structure/{client}/three`
+  - `get /client/structure/{client}/five`
+  - `get /client/structure/{client}/two`
+  - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/six`
+
+Include multiple clients in the same spec.
+
+```ts
+const clientA = new ClientAClient("multi-client");
+const clientB = new ClientBClient("multi-client");
+
+clientA.renamedOne();
+clientA.renamedThree();
+clientA.renamedFive();
+
+clientB.renamedTwo();
+clientB.renamedFour();
+clientB.renamedSix();
+```
+
+### Client_Structure_RenamedOperation
+
+- Endpoints:
+  - `get /client/structure/{client}/two`
+  - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/six`
+  - `get /client/structure/{client}/one`
+  - `get /client/structure/{client}/three`
+  - `get /client/structure/{client}/five`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new RenamedOperationClient("renamed-operation");
+
+client.renamedOne();
+client.renamedThree();
+client.renamedFive();
+
+client.group.renamedTwo();
+client.group.renamedFour();
+client.group.renamedSix();
+```
+
+### Client_Structure_Service
+
+- Endpoints:
+  - `get /client/structure/{client}/three`
+  - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/five`
+  - `get /client/structure/{client}/six`
+  - `get /client/structure/{client}/one`
+  - `get /client/structure/{client}/two`
+
+This is to show that if we don't do any customization. The client side should be able to call the api like
+
+```ts
+const client = new MultiClient("default");
+client.one();
+client.two();
+client.three();
+client.four();
+client.five();
+client.six();
+```
+
+### Client_Structure_TwoOperationGroup
+
+- Endpoints:
+  - `get /client/structure/{client}/one`
+  - `get /client/structure/{client}/three`
+  - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/two`
+  - `get /client/structure/{client}/five`
+  - `get /client/structure/{client}/six`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new TwoOperationGroupClient("two-operation-group");
+
+client.group1.one();
+client.group1.three();
+client.group1.four();
+
+client.group2.two();
+client.group2.five();
+client.group2.six();
+```
+
 ### Encode_Bytes_Header_base64
 
 - Endpoint: `get /encode/bytes/header/base64`
@@ -1367,7 +1462,7 @@ Expected request body:
 
 ### Resiliency_ServiceDriven_addOperation
 
-- Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-operation`
+- Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-operation`
 
 Need the following two calls:
 
@@ -1389,7 +1484,7 @@ Tests that we can grow up by adding an operation.
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
-- Endpoint: `head /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-none`
+- Endpoint: `head /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-none`
 
 Need the following two calls:
 
@@ -1411,7 +1506,7 @@ Tests that we can grow up an operation from accepting no parameters to accepting
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
 
-- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-one-optional`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-one-optional`
 
 Need the following two calls:
 
@@ -1433,7 +1528,7 @@ Tests that we can grow up an operation from accepting one optional parameter to 
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
 
-- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}add-optional-param/from-one-required`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-one-required`
 
 Need the following two calls:
 

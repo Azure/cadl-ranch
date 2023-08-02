@@ -1,7 +1,7 @@
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { Operation } from "@typespec/compiler";
-import { join, relative, resolve } from "path";
+import { join, relative, resolve, dirname } from "path";
 import { pathToFileURL } from "url";
 import { importTypeSpec, importCadlRanchExpect, importTypeSpecHttp } from "./cadl-utils/index.js";
 import { logger } from "./logger.js";
@@ -27,13 +27,21 @@ interface CadlRanchScenarioFile {
 
 export async function findScenarioCadlFiles(scenariosPath: string): Promise<CadlRanchScenarioFile[]> {
   await ensureScenariosPathExists(scenariosPath);
-  const pattern = `${normalizePath(scenariosPath)}/**/main.tsp`;
+  const normalizedScenarioPath = normalizePath(scenariosPath);
+  const pattern = [`${normalizedScenarioPath}/**/client.tsp`, `${normalizedScenarioPath}/**/main.tsp`];
   logger.debug(`Looking for scenarios in ${pattern}`);
-  const scenarios = await findFilesFromPattern(pattern);
+  const fullScenarios = await findFilesFromPattern(pattern);
+  logger.info(`Found ${fullScenarios.length} full scenarios.`);
+  const scenarioSet = new Set(fullScenarios);
+  const scenarios = fullScenarios.filter((scenario) => {
+    // Exclude main.tsp that have a client.tsp next to it, we should use that instead
+    return !(normalizePath(scenario).endsWith("/main.tsp") && scenarioSet.has(join(dirname(scenario), "client.tsp")));
+  });
+
   logger.info(`Found ${scenarios.length} scenarios.`);
 
   return scenarios.map((name) => ({
-    name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", ""),
+    name: normalizePath(relative(scenariosPath, name)).replace("/main.tsp", "").replace("/client.tsp", ""),
     cadlFilePath: normalizePath(resolve(scenariosPath, name)),
   }));
 }
@@ -83,6 +91,7 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
     }
 
     const scenarios = cadlRanchExpect.listScenarios(program);
+    logger.debug(`  ${scenarios.length} scenarios`);
 
     for (const scenario of scenarios) {
       const existing = scenarioNames.get(scenario.name);
@@ -92,13 +101,20 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
         scenarioNames.set(scenario.name, [scenario]);
       }
     }
-    for (const route of typespecCompiler.ignoreDiagnostics(typespecHttp.getAllHttpServices(program))[0].operations) {
-      const key = `${route.verb} ${route.path}`;
-      const existing = endpoints.get(key);
-      if (existing) {
-        existing.push(route.operation);
-      } else {
-        endpoints.set(key, [route.operation]);
+
+    const service = typespecCompiler.ignoreDiagnostics(typespecHttp.getAllHttpServices(program))[0];
+    const server = typespecHttp.getServers(program, service.namespace)?.[0];
+    if (server?.url === undefined || !server?.url.includes("{")) {
+      const serverPath = server ? new URL(server.url).pathname : "";
+      for (const route of service.operations) {
+        const path = serverPath + route.path;
+        const key = `${route.verb} ${path}`;
+        const existing = endpoints.get(key);
+        if (existing) {
+          existing.push(route.operation);
+        } else {
+          endpoints.set(key, [route.operation]);
+        }
       }
     }
   }
@@ -146,6 +162,7 @@ export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<M
       logger.debug(`File '${file}' is not exporting any scenarios.`);
     }
   }
+  logger.info("result length: " + results.length);
   return results;
 }
 
