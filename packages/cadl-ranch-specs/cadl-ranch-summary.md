@@ -624,9 +624,9 @@ Expected response body:
   - `get /client/structure/{client}/one`
   - `get /client/structure/{client}/three`
   - `get /client/structure/{client}/five`
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/three`
+  - `get /client/structure/{client}/two`
   - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/six`
 
 Include multiple clients in the same spec.
 
@@ -646,9 +646,9 @@ clientB.renamedSix();
 ### Client_Structure_RenamedOperation
 
 - Endpoints:
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/five`
+  - `get /client/structure/{client}/two`
+  - `get /client/structure/{client}/four`
+  - `get /client/structure/{client}/six`
   - `get /client/structure/{client}/one`
   - `get /client/structure/{client}/three`
   - `get /client/structure/{client}/five`

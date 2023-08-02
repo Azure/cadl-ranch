@@ -36,7 +36,7 @@ interface ClientA {
   service: Client.Structure.Service,
 })
 interface ClientB {
-  renamedOne is Client.Structure.Service.one;
-  renamedThree is Client.Structure.Service.Foo.three;
+  renamedTwo is Client.Structure.Service.two;
   renamedFour is Client.Structure.Service.Foo.four;
+  renamedSix is Client.Structure.Service.Bar.six;
 }
