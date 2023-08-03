@@ -7,7 +7,7 @@ const inheritanceValidBody = { name: "abc", age: 32, smart: true };
 Scenarios.Type_Model_Inheritance_NotDiscriminated_postValid = passOnSuccess(
   mockapi.post("/type/model/inheritance/not-discriminated/valid", (req) => {
     req.expect.bodyEquals(inheritanceValidBody);
-    return { status: 200 };
+    return { status: 204 };
   }),
 );
 
