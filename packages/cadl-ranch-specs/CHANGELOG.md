@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.17.3
+
+### Patch Changes
+
+- 624e171: Rename folder from lro/rpc/legacy to lro/rpc-legacy
+- fef034d: fix(mock): inconsistent status code
+- 0618733: Fix the http method into patch for multiclient test cases.
+
 ## 0.17.2
 
 ### Patch Changes
