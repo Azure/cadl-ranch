@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch
 
+## 0.6.1
+
+### Patch Changes
+
+- d8cd2dd: Bump vite from 4.3.8 to 4.3.9
+- ee54d05: Fix: Validation of scenarios and mock apis on windows
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+- Updated dependencies [7e116a1]
+- Updated dependencies [37314c4]
+  - @azure-tools/cadl-ranch-expect@0.5.1
+
 ## 0.6.0
 
 ### Minor Changes

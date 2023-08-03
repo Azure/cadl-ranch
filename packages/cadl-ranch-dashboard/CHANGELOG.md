@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.3.2
+
+### Patch Changes
+
+- d8cd2dd: Bump vite from 4.3.8 to 4.3.9
+
 ## 0.3.1
 
 ### Patch Changes

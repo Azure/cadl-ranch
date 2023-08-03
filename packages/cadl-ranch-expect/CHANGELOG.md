@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.5.1
+
+### Patch Changes
+
+- 7e116a1: Fix summary generation missing baseurl
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+
 ## 0.5.0
 
 ### Minor Changes
