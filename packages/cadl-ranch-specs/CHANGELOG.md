@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.17.2
+
+### Patch Changes
+
+- c918120: refactor and add test cases of model inheritance
+- 94ec105: Add test scenario for LongRunningRpcOperation
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+- Updated dependencies [7e116a1]
+- Updated dependencies [d8cd2dd]
+- Updated dependencies [ee54d05]
+- Updated dependencies [37314c4]
+  - @azure-tools/cadl-ranch-expect@0.5.1
+  - @azure-tools/cadl-ranch@0.6.1
+
 ## 0.17.1
 
 ### Minor Changes
