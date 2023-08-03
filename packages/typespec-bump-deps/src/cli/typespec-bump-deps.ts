@@ -37,7 +37,7 @@ export async function main() {
     "add-npm-overrides": {
       type: "boolean",
     },
-    "keep-ranges": {
+    "use-peer-ranges": {
       type: "boolean",
     },
   } as const;
@@ -47,7 +47,7 @@ export async function main() {
   const packageJsonPaths = positionals;
   const addRushOverrides = values["add-rush-overrides"] ?? false;
   const addNpmOverrides = values["add-npm-overrides"] ?? false;
-  const keepRanges = values["keep-ranges"] ?? false;
+  const usePeerRanges = values["use-peer-ranges"] ?? false;
 
   const packageToVersionRecord = Object.fromEntries(
     await Promise.all(knownPackages.map(async (x) => [x, await getKnownPackageVersion(x)])),
@@ -62,7 +62,7 @@ export async function main() {
     const content = await readFile(packageJsonPath);
     const packageJson = JSON.parse(content.toString());
 
-    updatePackageJson(packageJson, packageToVersionRecord, keepRanges, addNpmOverrides, addRushOverrides);
+    updatePackageJson(packageJson, packageToVersionRecord, usePeerRanges, addNpmOverrides, addRushOverrides);
 
     // eslint-disable-next-line no-console
     console.log(`Updated ${packageJsonPath}`);
@@ -73,7 +73,7 @@ export async function main() {
 export function updatePackageJson(
   packageJson: any,
   packageToVersionRecord: { [key: string]: string },
-  keepRanges: boolean,
+  usePeerRanges: boolean,
   addNpmOverrides: boolean,
   addRushOverrides: boolean,
 ) {
@@ -89,7 +89,7 @@ export function updatePackageJson(
   }
 
   for (const [packageName, version] of Object.entries(packageToVersionRecord)) {
-    if (keepRanges) {
+    if (usePeerRanges) {
       const peerDependency = packageJson.peerDependencies ? packageJson.peerDependencies[packageName] : undefined;
 
       if (peerDependency) {

@@ -29,7 +29,7 @@ describe("typespec-bump-deps cli", () => {
       updatePackageJson(
         packageJson,
         packageToVersionRecord,
-        false, // keepRanges
+        false, // usePeerRanges
         false, // addNpmOverrides
         false, // addRushOverrides
       );
@@ -62,7 +62,7 @@ describe("typespec-bump-deps cli", () => {
       updatePackageJson(
         packageJson,
         packageToVersionRecord,
-        false, // keepRanges
+        false, // usePeerRanges
         true, // addNpmOverrides
         false, // addRushOverrides
       );
@@ -87,11 +87,11 @@ describe("typespec-bump-deps cli", () => {
         "package-c": "4.0.0",
       };
 
-      const keepRanges = false;
+      const usePeerRanges = false;
       const addNpmOverrides = false;
       const addRushOverrides = true;
 
-      updatePackageJson(packageJson, packageToVersionRecord, keepRanges, addNpmOverrides, addRushOverrides);
+      updatePackageJson(packageJson, packageToVersionRecord, usePeerRanges, addNpmOverrides, addRushOverrides);
 
       expect(packageJson).to.deep.equal({
         dependencies: {},
@@ -103,7 +103,7 @@ describe("typespec-bump-deps cli", () => {
       });
     });
 
-    describe("when keepRanges == true", () => {
+    describe("when usePeerRanges == true", () => {
       it("should use version ranges for peerDependencies", () => {
         const packageJson = {
           peerDependencies: {
@@ -121,7 +121,7 @@ describe("typespec-bump-deps cli", () => {
         updatePackageJson(
           packageJson,
           packageToVersionRecord,
-          true, // keepRanges
+          true, // usePeerRanges
           false, // addNpmOverrides
           false, // addRushOverrides
         );
@@ -151,7 +151,7 @@ describe("typespec-bump-deps cli", () => {
         updatePackageJson(
           packageJson,
           packageToVersionRecord,
-          true, // keepRanges
+          true, // usePeerRanges
           false, // addNpmOverrides
           false, // addRushOverrides
         );
@@ -185,7 +185,7 @@ describe("typespec-bump-deps cli", () => {
           updatePackageJson(
             packageJson,
             packageToVersionRecord,
-            true, // keepRanges
+            true, // usePeerRanges
             false, // addNpmOverrides
             false, // addRushOverrides
           );
