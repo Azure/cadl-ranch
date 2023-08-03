@@ -621,12 +621,12 @@ Expected response body:
 ### Client_Structure_MultiClient
 
 - Endpoints:
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/five`
-  - `get /client/structure/{client}/two`
-  - `get /client/structure/{client}/four`
-  - `get /client/structure/{client}/six`
+  - `patch /client/structure/{client}/one`
+  - `patch /client/structure/{client}/three`
+  - `patch /client/structure/{client}/five`
+  - `patch /client/structure/{client}/two`
+  - `patch /client/structure/{client}/four`
+  - `patch /client/structure/{client}/six`
 
 Include multiple clients in the same spec.
 
@@ -646,12 +646,12 @@ clientB.renamedSix();
 ### Client_Structure_RenamedOperation
 
 - Endpoints:
-  - `get /client/structure/{client}/two`
-  - `get /client/structure/{client}/four`
-  - `get /client/structure/{client}/six`
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/five`
+  - `patch /client/structure/{client}/two`
+  - `patch /client/structure/{client}/four`
+  - `patch /client/structure/{client}/six`
+  - `patch /client/structure/{client}/one`
+  - `patch /client/structure/{client}/three`
+  - `patch /client/structure/{client}/five`
 
 This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
@@ -670,12 +670,12 @@ client.group.renamedSix();
 ### Client_Structure_Service
 
 - Endpoints:
-  - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/four`
-  - `get /client/structure/{client}/five`
-  - `get /client/structure/{client}/six`
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/two`
+  - `patch /client/structure/{client}/three`
+  - `patch /client/structure/{client}/four`
+  - `patch /client/structure/{client}/five`
+  - `patch /client/structure/{client}/six`
+  - `patch /client/structure/{client}/one`
+  - `patch /client/structure/{client}/two`
 
 This is to show that if we don't do any customization. The client side should be able to call the api like
 
@@ -692,12 +692,12 @@ client.six();
 ### Client_Structure_TwoOperationGroup
 
 - Endpoints:
-  - `get /client/structure/{client}/one`
-  - `get /client/structure/{client}/three`
-  - `get /client/structure/{client}/four`
-  - `get /client/structure/{client}/two`
-  - `get /client/structure/{client}/five`
-  - `get /client/structure/{client}/six`
+  - `patch /client/structure/{client}/one`
+  - `patch /client/structure/{client}/three`
+  - `patch /client/structure/{client}/four`
+  - `patch /client/structure/{client}/two`
+  - `patch /client/structure/{client}/five`
+  - `patch /client/structure/{client}/six`
 
 This is to show we can have more than one operation group in a client. The client side should be able to call the api like
 
