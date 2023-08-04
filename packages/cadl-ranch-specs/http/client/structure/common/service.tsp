@@ -38,33 +38,33 @@ enum ClientType {
 
 #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
 @route("/one")
-@patch
+@post
 op one(): void;
 
 #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
 @route("/two")
-@patch
+@post
 op two(): void;
 
 interface Foo {
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
   @route("/three")
-  @patch
+  @post
   three(): void;
 
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
   @route("/four")
-  @patch
+  @post
   four(): void;
 }
 
 interface Bar {
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
   @route("/five")
-  @patch
+  @post
   five(): void;
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
   @route("/six")
-  @patch
+  @post
   six(): void;
 }
