@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, ValidationError, json, MockApi, passByKey } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, ValidationError, json, passByKey } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { resolvePath } from "@typespec/compiler";
 import { readFileSync } from "fs";
