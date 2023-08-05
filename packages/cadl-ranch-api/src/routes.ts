@@ -1,4 +1,4 @@
-import { HttpMethod, MockApi, MockApiForHandler, MockRequestHandler } from "./types.js";
+import { HttpMethod, MockApiForHandler, MockRequestHandler } from "./types.js";
 
 /**
  * Register a GET request for the provided uri.
