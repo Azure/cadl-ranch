@@ -1,4 +1,4 @@
-import { MockApi, PassOnCodeScenario, PassOnSuccessScenario } from "./types.js";
+import { KeyedMockApi, MockApi, PassByKeyScenario, PassOnCodeScenario, PassOnSuccessScenario } from "./types.js";
 
 /**
  * Specify that the scenario should be a `pass` if all the endpoints are called and the API response with 2xx exit code.
@@ -20,5 +20,18 @@ export function passOnCode(code: number, apis: MockApi | readonly MockApi[]): Pa
     passCondition: "status-code",
     code,
     apis: Array.isArray(apis) ? apis : [apis],
+  };
+}
+
+/**
+ * Specify a list of keys that must be hit to this scenario to pass
+ * @param keys List of keys
+ * @param api Mock api that in the MockResponse can return a pass key.
+ */
+export function passByKey<K extends string>(keys: K[], api: KeyedMockApi<K>): PassByKeyScenario<K> {
+  return {
+    passCondition: "by-key",
+    keys,
+    apis: [api],
   };
 }

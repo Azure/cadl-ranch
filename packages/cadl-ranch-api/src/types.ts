@@ -10,28 +10,44 @@ export interface RequestExt extends Request {
 
 export type ScenarioPassCondition = "response-success" | "status-code";
 
-export interface ScenarioMockApiBase {
+export interface PassOnSuccessScenario {
+  passCondition: "response-success";
   apis: MockApi[];
 }
 
-export interface PassOnSuccessScenario extends ScenarioMockApiBase {
-  passCondition: "response-success";
-}
-
-export interface PassOnCodeScenario extends ScenarioMockApiBase {
+export interface PassOnCodeScenario {
   passCondition: "status-code";
   code: number;
+  apis: MockApi[];
+}
+export interface PassByKeyScenario<K extends string = string> {
+  passCondition: "by-key";
+  keys: K[];
+  apis: KeyedMockApi<K>[];
 }
 
-export type ScenarioMockApi = PassOnSuccessScenario | PassOnCodeScenario;
-export type MockRequestHandler = (req: MockRequest) => MockResponse | Promise<MockResponse>;
+export type ScenarioMockApi = PassOnSuccessScenario | PassOnCodeScenario | PassByKeyScenario;
+export type MockRequestHandler = SimpleMockRequestHandler | KeyedMockRequestHandler;
+export type SimpleMockRequestHandler = (req: MockRequest) => MockResponse | Promise<MockResponse>;
+export type KeyedMockRequestHandler<T extends string = string> = (
+  req: MockRequest,
+) => KeyedMockResponse<T> | Promise<KeyedMockResponse<T>>;
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
+
+export type MockApiForHandler<Handler extends MockRequestHandler> = Handler extends KeyedMockRequestHandler<infer K>
+  ? KeyedMockApi<K>
+  : MockApi;
 
 export interface MockApi {
   method: HttpMethod;
   uri: string;
   handler: MockRequestHandler;
+}
+
+export const Fail = Symbol.for("Fail");
+export interface KeyedMockApi<K extends string> extends MockApi {
+  handler: KeyedMockRequestHandler<K>;
 }
 
 export interface MockResponse {
@@ -47,6 +63,10 @@ export interface MockResponse {
    * By default only 2xx status code will count toward success.
    */
   testSuccessful?: boolean;
+}
+
+export interface KeyedMockResponse<K extends string = string> extends MockResponse {
+  pass: K | typeof Fail;
 }
 
 export interface MockResponseBody {

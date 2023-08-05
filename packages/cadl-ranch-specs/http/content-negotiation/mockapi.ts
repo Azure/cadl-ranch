@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, ValidationError, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, ValidationError, json, MockApi, passByKey } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { resolvePath } from "@typespec/compiler";
 import { readFileSync } from "fs";
@@ -11,11 +11,13 @@ const root = resolvePath(fileURLToPath(import.meta.url), "../../../../");
 const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
 const jpegImage = readFileSync(resolvePath(root, "assets/image.jpg"));
 
-Scenarios.ContentNegotiation_SameBody = passOnSuccess(
+Scenarios.ContentNegotiation_SameBody = passByKey(
+  ["image/png", "image/jpeg"],
   mockapi.get("/content-negotiation/same-body", (req) => {
     switch (req.headers["accept"]) {
       case "image/png":
         return {
+          pass: "image/png",
           status: 200,
           body: {
             contentType: "image/png",
@@ -24,6 +26,8 @@ Scenarios.ContentNegotiation_SameBody = passOnSuccess(
         };
       case "image/jpeg":
         return {
+          pass: "image/jpeg",
+
           status: 200,
           body: {
             contentType: "image/jpeg",
