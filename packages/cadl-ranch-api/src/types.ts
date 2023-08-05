@@ -39,6 +39,7 @@ export interface MockResponse {
   headers?: {
     [key: string]: string | null;
   };
+
   body?: MockResponseBody;
 
   /**
@@ -50,7 +51,7 @@ export interface MockResponse {
 
 export interface MockResponseBody {
   contentType: string;
-  rawContent: string | undefined;
+  rawContent: string | Buffer | undefined;
 }
 
 export type CollectionFormat = "multi" | "csv" | "ssv" | "tsv" | "pipes";
