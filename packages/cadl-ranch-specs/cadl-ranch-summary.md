@@ -713,28 +713,6 @@ client.group2.five();
 client.group2.six();
 ```
 
-### ContentNegotiation_DifferentBody
-
-- Endpoints:
-  - `get /content-negotiation/different-body`
-  - `get /content-negotiation/different-body`
-
-Scenario that a different payload depending on the accept header.
-
-- application/json return a png image in a Json object
-- image/png return the png image
-
-### ContentNegotiation_SameBody
-
-- Endpoints:
-  - `get /content-negotiation/same-body`
-  - `get /content-negotiation/same-body`
-
-Scenario that returns a different file encoding depending on the accept header.
-
-- image/png return a png image
-- image/jpeg return a jpeg image
-
 ### Encode_Bytes_Header_base64
 
 - Endpoint: `get /encode/bytes/header/base64`
@@ -1411,6 +1389,28 @@ Expected request body:
 ```json
 { "name": "foo" }
 ```
+
+### Payload_ContentNegotiation_DifferentBody
+
+- Endpoints:
+  - `get /content-negotiation/different-body`
+  - `get /content-negotiation/different-body`
+
+Scenario that a different payload depending on the accept header.
+
+- application/json return a png image in a Json object
+- image/png return the png image
+
+### Payload_ContentNegotiation_SameBody
+
+- Endpoints:
+  - `get /content-negotiation/same-body`
+  - `get /content-negotiation/same-body`
+
+Scenario that returns a different file encoding depending on the accept header.
+
+- image/png return a png image
+- image/jpeg return a jpeg image
 
 ### Projection_ProjectedName_operation
 
