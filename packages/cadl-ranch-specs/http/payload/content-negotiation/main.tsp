@@ -8,7 +8,7 @@ using Azure.ClientGenerator.Core;
 @doc("Test describing optionality of the request body.")
 @supportedBy("dpg")
 @scenarioService("/content-negotiation")
-namespace ContentNegotiation;
+namespace Payload.ContentNegotiation;
 
 @scenario
 @scenarioDoc("""
@@ -18,6 +18,7 @@ namespace ContentNegotiation;
   - image/jpeg return a jpeg image
   """)
 @route("same-body")
+@operationGroup
 namespace SameBody {
   model PngImage {
     @header contentType: "image/png";
@@ -44,6 +45,7 @@ namespace SameBody {
   - image/png return the png image
   """)
 @route("different-body")
+@operationGroup
 namespace DifferentBody {
   model PngImage {
     @header contentType: "image/png";

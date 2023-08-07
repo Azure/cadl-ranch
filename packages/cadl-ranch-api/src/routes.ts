@@ -5,7 +5,7 @@ import { HttpMethod, MockApiForHandler, MockRequestHandler } from "./types.js";
  * @param uri URI to match.
  * @param func Request handler.
  */
-function get<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
+function get<const T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("get", uri, func);
 }
 
