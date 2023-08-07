@@ -59,7 +59,7 @@ Scenarios.ContentNegotiation_DifferentBody = passOnSuccess(
           }),
         };
       default:
-        throw new ValidationError("Unsupported Accept header", `"image/png" | "image/jpeg"`, req.headers["accept"]);
+        throw new ValidationError("Unsupported Accept header", `"image/png" | "application/json"`, req.headers["accept"]);
     }
   }),
 );
