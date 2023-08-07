@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const root = resolvePath(fileURLToPath(import.meta.url), "../../../../");
+const root = resolvePath(fileURLToPath(import.meta.url), "../../../../../");
 
 const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
 const jpegImage = readFileSync(resolvePath(root, "assets/image.jpg"));
