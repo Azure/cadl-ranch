@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Minor Changes
+
+- 24caa2d: Update Dependencies for TypeSpec August release
+
+### Patch Changes
+
+- 8df1972: use post as http method for multi-client test cases
+- 01a0ebf: Add content negotiation specs
+- Updated dependencies [01a0ebf]
+- Updated dependencies [24caa2d]
+  - @azure-tools/cadl-ranch-api@0.4.0
+  - @azure-tools/cadl-ranch@0.7.0
+  - @azure-tools/cadl-ranch-expect@0.6.0
+
 ## 0.17.3
 
 ### Patch Changes
