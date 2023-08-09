@@ -14,6 +14,7 @@ import {
 } from "./utils/index.js";
 import { normalizePath } from "./utils/path-utils.js";
 import pc from "picocolors";
+import { isSharedRoute } from "@typespec/http";
 
 export interface MockApiFile {
   path: string;
@@ -111,7 +112,9 @@ export async function loadScenarios(scenariosPath: string): Promise<[Scenario[],
         const key = `${route.verb} ${path}`;
         const existing = endpoints.get(key);
         if (existing) {
-          existing.push(route.operation);
+          if (!isSharedRoute(program, route.operation)) {
+            existing.push(route.operation);
+          }
         } else {
           endpoints.set(key, [route.operation]);
         }
