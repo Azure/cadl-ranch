@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch
 
+## 0.7.0
+
+### Minor Changes
+
+- 01a0ebf: Add functionality for scenarios to hit same endpoint multiple times and validate
+- 24caa2d: Update Dependencies for TypeSpec August release
+
+### Patch Changes
+
+- Updated dependencies [01a0ebf]
+- Updated dependencies [24caa2d]
+  - @azure-tools/cadl-ranch-api@0.4.0
+  - @azure-tools/cadl-ranch-expect@0.6.0
+
 ## 0.6.1
 
 ### Patch Changes
