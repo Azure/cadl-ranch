@@ -56,7 +56,7 @@ Scenarios.Payload_ContentNegotiation_DifferentBody = withKeys(["image/png", "app
           pass: "application/json",
           status: 200,
           body: json({
-            value: pngFile.toString("base64"),
+            content: pngFile.toString("base64"),
           }),
         } as const;
       default:
