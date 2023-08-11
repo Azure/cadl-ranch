@@ -13,19 +13,17 @@ namespace HttpMethod.Head;
 @scenario
 @scenarioDoc("""
 Test 204 response.
-Expected path parameter `id=valid`
-return 204
+return 204 status code
 """)
 @route("/204")
 @head
-op head204(@path id: string): NoContentResponse;
+op head204(): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
 Test 404 response.
-
-Expected path parameter `id=invalid`
+return 404 status code
 """)
 @route("/404")
 @head
-op head404(@path id: string): NoContentResponse;
+op head404(): NoContentResponse;

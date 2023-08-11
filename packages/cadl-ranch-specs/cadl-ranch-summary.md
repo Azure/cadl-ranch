@@ -1221,6 +1221,20 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### HttpMethod_Head_head204
+
+- Endpoint: `head /http-method/head/204`
+
+Test 204 response.
+return 204 status code
+
+### HttpMethod_Head_head404
+
+- Endpoint: `head /http-method/head/404`
+
+Test 404 response.
+return 404 status code
+
 ### Parameters_BodyOptionality_OptionalExplicit
 
 - Endpoints:
