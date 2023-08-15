@@ -36,6 +36,18 @@ model ModelWithNamedUnionProperty {
   namedUnion: MyNamedUnion;
 }
 
+model Input {
+  kind: string;
+}
+
+model ModelWithSimpleUnionPropertyInResponse {
+  simpleUnion: string | int32[];
+}
+
+model ModelWithNamedUnionPropertyInResponse {
+  namedUnion: MyNamedUnion;
+}
+
 @scenario
 @scenarioDoc("""
 This test is testing sending an int value in simple union property.
@@ -79,3 +91,75 @@ This test is testing sending the second union value in named union property.
 @route("/model2")
 @post
 op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is tesing receiving a string value in simple union property.
+
+Expect request:
+```json
+{ "kind": "string" }
+```
+
+Expect response:
+```json
+{ "simpleUnion": "string" }
+```
+""")
+@route("/receive/string")
+@post
+op receiveString(@body input: Input): ModelWithSimpleUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is tesing receiving an int array value in simple union property.
+
+Expect request:
+```json
+{ "kind": "int-array" }
+```
+
+Expect response:
+```json
+{ "simpleUnion": [1, 2] }
+```
+""")
+@route("/receive/int-array")
+@post
+op receiveIntArray(@body input: Input): ModelWithSimpleUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is tesing receiving the first union value in named union property.
+
+Expect request:
+```json
+{ "kind": "model1" }
+```
+
+Expect response:
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+""")
+@route("/receive/model1")
+@post
+op receiveFirstNamedUnionValue(@body input: Input): ModelWithNamedUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is tesing receiving the second union value in named union property.
+
+Expect request:
+```json
+{ "kind": "model2" }
+```
+
+Expect response:
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
+```
+""")
+@route("/receive/model2")
+@post
+op receiveSecondNamedUnionValue(@body input: Input): ModelWithNamedUnionPropertyInResponse;
