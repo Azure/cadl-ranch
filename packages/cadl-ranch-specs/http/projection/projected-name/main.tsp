@@ -128,3 +128,51 @@ op parameter(
   @query
   `default-name`: string
 ): NoContentResponse;
+
+@route("/model")
+@operationGroup
+namespace Model {
+  @projectedName("client", "_DontUseMeAsAName_") // Should be ignored
+  @projectedName("csharp", "CSModel")
+  @projectedName("java", "JavaModel")
+  @projectedName("javascript", "TSModel")
+  @projectedName("python", "PythonModel")
+  model ModelWithLanguageProjectedName {
+    @doc("Pass in true")
+    defaultName: boolean;
+  }
+
+  @projectedName("client", "ClientModel")
+  model ModelWithClientProjectedName {
+    @doc("Pass in true")
+    defaultName: boolean;
+  }
+
+  @scenario
+  @scenarioDoc("""
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate the model with name `ClientModel`.
+
+Expected request body:
+```json
+{"defaultName": true}
+```
+""")
+  @route("/client")
+  @post
+  op client(...ModelWithClientProjectedName): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate the model with your language specific model name.
+
+Expected request body:
+```json
+{"defaultName": true}
+```
+""")
+  @route("/language")
+  @post
+  op language(...ModelWithLanguageProjectedName): NoContentResponse;
+}
