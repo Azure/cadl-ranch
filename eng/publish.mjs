@@ -12,12 +12,12 @@ if (stdout.trim() !== "") {
 
   execSync(`git commit -am "Bump versions"`);
   execSync(`git push origin HEAD:${branchName} --force`);
+
+  console.log();
+  console.log("-".repeat(160));
+  console.log("|  Link to create the PR");
+  console.log(`|  https://github.com/Azure/cadl-ranch/pull/new/${branchName}  `);
+  console.log("-".repeat(160));
 } else {
   console.log("No changes to publish");
 }
-
-console.log();
-console.log("-".repeat(160));
-console.log("|  Link to create the PR");
-console.log(`|  https://github.com/Azure/cadl-ranch/pull/new/${branchName}  `);
-console.log("-".repeat(160));
