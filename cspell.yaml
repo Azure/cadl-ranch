@@ -65,6 +65,20 @@ words:
   - vswhere
   - westus
   - xplat
+  - tcgc
+  # github aliases that show in changlog
+  - tadelesh
+  - timotheeguerin
+  - iscai
+  - qiaozha
+  - weidongxu
+  - lmazuel
+  - pshao
+  - chunyu
+  - haolingdong
+  - archerzz
+  - tjprescott
+  - msyyc
 ignorePaths:
   - "**/node_modules/**"
   - "**/dist/**"

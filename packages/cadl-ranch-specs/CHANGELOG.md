@@ -73,7 +73,7 @@
 
 ### Patch Changes
 
-- 143d65f: Fix traits test case by removing etag in reponse body which is not defined
+- 143d65f: Fix traits test case by removing etag in response body which is not defined
 - effb3cb: Add encode test for datetime and bytes
 - e087dfd: Fix typo of datetime format.
 - Updated dependencies [e087dfd]
@@ -113,7 +113,7 @@
 ### Patch Changes
 
 - 013ef77: Add test cases for empty model
-- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey myKey)
 - 158ca21: Minor adjustments to enable Azure Core changes
 - Updated dependencies [13809e4]
   - @azure-tools/cadl-ranch@0.4.17
@@ -550,7 +550,7 @@
 
 - [#148](https://github.com/Azure/cadl-ranch/pull/148) [`0631ee6`](https://github.com/Azure/cadl-ranch/commit/0631ee6db7de212db19f63f267b8a1f138af4a1d) Thanks [@pshao25](https://github.com/pshao25)! - Add convenienceAPI decorator to array spec
 
-- [#154](https://github.com/Azure/cadl-ranch/pull/154) [`e9b3aed`](https://github.com/Azure/cadl-ranch/commit/e9b3aed77d72e4917d33842c4077cd8565db8201) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - models/usage, fix but that senario url and mockapi url mismatch
+- [#154](https://github.com/Azure/cadl-ranch/pull/154) [`e9b3aed`](https://github.com/Azure/cadl-ranch/commit/e9b3aed77d72e4917d33842c4077cd8565db8201) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - models/usage, fix but that scenario url and mockapi url mismatch
 
 - [#153](https://github.com/Azure/cadl-ranch/pull/153) [`c91d046`](https://github.com/Azure/cadl-ranch/commit/c91d046168ca738600846e0c83ad41d6c6f470e7) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Fix mockapi of getting a datetime.
 
@@ -558,7 +558,7 @@
 
 ### Patch Changes
 
-- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namesapce array to arrays
+- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namespace array to arrays
 
 - [#149](https://github.com/Azure/cadl-ranch/pull/149) [`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add testcases for using special words as operation/parameter/property names
 
