@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.19.0
+
+### Minor Changes
+
+- 6e6e908: update folder name from optional to optionality to avoid a conflict in dotnet generator
+
+### Patch Changes
+
+- 30ae829: Bug fix on json payload of content-negotiation
+
 ## 0.18.0
 
 ### Minor Changes
