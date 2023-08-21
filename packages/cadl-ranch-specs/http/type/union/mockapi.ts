@@ -33,7 +33,7 @@ Scenarios.Type_Union_sendSecondNamedUnionValue = passOnSuccess(
 
 Scenarios.Type_Union_receiveString = passOnSuccess(
   mockapi.post("/type/union/receive/string", (req) => {
-    req.expect.bodyEquals({ kind: "string" });
+    req.expect.bodyEquals({});
     return {
       status: 200,
       body: json({
@@ -45,7 +45,7 @@ Scenarios.Type_Union_receiveString = passOnSuccess(
 
 Scenarios.Type_Union_receiveIntArray = passOnSuccess(
   mockapi.post("/type/union/receive/int-array", (req) => {
-    req.expect.bodyEquals({ kind: "int-array" });
+    req.expect.bodyEquals({});
     return {
       status: 200,
       body: json({
@@ -57,7 +57,7 @@ Scenarios.Type_Union_receiveIntArray = passOnSuccess(
 
 Scenarios.Type_Union_receiveFirstNamedUnionValue = passOnSuccess(
   mockapi.post("/type/union/receive/model1", (req) => {
-    req.expect.bodyEquals({ kind: "model1" });
+    req.expect.bodyEquals({});
     return {
       status: 200,
       body: json({
@@ -69,7 +69,7 @@ Scenarios.Type_Union_receiveFirstNamedUnionValue = passOnSuccess(
 
 Scenarios.Type_Union_receiveSecondNamedUnionValue = passOnSuccess(
   mockapi.post("/type/union/receive/model2", (req) => {
-    req.expect.bodyEquals({ kind: "model2" });
+    req.expect.bodyEquals({});
     return {
       status: 200,
       body: json({

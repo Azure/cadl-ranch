@@ -96,28 +96,18 @@ op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkRespon
 @scenarioDoc("""
 This test is tesing receiving a string value in simple union property.
 
-Expect request:
-```json
-{ "kind": "string" }
-```
-
 Expect response:
 ```json
 { "simpleUnion": "string" }
 ```
 """)
 @route("/receive/string")
-@post
-op receiveString(@body input: Input): ModelWithSimpleUnionPropertyInResponse;
+@get
+op receiveString(): ModelWithSimpleUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
 This test is tesing receiving an int array value in simple union property.
-
-Expect request:
-```json
-{ "kind": "int-array" }
-```
 
 Expect response:
 ```json
@@ -126,16 +116,11 @@ Expect response:
 """)
 @route("/receive/int-array")
 @post
-op receiveIntArray(@body input: Input): ModelWithSimpleUnionPropertyInResponse;
+op receiveIntArray(): ModelWithSimpleUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
 This test is tesing receiving the first union value in named union property.
-
-Expect request:
-```json
-{ "kind": "model1" }
-```
 
 Expect response:
 ```json
@@ -144,16 +129,11 @@ Expect response:
 """)
 @route("/receive/model1")
 @post
-op receiveFirstNamedUnionValue(@body input: Input): ModelWithNamedUnionPropertyInResponse;
+op receiveFirstNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
 This test is tesing receiving the second union value in named union property.
-
-Expect request:
-```json
-{ "kind": "model2" }
-```
 
 Expect response:
 ```json
@@ -162,4 +142,4 @@ Expect response:
 """)
 @route("/receive/model2")
 @post
-op receiveSecondNamedUnionValue(@body input: Input): ModelWithNamedUnionPropertyInResponse;
+op receiveSecondNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
