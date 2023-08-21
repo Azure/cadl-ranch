@@ -3569,7 +3569,7 @@ Expected input body:
 
 ### Type_Union_receiveFirstNamedUnionValue
 
-- Endpoint: `post /type/union/receive/model1`
+- Endpoint: `get /type/union/receive/model1`
 
 This test is tesing receiving the first union value in named union property.
 
@@ -3581,7 +3581,7 @@ Expect response:
 
 ### Type_Union_receiveIntArray
 
-- Endpoint: `post /type/union/receive/int-array`
+- Endpoint: `get /type/union/receive/int-array`
 
 This test is tesing receiving an int array value in simple union property.
 
@@ -3593,7 +3593,7 @@ Expect response:
 
 ### Type_Union_receiveSecondNamedUnionValue
 
-- Endpoint: `post /type/union/receive/model2`
+- Endpoint: `get /type/union/receive/model2`
 
 This test is tesing receiving the second union value in named union property.
 
@@ -3605,7 +3605,7 @@ Expect response:
 
 ### Type_Union_receiveString
 
-- Endpoint: `post /type/union/receive/string`
+- Endpoint: `get /type/union/receive/string`
 
 This test is tesing receiving a string value in simple union property.
 
