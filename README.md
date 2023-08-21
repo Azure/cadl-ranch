@@ -68,14 +68,21 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ### Before making a Pull request
 
-Make sure to run the following commands:
+Make sure you run the following command to prepare the pr:
+
+- `pnpm pr-prep`
+
+This will run all of the following commands for you however you can run each individually if needed:
 
 - `pnpm validate-scenarios`
 - `pnpm validate-mock-apis`
 - `pnpm generate-scenarios-summary`
 - `pnpm format`
-- `pnpm changeset add` or `pnpm changeset add --empty`
 - `pnpm cspell`
+
+Once the change passes the above validate you can add the changeset
+
+- `pnpm changeset add` or `pnpm changeset add --empty`
 
 Go through [PR checklist](./.github/pull_request_template.md)
 
