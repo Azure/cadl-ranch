@@ -3573,12 +3573,6 @@ Expected input body:
 
 This test is tesing receiving the first union value in named union property.
 
-Expect request:
-
-```json
-{ "kind": "model1" }
-```
-
 Expect response:
 
 ```json
@@ -3590,12 +3584,6 @@ Expect response:
 - Endpoint: `post /type/union/receive/int-array`
 
 This test is tesing receiving an int array value in simple union property.
-
-Expect request:
-
-```json
-{ "kind": "int-array" }
-```
 
 Expect response:
 
@@ -3609,12 +3597,6 @@ Expect response:
 
 This test is tesing receiving the second union value in named union property.
 
-Expect request:
-
-```json
-{ "kind": "model2" }
-```
-
 Expect response:
 
 ```json
@@ -3626,12 +3608,6 @@ Expect response:
 - Endpoint: `post /type/union/receive/string`
 
 This test is tesing receiving a string value in simple union property.
-
-Expect request:
-
-```json
-{ "kind": "string" }
-```
 
 Expect response:
 
