@@ -36,10 +36,6 @@ model ModelWithNamedUnionProperty {
   namedUnion: MyNamedUnion;
 }
 
-model Input {
-  kind: string;
-}
-
 model ModelWithSimpleUnionPropertyInResponse {
   simpleUnion: string | int32[];
 }
@@ -115,7 +111,7 @@ Expect response:
 ```
 """)
 @route("/receive/int-array")
-@post
+@get
 op receiveIntArray(): ModelWithSimpleUnionPropertyInResponse;
 
 @scenario
@@ -128,7 +124,7 @@ Expect response:
 ```
 """)
 @route("/receive/model1")
-@post
+@get
 op receiveFirstNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
 
 @scenario
@@ -141,5 +137,5 @@ Expect response:
 ```
 """)
 @route("/receive/model2")
-@post
+@get
 op receiveSecondNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
