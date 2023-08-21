@@ -1,6 +1,6 @@
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-azure-core";
-import "@typespec/versioning"
+import "@typespec/versioning";
 
 using TypeSpec.Versioning;
 using Azure.Core;
@@ -12,7 +12,7 @@ using Azure.Core;
 namespace Payload.Pageable;
 
 model User {
-  name: string
+  name: string;
 }
 
 @scenario
