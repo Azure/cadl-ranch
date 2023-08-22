@@ -71,7 +71,7 @@
 
 ### Patch Changes
 
-- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey myKey)
 
 ## 0.4.16
 
