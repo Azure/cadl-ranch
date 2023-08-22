@@ -17,7 +17,9 @@ The models are override to roundtrip, so they should be generated and exported a
 """)
 namespace ModelInOperation {
   @doc("Usage override to roundtrip.")
-  @usage(Usage.input | Usage.output)
+  @global.Azure.ClientGenerator.Core.usage(
+    global.Azure.ClientGenerator.Core.Usage.input | global.Azure.ClientGenerator.Core.Usage.output
+  )
   model InputModel {
     name: string;
   }
@@ -35,7 +37,9 @@ namespace ModelInOperation {
   op inputToRoundTrip(@body body: InputModel): void;
 
   @doc("Usage override to roundtrip.")
-  @usage(Usage.input | Usage.output)
+  @global.Azure.ClientGenerator.Core.usage(
+    global.Azure.ClientGenerator.Core.Usage.input | global.Azure.ClientGenerator.Core.Usage.output
+  )
   model OutputModel {
     name: string;
   }
@@ -55,8 +59,8 @@ namespace ModelInOperation {
 
 namespace Orphan {
   @doc("Not used anywhere, but access is override to public so still need to be generated and exported with serialization.")
-  @usage(Usage.input)
-  @access(Access.Public)
+  @global.Azure.ClientGenerator.Core.usage(global.Azure.ClientGenerator.Core.Usage.input)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   model OrphanModel {
     name: string;
   }

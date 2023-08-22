@@ -30,22 +30,21 @@ namespace Public {
   }
 
   @doc("Used in a public operation, should be generated and exported.")
-  @access(Access.public)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   model PublicDecoratorModelInPublic {
     name: string;
   }
 
   @route("/noDecoratorInPublic")
   @get
-  @access(Access.public)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   op noDecoratorInPublic(@query name: string): NoDecoratorModelInPublic;
 
   @route("/publicDecoratorInPublic")
   @get
-  @access(Access.public)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   op publicDecoratorInPublic(@query name: string): PublicDecoratorModelInPublic;
 }
-
 
 @route("/internal")
 @global.Azure.ClientGenerator.Core.operationGroup
@@ -67,30 +66,30 @@ namespace Internal {
   }
 
   @doc("Used in an internal operation, should be generated but not exported.")
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   model InternalDecoratorModelInInternal {
     name: string;
   }
 
   @doc("Used in an internal operation but with public decorator, should be generated and exported.")
-  @access(Access.public)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   model PublicDecoratorModelInInternal {
     name: string;
   }
 
   @route("/noDecoratorInInternal")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op noDecoratorInInternal(@query name: string): NoDecoratorModelInInternal;
 
   @route("/internalDecoratorInInternal")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op internalDecoratorInInternal(@query name: string): InternalDecoratorModelInInternal;
-  
+
   @route("/publicDecoratorInInternal")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op publicDecoratorInInternal(@query name: string): PublicDecoratorModelInInternal;
 }
 
@@ -115,12 +114,12 @@ namespace Shared {
 
   @route("/public")
   @get
-  @access(Access.public)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
   op public(@query name: string): SharedModel;
 
   @route("/internal")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op internal(@query name: string): SharedModel;
 }
 
@@ -172,7 +171,7 @@ namespace Relative {
   """)
   @route("/operation")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op operation(@query name: string): OuterModel;
 
   @doc("""
@@ -187,6 +186,6 @@ namespace Relative {
   """)
   @route("/discriminator")
   @get
-  @access(Access.internal)
+  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op discriminator(@query kind: string): AbstractModel;
 }
