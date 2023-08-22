@@ -1418,6 +1418,8 @@ Scenario that returns a different file encoding depending on the accept header.
 
 List users.
 
+SDK may hide the "maxpagesize" from API signature. The functionality of "maxpagesize" could be in related language Page model.
+
 Expected query parameter:
 skip=5
 maxpagesize=3

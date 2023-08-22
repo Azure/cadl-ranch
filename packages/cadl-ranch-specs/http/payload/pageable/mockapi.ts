@@ -27,7 +27,11 @@ Scenarios.Payload_Pageable_list = withKeys(["firstPage", "secondPage"]).pass(
         } as const;
 
       default:
-        throw new ValidationError("Unsupported skip query parameter", `"5" for first page, "8" for second page`, req.query["skip"]);
+        throw new ValidationError(
+          "Unsupported skip query parameter",
+          `"5" for first page, "8" for second page`,
+          req.query["skip"],
+        );
     }
   }),
 );
