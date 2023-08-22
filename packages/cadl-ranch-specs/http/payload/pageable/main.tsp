@@ -11,16 +11,18 @@ using Azure.Core;
 @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
 namespace Payload.Pageable;
 
+@doc("User model")
 model User {
+  @doc("User name")
   name: string;
 }
 
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing pageable"
 @scenario
 @scenarioDoc("""
 List users.
 
 Expected query parameter:
-top=100
 skip=5
 maxpagesize=3
 
@@ -38,12 +40,11 @@ Expected response body:
       "name":"user7"
     }
   ],
-  "nextLink": "{endpoint}//payload/pageable?top=100&skip=8&maxpagesize=3"
+  "nextLink": "{endpoint}//payload/pageable?skip=8&maxpagesize=3"
 }
 ```
 
 Expected query parameter:
-top=100
 skip=8
 maxpagesize=3
 
@@ -57,4 +58,5 @@ maxpagesize=3
 }
 ```
 """)
-op list(...StandardListQueryParameters): Page<User>;
+@doc("List users")
+op list(...SkipQueryParameter, ...MaxPageSizeQueryParameter): Page<User>;
