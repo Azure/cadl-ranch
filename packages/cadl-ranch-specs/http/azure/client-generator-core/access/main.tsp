@@ -30,19 +30,19 @@ namespace Public {
   }
 
   @doc("Used in a public operation, should be generated and exported.")
-  @access(Access.Public)
+  @access(Access.public)
   model PublicDecoratorModelInPublic {
     name: string;
   }
 
   @route("/noDecoratorInPublic")
   @get
-  @access(Access.Public)
+  @access(Access.public)
   op noDecoratorInPublic(@query name: string): NoDecoratorModelInPublic;
 
   @route("/publicDecoratorInPublic")
   @get
-  @access(Access.Public)
+  @access(Access.public)
   op publicDecoratorInPublic(@query name: string): PublicDecoratorModelInPublic;
 }
 
@@ -67,30 +67,30 @@ namespace Internal {
   }
 
   @doc("Used in an internal operation, should be generated but not exported.")
-  @access(Access.Internal)
+  @access(Access.internal)
   model InternalDecoratorModelInInternal {
     name: string;
   }
 
   @doc("Used in an internal operation but with public decorator, should be generated and exported.")
-  @access(Access.Public)
+  @access(Access.public)
   model PublicDecoratorModelInInternal {
     name: string;
   }
 
   @route("/noDecoratorInInternal")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op noDecoratorInInternal(@query name: string): NoDecoratorModelInInternal;
 
   @route("/internalDecoratorInInternal")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op internalDecoratorInInternal(@query name: string): InternalDecoratorModelInInternal;
   
   @route("/publicDecoratorInInternal")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op publicDecoratorInInternal(@query name: string): PublicDecoratorModelInInternal;
 }
 
@@ -115,12 +115,12 @@ namespace Shared {
 
   @route("/public")
   @get
-  @access(Access.Public)
+  @access(Access.public)
   op public(@query name: string): SharedModel;
 
   @route("/internal")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op internal(@query name: string): SharedModel;
 }
 
@@ -172,7 +172,7 @@ namespace Relative {
   """)
   @route("/operation")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op operation(@query name: string): OuterModel;
 
   @doc("""
@@ -187,6 +187,6 @@ namespace Relative {
   """)
   @route("/discriminator")
   @get
-  @access(Access.Internal)
+  @access(Access.internal)
   op discriminator(@query kind: string): AbstractModel;
 }
