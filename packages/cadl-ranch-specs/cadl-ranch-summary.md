@@ -1421,7 +1421,6 @@ List users.
 SDK may hide the "maxpagesize" from API signature. The functionality of "maxpagesize" could be in related language Page model.
 
 Expected query parameter:
-skip=5
 maxpagesize=3
 
 Expected response body:
@@ -1439,12 +1438,12 @@ Expected response body:
       "name": "user7"
     }
   ],
-  "nextLink": "{endpoint}//payload/pageable?skip=8&maxpagesize=3"
+  "nextLink": "{endpoint}//payload/pageable?skipToken=name-user7&maxpagesize=3"
 }
 ```
 
 Expected query parameter:
-skip=8
+skipToken=name-user7
 maxpagesize=3
 
 ```json
