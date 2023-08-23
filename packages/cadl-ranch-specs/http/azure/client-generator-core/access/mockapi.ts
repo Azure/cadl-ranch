@@ -26,12 +26,29 @@ Scenarios.Azure_ClientGenerator_Core_Access_Internal = passOnSuccess([
   createMockApis("internal/internalDecoratorInInternal"),
   createMockApis("internal/publicDecoratorInInternal"),
 ]);
+
 Scenarios.Azure_ClientGenerator_Core_Access_Shared = passOnSuccess([
   createMockApis("shared/public"),
   createMockApis("shared/internal"),
 ]);
 
 Scenarios.Azure_ClientGenerator_Core_Access_Relative = passOnSuccess([
-  createMockApis("relative/operation"),
-  createMockApis("relative/discriminator"),
+  mockapi.get("/azure/client-generator-core/access/relative/operation", (req) => {
+    if (!("name" in req.query)) {
+      throw new ValidationError("Should submit name query", "any string", undefined);
+    }
+    return {
+      status: 200,
+      body: json({ name: "Madge", inner: { name: "Madge" } }),
+    };
+  }),
+  mockapi.get("/azure/client-generator-core/access/relative/discriminator", (req) => {
+    if (!("kind" in req.query)) {
+      throw new ValidationError("Should submit name query", "any string", undefined);
+    }
+    return {
+      status: 200,
+      body: json({ name: "Madge", kind: "real" }),
+    };
+  }),
 ]);
