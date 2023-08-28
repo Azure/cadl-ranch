@@ -387,8 +387,8 @@ importers:
         specifier: 0.33.0
         version: 0.33.0(@azure-tools/typespec-azure-core@0.33.0)(@typespec/compiler@0.47.0)(@typespec/http@0.47.0)(@typespec/openapi@0.47.0)(@typespec/rest@0.47.0)(@typespec/versioning@0.47.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzAyMjg0MC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.34.0-pr-3347.20230821.12.tgz
-        version: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzAyMjg0MC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.34.0-pr-3347.20230821.12.tgz(@typespec/compiler@0.47.0)(@typespec/http@0.47.0)(@typespec/rest@0.47.0)(@typespec/versioning@0.47.0)'
+        specifier: 0.34.0-dev.6
+        version: 0.34.0-dev.6(@typespec/compiler@0.47.0)(@typespec/http@0.47.0)(@typespec/rest@0.47.0)(@typespec/versioning@0.47.0)
       '@types/node':
         specifier: ^18.16.0
         version: 18.16.14
@@ -495,6 +495,22 @@ packages:
       '@typespec/http': 0.47.0(@typespec/compiler@0.47.0)
       '@typespec/lint': 0.47.0(@typespec/compiler@0.47.0)
       '@typespec/rest': 0.47.0(@typespec/compiler@0.47.0)
+
+  /@azure-tools/typespec-client-generator-core@0.34.0-dev.6(@typespec/compiler@0.47.0)(@typespec/http@0.47.0)(@typespec/rest@0.47.0)(@typespec/versioning@0.47.0):
+    resolution: {integrity: sha512-g+hji0K8AkrdVflOU6IeOz6BQxytncuKF2s8aqZ/Qb3cliZHjzUX3B57RyHCliTWou8Dcz+GHX1R+JOd9c335g==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.47.1 || >=0.48.0-dev <0.48.0
+      '@typespec/http': ~0.47.0 || >=0.48.0-dev <0.48.0
+      '@typespec/rest': ~0.47.0 || >=0.48.0-dev <0.48.0
+      '@typespec/versioning': ~0.47.0 || >=0.48.0-dev <0.48.0
+    dependencies:
+      '@typespec/compiler': 0.47.0
+      '@typespec/http': 0.47.0(@typespec/compiler@0.47.0)
+      '@typespec/lint': 0.47.0(@typespec/compiler@0.47.0)
+      '@typespec/rest': 0.47.0(@typespec/compiler@0.47.0)
+      '@typespec/versioning': 0.47.0(@typespec/compiler@0.47.0)
+    dev: true
 
   /@azure/abort-controller@1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
@@ -10419,23 +10435,4 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: true
-
-  '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzAyMjg0MC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.34.0-pr-3347.20230821.12.tgz(@typespec/compiler@0.47.0)(@typespec/http@0.47.0)(@typespec/rest@0.47.0)(@typespec/versioning@0.47.0)':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzAyMjg0MC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.34.0-pr-3347.20230821.12.tgz}
-    id: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzAyMjg0MC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.34.0-pr-3347.20230821.12.tgz'
-    name: '@azure-tools/typespec-client-generator-core'
-    version: 0.34.0-pr-3347.20230821.12
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.47.1
-      '@typespec/http': ~0.47.0
-      '@typespec/rest': ~0.47.0
-      '@typespec/versioning': ~0.47.0
-    dependencies:
-      '@typespec/compiler': 0.47.0
-      '@typespec/http': 0.47.0(@typespec/compiler@0.47.0)
-      '@typespec/lint': 0.47.0(@typespec/compiler@0.47.0)
-      '@typespec/rest': 0.47.0(@typespec/compiler@0.47.0)
-      '@typespec/versioning': 0.47.0(@typespec/compiler@0.47.0)
     dev: true

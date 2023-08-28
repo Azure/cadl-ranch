@@ -32,9 +32,9 @@ namespace ModelInOperation {
   }
   ```
   """)
-  @route("/inputToRoundTrip")
+  @route("/inputToInputOutput")
   @post
-  op inputToRoundTrip(@body body: InputModel): void;
+  op inputToInputOutput(@body body: InputModel): void;
 
   @doc("Usage override to roundtrip.")
   @global.Azure.ClientGenerator.Core.usage(
@@ -52,16 +52,14 @@ namespace ModelInOperation {
   }
   ```
   """)
-  @route("/outputToRoundTrip")
+  @route("/outputToInputOutput")
   @get
-  op outputToRoundTrip(): OutputModel;
+  op outputToInputOutput(): OutputModel;
 }
 
-namespace Orphan {
-  @doc("Not used anywhere, but access is override to public so still need to be generated and exported with serialization.")
-  @global.Azure.ClientGenerator.Core.usage(global.Azure.ClientGenerator.Core.Usage.input)
-  @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
-  model OrphanModel {
-    name: string;
-  }
+@doc("Not used anywhere, but access is override to public so still need to be generated and exported with serialization.")
+@global.Azure.ClientGenerator.Core.usage(global.Azure.ClientGenerator.Core.Usage.input)
+@global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.public)
+model OrphanModel {
+  name: string;
 }

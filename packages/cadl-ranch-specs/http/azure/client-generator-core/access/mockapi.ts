@@ -16,24 +16,24 @@ function createMockApis(route: string): MockApi {
   });
 }
 
-Scenarios.Azure_ClientGenerator_Core_Access_Public = passOnSuccess([
-  createMockApis("public/noDecoratorInPublic"),
-  createMockApis("public/publicDecoratorInPublic"),
+Scenarios.Azure_ClientGenerator_Core_Access_PublicOperation = passOnSuccess([
+  createMockApis("publicOperation/noDecoratorInPublic"),
+  createMockApis("publicOperation/publicDecoratorInPublic"),
 ]);
 
-Scenarios.Azure_ClientGenerator_Core_Access_Internal = passOnSuccess([
-  createMockApis("internal/noDecoratorInInternal"),
-  createMockApis("internal/internalDecoratorInInternal"),
-  createMockApis("internal/publicDecoratorInInternal"),
+Scenarios.Azure_ClientGenerator_Core_Access_InternalOperation = passOnSuccess([
+  createMockApis("internalOperation/noDecoratorInInternal"),
+  createMockApis("internalOperation/internalDecoratorInInternal"),
+  createMockApis("internalOperation/publicDecoratorInInternal"),
 ]);
 
-Scenarios.Azure_ClientGenerator_Core_Access_Shared = passOnSuccess([
-  createMockApis("shared/public"),
-  createMockApis("shared/internal"),
+Scenarios.Azure_ClientGenerator_Core_Access_SharedModelInOperation = passOnSuccess([
+  createMockApis("sharedModelInOperation/public"),
+  createMockApis("sharedModelInOperation/internal"),
 ]);
 
-Scenarios.Azure_ClientGenerator_Core_Access_Relative = passOnSuccess([
-  mockapi.get("/azure/client-generator-core/access/relative/operation", (req) => {
+Scenarios.Azure_ClientGenerator_Core_Access_RelativeModelInOperation = passOnSuccess([
+  mockapi.get("/azure/client-generator-core/access/relativeModelInOperation/operation", (req) => {
     if (!("name" in req.query)) {
       throw new ValidationError("Should submit name query", "any string", undefined);
     }
@@ -42,7 +42,7 @@ Scenarios.Azure_ClientGenerator_Core_Access_Relative = passOnSuccess([
       body: json({ name: "Madge", inner: { name: "Madge" } }),
     };
   }),
-  mockapi.get("/azure/client-generator-core/access/relative/discriminator", (req) => {
+  mockapi.get("/azure/client-generator-core/access/relativeModelInOperation/discriminator", (req) => {
     if (!("kind" in req.query)) {
       throw new ValidationError("Should submit name query", "any string", undefined);
     }

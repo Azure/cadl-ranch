@@ -10,7 +10,7 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/azure/client-generator-core/access")
 namespace _Specs_.Azure.ClientGenerator.Core.Access;
 
-@route("/public")
+@route("/publicOperation")
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
@@ -23,7 +23,7 @@ Expected response body:
 }
 ```
 """)
-namespace Public {
+namespace PublicOperation {
   @doc("Used in a public operation, should be generated and exported.")
   model NoDecoratorModelInPublic {
     name: string;
@@ -46,7 +46,7 @@ namespace Public {
   op publicDecoratorInPublic(@query name: string): PublicDecoratorModelInPublic;
 }
 
-@route("/internal")
+@route("/internalOperation")
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
@@ -59,7 +59,7 @@ Expected response body:
 }
 ```
 """)
-namespace Internal {
+namespace InternalOperation {
   @doc("Used in an internal operation, should be generated but not exported.")
   model NoDecoratorModelInInternal {
     name: string;
@@ -93,7 +93,7 @@ namespace Internal {
   op publicDecoratorInInternal(@query name: string): PublicDecoratorModelInInternal;
 }
 
-@route("/shared")
+@route("/sharedModelInOperation")
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
@@ -106,7 +106,7 @@ Expected response body:
 }
 ```
 """)
-namespace Shared {
+namespace SharedModelInOperation {
   @doc("Used by both public and internal operation. It should be generated and exported.")
   model SharedModel {
     name: string;
@@ -123,13 +123,13 @@ namespace Shared {
   op internal(@query name: string): SharedModel;
 }
 
-@route("/relative")
+@route("/relativeModelInOperation")
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
 This scenario contains internal operations. All should be generated but not exposed.
 """)
-namespace Relative {
+namespace RelativeModelInOperation {
   @doc("Used in internal operations, should be generated but not exported.")
   model OuterModel extends BaseModel {
     inner: InnerModel;
