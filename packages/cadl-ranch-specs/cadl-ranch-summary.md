@@ -1412,6 +1412,50 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
+### Payload_Pageable_list
+
+- Endpoint: `get /payload/pageable`
+
+List users.
+
+SDK may hide the "maxpagesize" from API signature. The functionality of "maxpagesize" could be in related language Page model.
+
+Expected query parameter:
+maxpagesize=3
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "name": "user5"
+    },
+    {
+      "name": "user6"
+    },
+    {
+      "name": "user7"
+    }
+  ],
+  "nextLink": "{endpoint}//payload/pageable?skipToken=name-user7&maxpagesize=3"
+}
+```
+
+Expected query parameter:
+skipToken=name-user7
+maxpagesize=3
+
+```json
+{
+  "value": [
+    {
+      "name": "user8"
+    }
+  ]
+}
+```
+
 ### Projection_ProjectedName_operation
 
 - Endpoint: `post /projection/projected-name/operation`
