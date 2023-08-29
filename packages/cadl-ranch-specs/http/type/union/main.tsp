@@ -90,7 +90,7 @@ op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkRespon
 
 @scenario
 @scenarioDoc("""
-This test is tesing receiving a string value in simple union property.
+This test is testing receiving a string value in simple union property.
 
 Expect response:
 ```json
@@ -103,7 +103,7 @@ op receiveString(): ModelWithSimpleUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
-This test is tesing receiving an int array value in simple union property.
+This test is testing receiving an int array value in simple union property.
 
 Expect response:
 ```json
@@ -116,7 +116,7 @@ op receiveIntArray(): ModelWithSimpleUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
-This test is tesing receiving the first union value in named union property.
+This test is testing receiving the first union value in named union property.
 
 Expect response:
 ```json
@@ -129,7 +129,7 @@ op receiveFirstNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
 
 @scenario
 @scenarioDoc("""
-This test is tesing receiving the second union value in named union property.
+This test is testing receiving the second union value in named union property.
 
 Expect response:
 ```json

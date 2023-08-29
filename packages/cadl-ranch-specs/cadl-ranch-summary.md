@@ -71,6 +71,63 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_ClientGenerator_Core_Access_InternalOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/internalOperation/noDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/internalDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/publicDecoratorInInternal`
+
+This scenario contains internal operations. All should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Access_PublicOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/publicOperation/noDecoratorInPublic`
+  - `get /azure/client-generator-core/access/publicOperation/publicDecoratorInPublic`
+
+This scenario contains public operations. It should be generated and exported.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Access_RelativeModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/relativeModelInOperation/operation`
+  - `get /azure/client-generator-core/access/relativeModelInOperation/discriminator`
+
+This scenario contains internal operations. All should be generated but not exposed.
+
+### Azure_ClientGenerator_Core_Access_SharedModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/sharedModelInOperation/public`
+  - `get /azure/client-generator-core/access/sharedModelInOperation/internal`
+
+This scenario contains two operations, one public, another internal. The public one should be generated and exported while the internal one should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
 ### Azure_ClientGenerator_Core_Internal_internalOnly
 
 - Endpoint: `get /azure/client-generator-core/internal/internal`
@@ -114,6 +171,15 @@ Expected response body:
   "name": <any string>
 }
 ```
+
+### Azure_ClientGenerator_Core_Usage_ModelInOperation
+
+- Endpoints:
+  - `post /azure/client-generator-core/usage/inputToInputOutput`
+  - `post /azure/client-generator-core/usage/outputToInputOutput`
+
+This scenario contains two public operations. Both should be generated and exported.
+The models are override to roundtrip, so they should be generated and exported as well.
 
 ### Azure_Core_Basic_createOrReplace
 
@@ -3615,7 +3681,7 @@ Expected input body:
 
 - Endpoint: `get /type/union/receive/model1`
 
-This test is tesing receiving the first union value in named union property.
+This test is testing receiving the first union value in named union property.
 
 Expect response:
 
@@ -3627,7 +3693,7 @@ Expect response:
 
 - Endpoint: `get /type/union/receive/int-array`
 
-This test is tesing receiving an int array value in simple union property.
+This test is testing receiving an int array value in simple union property.
 
 Expect response:
 
@@ -3639,7 +3705,7 @@ Expect response:
 
 - Endpoint: `get /type/union/receive/model2`
 
-This test is tesing receiving the second union value in named union property.
+This test is testing receiving the second union value in named union property.
 
 Expect response:
 
@@ -3651,7 +3717,7 @@ Expect response:
 
 - Endpoint: `get /type/union/receive/string`
 
-This test is tesing receiving a string value in simple union property.
+This test is testing receiving a string value in simple union property.
 
 Expect response:
 
