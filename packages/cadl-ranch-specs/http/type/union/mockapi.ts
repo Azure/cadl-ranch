@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -28,5 +28,49 @@ Scenarios.Type_Union_sendSecondNamedUnionValue = passOnSuccess(
   mockapi.post("/type/union/model2", (req) => {
     req.expect.bodyEquals({ namedUnion: { name: "model2", prop2: 2 } });
     return { status: 200 };
+  }),
+);
+
+Scenarios.Type_Union_receiveString = passOnSuccess(
+  mockapi.get("/type/union/receive/string", (req) => {
+    return {
+      status: 200,
+      body: json({
+        simpleUnion: "string",
+      }),
+    };
+  }),
+);
+
+Scenarios.Type_Union_receiveIntArray = passOnSuccess(
+  mockapi.get("/type/union/receive/int-array", (req) => {
+    return {
+      status: 200,
+      body: json({
+        simpleUnion: [1, 2],
+      }),
+    };
+  }),
+);
+
+Scenarios.Type_Union_receiveFirstNamedUnionValue = passOnSuccess(
+  mockapi.get("/type/union/receive/model1", (req) => {
+    return {
+      status: 200,
+      body: json({
+        namedUnion: { name: "model1", prop1: 1 },
+      }),
+    };
+  }),
+);
+
+Scenarios.Type_Union_receiveSecondNamedUnionValue = passOnSuccess(
+  mockapi.get("/type/union/receive/model2", (req) => {
+    return {
+      status: 200,
+      body: json({
+        namedUnion: { name: "model2", prop2: 2 },
+      }),
+    };
   }),
 );

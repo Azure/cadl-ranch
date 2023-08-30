@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.20.0
+
+### Minor Changes
+
+- c7e83c0: add new a few new cases of repsonse with unions
+
+### Patch Changes
+
+- c5f897d: Add tests for @usage and @access
+- 5e6f680: Add test case for pageable and nextLink
+
 ## 0.19.0
 
 ### Minor Changes
