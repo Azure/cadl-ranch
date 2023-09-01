@@ -1112,6 +1112,38 @@ Test unixTimestamp encode for datetime array query parameter.
 Expected query parameter:
 value=1686566864, 1686734256
 
+### Encode_Datetime_ResponseHeader_default
+
+- Endpoint: `get /encode/datetime/responseheader/default`
+
+Test default encode (rfc7231) for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_rfc3339
+
+- Endpoint: `get /encode/datetime/responseheader/rfc3339`
+
+Test rfc3339 encode for datetime header.
+Expected response header:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_ResponseHeader_rfc7231
+
+- Endpoint: `get /encode/datetime/responseheader/rfc7231`
+
+Test rfc7231 encode for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_unixTimestamp
+
+- Endpoint: `get /encode/datetime/responseheader/unix-timestamp`
+
+Test unixTimestamp encode for datetime header.
+Expected response header:
+value=1686566864
+
 ### Encode_Duration_Header_default
 
 - Endpoint: `get /encode/duration/header/default`

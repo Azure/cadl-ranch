@@ -301,13 +301,6 @@ model UnixTimestampDatetimeHeader {
   value: utcDateTime;
 }
 
-model UnixTimestampArrayDatetimeHeader {
-  @header({
-    format: "csv",
-  })
-  value: unixTimestampDatetime[];
-}
-
 @operationGroup
 @route("/responseheader")
 namespace ResponseHeader {
@@ -346,13 +339,4 @@ namespace ResponseHeader {
   value=1686566864
   """)
   op unixTimestamp(): NoContentResponse & UnixTimestampDatetimeHeader;
-
-  @route("/unix-timestamp-array")
-  @scenario
-  @scenarioDoc("""
-  Test unixTimestamp encode for datetime array header.
-  Expected response header:
-  value=1686566864,1686734256
-  """)
-  op unixTimestampArray(): NoContentResponse & UnixTimestampArrayDatetimeHeader;
 }
