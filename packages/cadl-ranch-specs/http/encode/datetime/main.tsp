@@ -277,3 +277,82 @@ namespace Header {
     value: unixTimestampDatetime[]
   ): NoContentResponse;
 }
+
+model DefaultDatetimeHeader {
+  @header
+  value: utcDateTime;
+}
+
+model Rfc3339DatetimeHeader {
+  @encode(DateTimeKnownEncoding.rfc3339)
+  @header
+  value: utcDateTime;
+}
+
+model Rfc7231DatetimeHeader {
+  @encode(DateTimeKnownEncoding.rfc7231)
+  @header
+  value: utcDateTime;
+}
+
+model UnixTimestampDatetimeHeader {
+  @encode(DateTimeKnownEncoding.unixTimestamp, int64)
+  @header
+  value: utcDateTime;
+}
+
+model UnixTimestampArrayDatetimeHeader {
+  @header({
+    format: "csv",
+  })
+  value: unixTimestampDatetime[];
+}
+
+@operationGroup
+@route("/responseheader")
+namespace ResponseHeader {
+  @route("/default")
+  @scenario
+  @scenarioDoc("""
+  Test default encode (rfc7231) for datetime header.
+  Expected response header:
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op default(): NoContentResponse & DefaultDatetimeHeader;
+
+  @route("/rfc3339")
+  @scenario
+  @scenarioDoc("""
+  Test rfc3339 encode for datetime header.
+  Expected response header:
+  value=2022-08-26T18:38:00.000Z
+  """)
+  op rfc3339(): NoContentResponse & Rfc3339DatetimeHeader;
+
+  @route("/rfc7231")
+  @scenario
+  @scenarioDoc("""
+  Test rfc7231 encode for datetime header.
+  Expected response header:
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op rfc7231(): NoContentResponse & Rfc7231DatetimeHeader;
+
+  @route("/unix-timestamp")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime header.
+  Expected response header:
+  value=1686566864
+  """)
+  op unixTimestamp(): NoContentResponse & UnixTimestampDatetimeHeader;
+
+  @route("/unix-timestamp-array")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime array header.
+  Expected response header:
+  value=1686566864,1686734256
+  """)
+  op unixTimestampArray(): NoContentResponse & UnixTimestampArrayDatetimeHeader;
+}

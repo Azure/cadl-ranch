@@ -68,6 +68,16 @@ function createHeaderMockApis(route: string, format: "rfc7231" | "rfc3339" | und
   });
 }
 
+function createResponseHeaderMockApis(route: string, format: "rfc7231" | "rfc3339" | undefined, value: any): MockApi {
+  const url = `/encode/datetime/responseheader/${route}`;
+  return mockapi.get(url, () => {
+    return {
+      status: 204,
+      headers: { value: value },
+    };
+  });
+}
+
 Scenarios.Encode_Datetime_Query_default = passOnSuccess(
   createQueryMockApis("default", "rfc3339", "2022-08-26T18:38:00.000Z"),
 );
@@ -114,4 +124,20 @@ Scenarios.Encode_Datetime_Header_unixTimestamp = passOnSuccess(
 );
 Scenarios.Encode_Datetime_Header_unixTimestampArray = passOnSuccess(
   createHeaderMockApis("unix-timestamp-array", undefined, "1686566864,1686734256"),
+);
+
+Scenarios.Encode_Datetime_Response_Header_default = passOnSuccess(
+  createResponseHeaderMockApis("default", "rfc7231", "Fri, 26 Aug 2022 14:38:00 GMT"),
+);
+Scenarios.Encode_Datetime_Response_Header_rfc3339 = passOnSuccess(
+  createResponseHeaderMockApis("rfc3339", "rfc3339", "2022-08-26T18:38:00.000Z"),
+);
+Scenarios.Encode_Datetime_Response_Header_rfc7231 = passOnSuccess(
+  createResponseHeaderMockApis("rfc7231", "rfc7231", "Fri, 26 Aug 2022 14:38:00 GMT"),
+);
+Scenarios.Encode_Datetime_Response_Header_unixTimestamp = passOnSuccess(
+  createResponseHeaderMockApis("unix-timestamp", undefined, "1686566864"),
+);
+Scenarios.Encode_Datetime_Response_Header_unixTimestampArray = passOnSuccess(
+  createResponseHeaderMockApis("unix-timestamp-array", undefined, "1686566864,1686734256"),
 );
