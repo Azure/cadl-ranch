@@ -1536,7 +1536,7 @@ Expected response body:
       "name": "user7"
     }
   ],
-  "nextLink": "{endpoint}//payload/pageable?skipToken=name-user7&maxpagesize=3"
+  "nextLink": "{endpoint}/payload/pageable?skipToken=name-user7&maxpagesize=3"
 }
 ```
 
