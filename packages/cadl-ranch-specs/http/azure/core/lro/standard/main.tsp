@@ -58,6 +58,7 @@ model ExportedUser {
   resourceUri: string;
 }
 
+#suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for standard LRO"
 @scenario
 @doc("Creates or replaces a User")
 @summary("Adds a user or replaces a user's fields.")
@@ -121,9 +122,9 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
+#suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for standard LRO"
 @scenario
 @doc("Deletes a User")
 @summary("Deletes a user.")
@@ -165,9 +166,9 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op delete is ResourceOperations.LongRunningResourceDelete<User>;
 
+#suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for standard LRO"
 @scenario
 @doc("Exports a User")
 @summary("Exports a user.")
@@ -216,5 +217,4 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
 op export is ResourceOperations.LongRunningResourceAction<User, UserExportParams, ExportedUser>;
