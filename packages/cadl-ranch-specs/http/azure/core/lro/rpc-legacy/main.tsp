@@ -140,7 +140,6 @@ interface CreateResourcePollViaOperationLocation {
   @doc("Poll a Job")
   getJob is ResourceOperations.ResourceRead<JobResult>;
 
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Legacy LRO uses local template"
   @pollingOperation(CreateResourcePollViaOperationLocation.getJob)
   @doc("Creates a Job")
   @route("/jobs")
