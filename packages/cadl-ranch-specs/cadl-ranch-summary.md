@@ -1745,6 +1745,24 @@ Expected header parameters:
   Expected response header:
 - client-request-id=<uuid string same with request header>
 
+### SpecialHeaders_ConditionalRequest_postIfMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-match`
+
+Check when only If-Match in header is defined.
+Expected header parameters:
+
+- if-match="valid"
+
+### SpecialHeaders_ConditionalRequest_postIfNoneMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-none-match`
+
+Check when only If-None-Match in header is defined.
+Expected header parameters:
+
+- if-nonematch="invalid"
+
 ### SpecialHeaders_Repeatability_immediateSuccess
 
 - Endpoint: `post /special-headers/repeatability/immediateSuccess`
