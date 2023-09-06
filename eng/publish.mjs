@@ -8,7 +8,9 @@ const stdout = execSync(`git status --porcelain`).toString();
 if (stdout.trim() !== "") {
   console.log("Commiting the following changes:\n", stdout);
 
-  execSync(`git -c user.email=autochangesetbot@microsoft.com -c user.name="Microsoft Auto Changeset Bot" commit -am "Bump versions"`);
+  execSync(
+    `git -c user.email=autochangesetbot@microsoft.com -c user.name="Microsoft Auto Changeset Bot" commit -am "Bump versions"`,
+  );
   execSync(`git push origin HEAD:${branchName} --force`);
 
   console.log();
