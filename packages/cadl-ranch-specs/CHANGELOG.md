@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.21.0
+
+### Minor Changes
+
+- 7d83276: add test case for encode in response header
+- e0ace5f: Add test case for scenario that only one conditional request header is defined
+
 ## 0.20.0
 
 ### Minor Changes
