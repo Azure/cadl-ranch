@@ -1,6 +1,6 @@
 # @azure-tools/cadl-ranch-specs
 
-## 0.21.0
+## 0.22.0
 
 ### Minor Changes
 
