@@ -40,6 +40,7 @@ Expected response body:
 @get
 op publicOnly(@query name: string): PublicModel;
 
+#suppress "deprecated" "For test"
 @scenario
 @scenarioDoc("""
 This scenario contains an internal operation. It should be generated but not exposed.
@@ -56,6 +57,7 @@ Expected response body:
 @global.Azure.ClientGenerator.Core.internal
 op internalOnly(@query name: string): InternalModel;
 
+#suppress "deprecated" "For test"
 @route("/shared")
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
