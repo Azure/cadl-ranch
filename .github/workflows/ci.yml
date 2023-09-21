@@ -77,7 +77,7 @@ jobs:
       - run: pnpm run lint
         name: Lint
 
-      - run: pnpm run cspell
+      - run: pnpm run cspell -- --no-progress
         name: Spell check
 
       - run: |

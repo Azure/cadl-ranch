@@ -23,7 +23,7 @@
 
 ### Minor Changes
 
-- c7e83c0: add new a few new cases of repsonse with unions
+- c7e83c0: add new a few new cases of response with unions
 
 ### Patch Changes
 
