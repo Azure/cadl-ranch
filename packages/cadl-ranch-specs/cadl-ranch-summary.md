@@ -927,6 +927,82 @@ Test default encode (base64) for bytes query parameter.
 Expected query parameter:
 value=dGVzdA== (base64 encode of test)
 
+### Encode_Bytes_RequestBody_base64
+
+- Endpoint: `get /encode/bytes/body/request/base64`
+
+Test base64 encode for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_RequestBody_base64url
+
+- Endpoint: `get /encode/bytes/body/request/base64url`
+
+Test base64url encode for bytes header.
+Expected header:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_RequestBody_customContentType
+
+- Endpoint: `get /encode/bytes/body/request/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_RequestBody_default
+
+- Endpoint: `get /encode/bytes/body/request/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_RequestBody_octetStream
+
+- Endpoint: `get /encode/bytes/body/request/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_base64
+
+- Endpoint: `get /encode/bytes/body/response/base64`
+
+Test base64 encode for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_ResponseBody_base64url
+
+- Endpoint: `get /encode/bytes/body/response/base64url`
+
+Test base64url encode for bytes header.
+Expected header:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_ResponseBody_customContentType
+
+- Endpoint: `get /encode/bytes/body/response/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_default
+
+- Endpoint: `get /encode/bytes/body/response/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_ResponseBody_octetStream
+
+- Endpoint: `get /encode/bytes/body/response/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
 ### Encode_Datetime_Header_default
 
 - Endpoint: `get /encode/datetime/header/default`
