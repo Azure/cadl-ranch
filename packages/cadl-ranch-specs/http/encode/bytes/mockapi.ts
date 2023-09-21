@@ -53,11 +53,10 @@ function createRequestBodyMockApis(route: string, value: any, contentType: strin
 }
 
 function createResponseBodyMockApis(route: string, value: any, contentType: string = "application/json"): MockApi {
-  const url = `/encode/bytes/body/request/${route}`;
+  const url = `/encode/bytes/body/response/${route}`;
   return mockapi.get(url, (req) => {
-    req.expect.rawBodyEquals(value);
     return {
-      status: 204,
+      status: 200,
       body: {
         contentType: contentType,
         rawContent: value,
