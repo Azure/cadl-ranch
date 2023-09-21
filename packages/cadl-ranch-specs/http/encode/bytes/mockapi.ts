@@ -85,21 +85,23 @@ Scenarios.Encode_Bytes_Header_base64 = passOnSuccess(createHeaderMockApis("base6
 Scenarios.Encode_Bytes_Header_base64url = passOnSuccess(createHeaderMockApis("base64url", "dGVzdA"));
 Scenarios.Encode_Bytes_Header_base64urlArray = passOnSuccess(createHeaderMockApis("base64url-array", "dGVzdA,dGVzdA"));
 
+// Request body
 Scenarios.Encode_Bytes_RequestBody_default = passOnSuccess(createRequestBodyMockApis("default", "dGVzdA=="));
-Scenarios.Encode_Bytes_RequestBody_default = passOnSuccess(
+Scenarios.Encode_Bytes_RequestBody_octetStream = passOnSuccess(
   createRequestBodyMockApis("octet-stream", pngFile, "application/octet-stream"),
 );
-Scenarios.Encode_Bytes_RequestBody_default = passOnSuccess(
+Scenarios.Encode_Bytes_RequestBody_customContentType = passOnSuccess(
   createRequestBodyMockApis("custom-content-type", pngFile, "image/png"),
 );
 Scenarios.Encode_Bytes_RequestBody_base64 = passOnSuccess(createRequestBodyMockApis("base64", "dGVzdA=="));
 Scenarios.Encode_Bytes_RequestBody_base64url = passOnSuccess(createRequestBodyMockApis("base64url", "dGVzdA"));
 
-Scenarios.Encode_Bytes_RequestBody_default = passOnSuccess(createResponseBodyMockApis("default", "dGVzdA=="));
-Scenarios.Encode_Bytes_ResponseBody_default = passOnSuccess(
+// Response body
+Scenarios.Encode_Bytes_ResponseBody_default = passOnSuccess(createResponseBodyMockApis("default", "dGVzdA=="));
+Scenarios.Encode_Bytes_ResponseBody_octetStream = passOnSuccess(
   createResponseBodyMockApis("octet-stream", pngFile, "application/octet-stream"),
 );
-Scenarios.Encode_Bytes_ResponseBody_default = passOnSuccess(
+Scenarios.Encode_Bytes_ResponseBody_customContentType = passOnSuccess(
   createResponseBodyMockApis("custom-content-type", pngFile, "image/png"),
 );
 Scenarios.Encode_Bytes_ResponseBody_base64 = passOnSuccess(createResponseBodyMockApis("base64", "dGVzdA=="));
