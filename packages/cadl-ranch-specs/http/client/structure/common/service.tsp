@@ -17,9 +17,13 @@ using Azure.ClientGenerator.Core;
   6. have two clients with a hierarchy relation.
   """)
 @server(
-  "http://localhost:3000/client/structure/{client}",
+  "{endpoint}/client/structure/{client}",
   "",
   {
+    @doc("Need to be set as 'http://localhost:3000' in client.")
+    endpoint: url,
+
+    @doc("Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client.")
     client: ClientType,
   }
 )
