@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.8.2
+
+### Patch Changes
+
+- f0ebe14: use-endpoint-instead-of-localhost
+
 ## 0.8.1
 
 ### Patch Changes
