@@ -42,7 +42,6 @@ model GenerationResult {
   data: string;
 }
 
-#suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for getLroMetadata"
 @scenario
 @doc("Generate data.")
 @summary("Generate data.")
