@@ -71,6 +71,63 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
+### Azure_ClientGenerator_Core_Access_InternalOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/internalOperation/noDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/internalDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/publicDecoratorInInternal`
+
+This scenario contains internal operations. All should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Access_PublicOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/publicOperation/noDecoratorInPublic`
+  - `get /azure/client-generator-core/access/publicOperation/publicDecoratorInPublic`
+
+This scenario contains public operations. It should be generated and exported.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Access_RelativeModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/relativeModelInOperation/operation`
+  - `get /azure/client-generator-core/access/relativeModelInOperation/discriminator`
+
+This scenario contains internal operations. All should be generated but not exposed.
+
+### Azure_ClientGenerator_Core_Access_SharedModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/sharedModelInOperation/public`
+  - `get /azure/client-generator-core/access/sharedModelInOperation/internal`
+
+This scenario contains two operations, one public, another internal. The public one should be generated and exported while the internal one should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
 ### Azure_ClientGenerator_Core_Internal_internalOnly
 
 - Endpoint: `get /azure/client-generator-core/internal/internal`
@@ -114,6 +171,15 @@ Expected response body:
   "name": <any string>
 }
 ```
+
+### Azure_ClientGenerator_Core_Usage_ModelInOperation
+
+- Endpoints:
+  - `post /azure/client-generator-core/usage/inputToInputOutput`
+  - `post /azure/client-generator-core/usage/outputToInputOutput`
+
+This scenario contains two public operations. Both should be generated and exported.
+The models are override to roundtrip, so they should be generated and exported as well.
 
 ### Azure_Core_Basic_createOrReplace
 
@@ -861,6 +927,82 @@ Test default encode (base64) for bytes query parameter.
 Expected query parameter:
 value=dGVzdA== (base64 encode of test)
 
+### Encode_Bytes_RequestBody_base64
+
+- Endpoint: `get /encode/bytes/body/request/base64`
+
+Test base64 encode for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_RequestBody_base64url
+
+- Endpoint: `get /encode/bytes/body/request/base64url`
+
+Test base64url encode for bytes header.
+Expected header:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_RequestBody_customContentType
+
+- Endpoint: `get /encode/bytes/body/request/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_RequestBody_default
+
+- Endpoint: `get /encode/bytes/body/request/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_RequestBody_octetStream
+
+- Endpoint: `get /encode/bytes/body/request/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_base64
+
+- Endpoint: `get /encode/bytes/body/response/base64`
+
+Test base64 encode for bytes header.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_ResponseBody_base64url
+
+- Endpoint: `get /encode/bytes/body/response/base64url`
+
+Test base64url encode for bytes header.
+Expected header:
+value=dGVzdA (base64url encode of test)
+
+### Encode_Bytes_ResponseBody_customContentType
+
+- Endpoint: `get /encode/bytes/body/response/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_default
+
+- Endpoint: `get /encode/bytes/body/response/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected header:
+value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_ResponseBody_octetStream
+
+- Endpoint: `get /encode/bytes/body/response/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
 ### Encode_Datetime_Header_default
 
 - Endpoint: `get /encode/datetime/header/default`
@@ -1045,6 +1187,38 @@ value=1686566864
 Test unixTimestamp encode for datetime array query parameter.
 Expected query parameter:
 value=1686566864, 1686734256
+
+### Encode_Datetime_ResponseHeader_default
+
+- Endpoint: `get /encode/datetime/responseheader/default`
+
+Test default encode (rfc7231) for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_rfc3339
+
+- Endpoint: `get /encode/datetime/responseheader/rfc3339`
+
+Test rfc3339 encode for datetime header.
+Expected response header:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_ResponseHeader_rfc7231
+
+- Endpoint: `get /encode/datetime/responseheader/rfc7231`
+
+Test rfc7231 encode for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_unixTimestamp
+
+- Endpoint: `get /encode/datetime/responseheader/unix-timestamp`
+
+Test unixTimestamp encode for datetime header.
+Expected response header:
+value=1686566864
 
 ### Encode_Duration_Header_default
 
@@ -1436,6 +1610,48 @@ Expected request body:
 
 ```json
 { "defaultName": true }
+### Payload_Pageable_list
+
+- Endpoint: `get /payload/pageable`
+
+List users.
+
+SDK may hide the "maxpagesize" from API signature. The functionality of "maxpagesize" could be in related language Page model.
+
+Expected query parameter:
+maxpagesize=3
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "name": "user5"
+    },
+    {
+      "name": "user6"
+    },
+    {
+      "name": "user7"
+    }
+  ],
+  "nextLink": "{endpoint}//payload/pageable?skipToken=name-user7&maxpagesize=3"
+}
+```
+
+Expected query parameter:
+skipToken=name-user7
+maxpagesize=3
+
+```json
+{
+  "value": [
+    {
+      "name": "user8"
+    }
+  ]
+}
 ```
 
 ### Projection_ProjectedName_operation
@@ -1628,6 +1844,24 @@ Expected header parameters:
 - client-request-id=<any uuid string>
   Expected response header:
 - client-request-id=<uuid string same with request header>
+
+### SpecialHeaders_ConditionalRequest_postIfMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-match`
+
+Check when only If-Match in header is defined.
+Expected header parameters:
+
+- if-match="valid"
+
+### SpecialHeaders_ConditionalRequest_postIfNoneMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-none-match`
+
+Check when only If-None-Match in header is defined.
+Expected header parameters:
+
+- if-nonematch="invalid"
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
@@ -3591,6 +3825,54 @@ Expected input body:
 
 ```json
 { "property": "hello" }
+```
+
+### Type_Union_receiveFirstNamedUnionValue
+
+- Endpoint: `get /type/union/receive/model1`
+
+This test is testing receiving the first union value in named union property.
+
+Expect response:
+
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+
+### Type_Union_receiveIntArray
+
+- Endpoint: `get /type/union/receive/int-array`
+
+This test is testing receiving an int array value in simple union property.
+
+Expect response:
+
+```json
+{ "simpleUnion": [1, 2] }
+```
+
+### Type_Union_receiveSecondNamedUnionValue
+
+- Endpoint: `get /type/union/receive/model2`
+
+This test is testing receiving the second union value in named union property.
+
+Expect response:
+
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
+```
+
+### Type_Union_receiveString
+
+- Endpoint: `get /type/union/receive/string`
+
+This test is testing receiving a string value in simple union property.
+
+Expect response:
+
+```json
+{ "simpleUnion": "string" }
 ```
 
 ### Type_Union_sendFirstNamedUnionValue

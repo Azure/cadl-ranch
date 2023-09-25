@@ -15,7 +15,7 @@ namespace Projection.ProjectedName;
 namespace Property {
   model LanguageProjectedNameModel {
     @doc("Pass in true")
-    @projectedName("client", "_DontUseMeAsAName_") // Should be ignored
+    @projectedName("client", "_DoNotUseMeAsAName_") // Should be ignored
     @projectedName("csharp", "CSName")
     @projectedName("java", "JavaName")
     @projectedName("javascript", "TSName")

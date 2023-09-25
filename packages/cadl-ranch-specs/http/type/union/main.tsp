@@ -36,6 +36,14 @@ model ModelWithNamedUnionProperty {
   namedUnion: MyNamedUnion;
 }
 
+model ModelWithSimpleUnionPropertyInResponse {
+  simpleUnion: string | int32[];
+}
+
+model ModelWithNamedUnionPropertyInResponse {
+  namedUnion: MyNamedUnion;
+}
+
 @scenario
 @scenarioDoc("""
 This test is testing sending an int value in simple union property.
@@ -79,3 +87,55 @@ This test is testing sending the second union value in named union property.
 @route("/model2")
 @post
 op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing receiving a string value in simple union property.
+
+Expect response:
+```json
+{ "simpleUnion": "string" }
+```
+""")
+@route("/receive/string")
+@get
+op receiveString(): ModelWithSimpleUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing receiving an int array value in simple union property.
+
+Expect response:
+```json
+{ "simpleUnion": [1, 2] }
+```
+""")
+@route("/receive/int-array")
+@get
+op receiveIntArray(): ModelWithSimpleUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing receiving the first union value in named union property.
+
+Expect response:
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+""")
+@route("/receive/model1")
+@get
+op receiveFirstNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
+
+@scenario
+@scenarioDoc("""
+This test is testing receiving the second union value in named union property.
+
+Expect response:
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
+```
+""")
+@route("/receive/model2")
+@get
+op receiveSecondNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
