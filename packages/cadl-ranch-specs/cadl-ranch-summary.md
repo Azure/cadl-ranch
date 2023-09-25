@@ -3143,6 +3143,46 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
+### Type_Property_Optional_BooleanLiteral_getAll
+
+- Endpoint: `get /type/property/optional/boolean/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_BooleanLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/boolean/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_BooleanLiteral_putAll
+
+- Endpoint: `put /type/property/optional/boolean/literal/all`
+
+Expected request body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_Optional_BooleanLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/boolean/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_Optional_Bytes_getAll
 
 - Endpoint: `get /type/property/optional/bytes/all`
@@ -3343,6 +3383,86 @@ Expected request body:
 {}
 ```
 
+### Type_Property_Optional_FloatLiteral_getAll
+
+- Endpoint: `get /type/property/optional/float/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_FloatLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/float/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_FloatLiteral_putAll
+
+- Endpoint: `put /type/property/optional/float/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 1.2 }
+```
+
+### Type_Property_Optional_FloatLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/float/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_IntLiteral_getAll
+
+- Endpoint: `get /type/property/optional/int/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_IntLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/int/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_IntLiteral_putAll
+
+- Endpoint: `put /type/property/optional/int/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 1 }
+```
+
+### Type_Property_Optional_IntLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_Optional_RequiredAndOptional_getAll
 
 - Endpoint: `get /type/property/optional/requiredAndOptional/all`
@@ -3423,6 +3543,166 @@ Expected request body:
 {}
 ```
 
+### Type_Property_Optional_StringLiteral_getAll
+
+- Endpoint: `get /type/property/optional/string/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_StringLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/string/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_StringLiteral_putAll
+
+- Endpoint: `put /type/property/optional/string/literal/all`
+
+Expected request body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_Optional_StringLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/string/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionFloatLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/float/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_UnionFloatLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/float/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionFloatLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/float/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 2.3 }
+```
+
+### Type_Property_Optional_UnionFloatLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/float/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionIntLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/int/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_UnionIntLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/int/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionIntLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/int/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 2 }
+```
+
+### Type_Property_Optional_UnionIntLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionStringLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/string/literal/all`
+
+Expected response body:
+
+```json
+{"property": doc}
+```
+
+### Type_Property_Optional_UnionStringLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/string/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionStringLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/string/literal/all`
+
+Expected request body:
+
+```json
+{"property": world}
+```
+
+### Type_Property_Optional_UnionStringLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/string/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_ValueTypes_Boolean_get
 
 - Endpoint: `get /type/property/value-types/boolean`
@@ -3436,6 +3716,26 @@ Expected response body:
 ### Type_Property_ValueTypes_Boolean_put
 
 - Endpoint: `put /type/property/value-types/boolean`
+
+Expected input body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_ValueTypes_BooleanLiteral_get
+
+- Endpoint: `get /type/property/value-types/boolean/literal`
+
+Expected response body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_ValueTypes_BooleanLiteral_put
+
+- Endpoint: `put /type/property/value-types/boolean/literal`
 
 Expected input body:
 
@@ -3643,6 +3943,26 @@ Expected input body:
 { "property": 42.42 }
 ```
 
+### Type_Property_ValueTypes_FloatLiteral_get
+
+- Endpoint: `get /type/property/value-types/float/literal`
+
+Expected response body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Type_Property_ValueTypes_FloatLiteral_put
+
+- Endpoint: `put /type/property/value-types/float/literal`
+
+Expected input body:
+
+```json
+{ "property": 42.42 }
+```
+
 ### Type_Property_ValueTypes_Int_get
 
 - Endpoint: `get /type/property/value-types/int`
@@ -3656,6 +3976,26 @@ Expected response body:
 ### Type_Property_ValueTypes_Int_put
 
 - Endpoint: `put /type/property/value-types/int`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_IntLiteral_get
+
+- Endpoint: `get /type/property/value-types/int/literal`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_IntLiteral_put
+
+- Endpoint: `put /type/property/value-types/int/literal`
 
 Expected input body:
 
@@ -3721,6 +4061,86 @@ Expected input body:
 
 ```json
 {"property": hello}
+```
+
+### Type_Property_ValueTypes_StringLiteral_get
+
+- Endpoint: `get /type/property/value-types/string/literal`
+
+Expected response body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_ValueTypes_StringLiteral_put
+
+- Endpoint: `put /type/property/value-types/string/literal`
+
+Expected input body:
+
+```json
+{"property": hello}
+```
+
+### Type_Property_ValueTypes_UnionFloatLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/float/literal`
+
+Expected response body:
+
+```json
+{ "property": 43.43 }
+```
+
+### Type_Property_ValueTypes_UnionFloatLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/float/literal`
+
+Expected input body:
+
+```json
+{ "property": 43.43 }
+```
+
+### Type_Property_ValueTypes_UnionIntLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/int/literal`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnionIntLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/int/literal`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnionStringLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/string/literal`
+
+Expected response body:
+
+```json
+{"property": world}
+```
+
+### Type_Property_ValueTypes_UnionStringLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/string/literal`
+
+Expected input body:
+
+```json
+{"property": world}
 ```
 
 ### Type_Property_ValueTypes_UnknownArray_get

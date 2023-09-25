@@ -54,7 +54,7 @@ namespace DifferentBody {
 
   model PngImageAsJson {
     @header contentType: "image/jpeg";
-    content: bytes;
+    content: string;
   }
 
   @sharedRoute

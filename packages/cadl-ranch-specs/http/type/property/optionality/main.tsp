@@ -128,6 +128,55 @@ model CollectionsModelProperty is ModelTemplate<StringProperty[]>;
 interface CollectionsModel
   extends OperationsTemplate<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
 
+// Model with optional string literal property
+@doc("Model with string literal property")
+model StringLiteralProperty is ModelTemplate<"hello">;
+@route("/string/literal")
+@operationGroup
+interface StringLiteral extends OperationsTemplate<StringLiteralProperty, "hello"> {}
+
+// Model with optional int literal property
+@doc("Model with int literal property")
+model IntLiteralProperty is ModelTemplate<1>;
+@route("/int/literal")
+@operationGroup
+interface IntLiteral extends OperationsTemplate<IntLiteralProperty, "1"> {}
+
+// Model with optional float literal property
+@doc("Model with float literal property")
+model FloatLiteralProperty is ModelTemplate<1.2>;
+@route("/float/literal")
+@operationGroup
+interface FloatLiteral extends OperationsTemplate<FloatLiteralProperty, "1.2"> {}
+
+// Model with optional boolean literal property
+@doc("Model with boolean literal property")
+model BooleanLiteralProperty is ModelTemplate<true>;
+@route("/boolean/literal")
+@operationGroup
+interface BooleanLiteral extends OperationsTemplate<BooleanLiteralProperty, "true"> {}
+
+// Model with union of string literal property
+@doc("Model with union of string literal property")
+model UnionStringLiteralProperty is ModelTemplate<"hello" | "world">;
+@route("/union/string/literal")
+@operationGroup
+interface UnionStringLiteral extends OperationsTemplate<UnionStringLiteralProperty, "world"> {}
+
+// Model with union of int literal property
+@doc("Model with union of int literal property")
+model UnionIntLiteralProperty is ModelTemplate<1 | 2>;
+@route("/union/int/literal")
+@operationGroup
+interface UnionIntLiteral extends OperationsTemplate<UnionIntLiteralProperty, "2"> {}
+
+// Model with union of float literal property
+@doc("Model with union of float literal property")
+model UnionFloatLiteralProperty is ModelTemplate<1.2 | 2.3>;
+@route("/union/float/literal")
+@operationGroup
+interface UnionFloatLiteral extends OperationsTemplate<UnionFloatLiteralProperty, "2.3"> {}
+
 @doc("Model with required and optional properties")
 model RequiredAndOptionalProperty {
   @doc("optional string property")
