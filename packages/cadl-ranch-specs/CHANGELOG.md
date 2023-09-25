@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.22.1
+
+### Patch Changes
+
+- 94a897f: Add new scenarios around bytes in body
+- Updated dependencies [94a897f]
+  - @azure-tools/cadl-ranch@0.8.1
+
 ## 0.22.0
 
 ### Minor Changes
@@ -23,7 +31,7 @@
 
 ### Minor Changes
 
-- c7e83c0: add new a few new cases of repsonse with unions
+- c7e83c0: add new a few new cases of response with unions
 
 ### Patch Changes
 
