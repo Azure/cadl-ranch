@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch
 
+## 0.8.1
+
+### Patch Changes
+
+- 94a897f: Add new scenarios around bytes in body
+
+## 0.8.0
+
+### Minor Changes
+
+- 825b73c: Update Dependencies for TypeSpec September release
+
+### Patch Changes
+
+- Updated dependencies [825b73c]
+  - @azure-tools/cadl-ranch-expect@0.7.0
+
 ## 0.7.0
 
 ### Minor Changes
