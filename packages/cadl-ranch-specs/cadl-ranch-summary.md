@@ -929,38 +929,38 @@ value=dGVzdA== (base64 encode of test)
 
 ### Encode_Bytes_RequestBody_base64
 
-- Endpoint: `get /encode/bytes/body/request/base64`
+- Endpoint: `post /encode/bytes/body/request/base64`
 
-Test base64 encode for bytes header.
-Expected header:
-value=dGVzdA== (base64 encode of test)
+Test base64 encode for bytes body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
 
 ### Encode_Bytes_RequestBody_base64url
 
-- Endpoint: `get /encode/bytes/body/request/base64url`
+- Endpoint: `post /encode/bytes/body/request/base64url`
 
-Test base64url encode for bytes header.
-Expected header:
-value=dGVzdA (base64url encode of test)
+Test base64url encode for bytes body.
+Expected body:
+"dGVzdA" (base64url encode of test, in JSON string)
 
 ### Encode_Bytes_RequestBody_customContentType
 
-- Endpoint: `get /encode/bytes/body/request/custom-content-type`
+- Endpoint: `post /encode/bytes/body/request/custom-content-type`
 
 When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
 File should match packages/cadl-ranch-specs/assets/image.png
 
 ### Encode_Bytes_RequestBody_default
 
-- Endpoint: `get /encode/bytes/body/request/default`
+- Endpoint: `post /encode/bytes/body/request/default`
 
 Test default encode (base64) for bytes in a json body.
-Expected header:
-value=dGVzdA== (base64 encode of test)
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
 
 ### Encode_Bytes_RequestBody_octetStream
 
-- Endpoint: `get /encode/bytes/body/request/octet-stream`
+- Endpoint: `post /encode/bytes/body/request/octet-stream`
 
 When content type is application/octet-stream and body is `bytes` the payload is a binary file.
 File should match packages/cadl-ranch-specs/assets/image.png
@@ -969,17 +969,17 @@ File should match packages/cadl-ranch-specs/assets/image.png
 
 - Endpoint: `get /encode/bytes/body/response/base64`
 
-Test base64 encode for bytes header.
-Expected header:
-value=dGVzdA== (base64 encode of test)
+Test base64 encode for bytes body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
 
 ### Encode_Bytes_ResponseBody_base64url
 
 - Endpoint: `get /encode/bytes/body/response/base64url`
 
-Test base64url encode for bytes header.
-Expected header:
-value=dGVzdA (base64url encode of test)
+Test base64url encode for bytes body.
+Expected body:
+"dGVzdA" (base64url encode of test, in JSON string)
 
 ### Encode_Bytes_ResponseBody_customContentType
 
@@ -993,8 +993,8 @@ File should match packages/cadl-ranch-specs/assets/image.png
 - Endpoint: `get /encode/bytes/body/response/default`
 
 Test default encode (base64) for bytes in a json body.
-Expected header:
-value=dGVzdA== (base64 encode of test)
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
 
 ### Encode_Bytes_ResponseBody_octetStream
 
