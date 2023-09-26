@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json, passOnCode } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
