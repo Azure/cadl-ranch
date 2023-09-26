@@ -132,7 +132,7 @@ op parameter(
 @route("/model")
 @operationGroup
 namespace Model {
-  @projectedName("client", "_DontUseMeAsAName_") // Should be ignored
+  @projectedName("client", "_NotUseMeAsAName_") // Should be ignored
   @projectedName("csharp", "CSModel")
   @projectedName("java", "JavaModel")
   @projectedName("javascript", "TSModel")
