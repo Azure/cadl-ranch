@@ -226,3 +226,144 @@ namespace Header {
     value: base64urlBytes[]
   ): NoContentResponse;
 }
+
+@operationGroup
+@route("/body/request")
+namespace RequestBody {
+  @route("/default")
+  @scenario
+  @scenarioDoc("""
+  Test default encode (base64) for bytes in a json body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
+  """)
+  @post
+  op default(
+    @body
+    value: bytes
+  ): NoContentResponse;
+
+  @route("/octet-stream")
+  @scenario
+  @scenarioDoc("""
+  When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+  File should match packages/cadl-ranch-specs/assets/image.png
+  """)
+  @post
+  op octetStream(
+    @header
+    contentType: "application/octet-stream",
+
+    @body
+    value: bytes
+  ): NoContentResponse;
+
+  @route("/custom-content-type")
+  @scenario
+  @scenarioDoc("""
+  When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+  File should match packages/cadl-ranch-specs/assets/image.png
+  """)
+  @post
+  op customContentType(
+    @header
+    contentType: "image/png",
+
+    @body
+    value: bytes
+  ): NoContentResponse;
+
+  @route("/base64")
+  @scenario
+  @scenarioDoc("""
+  Test base64 encode for bytes body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
+  """)
+  @post
+  op base64(
+    @body
+    @encode(BytesKnownEncoding.base64)
+    value: bytes
+  ): NoContentResponse;
+
+  @route("/base64url")
+  @scenario
+  @scenarioDoc("""
+  Test base64url encode for bytes body.
+  Expected body:
+  "dGVzdA" (base64url encode of test, in JSON string)
+  """)
+  @post
+  op base64url(
+    @body
+    @encode(BytesKnownEncoding.base64url)
+    value: bytes
+  ): NoContentResponse;
+}
+
+@operationGroup
+@route("/body/response")
+namespace ResponseBody {
+  @route("/default")
+  @scenario
+  @scenarioDoc("""
+  Test default encode (base64) for bytes in a json body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
+  """)
+  op default(): {
+    @body
+    value: bytes;
+  };
+
+  @route("/octet-stream")
+  @scenario
+  @scenarioDoc("""
+  When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+  File should match packages/cadl-ranch-specs/assets/image.png
+  """)
+  op octetStream(): {
+    @header
+    contentType: "application/octet-stream";
+
+    @body
+    value: bytes;
+  };
+
+  @route("/custom-content-type")
+  @scenario
+  @scenarioDoc("""
+  When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+  File should match packages/cadl-ranch-specs/assets/image.png
+  """)
+  op customContentType(): {
+    @header
+    contentType: "image/png";
+
+    @body
+    value: bytes;
+  };
+
+  @route("/base64")
+  @scenario
+  @scenarioDoc("""
+  Test base64 encode for bytes body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
+  """)
+  op base64(): {
+    @body
+    @encode(BytesKnownEncoding.base64)
+    value: bytes;
+  };
+
+  @route("/base64url")
+  @scenario
+  @scenarioDoc("""
+  Test base64url encode for bytes body.
+  Expected body:
+  "dGVzdA" (base64url encode of test, in JSON string)
+  """)
+  op base64url(): base64urlBytes;
+}
