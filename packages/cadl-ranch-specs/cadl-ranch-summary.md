@@ -2661,6 +2661,42 @@ Expected input body:
 }
 ```
 
+### Type_Primitive_Boolean_getBooleanValue
+
+- Endpoint: `get /type/primitive/boolean`
+
+Expect to handle a boolean value. Mock api will return true
+
+### Type_Primitive_Boolean_putBooleanValue
+
+- Endpoint: `put /type/primitive/boolean`
+
+Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Primitive_String_getStringValue
+
+- Endpoint: `get /type/primitive/string`
+
+Expect to handle a string value. Mock api will return 'ok'
+
+### Type_Primitive_String_putStringValue
+
+- Endpoint: `put /type/primitive/string`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Primitive_Unknown_getUnknownValue
+
+- Endpoint: `get /type/primitive/unknown`
+
+Expect to handle a unknown type value. Mock api will return 'test'
+
+### Type_Primitive_Unknown_putUnknownValue
+
+- Endpoint: `put /type/primitive/unknown`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
 ### Type_Property_Nullable_Bytes_getNonNull
 
 - Endpoint: `get /type/property/nullable/bytes/non-null`
