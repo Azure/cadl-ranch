@@ -13,7 +13,7 @@ namespace Type.Primitive;
 interface String {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
-  @scenarioDoc("Expect to handle a string value. Mock api will return 'ok'")
+  @scenarioDoc("Expect to handle a string value. Mock api will return 'test'")
   @get
   @doc("get string value")
   get(): string;

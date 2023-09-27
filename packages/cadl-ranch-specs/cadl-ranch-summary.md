@@ -2913,7 +2913,7 @@ Expect to send a boolean value. Mock api expect to receive 'true'
 
 - Endpoint: `get /type/primitive/string`
 
-Expect to handle a string value. Mock api will return 'ok'
+Expect to handle a string value. Mock api will return 'test'
 
 ### Type_Primitive_String_put
 
