@@ -2897,37 +2897,37 @@ Expected input body:
 }
 ```
 
-### Type_Primitive_Boolean_getBooleanValue
+### Type_Primitive_Boolean_get
 
 - Endpoint: `get /type/primitive/boolean`
 
 Expect to handle a boolean value. Mock api will return true
 
-### Type_Primitive_Boolean_putBooleanValue
+### Type_Primitive_Boolean_put
 
 - Endpoint: `put /type/primitive/boolean`
 
 Expect to send a boolean value. Mock api expect to receive 'true'
 
-### Type_Primitive_String_getStringValue
+### Type_Primitive_String_get
 
 - Endpoint: `get /type/primitive/string`
 
 Expect to handle a string value. Mock api will return 'ok'
 
-### Type_Primitive_String_putStringValue
+### Type_Primitive_String_put
 
 - Endpoint: `put /type/primitive/string`
 
 Expect to send a string value. Mock api expect to receive 'test'
 
-### Type_Primitive_Unknown_getUnknownValue
+### Type_Primitive_Unknown_get
 
 - Endpoint: `get /type/primitive/unknown`
 
 Expect to handle a unknown type value. Mock api will return 'test'
 
-### Type_Primitive_Unknown_putUnknownValue
+### Type_Primitive_Unknown_put
 
 - Endpoint: `put /type/primitive/unknown`
 

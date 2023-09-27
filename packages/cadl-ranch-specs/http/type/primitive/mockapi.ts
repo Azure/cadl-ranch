@@ -4,13 +4,13 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 // string value
-Scenarios.Type_Primitive_String_getStringValue = passOnSuccess(
+Scenarios.Type_Primitive_String_get = passOnSuccess(
   mockapi.get("/type/primitive/string", (req) => {
     return { status: 200, body: json("test") };
   }),
 );
 
-Scenarios.Type_Primitive_String_putStringValue = passOnSuccess(
+Scenarios.Type_Primitive_String_put = passOnSuccess(
   mockapi.put("/type/primitive/string", (req) => {
     req.expect.bodyEquals("test");
     return { status: 204 };
@@ -18,13 +18,13 @@ Scenarios.Type_Primitive_String_putStringValue = passOnSuccess(
 );
 
 // boolean value
-Scenarios.Type_Primitive_Boolean_getBooleanValue = passOnSuccess(
+Scenarios.Type_Primitive_Boolean_get = passOnSuccess(
   mockapi.get("/type/primitive/boolean", (req) => {
     return { status: 200, body: json(true) };
   }),
 );
 
-Scenarios.Type_Primitive_Boolean_putBooleanValue = passOnSuccess(
+Scenarios.Type_Primitive_Boolean_put = passOnSuccess(
   mockapi.put("/type/primitive/boolean", (req) => {
     req.expect.bodyEquals(true);
     return { status: 204 };
@@ -32,13 +32,13 @@ Scenarios.Type_Primitive_Boolean_putBooleanValue = passOnSuccess(
 );
 
 //unknown value
-Scenarios.Type_Primitive_Unknown_getUnknownValue = passOnSuccess(
+Scenarios.Type_Primitive_Unknown_get = passOnSuccess(
   mockapi.get("/type/primitive/unknown", (req) => {
     return { status: 200, body: json("test") };
   }),
 );
 
-Scenarios.Type_Primitive_Unknown_putUnknownValue = passOnSuccess(
+Scenarios.Type_Primitive_Unknown_put = passOnSuccess(
   mockapi.put("/type/primitive/unknown", (req) => {
     req.expect.bodyEquals("test");
     return { status: 204 };
