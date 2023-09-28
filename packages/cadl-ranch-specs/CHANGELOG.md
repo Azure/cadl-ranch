@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.22.2
+
+### Patch Changes
+
+- 4786b2f: Bug fix on bytes request/response body
+- f0ebe14: use-endpoint-instead-of-localhost
+- Updated dependencies [f0ebe14]
+  - @azure-tools/cadl-ranch@0.8.2
+
 ## 0.22.1
 
 ### Patch Changes
