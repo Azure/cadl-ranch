@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch
 
+## 0.8.2
+
+### Patch Changes
+
+- f0ebe14: use-endpoint-instead-of-localhost
+
+## 0.8.1
+
+### Patch Changes
+
+- 94a897f: Add new scenarios around bytes in body
+
 ## 0.8.0
 
 ### Minor Changes
