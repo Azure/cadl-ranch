@@ -35,5 +35,5 @@ op immediateSuccess(
   repeatabilityRequestID: string,
 
   @header("Repeatability-First-Sent")
-  repeatabilityFirstSent: utcDateTime
+  repeatabilityFirstSent: utcDateTime,
 ): RepeatableResponse;
