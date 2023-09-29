@@ -79,7 +79,7 @@ interface AddOptionalParam {
     @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    `new-parameter`?: string
+    `new-parameter`?: string,
   ): NoContentResponse;
 
   @scenario
@@ -110,7 +110,7 @@ interface AddOptionalParam {
     @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    `new-parameter`?: string
+    `new-parameter`?: string,
   ): NoContentResponse;
 
   @scenario
@@ -141,7 +141,7 @@ interface AddOptionalParam {
     @added(Versions.v2)
     @doc("I'm a new input optional parameter")
     @query
-    `new-parameter`?: string
+    `new-parameter`?: string,
   ): NoContentResponse;
 }
 

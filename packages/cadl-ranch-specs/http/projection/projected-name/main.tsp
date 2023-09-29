@@ -126,5 +126,5 @@ Expected query parameter: `default-name="true"`
 op parameter(
   @projectedName("client", "clientName")
   @query
-  `default-name`: string
+  `default-name`: string,
 ): NoContentResponse;
