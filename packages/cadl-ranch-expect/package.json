@@ -29,8 +29,8 @@
   "devDependencies": {
     "@types/node": "^18.16.0",
     "@typespec/eslint-config-typespec": "~0.48.0",
-    "eslint": "^8.39.0",
-    "rimraf": "^5.0.0",
+    "eslint": "^8.50.0",
+    "rimraf": "^5.0.5",
     "typescript": "~5.2.2"
   },
   "peerDependencies": {
