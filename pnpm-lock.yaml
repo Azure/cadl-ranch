@@ -399,8 +399,8 @@ importers:
         specifier: ~17.0.4
         version: 17.0.4
       semver:
-        specifier: ^7.5.1
-        version: 7.5.1
+        specifier: ^7.5.2
+        version: 7.5.4
     devDependencies:
       '@types/chai':
         specifier: ^4.3.4
@@ -3612,7 +3612,7 @@ packages:
     resolution: {integrity: sha512-7kZUAaLscfgbwBQRbvdMYaZOWyMEcPTH/tJjnyAWJ/dvvs9Ef+CERx/qJb9GExJpl1qipaDGn7KqHnFGGixd0w==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: false
 
   /@npmcli/git@5.0.3:
@@ -3625,7 +3625,7 @@ packages:
       proc-log: 3.0.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.5.1
+      semver: 7.5.4
       which: 4.0.0
     transitivePeerDependencies:
       - bluebird
@@ -8841,7 +8841,7 @@ packages:
       nopt: 6.0.0
       npmlog: 6.0.2
       rimraf: 3.0.2
-      semver: 7.5.1
+      semver: 7.5.4
       tar: 6.2.0
       which: 2.0.2
     transitivePeerDependencies:
@@ -8883,7 +8883,7 @@ packages:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.13.0
-      semver: 7.5.1
+      semver: 7.5.4
       validate-npm-package-license: 3.0.4
     dev: false
 
@@ -8903,7 +8903,7 @@ packages:
     resolution: {integrity: sha512-744wat5wAAHsxa4590mWO0tJ8PKxR8ORZsH9wGpQc3nWTzozMAgBN/XyqYw7mg3yqLM8dLwEnwSfKMmXAjF69g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: false
 
   /npm-normalize-package-bin@3.0.1:
@@ -8927,7 +8927,7 @@ packages:
     dependencies:
       hosted-git-info: 7.0.1
       proc-log: 3.0.0
-      semver: 7.5.1
+      semver: 7.5.4
       validate-npm-package-name: 5.0.0
     dev: false
 
@@ -8945,7 +8945,7 @@ packages:
       npm-install-checks: 6.2.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 11.0.1
-      semver: 7.5.1
+      semver: 7.5.4
     dev: false
 
   /npm-registry-fetch@16.0.0:
@@ -9931,14 +9931,6 @@ packages:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
     dev: true
-
-  /semver@7.5.1:
-    resolution: {integrity: sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
-    dev: false
 
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
