@@ -49,9 +49,8 @@
     "chai": "^4.3.7",
     "eslint": "^8.39.0",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "~5.2.2"
   }
 }
