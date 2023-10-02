@@ -161,4 +161,4 @@ function propertyNameScenario(route: string, name: string) {
   );
 }
 
-Scenarios.SpecialWords_Models_sameAsModel = propertyNameScenario("same-as-model", "SameAsModel");
+Scenarios.SpecialWords_ModelProperties_sameAsModel = propertyNameScenario("same-as-model", "SameAsModel");
