@@ -29,7 +29,7 @@ jobs:
 
       - run: npx -p @changesets/cli changeset status --since=main
         name: Check changelog
-        if: ${{ !startsWith(github.head_ref, 'publish/') }}
+        if: ${{ !startsWith(github.head_ref, 'publish/') && !startsWith(github.head_ref, 'dependabot/') }}
 
   # Build on linux and windows
   build:
