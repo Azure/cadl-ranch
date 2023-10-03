@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.3.3
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+
 ## 0.3.2
 
 ### Patch Changes

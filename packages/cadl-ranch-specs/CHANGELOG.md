@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.22.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [beb2605]
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch@0.8.3
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
 ## 0.22.2
 
 ### Patch Changes
