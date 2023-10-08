@@ -5,8 +5,8 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@scenarioService("/type/primitive")
-namespace Type.Primitive;
+@scenarioService("/type/scalar")
+namespace Type.Scalar;
 
 @operationGroup
 @route("/string")

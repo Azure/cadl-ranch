@@ -3595,42 +3595,6 @@ Expected input body:
 }
 ```
 
-### Type_Primitive_Boolean_get
-
-- Endpoint: `get /type/primitive/boolean`
-
-Expect to handle a boolean value. Mock api will return true
-
-### Type_Primitive_Boolean_put
-
-- Endpoint: `put /type/primitive/boolean`
-
-Expect to send a boolean value. Mock api expect to receive 'true'
-
-### Type_Primitive_String_get
-
-- Endpoint: `get /type/primitive/string`
-
-Expect to handle a string value. Mock api will return 'test'
-
-### Type_Primitive_String_put
-
-- Endpoint: `put /type/primitive/string`
-
-Expect to send a string value. Mock api expect to receive 'test'
-
-### Type_Primitive_Unknown_get
-
-- Endpoint: `get /type/primitive/unknown`
-
-Expect to handle a unknown type value. Mock api will return 'test'
-
-### Type_Primitive_Unknown_put
-
-- Endpoint: `put /type/primitive/unknown`
-
-Expect to send a string value. Mock api expect to receive 'test'
-
 ### Type_Property_Nullable_Bytes_getNonNull
 
 - Endpoint: `get /type/property/nullable/bytes/non-null`
@@ -4536,6 +4500,42 @@ Expected input body:
 ```json
 { "property": "hello" }
 ```
+
+### Type_Scalar_Boolean_get
+
+- Endpoint: `get /type/scalar/boolean`
+
+Expect to handle a boolean value. Mock api will return true
+
+### Type_Scalar_Boolean_put
+
+- Endpoint: `put /type/scalar/boolean`
+
+Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_String_get
+
+- Endpoint: `get /type/scalar/string`
+
+Expect to handle a string value. Mock api will return 'test'
+
+### Type_Scalar_String_put
+
+- Endpoint: `put /type/scalar/string`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Scalar_Unknown_get
+
+- Endpoint: `get /type/scalar/unknown`
+
+Expect to handle a unknown type value. Mock api will return 'test'
+
+### Type_Scalar_Unknown_put
+
+- Endpoint: `put /type/scalar/unknown`
+
+Expect to send a string value. Mock api expect to receive 'test'
 
 ### Type_Union_receiveFirstNamedUnionValue
 
