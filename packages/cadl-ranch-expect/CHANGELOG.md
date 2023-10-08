@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.7.1
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+
 ## 0.7.0
 
 ### Minor Changes
