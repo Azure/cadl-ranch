@@ -7,7 +7,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 // ------------------------------------------------------------------------
 function opNameScenario(name: string) {
   return passOnSuccess(
-    mockapi.get(`/special-words/operation/${name}`, (req) => {
+    mockapi.get(`/special-words/operations/${name}`, (req) => {
       return {
         status: 204,
       };
@@ -54,7 +54,7 @@ Scenarios.SpecialWords_Operations_yield = opNameScenario("yield");
 // ------------------------------------------------------------------------
 function paramNameScenario(name: string) {
   return passOnSuccess(
-    mockapi.get(`/special-words/parameter/${name}`, (req) => {
+    mockapi.get(`/special-words/parameters/${name}`, (req) => {
       req.expect.containsQueryParam(name, "ok");
       return {
         status: 204,
@@ -104,7 +104,7 @@ Scenarios.SpecialWords_Parameters_cancellationToken = paramNameScenario("cancell
 // ------------------------------------------------------------------------
 function modelNameScenario(name: string) {
   return passOnSuccess(
-    mockapi.get(`/special-words/model/${name}`, (req) => {
+    mockapi.post(`/special-words/models/${name}`, (req) => {
       req.expect.bodyEquals({ name: "ok" });
       return {
         status: 204,
@@ -152,7 +152,7 @@ Scenarios.SpecialWords_Models_yield = modelNameScenario("yield");
 // ------------------------------------------------------------------------
 function propertyNameScenario(route: string, name: string) {
   return passOnSuccess(
-    mockapi.get(`/special-words/model-properties/${route}`, (req) => {
+    mockapi.post(`/special-words/model-properties/${route}`, (req) => {
       req.expect.bodyEquals({ [name]: "ok" });
       return {
         status: 204,
