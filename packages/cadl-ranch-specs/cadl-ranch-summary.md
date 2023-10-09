@@ -128,50 +128,6 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_internalOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/internal`
-
-This scenario contains an internal operation. It should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_publicOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/public`
-
-This scenario contains a public operation. It should be generatated and exported.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_Shared
-
-- Endpoints:
-  - `get /azure/client-generator-core/internal/shared/public`
-  - `get /azure/client-generator-core/internal/shared/internal`
-
-This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
