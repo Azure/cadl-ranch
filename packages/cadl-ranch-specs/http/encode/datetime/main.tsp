@@ -25,7 +25,7 @@ namespace Query {
   """)
   op default(
     @query
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc3339")
@@ -38,7 +38,7 @@ namespace Query {
   op rfc3339(
     @query
     @encode(DateTimeKnownEncoding.rfc3339)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc7231")
@@ -51,7 +51,7 @@ namespace Query {
   op rfc7231(
     @query
     @encode(DateTimeKnownEncoding.rfc7231)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp")
@@ -64,7 +64,7 @@ namespace Query {
   op unixTimestamp(
     @query
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp-array")
@@ -78,7 +78,7 @@ namespace Query {
     @query({
       format: "csv",
     })
-    value: unixTimestampDatetime[]
+    value: unixTimestampDatetime[],
   ): NoContentResponse;
 }
 
@@ -221,7 +221,7 @@ namespace Header {
   """)
   op default(
     @header
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc3339")
@@ -234,7 +234,7 @@ namespace Header {
   op rfc3339(
     @header
     @encode(DateTimeKnownEncoding.rfc3339)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc7231")
@@ -247,7 +247,7 @@ namespace Header {
   op rfc7231(
     @header
     @encode(DateTimeKnownEncoding.rfc7231)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp")
@@ -260,7 +260,7 @@ namespace Header {
   op unixTimestamp(
     @header
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp-array")
@@ -274,7 +274,7 @@ namespace Header {
     @header({
       format: "csv",
     })
-    value: unixTimestampDatetime[]
+    value: unixTimestampDatetime[],
   ): NoContentResponse;
 }
 

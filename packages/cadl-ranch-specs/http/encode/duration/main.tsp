@@ -21,7 +21,7 @@ namespace Query {
   """)
   op default(
     @query
-    input: duration
+    input: duration,
   ): NoContentResponse;
 
   @route("/iso8601")
@@ -33,7 +33,7 @@ namespace Query {
   op iso8601(
     @query
     @encode(DurationKnownEncoding.ISO8601)
-    input: duration
+    input: duration,
   ): NoContentResponse;
 
   @route("/int32-seconds")
@@ -45,7 +45,7 @@ namespace Query {
   op int32Seconds(
     @query
     @encode(DurationKnownEncoding.seconds, int32)
-    input: duration
+    input: duration,
   ): NoContentResponse;
 
   @route("/float-seconds")
@@ -57,7 +57,7 @@ namespace Query {
   op floatSeconds(
     @query
     @encode(DurationKnownEncoding.seconds, float)
-    input: duration
+    input: duration,
   ): NoContentResponse;
 
   @encode(DurationKnownEncoding.seconds, int32)
@@ -73,7 +73,7 @@ namespace Query {
     @query({
       format: "csv",
     })
-    input: Int32Duration[]
+    input: Int32Duration[],
   ): NoContentResponse;
 }
 
@@ -215,7 +215,7 @@ namespace Header {
   """)
   op default(
     @header
-    duration: duration
+    duration: duration,
   ): NoContentResponse;
 
   @route("/iso8601")
@@ -227,7 +227,7 @@ namespace Header {
   op iso8601(
     @header
     @encode(DurationKnownEncoding.ISO8601)
-    duration: duration
+    duration: duration,
   ): NoContentResponse;
 
   @encode(DurationKnownEncoding.ISO8601)
@@ -243,7 +243,7 @@ namespace Header {
     @header({
       format: "csv",
     })
-    duration: Iso8601Duration[]
+    duration: Iso8601Duration[],
   ): NoContentResponse;
 
   @route("/int32-seconds")
@@ -255,7 +255,7 @@ namespace Header {
   op int32Seconds(
     @header
     @encode(DurationKnownEncoding.seconds, int32)
-    duration: duration
+    duration: duration,
   ): NoContentResponse;
 
   @route("/float-seconds")
@@ -267,6 +267,6 @@ namespace Header {
   op floatSeconds(
     @header
     @encode(DurationKnownEncoding.seconds, float)
-    duration: duration
+    duration: duration,
   ): NoContentResponse;
 }
