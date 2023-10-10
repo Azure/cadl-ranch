@@ -87,6 +87,7 @@ interface UnknownValue extends DictionaryOperations<Record<unknown>, "{'k1': 1, 
 model InnerModel {
   @doc("Required string property")
   property: string;
+
   children?: Record<InnerModel>;
 }
 

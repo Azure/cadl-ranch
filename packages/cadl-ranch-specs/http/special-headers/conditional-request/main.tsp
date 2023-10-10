@@ -24,7 +24,7 @@ Expected header parameters:
 op postIfMatch(
   @header("If-Match")
   @doc("The request should only proceed if an entity matches this string.")
-  ifMatch?: string
+  ifMatch?: string,
 ): NoContentResponse;
 
 @scenario
@@ -41,5 +41,5 @@ Expected header parameters:
 op postIfNoneMatch(
   @header("If-None-Match")
   @doc("The request should only proceed if no entity matches this string.")
-  ifNoneMatch?: string
+  ifNoneMatch?: string,
 ): NoContentResponse;

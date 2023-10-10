@@ -71,6 +71,7 @@ namespace Alias {
 
     @header
     `x-ms-test-header`: string;
+
     name: string;
   };
 
@@ -102,6 +103,7 @@ namespace Alias {
 
     @header
     `x-ms-test-header`: string;
+
     prop1: string;
     prop2: string;
     prop3: string;
