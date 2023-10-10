@@ -88,7 +88,7 @@ interface AddOptionalParam {
   fromOneRequired(
     @doc("I am a required parameter")
     @query
-    parameter: string
+    parameter: string,
   ): NoContentResponse;
 
   @scenario
@@ -114,6 +114,6 @@ interface AddOptionalParam {
   fromOneOptional(
     @doc("I am an optional parameter")
     @query
-    parameter?: string
+    parameter?: string,
   ): NoContentResponse;
 }

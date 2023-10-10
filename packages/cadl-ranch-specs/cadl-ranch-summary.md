@@ -128,50 +128,6 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_internalOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/internal`
-
-This scenario contains an internal operation. It should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_publicOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/public`
-
-This scenario contains a public operation. It should be generatated and exported.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_Shared
-
-- Endpoints:
-  - `get /azure/client-generator-core/internal/shared/public`
-  - `get /azure/client-generator-core/internal/shared/internal`
-
-This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -1847,51 +1803,749 @@ Expected header parameters:
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-### SpecialWords_Model_get
+### SpecialWords_ModelProperties_sameAsModel
 
-- Endpoint: `get /special-words/model/get`
+- Endpoint: `get /special-words/model-properties/same-as-model`
 
-Expected response body:
+Verify that a property can be called the same as the model name. This can be an issue in some languages where the class name is the constructor.
 
-```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
-```
-
-### SpecialWords_Model_put
-
-- Endpoint: `put /special-words/model/put`
-
-Expected input body:
+Send
 
 ```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
+{ "SameAsModel": "ok" }
 ```
 
-### SpecialWords_Operation_for
+### SpecialWords_Models_and
 
-- Endpoint: `get /special-words/operation/for`
+- Endpoint: `get /special-words/models/and`
 
-A operation name of `for` should work.
+Verify that the name "and" works. Send
 
-### SpecialWords_Parameter_getWithFilter
+```json
+{ "name": "ok" }
+```
 
-- Endpoint: `get /special-words/parameter/filter`
+### SpecialWords_Models_as
 
-Expect input parameter `filter='abc*.'`
+- Endpoint: `get /special-words/models/as`
 
-### SpecialWords_Parameter_getWithIf
+Verify that the name "as" works. Send
 
-- Endpoint: `get /special-words/parameter/if`
+```json
+{ "name": "ok" }
+```
 
-Expect input parameter `if='weekend'`
+### SpecialWords_Models_assert
+
+- Endpoint: `get /special-words/models/assert`
+
+Verify that the name "assert" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_async
+
+- Endpoint: `get /special-words/models/async`
+
+Verify that the name "async" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_await
+
+- Endpoint: `get /special-words/models/await`
+
+Verify that the name "await" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_break
+
+- Endpoint: `get /special-words/models/break`
+
+Verify that the name "break" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_class
+
+- Endpoint: `get /special-words/models/class`
+
+Verify that the name "class" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_constructor
+
+- Endpoint: `get /special-words/models/constructor`
+
+Verify that the name "constructor" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_continue
+
+- Endpoint: `get /special-words/models/continue`
+
+Verify that the name "continue" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_def
+
+- Endpoint: `get /special-words/models/def`
+
+Verify that the name "def" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_del
+
+- Endpoint: `get /special-words/models/del`
+
+Verify that the name "del" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_elif
+
+- Endpoint: `get /special-words/models/elif`
+
+Verify that the name "elif" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_else
+
+- Endpoint: `get /special-words/models/else`
+
+Verify that the name "else" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_except
+
+- Endpoint: `get /special-words/models/except`
+
+Verify that the name "except" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_exec
+
+- Endpoint: `get /special-words/models/exec`
+
+Verify that the name "exec" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_finally
+
+- Endpoint: `get /special-words/models/finally`
+
+Verify that the name "finally" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_for
+
+- Endpoint: `get /special-words/models/for`
+
+Verify that the name "for" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_from
+
+- Endpoint: `get /special-words/models/from`
+
+Verify that the name "from" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_global
+
+- Endpoint: `get /special-words/models/global`
+
+Verify that the name "global" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_if
+
+- Endpoint: `get /special-words/models/if`
+
+Verify that the name "if" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_import
+
+- Endpoint: `get /special-words/models/import`
+
+Verify that the name "import" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_in
+
+- Endpoint: `get /special-words/models/in`
+
+Verify that the name "in" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_is
+
+- Endpoint: `get /special-words/models/is`
+
+Verify that the name "is" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_lambda
+
+- Endpoint: `get /special-words/models/lambda`
+
+Verify that the name "lambda" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_not
+
+- Endpoint: `get /special-words/models/not`
+
+Verify that the name "not" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_or
+
+- Endpoint: `get /special-words/models/or`
+
+Verify that the name "or" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_pass
+
+- Endpoint: `get /special-words/models/pass`
+
+Verify that the name "pass" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_raise
+
+- Endpoint: `get /special-words/models/raise`
+
+Verify that the name "raise" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_return
+
+- Endpoint: `get /special-words/models/return`
+
+Verify that the name "return" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_try
+
+- Endpoint: `get /special-words/models/try`
+
+Verify that the name "try" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_while
+
+- Endpoint: `get /special-words/models/while`
+
+Verify that the name "while" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_with
+
+- Endpoint: `get /special-words/models/with`
+
+Verify that the name "with" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_yield
+
+- Endpoint: `get /special-words/models/yield`
+
+Verify that the name "yield" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Operations_and
+
+- Endpoint: `get /special-words/operations/and`
+
+Verify that the name "and" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_as
+
+- Endpoint: `get /special-words/operations/as`
+
+Verify that the name "as" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_assert
+
+- Endpoint: `get /special-words/operations/assert`
+
+Verify that the name "assert" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_async
+
+- Endpoint: `get /special-words/operations/async`
+
+Verify that the name "async" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_await
+
+- Endpoint: `get /special-words/operations/await`
+
+Verify that the name "await" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_break
+
+- Endpoint: `get /special-words/operations/break`
+
+Verify that the name "break" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_class
+
+- Endpoint: `get /special-words/operations/class`
+
+Verify that the name "class" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_constructor
+
+- Endpoint: `get /special-words/operations/constructor`
+
+Verify that the name "constructor" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_continue
+
+- Endpoint: `get /special-words/operations/continue`
+
+Verify that the name "continue" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_def
+
+- Endpoint: `get /special-words/operations/def`
+
+Verify that the name "def" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_del
+
+- Endpoint: `get /special-words/operations/del`
+
+Verify that the name "del" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_elif
+
+- Endpoint: `get /special-words/operations/elif`
+
+Verify that the name "elif" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_else
+
+- Endpoint: `get /special-words/operations/else`
+
+Verify that the name "else" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_except
+
+- Endpoint: `get /special-words/operations/except`
+
+Verify that the name "except" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_exec
+
+- Endpoint: `get /special-words/operations/exec`
+
+Verify that the name "exec" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_finally
+
+- Endpoint: `get /special-words/operations/finally`
+
+Verify that the name "finally" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_for
+
+- Endpoint: `get /special-words/operations/for`
+
+Verify that the name "for" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_from
+
+- Endpoint: `get /special-words/operations/from`
+
+Verify that the name "from" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_global
+
+- Endpoint: `get /special-words/operations/global`
+
+Verify that the name "global" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_if
+
+- Endpoint: `get /special-words/operations/if`
+
+Verify that the name "if" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_import
+
+- Endpoint: `get /special-words/operations/import`
+
+Verify that the name "import" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_in
+
+- Endpoint: `get /special-words/operations/in`
+
+Verify that the name "in" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_is
+
+- Endpoint: `get /special-words/operations/is`
+
+Verify that the name "is" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_lambda
+
+- Endpoint: `get /special-words/operations/lambda`
+
+Verify that the name "lambda" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_not
+
+- Endpoint: `get /special-words/operations/not`
+
+Verify that the name "not" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_or
+
+- Endpoint: `get /special-words/operations/or`
+
+Verify that the name "or" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_pass
+
+- Endpoint: `get /special-words/operations/pass`
+
+Verify that the name "pass" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_raise
+
+- Endpoint: `get /special-words/operations/raise`
+
+Verify that the name "raise" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_return
+
+- Endpoint: `get /special-words/operations/return`
+
+Verify that the name "return" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_try
+
+- Endpoint: `get /special-words/operations/try`
+
+Verify that the name "try" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_while
+
+- Endpoint: `get /special-words/operations/while`
+
+Verify that the name "while" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_with
+
+- Endpoint: `get /special-words/operations/with`
+
+Verify that the name "with" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_yield
+
+- Endpoint: `get /special-words/operations/yield`
+
+Verify that the name "yield" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Parameters_and
+
+- Endpoint: `get /special-words/parameters/and`
+
+Verify that the name "and" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_as
+
+- Endpoint: `get /special-words/parameters/as`
+
+Verify that the name "as" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_assert
+
+- Endpoint: `get /special-words/parameters/assert`
+
+Verify that the name "assert" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_async
+
+- Endpoint: `get /special-words/parameters/async`
+
+Verify that the name "async" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_await
+
+- Endpoint: `get /special-words/parameters/await`
+
+Verify that the name "await" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_break
+
+- Endpoint: `get /special-words/parameters/break`
+
+Verify that the name "break" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_cancellationToken
+
+- Endpoint: `get /special-words/parameters/cancellationToken`
+
+Verify that the name "cancellationToken" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_class
+
+- Endpoint: `get /special-words/parameters/class`
+
+Verify that the name "class" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_constructor
+
+- Endpoint: `get /special-words/parameters/constructor`
+
+Verify that the name "constructor" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_continue
+
+- Endpoint: `get /special-words/parameters/continue`
+
+Verify that the name "continue" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_def
+
+- Endpoint: `get /special-words/parameters/def`
+
+Verify that the name "def" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_del
+
+- Endpoint: `get /special-words/parameters/del`
+
+Verify that the name "del" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_elif
+
+- Endpoint: `get /special-words/parameters/elif`
+
+Verify that the name "elif" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_else
+
+- Endpoint: `get /special-words/parameters/else`
+
+Verify that the name "else" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_except
+
+- Endpoint: `get /special-words/parameters/except`
+
+Verify that the name "except" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_exec
+
+- Endpoint: `get /special-words/parameters/exec`
+
+Verify that the name "exec" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_finally
+
+- Endpoint: `get /special-words/parameters/finally`
+
+Verify that the name "finally" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_for
+
+- Endpoint: `get /special-words/parameters/for`
+
+Verify that the name "for" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_from
+
+- Endpoint: `get /special-words/parameters/from`
+
+Verify that the name "from" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_global
+
+- Endpoint: `get /special-words/parameters/global`
+
+Verify that the name "global" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_if
+
+- Endpoint: `get /special-words/parameters/if`
+
+Verify that the name "if" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_import
+
+- Endpoint: `get /special-words/parameters/import`
+
+Verify that the name "import" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_in
+
+- Endpoint: `get /special-words/parameters/in`
+
+Verify that the name "in" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_is
+
+- Endpoint: `get /special-words/parameters/is`
+
+Verify that the name "is" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_lambda
+
+- Endpoint: `get /special-words/parameters/lambda`
+
+Verify that the name "lambda" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_not
+
+- Endpoint: `get /special-words/parameters/not`
+
+Verify that the name "not" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_or
+
+- Endpoint: `get /special-words/parameters/or`
+
+Verify that the name "or" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_pass
+
+- Endpoint: `get /special-words/parameters/pass`
+
+Verify that the name "pass" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_raise
+
+- Endpoint: `get /special-words/parameters/raise`
+
+Verify that the name "raise" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_return
+
+- Endpoint: `get /special-words/parameters/return`
+
+Verify that the name "return" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_try
+
+- Endpoint: `get /special-words/parameters/try`
+
+Verify that the name "try" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_while
+
+- Endpoint: `get /special-words/parameters/while`
+
+Verify that the name "while" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_with
+
+- Endpoint: `get /special-words/parameters/with`
+
+Verify that the name "with" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_yield
+
+- Endpoint: `get /special-words/parameters/yield`
+
+Verify that the name "yield" works. Send this parameter to pass with value `ok`.
 
 ### Type_Array_BooleanValue_get
 
@@ -3804,6 +4458,42 @@ Expected input body:
 ```json
 { "property": "hello" }
 ```
+
+### Type_Scalar_Boolean_get
+
+- Endpoint: `get /type/scalar/boolean`
+
+Expect to handle a boolean value. Mock api will return true
+
+### Type_Scalar_Boolean_put
+
+- Endpoint: `put /type/scalar/boolean`
+
+Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_String_get
+
+- Endpoint: `get /type/scalar/string`
+
+Expect to handle a string value. Mock api will return 'test'
+
+### Type_Scalar_String_put
+
+- Endpoint: `put /type/scalar/string`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Scalar_Unknown_get
+
+- Endpoint: `get /type/scalar/unknown`
+
+Expect to handle a unknown type value. Mock api will return 'test'
+
+### Type_Scalar_Unknown_put
+
+- Endpoint: `put /type/scalar/unknown`
+
+Expect to send a string value. Mock api expect to receive 'test'
 
 ### Type_Union_receiveFirstNamedUnionValue
 

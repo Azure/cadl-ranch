@@ -25,7 +25,7 @@ namespace Query {
   """)
   op default(
     @query
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
@@ -38,7 +38,7 @@ namespace Query {
   op base64(
     @query
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
@@ -51,7 +51,7 @@ namespace Query {
   op base64url(
     @query
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url-array")
@@ -65,7 +65,7 @@ namespace Query {
     @query({
       format: "csv",
     })
-    value: base64urlBytes[]
+    value: base64urlBytes[],
   ): NoContentResponse;
 }
 
@@ -183,7 +183,7 @@ namespace Header {
   """)
   op default(
     @header
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
@@ -196,7 +196,7 @@ namespace Header {
   op base64(
     @header
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
@@ -209,7 +209,7 @@ namespace Header {
   op base64url(
     @header
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url-array")
@@ -223,7 +223,7 @@ namespace Header {
     @header({
       format: "csv",
     })
-    value: base64urlBytes[]
+    value: base64urlBytes[],
   ): NoContentResponse;
 }
 
@@ -240,7 +240,7 @@ namespace RequestBody {
   @post
   op default(
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/octet-stream")
@@ -255,7 +255,7 @@ namespace RequestBody {
     contentType: "application/octet-stream",
 
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/custom-content-type")
@@ -270,7 +270,7 @@ namespace RequestBody {
     contentType: "image/png",
 
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
@@ -284,7 +284,7 @@ namespace RequestBody {
   op base64(
     @body
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
@@ -298,7 +298,7 @@ namespace RequestBody {
   op base64url(
     @body
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 }
 

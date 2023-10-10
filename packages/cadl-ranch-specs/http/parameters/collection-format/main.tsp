@@ -23,7 +23,7 @@ This test is testing sending a multi collection format array query parameters
     @query({
       format: "multi",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 
   @scenario
@@ -36,7 +36,7 @@ This test is testing sending a ssv collection format array query parameters
     @query({
       format: "ssv",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 
   @scenario
@@ -49,7 +49,7 @@ This test is testing sending a tsv collection format array query parameters
     @query({
       format: "tsv",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 
   @scenario
@@ -62,7 +62,7 @@ This test is testing sending a pipes collection format array query parameters
     @query({
       format: "pipes",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 
   @scenario
@@ -75,7 +75,7 @@ This test is testing sending a csv collection format array query parameters
     @query({
       format: "csv",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 }
 
@@ -92,6 +92,6 @@ This test is testing sending a csv collection format array header parameters
     @header({
       format: "csv",
     })
-    colors: string[]
+    colors: string[],
   ): NoContentResponse;
 }
