@@ -11,6 +11,7 @@ const knownPackages = [
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
   "@typespec/eslint-config-typespec",
+  "@typespec/library-linter",
 ];
 
 const depTypes = ["dependencies", "devDependencies", "peerDependencies"];

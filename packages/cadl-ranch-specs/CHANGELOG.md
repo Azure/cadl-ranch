@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.23.0
+
+### Minor Changes
+
+- 6aca6a8: add new a few new cases to send scalar type (string, boolean) as input and output.
+
+### Patch Changes
+
+- 96288fd: deprecate internal test
+- 8573add: Bug fix on special-words test
+
 ## 0.22.3
 
 ### Patch Changes
