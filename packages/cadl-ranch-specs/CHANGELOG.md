@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-expect@0.8.0
+  - @azure-tools/cadl-ranch@0.9.0
+
 ## 0.23.0
 
 ### Minor Changes
