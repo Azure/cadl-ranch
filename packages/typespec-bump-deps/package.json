@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-bump-deps",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Tool to grab latest @next version for all Typespec packages",
   "main": "dist/index.js",
   "type": "module",
