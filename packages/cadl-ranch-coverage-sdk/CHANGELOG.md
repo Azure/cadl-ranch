@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
 ## 0.3.1
 
 ### Patch Changes
