@@ -2,7 +2,6 @@ import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
 import "@typespec/rest";
 import "@typespec/versioning";
-import "./util.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
@@ -138,10 +137,11 @@ Expected response body:
 """)
 @route("/create-resource-poll-via-operation-location")
 interface CreateResourcePollViaOperationLocation {
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Legacy LRO uses local template"
-  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "Operation link pollingOperation is not required for getLroMetadata"
+  @doc("Poll a Job")
+  getJob is ResourceOperations.ResourceRead<JobResult>;
+
+  @pollingOperation(CreateResourcePollViaOperationLocation.getJob)
   @doc("Creates a Job")
   @route("/jobs")
-  @post
-  createJob is Local.LongRunningLegacyOperation<JobData, JobResult, JobResult>;
+  createJob is LongRunningRpcOperation<JobData, JobResult, JobResult>;
 }

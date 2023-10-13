@@ -315,7 +315,9 @@ Expected response body:
 
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+- Endpoints:
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location`
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
 
 POST to create resource.
 Poll URL via operation-location header in response.
