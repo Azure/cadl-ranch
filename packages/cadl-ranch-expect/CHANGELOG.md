@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.8.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
 ## 0.7.1
 
 ### Patch Changes
