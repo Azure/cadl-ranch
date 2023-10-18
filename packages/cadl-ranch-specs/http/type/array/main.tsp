@@ -86,6 +86,7 @@ interface UnknownValue extends ArrayOperations<unknown[], "[1, 'hello', 'k3': nu
 model InnerModel {
   @doc("Required string property")
   property: string;
+
   children?: InnerModel[];
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-bump-deps",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Tool to grab latest @next version for all Typespec packages",
   "main": "dist/index.js",
   "type": "module",
@@ -13,7 +13,7 @@
     "clean": "rimraf dist/ temp/",
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -29,11 +29,19 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "pacote": "~15.1.3"
+    "semver": "^7.5.2",
+    "pacote": "~17.0.4"
   },
   "devDependencies": {
-    "@typespec/eslint-config-typespec": "~0.7.0",
-    "@types/pacote": "11.1.5",
-    "@types/node": "^18.16.0"
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@typespec/eslint-config-typespec": "~0.49.0",
+    "@types/semver": "^7.5.0",
+    "@types/pacote": "11.1.6",
+    "@types/node": "^18.16.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.2.2"
   }
 }

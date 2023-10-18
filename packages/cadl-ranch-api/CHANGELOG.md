@@ -1,5 +1,29 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.1
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+
+## 0.4.0
+
+### Minor Changes
+
+- 01a0ebf: Add functionality for scenarios to hit same endpoint multiple times and validate
+
+## 0.3.1
+
+### Patch Changes
+
+- e087dfd: Fix typo of datetime format.
+
+## 0.3.0
+
+### Minor Changes
+
+- b8f7f66: Add value format validation helper.
+
 ## 0.2.5
 
 ### Patch Changes

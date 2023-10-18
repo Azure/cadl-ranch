@@ -132,3 +132,32 @@ const coerceDate = (targetObject: Record<string, unknown>): Record<string, unkno
   stringRep = stringRep.replace(/(\d\d\d\d-\d\d-\d\d[Tt]\d\d:\d\d:\d\d)(\.\d{3,7})?([Zz]|[+-]00:00)/g, "$1Z");
   return JSON.parse(stringRep);
 };
+
+/**
+ * Check whether the value follow the right format.
+ */
+export const validateValueFormat = (value: string, format: "uuid" | "rfc7231" | "rfc3339"): void => {
+  switch (format) {
+    case "uuid":
+      if (!/^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value)) {
+        throw new ValidationError(`Expected uuid format but got ${value}`, "uuid", value);
+      }
+      break;
+    case "rfc7231":
+      if (
+        !/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s\d{2}\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT$/i.test(
+          value,
+        )
+      ) {
+        throw new ValidationError(`Expected rfc7231 format but got ${value}`, "rfc7231", value);
+      }
+      break;
+    case "rfc3339":
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$/i.test(value)) {
+        throw new ValidationError(`Expected rfc3339 format but got ${value}`, "rfc3339", value);
+      }
+      break;
+    default:
+      throw new ValidationError(`Unsupported format ${format}`, format, value);
+  }
+};
