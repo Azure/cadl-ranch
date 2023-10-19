@@ -1,11 +1,11 @@
-import { HttpMethod, MockApi, MockRequestHandler } from "./types.js";
+import { HttpMethod, MockApiForHandler, MockRequestHandler } from "./types.js";
 
 /**
  * Register a GET request for the provided uri.
  * @param uri URI to match.
  * @param func Request handler.
  */
-function get(uri: string, func: MockRequestHandler): MockApi {
+function get<const T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("get", uri, func);
 }
 
@@ -14,7 +14,7 @@ function get(uri: string, func: MockRequestHandler): MockApi {
  * @param uri URI to match.
  * @param func Request handler.
  */
-function post(uri: string, func: MockRequestHandler): MockApi {
+function post<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("post", uri, func);
 }
 
@@ -23,7 +23,7 @@ function post(uri: string, func: MockRequestHandler): MockApi {
  * @param uri URI to match.
  * @param func Request handler.
  */
-function put(uri: string, func: MockRequestHandler): MockApi {
+function put<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("put", uri, func);
 }
 
@@ -32,7 +32,7 @@ function put(uri: string, func: MockRequestHandler): MockApi {
  * @param uri URI to match.
  * @param func Request handler.
  */
-function patch(uri: string, func: MockRequestHandler): MockApi {
+function patch<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("patch", uri, func);
 }
 
@@ -41,7 +41,7 @@ function patch(uri: string, func: MockRequestHandler): MockApi {
  * @param uri URI to match.
  * @param func Request handler.
  */
-function deleteReq(uri: string, func: MockRequestHandler): MockApi {
+function deleteReq<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("delete", uri, func);
 }
 
@@ -50,7 +50,7 @@ function deleteReq(uri: string, func: MockRequestHandler): MockApi {
  * @param uri URI to match.
  * @param func Request handler.
  */
-function options(uri: string, func: MockRequestHandler): MockApi {
+function options<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
   return request("options", uri, func);
 }
 
@@ -60,8 +60,8 @@ function options(uri: string, func: MockRequestHandler): MockApi {
  * @param name Name of the scenario(For coverage).
  * @param func Request handler.
  */
-function head(uri: string, func: MockRequestHandler): MockApi {
-  return request("head", uri, func);
+function head<T extends MockRequestHandler>(uri: string, func: T): MockApiForHandler<T> {
+  return request<T>("head", uri, func);
 }
 
 /**
@@ -72,8 +72,8 @@ function head(uri: string, func: MockRequestHandler): MockApi {
  *
  * @note prefer to use the corresponding method method directly instead of `request()`(i.e `get(), post()`)
  */
-function request(method: HttpMethod, uri: string, handler: MockRequestHandler): MockApi {
-  return { method, uri, handler };
+function request<T extends MockRequestHandler>(method: HttpMethod, uri: string, handler: T): MockApiForHandler<T> {
+  return { method, uri, handler } as any;
 }
 
 export const mockapi = {

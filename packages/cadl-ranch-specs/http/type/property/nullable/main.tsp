@@ -73,7 +73,8 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     @doc("content-type is application/merge-patch+json")
     @header("Content-Type")
     contentType: "application/merge-patch+json",
-    @body body: TModel
+
+    @body body: TModel,
   ): void;
 
   @doc("Put a body with default properties.")
@@ -95,7 +96,8 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     @doc("content-type is application/merge-patch+json")
     @header("Content-Type")
     contentType: "application/merge-patch+json",
-    @body body: TModel
+
+    @body body: TModel,
   ): void;
 }
 

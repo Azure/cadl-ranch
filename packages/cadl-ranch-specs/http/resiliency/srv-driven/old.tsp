@@ -16,9 +16,12 @@ using TypeSpec.Versioning;
 })
 @service
 @server(
-  "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}",
+  "{endpoint}/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}",
   "Testserver endpoint",
   {
+    @doc("Need to be set as 'http://localhost:3000' in client.")
+    endpoint: url,
+
     @doc("Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.")
     serviceDeploymentVersion: string,
 
@@ -85,7 +88,7 @@ interface AddOptionalParam {
   fromOneRequired(
     @doc("I am a required parameter")
     @query
-    parameter: string
+    parameter: string,
   ): NoContentResponse;
 
   @scenario
@@ -111,6 +114,6 @@ interface AddOptionalParam {
   fromOneOptional(
     @doc("I am an optional parameter")
     @query
-    parameter?: string
+    parameter?: string,
   ): NoContentResponse;
 }
