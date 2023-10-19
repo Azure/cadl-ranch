@@ -3580,7 +3580,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{'prop': {'state': 'ok'}
+{ "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_put
@@ -3590,7 +3590,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{'prop': {'state': 'ok'}
+{ "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_get
@@ -3600,7 +3600,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_put
@@ -3610,7 +3610,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsString_get
@@ -3690,7 +3690,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{'prop': {'state': 'ok'}
+{ "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_put
@@ -3700,7 +3700,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{'prop': {'state': 'ok'}
+{ "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_get
@@ -3710,7 +3710,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_put
@@ -3720,7 +3720,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
 ```
 
 ### Type_Property_AdditionalProperties_IsString_get

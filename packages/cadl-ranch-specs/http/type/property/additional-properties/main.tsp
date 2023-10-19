@@ -143,7 +143,7 @@ model ExtendsModelAdditionalProperties extends Record<ModelForRecord> {}
 
 @route("/extendsRecordModel")
 @operationGroup
-interface ExtendsModel extends ModelOperations<ExtendsModelAdditionalProperties, "{'prop': {'state': 'ok'}"> {}
+interface ExtendsModel extends ModelOperations<ExtendsModelAdditionalProperties, "{'prop': {'state': 'ok'}}"> {}
 
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
 @doc("The model is from Record<ModelForRecord> type.")
@@ -151,7 +151,7 @@ model IsModelAdditionalProperties is Record<ModelForRecord>;
 
 @route("/isRecordModel")
 @operationGroup
-interface IsModel extends ModelOperations<IsModelAdditionalProperties, "{'prop': {'state': 'ok'}"> {}
+interface IsModel extends ModelOperations<IsModelAdditionalProperties, "{'prop': {'state': 'ok'}}"> {}
 
 // ********************************************** Record<Model[]> **********************************************
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
@@ -161,7 +161,7 @@ model ExtendsModelArrayAdditionalProperties extends Record<ModelForRecord[]> {}
 @route("/extendsRecordModelArray")
 @operationGroup
 interface ExtendsModelArray
-  extends ModelOperations<ExtendsModelArrayAdditionalProperties, "{'prop': [{'state': 'ok'}, {'state': 'ok'}]"> {}
+  extends ModelOperations<ExtendsModelArrayAdditionalProperties, "{'prop': [{'state': 'ok'}, {'state': 'ok'}]}"> {}
 
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
 @doc("The model is from Record<ModelForRecord[]> type.")
@@ -170,4 +170,4 @@ model IsModelArrayAdditionalProperties is Record<ModelForRecord[]>;
 @route("/isRecordModelArray")
 @operationGroup
 interface IsModelArray
-  extends ModelOperations<IsModelArrayAdditionalProperties, "{'prop': [{'state': 'ok'}, {'state': 'ok'}]"> {}
+  extends ModelOperations<IsModelArrayAdditionalProperties, "{'prop': [{'state': 'ok'}, {'state': 'ok'}]}"> {}
