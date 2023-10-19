@@ -3573,6 +3573,46 @@ Expected input body:
 { "id": 42.42, "prop": 42.42 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModel`
+
+Expected response body:
+
+```json
+{'prop': {'state': 'ok'}
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModel`
+
+Expected input body:
+
+```json
+{'prop': {'state': 'ok'}
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected response body:
+
+```json
+{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected input body:
+
+```json
+{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+```
+
 ### Type_Property_AdditionalProperties_ExtendsString_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsRecordString`
@@ -3580,7 +3620,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "name": "ExtendsStringAddtionalProperties", "prop": "abc" }
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsString_put
@@ -3590,7 +3630,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "name": "ExtendsStringAddtionalProperties", "prop": "abc" }
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsUnknown_get
@@ -3601,7 +3641,7 @@ Expected response body:
 
 ```json
 {
-  "name": "ExtendsUnknownAddtionalProperties",
+  "name": "ExtendsUnknownAdditionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -3616,7 +3656,7 @@ Expected input body:
 
 ```json
 {
-  "name": "ExtendsUnknownAddtionalProperties",
+  "name": "ExtendsUnknownAdditionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -3643,6 +3683,46 @@ Expected input body:
 { "id": 42.42, "prop": 42.42 }
 ```
 
+### Type_Property_AdditionalProperties_IsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModel`
+
+Expected response body:
+
+```json
+{'prop': {'state': 'ok'}
+```
+
+### Type_Property_AdditionalProperties_IsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModel`
+
+Expected input body:
+
+```json
+{'prop': {'state': 'ok'}
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModelArray`
+
+Expected response body:
+
+```json
+{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModelArray`
+
+Expected input body:
+
+```json
+{'prop': [{'state': 'ok'}, {'state': 'ok'}]
+```
+
 ### Type_Property_AdditionalProperties_IsString_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordstring`
@@ -3650,7 +3730,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "name": "IsStringAddtionalProperties", "prop": "abc" }
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
 ```
 
 ### Type_Property_AdditionalProperties_IsString_put
@@ -3660,7 +3740,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "name": "IsStringAddtionalProperties", "prop": "abc" }
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
 ```
 
 ### Type_Property_AdditionalProperties_IsUnknown_get
@@ -3671,7 +3751,7 @@ Expected response body:
 
 ```json
 {
-  "name": "IsUnknownAddtionalProperties",
+  "name": "IsUnknownAdditionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -3686,7 +3766,7 @@ Expected input body:
 
 ```json
 {
-  "name": "IsUnknownAddtionalProperties",
+  "name": "IsUnknownAdditionalProperties",
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
