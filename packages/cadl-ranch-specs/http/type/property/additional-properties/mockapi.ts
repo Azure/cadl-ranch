@@ -86,7 +86,7 @@ const extendsModel = createMockApis("extendsRecordModel", recordModelBody);
 Scenarios.Type_Property_AdditionalProperties_ExtendsModel_get = passOnSuccess(extendsModel.get);
 Scenarios.Type_Property_AdditionalProperties_ExtendsModel_put = passOnSuccess(extendsModel.put);
 
-const isModel = createMockApis("issRecordModel", recordModelBody);
+const isModel = createMockApis("isRecordModel", recordModelBody);
 Scenarios.Type_Property_AdditionalProperties_IsModel_get = passOnSuccess(isModel.get);
 Scenarios.Type_Property_AdditionalProperties_IsModel_put = passOnSuccess(isModel.put);
 
@@ -94,10 +94,10 @@ Scenarios.Type_Property_AdditionalProperties_IsModel_put = passOnSuccess(isModel
 const recordModelArrayBody = {
   prop: [{ state: "ok" }, { state: "ok" }],
 };
-const extendsModelArray = createMockApis("extendsRecordArrayModel", recordModelArrayBody);
+const extendsModelArray = createMockApis("extendsRecordModelArray", recordModelArrayBody);
 Scenarios.Type_Property_AdditionalProperties_ExtendsModelArray_get = passOnSuccess(extendsModelArray.get);
 Scenarios.Type_Property_AdditionalProperties_ExtendsModelArray_put = passOnSuccess(extendsModelArray.put);
 
-const isModelArray = createMockApis("isRecordArrayModel", recordModelArrayBody);
+const isModelArray = createMockApis("isRecordModelArray", recordModelArrayBody);
 Scenarios.Type_Property_AdditionalProperties_IsModelArray_get = passOnSuccess(isModelArray.get);
 Scenarios.Type_Property_AdditionalProperties_IsModelArray_put = passOnSuccess(isModelArray.put);
