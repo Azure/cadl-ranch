@@ -3553,6 +3553,226 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordString`
+
+Expected response body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordString`
+
+Expected input body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsString_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordstring`
+
+Expected response body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsString_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordstring`
+
+Expected input body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_Nullable_Bytes_getNonNull
 
 - Endpoint: `get /type/property/nullable/bytes/non-null`
