@@ -1,5 +1,34 @@
 # @azure-tools/cadl-ranch
 
+## 0.9.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.4.0
+  - @azure-tools/cadl-ranch-expect@0.8.0
+
+## 0.8.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
+## 0.8.2
+
+### Patch Changes
+
+- f0ebe14: use-endpoint-instead-of-localhost
+
 ## 0.8.1
 
 ### Patch Changes

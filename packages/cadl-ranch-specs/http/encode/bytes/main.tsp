@@ -25,7 +25,7 @@ namespace Query {
   """)
   op default(
     @query
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
@@ -38,7 +38,7 @@ namespace Query {
   op base64(
     @query
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
@@ -51,7 +51,7 @@ namespace Query {
   op base64url(
     @query
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url-array")
@@ -65,7 +65,7 @@ namespace Query {
     @query({
       format: "csv",
     })
-    value: base64urlBytes[]
+    value: base64urlBytes[],
   ): NoContentResponse;
 }
 
@@ -183,7 +183,7 @@ namespace Header {
   """)
   op default(
     @header
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
@@ -196,7 +196,7 @@ namespace Header {
   op base64(
     @header
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
@@ -209,7 +209,7 @@ namespace Header {
   op base64url(
     @header
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url-array")
@@ -223,7 +223,7 @@ namespace Header {
     @header({
       format: "csv",
     })
-    value: base64urlBytes[]
+    value: base64urlBytes[],
   ): NoContentResponse;
 }
 
@@ -234,12 +234,13 @@ namespace RequestBody {
   @scenario
   @scenarioDoc("""
   Test default encode (base64) for bytes in a json body.
-  Expected header:
-  value=dGVzdA== (base64 encode of test)
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
   """)
+  @post
   op default(
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/octet-stream")
@@ -248,12 +249,13 @@ namespace RequestBody {
   When content type is application/octet-stream and body is `bytes` the payload is a binary file.
   File should match packages/cadl-ranch-specs/assets/image.png
   """)
+  @post
   op octetStream(
     @header
     contentType: "application/octet-stream",
 
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/custom-content-type")
@@ -262,38 +264,41 @@ namespace RequestBody {
   When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
   File should match packages/cadl-ranch-specs/assets/image.png
   """)
+  @post
   op customContentType(
     @header
     contentType: "image/png",
 
     @body
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64")
   @scenario
   @scenarioDoc("""
-  Test base64 encode for bytes header.
-  Expected header:
-  value=dGVzdA== (base64 encode of test)
+  Test base64 encode for bytes body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
   """)
+  @post
   op base64(
-    @header
+    @body
     @encode(BytesKnownEncoding.base64)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 
   @route("/base64url")
   @scenario
   @scenarioDoc("""
-  Test base64url encode for bytes header.
-  Expected header:
-  value=dGVzdA (base64url encode of test)
+  Test base64url encode for bytes body.
+  Expected body:
+  "dGVzdA" (base64url encode of test, in JSON string)
   """)
+  @post
   op base64url(
-    @header
+    @body
     @encode(BytesKnownEncoding.base64url)
-    value: bytes
+    value: bytes,
   ): NoContentResponse;
 }
 
@@ -304,8 +309,8 @@ namespace ResponseBody {
   @scenario
   @scenarioDoc("""
   Test default encode (base64) for bytes in a json body.
-  Expected header:
-  value=dGVzdA== (base64 encode of test)
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
   """)
   op default(): {
     @body
@@ -343,9 +348,9 @@ namespace ResponseBody {
   @route("/base64")
   @scenario
   @scenarioDoc("""
-  Test base64 encode for bytes header.
-  Expected header:
-  value=dGVzdA== (base64 encode of test)
+  Test base64 encode for bytes body.
+  Expected body:
+  "dGVzdA==" (base64 encode of test, in JSON string)
   """)
   op base64(): {
     @body
@@ -356,9 +361,9 @@ namespace ResponseBody {
   @route("/base64url")
   @scenario
   @scenarioDoc("""
-  Test base64url encode for bytes header.
-  Expected header:
-  value=dGVzdA (base64url encode of test)
+  Test base64url encode for bytes body.
+  Expected body:
+  "dGVzdA" (base64url encode of test, in JSON string)
   """)
   op base64url(): base64urlBytes;
 }

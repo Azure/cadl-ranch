@@ -19,6 +19,7 @@ Scenarios.Azure_Core_Lro_Rpc_longRunningRpc = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/rpc/generations/operations/operation1", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       generationPollCount > 0
         ? { id: "operation1", status: "Succeeded", result: { data: "text data" } }

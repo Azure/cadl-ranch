@@ -1,5 +1,49 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.24.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-expect@0.8.0
+  - @azure-tools/cadl-ranch@0.9.0
+
+## 0.23.0
+
+### Minor Changes
+
+- 6aca6a8: add new a few new cases to send scalar type (string, boolean) as input and output.
+
+### Patch Changes
+
+- 96288fd: deprecate internal test
+- 8573add: Bug fix on special-words test
+
+## 0.22.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [beb2605]
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch@0.8.3
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
+## 0.22.2
+
+### Patch Changes
+
+- 4786b2f: Bug fix on bytes request/response body
+- f0ebe14: use-endpoint-instead-of-localhost
+- Updated dependencies [f0ebe14]
+  - @azure-tools/cadl-ranch@0.8.2
+
 ## 0.22.1
 
 ### Patch Changes

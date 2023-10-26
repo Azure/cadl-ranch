@@ -17,12 +17,12 @@ export async function generateScenarioSummary({ scenariosPath, outputFile }: Gen
     process.exit(-1);
   }
 
-  const summary = createScenarioSummary(scenarios);
+  const summary = await createScenarioSummary(scenarios);
   await writeFile(outputFile, summary);
   logger.info(`${pc.green("✓")} Scenario summary generated at ${outputFile}.`);
 }
 
-export function createScenarioSummary(scenarios: Scenario[]): string {
+export function createScenarioSummary(scenarios: Scenario[]): Promise<string> {
   const lines = [`# Cadl Ranch Project summary`];
 
   for (const scenario of scenarios.sort((a, b) => a.name.localeCompare(b.name))) {

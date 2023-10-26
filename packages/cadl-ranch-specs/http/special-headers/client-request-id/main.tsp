@@ -25,5 +25,5 @@ Get operation with azure client request id header.
 @route("/")
 op get(
   @header("client-request-id")
-  clientRequestId?: string
+  clientRequestId?: string,
 ): NoContentResponse;

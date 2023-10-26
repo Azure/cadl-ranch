@@ -66,6 +66,8 @@ words:
   - westus
   - xplat
   - tcgc
+  - elif
+
   # github aliases that show in changlog
   - tadelesh
   - timotheeguerin
