@@ -133,7 +133,7 @@ interface CollectionsModel
 model StringLiteralProperty is ModelTemplate<"hello">;
 @route("/string/literal")
 @operationGroup
-interface StringLiteral extends OperationsTemplate<StringLiteralProperty, "hello"> {}
+interface StringLiteral extends OperationsTemplate<StringLiteralProperty, "\"hello\""> {}
 
 // Model with optional int literal property
 @doc("Model with int literal property")

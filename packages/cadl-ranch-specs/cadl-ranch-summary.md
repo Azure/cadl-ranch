@@ -4446,7 +4446,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_StringLiteral_putDefault
