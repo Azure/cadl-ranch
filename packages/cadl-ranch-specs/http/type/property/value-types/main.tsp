@@ -216,7 +216,7 @@ interface UnknownArray extends ModelOperations<UnknownArrayProperty, "['hello', 
 model StringLiteralProperty is ModelTemplate<"hello">;
 @route("/string/literal")
 @operationGroup
-interface StringLiteral extends ModelOperations<StringLiteralProperty, "hello"> {}
+interface StringLiteral extends ModelOperations<StringLiteralProperty, "\"hello\""> {}
 
 @doc("Model with a int literal property.")
 model IntLiteralProperty is ModelTemplate<42>;
@@ -240,7 +240,7 @@ interface BooleanLiteral extends ModelOperations<BooleanLiteralProperty, "true">
 model UnionStringLiteralProperty is ModelTemplate<"hello" | "world">;
 @route("/union/string/literal")
 @operationGroup
-interface UnionStringLiteral extends ModelOperations<UnionStringLiteralProperty, "world"> {}
+interface UnionStringLiteral extends ModelOperations<UnionStringLiteralProperty, "\"world\""> {}
 
 @doc("Model with a union of int literal as property.")
 model UnionIntLiteralProperty is ModelTemplate<42 | 43>;

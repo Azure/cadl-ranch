@@ -161,7 +161,7 @@ interface BooleanLiteral extends OperationsTemplate<BooleanLiteralProperty, "tru
 model UnionStringLiteralProperty is ModelTemplate<"hello" | "world">;
 @route("/union/string/literal")
 @operationGroup
-interface UnionStringLiteral extends OperationsTemplate<UnionStringLiteralProperty, "world"> {}
+interface UnionStringLiteral extends OperationsTemplate<UnionStringLiteralProperty, "\"world\""> {}
 
 // Model with union of int literal property
 @doc("Model with union of int literal property")

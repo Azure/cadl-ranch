@@ -4566,7 +4566,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": world}
+{ "property": "world" }
 ```
 
 ### Type_Property_Optional_UnionStringLiteral_putDefault
@@ -4946,7 +4946,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_StringLiteral_put
@@ -4956,7 +4956,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_get
@@ -5006,7 +5006,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": world}
+{ "property": "world" }
 ```
 
 ### Type_Property_ValueTypes_UnionStringLiteral_put
@@ -5016,7 +5016,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": world}
+{ "property": "world" }
 ```
 
 ### Type_Property_ValueTypes_UnknownArray_get
