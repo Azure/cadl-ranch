@@ -1,5 +1,36 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.4.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.4.0
+
+## 0.3.3
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+
+## 0.3.2
+
+### Patch Changes
+
+- d8cd2dd: Bump vite from 4.3.8 to 4.3.9
+
+## 0.3.1
+
+### Patch Changes
+
+- b63ed94: Add a new tab for typescript-modular in dashboard
+
 ## 0.3.0
 
 ### Minor Changes

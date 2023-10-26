@@ -25,7 +25,7 @@ namespace Query {
   """)
   op default(
     @query
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc3339")
@@ -38,7 +38,7 @@ namespace Query {
   op rfc3339(
     @query
     @encode(DateTimeKnownEncoding.rfc3339)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc7231")
@@ -51,7 +51,7 @@ namespace Query {
   op rfc7231(
     @query
     @encode(DateTimeKnownEncoding.rfc7231)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp")
@@ -64,7 +64,7 @@ namespace Query {
   op unixTimestamp(
     @query
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp-array")
@@ -78,7 +78,7 @@ namespace Query {
     @query({
       format: "csv",
     })
-    value: unixTimestampDatetime[]
+    value: unixTimestampDatetime[],
   ): NoContentResponse;
 }
 
@@ -221,7 +221,7 @@ namespace Header {
   """)
   op default(
     @header
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc3339")
@@ -234,7 +234,7 @@ namespace Header {
   op rfc3339(
     @header
     @encode(DateTimeKnownEncoding.rfc3339)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/rfc7231")
@@ -247,7 +247,7 @@ namespace Header {
   op rfc7231(
     @header
     @encode(DateTimeKnownEncoding.rfc7231)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp")
@@ -260,7 +260,7 @@ namespace Header {
   op unixTimestamp(
     @header
     @encode(DateTimeKnownEncoding.unixTimestamp, int64)
-    value: utcDateTime
+    value: utcDateTime,
   ): NoContentResponse;
 
   @route("/unix-timestamp-array")
@@ -274,6 +274,69 @@ namespace Header {
     @header({
       format: "csv",
     })
-    value: unixTimestampDatetime[]
+    value: unixTimestampDatetime[],
   ): NoContentResponse;
+}
+
+model DefaultDatetimeHeader {
+  @header
+  value: utcDateTime;
+}
+
+model Rfc3339DatetimeHeader {
+  @encode(DateTimeKnownEncoding.rfc3339)
+  @header
+  value: utcDateTime;
+}
+
+model Rfc7231DatetimeHeader {
+  @encode(DateTimeKnownEncoding.rfc7231)
+  @header
+  value: utcDateTime;
+}
+
+model UnixTimestampDatetimeHeader {
+  @encode(DateTimeKnownEncoding.unixTimestamp, int64)
+  @header
+  value: utcDateTime;
+}
+
+@operationGroup
+@route("/responseheader")
+namespace ResponseHeader {
+  @route("/default")
+  @scenario
+  @scenarioDoc("""
+  Test default encode (rfc7231) for datetime header.
+  Expected response header:
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op default(): NoContentResponse & DefaultDatetimeHeader;
+
+  @route("/rfc3339")
+  @scenario
+  @scenarioDoc("""
+  Test rfc3339 encode for datetime header.
+  Expected response header:
+  value=2022-08-26T18:38:00.000Z
+  """)
+  op rfc3339(): NoContentResponse & Rfc3339DatetimeHeader;
+
+  @route("/rfc7231")
+  @scenario
+  @scenarioDoc("""
+  Test rfc7231 encode for datetime header.
+  Expected response header:
+  value=Fri, 26 Aug 2022 14:38:00 GMT
+  """)
+  op rfc7231(): NoContentResponse & Rfc7231DatetimeHeader;
+
+  @route("/unix-timestamp")
+  @scenario
+  @scenarioDoc("""
+  Test unixTimestamp encode for datetime header.
+  Expected response header:
+  value=1686566864
+  """)
+  op unixTimestamp(): NoContentResponse & UnixTimestampDatetimeHeader;
 }

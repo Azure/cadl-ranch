@@ -1,5 +1,44 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.8.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+## 0.7.1
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+
+## 0.7.0
+
+### Minor Changes
+
+- 825b73c: Update Dependencies for TypeSpec September release
+
+## 0.6.0
+
+### Minor Changes
+
+- 24caa2d: Update Dependencies for TypeSpec August release
+
+## 0.5.1
+
+### Patch Changes
+
+- 7e116a1: Fix summary generation missing baseurl
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+
+## 0.5.0
+
+### Minor Changes
+
+- b52997c: Update Dependencies for TypeSpec July release
+
 ## 0.4.0
 
 ### Minor Changes

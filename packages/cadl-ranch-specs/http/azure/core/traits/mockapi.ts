@@ -17,8 +17,15 @@ Scenarios.Azure_Core_Traits_smokeTest = passOnSuccess(
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
     req.expect.containsHeader("foo", "123");
-    req.expect.containsHeader("if-match", '"valid"');
-    req.expect.containsHeader("if-none-match", '"invalid"');
+    const if_none_match = req.headers["if-none-match"];
+    const if_match = req.headers["if-match"];
+    if (if_none_match !== '"invalid"' && if_match !== '"valid"') {
+      throw new ValidationError(
+        `Expected header "if-none-match" equals "invalid" but got ${if_none_match} or "if-match" equals "valid" but got ${if_match}`,
+        `"if-match": "valid" or "if-none-match": "invalid"`,
+        `"if-match": ${if_match} or "if-none-match": ${if_none_match}`,
+      );
+    }
     req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
     req.expect.containsHeader("if-modified-since", "Thu, 26 Aug 2021 14:38:00 GMT");
     return {

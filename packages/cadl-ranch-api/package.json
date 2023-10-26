@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-api",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "description": "Cadl Ranch set of api to implement mock api",
   "main": "dist/index.js",
   "type": "module",
@@ -47,11 +47,10 @@
     "@types/node": "^18.16.0",
     "@types/yargs": "^17.0.24",
     "chai": "^4.3.7",
-    "eslint": "^8.39.0",
+    "eslint": "^8.50.0",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.8",
-    "rimraf": "^5.0.0",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "~5.2.2"
   }
 }

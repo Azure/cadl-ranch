@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.1
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+
+## 0.4.0
+
+### Minor Changes
+
+- 01a0ebf: Add functionality for scenarios to hit same endpoint multiple times and validate
+
 ## 0.3.1
 
 ### Patch Changes

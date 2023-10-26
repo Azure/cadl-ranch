@@ -71,41 +71,14 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_ClientGenerator_Core_Internal_internalOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/internal`
-
-This scenario contains an internal operation. It should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_publicOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/public`
-
-This scenario contains a public operation. It should be generatated and exported.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_Shared
+### Azure_ClientGenerator_Core_Access_InternalOperation
 
 - Endpoints:
-  - `get /azure/client-generator-core/internal/shared/public`
-  - `get /azure/client-generator-core/internal/shared/internal`
+  - `get /azure/client-generator-core/access/internalOperation/noDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/internalDecoratorInInternal`
+  - `get /azure/client-generator-core/access/internalOperation/publicDecoratorInInternal`
 
-This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
+This scenario contains internal operations. All should be generated but not exposed.
 Expected query parameter: name=<any string>
 Expected response body:
 
@@ -114,6 +87,55 @@ Expected response body:
   "name": <any string>
 }
 ```
+
+### Azure_ClientGenerator_Core_Access_PublicOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/publicOperation/noDecoratorInPublic`
+  - `get /azure/client-generator-core/access/publicOperation/publicDecoratorInPublic`
+
+This scenario contains public operations. It should be generated and exported.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Access_RelativeModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/relativeModelInOperation/operation`
+  - `get /azure/client-generator-core/access/relativeModelInOperation/discriminator`
+
+This scenario contains internal operations. All should be generated but not exposed.
+
+### Azure_ClientGenerator_Core_Access_SharedModelInOperation
+
+- Endpoints:
+  - `get /azure/client-generator-core/access/sharedModelInOperation/public`
+  - `get /azure/client-generator-core/access/sharedModelInOperation/internal`
+
+This scenario contains two operations, one public, another internal. The public one should be generated and exported while the internal one should be generated but not exposed.
+Expected query parameter: name=<any string>
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
+### Azure_ClientGenerator_Core_Usage_ModelInOperation
+
+- Endpoints:
+  - `post /azure/client-generator-core/usage/inputToInputOutput`
+  - `post /azure/client-generator-core/usage/outputToInputOutput`
+
+This scenario contains two public operations. Both should be generated and exported.
+The models are override to roundtrip, so they should be generated and exported as well.
 
 ### Azure_Core_Basic_createOrReplace
 
@@ -345,7 +367,9 @@ Expected response body:
 
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+- Endpoints:
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location`
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
 
 POST to create resource.
 Poll URL via operation-location header in response.
@@ -389,6 +413,62 @@ Expected response body:
   "comment": "async job",
   "status": "succeeded",
   "results": ["job1 result"]
+}
+```
+
+### Azure_Core_Lro_Rpc_longRunningRpc
+
+- Endpoint: `post /azure/core/lro/rpc/generations:submit`
+
+Should generate model GenerationOptions and GenerationResult.
+GenerationResponse could be generated, depending on implementation.
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "prompt": "text"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/generations/operations/operation1
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/generations/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "InProgress"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/generations/operations/operation1
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "id": "operation1",
+  "status": "Succeeded",
+  "result": {
+    "data": "text data"
+  }
 }
 ```
 
@@ -587,6 +667,7 @@ Expected response header:
 
 - Endpoint: `get /azure/core/traits`
 
+SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 Expected header parameters:
@@ -596,12 +677,12 @@ Expected header parameters:
 - if-none-match=invalid
 - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<any uuid string>
 
 Expected response header:
 
 - bar="456"
-- x-ms-client-request-id=<any string>
+- x-ms-client-request-id=<uuid string same with request header>
 - etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 
 Expected response body:
@@ -611,6 +692,101 @@ Expected response body:
   "id": 1,
   "name": "Madge"
 }
+```
+
+### Client_Structure_MultiClient
+
+- Endpoints:
+  - `post /client/structure/{client}/one`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/five`
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/six`
+
+Include multiple clients in the same spec.
+
+```ts
+const clientA = new ClientAClient("multi-client");
+const clientB = new ClientBClient("multi-client");
+
+clientA.renamedOne();
+clientA.renamedThree();
+clientA.renamedFive();
+
+clientB.renamedTwo();
+clientB.renamedFour();
+clientB.renamedSix();
+```
+
+### Client_Structure_RenamedOperation
+
+- Endpoints:
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/one`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/five`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new RenamedOperationClient("renamed-operation");
+
+client.renamedOne();
+client.renamedThree();
+client.renamedFive();
+
+client.group.renamedTwo();
+client.group.renamedFour();
+client.group.renamedSix();
+```
+
+### Client_Structure_Service
+
+- Endpoints:
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/five`
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/one`
+  - `post /client/structure/{client}/two`
+
+This is to show that if we don't do any customization. The client side should be able to call the api like
+
+```ts
+const client = new MultiClient("default");
+client.one();
+client.two();
+client.three();
+client.four();
+client.five();
+client.six();
+```
+
+### Client_Structure_TwoOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/one`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/five`
+  - `post /client/structure/{client}/six`
+
+This is to show we can have more than one operation group in a client. The client side should be able to call the api like
+
+```ts
+const client = new TwoOperationGroupClient("two-operation-group");
+
+client.group1.one();
+client.group1.three();
+client.group1.four();
+
+client.group2.two();
+client.group2.five();
+client.group2.six();
 ```
 
 ### Encode_Bytes_Header_base64
@@ -760,6 +936,82 @@ value=dGVzdA, dGVzdA
 Test default encode (base64) for bytes query parameter.
 Expected query parameter:
 value=dGVzdA== (base64 encode of test)
+
+### Encode_Bytes_RequestBody_base64
+
+- Endpoint: `post /encode/bytes/body/request/base64`
+
+Test base64 encode for bytes body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
+
+### Encode_Bytes_RequestBody_base64url
+
+- Endpoint: `post /encode/bytes/body/request/base64url`
+
+Test base64url encode for bytes body.
+Expected body:
+"dGVzdA" (base64url encode of test, in JSON string)
+
+### Encode_Bytes_RequestBody_customContentType
+
+- Endpoint: `post /encode/bytes/body/request/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_RequestBody_default
+
+- Endpoint: `post /encode/bytes/body/request/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
+
+### Encode_Bytes_RequestBody_octetStream
+
+- Endpoint: `post /encode/bytes/body/request/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_base64
+
+- Endpoint: `get /encode/bytes/body/response/base64`
+
+Test base64 encode for bytes body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
+
+### Encode_Bytes_ResponseBody_base64url
+
+- Endpoint: `get /encode/bytes/body/response/base64url`
+
+Test base64url encode for bytes body.
+Expected body:
+"dGVzdA" (base64url encode of test, in JSON string)
+
+### Encode_Bytes_ResponseBody_customContentType
+
+- Endpoint: `get /encode/bytes/body/response/custom-content-type`
+
+When content type is a custom type(image/png here) and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
+
+### Encode_Bytes_ResponseBody_default
+
+- Endpoint: `get /encode/bytes/body/response/default`
+
+Test default encode (base64) for bytes in a json body.
+Expected body:
+"dGVzdA==" (base64 encode of test, in JSON string)
+
+### Encode_Bytes_ResponseBody_octetStream
+
+- Endpoint: `get /encode/bytes/body/response/octet-stream`
+
+When content type is application/octet-stream and body is `bytes` the payload is a binary file.
+File should match packages/cadl-ranch-specs/assets/image.png
 
 ### Encode_Datetime_Header_default
 
@@ -945,6 +1197,38 @@ value=1686566864
 Test unixTimestamp encode for datetime array query parameter.
 Expected query parameter:
 value=1686566864, 1686734256
+
+### Encode_Datetime_ResponseHeader_default
+
+- Endpoint: `get /encode/datetime/responseheader/default`
+
+Test default encode (rfc7231) for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_rfc3339
+
+- Endpoint: `get /encode/datetime/responseheader/rfc3339`
+
+Test rfc3339 encode for datetime header.
+Expected response header:
+value=2022-08-26T18:38:00.000Z
+
+### Encode_Datetime_ResponseHeader_rfc7231
+
+- Endpoint: `get /encode/datetime/responseheader/rfc7231`
+
+Test rfc7231 encode for datetime header.
+Expected response header:
+value=Fri, 26 Aug 2022 14:38:00 GMT
+
+### Encode_Datetime_ResponseHeader_unixTimestamp
+
+- Endpoint: `get /encode/datetime/responseheader/unix-timestamp`
+
+Test unixTimestamp encode for datetime header.
+Expected response header:
+value=1686566864
 
 ### Encode_Duration_Header_default
 
@@ -1290,6 +1574,72 @@ Expected request body:
 { "name": "foo" }
 ```
 
+### Payload_ContentNegotiation_DifferentBody
+
+- Endpoints:
+  - `get /content-negotiation/different-body`
+  - `get /content-negotiation/different-body`
+
+Scenario that a different payload depending on the accept header.
+
+- application/json return a png image in a Json object
+- image/png return the png image
+
+### Payload_ContentNegotiation_SameBody
+
+- Endpoints:
+  - `get /content-negotiation/same-body`
+  - `get /content-negotiation/same-body`
+
+Scenario that returns a different file encoding depending on the accept header.
+
+- image/png return a png image
+- image/jpeg return a jpeg image
+
+### Payload_Pageable_list
+
+- Endpoint: `get /payload/pageable`
+
+List users.
+
+SDK may hide the "maxpagesize" from API signature. The functionality of "maxpagesize" could be in related language Page model.
+
+Expected query parameter:
+maxpagesize=3
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "name": "user5"
+    },
+    {
+      "name": "user6"
+    },
+    {
+      "name": "user7"
+    }
+  ],
+  "nextLink": "{endpoint}/payload/pageable?skipToken=name-user7&maxpagesize=3"
+}
+```
+
+Expected query parameter:
+skipToken=name-user7
+maxpagesize=3
+
+```json
+{
+  "value": [
+    {
+      "name": "user8"
+    }
+  ]
+}
+```
+
 ### Projection_ProjectedName_operation
 
 - Endpoint: `post /projection/projected-name/operation`
@@ -1362,7 +1712,7 @@ Expected request body:
 
 ### Resiliency_ServiceDriven_addOperation
 
-- Endpoint: `delete /add-operation`
+- Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-operation`
 
 Need the following two calls:
 
@@ -1384,7 +1734,7 @@ Tests that we can grow up by adding an operation.
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromNone
 
-- Endpoint: `head /add-optional-param/from-none`
+- Endpoint: `head /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-none`
 
 Need the following two calls:
 
@@ -1406,7 +1756,7 @@ Tests that we can grow up an operation from accepting no parameters to accepting
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional
 
-- Endpoint: `get /add-optional-param/from-one-optional`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-one-optional`
 
 Need the following two calls:
 
@@ -1428,7 +1778,7 @@ Tests that we can grow up an operation from accepting one optional parameter to 
 
 ### Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired
 
-- Endpoint: `get /add-optional-param/from-one-required`
+- Endpoint: `get /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-optional-param/from-one-required`
 
 Need the following two calls:
 
@@ -1450,7 +1800,7 @@ Tests that we can grow up an operation from accepting one required parameter to 
 
 ### Server_Path_Multiple_noOperationParams
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client path parameters.
 
@@ -1458,7 +1808,7 @@ Expected path parameter: apiVersion=v1.0
 
 ### Server_Path_Multiple_withOperationPathParam
 
-- Endpoint: `get /`
+- Endpoint: `get /server/path/multiple/{apiVersion}`
 
 Operation with client and method path parameters.
 
@@ -1470,57 +1820,784 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
+### SpecialHeaders_ClientRequestId
+
+- Endpoint: `get /special-headers/client-request-id/`
+
+Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- client-request-id=<any uuid string>
+  Expected response header:
+- client-request-id=<uuid string same with request header>
+
+### SpecialHeaders_ConditionalRequest_postIfMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-match`
+
+Check when only If-Match in header is defined.
+Expected header parameters:
+
+- if-match="valid"
+
+### SpecialHeaders_ConditionalRequest_postIfNoneMatch
+
+- Endpoint: `post /special-headers/conditional-request/if-none-match`
+
+Check when only If-None-Match in header is defined.
+Expected header parameters:
+
+- if-nonematch="invalid"
+
 ### SpecialHeaders_Repeatability_immediateSuccess
 
 - Endpoint: `post /special-headers/repeatability/immediateSuccess`
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-### SpecialWords_Model_get
+### SpecialWords_ModelProperties_sameAsModel
 
-- Endpoint: `get /special-words/model/get`
+- Endpoint: `get /special-words/model-properties/same-as-model`
 
-Expected response body:
+Verify that a property can be called the same as the model name. This can be an issue in some languages where the class name is the constructor.
 
-```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
-```
-
-### SpecialWords_Model_put
-
-- Endpoint: `put /special-words/model/put`
-
-Expected input body:
+Send
 
 ```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
+{ "SameAsModel": "ok" }
 ```
 
-### SpecialWords_Operation_for
+### SpecialWords_Models_and
 
-- Endpoint: `get /special-words/operation/for`
+- Endpoint: `get /special-words/models/and`
 
-A operation name of `for` should work.
+Verify that the name "and" works. Send
 
-### SpecialWords_Parameter_getWithFilter
+```json
+{ "name": "ok" }
+```
 
-- Endpoint: `get /special-words/parameter/filter`
+### SpecialWords_Models_as
 
-Expect input parameter `filter='abc*.'`
+- Endpoint: `get /special-words/models/as`
 
-### SpecialWords_Parameter_getWithIf
+Verify that the name "as" works. Send
 
-- Endpoint: `get /special-words/parameter/if`
+```json
+{ "name": "ok" }
+```
 
-Expect input parameter `if='weekend'`
+### SpecialWords_Models_assert
+
+- Endpoint: `get /special-words/models/assert`
+
+Verify that the name "assert" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_async
+
+- Endpoint: `get /special-words/models/async`
+
+Verify that the name "async" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_await
+
+- Endpoint: `get /special-words/models/await`
+
+Verify that the name "await" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_break
+
+- Endpoint: `get /special-words/models/break`
+
+Verify that the name "break" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_class
+
+- Endpoint: `get /special-words/models/class`
+
+Verify that the name "class" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_constructor
+
+- Endpoint: `get /special-words/models/constructor`
+
+Verify that the name "constructor" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_continue
+
+- Endpoint: `get /special-words/models/continue`
+
+Verify that the name "continue" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_def
+
+- Endpoint: `get /special-words/models/def`
+
+Verify that the name "def" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_del
+
+- Endpoint: `get /special-words/models/del`
+
+Verify that the name "del" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_elif
+
+- Endpoint: `get /special-words/models/elif`
+
+Verify that the name "elif" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_else
+
+- Endpoint: `get /special-words/models/else`
+
+Verify that the name "else" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_except
+
+- Endpoint: `get /special-words/models/except`
+
+Verify that the name "except" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_exec
+
+- Endpoint: `get /special-words/models/exec`
+
+Verify that the name "exec" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_finally
+
+- Endpoint: `get /special-words/models/finally`
+
+Verify that the name "finally" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_for
+
+- Endpoint: `get /special-words/models/for`
+
+Verify that the name "for" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_from
+
+- Endpoint: `get /special-words/models/from`
+
+Verify that the name "from" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_global
+
+- Endpoint: `get /special-words/models/global`
+
+Verify that the name "global" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_if
+
+- Endpoint: `get /special-words/models/if`
+
+Verify that the name "if" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_import
+
+- Endpoint: `get /special-words/models/import`
+
+Verify that the name "import" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_in
+
+- Endpoint: `get /special-words/models/in`
+
+Verify that the name "in" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_is
+
+- Endpoint: `get /special-words/models/is`
+
+Verify that the name "is" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_lambda
+
+- Endpoint: `get /special-words/models/lambda`
+
+Verify that the name "lambda" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_not
+
+- Endpoint: `get /special-words/models/not`
+
+Verify that the name "not" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_or
+
+- Endpoint: `get /special-words/models/or`
+
+Verify that the name "or" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_pass
+
+- Endpoint: `get /special-words/models/pass`
+
+Verify that the name "pass" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_raise
+
+- Endpoint: `get /special-words/models/raise`
+
+Verify that the name "raise" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_return
+
+- Endpoint: `get /special-words/models/return`
+
+Verify that the name "return" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_try
+
+- Endpoint: `get /special-words/models/try`
+
+Verify that the name "try" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_while
+
+- Endpoint: `get /special-words/models/while`
+
+Verify that the name "while" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_with
+
+- Endpoint: `get /special-words/models/with`
+
+Verify that the name "with" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_yield
+
+- Endpoint: `get /special-words/models/yield`
+
+Verify that the name "yield" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Operations_and
+
+- Endpoint: `get /special-words/operations/and`
+
+Verify that the name "and" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_as
+
+- Endpoint: `get /special-words/operations/as`
+
+Verify that the name "as" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_assert
+
+- Endpoint: `get /special-words/operations/assert`
+
+Verify that the name "assert" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_async
+
+- Endpoint: `get /special-words/operations/async`
+
+Verify that the name "async" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_await
+
+- Endpoint: `get /special-words/operations/await`
+
+Verify that the name "await" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_break
+
+- Endpoint: `get /special-words/operations/break`
+
+Verify that the name "break" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_class
+
+- Endpoint: `get /special-words/operations/class`
+
+Verify that the name "class" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_constructor
+
+- Endpoint: `get /special-words/operations/constructor`
+
+Verify that the name "constructor" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_continue
+
+- Endpoint: `get /special-words/operations/continue`
+
+Verify that the name "continue" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_def
+
+- Endpoint: `get /special-words/operations/def`
+
+Verify that the name "def" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_del
+
+- Endpoint: `get /special-words/operations/del`
+
+Verify that the name "del" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_elif
+
+- Endpoint: `get /special-words/operations/elif`
+
+Verify that the name "elif" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_else
+
+- Endpoint: `get /special-words/operations/else`
+
+Verify that the name "else" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_except
+
+- Endpoint: `get /special-words/operations/except`
+
+Verify that the name "except" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_exec
+
+- Endpoint: `get /special-words/operations/exec`
+
+Verify that the name "exec" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_finally
+
+- Endpoint: `get /special-words/operations/finally`
+
+Verify that the name "finally" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_for
+
+- Endpoint: `get /special-words/operations/for`
+
+Verify that the name "for" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_from
+
+- Endpoint: `get /special-words/operations/from`
+
+Verify that the name "from" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_global
+
+- Endpoint: `get /special-words/operations/global`
+
+Verify that the name "global" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_if
+
+- Endpoint: `get /special-words/operations/if`
+
+Verify that the name "if" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_import
+
+- Endpoint: `get /special-words/operations/import`
+
+Verify that the name "import" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_in
+
+- Endpoint: `get /special-words/operations/in`
+
+Verify that the name "in" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_is
+
+- Endpoint: `get /special-words/operations/is`
+
+Verify that the name "is" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_lambda
+
+- Endpoint: `get /special-words/operations/lambda`
+
+Verify that the name "lambda" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_not
+
+- Endpoint: `get /special-words/operations/not`
+
+Verify that the name "not" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_or
+
+- Endpoint: `get /special-words/operations/or`
+
+Verify that the name "or" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_pass
+
+- Endpoint: `get /special-words/operations/pass`
+
+Verify that the name "pass" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_raise
+
+- Endpoint: `get /special-words/operations/raise`
+
+Verify that the name "raise" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_return
+
+- Endpoint: `get /special-words/operations/return`
+
+Verify that the name "return" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_try
+
+- Endpoint: `get /special-words/operations/try`
+
+Verify that the name "try" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_while
+
+- Endpoint: `get /special-words/operations/while`
+
+Verify that the name "while" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_with
+
+- Endpoint: `get /special-words/operations/with`
+
+Verify that the name "with" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_yield
+
+- Endpoint: `get /special-words/operations/yield`
+
+Verify that the name "yield" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Parameters_and
+
+- Endpoint: `get /special-words/parameters/and`
+
+Verify that the name "and" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_as
+
+- Endpoint: `get /special-words/parameters/as`
+
+Verify that the name "as" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_assert
+
+- Endpoint: `get /special-words/parameters/assert`
+
+Verify that the name "assert" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_async
+
+- Endpoint: `get /special-words/parameters/async`
+
+Verify that the name "async" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_await
+
+- Endpoint: `get /special-words/parameters/await`
+
+Verify that the name "await" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_break
+
+- Endpoint: `get /special-words/parameters/break`
+
+Verify that the name "break" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_cancellationToken
+
+- Endpoint: `get /special-words/parameters/cancellationToken`
+
+Verify that the name "cancellationToken" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_class
+
+- Endpoint: `get /special-words/parameters/class`
+
+Verify that the name "class" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_constructor
+
+- Endpoint: `get /special-words/parameters/constructor`
+
+Verify that the name "constructor" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_continue
+
+- Endpoint: `get /special-words/parameters/continue`
+
+Verify that the name "continue" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_def
+
+- Endpoint: `get /special-words/parameters/def`
+
+Verify that the name "def" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_del
+
+- Endpoint: `get /special-words/parameters/del`
+
+Verify that the name "del" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_elif
+
+- Endpoint: `get /special-words/parameters/elif`
+
+Verify that the name "elif" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_else
+
+- Endpoint: `get /special-words/parameters/else`
+
+Verify that the name "else" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_except
+
+- Endpoint: `get /special-words/parameters/except`
+
+Verify that the name "except" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_exec
+
+- Endpoint: `get /special-words/parameters/exec`
+
+Verify that the name "exec" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_finally
+
+- Endpoint: `get /special-words/parameters/finally`
+
+Verify that the name "finally" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_for
+
+- Endpoint: `get /special-words/parameters/for`
+
+Verify that the name "for" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_from
+
+- Endpoint: `get /special-words/parameters/from`
+
+Verify that the name "from" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_global
+
+- Endpoint: `get /special-words/parameters/global`
+
+Verify that the name "global" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_if
+
+- Endpoint: `get /special-words/parameters/if`
+
+Verify that the name "if" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_import
+
+- Endpoint: `get /special-words/parameters/import`
+
+Verify that the name "import" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_in
+
+- Endpoint: `get /special-words/parameters/in`
+
+Verify that the name "in" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_is
+
+- Endpoint: `get /special-words/parameters/is`
+
+Verify that the name "is" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_lambda
+
+- Endpoint: `get /special-words/parameters/lambda`
+
+Verify that the name "lambda" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_not
+
+- Endpoint: `get /special-words/parameters/not`
+
+Verify that the name "not" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_or
+
+- Endpoint: `get /special-words/parameters/or`
+
+Verify that the name "or" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_pass
+
+- Endpoint: `get /special-words/parameters/pass`
+
+Verify that the name "pass" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_raise
+
+- Endpoint: `get /special-words/parameters/raise`
+
+Verify that the name "raise" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_return
+
+- Endpoint: `get /special-words/parameters/return`
+
+Verify that the name "return" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_try
+
+- Endpoint: `get /special-words/parameters/try`
+
+Verify that the name "try" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_while
+
+- Endpoint: `get /special-words/parameters/while`
+
+Verify that the name "while" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_with
+
+- Endpoint: `get /special-words/parameters/with`
+
+Verify that the name "with" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_yield
+
+- Endpoint: `get /special-words/parameters/yield`
+
+Verify that the name "yield" works. Send this parameter to pass with value `ok`.
 
 ### Type_Array_BooleanValue_get
 
@@ -2014,9 +3091,97 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
-### Type_Model_Inheritance_Discriminated_getMissingDiscriminator
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/missingdiscriminator`
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
+
+Receive model with extensible enum discriminator type.
+Expected response body:
+
+```json
+{ "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "weight": 8, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModel
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Receive model with fixed enum discriminator type.
+Expected response body:
+
+```json
+{ "kind": "cobra", "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "length": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_getFixedModelWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "length": 8, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putExtensibleModel
+
+- Endpoint: `put /type/model/inheritance/enum-discriminator/extensible-enum`
+
+Send model with extensible enum discriminator type.
+Expected request body:
+
+```json
+{ "kind": "golden", "weight": 10 }
+```
+
+### Type_Model_Inheritance_EnumDiscriminator_putFixedModel
+
+- Endpoint: `put /type/model/inheritance/enum-discriminator/fixed-enum`
+
+Send model with fixed enum discriminator type.
+Expected request body:
+
+```json
+{ "kind": "cobra", "length": 10 }
+```
+
+### Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/nested-discriminator/missingdiscriminator`
 
 Get a model omitting the discriminator.
 Expected response body:
@@ -2025,9 +3190,9 @@ Expected response body:
 { "age": 1 }
 ```
 
-### Type_Model_Inheritance_Discriminated_getModel
+### Type_Model_Inheritance_NestedDiscriminator_getModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/model`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/model`
 
 Generate and receive polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected response body:
@@ -2036,9 +3201,9 @@ Expected response body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_Discriminated_getRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel
 
-- Endpoint: `get /type/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected response body:
@@ -2103,9 +3268,9 @@ Expected response body:
 }
 ```
 
-### Type_Model_Inheritance_Discriminated_getWrongDiscriminator
+### Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator
 
-- Endpoint: `get /type/model/inheritance/discriminated/wrongdiscriminator`
+- Endpoint: `get /type/model/inheritance/nested-discriminator/wrongdiscriminator`
 
 Get a model containing discriminator value never defined.
 Expected response body:
@@ -2114,9 +3279,9 @@ Expected response body:
 { "age": 1, "kind": "wrongKind" }
 ```
 
-### Type_Model_Inheritance_Discriminated_putModel
+### Type_Model_Inheritance_NestedDiscriminator_putModel
 
-- Endpoint: `put /type/model/inheritance/discriminated/model`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/model`
 
 Generate and send polymorphic model in multiple levels inheritance with 2 discriminators.
 Expected input body:
@@ -2125,9 +3290,9 @@ Expected input body:
 { "age": 1, "kind": "shark", "sharktype": "goblin" }
 ```
 
-### Type_Model_Inheritance_Discriminated_putRecursiveModel
+### Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel
 
-- Endpoint: `put /type/model/inheritance/discriminated/recursivemodel`
+- Endpoint: `put /type/model/inheritance/nested-discriminator/recursivemodel`
 
 Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
 Expected input body:
@@ -2192,9 +3357,9 @@ Expected input body:
 }
 ```
 
-### Type_Model_Inheritance_getValid
+### Type_Model_Inheritance_NotDiscriminated_getValid
 
-- Endpoint: `get /type/model/inheritance/valid`
+- Endpoint: `get /type/model/inheritance/not-discriminated/valid`
 
 Generate and receive model.
 Expected response body:
@@ -2203,9 +3368,9 @@ Expected response body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_postValid
+### Type_Model_Inheritance_NotDiscriminated_postValid
 
-- Endpoint: `post /type/model/inheritance/valid`
+- Endpoint: `post /type/model/inheritance/not-discriminated/valid`
 
 Generate and send model.
 Expected input body:
@@ -2214,11 +3379,126 @@ Expected input body:
 { "name": "abc", "age": 32, "smart": true }
 ```
 
-### Type_Model_Inheritance_putValid
+### Type_Model_Inheritance_NotDiscriminated_putValid
 
-- Endpoint: `put /type/model/inheritance/valid`
+- Endpoint: `put /type/model/inheritance/not-discriminated/valid`
 
 Generate, send, and receive round-trip bottom model.
+
+### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
+
+Generate and receive polymorphic model defined in legacy way.
+Expected response body:
+
+```json
+{ "size": 20, "kind": "t-rex" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getMissingDiscriminator
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/missingdiscriminator`
+
+Get a model omitting the discriminator.
+Expected response body:
+
+```json
+{ "wingspan": 1 }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/model`
+
+Generate and receive polymorphic model in single level inheritance with 1 discriminator.
+Expected response body:
+
+```json
+{ "wingspan": 1, "kind": "sparrow" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getRecursiveModel
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/recursivemodel`
+
+Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected response body:
+
+```json
+{
+  "wingspan": 5,
+  "kind": "eagle",
+  "partner": {
+    "wingspan": 2,
+    "kind": "goose"
+  },
+  "friends": [
+    {
+      "wingspan": 2,
+      "kind": "seagull"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "wingspan": 1,
+      "kind": "sparrow"
+    }
+  }
+}
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_getWrongDiscriminator
+
+- Endpoint: `get /type/model/inheritance/single-discriminator/wrongdiscriminator`
+
+Get a model containing discriminator value never defined.
+Expected response body:
+
+```json
+{ "wingspan": 1, "kind": "wrongKind" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_putModel
+
+- Endpoint: `put /type/model/inheritance/single-discriminator/model`
+
+Generate and send polymorphic model in single level inheritance with 1 discriminator.
+Expected input body:
+
+```json
+{ "wingspan": 1, "kind": "sparrow" }
+```
+
+### Type_Model_Inheritance_SingleDiscriminator_putRecursiveModel
+
+- Endpoint: `put /type/model/inheritance/single-discriminator/recursivemodel`
+
+Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+Expected input body:
+
+```json
+{
+  "wingspan": 5,
+  "kind": "eagle",
+  "partner": {
+    "wingspan": 2,
+    "kind": "goose"
+  },
+  "friends": [
+    {
+      "wingspan": 2,
+      "kind": "seagull"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "wingspan": 1,
+      "kind": "sparrow"
+    }
+  }
+}
+```
 
 ### Type_Model_Usage_input
 
@@ -2322,6 +3602,226 @@ Expected input body:
 {
   "createProp": ["foo", "bar"],
   "updateProp": [1, 2]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordString`
+
+Expected response body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordString`
+
+Expected input body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsString_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordstring`
+
+Expected response body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsString_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordstring`
+
+Expected input body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
 }
 ```
 
@@ -3229,6 +4729,90 @@ Expected input body:
 
 ```json
 { "property": "hello" }
+```
+
+### Type_Scalar_Boolean_get
+
+- Endpoint: `get /type/scalar/boolean`
+
+Expect to handle a boolean value. Mock api will return true
+
+### Type_Scalar_Boolean_put
+
+- Endpoint: `put /type/scalar/boolean`
+
+Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_String_get
+
+- Endpoint: `get /type/scalar/string`
+
+Expect to handle a string value. Mock api will return 'test'
+
+### Type_Scalar_String_put
+
+- Endpoint: `put /type/scalar/string`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Scalar_Unknown_get
+
+- Endpoint: `get /type/scalar/unknown`
+
+Expect to handle a unknown type value. Mock api will return 'test'
+
+### Type_Scalar_Unknown_put
+
+- Endpoint: `put /type/scalar/unknown`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Union_receiveFirstNamedUnionValue
+
+- Endpoint: `get /type/union/receive/model1`
+
+This test is testing receiving the first union value in named union property.
+
+Expect response:
+
+```json
+{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```
+
+### Type_Union_receiveIntArray
+
+- Endpoint: `get /type/union/receive/int-array`
+
+This test is testing receiving an int array value in simple union property.
+
+Expect response:
+
+```json
+{ "simpleUnion": [1, 2] }
+```
+
+### Type_Union_receiveSecondNamedUnionValue
+
+- Endpoint: `get /type/union/receive/model2`
+
+This test is testing receiving the second union value in named union property.
+
+Expect response:
+
+```json
+{ "namedUnion": { "name": "model2", "prop2": 2 } }
+```
+
+### Type_Union_receiveString
+
+- Endpoint: `get /type/union/receive/string`
+
+This test is testing receiving a string value in simple union property.
+
+Expect response:
+
+```json
+{ "simpleUnion": "string" }
 ```
 
 ### Type_Union_sendFirstNamedUnionValue

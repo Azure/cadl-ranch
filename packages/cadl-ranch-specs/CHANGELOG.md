@@ -1,5 +1,159 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.24.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-expect@0.8.0
+  - @azure-tools/cadl-ranch@0.9.0
+
+## 0.23.0
+
+### Minor Changes
+
+- 6aca6a8: add new a few new cases to send scalar type (string, boolean) as input and output.
+
+### Patch Changes
+
+- 96288fd: deprecate internal test
+- 8573add: Bug fix on special-words test
+
+## 0.22.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [beb2605]
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch@0.8.3
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
+## 0.22.2
+
+### Patch Changes
+
+- 4786b2f: Bug fix on bytes request/response body
+- f0ebe14: use-endpoint-instead-of-localhost
+- Updated dependencies [f0ebe14]
+  - @azure-tools/cadl-ranch@0.8.2
+
+## 0.22.1
+
+### Patch Changes
+
+- 94a897f: Add new scenarios around bytes in body
+- Updated dependencies [94a897f]
+  - @azure-tools/cadl-ranch@0.8.1
+
+## 0.22.0
+
+### Minor Changes
+
+- 825b73c: Update Dependencies for TypeSpec September release
+
+### Patch Changes
+
+- Updated dependencies [825b73c]
+  - @azure-tools/cadl-ranch-expect@0.7.0
+  - @azure-tools/cadl-ranch@0.8.0
+
+## 0.21.0
+
+### Minor Changes
+
+- 7d83276: add test case for encode in response header
+- e0ace5f: Add test case for scenario that only one conditional request header is defined
+
+## 0.20.0
+
+### Minor Changes
+
+- c7e83c0: add new a few new cases of response with unions
+
+### Patch Changes
+
+- c5f897d: Add tests for @usage and @access
+- 5e6f680: Add test case for pageable and nextLink
+
+## 0.19.0
+
+### Minor Changes
+
+- 6e6e908: update folder name from optional to optionality to avoid a conflict in dotnet generator
+
+### Patch Changes
+
+- 30ae829: Bug fix on json payload of content-negotiation
+
+## 0.18.0
+
+### Minor Changes
+
+- 24caa2d: Update Dependencies for TypeSpec August release
+
+### Patch Changes
+
+- 8df1972: use post as http method for multi-client test cases
+- 01a0ebf: Add content negotiation specs
+- Updated dependencies [01a0ebf]
+- Updated dependencies [24caa2d]
+  - @azure-tools/cadl-ranch-api@0.4.0
+  - @azure-tools/cadl-ranch@0.7.0
+  - @azure-tools/cadl-ranch-expect@0.6.0
+
+## 0.17.3
+
+### Patch Changes
+
+- 624e171: Rename folder from lro/rpc/legacy to lro/rpc-legacy
+- fef034d: fix(mock): inconsistent status code
+- 0618733: Fix the http method into patch for multiclient test cases.
+
+## 0.17.2
+
+### Patch Changes
+
+- c918120: refactor and add test cases of model inheritance
+- 94ec105: Add test scenario for LongRunningRpcOperation
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+- Updated dependencies [7e116a1]
+- Updated dependencies [d8cd2dd]
+- Updated dependencies [ee54d05]
+- Updated dependencies [37314c4]
+  - @azure-tools/cadl-ranch-expect@0.5.1
+  - @azure-tools/cadl-ranch@0.6.1
+
+## 0.17.1
+
+### Minor Changes
+
+- f3f23a4: optimize etag check logic
+
+### Patch Changes
+
+- 564ad17: Add test for request id header
+
+## 0.17.0
+
+### Minor Changes
+
+- b52997c: Update Dependencies for TypeSpec July release
+
+### Patch Changes
+
+- Updated dependencies [b52997c]
+  - @azure-tools/cadl-ranch-expect@0.5.0
+  - @azure-tools/cadl-ranch@0.6.0
+
 ## 0.16.2
 
 ### Patch Changes
@@ -11,7 +165,7 @@
 
 ### Patch Changes
 
-- 143d65f: Fix traits test case by removing etag in reponse body which is not defined
+- 143d65f: Fix traits test case by removing etag in response body which is not defined
 - effb3cb: Add encode test for datetime and bytes
 - e087dfd: Fix typo of datetime format.
 - Updated dependencies [e087dfd]
@@ -51,7 +205,7 @@
 ### Patch Changes
 
 - 013ef77: Add test cases for empty model
-- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey myKey)
 - 158ca21: Minor adjustments to enable Azure Core changes
 - Updated dependencies [13809e4]
   - @azure-tools/cadl-ranch@0.4.17
@@ -488,7 +642,7 @@
 
 - [#148](https://github.com/Azure/cadl-ranch/pull/148) [`0631ee6`](https://github.com/Azure/cadl-ranch/commit/0631ee6db7de212db19f63f267b8a1f138af4a1d) Thanks [@pshao25](https://github.com/pshao25)! - Add convenienceAPI decorator to array spec
 
-- [#154](https://github.com/Azure/cadl-ranch/pull/154) [`e9b3aed`](https://github.com/Azure/cadl-ranch/commit/e9b3aed77d72e4917d33842c4077cd8565db8201) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - models/usage, fix but that senario url and mockapi url mismatch
+- [#154](https://github.com/Azure/cadl-ranch/pull/154) [`e9b3aed`](https://github.com/Azure/cadl-ranch/commit/e9b3aed77d72e4917d33842c4077cd8565db8201) Thanks [@haolingdong-msft](https://github.com/haolingdong-msft)! - models/usage, fix but that scenario url and mockapi url mismatch
 
 - [#153](https://github.com/Azure/cadl-ranch/pull/153) [`c91d046`](https://github.com/Azure/cadl-ranch/commit/c91d046168ca738600846e0c83ad41d6c6f470e7) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - Fix mockapi of getting a datetime.
 
@@ -496,7 +650,7 @@
 
 ### Patch Changes
 
-- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namesapce array to arrays
+- [#150](https://github.com/Azure/cadl-ranch/pull/150) [`63c9fb0`](https://github.com/Azure/cadl-ranch/commit/63c9fb06a57466c9fcb09d8a7b3e172c76d603bd) Thanks [@pshao25](https://github.com/pshao25)! - Change namespace array to arrays
 
 - [#149](https://github.com/Azure/cadl-ranch/pull/149) [`66814a8`](https://github.com/Azure/cadl-ranch/commit/66814a8ae6c4fe2f8bc61e8fc8703f0a74f0bf98) Thanks [@changlong-liu](https://github.com/changlong-liu)! - - add testcases for using special words as operation/parameter/property names
 

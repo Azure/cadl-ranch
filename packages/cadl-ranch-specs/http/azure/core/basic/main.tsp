@@ -44,6 +44,7 @@ model User {
 
   @doc("The user's order list")
   orders?: UserOrder[];
+
   ...global.Azure.Core.EtagProperty;
 }
 

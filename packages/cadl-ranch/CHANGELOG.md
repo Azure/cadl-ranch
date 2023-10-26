@@ -1,5 +1,89 @@
 # @azure-tools/cadl-ranch
 
+## 0.9.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.4.0
+  - @azure-tools/cadl-ranch-expect@0.8.0
+
+## 0.8.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
+## 0.8.2
+
+### Patch Changes
+
+- f0ebe14: use-endpoint-instead-of-localhost
+
+## 0.8.1
+
+### Patch Changes
+
+- 94a897f: Add new scenarios around bytes in body
+
+## 0.8.0
+
+### Minor Changes
+
+- 825b73c: Update Dependencies for TypeSpec September release
+
+### Patch Changes
+
+- Updated dependencies [825b73c]
+  - @azure-tools/cadl-ranch-expect@0.7.0
+
+## 0.7.0
+
+### Minor Changes
+
+- 01a0ebf: Add functionality for scenarios to hit same endpoint multiple times and validate
+- 24caa2d: Update Dependencies for TypeSpec August release
+
+### Patch Changes
+
+- Updated dependencies [01a0ebf]
+- Updated dependencies [24caa2d]
+  - @azure-tools/cadl-ranch-api@0.4.0
+  - @azure-tools/cadl-ranch-expect@0.6.0
+
+## 0.6.1
+
+### Patch Changes
+
+- d8cd2dd: Bump vite from 4.3.8 to 4.3.9
+- ee54d05: Fix: Validation of scenarios and mock apis on windows
+- 37314c4: Resolve scenarios that have client.tsp as an entrypoint
+  Add test scenario for MultiClient
+  Fix issues in generate scenarios summary with the base url.
+- Updated dependencies [7e116a1]
+- Updated dependencies [37314c4]
+  - @azure-tools/cadl-ranch-expect@0.5.1
+
+## 0.6.0
+
+### Minor Changes
+
+- b52997c: Update Dependencies for TypeSpec July release
+
+### Patch Changes
+
+- Updated dependencies [b52997c]
+  - @azure-tools/cadl-ranch-expect@0.5.0
+
 ## 0.5.1
 
 ### Patch Changes
@@ -33,7 +117,7 @@
 
 ### Patch Changes
 
-- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey mykey)
+- 13809e4: Add HTTP auth tests (Authorization: SharedAccessKey myKey)
 
 ## 0.4.16
 
