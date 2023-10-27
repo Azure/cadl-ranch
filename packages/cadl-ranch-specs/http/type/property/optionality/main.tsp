@@ -23,7 +23,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
     """
   Expected response body:
   ```json
-  {"property": {doc}}
+  {"property": {allDoc}}
   ```
   """,
     {

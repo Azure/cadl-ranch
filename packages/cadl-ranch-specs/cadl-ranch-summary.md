@@ -4026,7 +4026,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": true }
 ```
 
 ### Type_Property_Optional_BooleanLiteral_getDefault
@@ -4066,7 +4066,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{"property": aGVsbG8sIHdvcmxkIQ==}
 ```
 
 ### Type_Property_Optional_Bytes_getDefault
@@ -4106,7 +4106,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
 ```
 
 ### Type_Property_Optional_CollectionsByte_getDefault
@@ -4146,7 +4146,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
 ### Type_Property_Optional_CollectionsModel_getDefault
@@ -4186,7 +4186,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{"property": 2022-08-26T18:38:00Z}
 ```
 
 ### Type_Property_Optional_Datetime_getDefault
@@ -4226,7 +4226,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{"property": P123DT22H14M12.011S}
 ```
 
 ### Type_Property_Optional_Duration_getDefault
@@ -4266,7 +4266,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": 1.2 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_getDefault
@@ -4306,7 +4306,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": 1 }
 ```
 
 ### Type_Property_Optional_IntLiteral_getDefault
@@ -4386,7 +4386,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{"property": hello}
 ```
 
 ### Type_Property_Optional_String_getDefault
@@ -4426,7 +4426,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_StringLiteral_getDefault
@@ -4466,7 +4466,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": 2.3 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_getDefault
@@ -4506,7 +4506,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": 2 }
 ```
 
 ### Type_Property_Optional_UnionIntLiteral_getDefault
@@ -4546,7 +4546,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "world" }
 ```
 
 ### Type_Property_Optional_UnionStringLiteral_getDefault
