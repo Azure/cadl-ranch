@@ -96,21 +96,21 @@ interface String extends OperationsTemplate<StringProperty, "\"hello\""> {}
 model BytesProperty is ModelTemplate<bytes>;
 @route("/bytes")
 @operationGroup
-interface Bytes extends OperationsTemplate<BytesProperty, "aGVsbG8sIHdvcmxkIQ=="> {}
+interface Bytes extends OperationsTemplate<BytesProperty, "\"aGVsbG8sIHdvcmxkIQ==\""> {}
 
 // Model with optional datetime property
 @doc("Model with a datetime property")
 model DatetimeProperty is ModelTemplate<utcDateTime>;
 @route("/datetime")
 @operationGroup
-interface Datetime extends OperationsTemplate<DatetimeProperty, "2022-08-26T18:38:00Z"> {}
+interface Datetime extends OperationsTemplate<DatetimeProperty, "\"2022-08-26T18:38:00Z\""> {}
 
 // Model with optional duration property
 @doc("Model with a duration property")
 model DurationProperty is ModelTemplate<duration>;
 @route("/duration")
 @operationGroup
-interface Duration extends OperationsTemplate<DurationProperty, "P123DT22H14M12.011S"> {}
+interface Duration extends OperationsTemplate<DurationProperty, "\"P123DT22H14M12.011S\""> {}
 
 // Model with optional collection bytes property
 @doc("Model with collection bytes properties")
@@ -118,7 +118,7 @@ model CollectionsByteProperty is ModelTemplate<bytes[]>;
 @route("/collections/bytes")
 @operationGroup
 interface CollectionsByte
-  extends OperationsTemplate<CollectionsByteProperty, "[aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]"> {}
+  extends OperationsTemplate<CollectionsByteProperty, "[\"aGVsbG8sIHdvcmxkIQ==\", \"aGVsbG8sIHdvcmxkIQ==\"]"> {}
 
 // Model with optional collection models property
 @doc("Model with collection models properties")

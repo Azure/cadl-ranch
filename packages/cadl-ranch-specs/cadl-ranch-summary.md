@@ -4066,7 +4066,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
+{ "property": "aGVsbG8sIHdvcmxkIQ==" }
 ```
 
 ### Type_Property_Optional_Bytes_getDefault
@@ -4086,7 +4086,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
+{ "property": "aGVsbG8sIHdvcmxkIQ==" }
 ```
 
 ### Type_Property_Optional_Bytes_putDefault
@@ -4106,7 +4106,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+{ "property": ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="] }
 ```
 
 ### Type_Property_Optional_CollectionsByte_getDefault
@@ -4126,7 +4126,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+{ "property": ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="] }
 ```
 
 ### Type_Property_Optional_CollectionsByte_putDefault
@@ -4186,7 +4186,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": 2022-08-26T18:38:00Z}
+{ "property": "2022-08-26T18:38:00Z" }
 ```
 
 ### Type_Property_Optional_Datetime_getDefault
@@ -4206,7 +4206,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": 2022-08-26T18:38:00Z}
+{ "property": "2022-08-26T18:38:00Z" }
 ```
 
 ### Type_Property_Optional_Datetime_putDefault
@@ -4226,7 +4226,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": P123DT22H14M12.011S}
+{ "property": "P123DT22H14M12.011S" }
 ```
 
 ### Type_Property_Optional_Duration_getDefault
@@ -4246,7 +4246,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": P123DT22H14M12.011S}
+{ "property": "P123DT22H14M12.011S" }
 ```
 
 ### Type_Property_Optional_Duration_putDefault
