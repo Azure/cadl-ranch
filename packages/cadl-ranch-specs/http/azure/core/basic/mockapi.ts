@@ -97,23 +97,20 @@ Scenarios.Azure_Core_Basic_listWithParameters = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_TwoModelsAsPageItem_listFirstItem = passOnSuccess(
+Scenarios.Azure_Core_Basic_TwoModelsAsPageItem = passOnSuccess([
   mockapi.get("/azure/core/basic/first-item", () => {
     const responseBody = {
       value: [{ id: 1 }],
     };
     return { status: 200, body: json(responseBody) };
   }),
-);
-
-Scenarios.Azure_Core_Basic_TwoModelsAsPageItem_listSecondItem = passOnSuccess(
   mockapi.get("/azure/core/basic/second-item", () => {
     const responseBody = {
       value: [{ name: "Madge" }],
     };
     return { status: 200, body: json(responseBody) };
   }),
-);
+]);
 
 Scenarios.Azure_Core_Basic_listWithCustomPageModel = passOnSuccess(
   mockapi.get("/azure/core/basic/custom-page", () => {

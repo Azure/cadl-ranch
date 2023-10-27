@@ -218,7 +218,7 @@ model ListItemInput {
   another?: ListItemInputExtensibleEnum;
 }
 
-@doc("An extensible enum input paramter.")
+@doc("An extensible enum input parameter.")
 enum ListItemInputExtensibleEnum {
   @doc("The first enum value.")
   First,
@@ -314,14 +314,13 @@ interface TwoModelsAsPageItem {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for FirstItem.")
   @route("/first-item")
-  op listFirstItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<FirstItem>>;
+  listFirstItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<FirstItem>>;
 
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for SecondItem.")
   @route("/second-item")
-  op listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
+  listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
 }
-
 
 @scenario
 @doc("Deletes a User")
