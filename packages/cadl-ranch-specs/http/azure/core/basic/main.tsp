@@ -306,6 +306,10 @@ model SecondItem {
   name: string;
 }
 
+@scenario
+@scenarioDoc("""
+This scenario is to test two operations with two different page item types.
+""")
 interface TwoModelsAsPageItem {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for FirstItem.")
