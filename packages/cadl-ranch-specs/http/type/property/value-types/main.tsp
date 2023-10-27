@@ -66,7 +66,7 @@ interface Boolean extends ModelOperations<BooleanProperty, "true"> {}
 model StringProperty is ModelTemplate<string>;
 @route("/string")
 @operationGroup
-interface String extends ModelOperations<StringProperty, "hello"> {}
+interface String extends ModelOperations<StringProperty, "\"hello\""> {}
 
 // Test a model with a bytes property
 @doc("Model with a bytes property")

@@ -4386,7 +4386,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_String_getDefault
@@ -4406,7 +4406,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_String_putDefault
@@ -4926,7 +4926,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_String_put
@@ -4936,7 +4936,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_StringLiteral_get

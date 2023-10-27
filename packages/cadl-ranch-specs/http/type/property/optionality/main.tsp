@@ -90,7 +90,7 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
 model StringProperty is ModelTemplate<string>;
 @route("/string")
 @operationGroup
-interface String extends OperationsTemplate<StringProperty, "hello"> {}
+interface String extends OperationsTemplate<StringProperty, "\"hello\""> {}
 
 // Model with optional bytes property
 model BytesProperty is ModelTemplate<bytes>;
