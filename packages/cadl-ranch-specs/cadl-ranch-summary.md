@@ -313,6 +313,34 @@ Expected response body:
   ]
 }
 
+### Azure_Core_Basic_listWithParameters
+
+- Endpoint: `get /azure/core/basic/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_TwoModelsAsPageItem
+
+- Endpoints:
+  - `get /azure/core/basic/first-item`
+  - `get /azure/core/basic/second-item`
+
+This scenario is to test two operations with two different page item types.
+
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
 - Endpoints:
