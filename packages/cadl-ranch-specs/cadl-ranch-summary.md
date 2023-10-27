@@ -333,37 +333,13 @@ Expected response body:
   ]
 }
 
-### Azure_Core_Basic_TwoModelsAsPageItem_listFirstItem
+### Azure_Core_Basic_TwoModelsAsPageItem
 
-- Endpoint: `get /azure/core/basic`
+- Endpoints:
+  - `get /azure/core/basic/first-item`
+  - `get /azure/core/basic/second-item`
 
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1
-     }
-  ]
-}
-
-### Azure_Core_Basic_TwoModelsAsPageItem_listSecondItem
-
-- Endpoint: `get /azure/core/basic`
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "name": "Madge"
-     }
-  ]
-}
+This scenario is to test two operations with two different page item types.
 
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
