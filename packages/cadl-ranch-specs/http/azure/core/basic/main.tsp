@@ -293,60 +293,31 @@ Expected response body:
 op listWithCustomPageModel is global.Azure.Core.Foundations.Operation<{}, CustomPageModel<User>>;
 
 @doc("First item.")
-@resource("first-item")
 model FirstItem {
   @doc("The id of the item.")
-  @key
   @visibility("read")
   id: int32;
 }
 
 @doc("Second item.")
-@resource("second-item")
 model SecondItem {
   @doc("The name of the item.")
-  @key
   @visibility("read")
   name: string;
 }
 
 interface TwoModelsAsPageItem {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
-  @scenario
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for FirstItem.")
-  @scenarioDoc("""
-  Expected query parameter: api-version=2022-12-01-preview
-  
-  Expected response body:
-  ```json
-  {
-    "value":[
-       {
-          "id": 1
-       }
-    ]
-  }
-  """)
-  listFirstItem is global.Azure.Core.Foundations.ResourceList<FirstItem, {}, global.Azure.Core.Page<FirstItem>>;
+  @route("/first-item")
+  op listFirstItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<FirstItem>>;
 
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
-  @scenario
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for SecondItem.")
-  @scenarioDoc("""
-  Expected query parameter: api-version=2022-12-01-preview
-  
-  Expected response body:
-  ```json
-  {
-    "value":[
-       {
-          "name": "Madge"
-       }
-    ]
-  }
-  """)
-  listSecondItem is global.Azure.Core.Foundations.ResourceList<SecondItem, {}, global.Azure.Core.Page<SecondItem>>;
+  @route("/second-item")
+  op listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
 }
+
 
 @scenario
 @doc("Deletes a User")
