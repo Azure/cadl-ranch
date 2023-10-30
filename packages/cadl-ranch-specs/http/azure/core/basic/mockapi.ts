@@ -83,8 +83,37 @@ Scenarios.Azure_Core_Basic_listWithPage = passOnSuccess(
   }),
 );
 
+Scenarios.Azure_Core_Basic_listWithParameters = passOnSuccess(
+  mockapi.get("/azure/core/basic/parameters", (req) => {
+    req.expect.containsQueryParam("another", "Second");
+
+    const validBody = { inputName: "Madge" };
+    req.expect.bodyEquals(validBody);
+
+    const responseBody = {
+      value: [validUser],
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);
+
+Scenarios.Azure_Core_Basic_TwoModelsAsPageItem = passOnSuccess([
+  mockapi.get("/azure/core/basic/first-item", () => {
+    const responseBody = {
+      value: [{ id: 1 }],
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+  mockapi.get("/azure/core/basic/second-item", () => {
+    const responseBody = {
+      value: [{ name: "Madge" }],
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+]);
+
 Scenarios.Azure_Core_Basic_listWithCustomPageModel = passOnSuccess(
-  mockapi.get("/azure/core/basic/custom-page", (req) => {
+  mockapi.get("/azure/core/basic/custom-page", () => {
     const responseBody = {
       items: [validUser],
     };
