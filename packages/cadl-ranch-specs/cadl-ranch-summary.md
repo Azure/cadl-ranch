@@ -270,77 +270,6 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_listWithCustomPageModel
-
-- Endpoint: `get /azure/core/basic/custom-page`
-
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-
-````json
-{
-  "items":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithPage
-
-- Endpoint: `get /azure/core/basic/page`
-
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like Page.
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithParameters
-
-- Endpoint: `get /azure/core/basic/parameters`
-
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_TwoModelsAsPageItem
-
-- Endpoints:
-  - `get /azure/core/basic/first-item`
-  - `get /azure/core/basic/second-item`
-
-This scenario is to test two operations with two different page item types.
-
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
 - Endpoints:
@@ -353,11 +282,12 @@ Poll response is the (InProgress) created resource. Poll ends when resource stat
 
 Expected verb: POST
 Expected request body:
+
 ```json
 {
   "comment": "async job"
 }
-````
+```
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
@@ -611,22 +541,91 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Page_listWithCustomPageModel
+
+- Endpoint: `get /azure/core/page/custom-page`
+
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+{
+  "items":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Page_listWithPage
+
+- Endpoint: `get /azure/core/page/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Page_listWithParameters
+
+- Endpoint: `get /azure/core/page/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Page_TwoModelsAsPageItem
+
+- Endpoints:
+  - `get /azure/core/page/first-item`
+  - `get /azure/core/page/second-item`
+
+This scenario is to test two operations with two different page item types.
+
 ### Azure_Core_Traits_repeatableAction
 
 - Endpoint: `get /azure/core/traits`
 
 Expected path parameter: id=1
 Expected header parameters:
-
 - repeatability-request-id=<any uuid>
 - repeatability-first-sent=<any HTTP header date>
-  Expected request body:
-
+Expected request body:
 ```json
 {
   "userActionValue": "test"
 }
-```
+````
 
 Expected response header:
 
