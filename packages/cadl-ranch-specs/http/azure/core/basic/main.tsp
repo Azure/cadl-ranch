@@ -356,16 +356,14 @@ Expected response body:
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
 model CreateUserRequest {
-  @path
   name: string;
-
-  customName: string;
+  nickname: string;
 }
 
 model CreateUserResponse {
   id: string;
   name: string;
-  customName: string;
+  nickname: string;
 }
 
 @scenario
@@ -377,7 +375,8 @@ Should only generate CreateUserRequest Model as input and CreateUserResponse as 
 Expected input body:
 ```json
 {
-  "customName": "customName"
+  "name": "Madge",
+  "nickname": "nickname"
 }
 ```
 Expected response body:
@@ -385,8 +384,9 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge",
-  "customName": "customName"
+  "nickname": "nickname"
 }
 """)
 @createsResource(User)
+@action("create")
 op createUser is global.Azure.Core.Foundations.ResourceCollectionOperation<User, CreateUserRequest, CreateUserResponse>;
