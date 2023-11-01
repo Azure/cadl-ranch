@@ -141,3 +141,22 @@ Scenarios.Azure_Core_Basic_export = passOnSuccess(
     return { status: 200, body: json(validUser) };
   }),
 );
+
+Scenarios.Azure_Core_Basic_createUser = passOnSuccess(
+  mockapi.post("/azure/core/basic/users/:name", (req) => {
+    if (req.params.name !== "Madge") {
+      throw new ValidationError("Expected path param name=Madge", "Madge", req.params.name);
+    }
+    const validBody = { customName: "customName" };
+    req.expect.bodyEquals(validBody);
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    return {
+      status: 200,
+      body: json({
+        id: 1,
+        name: "Madge",
+        customName: "customName",
+      }),
+    };
+  }),
+);

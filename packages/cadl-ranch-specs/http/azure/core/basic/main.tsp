@@ -354,3 +354,39 @@ Expected response body:
 ```
 """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
+
+model CreateUserRequest {
+  @path
+  name: string;
+
+  customName: string;
+}
+
+model CreateUserResponse {
+  id: string;
+  name: string;
+  customName: string;
+}
+
+@scenario
+@doc("Create a User")
+@summary("Create a user.")
+@scenarioDoc("""
+Should only generate CreateUserRequest Model as input and CreateUserResponse as response body.
+
+Expected input body:
+```json
+{
+  "customName": "customName"
+}
+```
+Expected response body:
+```json
+{
+  "id": 1,
+  "name": "Madge",
+  "customName": "customName"
+}
+""")
+@createsResource(User)
+op createUser is global.Azure.Core.Foundations.ResourceCollectionOperation<User, CreateUserRequest, CreateUserResponse>;
