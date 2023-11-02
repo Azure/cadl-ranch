@@ -61,6 +61,7 @@ interface ModelsOnly extends GetAndSend<Cat | Dog, """
 model EnumsOnlyCases {
   /** This should be recieve/send the left variant */
   lr: LR;
+
   /** This should be recieve/send the up variant */
   ud: UD;
 }
@@ -79,6 +80,7 @@ interface EnumsOnly extends GetAndSend<LR | UD, """
 model StringAndArrayCases {
   /** This should be recieve/send the string variant */
   string: string;
+
   /** This should be recieve/send the array variant */
   array: string[];
 }
@@ -86,7 +88,7 @@ model StringAndArrayCases {
 /**
  * Describe union of a string and an array of strings
  */
-@route("/enums-only")
+@route("/string-and-array")
 interface StringAndArray
   extends GetAndSend<
       string | string[],
@@ -103,12 +105,16 @@ alias MixedTypesUnion = Cat | "a" | 2 | 3.3 | true;
 model MixedTypesCases {
   /** This should be recieve/send the TestModel variant */
   `model`: MixedTypesUnion;
+
   /** This should be recieve/send the "a" variant */
   stringLiteral: MixedTypesUnion;
+
   /** This should be recieve/send the 2 variant */
   intLiteral: MixedTypesUnion;
+
   /** This should be recieve/send the 3.3 variant */
   floatLiteral: MixedTypesUnion;
+
   /** This should be recieve/send the true variant */
   booleanLiteral: MixedTypesUnion;
 }
