@@ -5163,90 +5163,382 @@ Expect to handle a unknown type value. Mock api will return 'test'
 
 Expect to send a string value. Mock api expect to receive 'test'
 
-### Type_Union_receiveFirstNamedUnionValue
+### Type_Union_EnumsOnly_get
 
-- Endpoint: `get /type/union/receive/model1`
+- Endpoint: `get /type/union/enums-only`
 
-This test is testing receiving the first union value in named union property.
+Verify a union can be processed in a response:
 
-Expect response:
-
-```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```tsp
+Type.Union.LR | Type.Union.UD
 ```
 
-### Type_Union_receiveIntArray
-
-- Endpoint: `get /type/union/receive/int-array`
-
-This test is testing receiving an int array value in simple union property.
-
-Expect response:
+Expected response body:
 
 ```json
-{ "simpleUnion": [1, 2] }
+{
+  "prop": {
+    "lr": "right",
+    "ud": "up"
+  }
+}
 ```
 
-### Type_Union_receiveSecondNamedUnionValue
+### Type_Union_EnumsOnly_send
 
-- Endpoint: `get /type/union/receive/model2`
+- Endpoint: `get /type/union/enums-only`
 
-This test is testing receiving the second union value in named union property.
+Verify a union can be processed in a response:
 
-Expect response:
-
-```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
+```tsp
+Type.Union.LR | Type.Union.UD
 ```
 
-### Type_Union_receiveString
-
-- Endpoint: `get /type/union/receive/string`
-
-This test is testing receiving a string value in simple union property.
-
-Expect response:
+Expected request to send body:
 
 ```json
-{ "simpleUnion": "string" }
+{
+  "prop": {
+    "lr": "right",
+    "ud": "up"
+  }
+}
 ```
 
-### Type_Union_sendFirstNamedUnionValue
+### Type_Union_FloatsOnly_get
 
-- Endpoint: `post /type/union/model1`
+- Endpoint: `get /type/union/floats-only`
 
-This test is testing sending the first union value in named union property.
+Verify a union can be processed in a response:
 
-```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
+```tsp
+1.1 | 2.2 | 3.3
 ```
 
-### Type_Union_sendInt
-
-- Endpoint: `post /type/union/int`
-
-This test is testing sending an int value in simple union property.
+Expected response body:
 
 ```json
-{ "simpleUnion": 1 }
+{ "prop": 2.2 }
 ```
 
-### Type_Union_sendIntArray
+### Type_Union_FloatsOnly_send
 
-- Endpoint: `post /type/union/int-array`
+- Endpoint: `get /type/union/floats-only`
 
-This test is testing sending an int array value in simple union property.
+Verify a union can be processed in a response:
 
-```json
-{ "simpleUnion": [1, 2] }
+```tsp
+1.1 | 2.2 | 3.3
 ```
 
-### Type_Union_sendSecondNamedUnionValue
-
-- Endpoint: `post /type/union/model2`
-
-This test is testing sending the second union value in named union property.
+Expected request to send body:
 
 ```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
+{ "prop": 2.2 }
+```
+
+### Type_Union_IntsOnly_get
+
+- Endpoint: `get /type/union/ints-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1 | 2 | 3
+```
+
+Expected response body:
+
+```json
+{ "prop": 2 }
+```
+
+### Type_Union_IntsOnly_send
+
+- Endpoint: `get /type/union/ints-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1 | 2 | 3
+```
+
+Expected request to send body:
+
+```json
+{ "prop": 2 }
+```
+
+### Type_Union_MixedLiterals_get
+
+- Endpoint: `get /type/union/mixed-literals`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | 2 | 3.3 | true
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "stringLiteral": "a",
+    "intLiteral": 2,
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
+  }
+}
+```
+
+### Type_Union_MixedLiterals_send
+
+- Endpoint: `get /type/union/mixed-literals`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | 2 | 3.3 | true
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "stringLiteral": "a",
+    "intLiteral": 2,
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_get
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "model": {
+      "name": "test"
+    },
+    "literal": "a",
+    "int": 2,
+    "boolean": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_send
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "model": {
+      "name": "test"
+    },
+    "literal": "a",
+    "int": 2,
+    "boolean": true
+  }
+}
+```
+
+### Type_Union_ModelsOnly_get
+
+- Endpoint: `get /type/union/models-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | Type.Union.Dog
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "name": "test"
+  }
+}
+```
+
+### Type_Union_ModelsOnly_send
+
+- Endpoint: `get /type/union/models-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | Type.Union.Dog
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "name": "test"
+  }
+}
+```
+
+### Type_Union_StringAndArray_get
+
+- Endpoint: `get /type/union/string-and-array`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | string[]
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "string": "test",
+    "array": ["test1", "test2"]
+  }
+}
+```
+
+### Type_Union_StringAndArray_send
+
+- Endpoint: `get /type/union/string-and-array`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | string[]
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "string": "test",
+    "array": ["test1", "test2"]
+  }
+}
+```
+
+### Type_Union_StringExtensible_get
+
+- Endpoint: `get /type/union/string-extensible`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | b | c
+```
+
+Expected response body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensible_send
+
+- Endpoint: `get /type/union/string-extensible`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | b | c
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensibleNamed_get
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected response body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensibleNamed_send
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringsOnly_get
+
+- Endpoint: `get /type/union/strings-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | b | c
+```
+
+Expected response body:
+
+```json
+{ "prop": "b" }
+```
+
+### Type_Union_StringsOnly_send
+
+- Endpoint: `get /type/union/strings-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | b | c
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "b" }
 ```
