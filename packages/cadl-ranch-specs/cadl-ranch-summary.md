@@ -3333,6 +3333,56 @@ Expected input body:
 }
 ```
 
+### Type_Model_Inheritance_NestedProperty_get
+
+- Endpoint: `get /type/model/inheritance/nested-property`
+
+Send a GET request which returns the following body:
+Expected response body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
+### Type_Model_Inheritance_NestedProperty_put
+
+- Endpoint: `put /type/model/inheritance/nested-property`
+
+Send a PUT request with the following body:
+Expected input body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
 ### Type_Model_Inheritance_NotDiscriminated_getValid
 
 - Endpoint: `get /type/model/inheritance/not-discriminated/valid`
