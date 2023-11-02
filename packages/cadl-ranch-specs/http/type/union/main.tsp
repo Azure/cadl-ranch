@@ -115,22 +115,52 @@ interface StringAndArray
       StringAndArrayCases
     > {}
 
-alias MixedTypesUnion = Cat | "a" | 2 | 3.3 | true;
+alias MixedLiteralsUnion = Cat | "a" | 2 | 3.3 | true;
+model MixedLiteralsCases {
+  /** This should be receive/send the "a" variant */
+  stringLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the 2 variant */
+  intLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the 3.3 variant */
+  floatLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the true variant */
+  booleanLiteral: MixedLiteralsUnion;
+}
+
+/**
+ * Describe union of floats "a" | 2 | 3.3
+ */
+@route("/mixed-literals")
+interface MixedLiterals
+  extends GetAndSend<
+      MixedLiteralsUnion,
+      """
+      {
+        "stringLiteral": "a",
+        "intLiteral": 2,
+        "floatLiteral": 3.3,
+        "booleanLiteral": true
+      }
+      """,
+      MixedLiteralsCases
+    > {}
+
+alias MixedTypesUnion = Cat | "a" | int32 | boolean;
 model MixedTypesCases {
-  /** This should be receive/send the TestModel variant */
+  /** This should be receive/send the Cat variant */
   `model`: MixedTypesUnion;
 
   /** This should be receive/send the "a" variant */
-  stringLiteral: MixedTypesUnion;
+  literal: MixedTypesUnion;
 
-  /** This should be receive/send the 2 variant */
-  intLiteral: MixedTypesUnion;
+  /** This should be receive/send the int variant */
+  int: MixedTypesUnion;
 
-  /** This should be receive/send the 3.3 variant */
-  floatLiteral: MixedTypesUnion;
-
-  /** This should be receive/send the true variant */
-  booleanLiteral: MixedTypesUnion;
+  /** This should be receive/send the boolean variant */
+  boolean: MixedTypesUnion;
 }
 
 /**
@@ -145,9 +175,9 @@ interface MixedTypes
         "model": {
           "name": "test"
         },
-        "stringLiteral": "a",
-        "intLiteral": 2,
-        "floatLiteral": 3.3
+        "literal": "a",
+        "int": 2,
+        "boolean": true
       }
       """,
       MixedTypesCases

@@ -56,13 +56,22 @@ const Type_Union_StringAndArray = createGetSendScenario("/type/union/string-and-
 Scenarios.Type_Union_StringAndArray_get = Type_Union_StringAndArray.get;
 Scenarios.Type_Union_StringAndArray_send = Type_Union_StringAndArray.send;
 
+const Type_Union_MixedLiterals = createGetSendScenario("/type/union/mixed-types", {
+  stringLiteral: "a",
+  intLiteral: 2,
+  floatLiteral: 3.3,
+  booleanLiteral: true,
+});
+Scenarios.Type_Union_MixedLiterals_get = Type_Union_MixedLiterals.get;
+Scenarios.Type_Union_MixedLiterals_send = Type_Union_MixedLiterals.send;
+
 const Type_Union_MixedTypes = createGetSendScenario("/type/union/mixed-types", {
   model: {
     name: "test",
   },
-  stringLiteral: "a",
-  intLiteral: 2,
-  floatLiteral: 3.3,
+  literal: "a",
+  int: 2,
+  boolean: true,
 });
 Scenarios.Type_Union_MixedTypes_get = Type_Union_MixedTypes.get;
 Scenarios.Type_Union_MixedTypes_send = Type_Union_MixedTypes.send;

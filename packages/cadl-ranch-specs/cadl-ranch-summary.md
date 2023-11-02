@@ -5269,9 +5269,9 @@ Expected request to send body:
 { "prop": 2 }
 ```
 
-### Type_Union_MixedTypes_get
+### Type_Union_MixedLiterals_get
 
-- Endpoint: `get /type/union/mixed-types`
+- Endpoint: `get /type/union/mixed-literals`
 
 Verify a union can be processed in a response:
 
@@ -5284,19 +5284,17 @@ Expected response body:
 ```json
 {
   "prop": {
-    "model": {
-      "name": "test"
-    },
     "stringLiteral": "a",
     "intLiteral": 2,
-    "floatLiteral": 3.3
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
   }
 }
 ```
 
-### Type_Union_MixedTypes_send
+### Type_Union_MixedLiterals_send
 
-- Endpoint: `get /type/union/mixed-types`
+- Endpoint: `get /type/union/mixed-literals`
 
 Verify a union can be processed in a response:
 
@@ -5309,12 +5307,60 @@ Expected request to send body:
 ```json
 {
   "prop": {
+    "stringLiteral": "a",
+    "intLiteral": 2,
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_get
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
     "model": {
       "name": "test"
     },
-    "stringLiteral": "a",
-    "intLiteral": 2,
-    "floatLiteral": 3.3
+    "literal": "a",
+    "int": 2,
+    "boolean": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_send
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "model": {
+      "name": "test"
+    },
+    "literal": "a",
+    "int": 2,
+    "boolean": true
   }
 }
 ```
