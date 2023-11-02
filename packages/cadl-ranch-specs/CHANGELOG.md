@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.25.0
+
+### Minor Changes
+
+- 9081f95: test for scenario `model MyModel is/extends Record<>`
+
+### Patch Changes
+
+- 198d328: Add tests for literal types
+- 63be76f: Add paging tests
+- 226169c: Use pollingOperation to customize non-standard LRO
+- 41be77d: Remove pollingOperation from standard LRO
+- e70b7a9: Add assertions to check api version in lro polling url is correct.
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+- Updated dependencies [d9c0e3a]
+  - @azure-tools/cadl-ranch-expect@0.8.1
+  - @azure-tools/cadl-ranch@0.9.1
+
 ## 0.24.0
 
 ### Minor Changes

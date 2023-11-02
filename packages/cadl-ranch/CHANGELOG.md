@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.9.1
+
+### Patch Changes
+
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+- Updated dependencies [d9c0e3a]
+  - @azure-tools/cadl-ranch-expect@0.8.1
+
 ## 0.9.0
 
 ### Minor Changes
