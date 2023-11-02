@@ -121,7 +121,6 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
 @scenario
@@ -165,7 +164,6 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op delete is ResourceOperations.LongRunningResourceDelete<User>;
 
 @scenario
@@ -216,5 +214,4 @@ Expected response body:
 }
 ```
 """)
-@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
 op export is ResourceOperations.LongRunningResourceAction<User, UserExportParams, ExportedUser>;
