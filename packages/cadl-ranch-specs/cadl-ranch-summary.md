@@ -5170,7 +5170,7 @@ Expect to send a string value. Mock api expect to receive 'test'
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.LR | Type.Union.UD
 ```
 
 Expected response body:
@@ -5191,7 +5191,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.LR | Type.Union.UD
 ```
 
 Expected request to send body:
@@ -5205,14 +5205,14 @@ Expected request to send body:
 }
 ```
 
-### Type_Union_FloatOnly_get
+### Type_Union_FloatsOnly_get
 
 - Endpoint: `get /type/union/floats-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+1.1 | 2.2 | 3.3
 ```
 
 Expected response body:
@@ -5221,14 +5221,14 @@ Expected response body:
 { "prop": 2.2 }
 ```
 
-### Type_Union_FloatOnly_send
+### Type_Union_FloatsOnly_send
 
 - Endpoint: `get /type/union/floats-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+1.1 | 2.2 | 3.3
 ```
 
 Expected request to send body:
@@ -5237,14 +5237,14 @@ Expected request to send body:
 { "prop": 2.2 }
 ```
 
-### Type_Union_IntOnly_get
+### Type_Union_IntsOnly_get
 
 - Endpoint: `get /type/union/ints-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+1 | 2 | 3
 ```
 
 Expected response body:
@@ -5253,14 +5253,14 @@ Expected response body:
 { "prop": 2 }
 ```
 
-### Type_Union_IntOnly_send
+### Type_Union_IntsOnly_send
 
 - Endpoint: `get /type/union/ints-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+1 | 2 | 3
 ```
 
 Expected request to send body:
@@ -5276,7 +5276,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.Cat | a | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -5301,7 +5301,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.Cat | a | 2 | 3.3 | true
 ```
 
 Expected request to send body:
@@ -5326,7 +5326,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.Cat | Type.Union.Dog
 ```
 
 Expected response body:
@@ -5346,7 +5346,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+Type.Union.Cat | Type.Union.Dog
 ```
 
 Expected request to send body:
@@ -5366,7 +5366,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+string | string[]
 ```
 
 Expected response body:
@@ -5387,7 +5387,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+string | string[]
 ```
 
 Expected request to send body:
@@ -5408,7 +5408,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+string | b | c
 ```
 
 Expected response body:
@@ -5424,7 +5424,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-type
+string | b | c
 ```
 
 Expected request to send body:
@@ -5433,14 +5433,46 @@ Expected request to send body:
 { "prop": "custom" }
 ```
 
-### Type_Union_StringOnly_get
+### Type_Union_StringExtensibleNamed_get
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected response body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensibleNamed_send
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringsOnly_get
 
 - Endpoint: `get /type/union/strings-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+a | b | c
 ```
 
 Expected response body:
@@ -5449,14 +5481,14 @@ Expected response body:
 { "prop": "b" }
 ```
 
-### Type_Union_StringOnly_send
+### Type_Union_StringsOnly_send
 
 - Endpoint: `get /type/union/strings-only`
 
 Verify a union can be processed in a response:
 
 ```tsp
-type
+a | b | c
 ```
 
 Expected request to send body:

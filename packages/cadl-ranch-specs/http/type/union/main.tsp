@@ -31,7 +31,7 @@ enum UD {
  * Describe union of string "a" | "b" | "c"
  */
 @route("/strings-only")
-interface StringOnly extends GetAndSend<"a" | "b" | "c", "\"b\""> {}
+interface StringsOnly extends GetAndSend<"a" | "b" | "c", "\"b\""> {}
 
 /**
  * Describe union of string string | "b" | "c"
@@ -54,13 +54,13 @@ interface StringExtensibleNamed extends GetAndSend<StringExtensibleNamedUnion, "
  * Describe union of integer 1 | 2 | 3
  */
 @route("/ints-only")
-interface IntOnly extends GetAndSend<1 | 2 | 3, "2"> {}
+interface IntsOnly extends GetAndSend<1 | 2 | 3, "2"> {}
 
 /**
  * Describe union of floats 1.1 | 2.2 | 3.3
  */
 @route("/floats-only")
-interface FloatOnly extends GetAndSend<1.1 | 2.2 | 3.3, "2.2"> {}
+interface FloatsOnly extends GetAndSend<1.1 | 2.2 | 3.3, "2.2"> {}
 
 /**
  * Describe union of models
@@ -68,16 +68,16 @@ interface FloatOnly extends GetAndSend<1.1 | 2.2 | 3.3, "2.2"> {}
 @route("/models-only")
 interface ModelsOnly extends GetAndSend<Cat | Dog, """
   {
-  "name": "test"
+    "name": "test"
   }
   """> {}
 
 model EnumsOnlyCases {
-  /** This should be recieve/send the left variant */
-  lr: LR;
+  /** This should be receive/send the left variant */
+  lr: LR | UD;
 
-  /** This should be recieve/send the up variant */
-  ud: UD;
+  /** This should be receive/send the up variant */
+  ud: UD | UD;
 }
 
 /**
@@ -92,10 +92,10 @@ interface EnumsOnly extends GetAndSend<LR | UD, """
   """, EnumsOnlyCases> {}
 
 model StringAndArrayCases {
-  /** This should be recieve/send the string variant */
+  /** This should be receive/send the string variant */
   string: string;
 
-  /** This should be recieve/send the array variant */
+  /** This should be receive/send the array variant */
   array: string[];
 }
 
@@ -117,19 +117,19 @@ interface StringAndArray
 
 alias MixedTypesUnion = Cat | "a" | 2 | 3.3 | true;
 model MixedTypesCases {
-  /** This should be recieve/send the TestModel variant */
+  /** This should be receive/send the TestModel variant */
   `model`: MixedTypesUnion;
 
-  /** This should be recieve/send the "a" variant */
+  /** This should be receive/send the "a" variant */
   stringLiteral: MixedTypesUnion;
 
-  /** This should be recieve/send the 2 variant */
+  /** This should be receive/send the 2 variant */
   intLiteral: MixedTypesUnion;
 
-  /** This should be recieve/send the 3.3 variant */
+  /** This should be receive/send the 3.3 variant */
   floatLiteral: MixedTypesUnion;
 
-  /** This should be recieve/send the true variant */
+  /** This should be receive/send the true variant */
   booleanLiteral: MixedTypesUnion;
 }
 
