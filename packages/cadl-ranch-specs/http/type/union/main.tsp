@@ -2,7 +2,10 @@ import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
-@doc("Test for type of union.")
+
+/**
+ * Describe scenarios for various combinations of unions.
+ */
 @supportedBy("dpg")
 @scenarioService("/type/union")
 namespace Type.Union;
@@ -35,6 +38,17 @@ interface StringOnly extends GetAndSend<"a" | "b" | "c", "\"b\""> {}
  */
 @route("/string-extensible")
 interface StringExtensible extends GetAndSend<string | "b" | "c", "\"custom\""> {}
+
+union StringExtensibleNamedUnion {
+  string,
+  OptionB: "b",
+  "c",
+}
+/**
+ * Describe union of string string | "b" | "c" but where the union is named and some of the variants are named
+ */
+@route("/string-extensible-named")
+interface StringExtensibleNamed extends GetAndSend<StringExtensibleNamedUnion, "\"custom\""> {}
 
 /**
  * Describe union of integer 1 | 2 | 3
