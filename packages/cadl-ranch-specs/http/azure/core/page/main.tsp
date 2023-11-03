@@ -80,6 +80,7 @@ Expected response body:
      }
   ]
 }
+```
 """)
 op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
@@ -129,6 +130,7 @@ Expected response body:
      }
   ]
 }
+```
 """)
 @get
 op listWithParameters is global.Azure.Core.Foundations.Operation<ListItemInput, global.Azure.Core.Page<User>>;
@@ -165,6 +167,7 @@ Expected response body:
      }
   ]
 }
+```
 """)
 op listWithCustomPageModel is global.Azure.Core.Foundations.Operation<{}, CustomPageModel<User>>;
 

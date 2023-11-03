@@ -551,16 +551,17 @@ Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 
-````json
+```json
 {
-  "items":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
+  "items": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
   ]
 }
+```
 
 ### Azure_Core_Page_listWithPage
 
@@ -573,16 +574,18 @@ Should not generate visible model like Page.
 Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
+
 ```json
 {
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
   ]
 }
+```
 
 ### Azure_Core_Page_listWithParameters
 
@@ -593,16 +596,18 @@ Expected query parameter: api-version=2022-12-01-preview&another=Second
 Expected body parameter: {"inputName": "Madge"}
 
 Expected response body:
+
 ```json
 {
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
   ]
 }
+```
 
 ### Azure_Core_Page_TwoModelsAsPageItem
 
@@ -618,14 +623,16 @@ This scenario is to test two operations with two different page item types.
 
 Expected path parameter: id=1
 Expected header parameters:
+
 - repeatability-request-id=<any uuid>
 - repeatability-first-sent=<any HTTP header date>
-Expected request body:
+  Expected request body:
+
 ```json
 {
   "userActionValue": "test"
 }
-````
+```
 
 Expected response header:
 
