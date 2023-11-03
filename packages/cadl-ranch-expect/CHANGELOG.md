@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.8.1
+
+### Patch Changes
+
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+
 ## 0.8.0
 
 ### Minor Changes
