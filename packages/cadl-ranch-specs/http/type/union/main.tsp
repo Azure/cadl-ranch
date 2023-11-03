@@ -3,139 +3,229 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@doc("Test for type of union.")
+/**
+ * Describe scenarios for various combinations of unions.
+ */
 @supportedBy("dpg")
 @scenarioService("/type/union")
 namespace Type.Union;
 
-@doc("This is a base model.")
-model BaseModel {
+model Cat {
   name: string;
 }
 
-@doc("The first one of the unioned model type.")
-model Model1 extends BaseModel {
-  prop1: int32;
+model Dog {
+  bark: string;
 }
 
-@doc("The second one of the unioned model type.")
-model Model2 extends BaseModel {
-  prop2: int32;
+enum LR {
+  left,
+  right,
+}
+enum UD {
+  up,
+  down,
 }
 
-union MyNamedUnion {
-  one: Model1,
-  two: Model2,
+/**
+ * Describe union of string "a" | "b" | "c"
+ */
+@route("/strings-only")
+interface StringsOnly extends GetAndSend<"a" | "b" | "c", "\"b\""> {}
+
+/**
+ * Describe union of string string | "b" | "c"
+ */
+@route("/string-extensible")
+interface StringExtensible extends GetAndSend<string | "b" | "c", "\"custom\""> {}
+
+union StringExtensibleNamedUnion {
+  string,
+  OptionB: "b",
+  "c",
+}
+/**
+ * Describe union of string string | "b" | "c" but where the union is named and some of the variants are named
+ */
+@route("/string-extensible-named")
+interface StringExtensibleNamed extends GetAndSend<StringExtensibleNamedUnion, "\"custom\""> {}
+
+/**
+ * Describe union of integer 1 | 2 | 3
+ */
+@route("/ints-only")
+interface IntsOnly extends GetAndSend<1 | 2 | 3, "2"> {}
+
+/**
+ * Describe union of floats 1.1 | 2.2 | 3.3
+ */
+@route("/floats-only")
+interface FloatsOnly extends GetAndSend<1.1 | 2.2 | 3.3, "2.2"> {}
+
+/**
+ * Describe union of models
+ */
+@route("/models-only")
+interface ModelsOnly extends GetAndSend<Cat | Dog, """
+  {
+    "name": "test"
+  }
+  """> {}
+
+model EnumsOnlyCases {
+  /** This should be receive/send the left variant */
+  lr: LR | UD;
+
+  /** This should be receive/send the up variant */
+  ud: UD | UD;
 }
 
-model ModelWithSimpleUnionProperty {
-  simpleUnion: int32 | int32[];
+/**
+ * Describe union of 2 different enums
+ */
+@route("/enums-only")
+interface EnumsOnly extends GetAndSend<LR | UD, """
+  {
+    "lr": "right",
+    "ud": "up"
+  }
+  """, EnumsOnlyCases> {}
+
+model StringAndArrayCases {
+  /** This should be receive/send the string variant */
+  string: string;
+
+  /** This should be receive/send the array variant */
+  array: string[];
 }
 
-model ModelWithNamedUnionProperty {
-  namedUnion: MyNamedUnion;
+/**
+ * Describe union of a string and an array of strings
+ */
+@route("/string-and-array")
+interface StringAndArray
+  extends GetAndSend<
+      string | string[],
+      """
+      {
+        "string": "test",
+        "array": ["test1", "test2"]
+      }
+      """,
+      StringAndArrayCases
+    > {}
+
+alias MixedLiteralsUnion = Cat | "a" | 2 | 3.3 | true;
+model MixedLiteralsCases {
+  /** This should be receive/send the "a" variant */
+  stringLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the 2 variant */
+  intLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the 3.3 variant */
+  floatLiteral: MixedLiteralsUnion;
+
+  /** This should be receive/send the true variant */
+  booleanLiteral: MixedLiteralsUnion;
 }
 
-model ModelWithSimpleUnionPropertyInResponse {
-  simpleUnion: string | int32[];
+/**
+ * Describe union of floats "a" | 2 | 3.3
+ */
+@route("/mixed-literals")
+interface MixedLiterals
+  extends GetAndSend<
+      MixedLiteralsUnion,
+      """
+      {
+        "stringLiteral": "a",
+        "intLiteral": 2,
+        "floatLiteral": 3.3,
+        "booleanLiteral": true
+      }
+      """,
+      MixedLiteralsCases
+    > {}
+
+alias MixedTypesUnion = Cat | "a" | int32 | boolean;
+model MixedTypesCases {
+  /** This should be receive/send the Cat variant */
+  `model`: MixedTypesUnion;
+
+  /** This should be receive/send the "a" variant */
+  literal: MixedTypesUnion;
+
+  /** This should be receive/send the int variant */
+  int: MixedTypesUnion;
+
+  /** This should be receive/send the boolean variant */
+  boolean: MixedTypesUnion;
 }
 
-model ModelWithNamedUnionPropertyInResponse {
-  namedUnion: MyNamedUnion;
+/**
+ * Describe union of floats "a" | 2 | 3.3
+ */
+@route("/mixed-types")
+interface MixedTypes
+  extends GetAndSend<
+      MixedTypesUnion,
+      """
+      {
+        "model": {
+          "name": "test"
+        },
+        "literal": "a",
+        "int": 2,
+        "boolean": true
+      }
+      """,
+      MixedTypesCases
+    > {}
+
+/**
+ * Helper interface to describe a test involving getting and sending a specific data
+ */
+interface GetAndSend<Union, Payload extends valueof string, Cases = Union> {
+  @scenario
+  @scenarioDoc(
+    """
+    Verify a union can be processed in a response: 
+    ```tsp
+    {type}
+    ```
+
+    Expected response body:
+    ```json
+    { "prop": {value}}
+    ```
+    """,
+    {
+      type: Union,
+      value: Payload,
+    }
+  )
+  get(): {
+    prop: Cases;
+  };
+
+  @scenario
+  @scenarioDoc(
+    """
+    Verify a union can be processed in a response: 
+    ```tsp
+    {type}
+    ```
+
+    Expected request to send body:
+    ```json
+    { "prop": {value}}
+    ```
+    """,
+    {
+      type: Union,
+      value: Payload,
+    }
+  )
+  send(prop: Cases): void;
 }
-
-@scenario
-@scenarioDoc("""
-This test is testing sending an int value in simple union property.
-```json
-{ "simpleUnion": 1 }
-```
-""")
-@route("/int")
-@post
-op sendInt(@body input: ModelWithSimpleUnionProperty): OkResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing sending an int array value in simple union property.
-```json
-{ "simpleUnion": [1, 2] }
-```
-""")
-@route("/int-array")
-@post
-op sendIntArray(@body input: ModelWithSimpleUnionProperty): OkResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing sending the first union value in named union property.
-```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
-```
-""")
-@route("/model1")
-@post
-op sendFirstNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing sending the second union value in named union property.
-```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
-```
-""")
-@route("/model2")
-@post
-op sendSecondNamedUnionValue(@body input: ModelWithNamedUnionProperty): OkResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing receiving a string value in simple union property.
-
-Expect response:
-```json
-{ "simpleUnion": "string" }
-```
-""")
-@route("/receive/string")
-@get
-op receiveString(): ModelWithSimpleUnionPropertyInResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing receiving an int array value in simple union property.
-
-Expect response:
-```json
-{ "simpleUnion": [1, 2] }
-```
-""")
-@route("/receive/int-array")
-@get
-op receiveIntArray(): ModelWithSimpleUnionPropertyInResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing receiving the first union value in named union property.
-
-Expect response:
-```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
-```
-""")
-@route("/receive/model1")
-@get
-op receiveFirstNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
-
-@scenario
-@scenarioDoc("""
-This test is testing receiving the second union value in named union property.
-
-Expect response:
-```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
-```
-""")
-@route("/receive/model2")
-@get
-op receiveSecondNamedUnionValue(): ModelWithNamedUnionPropertyInResponse;
