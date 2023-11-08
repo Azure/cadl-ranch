@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.9.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
 ## 0.8.1
 
 ### Patch Changes

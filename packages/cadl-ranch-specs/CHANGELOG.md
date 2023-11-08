@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 1.0.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-expect@0.9.0
+  - @azure-tools/cadl-ranch@0.10.0
+
 ## 0.25.0
 
 ### Minor Changes
