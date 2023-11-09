@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.5.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
 ## 0.4.0
 
 ### Minor Changes
