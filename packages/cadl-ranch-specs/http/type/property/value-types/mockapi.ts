@@ -52,6 +52,14 @@ const floatMock = createMockApis("float", 42.42);
 Scenarios.Type_Property_ValueTypes_Float_get = passOnSuccess(floatMock.get);
 Scenarios.Type_Property_ValueTypes_Float_put = passOnSuccess(floatMock.put);
 
+const decimalMock = createMockApis("decimal", 0.33333);
+Scenarios.Type_Property_ValueTypes_Decimal_get = passOnSuccess(decimalMock.get);
+Scenarios.Type_Property_ValueTypes_Decimal_put = passOnSuccess(decimalMock.put);
+
+const decimal128Mock = createMockApis("decimal128", 0.33333);
+Scenarios.Type_Property_ValueTypes_Decimal128_get = passOnSuccess(decimal128Mock.get);
+Scenarios.Type_Property_ValueTypes_Decimal128_put = passOnSuccess(decimal128Mock.put);
+
 const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
 Scenarios.Type_Property_ValueTypes_Datetime_get = passOnSuccess(datetimeMock.get);
 Scenarios.Type_Property_ValueTypes_Datetime_put = passOnSuccess(datetimeMock.put);
