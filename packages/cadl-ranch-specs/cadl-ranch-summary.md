@@ -2775,6 +2775,60 @@ Expected Array input body:
 [1, 'hello', 'k3': null]
 ```
 
+### Type_Basic_Decimal128Type_requestBody
+
+- Endpoint: `put /type/basic/decimal128/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Basic_Decimal128Type_requestParameter
+
+- Endpoint: `get /type/basic/decimal128/request_parameter`
+
+Expected request parameter:
+value=dGVzdA (base64url encode of test)
+
+### Type_Basic_Decimal128Type_responseBody
+
+- Endpoint: `get /type/basic/decimal128/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Basic_DecimalType_requestBody
+
+- Endpoint: `put /type/basic/decimal/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Basic_DecimalType_requestParameter
+
+- Endpoint: `get /type/basic/decimal/request_parameter`
+
+Expected request parameter:
+value=dGVzdA (base64url encode of test)
+
+### Type_Basic_DecimalType_responseBody
+
+- Endpoint: `get /type/basic/decimal/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
 ### Type_Dictionary_BooleanValue_get
 
 - Endpoint: `get /type/dictionary/boolean`
@@ -4745,6 +4799,46 @@ Expected input body:
 
 ```json
 {"property": 2022-08-26T18:38:00Z}
+```
+
+### Type_Property_ValueTypes_Decimal_get
+
+- Endpoint: `get /type/property/value-types/decimal`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal_put
+
+- Endpoint: `put /type/property/value-types/decimal`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_get
+
+- Endpoint: `get /type/property/value-types/decimal128`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_put
+
+- Endpoint: `put /type/property/value-types/decimal128`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
 ```
 
 ### Type_Property_ValueTypes_DictionaryString_get
