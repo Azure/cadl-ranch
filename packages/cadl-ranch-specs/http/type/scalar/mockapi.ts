@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -44,3 +44,42 @@ Scenarios.Type_Scalar_Unknown_put = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+interface MockApiOperations {
+  responseBody: MockApi;
+  requestBody: MockApi;
+  requestParameter: MockApi;
+}
+
+function createModelMockApis(route: string, value: any): MockApiOperations {
+  return {
+    responseBody: mockapi.get(`/type/scalar/${route}/response_body`, (req) => {
+      return {
+        status: 200,
+        body: json(value),
+      };
+    }),
+    requestBody: mockapi.put(`/type/scalar/${route}/resquest_body`, (req) => {
+      req.expect.coercedBodyEquals(value);
+      return {
+        status: 204,
+      };
+    }),
+    requestParameter: mockapi.get(`/type/scalar/${route}/request_parameter`, (req) => {
+      req.expect.containsQueryParam("value", `${value}`);
+      return {
+        status: 204,
+      };
+    }),
+  };
+}
+
+const DecimalTypeMock = createModelMockApis("decimal", 0.33333);
+Scenarios.Type_Scalar_DecimalType_responseBody = passOnSuccess(DecimalTypeMock.responseBody);
+Scenarios.Type_Scalar_DecimalType_requestBody = passOnSuccess(DecimalTypeMock.requestBody);
+Scenarios.Type_Scalar_DecimalType_requestParameter = passOnSuccess(DecimalTypeMock.requestParameter);
+
+const Decimal128TypeMock = createModelMockApis("decimal128", 0.33333);
+Scenarios.Type_Scalar_Decimal128Type_responseBody = passOnSuccess(Decimal128TypeMock.responseBody);
+Scenarios.Type_Scalar_Decimal128Type_requestBody = passOnSuccess(Decimal128TypeMock.requestBody);
+Scenarios.Type_Scalar_Decimal128Type_requestParameter = passOnSuccess(Decimal128TypeMock.requestParameter);

@@ -2775,60 +2775,6 @@ Expected Array input body:
 [1, 'hello', 'k3': null]
 ```
 
-### Type_Basic_Decimal128Type_requestBody
-
-- Endpoint: `put /type/basic/decimal128/resquest_body`
-
-Expected input body:
-
-```json
-0.33333
-```
-
-### Type_Basic_Decimal128Type_requestParameter
-
-- Endpoint: `get /type/basic/decimal128/request_parameter`
-
-Expected request parameter:
-value=dGVzdA (base64url encode of test)
-
-### Type_Basic_Decimal128Type_responseBody
-
-- Endpoint: `get /type/basic/decimal128/response_body`
-
-Expected response body:
-
-```json
-0.33333
-```
-
-### Type_Basic_DecimalType_requestBody
-
-- Endpoint: `put /type/basic/decimal/resquest_body`
-
-Expected input body:
-
-```json
-0.33333
-```
-
-### Type_Basic_DecimalType_requestParameter
-
-- Endpoint: `get /type/basic/decimal/request_parameter`
-
-Expected request parameter:
-value=dGVzdA (base64url encode of test)
-
-### Type_Basic_DecimalType_responseBody
-
-- Endpoint: `get /type/basic/decimal/response_body`
-
-Expected response body:
-
-```json
-0.33333
-```
-
 ### Type_Dictionary_BooleanValue_get
 
 - Endpoint: `get /type/dictionary/boolean`
@@ -5232,6 +5178,60 @@ Expect to handle a boolean value. Mock api will return true
 - Endpoint: `put /type/scalar/boolean`
 
 Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_Decimal128Type_requestBody
+
+- Endpoint: `put /type/scalar/decimal128/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Type_requestParameter
+
+- Endpoint: `get /type/scalar/decimal128/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_Decimal128Type_responseBody
+
+- Endpoint: `get /type/scalar/decimal128/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_DecimalType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
 
 ### Type_Scalar_String_get
 
