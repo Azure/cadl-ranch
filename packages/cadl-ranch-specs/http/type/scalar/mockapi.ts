@@ -60,7 +60,7 @@ function createModelMockApis(route: string, value: any): MockApiOperations {
       };
     }),
     requestBody: mockapi.put(`/type/scalar/${route}/resquest_body`, (req) => {
-      req.expect.coercedBodyEquals(value);
+      req.expect.bodyEquals(value);
       return {
         status: 204,
       };
