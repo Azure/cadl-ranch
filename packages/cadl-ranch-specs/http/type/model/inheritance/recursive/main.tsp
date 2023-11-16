@@ -3,7 +3,7 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@doc("Illustrates inheritance for nested property")
+@doc("Illustrates inheritance recursion")
 @scenarioService("/type/model/inheritance/recursive")
 namespace Type.Model.Inheritance.Recursive;
 

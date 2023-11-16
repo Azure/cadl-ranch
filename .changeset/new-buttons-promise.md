@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Add test case for inheritance nested property
+Add test case for inheritance recursion
