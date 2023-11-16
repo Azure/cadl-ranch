@@ -4,8 +4,8 @@ import "@azure-tools/cadl-ranch-expect";
 using TypeSpec.Http;
 
 @doc("Illustrates inheritance for nested property")
-@scenarioService("/type/model/inheritance/nested-property")
-namespace Type.Model.Inheritance.NestedProperty;
+@scenarioService("/type/model/inheritance/recursive")
+namespace Type.Model.Inheritance.Recursive;
 
 @doc("extension")
 model Extension extends Element {
