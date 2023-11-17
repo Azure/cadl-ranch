@@ -7,9 +7,6 @@ using TypeSpec.Http;
 @scenarioService("/content-type/multipart-formdata")
 namespace ContentType.MultipartFormData;
 
-@encode("binary")
-scalar binary extends bytes;
-
 model Address {
   city: string;
 }
@@ -17,9 +14,9 @@ model Address {
 model MultiPartRequest {
   id: string; // Field "id" is text/plain
   address: Address; // Field "address" is an application/json
-  profileImage: binary; // Field "profileImage" is application/octet-stream
+  profileImage: bytes; // Field "profileImage" is application/octet-stream
   previousAddresses: Address[]; // This is ONE part, as a JSON array
-  pictures: binary[]; // This is as many part as necessary
+  pictures: bytes[]; // This is as many part as necessary
 }
 
 @scenario
