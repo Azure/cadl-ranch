@@ -6,6 +6,7 @@ import { MockRequest } from "./mock-request.js";
  */
 export interface RequestExt extends Request {
   rawBody?: string;
+  files?: any;
 }
 
 export type ScenarioPassCondition = "response-success" | "status-code";

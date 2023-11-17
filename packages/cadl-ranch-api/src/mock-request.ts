@@ -10,6 +10,7 @@ export class MockRequest {
   public readonly params: { [key: string]: string };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public readonly body: any;
+  public readonly files?: any;
 
   public constructor(public originalRequest: RequestExt) {
     this.baseUrl = getRequestBaseUrl(originalRequest);
@@ -18,6 +19,7 @@ export class MockRequest {
     this.query = originalRequest.query as { [key: string]: string };
     this.params = originalRequest.params as { [key: string]: string };
     this.body = originalRequest.body;
+    this.files = originalRequest.files;
   }
 }
 
