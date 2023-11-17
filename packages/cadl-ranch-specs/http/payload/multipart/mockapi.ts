@@ -1,17 +1,10 @@
 import { passOnSuccess, ScenarioMockApi, mockapi } from "@azure-tools/cadl-ranch-api";
-import { resolvePath } from "@typespec/compiler";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
+import { pngFile, jpgFile } from "../../helper.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const root = resolvePath(fileURLToPath(import.meta.url), "../../../../../");
-
-const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
-const jpgFile = readFileSync(resolvePath(root, "assets/image.jpg"));
-
-Scenarios.ContentType_MultipartFormData_multipart = passOnSuccess(
-  mockapi.post("/content-type/multipart-formdata", (req) => {
+Scenarios.Payload_MultiPart_FormData_mixedParts = passOnSuccess(
+  mockapi.post("/multipart/form-data/mixed-parts", (req) => {
     req.expect.deepEqual(req.body.id, "123");
     req.expect.deepEqual(JSON.parse(req.body.address), { city: "X" });
     req.expect.deepEqual(JSON.parse(req.body.previousAddresses), [{ city: "Y" }, { city: "Z" }]);

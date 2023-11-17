@@ -3,9 +3,9 @@ import "@azure-tools/cadl-ranch-expect";
 
 using TypeSpec.Http;
 
-@doc("Test content-type: multipart/form-data")
-@scenarioService("/content-type/multipart-formdata")
-namespace ContentType.MultipartFormData;
+@doc("Test for multipart")
+@scenarioService("/multipart")
+namespace Payload.MultiPart;
 
 model Address {
   city: string;
@@ -19,8 +19,10 @@ model MultiPartRequest {
   pictures: bytes[]; // This is as many part as necessary
 }
 
-@scenario
-@scenarioDoc("""
+@route("/form-data")
+namespace FormData {
+  @scenario
+  @scenarioDoc("""
 Expect request:
 ```
 POST /upload HTTP/1.1
@@ -66,6 +68,8 @@ Content-Type: application/octet-stream
 --abcde12345
 ```
 """)
-@doc("Test content-type: multipart/form-data")
-@post
-op multipart(@header contentType: "multipart/form-data", @body image: MultiPartRequest): NoContentResponse;
+  @doc("Test content-type: multipart/form-data")
+  @post
+  @route("/mixed-parts")
+  op mixedParts(@header contentType: "multipart/form-data", @body image: MultiPartRequest): NoContentResponse;
+}
