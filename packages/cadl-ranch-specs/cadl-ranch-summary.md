@@ -5326,7 +5326,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+a | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -5349,7 +5349,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+a | 2 | 3.3 | true
 ```
 
 Expected request to send body:

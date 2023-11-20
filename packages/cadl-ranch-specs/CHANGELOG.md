@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.26.1
+
+### Patch Changes
+
+- 5f7ddf0: fix(union): add @operationGroup and fix errors
+
 ## 0.26.0
 
 ### Minor Changes
