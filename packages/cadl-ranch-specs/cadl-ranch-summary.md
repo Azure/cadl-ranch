@@ -1572,7 +1572,7 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
-### Payload_MultiPart_FormData_mixedParts
+### Payload_MultiPart_FormData_basic
 
 - Endpoint: `post /multipart/form-data/mixed-parts`
 
@@ -1585,41 +1585,13 @@ Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
 Content-Disposition: form-data; name="id"
-Content-Type: text/plain
 
 123
 --abcde12345
-Content-Disposition: form-data; name="address"
-Content-Type: application/json
-
-{
-  "city": "X"
-}
---abcde12345
-Content-Disposition: form-data; name="profileImage "; filename="image.jpg"
-Content-Type: application/octet-stream
+Content-Disposition: form-data; name="profileImage ";
 
 {…file content…}
 --abcde12345--
-Content-Disposition: form-data; name="previousAddresses"
-Content-Type: application/json
-
-[{
-  "city": "Y"
-},{
-  "city": "Z"
-}]
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="image1.png"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="image2.png"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
 ```
 
 ### Payload_Pageable_list

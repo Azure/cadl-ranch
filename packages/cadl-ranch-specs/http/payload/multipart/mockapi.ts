@@ -1,21 +1,17 @@
-import { passOnSuccess, ScenarioMockApi, mockapi } from "@azure-tools/cadl-ranch-api";
-import { pngFile, jpgFile } from "../../helper.js";
+import { passOnSuccess, ScenarioMockApi, mockapi, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { jpgFile } from "../../helper.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Payload_MultiPart_FormData_mixedParts = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(
   mockapi.post("/multipart/form-data/mixed-parts", (req) => {
     req.expect.deepEqual(req.body.id, "123");
-    req.expect.deepEqual(JSON.parse(req.body.address), { city: "X" });
-    req.expect.deepEqual(JSON.parse(req.body.previousAddresses), [{ city: "Y" }, { city: "Z" }]);
-    for (const file of req.files) {
-      if (["image1.png", "image2.png"].includes(file.originalname)) {
-        req.expect.deepEqual(file.buffer, pngFile);
-      } else if ("image.jpg" === file.originalname) {
-        req.expect.deepEqual(file.buffer, jpgFile);
-      } else {
-        throw new Error(`Unexpected file: ${file.originalname}`);
-      }
+    if (req.body.profileImage) {
+      req.expect.deepEqual(req.body.profileImage, jpgFile.toString("utf8"));
+    } else if (req.files?.length > 0) {
+      req.expect.deepEqual(req.files[0].buffer, jpgFile);
+    } else {
+      throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
     }
 
     return { status: 204 };

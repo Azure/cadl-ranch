@@ -7,16 +7,9 @@ using TypeSpec.Http;
 @scenarioService("/multipart")
 namespace Payload.MultiPart;
 
-model Address {
-  city: string;
-}
-
 model MultiPartRequest {
-  id: string; // Field "id" is text/plain
-  address: Address; // Field "address" is an application/json
-  profileImage: bytes; // Field "profileImage" is application/octet-stream
-  previousAddresses: Address[]; // This is ONE part, as a JSON array
-  pictures: bytes[]; // This is as many part as necessary
+  id: string;
+  profileImage: bytes;
 }
 
 @route("/form-data")
@@ -31,45 +24,17 @@ Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
 Content-Disposition: form-data; name="id"
-Content-Type: text/plain
 
 123
 --abcde12345
-Content-Disposition: form-data; name="address"
-Content-Type: application/json
-
-{
-  "city": "X"
-}
---abcde12345
-Content-Disposition: form-data; name="profileImage "; filename="image.jpg"
-Content-Type: application/octet-stream
+Content-Disposition: form-data; name="profileImage ";
 
 {…file content…}
 --abcde12345--
-Content-Disposition: form-data; name="previousAddresses"
-Content-Type: application/json
-
-[{
-  "city": "Y"
-},{
-  "city": "Z"
-}]
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="image1.png"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="image2.png"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
 ```
 """)
   @doc("Test content-type: multipart/form-data")
   @post
   @route("/mixed-parts")
-  op mixedParts(@header contentType: "multipart/form-data", @body image: MultiPartRequest): NoContentResponse;
+  op basic(@header contentType: "multipart/form-data", @body body: MultiPartRequest): NoContentResponse;
 }
