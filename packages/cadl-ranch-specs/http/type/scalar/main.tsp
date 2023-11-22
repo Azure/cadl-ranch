@@ -120,3 +120,46 @@ interface DecimalType extends ScalarTypesOperations<decimal, "0.33333"> {}
 @route("/decimal128")
 @operationGroup
 interface Decimal128Type extends ScalarTypesOperations<decimal128, "0.33333"> {}
+
+@doc("Template to verify number types")
+interface NumberTypesVerifyOperations<T, VerifyValues extends string, ResultValue extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Get verify values:
+  {doc}
+  """,
+    {
+      doc: VerifyValues,
+    }
+  )
+  @get
+  @route("/prepare_verify")
+  prepareVerify(): T[];
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected input body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: ResultValue,
+    }
+  )
+  @post
+  @route("/verify")
+  verify(@body body: T): void;
+}
+
+@doc("Decimal type verification")
+@route("/decimal")
+@operationGroup
+interface DecimalVerify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}
+
+@doc("Decimal128 type verification")
+@route("/decimal128")
+@operationGroup
+interface Decimal128Verify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}

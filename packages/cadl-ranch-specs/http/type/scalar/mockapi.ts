@@ -83,3 +83,37 @@ const Decimal128TypeMock = createModelMockApis("decimal128", 0.33333);
 Scenarios.Type_Scalar_Decimal128Type_responseBody = passOnSuccess(Decimal128TypeMock.responseBody);
 Scenarios.Type_Scalar_Decimal128Type_requestBody = passOnSuccess(Decimal128TypeMock.requestBody);
 Scenarios.Type_Scalar_Decimal128Type_requestParameter = passOnSuccess(Decimal128TypeMock.requestParameter);
+
+interface NumberTypesVerifyOperations {
+  prepareVerify: MockApi;
+  verify: MockApi;
+}
+
+function createNumberTypesVerifyOperations(
+  route: string,
+  verifyValues: any,
+  resultValue: any,
+): NumberTypesVerifyOperations {
+  return {
+    prepareVerify: mockapi.get(`/type/scalar/${route}/prepare_verify`, (req) => {
+      return {
+        status: 200,
+        body: json(verifyValues),
+      };
+    }),
+    verify: mockapi.post(`/type/scalar/${route}/verify`, (req) => {
+      req.expect.bodyEquals(resultValue);
+      return {
+        status: 204,
+      };
+    }),
+  };
+}
+
+const DecimalVerifyMock = createNumberTypesVerifyOperations("decimal", [0.1, 0.1, 0.1], 0.3);
+Scenarios.Type_Scalar_DecimalVerify_prepareVerify = passOnSuccess(DecimalVerifyMock.prepareVerify);
+Scenarios.Type_Scalar_DecimalVerify_verify = passOnSuccess(DecimalVerifyMock.verify);
+
+const Decimal128VerifyMock = createNumberTypesVerifyOperations("decimal128", [0.1, 0.1, 0.1], 0.3);
+Scenarios.Type_Scalar_Decimal128Verify_prepareVerify = passOnSuccess(Decimal128VerifyMock.prepareVerify);
+Scenarios.Type_Scalar_Decimal128Verify_verify = passOnSuccess(Decimal128VerifyMock.verify);
