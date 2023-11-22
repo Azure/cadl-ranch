@@ -27,7 +27,7 @@ Content-Disposition: form-data; name="id"
 
 123
 --abcde12345
-Content-Disposition: form-data; name="profileImage ";
+Content-Disposition: form-data; name="profileImage";
 
 {…file content…}
 --abcde12345--
