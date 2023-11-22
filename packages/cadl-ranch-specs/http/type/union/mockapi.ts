@@ -56,7 +56,7 @@ const Type_Union_StringAndArray = createGetSendScenario("/type/union/string-and-
 Scenarios.Type_Union_StringAndArray_get = Type_Union_StringAndArray.get;
 Scenarios.Type_Union_StringAndArray_send = Type_Union_StringAndArray.send;
 
-const Type_Union_MixedLiterals = createGetSendScenario("/type/union/mixed-types", {
+const Type_Union_MixedLiterals = createGetSendScenario("/type/union/mixed-literals", {
   stringLiteral: "a",
   intLiteral: 2,
   floatLiteral: 3.3,

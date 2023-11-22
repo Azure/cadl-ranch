@@ -3361,6 +3361,56 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Type_Model_Inheritance_Recursive_get
+
+- Endpoint: `get /type/model/inheritance/recursive`
+
+Send a GET request which returns the following body:
+Expected response body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
+### Type_Model_Inheritance_Recursive_put
+
+- Endpoint: `put /type/model/inheritance/recursive`
+
+Send a PUT request with the following body:
+Expected input body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
 ### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
 
 - Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
@@ -5370,7 +5420,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+a | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -5393,7 +5443,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+a | 2 | 3.3 | true
 ```
 
 Expected request to send body:
