@@ -46,6 +46,7 @@ export class MockApiServer {
     this.app.use(bodyParser.text({ type: "*/pdf", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "text/plain" }));
     this.app.use(bodyParser.raw({ type: "application/octet-stream", limit: "10mb" }));
+    this.app.use(bodyParser.raw({ type: "image/png", limit: "10mb" }));
   }
 
   public use(route: string, ...handlers: RequestHandler[]): void {

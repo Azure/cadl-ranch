@@ -41,11 +41,20 @@ function createHeaderMockApis(route: string, value: any): MockApi {
   });
 }
 
-function createRequestBodyMockApis(route: string, value: any, contentType: string = "application/json"): MockApi {
+function createRequestBodyMockApis(
+  route: string,
+  value: any,
+  contentType: string = "application/json",
+  isBinary: boolean = false,
+): MockApi {
   const url = `/encode/bytes/body/request/${route}`;
   return mockapi.post(url, (req) => {
     req.expect.containsHeader("content-type", contentType);
-    req.expect.rawBodyEquals(value);
+    if (isBinary) {
+      req.expect.bodyEquals(value);
+    } else {
+      req.expect.rawBodyEquals(value);
+    }
     return {
       status: 204,
     };
@@ -87,10 +96,10 @@ Scenarios.Encode_Bytes_Header_base64urlArray = passOnSuccess(createHeaderMockApi
 // Request body
 Scenarios.Encode_Bytes_RequestBody_default = passOnSuccess(createRequestBodyMockApis("default", '"dGVzdA=="'));
 Scenarios.Encode_Bytes_RequestBody_octetStream = passOnSuccess(
-  createRequestBodyMockApis("octet-stream", pngFile, "application/octet-stream"),
+  createRequestBodyMockApis("octet-stream", pngFile, "application/octet-stream", true),
 );
 Scenarios.Encode_Bytes_RequestBody_customContentType = passOnSuccess(
-  createRequestBodyMockApis("custom-content-type", pngFile, "image/png"),
+  createRequestBodyMockApis("custom-content-type", pngFile, "image/png", true),
 );
 Scenarios.Encode_Bytes_RequestBody_base64 = passOnSuccess(createRequestBodyMockApis("base64", '"dGVzdA=="'));
 Scenarios.Encode_Bytes_RequestBody_base64url = passOnSuccess(createRequestBodyMockApis("base64url", '"dGVzdA"'));
