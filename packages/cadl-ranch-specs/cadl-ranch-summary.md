@@ -5256,6 +5256,23 @@ Expected response body:
 0.33333
 ```
 
+### Type_Scalar_Decimal128Verify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal128/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_Decimal128Verify_verify
+
+- Endpoint: `post /type/scalar/decimal128/verify`
+
+Expected input body:
+
+```json
+0.3
+```
+
 ### Type_Scalar_DecimalType_requestBody
 
 - Endpoint: `put /type/scalar/decimal/resquest_body`
@@ -5281,6 +5298,23 @@ Expected response body:
 
 ```json
 0.33333
+```
+
+### Type_Scalar_DecimalVerify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_DecimalVerify_verify
+
+- Endpoint: `post /type/scalar/decimal/verify`
+
+Expected input body:
+
+```json
+0.3
 ```
 
 ### Type_Scalar_String_get
