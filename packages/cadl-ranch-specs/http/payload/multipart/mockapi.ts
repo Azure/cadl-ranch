@@ -7,9 +7,9 @@ Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(
   mockapi.post("/multipart/form-data/mixed-parts", (req) => {
     req.expect.deepEqual(req.body.id, "123");
     if (req.files?.length > 0) {
-      req.expect.deepEqual("profileImage", req.files[0].fieldname);
-      req.expect.deepEqual("application/octet-stream", req.files[0].mimetype);
-      req.expect.deepEqual(jpgFile, req.files[0].buffer);
+      req.expect.deepEqual(req.files[0].fieldname, "profileImage");
+      req.expect.deepEqual(req.files[0].mimetype, "application/octet-stream");
+      req.expect.deepEqual(req.files[0].buffer, jpgFile);
     } else {
       throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
     }
