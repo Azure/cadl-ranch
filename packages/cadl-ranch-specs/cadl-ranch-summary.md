@@ -4797,6 +4797,46 @@ Expected input body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
+### Type_Property_ValueTypes_Decimal_get
+
+- Endpoint: `get /type/property/value-types/decimal`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal_put
+
+- Endpoint: `put /type/property/value-types/decimal`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_get
+
+- Endpoint: `get /type/property/value-types/decimal128`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_put
+
+- Endpoint: `put /type/property/value-types/decimal128`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
 ### Type_Property_ValueTypes_DictionaryString_get
 
 - Endpoint: `get /type/property/value-types/dictionary/string`
@@ -5188,6 +5228,94 @@ Expect to handle a boolean value. Mock api will return true
 - Endpoint: `put /type/scalar/boolean`
 
 Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_Decimal128Type_requestBody
+
+- Endpoint: `put /type/scalar/decimal128/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Type_requestParameter
+
+- Endpoint: `get /type/scalar/decimal128/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_Decimal128Type_responseBody
+
+- Endpoint: `get /type/scalar/decimal128/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Verify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal128/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_Decimal128Verify_verify
+
+- Endpoint: `post /type/scalar/decimal128/verify`
+
+Expected input body:
+
+```json
+0.3
+```
+
+### Type_Scalar_DecimalType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_DecimalType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalVerify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_DecimalVerify_verify
+
+- Endpoint: `post /type/scalar/decimal/verify`
+
+Expected input body:
+
+```json
+0.3
+```
 
 ### Type_Scalar_String_get
 

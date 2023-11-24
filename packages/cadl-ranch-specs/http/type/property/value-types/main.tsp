@@ -89,6 +89,20 @@ model FloatProperty is ModelTemplate<float32>;
 @operationGroup
 interface Float extends ModelOperations<FloatProperty, "42.42"> {}
 
+// Test a model with a decimal property
+@doc("Model with a decimal property")
+model DecimalProperty is ModelTemplate<decimal>;
+@route("/decimal")
+@operationGroup
+interface Decimal extends ModelOperations<DecimalProperty, "0.33333"> {}
+
+// Test a model with a decimal128 property
+@doc("Model with a decimal128 property")
+model Decimal128Property is ModelTemplate<decimal128>;
+@route("/decimal128")
+@operationGroup
+interface Decimal128 extends ModelOperations<Decimal128Property, "0.33333"> {}
+
 // Test a model with a datetime property
 @doc("Model with a datetime property")
 model DatetimeProperty is ModelTemplate<utcDateTime>;
