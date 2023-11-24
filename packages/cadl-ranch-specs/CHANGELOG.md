@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.26.2
+
+### Patch Changes
+
+- 6c515cc: Add test case for inheritance recursion
+- de5a6ee: Add test for decimal basic type
+
 ## 0.26.1
 
 ### Patch Changes
