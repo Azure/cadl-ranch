@@ -61,3 +61,105 @@ interface Unknown {
   @doc("put unknown value")
   put(@body @doc("_") body: unknown): void;
 }
+
+@doc("Template to have scalar types operations")
+interface ScalarTypesOperations<T, TDoc extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  @route("/response_body")
+  responseBody(): T;
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected input body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @put
+  @route("/resquest_body")
+  requestBody(@body body: T): void;
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request parameter:
+  value={doc}
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  @route("/request_parameter")
+  requestParameter(@query value: T): void;
+}
+
+@doc("Decimal type")
+@route("/decimal")
+@operationGroup
+interface DecimalType extends ScalarTypesOperations<decimal, "0.33333"> {}
+
+@doc("Decimal128 type")
+@route("/decimal128")
+@operationGroup
+interface Decimal128Type extends ScalarTypesOperations<decimal128, "0.33333"> {}
+
+@doc("Template to verify number types")
+interface NumberTypesVerifyOperations<T, VerifyValues extends string, ResultValue extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Get verify values:
+  {doc}
+  """,
+    {
+      doc: VerifyValues,
+    }
+  )
+  @get
+  @route("/prepare_verify")
+  prepareVerify(): T[];
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected input body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: ResultValue,
+    }
+  )
+  @post
+  @route("/verify")
+  verify(@body body: T): void;
+}
+
+@doc("Decimal type verification")
+@route("/decimal")
+@operationGroup
+interface DecimalVerify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}
+
+@doc("Decimal128 type verification")
+@route("/decimal128")
+@operationGroup
+interface Decimal128Verify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}
