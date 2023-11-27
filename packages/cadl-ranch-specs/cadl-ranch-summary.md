@@ -1616,6 +1616,32 @@ maxpagesize=3
 }
 ```
 
+### Projection_ProjectedName_Model_client
+
+- Endpoint: `post /projection/projected-name/model/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate the model with name `ClientModel`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Projection_ProjectedName_Model_language
+
+- Endpoint: `post /projection/projected-name/model/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate the model with your language specific model name.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
 ### Projection_ProjectedName_operation
 
 - Endpoint: `post /projection/projected-name/operation`
