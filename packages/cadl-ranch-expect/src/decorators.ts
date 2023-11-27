@@ -3,6 +3,7 @@ import {
   DecoratorContext,
   Enum,
   getNamespaceFullName,
+  getTypeName,
   Interface,
   listServices,
   Model,
@@ -58,7 +59,10 @@ export function getScenarioDoc(program: Program, target: Operation | Interface |
 function replaceTemplatedStringFromProperties(formatString: string, formatArgs: Model) {
   return formatString.replace(/{(\w+)}/g, (_, propName) => {
     const type = formatArgs.properties.get(propName)?.type;
-    return type && "value" in type ? type.value : propName;
+    if (type === undefined) {
+      return "";
+    }
+    return "value" in type ? String(type.value) : getTypeName(type);
   });
 }
 

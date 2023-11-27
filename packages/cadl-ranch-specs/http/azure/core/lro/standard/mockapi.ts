@@ -22,6 +22,7 @@ Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation1", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       createOrReplacePollCount > 0
         ? { id: "operation1", status: "Succeeded" }
@@ -47,6 +48,7 @@ Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation2", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       deletePollCount > 0 ? { id: "operation2", status: "Succeeded" } : { id: "operation2", status: "InProgress" };
     deletePollCount += 1;
@@ -68,6 +70,7 @@ Scenarios.Azure_Core_Lro_Standard_export = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation3", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       exportPollCount > 0
         ? { id: "operation3", status: "Succeeded", result: { name: "madge", resourceUri: "/users/madge" } }

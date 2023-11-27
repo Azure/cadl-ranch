@@ -52,6 +52,14 @@ const floatMock = createMockApis("float", 42.42);
 Scenarios.Type_Property_ValueTypes_Float_get = passOnSuccess(floatMock.get);
 Scenarios.Type_Property_ValueTypes_Float_put = passOnSuccess(floatMock.put);
 
+const decimalMock = createMockApis("decimal", 0.33333);
+Scenarios.Type_Property_ValueTypes_Decimal_get = passOnSuccess(decimalMock.get);
+Scenarios.Type_Property_ValueTypes_Decimal_put = passOnSuccess(decimalMock.put);
+
+const decimal128Mock = createMockApis("decimal128", 0.33333);
+Scenarios.Type_Property_ValueTypes_Decimal128_get = passOnSuccess(decimal128Mock.get);
+Scenarios.Type_Property_ValueTypes_Decimal128_put = passOnSuccess(decimal128Mock.put);
+
 const datetimeMock = createMockApis("datetime", "2022-08-26T18:38:00Z");
 Scenarios.Type_Property_ValueTypes_Datetime_get = passOnSuccess(datetimeMock.get);
 Scenarios.Type_Property_ValueTypes_Datetime_put = passOnSuccess(datetimeMock.put);
@@ -107,3 +115,31 @@ Scenarios.Type_Property_ValueTypes_UnknownDict_put = passOnSuccess(unknownDictMo
 const unknownArrayMock = createMockApis("unknown/array", ["hello", "world"]);
 Scenarios.Type_Property_ValueTypes_UnknownArray_get = passOnSuccess(unknownArrayMock.get);
 Scenarios.Type_Property_ValueTypes_UnknownArray_put = passOnSuccess(unknownArrayMock.put);
+
+const stringLiteralMock = createMockApis("string/literal", "hello");
+Scenarios.Type_Property_ValueTypes_StringLiteral_get = passOnSuccess(stringLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_StringLiteral_put = passOnSuccess(stringLiteralMock.put);
+
+const intLiteralMock = createMockApis("int/literal", 42);
+Scenarios.Type_Property_ValueTypes_IntLiteral_get = passOnSuccess(intLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_IntLiteral_put = passOnSuccess(intLiteralMock.put);
+
+const floatLiteralMock = createMockApis("float/literal", 42.42);
+Scenarios.Type_Property_ValueTypes_FloatLiteral_get = passOnSuccess(floatLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_FloatLiteral_put = passOnSuccess(floatLiteralMock.put);
+
+const booleanLiteralMock = createMockApis("boolean/literal", true);
+Scenarios.Type_Property_ValueTypes_BooleanLiteral_get = passOnSuccess(booleanLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_BooleanLiteral_put = passOnSuccess(booleanLiteralMock.put);
+
+const unionStringLiteralMock = createMockApis("union/string/literal", "world");
+Scenarios.Type_Property_ValueTypes_UnionStringLiteral_get = passOnSuccess(unionStringLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_UnionStringLiteral_put = passOnSuccess(unionStringLiteralMock.put);
+
+const unionIntLiteralMock = createMockApis("union/int/literal", 42);
+Scenarios.Type_Property_ValueTypes_UnionIntLiteral_get = passOnSuccess(unionIntLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_UnionIntLiteral_put = passOnSuccess(unionIntLiteralMock.put);
+
+const unionFloatLiteralMock = createMockApis("union/float/literal", 43.43);
+Scenarios.Type_Property_ValueTypes_UnionFloatLiteral_get = passOnSuccess(unionFloatLiteralMock.get);
+Scenarios.Type_Property_ValueTypes_UnionFloatLiteral_put = passOnSuccess(unionFloatLiteralMock.put);

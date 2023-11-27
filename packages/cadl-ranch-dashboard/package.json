@@ -1,7 +1,7 @@
 {
   "name": "@azure-tools/cadl-ranch-dashboard",
   "private": true,
-  "version": "0.3.2",
+  "version": "0.5.0",
   "description": "Cadl Ranch Dashboard website",
   "main": "dist/index.js",
   "type": "module",
@@ -40,13 +40,12 @@
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "@typespec/eslint-config-typespec": "~0.7.0",
+    "@typespec/eslint-config-typespec": "~0.50.0",
     "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.39.0",
-    "prettier": "^2.8.8",
-    "rimraf": "^5.0.0",
+    "eslint": "^8.50.0",
+    "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.9.0",
-    "typescript": "^5.0.4",
+    "typescript": "~5.2.2",
     "vite": "^4.3.9"
   }
 }

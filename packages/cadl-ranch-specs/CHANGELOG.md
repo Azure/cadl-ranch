@@ -1,5 +1,83 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.26.2
+
+### Patch Changes
+
+- 6c515cc: Add test case for inheritance recursion
+- de5a6ee: Add test for decimal basic type
+
+## 0.26.1
+
+### Patch Changes
+
+- 5f7ddf0: fix(union): add @operationGroup and fix errors
+
+## 0.26.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-expect@0.9.0
+  - @azure-tools/cadl-ranch@0.10.0
+
+## 0.25.0
+
+### Minor Changes
+
+- 9081f95: test for scenario `model MyModel is/extends Record<>`
+
+### Patch Changes
+
+- 198d328: Add tests for literal types
+- 63be76f: Add paging tests
+- 226169c: Use pollingOperation to customize non-standard LRO
+- 41be77d: Remove pollingOperation from standard LRO
+- e70b7a9: Add assertions to check api version in lro polling url is correct.
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+- Updated dependencies [d9c0e3a]
+  - @azure-tools/cadl-ranch-expect@0.8.1
+  - @azure-tools/cadl-ranch@0.9.1
+
+## 0.24.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-expect@0.8.0
+  - @azure-tools/cadl-ranch@0.9.0
+
+## 0.23.0
+
+### Minor Changes
+
+- 6aca6a8: add new a few new cases to send scalar type (string, boolean) as input and output.
+
+### Patch Changes
+
+- 96288fd: deprecate internal test
+- 8573add: Bug fix on special-words test
+
+## 0.22.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [beb2605]
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch@0.8.3
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
 ## 0.22.2
 
 ### Patch Changes

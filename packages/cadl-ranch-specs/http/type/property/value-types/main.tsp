@@ -66,7 +66,7 @@ interface Boolean extends ModelOperations<BooleanProperty, "true"> {}
 model StringProperty is ModelTemplate<string>;
 @route("/string")
 @operationGroup
-interface String extends ModelOperations<StringProperty, "hello"> {}
+interface String extends ModelOperations<StringProperty, "\"hello\""> {}
 
 // Test a model with a bytes property
 @doc("Model with a bytes property")
@@ -88,6 +88,20 @@ model FloatProperty is ModelTemplate<float32>;
 @route("/float")
 @operationGroup
 interface Float extends ModelOperations<FloatProperty, "42.42"> {}
+
+// Test a model with a decimal property
+@doc("Model with a decimal property")
+model DecimalProperty is ModelTemplate<decimal>;
+@route("/decimal")
+@operationGroup
+interface Decimal extends ModelOperations<DecimalProperty, "0.33333"> {}
+
+// Test a model with a decimal128 property
+@doc("Model with a decimal128 property")
+model Decimal128Property is ModelTemplate<decimal128>;
+@route("/decimal128")
+@operationGroup
+interface Decimal128 extends ModelOperations<Decimal128Property, "0.33333"> {}
 
 // Test a model with a datetime property
 @doc("Model with a datetime property")
@@ -211,3 +225,45 @@ model UnknownArrayProperty is ModelTemplate<unknown>;
 @route("/unknown/array")
 @operationGroup
 interface UnknownArray extends ModelOperations<UnknownArrayProperty, "['hello', 'world']"> {}
+
+@doc("Model with a string literal property.")
+model StringLiteralProperty is ModelTemplate<"hello">;
+@route("/string/literal")
+@operationGroup
+interface StringLiteral extends ModelOperations<StringLiteralProperty, "\"hello\""> {}
+
+@doc("Model with a int literal property.")
+model IntLiteralProperty is ModelTemplate<42>;
+@route("/int/literal")
+@operationGroup
+interface IntLiteral extends ModelOperations<IntLiteralProperty, "42"> {}
+
+@doc("Model with a float literal property.")
+model FloatLiteralProperty is ModelTemplate<42.42>;
+@route("/float/literal")
+@operationGroup
+interface FloatLiteral extends ModelOperations<FloatLiteralProperty, "42.42"> {}
+
+@doc("Model with a boolean literal property.")
+model BooleanLiteralProperty is ModelTemplate<true>;
+@route("/boolean/literal")
+@operationGroup
+interface BooleanLiteral extends ModelOperations<BooleanLiteralProperty, "true"> {}
+
+@doc("Model with a union of string literal as property.")
+model UnionStringLiteralProperty is ModelTemplate<"hello" | "world">;
+@route("/union/string/literal")
+@operationGroup
+interface UnionStringLiteral extends ModelOperations<UnionStringLiteralProperty, "\"world\""> {}
+
+@doc("Model with a union of int literal as property.")
+model UnionIntLiteralProperty is ModelTemplate<42 | 43>;
+@route("/union/int/literal")
+@operationGroup
+interface UnionIntLiteral extends ModelOperations<UnionIntLiteralProperty, "42"> {}
+
+@doc("Model with a union of float literal as property.")
+model UnionFloatLiteralProperty is ModelTemplate<42.42 | 43.43>;
+@route("/union/float/literal")
+@operationGroup
+interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "43.43"> {}

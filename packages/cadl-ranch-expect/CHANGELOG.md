@@ -1,5 +1,29 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.9.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+## 0.8.1
+
+### Patch Changes
+
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+
+## 0.8.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+## 0.7.1
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+
 ## 0.7.0
 
 ### Minor Changes

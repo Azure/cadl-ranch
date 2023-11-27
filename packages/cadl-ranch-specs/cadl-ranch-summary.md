@@ -128,50 +128,6 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Internal_internalOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/internal`
-
-This scenario contains an internal operation. It should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_publicOnly
-
-- Endpoint: `get /azure/client-generator-core/internal/public`
-
-This scenario contains a public operation. It should be generatated and exported.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
-### Azure_ClientGenerator_Core_Internal_Shared
-
-- Endpoints:
-  - `get /azure/client-generator-core/internal/shared/public`
-  - `get /azure/client-generator-core/internal/shared/internal`
-
-This scenario contains two operations, one public, another internal. The public one should be generatated and exported while the internal one should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-
-```json
-{
-  "name": <any string>
-}
-```
-
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -357,9 +313,39 @@ Expected response body:
   ]
 }
 
+### Azure_Core_Basic_listWithParameters
+
+- Endpoint: `get /azure/core/basic/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_TwoModelsAsPageItem
+
+- Endpoints:
+  - `get /azure/core/basic/first-item`
+  - `get /azure/core/basic/second-item`
+
+This scenario is to test two operations with two different page item types.
+
 ### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
 
-- Endpoint: `post /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+- Endpoints:
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location`
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
 
 POST to create resource.
 Poll URL via operation-location header in response.
@@ -1612,7 +1598,7 @@ Expected response body:
       "name": "user7"
     }
   ],
-  "nextLink": "{endpoint}//payload/pageable?skipToken=name-user7&maxpagesize=3"
+  "nextLink": "{endpoint}/payload/pageable?skipToken=name-user7&maxpagesize=3"
 }
 ```
 
@@ -1871,51 +1857,749 @@ Expected header parameters:
 
 Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-### SpecialWords_Model_get
+### SpecialWords_ModelProperties_sameAsModel
 
-- Endpoint: `get /special-words/model/get`
+- Endpoint: `get /special-words/model-properties/same-as-model`
 
-Expected response body:
+Verify that a property can be called the same as the model name. This can be an issue in some languages where the class name is the constructor.
 
-```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
-```
-
-### SpecialWords_Model_put
-
-- Endpoint: `put /special-words/model/put`
-
-Expected input body:
+Send
 
 ```json
-{
-  "model.kind": "derived",
-  "derived.name": "my.name",
-  "for": "value"
-}
+{ "SameAsModel": "ok" }
 ```
 
-### SpecialWords_Operation_for
+### SpecialWords_Models_and
 
-- Endpoint: `get /special-words/operation/for`
+- Endpoint: `get /special-words/models/and`
 
-A operation name of `for` should work.
+Verify that the name "and" works. Send
 
-### SpecialWords_Parameter_getWithFilter
+```json
+{ "name": "ok" }
+```
 
-- Endpoint: `get /special-words/parameter/filter`
+### SpecialWords_Models_as
 
-Expect input parameter `filter='abc*.'`
+- Endpoint: `get /special-words/models/as`
 
-### SpecialWords_Parameter_getWithIf
+Verify that the name "as" works. Send
 
-- Endpoint: `get /special-words/parameter/if`
+```json
+{ "name": "ok" }
+```
 
-Expect input parameter `if='weekend'`
+### SpecialWords_Models_assert
+
+- Endpoint: `get /special-words/models/assert`
+
+Verify that the name "assert" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_async
+
+- Endpoint: `get /special-words/models/async`
+
+Verify that the name "async" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_await
+
+- Endpoint: `get /special-words/models/await`
+
+Verify that the name "await" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_break
+
+- Endpoint: `get /special-words/models/break`
+
+Verify that the name "break" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_class
+
+- Endpoint: `get /special-words/models/class`
+
+Verify that the name "class" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_constructor
+
+- Endpoint: `get /special-words/models/constructor`
+
+Verify that the name "constructor" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_continue
+
+- Endpoint: `get /special-words/models/continue`
+
+Verify that the name "continue" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_def
+
+- Endpoint: `get /special-words/models/def`
+
+Verify that the name "def" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_del
+
+- Endpoint: `get /special-words/models/del`
+
+Verify that the name "del" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_elif
+
+- Endpoint: `get /special-words/models/elif`
+
+Verify that the name "elif" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_else
+
+- Endpoint: `get /special-words/models/else`
+
+Verify that the name "else" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_except
+
+- Endpoint: `get /special-words/models/except`
+
+Verify that the name "except" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_exec
+
+- Endpoint: `get /special-words/models/exec`
+
+Verify that the name "exec" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_finally
+
+- Endpoint: `get /special-words/models/finally`
+
+Verify that the name "finally" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_for
+
+- Endpoint: `get /special-words/models/for`
+
+Verify that the name "for" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_from
+
+- Endpoint: `get /special-words/models/from`
+
+Verify that the name "from" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_global
+
+- Endpoint: `get /special-words/models/global`
+
+Verify that the name "global" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_if
+
+- Endpoint: `get /special-words/models/if`
+
+Verify that the name "if" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_import
+
+- Endpoint: `get /special-words/models/import`
+
+Verify that the name "import" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_in
+
+- Endpoint: `get /special-words/models/in`
+
+Verify that the name "in" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_is
+
+- Endpoint: `get /special-words/models/is`
+
+Verify that the name "is" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_lambda
+
+- Endpoint: `get /special-words/models/lambda`
+
+Verify that the name "lambda" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_not
+
+- Endpoint: `get /special-words/models/not`
+
+Verify that the name "not" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_or
+
+- Endpoint: `get /special-words/models/or`
+
+Verify that the name "or" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_pass
+
+- Endpoint: `get /special-words/models/pass`
+
+Verify that the name "pass" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_raise
+
+- Endpoint: `get /special-words/models/raise`
+
+Verify that the name "raise" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_return
+
+- Endpoint: `get /special-words/models/return`
+
+Verify that the name "return" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_try
+
+- Endpoint: `get /special-words/models/try`
+
+Verify that the name "try" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_while
+
+- Endpoint: `get /special-words/models/while`
+
+Verify that the name "while" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_with
+
+- Endpoint: `get /special-words/models/with`
+
+Verify that the name "with" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Models_yield
+
+- Endpoint: `get /special-words/models/yield`
+
+Verify that the name "yield" works. Send
+
+```json
+{ "name": "ok" }
+```
+
+### SpecialWords_Operations_and
+
+- Endpoint: `get /special-words/operations/and`
+
+Verify that the name "and" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_as
+
+- Endpoint: `get /special-words/operations/as`
+
+Verify that the name "as" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_assert
+
+- Endpoint: `get /special-words/operations/assert`
+
+Verify that the name "assert" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_async
+
+- Endpoint: `get /special-words/operations/async`
+
+Verify that the name "async" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_await
+
+- Endpoint: `get /special-words/operations/await`
+
+Verify that the name "await" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_break
+
+- Endpoint: `get /special-words/operations/break`
+
+Verify that the name "break" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_class
+
+- Endpoint: `get /special-words/operations/class`
+
+Verify that the name "class" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_constructor
+
+- Endpoint: `get /special-words/operations/constructor`
+
+Verify that the name "constructor" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_continue
+
+- Endpoint: `get /special-words/operations/continue`
+
+Verify that the name "continue" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_def
+
+- Endpoint: `get /special-words/operations/def`
+
+Verify that the name "def" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_del
+
+- Endpoint: `get /special-words/operations/del`
+
+Verify that the name "del" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_elif
+
+- Endpoint: `get /special-words/operations/elif`
+
+Verify that the name "elif" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_else
+
+- Endpoint: `get /special-words/operations/else`
+
+Verify that the name "else" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_except
+
+- Endpoint: `get /special-words/operations/except`
+
+Verify that the name "except" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_exec
+
+- Endpoint: `get /special-words/operations/exec`
+
+Verify that the name "exec" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_finally
+
+- Endpoint: `get /special-words/operations/finally`
+
+Verify that the name "finally" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_for
+
+- Endpoint: `get /special-words/operations/for`
+
+Verify that the name "for" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_from
+
+- Endpoint: `get /special-words/operations/from`
+
+Verify that the name "from" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_global
+
+- Endpoint: `get /special-words/operations/global`
+
+Verify that the name "global" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_if
+
+- Endpoint: `get /special-words/operations/if`
+
+Verify that the name "if" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_import
+
+- Endpoint: `get /special-words/operations/import`
+
+Verify that the name "import" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_in
+
+- Endpoint: `get /special-words/operations/in`
+
+Verify that the name "in" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_is
+
+- Endpoint: `get /special-words/operations/is`
+
+Verify that the name "is" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_lambda
+
+- Endpoint: `get /special-words/operations/lambda`
+
+Verify that the name "lambda" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_not
+
+- Endpoint: `get /special-words/operations/not`
+
+Verify that the name "not" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_or
+
+- Endpoint: `get /special-words/operations/or`
+
+Verify that the name "or" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_pass
+
+- Endpoint: `get /special-words/operations/pass`
+
+Verify that the name "pass" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_raise
+
+- Endpoint: `get /special-words/operations/raise`
+
+Verify that the name "raise" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_return
+
+- Endpoint: `get /special-words/operations/return`
+
+Verify that the name "return" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_try
+
+- Endpoint: `get /special-words/operations/try`
+
+Verify that the name "try" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_while
+
+- Endpoint: `get /special-words/operations/while`
+
+Verify that the name "while" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_with
+
+- Endpoint: `get /special-words/operations/with`
+
+Verify that the name "with" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Operations_yield
+
+- Endpoint: `get /special-words/operations/yield`
+
+Verify that the name "yield" works as an operation name. Call this operation to pass.
+
+### SpecialWords_Parameters_and
+
+- Endpoint: `get /special-words/parameters/and`
+
+Verify that the name "and" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_as
+
+- Endpoint: `get /special-words/parameters/as`
+
+Verify that the name "as" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_assert
+
+- Endpoint: `get /special-words/parameters/assert`
+
+Verify that the name "assert" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_async
+
+- Endpoint: `get /special-words/parameters/async`
+
+Verify that the name "async" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_await
+
+- Endpoint: `get /special-words/parameters/await`
+
+Verify that the name "await" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_break
+
+- Endpoint: `get /special-words/parameters/break`
+
+Verify that the name "break" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_cancellationToken
+
+- Endpoint: `get /special-words/parameters/cancellationToken`
+
+Verify that the name "cancellationToken" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_class
+
+- Endpoint: `get /special-words/parameters/class`
+
+Verify that the name "class" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_constructor
+
+- Endpoint: `get /special-words/parameters/constructor`
+
+Verify that the name "constructor" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_continue
+
+- Endpoint: `get /special-words/parameters/continue`
+
+Verify that the name "continue" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_def
+
+- Endpoint: `get /special-words/parameters/def`
+
+Verify that the name "def" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_del
+
+- Endpoint: `get /special-words/parameters/del`
+
+Verify that the name "del" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_elif
+
+- Endpoint: `get /special-words/parameters/elif`
+
+Verify that the name "elif" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_else
+
+- Endpoint: `get /special-words/parameters/else`
+
+Verify that the name "else" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_except
+
+- Endpoint: `get /special-words/parameters/except`
+
+Verify that the name "except" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_exec
+
+- Endpoint: `get /special-words/parameters/exec`
+
+Verify that the name "exec" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_finally
+
+- Endpoint: `get /special-words/parameters/finally`
+
+Verify that the name "finally" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_for
+
+- Endpoint: `get /special-words/parameters/for`
+
+Verify that the name "for" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_from
+
+- Endpoint: `get /special-words/parameters/from`
+
+Verify that the name "from" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_global
+
+- Endpoint: `get /special-words/parameters/global`
+
+Verify that the name "global" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_if
+
+- Endpoint: `get /special-words/parameters/if`
+
+Verify that the name "if" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_import
+
+- Endpoint: `get /special-words/parameters/import`
+
+Verify that the name "import" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_in
+
+- Endpoint: `get /special-words/parameters/in`
+
+Verify that the name "in" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_is
+
+- Endpoint: `get /special-words/parameters/is`
+
+Verify that the name "is" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_lambda
+
+- Endpoint: `get /special-words/parameters/lambda`
+
+Verify that the name "lambda" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_not
+
+- Endpoint: `get /special-words/parameters/not`
+
+Verify that the name "not" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_or
+
+- Endpoint: `get /special-words/parameters/or`
+
+Verify that the name "or" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_pass
+
+- Endpoint: `get /special-words/parameters/pass`
+
+Verify that the name "pass" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_raise
+
+- Endpoint: `get /special-words/parameters/raise`
+
+Verify that the name "raise" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_return
+
+- Endpoint: `get /special-words/parameters/return`
+
+Verify that the name "return" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_try
+
+- Endpoint: `get /special-words/parameters/try`
+
+Verify that the name "try" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_while
+
+- Endpoint: `get /special-words/parameters/while`
+
+Verify that the name "while" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_with
+
+- Endpoint: `get /special-words/parameters/with`
+
+Verify that the name "with" works. Send this parameter to pass with value `ok`.
+
+### SpecialWords_Parameters_yield
+
+- Endpoint: `get /special-words/parameters/yield`
+
+Verify that the name "yield" works. Send this parameter to pass with value `ok`.
 
 ### Type_Array_BooleanValue_get
 
@@ -2703,6 +3387,56 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Type_Model_Inheritance_Recursive_get
+
+- Endpoint: `get /type/model/inheritance/recursive`
+
+Send a GET request which returns the following body:
+Expected response body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
+### Type_Model_Inheritance_Recursive_put
+
+- Endpoint: `put /type/model/inheritance/recursive`
+
+Send a PUT request with the following body:
+Expected input body:
+
+```json
+{
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
 ### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
 
 - Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
@@ -2920,6 +3654,226 @@ Expected input body:
 {
   "createProp": ["foo", "bar"],
   "updateProp": [1, 2]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordString`
+
+Expected response body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordString`
+
+Expected input body:
+
+```json
+{ "name": "ExtendsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 42.42, "prop": 42.42 }
+```
+
+### Type_Property_AdditionalProperties_IsModel_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModel`
+
+Expected response body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModel_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModel`
+
+Expected input body:
+
+```json
+{ "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordModelArray`
+
+Expected response body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordModelArray`
+
+Expected input body:
+
+```json
+{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_IsString_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordstring`
+
+Expected response body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsString_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordstring`
+
+Expected input body:
+
+```json
+{ "name": "IsStringAdditionalProperties", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknown`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknown_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknown`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
 }
 ```
 
@@ -3169,6 +4123,46 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
+### Type_Property_Optional_BooleanLiteral_getAll
+
+- Endpoint: `get /type/property/optional/boolean/literal/all`
+
+Expected response body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_Optional_BooleanLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/boolean/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_BooleanLiteral_putAll
+
+- Endpoint: `put /type/property/optional/boolean/literal/all`
+
+Expected request body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_Optional_BooleanLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/boolean/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
 ### Type_Property_Optional_Bytes_getAll
 
 - Endpoint: `get /type/property/optional/bytes/all`
@@ -3176,7 +4170,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "aGVsbG8sIHdvcmxkIQ==" }
 ```
 
 ### Type_Property_Optional_Bytes_getDefault
@@ -3196,7 +4190,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": aGVsbG8sIHdvcmxkIQ==}
+{ "property": "aGVsbG8sIHdvcmxkIQ==" }
 ```
 
 ### Type_Property_Optional_Bytes_putDefault
@@ -3216,7 +4210,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="] }
 ```
 
 ### Type_Property_Optional_CollectionsByte_getDefault
@@ -3236,7 +4230,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": [aGVsbG8sIHdvcmxkIQ==, aGVsbG8sIHdvcmxkIQ==]}
+{ "property": ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="] }
 ```
 
 ### Type_Property_Optional_CollectionsByte_putDefault
@@ -3256,7 +4250,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": [{ "property": "hello" }, { "property": "world" }] }
 ```
 
 ### Type_Property_Optional_CollectionsModel_getDefault
@@ -3296,7 +4290,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "2022-08-26T18:38:00Z" }
 ```
 
 ### Type_Property_Optional_Datetime_getDefault
@@ -3316,7 +4310,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": 2022-08-26T18:38:00Z}
+{ "property": "2022-08-26T18:38:00Z" }
 ```
 
 ### Type_Property_Optional_Datetime_putDefault
@@ -3336,7 +4330,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "P123DT22H14M12.011S" }
 ```
 
 ### Type_Property_Optional_Duration_getDefault
@@ -3356,12 +4350,92 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": P123DT22H14M12.011S}
+{ "property": "P123DT22H14M12.011S" }
 ```
 
 ### Type_Property_Optional_Duration_putDefault
 
 - Endpoint: `put /type/property/optional/duration/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_FloatLiteral_getAll
+
+- Endpoint: `get /type/property/optional/float/literal/all`
+
+Expected response body:
+
+```json
+{ "property": 1.2 }
+```
+
+### Type_Property_Optional_FloatLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/float/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_FloatLiteral_putAll
+
+- Endpoint: `put /type/property/optional/float/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 1.2 }
+```
+
+### Type_Property_Optional_FloatLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/float/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_IntLiteral_getAll
+
+- Endpoint: `get /type/property/optional/int/literal/all`
+
+Expected response body:
+
+```json
+{ "property": 1 }
+```
+
+### Type_Property_Optional_IntLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/int/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_IntLiteral_putAll
+
+- Endpoint: `put /type/property/optional/int/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 1 }
+```
+
+### Type_Property_Optional_IntLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/int/literal/default`
 
 Expected request body:
 
@@ -3416,7 +4490,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{"property": doc}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_String_getDefault
@@ -3436,12 +4510,172 @@ Expected response body:
 Expected request body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_Optional_String_putDefault
 
 - Endpoint: `put /type/property/optional/string/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_StringLiteral_getAll
+
+- Endpoint: `get /type/property/optional/string/literal/all`
+
+Expected response body:
+
+```json
+{ "property": "hello" }
+```
+
+### Type_Property_Optional_StringLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/string/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_StringLiteral_putAll
+
+- Endpoint: `put /type/property/optional/string/literal/all`
+
+Expected request body:
+
+```json
+{ "property": "hello" }
+```
+
+### Type_Property_Optional_StringLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/string/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionFloatLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/float/literal/all`
+
+Expected response body:
+
+```json
+{ "property": 2.3 }
+```
+
+### Type_Property_Optional_UnionFloatLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/float/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionFloatLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/float/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 2.3 }
+```
+
+### Type_Property_Optional_UnionFloatLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/float/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionIntLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/int/literal/all`
+
+Expected response body:
+
+```json
+{ "property": 2 }
+```
+
+### Type_Property_Optional_UnionIntLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/int/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionIntLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/int/literal/all`
+
+Expected request body:
+
+```json
+{ "property": 2 }
+```
+
+### Type_Property_Optional_UnionIntLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionStringLiteral_getAll
+
+- Endpoint: `get /type/property/optional/union/string/literal/all`
+
+Expected response body:
+
+```json
+{ "property": "world" }
+```
+
+### Type_Property_Optional_UnionStringLiteral_getDefault
+
+- Endpoint: `get /type/property/optional/union/string/literal/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_UnionStringLiteral_putAll
+
+- Endpoint: `put /type/property/optional/union/string/literal/all`
+
+Expected request body:
+
+```json
+{ "property": "world" }
+```
+
+### Type_Property_Optional_UnionStringLiteral_putDefault
+
+- Endpoint: `put /type/property/optional/union/string/literal/default`
 
 Expected request body:
 
@@ -3462,6 +4696,26 @@ Expected response body:
 ### Type_Property_ValueTypes_Boolean_put
 
 - Endpoint: `put /type/property/value-types/boolean`
+
+Expected input body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_ValueTypes_BooleanLiteral_get
+
+- Endpoint: `get /type/property/value-types/boolean/literal`
+
+Expected response body:
+
+```json
+{ "property": true }
+```
+
+### Type_Property_ValueTypes_BooleanLiteral_put
+
+- Endpoint: `put /type/property/value-types/boolean/literal`
 
 Expected input body:
 
@@ -3569,6 +4823,46 @@ Expected input body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
+### Type_Property_ValueTypes_Decimal_get
+
+- Endpoint: `get /type/property/value-types/decimal`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal_put
+
+- Endpoint: `put /type/property/value-types/decimal`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_get
+
+- Endpoint: `get /type/property/value-types/decimal128`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_put
+
+- Endpoint: `put /type/property/value-types/decimal128`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
 ### Type_Property_ValueTypes_DictionaryString_get
 
 - Endpoint: `get /type/property/value-types/dictionary/string`
@@ -3669,6 +4963,26 @@ Expected input body:
 { "property": 42.42 }
 ```
 
+### Type_Property_ValueTypes_FloatLiteral_get
+
+- Endpoint: `get /type/property/value-types/float/literal`
+
+Expected response body:
+
+```json
+{ "property": 42.42 }
+```
+
+### Type_Property_ValueTypes_FloatLiteral_put
+
+- Endpoint: `put /type/property/value-types/float/literal`
+
+Expected input body:
+
+```json
+{ "property": 42.42 }
+```
+
 ### Type_Property_ValueTypes_Int_get
 
 - Endpoint: `get /type/property/value-types/int`
@@ -3682,6 +4996,26 @@ Expected response body:
 ### Type_Property_ValueTypes_Int_put
 
 - Endpoint: `put /type/property/value-types/int`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_IntLiteral_get
+
+- Endpoint: `get /type/property/value-types/int/literal`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_IntLiteral_put
+
+- Endpoint: `put /type/property/value-types/int/literal`
 
 Expected input body:
 
@@ -3736,7 +5070,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
 ```
 
 ### Type_Property_ValueTypes_String_put
@@ -3746,7 +5080,87 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": hello}
+{ "property": "hello" }
+```
+
+### Type_Property_ValueTypes_StringLiteral_get
+
+- Endpoint: `get /type/property/value-types/string/literal`
+
+Expected response body:
+
+```json
+{ "property": "hello" }
+```
+
+### Type_Property_ValueTypes_StringLiteral_put
+
+- Endpoint: `put /type/property/value-types/string/literal`
+
+Expected input body:
+
+```json
+{ "property": "hello" }
+```
+
+### Type_Property_ValueTypes_UnionFloatLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/float/literal`
+
+Expected response body:
+
+```json
+{ "property": 43.43 }
+```
+
+### Type_Property_ValueTypes_UnionFloatLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/float/literal`
+
+Expected input body:
+
+```json
+{ "property": 43.43 }
+```
+
+### Type_Property_ValueTypes_UnionIntLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/int/literal`
+
+Expected response body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnionIntLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/int/literal`
+
+Expected input body:
+
+```json
+{ "property": 42 }
+```
+
+### Type_Property_ValueTypes_UnionStringLiteral_get
+
+- Endpoint: `get /type/property/value-types/union/string/literal`
+
+Expected response body:
+
+```json
+{ "property": "world" }
+```
+
+### Type_Property_ValueTypes_UnionStringLiteral_put
+
+- Endpoint: `put /type/property/value-types/union/string/literal`
+
+Expected input body:
+
+```json
+{ "property": "world" }
 ```
 
 ### Type_Property_ValueTypes_UnknownArray_get
@@ -3829,90 +5243,506 @@ Expected input body:
 { "property": "hello" }
 ```
 
-### Type_Union_receiveFirstNamedUnionValue
+### Type_Scalar_Boolean_get
 
-- Endpoint: `get /type/union/receive/model1`
+- Endpoint: `get /type/scalar/boolean`
 
-This test is testing receiving the first union value in named union property.
+Expect to handle a boolean value. Mock api will return true
 
-Expect response:
+### Type_Scalar_Boolean_put
+
+- Endpoint: `put /type/scalar/boolean`
+
+Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_Decimal128Type_requestBody
+
+- Endpoint: `put /type/scalar/decimal128/resquest_body`
+
+Expected input body:
 
 ```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
+0.33333
 ```
 
-### Type_Union_receiveIntArray
+### Type_Scalar_Decimal128Type_requestParameter
 
-- Endpoint: `get /type/union/receive/int-array`
+- Endpoint: `get /type/scalar/decimal128/request_parameter`
 
-This test is testing receiving an int array value in simple union property.
+Expected request parameter:
+value=0.33333
 
-Expect response:
+### Type_Scalar_Decimal128Type_responseBody
+
+- Endpoint: `get /type/scalar/decimal128/response_body`
+
+Expected response body:
 
 ```json
-{ "simpleUnion": [1, 2] }
+0.33333
 ```
 
-### Type_Union_receiveSecondNamedUnionValue
+### Type_Scalar_Decimal128Verify_prepareVerify
 
-- Endpoint: `get /type/union/receive/model2`
+- Endpoint: `get /type/scalar/decimal128/prepare_verify`
 
-This test is testing receiving the second union value in named union property.
+Get verify values:
+[0.1, 0.1, 0.1]
 
-Expect response:
+### Type_Scalar_Decimal128Verify_verify
+
+- Endpoint: `post /type/scalar/decimal128/verify`
+
+Expected input body:
 
 ```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
+0.3
 ```
 
-### Type_Union_receiveString
+### Type_Scalar_DecimalType_requestBody
 
-- Endpoint: `get /type/union/receive/string`
+- Endpoint: `put /type/scalar/decimal/resquest_body`
 
-This test is testing receiving a string value in simple union property.
-
-Expect response:
+Expected input body:
 
 ```json
-{ "simpleUnion": "string" }
+0.33333
 ```
 
-### Type_Union_sendFirstNamedUnionValue
+### Type_Scalar_DecimalType_requestParameter
 
-- Endpoint: `post /type/union/model1`
+- Endpoint: `get /type/scalar/decimal/request_parameter`
 
-This test is testing sending the first union value in named union property.
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_DecimalType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/response_body`
+
+Expected response body:
 
 ```json
-{ "namedUnion": { "name": "model1", "prop1": 1 } }
+0.33333
 ```
 
-### Type_Union_sendInt
+### Type_Scalar_DecimalVerify_prepareVerify
 
-- Endpoint: `post /type/union/int`
+- Endpoint: `get /type/scalar/decimal/prepare_verify`
 
-This test is testing sending an int value in simple union property.
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_DecimalVerify_verify
+
+- Endpoint: `post /type/scalar/decimal/verify`
+
+Expected input body:
 
 ```json
-{ "simpleUnion": 1 }
+0.3
 ```
 
-### Type_Union_sendIntArray
+### Type_Scalar_String_get
 
-- Endpoint: `post /type/union/int-array`
+- Endpoint: `get /type/scalar/string`
 
-This test is testing sending an int array value in simple union property.
+Expect to handle a string value. Mock api will return 'test'
 
-```json
-{ "simpleUnion": [1, 2] }
+### Type_Scalar_String_put
+
+- Endpoint: `put /type/scalar/string`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Scalar_Unknown_get
+
+- Endpoint: `get /type/scalar/unknown`
+
+Expect to handle a unknown type value. Mock api will return 'test'
+
+### Type_Scalar_Unknown_put
+
+- Endpoint: `put /type/scalar/unknown`
+
+Expect to send a string value. Mock api expect to receive 'test'
+
+### Type_Union_EnumsOnly_get
+
+- Endpoint: `get /type/union/enums-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.LR | Type.Union.UD
 ```
 
-### Type_Union_sendSecondNamedUnionValue
-
-- Endpoint: `post /type/union/model2`
-
-This test is testing sending the second union value in named union property.
+Expected response body:
 
 ```json
-{ "namedUnion": { "name": "model2", "prop2": 2 } }
+{
+  "prop": {
+    "lr": "right",
+    "ud": "up"
+  }
+}
+```
+
+### Type_Union_EnumsOnly_send
+
+- Endpoint: `get /type/union/enums-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.LR | Type.Union.UD
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "lr": "right",
+    "ud": "up"
+  }
+}
+```
+
+### Type_Union_FloatsOnly_get
+
+- Endpoint: `get /type/union/floats-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1.1 | 2.2 | 3.3
+```
+
+Expected response body:
+
+```json
+{ "prop": 2.2 }
+```
+
+### Type_Union_FloatsOnly_send
+
+- Endpoint: `get /type/union/floats-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1.1 | 2.2 | 3.3
+```
+
+Expected request to send body:
+
+```json
+{ "prop": 2.2 }
+```
+
+### Type_Union_IntsOnly_get
+
+- Endpoint: `get /type/union/ints-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1 | 2 | 3
+```
+
+Expected response body:
+
+```json
+{ "prop": 2 }
+```
+
+### Type_Union_IntsOnly_send
+
+- Endpoint: `get /type/union/ints-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+1 | 2 | 3
+```
+
+Expected request to send body:
+
+```json
+{ "prop": 2 }
+```
+
+### Type_Union_MixedLiterals_get
+
+- Endpoint: `get /type/union/mixed-literals`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | 2 | 3.3 | true
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "stringLiteral": "a",
+    "intLiteral": 2,
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
+  }
+}
+```
+
+### Type_Union_MixedLiterals_send
+
+- Endpoint: `get /type/union/mixed-literals`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | 2 | 3.3 | true
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "stringLiteral": "a",
+    "intLiteral": 2,
+    "floatLiteral": 3.3,
+    "booleanLiteral": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_get
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "model": {
+      "name": "test"
+    },
+    "literal": "a",
+    "int": 2,
+    "boolean": true
+  }
+}
+```
+
+### Type_Union_MixedTypes_send
+
+- Endpoint: `get /type/union/mixed-types`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | a | int32 | boolean
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "model": {
+      "name": "test"
+    },
+    "literal": "a",
+    "int": 2,
+    "boolean": true
+  }
+}
+```
+
+### Type_Union_ModelsOnly_get
+
+- Endpoint: `get /type/union/models-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | Type.Union.Dog
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "name": "test"
+  }
+}
+```
+
+### Type_Union_ModelsOnly_send
+
+- Endpoint: `get /type/union/models-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.Cat | Type.Union.Dog
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "name": "test"
+  }
+}
+```
+
+### Type_Union_StringAndArray_get
+
+- Endpoint: `get /type/union/string-and-array`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | string[]
+```
+
+Expected response body:
+
+```json
+{
+  "prop": {
+    "string": "test",
+    "array": ["test1", "test2"]
+  }
+}
+```
+
+### Type_Union_StringAndArray_send
+
+- Endpoint: `get /type/union/string-and-array`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | string[]
+```
+
+Expected request to send body:
+
+```json
+{
+  "prop": {
+    "string": "test",
+    "array": ["test1", "test2"]
+  }
+}
+```
+
+### Type_Union_StringExtensible_get
+
+- Endpoint: `get /type/union/string-extensible`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | b | c
+```
+
+Expected response body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensible_send
+
+- Endpoint: `get /type/union/string-extensible`
+
+Verify a union can be processed in a response:
+
+```tsp
+string | b | c
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensibleNamed_get
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected response body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringExtensibleNamed_send
+
+- Endpoint: `get /type/union/string-extensible-named`
+
+Verify a union can be processed in a response:
+
+```tsp
+Type.Union.StringExtensibleNamedUnion
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "custom" }
+```
+
+### Type_Union_StringsOnly_get
+
+- Endpoint: `get /type/union/strings-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | b | c
+```
+
+Expected response body:
+
+```json
+{ "prop": "b" }
+```
+
+### Type_Union_StringsOnly_send
+
+- Endpoint: `get /type/union/strings-only`
+
+Verify a union can be processed in a response:
+
+```tsp
+a | b | c
+```
+
+Expected request to send body:
+
+```json
+{ "prop": "b" }
 ```

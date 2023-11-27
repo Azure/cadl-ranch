@@ -1,5 +1,35 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.5.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.5.0
+
+## 0.4.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.4.0
+
+## 0.3.3
+
+### Patch Changes
+
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+
 ## 0.3.2
 
 ### Patch Changes

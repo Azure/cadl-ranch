@@ -1,5 +1,48 @@
 # @azure-tools/cadl-ranch
 
+## 0.10.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.5.0
+  - @azure-tools/cadl-ranch-expect@0.9.0
+
+## 0.9.1
+
+### Patch Changes
+
+- d9c0e3a: Redesign of the union scenarios, added coverage for many more cases
+- Updated dependencies [d9c0e3a]
+  - @azure-tools/cadl-ranch-expect@0.8.1
+
+## 0.9.0
+
+### Minor Changes
+
+- 2896d45: Update to consume tsp 49
+
+### Patch Changes
+
+- Updated dependencies [2896d45]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.4.0
+  - @azure-tools/cadl-ranch-expect@0.8.0
+
+## 0.8.3
+
+### Patch Changes
+
+- beb2605: Expand the special words scenarios to cover much more words in various location(operation, models, parameters, etc.)
+- ddb62ac: General dependency update
+- Updated dependencies [ddb62ac]
+  - @azure-tools/cadl-ranch-api@0.4.1
+  - @azure-tools/cadl-ranch-coverage-sdk@0.3.1
+  - @azure-tools/cadl-ranch-expect@0.7.1
+
 ## 0.8.2
 
 ### Patch Changes
