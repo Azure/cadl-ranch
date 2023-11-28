@@ -10,7 +10,12 @@ export class MockRequest {
   public readonly params: { [key: string]: string };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public readonly body: any;
-  public readonly files?: any;
+  public readonly files?:
+    | {
+        [fieldname: string]: Express.Multer.File[];
+      }
+    | Express.Multer.File[]
+    | undefined;
 
   public constructor(public originalRequest: RequestExt) {
     this.baseUrl = getRequestBaseUrl(originalRequest);

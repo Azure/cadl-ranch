@@ -1,12 +1,18 @@
 import type { Request } from "express";
 import { MockRequest } from "./mock-request.js";
+import "multer";
 
 /**
  * Extension of the express.js request which include a rawBody.
  */
 export interface RequestExt extends Request {
   rawBody?: string;
-  files?: any;
+  files?:
+    | {
+        [fieldname: string]: Express.Multer.File[];
+      }
+    | Express.Multer.File[]
+    | undefined;
 }
 
 export type ScenarioPassCondition = "response-success" | "status-code";

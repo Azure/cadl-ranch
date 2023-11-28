@@ -176,6 +176,9 @@ importers:
       morgan:
         specifier: ^1.10.0
         version: 1.10.0
+      multer:
+        specifier: ^1.4.5-lts.1
+        version: 1.4.5-lts.1
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
@@ -207,6 +210,9 @@ importers:
       '@types/morgan':
         specifier: ^1.9.4
         version: 1.9.4
+      '@types/multer':
+        specifier: ^1.4.10
+        version: 1.4.10
       '@types/node':
         specifier: ^18.16.0
         version: 18.16.14
