@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.7.0
+
+### Minor Changes
+
+- 4869a42: Add openapi to known packages for bump deps
+
 ## 0.6.0
 
 ### Minor Changes
