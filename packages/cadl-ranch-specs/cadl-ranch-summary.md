@@ -1572,6 +1572,29 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
+### Payload_MultiPart_FormData_basic
+
+- Endpoint: `post /multipart/form-data/mixed-parts`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_Pageable_list
 
 - Endpoint: `get /payload/pageable`
