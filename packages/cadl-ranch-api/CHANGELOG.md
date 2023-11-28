@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.2
+
+### Patch Changes
+
+- d803994: Fix order of actual and expected for deepEqual
+
 ## 0.4.1
 
 ### Patch Changes
