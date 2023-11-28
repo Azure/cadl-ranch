@@ -4,14 +4,29 @@ import semver from "semver";
 import { parseArgs } from "util";
 
 const knownPackages = [
-  "@typespec/compiler",
-  "@typespec/rest",
-  "@typespec/http",
-  "@typespec/versioning",
-  "@azure-tools/typespec-client-generator-core",
+  "@azure-tools/typespec-autorest",
   "@azure-tools/typespec-azure-core",
+  "@azure-tools/typespec-azure-resource-manager",
+  "@azure-tools/typespec-client-generator-core",
+  "@azure-tools/typespec-diff",
+  "@azure-tools/typespec-providerhub",
+  "@azure-tools/typespec-providerhub-controller",
+  "@typespec/bundler",
+  "@typespec/compiler",
   "@typespec/eslint-config-typespec",
+  "@typespec/eslint-plugin",
+  "@typespec/html-program-viewer",
+  "@typespec/http",
+  "@typespec/internal-build-utils",
+  "@typespec/json-schema",
   "@typespec/library-linter",
+  "@typespec/migrate",
+  "@typespec/openapi",
+  "@typespec/openapi3",
+  "@typespec/prettier-plugin-typespec",
+  "@typespec/protobuf",
+  "@typespec/rest",
+  "@typespec/versioning",
 ];
 
 const depTypes = ["dependencies", "devDependencies", "peerDependencies"];
