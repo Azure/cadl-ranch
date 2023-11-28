@@ -5,8 +5,9 @@ import { parseArgs } from "util";
 
 const knownPackages = [
   "@typespec/compiler",
-  "@typespec/rest",
   "@typespec/http",
+  "@typespec/openapi",
+  "@typespec/rest",
   "@typespec/versioning",
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
