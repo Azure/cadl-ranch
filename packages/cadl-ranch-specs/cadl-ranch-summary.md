@@ -1608,10 +1608,13 @@ Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
 Content-Disposition: form-data; name="id"
+Content-Type: text/plain
 
 123
 --abcde12345
 Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
 {
   "city": "X"
 }
@@ -1622,6 +1625,7 @@ Content-Type: application/octet-stream
 {…file content…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
 
 [{
   "city": "Y"
