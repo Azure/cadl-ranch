@@ -23,7 +23,7 @@ Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
     req.expect.deepEqual(req.body.id, "123");
     req.expect.deepEqual(JSON.parse(req.body.address), { city: "X" });
     req.expect.deepEqual(JSON.parse(req.body.previousAddresses), [{ city: "Y" }, { city: "Z" }]);
-    if (req.files instanceof Array && req.files?.length > 0) {
+    if (req.files instanceof Array && req.files?.length === 3) {
       for (const file of req.files) {
         if (file.fieldname === "profileImage") {
           req.expect.deepEqual(file.mimetype, "application/octet-stream");
