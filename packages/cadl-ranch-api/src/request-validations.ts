@@ -76,7 +76,7 @@ export const validateBodyNotEmpty = (request: RequestExt): void => {
  * @param body express.js request body.
  */
 const isBodyEmpty = (body: string | Buffer | undefined | null) => {
-  return body == null || body === "" || buffer.length === 0;
+  return body == null || body === "" || body.length === 0;
 };
 
 /**
