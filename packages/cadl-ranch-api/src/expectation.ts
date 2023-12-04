@@ -89,7 +89,7 @@ export class RequestExpectation {
    */
   public deepEqual(actual: unknown, expected: unknown, message = "Values not deep equal"): void {
     if (!deepEqual(actual, expected, { strict: true })) {
-      throw new ValidationError(message, actual, expected);
+      throw new ValidationError(message, expected, actual);
     }
   }
 }

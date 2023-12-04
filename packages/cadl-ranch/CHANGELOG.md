@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.10.1
+
+### Patch Changes
+
+- d803994: add test case for multipart/form-data
+- Updated dependencies [d803994]
+  - @azure-tools/cadl-ranch-api@0.4.2
+
 ## 0.10.0
 
 ### Minor Changes

@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Add test case for inheritance recursion
+Bug fix on type/union case

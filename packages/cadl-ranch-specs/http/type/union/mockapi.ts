@@ -22,11 +22,11 @@ const Type_Union_StringsOnly = createGetSendScenario("/type/union/strings-only",
 Scenarios.Type_Union_StringsOnly_get = Type_Union_StringsOnly.get;
 Scenarios.Type_Union_StringsOnly_send = Type_Union_StringsOnly.send;
 
-const Type_Union_StringExtensible = createGetSendScenario("/type/union/strings-extensible", "custom");
+const Type_Union_StringExtensible = createGetSendScenario("/type/union/string-extensible", "custom");
 Scenarios.Type_Union_StringExtensible_get = Type_Union_StringExtensible.get;
 Scenarios.Type_Union_StringExtensible_send = Type_Union_StringExtensible.send;
 
-const Type_Union_StringExtensibleNamed = createGetSendScenario("/type/union/strings-extensible-named", "custom");
+const Type_Union_StringExtensibleNamed = createGetSendScenario("/type/union/string-extensible-named", "custom");
 Scenarios.Type_Union_StringExtensibleNamed_get = Type_Union_StringExtensibleNamed.get;
 Scenarios.Type_Union_StringExtensibleNamed_send = Type_Union_StringExtensibleNamed.send;
 

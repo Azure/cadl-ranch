@@ -55,3 +55,21 @@ Scenarios.Projection_ProjectedName_parameter = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Projection_ProjectedName_Model_client = passOnSuccess(
+  mockapi.post("/projection/projected-name/model/client", (req) => {
+    req.expect.bodyEquals({ defaultName: true });
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Projection_ProjectedName_Model_language = passOnSuccess(
+  mockapi.post("/projection/projected-name/model/language", (req) => {
+    req.expect.bodyEquals({ defaultName: true });
+    return {
+      status: 204,
+    };
+  }),
+);

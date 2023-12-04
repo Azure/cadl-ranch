@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-api",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Cadl Ranch set of api to implement mock api",
   "main": "dist/index.js",
   "type": "module",
@@ -34,9 +34,11 @@
     "morgan": "^1.10.0",
     "picocolors": "^1.0.0",
     "winston": "^3.8.2",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.1",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.10",
     "@types/body-parser": "^1.19.2",
     "@types/chai": "^4.3.4",
     "@types/deep-equal": "^1.0.1",

@@ -1,5 +1,6 @@
 import { Server, ServerResponse } from "http";
 import bodyParser from "body-parser";
+import multer from "multer";
 import express, { ErrorRequestHandler, RequestHandler, Response } from "express";
 import morgan from "morgan";
 import { logger } from "../logger.js";
@@ -54,6 +55,7 @@ export class MockApiServer {
     this.app.use(
       bodyParser.raw({ type: ["application/octet-stream", "image/png"], limit: "10mb", verify: rawBinaryBodySaver }),
     );
+    this.app.use(multer().any());
   }
 
   public use(route: string, ...handlers: RequestHandler[]): void {
