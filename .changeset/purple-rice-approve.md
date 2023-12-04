@@ -1,5 +1,5 @@
 ---
-"@azure-tools/cadl-ranch-specs": patch
+"@azure-tools/cadl-ranch-api": patch
 "@azure-tools/cadl-ranch": patch
 ---
 

@@ -29,6 +29,12 @@ const rawBodySaver = (req: RequestExt, res: ServerResponse, buf: Buffer, encodin
   }
 };
 
+const rawBinaryBodySaver = (req: RequestExt, res: ServerResponse, buf: Buffer, encoding: BufferEncoding) => {
+  if (buf && buf.length) {
+    req.rawBody = buf;
+  }
+};
+
 const loggerstream = {
   write: (message: string) => logger.info(message),
 };
@@ -45,8 +51,9 @@ export class MockApiServer {
     this.app.use(bodyParser.text({ type: "*/xml", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "*/pdf", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "text/plain" }));
-    this.app.use(bodyParser.raw({ type: "application/octet-stream", limit: "10mb" }));
-    this.app.use(bodyParser.raw({ type: "image/png", limit: "10mb" }));
+    this.app.use(
+      bodyParser.raw({ type: ["application/octet-stream", "image/png"], limit: "10mb", verify: rawBinaryBodySaver }),
+    );
   }
 
   public use(route: string, ...handlers: RequestHandler[]): void {

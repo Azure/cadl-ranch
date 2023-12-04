@@ -1,12 +1,13 @@
 import deepEqual from "deep-equal";
 import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
+import { buffer } from "stream/consumers";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
 export const BODY_EMPTY_ERROR_MESSAGE = "Body should exists";
 export const BODY_NOT_EMPTY_ERROR_MESSAGE = "Body should be empty";
 
-export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: string | undefined): void => {
+export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: string | Buffer | undefined): void => {
   const actualRawBody = request.rawBody;
 
   if (expectedRawBody == null) {
@@ -16,7 +17,7 @@ export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: stri
     return;
   }
 
-  if (actualRawBody !== expectedRawBody) {
+  if (!deepEqual(actualRawBody, expectedRawBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedRawBody, actualRawBody);
   }
 };
@@ -75,8 +76,8 @@ export const validateBodyNotEmpty = (request: RequestExt): void => {
  * Check if the provided body is empty.
  * @param body express.js request body.
  */
-const isBodyEmpty = (body: string | undefined | null) => {
-  return body == null || body === "";
+const isBodyEmpty = (body: string | Buffer | undefined | null) => {
+  return body == null || body === "" || buffer.length === 0;
 };
 
 /**

@@ -5,7 +5,7 @@ import { MockRequest } from "./mock-request.js";
  * Extension of the express.js request which include a rawBody.
  */
 export interface RequestExt extends Request {
-  rawBody?: string;
+  rawBody?: string | Buffer;
 }
 
 export type ScenarioPassCondition = "response-success" | "status-code";
