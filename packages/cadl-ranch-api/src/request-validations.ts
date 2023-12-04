@@ -1,7 +1,6 @@
 import deepEqual from "deep-equal";
 import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
-import { buffer } from "stream/consumers";
 
 export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expected body";
 export const BODY_EMPTY_ERROR_MESSAGE = "Body should exists";
