@@ -1572,6 +1572,29 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
+### Payload_MultiPart_FormData_basic
+
+- Endpoint: `post /multipart/form-data/mixed-parts`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_Pageable_list
 
 - Endpoint: `get /payload/pageable`
@@ -1614,6 +1637,32 @@ maxpagesize=3
     }
   ]
 }
+```
+
+### Projection_ProjectedName_Model_client
+
+- Endpoint: `post /projection/projected-name/model/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate the model with name `ClientModel`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Projection_ProjectedName_Model_language
+
+- Endpoint: `post /projection/projected-name/model/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate the model with your language specific model name.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
 ```
 
 ### Projection_ProjectedName_operation
@@ -4797,6 +4846,46 @@ Expected input body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
+### Type_Property_ValueTypes_Decimal_get
+
+- Endpoint: `get /type/property/value-types/decimal`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal_put
+
+- Endpoint: `put /type/property/value-types/decimal`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_get
+
+- Endpoint: `get /type/property/value-types/decimal128`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_put
+
+- Endpoint: `put /type/property/value-types/decimal128`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
 ### Type_Property_ValueTypes_DictionaryString_get
 
 - Endpoint: `get /type/property/value-types/dictionary/string`
@@ -5188,6 +5277,94 @@ Expect to handle a boolean value. Mock api will return true
 - Endpoint: `put /type/scalar/boolean`
 
 Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_Decimal128Type_requestBody
+
+- Endpoint: `put /type/scalar/decimal128/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Type_requestParameter
+
+- Endpoint: `get /type/scalar/decimal128/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_Decimal128Type_responseBody
+
+- Endpoint: `get /type/scalar/decimal128/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Verify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal128/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_Decimal128Verify_verify
+
+- Endpoint: `post /type/scalar/decimal128/verify`
+
+Expected input body:
+
+```json
+0.3
+```
+
+### Type_Scalar_DecimalType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_DecimalType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalVerify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_DecimalVerify_verify
+
+- Endpoint: `post /type/scalar/decimal/verify`
+
+Expected input body:
+
+```json
+0.3
+```
 
 ### Type_Scalar_String_get
 

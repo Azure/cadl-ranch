@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
   "main": "dist/index.js",
   "type": "module",
@@ -51,9 +51,11 @@
     "winston": "^3.8.2",
     "xml2js": "^0.5.0",
     "yargs": "^17.7.1",
-    "jackspeak": "2.1.1"
+    "jackspeak": "2.1.1",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.10",
     "@types/body-parser": "^1.19.2",
     "@types/deep-equal": "^1.0.1",
     "@types/express": "^4.17.17",

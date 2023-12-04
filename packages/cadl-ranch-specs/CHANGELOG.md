@@ -1,5 +1,26 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.27.0
+
+### Minor Changes
+
+- dd82266: add new a few new cases to project the model name
+
+### Patch Changes
+
+- d803994: add test case for multipart/form-data
+- Updated dependencies [d803994]
+- Updated dependencies [d803994]
+  - @azure-tools/cadl-ranch-api@0.4.2
+  - @azure-tools/cadl-ranch@0.10.1
+
+## 0.26.2
+
+### Patch Changes
+
+- 6c515cc: Add test case for inheritance recursion
+- de5a6ee: Add test for decimal basic type
+
 ## 0.26.1
 
 ### Patch Changes
