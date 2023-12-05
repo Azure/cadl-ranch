@@ -6,7 +6,7 @@ export const BODY_NOT_EQUAL_ERROR_MESSAGE = "Body provided doesn't match expecte
 export const BODY_EMPTY_ERROR_MESSAGE = "Body should exists";
 export const BODY_NOT_EMPTY_ERROR_MESSAGE = "Body should be empty";
 
-export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: string | undefined): void => {
+export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: string | Buffer | undefined): void => {
   const actualRawBody = request.rawBody;
 
   if (expectedRawBody == null) {
@@ -16,7 +16,7 @@ export const validateRawBodyEquals = (request: RequestExt, expectedRawBody: stri
     return;
   }
 
-  if (actualRawBody !== expectedRawBody) {
+  if (!deepEqual(actualRawBody, expectedRawBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedRawBody, actualRawBody);
   }
 };
@@ -75,8 +75,8 @@ export const validateBodyNotEmpty = (request: RequestExt): void => {
  * Check if the provided body is empty.
  * @param body express.js request body.
  */
-const isBodyEmpty = (body: string | undefined | null) => {
-  return body == null || body === "";
+const isBodyEmpty = (body: string | Buffer | undefined | null) => {
+  return body == null || body === "" || body.length === 0;
 };
 
 /**
