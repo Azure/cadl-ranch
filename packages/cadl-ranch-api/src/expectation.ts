@@ -21,7 +21,7 @@ export class RequestExpectation {
    * @param rawBody Raw request body.
    * @throws {ValidationError} if there is an error.
    */
-  public rawBodyEquals(expectedRawBody: string | undefined): void {
+  public rawBodyEquals(expectedRawBody: string | Buffer | undefined): void {
     validateRawBodyEquals(this.originalRequest, expectedRawBody);
   }
 

@@ -6,7 +6,7 @@ import "multer";
  * Extension of the express.js request which include a rawBody.
  */
 export interface RequestExt extends Request {
-  rawBody?: string;
+  rawBody?: string | Buffer;
   files?:
     | {
         [fieldname: string]: Express.Multer.File[];

@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.3
+
+### Patch Changes
+
+- 0c77443: Fix for test case that request body is binary
+
 ## 0.4.2
 
 ### Patch Changes
