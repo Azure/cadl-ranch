@@ -1845,6 +1845,30 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
+### Server_Versions_AllOperations_myOp
+
+- Endpoint: `head /server/versions/allOperations/myOp`
+
+A simple operation with api-version. Expected url: '/myOp?api-version=2022-12-01-preview'.
+
+### Server_Versions_NonOperations_myOp
+
+- Endpoint: `head /server/versions/nonOperations/myOp`
+
+A simple operation without api-version. Expected url: '/myOp', it should not contain any api-version.
+
+### Server_Versions_PartialOperations_withApiVersion
+
+- Endpoint: `head /server/versions/partialOperations/withApiVersion`
+
+A simple operation with api-version. Expected url: '/withApiVersion?api-version=1.0'.
+
+### Server_Versions_PartialOperations_withoutApiVersion
+
+- Endpoint: `head /server/versions/partialOperations/withoutApiVersion`
+
+A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
+
 ### SpecialHeaders_ClientRequestId
 
 - Endpoint: `get /special-headers/client-request-id/`
