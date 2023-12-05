@@ -1845,17 +1845,17 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### Server_Versions_AllOperations_myOp
+### Server_Versions_AllOperations_withApiVersion
 
-- Endpoint: `head /server/versions/allOperations/myOp`
+- Endpoint: `head /server/versions/allOperations/withApiVersion`
 
-A simple operation with api-version. Expected url: '/myOp?api-version=2022-12-01-preview'.
+A simple operation with api-version. Expected url: '/withApiVersion?api-version=2022-12-01-preview'.
 
-### Server_Versions_NonOperations_myOp
+### Server_Versions_NonOperations_withoutApiVersion
 
-- Endpoint: `head /server/versions/nonOperations/myOp`
+- Endpoint: `head /server/versions/nonOperations/withoutApiVersion`
 
-A simple operation without api-version. Expected url: '/myOp', it should not contain any api-version.
+A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
 
 ### Server_Versions_PartialOperations_withApiVersion
 

@@ -31,7 +31,7 @@ enum Versions {
 }
 
 @scenario
-@scenarioDoc("A simple operation with api-version. Expected url: '/myOp?api-version=2022-12-01-preview'.")
-@route("/myOp")
+@scenarioDoc("A simple operation with api-version. Expected url: '/withApiVersion?api-version=2022-12-01-preview'.")
+@route("/withApiVersion")
 @head
-op myOp(@query apiVersion: string): OkResponse;
+op withApiVersion(@query apiVersion: string): OkResponse;

@@ -16,7 +16,7 @@ using TypeSpec.Http;
 namespace Server.Versions.NonOperations;
 
 @scenario
-@scenarioDoc("A simple operation without api-version. Expected url: '/myOp', it should not contain any api-version.")
-@route("/myOp")
+@scenarioDoc("A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.")
+@route("/withoutApiVersion")
 @head
-op myOp(): OkResponse;
+op withoutApiVersion(): OkResponse;
