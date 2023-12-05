@@ -24,6 +24,21 @@ model ComplexPartsRequest {
   pictures: bytes[];
 }
 
+model JsonPartRequest {
+  address: Address;
+  profileImage: bytes;
+}
+
+model MultiBinaryPartsRequest {
+  id: string;
+  pictures: bytes[];
+}
+
+model MultiJsonPartsRequest {
+  profileImage: bytes;
+  previousAddresses: Address[];
+}
+
 @route("/form-data")
 namespace FormData {
   @scenario
@@ -102,4 +117,98 @@ Content-Type: application/octet-stream
   @post
   @route("/complex-parts")
   op complex(@header contentType: "multipart/form-data", @body body: ComplexPartsRequest): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+""")
+  @doc("Test content-type: multipart/form-data for scenario contains json part and binary part ")
+  @post
+  @route("/json-part")
+  op withJsonPart(@header contentType: "multipart/form-data", @body body: JsonPartRequest): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+```
+""")
+  @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
+  @post
+  @route("/multi-binary-parts")
+  op withMultiBinaryParts(
+    @header contentType: "multipart/form-data",
+    @body body: MultiBinaryPartsRequest,
+  ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345
+```
+""")
+  @doc("Test content-type: multipart/form-data for scenario contains multi json parts")
+  @post
+  @route("/multi-json-parts")
+  op withMultiJsonParts(
+    @header contentType: "multipart/form-data",
+    @body body: MultiJsonPartsRequest,
+  ): NoContentResponse;
 }
