@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.27.1
+
+### Patch Changes
+
+- 9a92742: Bug fix on type/union case
+- Updated dependencies [0c77443]
+  - @azure-tools/cadl-ranch-api@0.4.3
+  - @azure-tools/cadl-ranch@0.10.2
+
 ## 0.27.0
 
 ### Minor Changes
