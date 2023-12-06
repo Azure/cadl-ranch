@@ -3419,6 +3419,7 @@ Expected response body:
 
 ```json
 {
+  "level": 0,
   "extension": [
     {
       "level": 1,
@@ -3444,6 +3445,7 @@ Expected input body:
 
 ```json
 {
+  "level": 0,
   "extension": [
     {
       "level": 1,
