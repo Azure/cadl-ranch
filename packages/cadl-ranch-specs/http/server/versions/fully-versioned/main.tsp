@@ -6,9 +6,11 @@ import "@typespec/versioning";
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-@doc("Illustrates server with all operations defined with api-versions.")
+/**
+ * Illustrates server with all operations defined with api-versions.
+ */
 @scenarioService(
-  "/server/versions/allOperations",
+  "/server/versions/fullyVersioned",
   {
     versioned: Versions,
   }
@@ -17,21 +19,27 @@ using TypeSpec.Versioning;
   "{endpoint}",
   "Testserver endpoint",
   {
-    @doc("Need to be set as 'http://localhost:3000' in client.")
+    /**
+     * Need to be set as 'http://localhost:3000' in client.
+     */
     endpoint: url,
   }
 )
-namespace Server.Versions.AllOperations;
+@scenario
+@scenarioDoc("All operations with api-version. Therefore expected url contains a query parameter 'api-version=2022-12-01-preview'.")
+namespace Server.Versions.FullyVersioned;
 
-@doc("The version of the API.")
+/**
+ * The version of the API.
+ */
 enum Versions {
-  @doc("The version 2022-12-01-preview.")
+  /**
+   * The version 2022-12-01-preview.
+   */
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
   v2022_12_01_preview: "2022-12-01-preview",
 }
 
-@scenario
-@scenarioDoc("A simple operation with api-version. Expected url: '/withApiVersion?api-version=2022-12-01-preview'.")
 @route("/withApiVersion")
 @head
 op withApiVersion(@query apiVersion: string): OkResponse;

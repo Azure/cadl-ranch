@@ -6,9 +6,11 @@ import "@typespec/versioning";
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-@doc("Illustrates server with part of operations defined with api-versions.")
+/**
+ * Illustrates server with part of operations defined with api-versions.
+ */
 @scenarioService(
-  "/server/versions/partialOperations",
+  "/server/versions/partiallyVersioned",
   {
     versioned: Versions,
   }
@@ -17,15 +19,21 @@ using TypeSpec.Versioning;
   "{endpoint}",
   "Testserver endpoint",
   {
-    @doc("Need to be set as 'http://localhost:3000' in client.")
+    /**
+     * Need to be set as 'http://localhost:3000' in client.
+     */
     endpoint: url,
   }
 )
-namespace Server.Versions.PartialOperations;
+namespace Server.Versions.PartiallyVersioned;
 
-@doc("The version of the API.")
+/**
+ * The version of the API.
+ */
 enum Versions {
-  @doc("The version 2022-12-01-preview.")
+  /**
+   * The version 2022-12-01-preview.
+   */
   @useDependency(global.Azure.Core.Versions.v1_0_Preview_2)
   v2022_12_01_preview: "2022-12-01-preview",
 }

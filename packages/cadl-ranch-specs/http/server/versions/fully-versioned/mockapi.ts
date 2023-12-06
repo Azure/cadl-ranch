@@ -3,8 +3,8 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Server_Versions_AllOperations_withApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/allOperations/withApiVersion", (req) => {
+Scenarios.Server_Versions_FullyVersioned = passOnSuccess(
+  mockapi.head("/server/versions/fullyVersioned/withApiVersion", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     return { status: 200 };
   }),

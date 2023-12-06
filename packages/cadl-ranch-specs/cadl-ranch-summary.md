@@ -1845,27 +1845,27 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### Server_Versions_AllOperations_withApiVersion
+### Server_Versions_FullyVersioned
 
-- Endpoint: `head /server/versions/allOperations/withApiVersion`
+- Endpoint: `head /server/versions/fullyVersioned/withApiVersion`
 
-A simple operation with api-version. Expected url: '/withApiVersion?api-version=2022-12-01-preview'.
+All operations with api-version. Therefore expected url contains a query parameter 'api-version=2022-12-01-preview'.
 
-### Server_Versions_NonOperations_withoutApiVersion
+### Server_Versions_NotVersioned
 
-- Endpoint: `head /server/versions/nonOperations/withoutApiVersion`
+- Endpoint: `head /server/versions/notVersioned/withoutApiVersion`
 
-A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
+All operations without api-version. Therefore expected url should not contain any query parameters.
 
-### Server_Versions_PartialOperations_withApiVersion
+### Server_Versions_PartiallyVersioned_withApiVersion
 
-- Endpoint: `head /server/versions/partialOperations/withApiVersion`
+- Endpoint: `head /server/versions/partiallyVersioned/withApiVersion`
 
 A simple operation with api-version. Expected url: '/withApiVersion?api-version=1.0'.
 
-### Server_Versions_PartialOperations_withoutApiVersion
+### Server_Versions_PartiallyVersioned_withoutApiVersion
 
-- Endpoint: `head /server/versions/partialOperations/withoutApiVersion`
+- Endpoint: `head /server/versions/partiallyVersioned/withoutApiVersion`
 
 A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
 
