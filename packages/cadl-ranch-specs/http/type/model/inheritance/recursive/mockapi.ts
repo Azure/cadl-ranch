@@ -4,6 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const body = {
+  level: 0,
   extension: [
     {
       level: 1,

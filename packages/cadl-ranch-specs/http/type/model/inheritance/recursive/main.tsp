@@ -23,6 +23,7 @@ Send a PUT request with the following body:
 Expected input body:
 ```json
 {
+  "level": 0,
   "extension": [
     {
       "level": 1,
@@ -48,6 +49,7 @@ Send a GET request which returns the following body:
 Expected response body:
 ```json
 {
+  "level": 0,
   "extension": [
     {
       "level": 1,
