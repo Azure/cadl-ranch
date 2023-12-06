@@ -722,6 +722,9 @@ client.group.renamedSix();
 ### Client_Structure_Service
 
 - Endpoints:
+  - `post /client/structure/{client}/seven`
+  - `post /client/structure/{client}/nine`
+  - `post /client/structure/{client}/eight`
   - `post /client/structure/{client}/three`
   - `post /client/structure/{client}/four`
   - `post /client/structure/{client}/five`
@@ -732,7 +735,7 @@ client.group.renamedSix();
 This is to show that if we don't do any customization. The client side should be able to call the api like
 
 ```ts
-const client = new MultiClient("default");
+const client = new ServiceClient("default");
 client.one();
 client.two();
 client.three();
