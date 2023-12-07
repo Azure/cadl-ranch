@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.6.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
