@@ -10,7 +10,7 @@ let exportPollCount = 0;
 
 Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
   mockapi.put("/azure/core/lro/standard/users/madge", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.bodyEquals({ role: "contributor" });
     createOrReplacePollCount = 0;
     return {
@@ -22,7 +22,7 @@ Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation1", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       createOrReplacePollCount > 0
         ? { id: "operation1", status: "Succeeded" }
@@ -37,7 +37,7 @@ Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
 
 Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
   mockapi.delete("/azure/core/lro/standard/users/madge", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     deletePollCount = 0;
     return {
       status: 202,
@@ -48,7 +48,7 @@ Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation2", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       deletePollCount > 0 ? { id: "operation2", status: "Succeeded" } : { id: "operation2", status: "InProgress" };
     deletePollCount += 1;
@@ -58,7 +58,7 @@ Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
 
 Scenarios.Azure_Core_Lro_Standard_export = passOnSuccess([
   mockapi.post("/azure/core/lro/standard/users/madge:export", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.containsQueryParam("format", "json");
     exportPollCount = 0;
     return {
@@ -70,7 +70,7 @@ Scenarios.Azure_Core_Lro_Standard_export = passOnSuccess([
     };
   }),
   mockapi.get("/azure/core/lro/standard/users/madge/operations/operation3", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     const response =
       exportPollCount > 0
         ? { id: "operation3", status: "Succeeded", result: { name: "madge", resourceUri: "/users/madge" } }

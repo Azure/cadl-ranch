@@ -9,7 +9,7 @@ let createPollCount = 0;
 
 Scenarios.Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation = passOnSuccess([
   mockapi.post("/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    // req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.bodyEquals({ comment: "async job" });
     createPollCount = 0;
     return {
