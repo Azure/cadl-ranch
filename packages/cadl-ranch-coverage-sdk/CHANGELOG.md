@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.6.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
 ## 0.5.0
 
 ### Minor Changes
