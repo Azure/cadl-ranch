@@ -21,4 +21,13 @@ Scenarios.Client_Structure_Service = passOnSuccess([
   mockapi.post("/client/structure/default/six", (req) => {
     return { status: 204 };
   }),
+  mockapi.post("/client/structure/default/seven", (req) => {
+    return { status: 204 };
+  }),
+  mockapi.post("/client/structure/default/eight", (req) => {
+    return { status: 204 };
+  }),
+  mockapi.post("/client/structure/default/nine", (req) => {
+    return { status: 204 };
+  }),
 ]);
