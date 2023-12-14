@@ -53,7 +53,7 @@ namespace DifferentBody {
   }
 
   model PngImageAsJson {
-    @header contentType: "image/jpeg";
+    @header contentType: "application/json";
     content: bytes;
   }
 
