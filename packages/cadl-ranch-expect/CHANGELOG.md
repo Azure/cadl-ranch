@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.10.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
 ## 0.9.0
 
 ### Minor Changes

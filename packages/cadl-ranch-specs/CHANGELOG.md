@@ -1,5 +1,27 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- 7184e71: fix for model inheritance recursive case
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-expect@0.10.0
+  - @azure-tools/cadl-ranch@0.11.0
+
+## 0.27.1
+
+### Patch Changes
+
+- 9a92742: Bug fix on type/union case
+- Updated dependencies [0c77443]
+  - @azure-tools/cadl-ranch-api@0.4.3
+  - @azure-tools/cadl-ranch@0.10.2
+
 ## 0.27.0
 
 ### Minor Changes
