@@ -95,6 +95,6 @@ Scenarios.Payload_MultiPart_FormData_withMultiBinaryParts = passOnSuccess(
   createMockApis("multi-binary-parts", [checkId, checkPictures]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withMultiJsonParts = passOnSuccess(
-  createMockApis("multi-json-parts", [checkPreviousAddresses, checkProfileImage]),
+Scenarios.Payload_MultiPart_FormData_withJsonArrayParts = passOnSuccess(
+  createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );

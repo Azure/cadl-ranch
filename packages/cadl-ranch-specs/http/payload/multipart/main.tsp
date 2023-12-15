@@ -34,7 +34,7 @@ model MultiBinaryPartsRequest {
   pictures: bytes[];
 }
 
-model MultiJsonPartsRequest {
+model JsonArrayPartsRequest {
   profileImage: bytes;
   previousAddresses: Address[];
 }
@@ -110,7 +110,7 @@ Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
---abcde12345
+--abcde12345--
 ```
 """)
   @doc("Test content-type: multipart/form-data for mixed scenarios")
@@ -126,6 +126,7 @@ POST /upload HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
+--abcde12345
 Content-Disposition: form-data; name="address"
 Content-Type: application/json
 
@@ -168,7 +169,7 @@ Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
---abcde12345
+--abcde12345--
 ```
 """)
   @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
@@ -192,7 +193,7 @@ Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
---abcde12345--
+--abcde12345
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
 
@@ -201,14 +202,14 @@ Content-Type: application/json
 },{
   "city": "Z"
 }]
---abcde12345
+--abcde12345--
 ```
 """)
   @doc("Test content-type: multipart/form-data for scenario contains multi json parts")
   @post
-  @route("/multi-json-parts")
-  op withMultiJsonParts(
+  @route("/json-array-parts")
+  op withJsonArrayParts(
     @header contentType: "multipart/form-data",
-    @body body: MultiJsonPartsRequest,
+    @body body: JsonArrayPartsRequest,
   ): NoContentResponse;
 }
