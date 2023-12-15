@@ -1651,6 +1651,88 @@ Content-Type: application/octet-stream
 --abcde12345
 ```
 
+### Payload_MultiPart_FormData_withJsonPart
+
+- Endpoint: `post /multipart/form-data/json-part`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_withMultiBinaryParts
+
+- Endpoint: `post /multipart/form-data/multi-binary-parts`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_withMultiJsonParts
+
+- Endpoint: `post /multipart/form-data/multi-json-parts`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345
+```
+
 ### Payload_Pageable_list
 
 - Endpoint: `get /payload/pageable`
