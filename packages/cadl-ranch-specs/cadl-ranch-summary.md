@@ -1581,10 +1581,10 @@ Scenario that returns a different file encoding depending on the accept header.
 ### Payload_MediaType_StringBody
 
 - Endpoints:
-  - `post /payload/media-type/sendAsText`
-  - `post /payload/media-type/getAsText`
-  - `post /payload/media-type/sendAsJson`
-  - `post /payload/media-type/getAsJson`
+  - `post /payload/media-type/stringBody/sendAsText`
+  - `post /payload/media-type/stringBody/getAsText`
+  - `post /payload/media-type/stringBody/sendAsJson`
+  - `post /payload/media-type/stringBody/getAsJson`
 
 When the request body and response body are both strings, the different media types would lead to different payloads.
 

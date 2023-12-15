@@ -17,6 +17,7 @@ namespace Payload.MediaType;
   When the request body and response body are both strings, the different media types would lead to different payloads.
   """)
 @operationGroup
+@route("/stringBody")
 namespace StringBody {
   /**
    * Expected request body is a string '{"Cat": "Meow"}'.
