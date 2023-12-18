@@ -1212,6 +1212,69 @@ Test unixTimestamp encode for datetime header.
 Expected response header:
 value=1686566864
 
+### Encode_Decimal_Property_default
+
+- Endpoint: `post /encode/decimal/property/default`
+
+Test operation with request and response model contains a decimal property with default encode.
+Expected request body:
+
+```json
+{
+  "value": 0.6666
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 0.6666
+}
+```
+
+### Encode_Decimal_Property_string
+
+- Endpoint: `post /encode/decimal/property/string`
+
+Test operation with request and response model contains a decimal property with default encode.
+Expected request body:
+
+```json
+{
+  "value": "0.6666"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "0.6666"
+}
+```
+
+### Encode_Decimal_Property_stringDecimalArray
+
+- Endpoint: `get /encode/decimal/property/string-decimal-array`
+
+Test operation with request and response model contains an array property which elements are decimal with string encode.
+Expected request body:
+
+```json
+{
+  "value": ["0.6666", "0.3333"]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": ["0.6666", "0.3333"]
+}
+```
+
 ### Encode_Duration_Header_default
 
 - Endpoint: `get /encode/duration/header/default`

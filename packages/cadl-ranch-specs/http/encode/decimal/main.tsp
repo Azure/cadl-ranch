@@ -69,7 +69,6 @@ namespace Property {
   @post
   op string(@body body: StringDecimalProperty): StringDecimalProperty;
 
- 
   @route("/string-decimal-array")
   @scenario
   @scenarioDoc("""
