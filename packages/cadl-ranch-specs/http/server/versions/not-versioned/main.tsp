@@ -31,7 +31,7 @@ op withoutApiVersion(): OkResponse;
 @scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/withQueryApiVersion?api-version=v1.0.")
 @route("/withQueryApiVersion")
 @head
-op withQueryApiVersion(@query apiVersion: string): OkResponse;
+op withQueryApiVersion(@query("api-version") apiVersion: string): OkResponse;
 
 // public virtual Response withQueryApiVersion(string apiVersion, RequestContext context = null);
 

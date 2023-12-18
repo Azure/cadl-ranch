@@ -51,7 +51,6 @@ op withoutApiVersion(): OkResponse;
 @route("/withQueryApiVersion")
 @head
 op withQueryApiVersion(@query apiVersion: string): OkResponse;
-// op withQueryApiVersion(@query "api-version": string): OkResponse;
 
 // public virtual Response withQueryApiVersion(RequestContext context = null);
 
