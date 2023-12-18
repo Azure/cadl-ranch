@@ -5393,6 +5393,60 @@ Expected input body:
 0.3
 ```
 
+### Type_Scalar_DecimalBigIntType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/big_int/resquest_body`
+
+Expected input body:
+
+```json
+9223372036854775807
+```
+
+### Type_Scalar_DecimalBigIntType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/big_int/request_parameter`
+
+Expected request parameter:
+value=9223372036854775807
+
+### Type_Scalar_DecimalBigIntType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/big_int/response_body`
+
+Expected response body:
+
+```json
+9223372036854775807
+```
+
+### Type_Scalar_DecimalHighPrecisionFractionType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/high_precision_fraction/resquest_body`
+
+Expected input body:
+
+```json
+0.14285714285714285714285714285714
+```
+
+### Type_Scalar_DecimalHighPrecisionFractionType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/high_precision_fraction/request_parameter`
+
+Expected request parameter:
+value=0.14285714285714285714285714285714
+
+### Type_Scalar_DecimalHighPrecisionFractionType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/high_precision_fraction/response_body`
+
+Expected response body:
+
+```json
+0.14285714285714285714285714285714
+```
+
 ### Type_Scalar_DecimalType_requestBody
 
 - Endpoint: `put /type/scalar/decimal/resquest_body`
