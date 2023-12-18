@@ -61,6 +61,31 @@ function checkAllFiles(req: MockRequest) {
   }
 }
 
+function checkFiles(req: MockRequest) {
+  if (req.files instanceof Array && req.files?.length === 2) {
+    let profileImage = false;
+    let pictures = false;
+    for (const file of req.files) {
+      if (file.fieldname === "profileImage") {
+        checkJpgFile(req, file);
+        profileImage = true;
+      } else if (file.fieldname === "pictures") {
+        checkPngFile(req, file);
+        pictures = true;
+      } else {
+        throw new ValidationError("unexpected filename", "profileImage or pictures", file.fieldname);
+      }
+    }
+    if (!profileImage) {
+      throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
+    } else if (!pictures) {
+      throw new ValidationError("No pictures found", "png file are expected", req.body);
+    }
+  } else {
+    throw new ValidationError("Can't parse files from request", "jpg/png files are expected", req.body);
+  }
+}
+
 function checkPictures(req: MockRequest) {
   if (req.files instanceof Array && req.files?.length === 2) {
     for (const file of req.files) {
@@ -97,4 +122,8 @@ Scenarios.Payload_MultiPart_FormData_withMultiBinaryParts = passOnSuccess(
 
 Scenarios.Payload_MultiPart_FormData_withJsonArrayParts = passOnSuccess(
   createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
+);
+
+Scenarios.Payload_MultiPart_FormData_withPureMultiBinaryParts = passOnSuccess(
+  createMockApis("pure-multi-binary-parts", [checkFiles]),
 );

@@ -39,6 +39,11 @@ model JsonArrayPartsRequest {
   previousAddresses: Address[];
 }
 
+model PureMultiBinaryPartsRequest {
+  profileImage: bytes;
+  pictures?: bytes;
+}
+
 @route("/form-data")
 namespace FormData {
   @scenario
@@ -211,5 +216,34 @@ Content-Type: application/json
   op withJsonArrayParts(
     @header contentType: "multipart/form-data",
     @body body: JsonArrayPartsRequest,
+  ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+""")
+  @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
+  @post
+  @route("/pure-multi-binary-parts")
+  op withPureMultiBinaryParts(
+    @header contentType: "multipart/form-data",
+    @body body: PureMultiBinaryPartsRequest,
   ): NoContentResponse;
 }
