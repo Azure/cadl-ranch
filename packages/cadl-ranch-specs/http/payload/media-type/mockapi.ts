@@ -6,7 +6,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.Payload_MediaType_StringBody = passOnSuccess([
   mockapi.post("/payload/media-type/stringBody/sendAsText", (req) => {
     req.expect.containsHeader("content-type", "text/plain");
-    req.expect.bodyEquals('{"Cat": "Meow"}');
+    req.expect.bodyEquals("{cat}");
     return { status: 200 };
   }),
 
@@ -14,7 +14,7 @@ Scenarios.Payload_MediaType_StringBody = passOnSuccess([
     req.expect.containsHeader("accept", "text/plain");
     return {
       status: 200,
-      body: { rawContent: '{"Cat": "Meow"}', contentType: "text/plain" },
+      body: { rawContent: "{cat}", contentType: "text/plain" },
     };
   }),
 

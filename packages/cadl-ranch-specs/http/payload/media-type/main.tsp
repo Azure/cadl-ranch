@@ -20,14 +20,14 @@ namespace Payload.MediaType;
 @route("/stringBody")
 namespace StringBody {
   /**
-   * Expected request body is a string '{"Cat": "Meow"}'.
+   * Expected request body is a string '{cat}'.
    */
   @post
   @route("/sendAsText")
   op sendAsText(@header contentType: "text/plain", @body text: string): OkResponse;
 
   /**
-   * Expected response body is a string '{"Cat": "Meow"}'.
+   * Expected response body is a string '{cat}'.
    */
   @get
   @route("/getAsText")
