@@ -62,7 +62,9 @@ function checkAllFiles(req: MockRequest) {
 }
 
 function checkFiles(req: MockRequest) {
-  if (req.files instanceof Array && req.files?.length === 2) {
+  if (req.files instanceof Array && req.files?.length === 1) {
+    checkJpgFile(req, req.files[0]);
+  } else if (req.files instanceof Array && req.files?.length === 2) {
     let profileImage = false;
     let pictures = false;
     for (const file of req.files) {
