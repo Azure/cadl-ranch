@@ -1578,15 +1578,29 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
-### Payload_MediaType_StringBody
+### Payload_MediaType_StringBody_getAsJson
 
-- Endpoints:
-  - `post /payload/media-type/stringBody/sendAsText`
-  - `post /payload/media-type/stringBody/getAsText`
-  - `post /payload/media-type/stringBody/sendAsJson`
-  - `post /payload/media-type/stringBody/getAsJson`
+- Endpoint: `get /payload/media-type/string-body/getAsJson`
 
-When the request body and response body are both strings, the different media types would lead to different payloads.
+Expected response body is "foo".
+
+### Payload_MediaType_StringBody_getAsText
+
+- Endpoint: `get /payload/media-type/string-body/getAsText`
+
+Expected response body is a string '{cat}'.
+
+### Payload_MediaType_StringBody_sendAsJson
+
+- Endpoint: `post /payload/media-type/string-body/sendAsJson`
+
+Expected request body is "foo".
+
+### Payload_MediaType_StringBody_sendAsText
+
+- Endpoint: `post /payload/media-type/string-body/sendAsText`
+
+Expected request body is a string '{cat}'.
 
 ### Payload_MultiPart_FormData_basic
 

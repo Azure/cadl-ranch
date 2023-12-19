@@ -12,23 +12,21 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/payload/media-type")
 namespace Payload.MediaType;
 
-@scenario
-@scenarioDoc("""
-  When the request body and response body are both strings, the different media types would lead to different payloads.
-  """)
 @operationGroup
-@route("/stringBody")
+@route("/string-body")
 namespace StringBody {
-  /**
-   * Expected request body is a string '{cat}'.
-   */
+  @scenario
+  @scenarioDoc("""
+  Expected request body is a string '{cat}'.
+  """)
   @post
   @route("/sendAsText")
   op sendAsText(@header contentType: "text/plain", @body text: string): OkResponse;
 
-  /**
-   * Expected response body is a string '{cat}'.
-   */
+  @scenario
+  @scenarioDoc("""
+  Expected response body is a string '{cat}'.
+  """)
   @get
   @route("/getAsText")
   op getAsText(): {
@@ -36,16 +34,18 @@ namespace StringBody {
     @body text: string;
   };
 
-  /**
-   * Expected request body is "foo".
-   */
+  @scenario
+  @scenarioDoc("""
+  Expected request body is "foo".
+  """)
   @post
   @route("/sendAsJson")
   op sendAsJson(@header contentType: "application/json", @body text: string): OkResponse;
 
-  /**
-   * Expected response body is "foo".
-   */
+  @scenario
+  @scenarioDoc("""
+  Expected response body is "foo".
+  """)
   @get
   @route("/getAsJson")
   op getAsJson(): {
