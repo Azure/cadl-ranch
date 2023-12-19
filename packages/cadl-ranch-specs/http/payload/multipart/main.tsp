@@ -41,7 +41,7 @@ model JsonArrayPartsRequest {
 
 model PureMultiBinaryPartsRequest {
   profileImage: bytes;
-  pictures?: bytes;
+  picture?: bytes;
 }
 
 @route("/form-data")
@@ -232,7 +232,7 @@ Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="picture"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}

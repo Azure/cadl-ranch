@@ -5,6 +5,7 @@ import {
   ValidationError,
   MockRequest,
   MockApi,
+  withKeys,
 } from "@azure-tools/cadl-ranch-api";
 import { jpgFile, pngFile } from "../../helper.js";
 
@@ -32,8 +33,8 @@ function checkJpgFile(req: MockRequest, file: Record<string, any>) {
   checkFile(req, file, jpgFile);
 }
 
-function checkPngFile(req: MockRequest, file: Record<string, any>) {
-  req.expect.deepEqual(file.fieldname, "pictures");
+function checkPngFile(req: MockRequest, file: Record<string, any>, fileName: string = "pictures") {
+  req.expect.deepEqual(file.fieldname, fileName);
   checkFile(req, file, pngFile);
 }
 
@@ -60,34 +61,6 @@ function checkAllFiles(req: MockRequest) {
     throw new ValidationError("Can't parse files from request", "jpg/png files are expected", req.body);
   }
 }
-
-function checkFiles(req: MockRequest) {
-  if (req.files instanceof Array && req.files?.length === 1) {
-    checkJpgFile(req, req.files[0]);
-  } else if (req.files instanceof Array && req.files?.length === 2) {
-    let profileImage = false;
-    let pictures = false;
-    for (const file of req.files) {
-      if (file.fieldname === "profileImage") {
-        checkJpgFile(req, file);
-        profileImage = true;
-      } else if (file.fieldname === "pictures") {
-        checkPngFile(req, file);
-        pictures = true;
-      } else {
-        throw new ValidationError("unexpected filename", "profileImage or pictures", file.fieldname);
-      }
-    }
-    if (!profileImage) {
-      throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
-    } else if (!pictures) {
-      throw new ValidationError("No pictures found", "png file are expected", req.body);
-    }
-  } else {
-    throw new ValidationError("Can't parse files from request", "jpg/png files are expected", req.body);
-  }
-}
-
 function checkPictures(req: MockRequest) {
   if (req.files instanceof Array && req.files?.length === 2) {
     for (const file of req.files) {
@@ -126,6 +99,38 @@ Scenarios.Payload_MultiPart_FormData_withJsonArrayParts = passOnSuccess(
   createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withPureMultiBinaryParts = passOnSuccess(
-  createMockApis("pure-multi-binary-parts", [checkFiles]),
+Scenarios.Payload_MultiPart_FormData_withPureMultiBinaryParts = withKeys(["profileImage", "profileImage,picture"]).pass(
+  mockapi.post("/multipart/form-data/pure-multi-binary-parts", (req) => {
+    if (req.files instanceof Array) {
+      switch (req.files.length) {
+        case 1:
+          checkJpgFile(req, req.files[0]);
+          return { pass: "profileImage", status: 204 } as const;
+        case 2:
+          let profileImage = false;
+          let picture = false;
+          for (const file of req.files) {
+            if (file.fieldname === "profileImage") {
+              checkJpgFile(req, file);
+              profileImage = true;
+            } else if (file.fieldname === "picture") {
+              checkPngFile(req, file, "picture");
+              picture = true;
+            } else {
+              throw new ValidationError("unexpected filename", "profileImage or picture", file.fieldname);
+            }
+          }
+          if (!profileImage) {
+            throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
+          } else if (!picture) {
+            throw new ValidationError("No picture found", "png file are expected", req.body);
+          }
+          return { pass: "profileImage,picture", status: 204 } as const;
+        default:
+          throw new ValidationError("number of files is incorrect", "1 or 2 files are expected", req.body);
+      }
+    } else {
+      throw new ValidationError("Can't parse files from request", "jpg/png files are expected", req.body);
+    }
+  }),
 );
