@@ -23,7 +23,7 @@ Scenarios.Server_Versions_Versioned_withQueryApiVersion = passOnSuccess(
   }),
 );
 
-Scenarios.Server_Versions_Versioned_withQueryApiVersion = passOnSuccess(
+Scenarios.Server_Versions_Versioned_withPathApiVersion = passOnSuccess(
   mockapi.head("/server/versions/versioned/withPathApiVersion/2022-12-01-preview", (req) => {
     if (Object.keys(req.originalRequest.query).length > 0) {
       throw new ValidationError(
