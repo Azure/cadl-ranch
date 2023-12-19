@@ -44,20 +44,14 @@ enum Versions {
 @head
 op withoutApiVersion(): OkResponse;
 
-// public virtual Response withoutApiVersion(RequestContext context = null);
-
 @scenario
 @scenarioDoc("A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/withQueryApiVersion?api-version=2022-12-01-preview'.")
 @route("/withQueryApiVersion")
 @head
 op withQueryApiVersion(@query apiVersion: string): OkResponse;
 
-// public virtual Response withQueryApiVersion(RequestContext context = null);
-
 @scenario
 @scenarioDoc("A simple operation with path api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/withPathApiVersion/2022-12-01-preview'.")
 @route("/withPathApiVersion")
 @head
 op withPathApiVersion(@path apiVersion: string): OkResponse;
-
-// public virtual Response withPathApiVersion(RequestContext context = null);

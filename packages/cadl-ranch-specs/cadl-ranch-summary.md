@@ -1845,29 +1845,41 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### Server_Versions_FullyVersioned
-
-- Endpoint: `head /server/versions/fullyVersioned/withApiVersion`
-
-All operations with api-version. Therefore expected url contains a query parameter 'api-version=2022-12-01-preview'.
-
-### Server_Versions_NotVersioned
+### Server_Versions_NotVersioned_withoutApiVersion
 
 - Endpoint: `head /server/versions/notVersioned/withoutApiVersion`
 
-All operations without api-version. Therefore expected url should not contain any query parameters.
+A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
 
-### Server_Versions_PartiallyVersioned_withApiVersion
+### Server_Versions_NotVersioned_withPathApiVersion
 
-- Endpoint: `head /server/versions/partiallyVersioned/withApiVersion`
+- Endpoint: `head /server/versions/notVersioned/withPathApiVersion`
 
-A simple operation with api-version. Expected url: '/withApiVersion?api-version=1.0'.
+A simple operation with path api-version, which doesn't have any default value. Expected url: '/withPathApiVersion/v1.0'.
 
-### Server_Versions_PartiallyVersioned_withoutApiVersion
+### Server_Versions_NotVersioned_withQueryApiVersion
 
-- Endpoint: `head /server/versions/partiallyVersioned/withoutApiVersion`
+- Endpoint: `head /server/versions/notVersioned/withQueryApiVersion`
+
+A simple operation with query api-version, which doesn't have any default value. Expected url: '/withQueryApiVersion?api-version=v1.0.
+
+### Server_Versions_Versioned_withoutApiVersion
+
+- Endpoint: `head /server/versions/versioned/withoutApiVersion`
 
 A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.
+
+### Server_Versions_Versioned_withPathApiVersion
+
+- Endpoint: `head /server/versions/versioned/withPathApiVersion`
+
+A simple operation with path api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/withPathApiVersion/2022-12-01-preview'.
+
+### Server_Versions_Versioned_withQueryApiVersion
+
+- Endpoint: `head /server/versions/versioned/withQueryApiVersion`
+
+A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/withQueryApiVersion?api-version=2022-12-01-preview'.
 
 ### SpecialHeaders_ClientRequestId
 

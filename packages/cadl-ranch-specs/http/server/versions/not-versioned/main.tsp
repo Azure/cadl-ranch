@@ -25,20 +25,14 @@ namespace Server.Versions.NotVersioned;
 @head
 op withoutApiVersion(): OkResponse;
 
-// public virtual Response withoutApiVersion(RequestContext context = null);
-
 @scenario
 @scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/withQueryApiVersion?api-version=v1.0.")
 @route("/withQueryApiVersion")
 @head
 op withQueryApiVersion(@query("api-version") apiVersion: string): OkResponse;
 
-// public virtual Response withQueryApiVersion(string apiVersion, RequestContext context = null);
-
 @scenario
 @scenarioDoc("A simple operation with path api-version, which doesn't have any default value. Expected url: '/withPathApiVersion/v1.0'.")
 @route("/withPathApiVersion")
 @head
 op withPathApiVersion(@path apiVersion: string): OkResponse;
-
-// public virtual Response withPathApiVersion(string apiVersion, RequestContext context = null);
