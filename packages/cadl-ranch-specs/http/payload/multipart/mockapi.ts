@@ -87,20 +87,20 @@ Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
   createMockApis("complex-parts", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withJsonPart = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
   createMockApis("json-part", [checkAddress, checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withMultiBinaryParts = passOnSuccess(
-  createMockApis("multi-binary-parts", [checkId, checkPictures]),
+Scenarios.Payload_MultiPart_FormData_binaryArrayParts = passOnSuccess(
+  createMockApis("binary-array-parts", [checkId, checkPictures]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withJsonArrayParts = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_jsonArrayParts = passOnSuccess(
   createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_withPureMultiBinaryParts = withKeys(["profileImage", "profileImage,picture"]).pass(
-  mockapi.post("/multipart/form-data/pure-multi-binary-parts", (req) => {
+Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage", "profileImage,picture"]).pass(
+  mockapi.post("/multipart/form-data/multi-binary-parts", (req) => {
     if (req.files instanceof Array) {
       switch (req.files.length) {
         case 1:

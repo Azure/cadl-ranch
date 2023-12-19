@@ -29,7 +29,7 @@ model JsonPartRequest {
   profileImage: bytes;
 }
 
-model MultiBinaryPartsRequest {
+model BinaryArrayPartsRequest {
   id: string;
   pictures: bytes[];
 }
@@ -39,7 +39,7 @@ model JsonArrayPartsRequest {
   previousAddresses: Address[];
 }
 
-model PureMultiBinaryPartsRequest {
+model MultiBinaryPartsRequest {
   profileImage: bytes;
   picture?: bytes;
 }
@@ -149,7 +149,7 @@ Content-Type: application/octet-stream
   @doc("Test content-type: multipart/form-data for scenario contains json part and binary part ")
   @post
   @route("/json-part")
-  op withJsonPart(@header contentType: "multipart/form-data", @body body: JsonPartRequest): NoContentResponse;
+  op jsonPart(@header contentType: "multipart/form-data", @body body: JsonPartRequest): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -179,10 +179,10 @@ Content-Type: application/octet-stream
 """)
   @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
   @post
-  @route("/multi-binary-parts")
-  op withMultiBinaryParts(
+  @route("/binary-array-parts")
+  op binaryArrayParts(
     @header contentType: "multipart/form-data",
-    @body body: MultiBinaryPartsRequest,
+    @body body: BinaryArrayPartsRequest,
   ): NoContentResponse;
 
   @scenario
@@ -213,14 +213,11 @@ Content-Type: application/json
   @doc("Test content-type: multipart/form-data for scenario contains multi json parts")
   @post
   @route("/json-array-parts")
-  op withJsonArrayParts(
-    @header contentType: "multipart/form-data",
-    @body body: JsonArrayPartsRequest,
-  ): NoContentResponse;
+  op jsonArrayParts(@header contentType: "multipart/form-data", @body body: JsonArrayPartsRequest): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-Expect request:
+Please send request twice, first time with only profileImage, second time with both profileImage and picture:
 ```
 POST /upload HTTP/1.1
 Content-Length: 428
@@ -241,9 +238,9 @@ Content-Type: application/octet-stream
 """)
   @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
   @post
-  @route("/pure-multi-binary-parts")
-  op withPureMultiBinaryParts(
+  @route("/multi-binary-parts")
+  op multiBinaryParts(
     @header contentType: "multipart/form-data",
-    @body body: PureMultiBinaryPartsRequest,
+    @body body: MultiBinaryPartsRequest,
   ): NoContentResponse;
 }

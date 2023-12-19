@@ -1601,6 +1601,35 @@ Content-Type: application/octet-stream;
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_binaryArrayParts
+
+- Endpoint: `post /multipart/form-data/binary-array-parts`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_MultiPart_FormData_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts`
@@ -1651,7 +1680,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_withJsonArrayParts
+### Payload_MultiPart_FormData_jsonArrayParts
 
 - Endpoint: `post /multipart/form-data/json-array-parts`
 
@@ -1679,7 +1708,7 @@ Content-Type: application/json
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_withJsonPart
+### Payload_MultiPart_FormData_jsonPart
 
 - Endpoint: `post /multipart/form-data/json-part`
 
@@ -1705,40 +1734,11 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_withMultiBinaryParts
+### Payload_MultiPart_FormData_multiBinaryParts
 
 - Endpoint: `post /multipart/form-data/multi-binary-parts`
 
-Expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-```
-
-### Payload_MultiPart_FormData_withPureMultiBinaryParts
-
-- Endpoint: `post /multipart/form-data/pure-multi-binary-parts`
-
-Expect request:
+Please send request twice, first time with only profileImage, second time with both profileImage and picture:
 
 ```
 POST /upload HTTP/1.1
