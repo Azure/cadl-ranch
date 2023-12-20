@@ -5,11 +5,11 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.Server_Versions_NotVersioned_withoutApiVersion = passOnSuccess(
   mockapi.head("/server/versions/notVersioned/withoutApiVersion", (req) => {
-    if (Object.keys(req.originalRequest.query).length > 0) {
+    if (Object.keys(req.query).length > 0) {
       throw new ValidationError(
         "Expected no query parameters including api-version",
         "No query parameters",
-        req.originalRequest.query,
+        req.query,
       );
     }
     return { status: 200 };
@@ -25,11 +25,11 @@ Scenarios.Server_Versions_NotVersioned_withQueryApiVersion = passOnSuccess(
 
 Scenarios.Server_Versions_NotVersioned_withPathApiVersion = passOnSuccess(
   mockapi.head("/server/versions/notVersioned/withPathApiVersion/v1.0", (req) => {
-    if (Object.keys(req.originalRequest.query).length > 0) {
+    if (Object.keys(req.query).length > 0) {
       throw new ValidationError(
         "Expected no query parameters including api-version",
         "No query parameters",
-        req.originalRequest.query,
+        req.query,
       );
     }
     return { status: 200 };
