@@ -1,5 +1,25 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.1
+
+### Patch Changes
+
+- c09109f: Add payload tests for string body and different content types
+- 6fafb9a: Add more cases for default client hierarchy
+
+## 0.28.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- 7184e71: fix for model inheritance recursive case
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-expect@0.10.0
+  - @azure-tools/cadl-ranch@0.11.0
+
 ## 0.27.1
 
 ### Patch Changes

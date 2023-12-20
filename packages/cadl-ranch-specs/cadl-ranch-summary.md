@@ -722,6 +722,9 @@ client.group.renamedSix();
 ### Client_Structure_Service
 
 - Endpoints:
+  - `post /client/structure/{client}/seven`
+  - `post /client/structure/{client}/nine`
+  - `post /client/structure/{client}/eight`
   - `post /client/structure/{client}/three`
   - `post /client/structure/{client}/four`
   - `post /client/structure/{client}/five`
@@ -732,13 +735,16 @@ client.group.renamedSix();
 This is to show that if we don't do any customization. The client side should be able to call the api like
 
 ```ts
-const client = new MultiClient("default");
+const client = new ServiceClient("default");
 client.one();
 client.two();
-client.three();
-client.four();
-client.five();
-client.six();
+client.foo.three();
+client.foo.four();
+client.bar.five();
+client.bar.six();
+client.baz.foo.seven();
+client.qux.eight();
+client.qux.bar.nine();
 ```
 
 ### Client_Structure_TwoOperationGroup
@@ -1571,6 +1577,30 @@ Scenario that returns a different file encoding depending on the accept header.
 
 - image/png return a png image
 - image/jpeg return a jpeg image
+
+### Payload_MediaType_StringBody_getAsJson
+
+- Endpoint: `get /payload/media-type/string-body/getAsJson`
+
+Expected response body is "foo".
+
+### Payload_MediaType_StringBody_getAsText
+
+- Endpoint: `get /payload/media-type/string-body/getAsText`
+
+Expected response body is a string '{cat}'.
+
+### Payload_MediaType_StringBody_sendAsJson
+
+- Endpoint: `post /payload/media-type/string-body/sendAsJson`
+
+Expected request body is "foo".
+
+### Payload_MediaType_StringBody_sendAsText
+
+- Endpoint: `post /payload/media-type/string-body/sendAsText`
+
+Expected request body is a string '{cat}'.
 
 ### Payload_MultiPart_FormData_basic
 
