@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.1
+
+### Patch Changes
+
+- c09109f: Add payload tests for string body and different content types
+- 6fafb9a: Add more cases for default client hierarchy
+
 ## 0.28.0
 
 ### Minor Changes
