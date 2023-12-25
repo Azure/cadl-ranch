@@ -6,7 +6,7 @@ using TypeSpec.Http;
 /**
  * Illustrates not-versioned server.
  */
-@scenarioService("/server/versions/notVersioned")
+@scenarioService("/server/versions/not-versioned")
 @server(
   "{endpoint}",
   "Testserver endpoint",
@@ -20,19 +20,19 @@ using TypeSpec.Http;
 namespace Server.Versions.NotVersioned;
 
 @scenario
-@scenarioDoc("A simple operation without api-version. Expected url: '/withoutApiVersion', it should not contain any api-version.")
-@route("/withoutApiVersion")
+@scenarioDoc("A simple operation without api-version. Expected url: '/without-api-version', it should not contain any api-version.")
+@route("/without-api-version")
 @head
 op withoutApiVersion(): OkResponse;
 
 @scenario
-@scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/withQueryApiVersion?api-version=v1.0.")
-@route("/withQueryApiVersion")
+@scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0.")
+@route("/with-query-api-version")
 @head
 op withQueryApiVersion(@query("api-version") apiVersion: string): OkResponse;
 
 @scenario
-@scenarioDoc("A simple operation with path api-version, which doesn't have any default value. Expected url: '/withPathApiVersion/v1.0'.")
-@route("/withPathApiVersion")
+@scenarioDoc("A simple operation with path api-version, which doesn't have any default value. Expected url: '/with-path-api-version/v1.0'.")
+@route("/with-path-api-version")
 @head
 op withPathApiVersion(@path apiVersion: string): OkResponse;
