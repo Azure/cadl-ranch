@@ -1891,7 +1891,7 @@ A simple operation with path api-version, which doesn't have any default value. 
 
 - Endpoint: `head /server/versions/not-versioned/with-query-api-version`
 
-A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0.
+A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0'.
 
 ### Server_Versions_Versioned_withoutApiVersion
 

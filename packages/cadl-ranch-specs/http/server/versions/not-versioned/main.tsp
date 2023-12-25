@@ -26,7 +26,7 @@ namespace Server.Versions.NotVersioned;
 op withoutApiVersion(): OkResponse;
 
 @scenario
-@scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0.")
+@scenarioDoc("A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0'.")
 @route("/with-query-api-version")
 @head
 op withQueryApiVersion(@query("api-version") apiVersion: string): OkResponse;
