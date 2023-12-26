@@ -1610,7 +1610,8 @@ Expect request (
 
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1635,12 +1636,13 @@ Content-Type: application/octet-stream;
 
 - Endpoint: `post /multipart/form-data/binary-array-parts`
 
-  Expect request (
+Expect request (
 
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
-    ):
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1669,12 +1671,13 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/complex-parts`
 
-  Expect request (
+Expect request (
 
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
-    ):
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1724,12 +1727,13 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/json-array-parts`
 
-  Expect request (
+Expect request (
 
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
-    ):
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1757,12 +1761,13 @@ Content-Type: application/json
 
 - Endpoint: `post /multipart/form-data/json-part`
 
-  Expect request (
+Expect request (
 
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
-    ):
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1792,7 +1797,8 @@ Please send request twice, first time with only profileImage, second time with b
 
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
   ):
 
 ```
