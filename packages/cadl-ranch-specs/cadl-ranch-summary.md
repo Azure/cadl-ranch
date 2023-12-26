@@ -1606,8 +1606,12 @@ Expected request body is a string '{cat}'.
 
 - Endpoint: `post /multipart/form-data/mixed-parts`
 
-Expect request (according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1631,8 +1635,12 @@ Content-Type: application/octet-stream;
 
 - Endpoint: `post /multipart/form-data/binary-array-parts`
 
-Expect request(according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+  Expect request (
+
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+    ):
 
 ```
 POST /upload HTTP/1.1
@@ -1661,8 +1669,12 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/complex-parts`
 
-Expect request (according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+  Expect request (
+
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+    ):
 
 ```
 POST /upload HTTP/1.1
@@ -1712,8 +1724,12 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/json-array-parts`
 
-Expect request(according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+  Expect request (
+
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+    ):
 
 ```
 POST /upload HTTP/1.1
@@ -1741,8 +1757,12 @@ Content-Type: application/json
 
 - Endpoint: `post /multipart/form-data/json-part`
 
-Expect request(according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+  Expect request (
+
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+    ):
 
 ```
 POST /upload HTTP/1.1
@@ -1768,9 +1788,12 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/multi-binary-parts`
 
-Please send request twice, first time with only profileImage, second time with both profileImage and picture
-(according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it):
+Please send request twice, first time with only profileImage, second time with both profileImage and picture(
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied, so cadl-ranch will check it.
+  ):
 
 ```
 POST /upload HTTP/1.1
