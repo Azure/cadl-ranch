@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.2
+
+### Patch Changes
+
+- d3f6423: Add test case for api-version
+- d97491e: Optimize lro/rpc-legacy test case
+
+## 0.28.1
+
+### Patch Changes
+
+- c09109f: Add payload tests for string body and different content types
+- 6fafb9a: Add more cases for default client hierarchy
+
 ## 0.28.0
 
 ### Minor Changes

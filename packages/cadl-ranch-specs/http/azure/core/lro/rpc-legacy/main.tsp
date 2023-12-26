@@ -143,5 +143,5 @@ interface CreateResourcePollViaOperationLocation {
   @pollingOperation(CreateResourcePollViaOperationLocation.getJob)
   @doc("Creates a Job")
   @route("/jobs")
-  createJob is LongRunningRpcOperation<JobData, JobResult, JobResult>;
+  createJob is Foundations.Operation<JobData, AcceptedResponse & Foundations.LongRunningStatusLocation<JobResult>>;
 }
