@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - d3f6423: Add test case for api-version
-- d97491e: Opmitize lro/rpc-legacy test case
+- d97491e: Optimize lro/rpc-legacy test case
 
 ## 0.28.1
 
