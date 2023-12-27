@@ -78,7 +78,7 @@ model ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditional
 interface ExtendsUnknownDerived
   extends ModelOperations<
       ExtendsUnknownAdditionalPropertiesDerived,
-      "{'name': 'ExtendsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 42, 'prop2': true, 'prop3': 'abc'}"
+      "{'name': 'ExtendsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
@@ -110,7 +110,7 @@ model IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties
 interface IsUnknownDerived
   extends ModelOperations<
       IsUnknownAdditionalPropertiesDerived,
-      "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 42, 'prop2': true, 'prop3': 'abc'}"
+      "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 // ********************************************** Record<string> **********************************************

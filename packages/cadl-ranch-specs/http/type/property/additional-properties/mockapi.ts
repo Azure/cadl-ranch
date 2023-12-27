@@ -45,7 +45,7 @@ const extendsUnknownDerived = createMockApis("extendsRecordUnknownDerived", {
   name: "ExtendsUnknownAdditionalProperties",
   index: 314,
   age: 2.71828,
-  prop1: 42,
+  prop1: 32,
   prop2: true,
   prop3: "abc",
 });
@@ -56,7 +56,7 @@ const isUnknownDerived = createMockApis("isRecordUnknownDerived", {
   name: "IsUnknownAdditionalProperties",
   index: 314,
   age: 2.71828,
-  prop1: 42,
+  prop1: 32,
   prop2: true,
   prop3: "abc",
 });
