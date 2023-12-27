@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.3
+
+### Patch Changes
+
+- c5ba3ea: Fix the api version issue
+
 ## 0.28.2
 
 ### Patch Changes
