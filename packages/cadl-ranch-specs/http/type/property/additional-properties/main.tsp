@@ -64,6 +64,22 @@ interface ExtendsUnknown
       "{'name': 'ExtendsUnknownAdditionalProperties', 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
+model ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditionalProperties {
+  @doc("The index property")
+  index: int32;
+
+  @doc("The age property")
+  age?: float32;
+}
+
+@route("/extendsRecordUnknownDerived")
+@operationGroup
+interface ExtendsUnknownDerived
+  extends ModelOperations<
+      ExtendsUnknownAdditionalPropertiesDerived,
+      "{'name': 'ExtendsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 42, 'prop2': true, 'prop3': 'abc'}"
+    > {}
+
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
 @doc("The model is from Record<unknown> type.")
 model IsUnknownAdditionalProperties is Record<unknown> {

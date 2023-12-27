@@ -3858,6 +3858,40 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 42,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 42,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_AdditionalProperties_IsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordFloat`

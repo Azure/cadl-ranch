@@ -41,6 +41,17 @@ const extendsUnknown = createMockApis("extendsRecordUnknown", {
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_get = passOnSuccess(extendsUnknown.get);
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_put = passOnSuccess(extendsUnknown.put);
 
+const extendsUnknownDerived = createMockApis("extendsRecordUnknownDerived", {
+  name: "ExtendsUnknownAdditionalProperties",
+  index: 314,
+  age: 2.71828,
+  prop1: 42,
+  prop2: true,
+  prop3: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDerived_get = passOnSuccess(extendsUnknownDerived.get);
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDerived_put = passOnSuccess(extendsUnknownDerived.put);
+
 const isUnknown = createMockApis("isRecordUnknown", {
   name: "IsUnknownAdditionalProperties",
   prop1: 32,
