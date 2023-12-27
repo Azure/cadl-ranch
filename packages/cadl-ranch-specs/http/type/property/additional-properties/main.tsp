@@ -64,6 +64,7 @@ interface ExtendsUnknown
       "{'name': 'ExtendsUnknownAdditionalProperties', 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
+@doc("The model extends from a type that extends from Record<unknown>.")
 model ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditionalProperties {
   @doc("The index property")
   index: int32;
@@ -93,6 +94,23 @@ interface IsUnknown
   extends ModelOperations<
       IsUnknownAdditionalProperties,
       "{'name': 'IsUnknownAdditionalProperties', 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+    > {}
+
+@doc("The model extends from a type that is Record<unknown> type")
+model IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties {
+  @doc("The index property")
+  index: int32;
+
+  @doc("The age property")
+  age?: float32;
+}
+
+@route("/isRecordUnknownDerived")
+@operationGroup
+interface IsUnknownDerived
+  extends ModelOperations<
+      IsUnknownAdditionalPropertiesDerived,
+      "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 42, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 // ********************************************** Record<string> **********************************************
