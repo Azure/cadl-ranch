@@ -62,7 +62,7 @@ const extendsUnknownDiscriminated = createMockApis("extendsUnknownDiscriminated"
   prop3: "abc",
 });
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_get = passOnSuccess(
-  extendsUnknownDiscriminated.put,
+  extendsUnknownDiscriminated.get,
 );
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_put = passOnSuccess(
   extendsUnknownDiscriminated.put,
