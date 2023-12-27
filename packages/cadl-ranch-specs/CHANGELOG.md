@@ -1,8 +1,8 @@
 # @azure-tools/cadl-ranch-specs
 
-## 0.29.0
+## 0.28.5
 
-### Minor Changes
+### Patch Changes
 
 - a891c70: Add a few new cases to type/property/additional-properties to cover the case when a model with additional properties is derived by other models
 
