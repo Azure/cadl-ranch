@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.4
+
+### Patch Changes
+
+- 57d760b: Add complex scenario for multipart/form-data
+
 ## 0.28.3
 
 ### Patch Changes
