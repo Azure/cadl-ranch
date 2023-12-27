@@ -4052,6 +4052,76 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_AdditionalProperties_IsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordFloat`
@@ -4156,6 +4226,76 @@ Expected input body:
 ```json
 {
   "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
