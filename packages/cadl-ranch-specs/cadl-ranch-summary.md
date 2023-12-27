@@ -4072,6 +4072,42 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_Nullable_Bytes_getNonNull
 
 - Endpoint: `get /type/property/nullable/bytes/non-null`

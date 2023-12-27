@@ -142,6 +142,35 @@ interface IsUnknownDerived
       "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
+@doc("The model is Record<unknown> with a discriminator.")
+@discriminator("kind")
+model IsUnknownAdditionalPropertiesDiscriminated is Record<unknown> {
+  @doc("The name property")
+  name: string;
+
+  @doc("The discriminator")
+  kind: string;
+}
+
+@doc("The derived discriminated type")
+model IsUnknownAdditionalPropertiesDiscriminatedDerived extends IsUnknownAdditionalPropertiesDiscriminated {
+  kind: "derived";
+
+  @doc("The index property")
+  index: int32;
+
+  @doc("The age property")
+  age?: float32;
+}
+
+@route("/isUnknownDiscriminated")
+@operationGroup
+interface IsUnknownDiscriminated
+  extends ModelOperations<
+      IsUnknownAdditionalPropertiesDiscriminated,
+      "{'kind': 'derived', 'name': 'Derived', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+    > {}
+
 // ********************************************** Record<string> **********************************************
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
 @doc("The model extends from Record<string> type.")
