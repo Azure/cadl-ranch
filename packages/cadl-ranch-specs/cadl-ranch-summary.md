@@ -1578,6 +1578,174 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
+### Payload_JsonMergePatch_createOptionalResource
+
+- Endpoint: `put /json-merge-patch/create/resource/optional`
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ]
+}
+```
+
+### Payload_JsonMergePatch_createResource
+
+- Endpoint: `put /json-merge-patch/create/resource`
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ]
+}
+```
+
+Returned response body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ]
+}
+```
+
+### Payload_JsonMergePatch_updateOptionalResource
+
+- Endpoint: `patch /json-merge-patch/update/resource/optional`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": null,
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": null
+    }
+  },
+  "array": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "description": null,
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": null
+    }
+  },
+  "array": null
+}
+```
+
+### Payload_JsonMergePatch_updateResource
+
+- Endpoint: `patch /json-merge-patch/update/resource`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": null,
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": null
+    }
+  },
+  "array": null
+}
+```
+
+Returned response body:
+
+```json
+{
+  "name": "Madge",
+  "description": null,
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": null
+    }
+  },
+  "array": null
+}
+```
+
 ### Payload_MediaType_StringBody_getAsJson
 
 - Endpoint: `get /payload/media-type/string-body/getAsJson`
