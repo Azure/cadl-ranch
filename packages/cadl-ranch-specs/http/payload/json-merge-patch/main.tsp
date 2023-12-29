@@ -48,7 +48,7 @@ Expected input body:
 }
 ```
 
-Returned response body:
+Expected response body:
 ```json
 {
   "name": "Madge",
@@ -95,7 +95,7 @@ Expected input body:
   "floatValue": null
 ```
 
-Returned response body:
+Expected response body:
 ```json
 {
   "name": "Madge",
