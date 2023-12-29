@@ -258,7 +258,12 @@ async function main() {
           .option("generatorCommit", {
             type: "string",
             description: "Git sha of the generator. Resolved automatically if command is run inside of repository.",
-          });
+          })
+          .option("reportType", {
+            type: "string",
+            description: "Type of report to upload.",
+          })
+          .demandOption("reportType");
       },
       async (args) => {
         await uploadCoverageReport({
@@ -267,6 +272,7 @@ async function main() {
           generatorName: args.generatorName,
           generatorVersion: args.generatorVersion,
           generatorCommit: args.generatorCommit ?? getCommit(process.cwd()),
+          reportType: args.reportType,
         });
       },
     )

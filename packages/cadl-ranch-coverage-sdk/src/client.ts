@@ -61,7 +61,7 @@ export class CadlRanchCoverageOperations {
 
   public async upload(generatorMetadata: GeneratorMetadata, report: CoverageReport): Promise<void> {
     const blob = this.#container.getBlockBlobClient(
-      `${generatorMetadata.name}/reports/${generatorMetadata.version}.json`,
+      `${generatorMetadata.name}/reports/${generatorMetadata.version}/${generatorMetadata.type}.json`,
     );
     const resolvedReport: ResolvedCoverageReport = { ...report, generatorMetadata };
     const content = JSON.stringify(resolvedReport, null, 2);
@@ -69,41 +69,73 @@ export class CadlRanchCoverageOperations {
       metadata: {
         generatorName: generatorMetadata.name,
         generatorVersion: generatorMetadata.version,
+        reportType: generatorMetadata.type,
       },
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
       },
     });
 
-    await this.updateIndex(generatorMetadata.name, generatorMetadata.version);
+    await this.updateIndex(generatorMetadata.name, generatorMetadata.version, generatorMetadata.type);
   }
 
-  public async getLatestCoverageFor(generatorName: string): Promise<ResolvedCoverageReport> {
-    const index = await readJsonBlob<{ version: string }>(
+  public async getLatestCoverageFor(generatorName: string): Promise<ResolvedCoverageReport[]> {
+    const index = await readJsonBlob<{ version: string; types: string[] }>(
       this.#container.getBlockBlobClient(`${generatorName}/index.json`),
     );
 
-    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
-    const blob = await blobClient.download();
-    const body = await blob.blobBody;
-    const content = await body?.text();
-    const report = content ? JSON.parse(content) : undefined;
-    return {
-      generatorMetadata: {
-        version: blob.metadata?.generatorversion,
-        name: blob.metadata?.generatorname,
-      },
-      ...report,
-    };
+    if (!index.types) {
+      // Compatible with current format, delete later
+      const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
+      const blob = await blobClient.download();
+      const body = await blob.blobBody;
+      const content = await body?.text();
+      const report = content ? JSON.parse(content) : undefined;
+      return [
+        {
+          generatorMetadata: {
+            version: blob.metadata?.generatorversion,
+            name: blob.metadata?.generatorname,
+            reportType: blob.metadata?.reportType,
+          },
+          ...report,
+        },
+      ];
+    } else {
+      const results = [];
+      for (const type of index.types) {
+        const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}/${type}.json`);
+        const blob = await blobClient.download();
+        const body = await blob.blobBody;
+        const content = await body?.text();
+        const report = content ? JSON.parse(content) : undefined;
+        results.push({
+          generatorMetadata: {
+            version: blob.metadata?.generatorversion,
+            name: blob.metadata?.generatorname,
+            reportType: blob.metadata?.reportType,
+          },
+          ...report,
+        });
+      }
+      return results;
+    }
   }
 
-  private async updateIndex(generatorName: string, version: string) {
-    const blob = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
-    const data = {
+  private async updateIndex(generatorName: string, version: string, type: string) {
+    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
+    const indexContent = await readJsonBlobFromStream<{ version: string; types: string[] }>(blobClient);
+
+    let data = {
       version,
+      types: [type],
     };
+    if (indexContent?.version === version && indexContent?.types?.includes(type) === false) {
+      data.types.push(...indexContent.types);
+    }
+
     const content = JSON.stringify(data, null, 2);
-    await blob.upload(content, content.length, {
+    await blobClient.upload(content, content.length, {
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
       },
@@ -125,4 +157,15 @@ async function readJsonBlob<T>(blobClient: BlockBlobClient): Promise<T> {
   const body = await blob.blobBody;
   const content = await body?.text();
   return content ? JSON.parse(content) : undefined;
+}
+
+async function readJsonBlobFromStream<T>(blobClient: BlockBlobClient): Promise<T> {
+  const blob = await blobClient.download();
+  let result = "";
+  if (blob.readableStreamBody) {
+    for await (const chunk of blob.readableStreamBody) {
+      result += chunk;
+    }
+  }
+  return result ? JSON.parse(result) : undefined;
 }

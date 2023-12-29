@@ -2,6 +2,7 @@ export type ScenarioManifest = {
   commit: string;
   version: string;
   scenarios: ScenarioData[];
+  types: string[];
 };
 
 export type ScenarioData = {
@@ -33,6 +34,12 @@ export type ScenarioStatus =
   // Scenario is not applicable in current test.
   | "not-applicable";
 
+export type ScenarioType =
+  // Report for branded scenarios
+  | "branded"
+  // Report for unbranded scenarios
+  | "unbranded";
+
 export interface CoverageReport {
   /**
    * Metadata for the scenario set for this report.
@@ -62,5 +69,6 @@ export interface ScenariosMetadata {
 export interface GeneratorMetadata {
   name: string;
   version: string;
+  type: string;
   commit?: string;
 }

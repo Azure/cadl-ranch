@@ -20,6 +20,12 @@ const generatorNames: GeneratorNames[] = [
 export interface CoverageSummary {
   manifest: ScenarioManifest;
   generatorReports: Record<GeneratorNames, ResolvedCoverageReport | undefined>;
+  type: string;
+}
+
+export interface CoverageSummaryAllTypes {
+  manifest: ScenarioManifest;
+  generatorReports: Record<GeneratorNames, ResolvedCoverageReport[] | undefined>;
 }
 
 let client: CadlRanchCoverageClient | undefined;
@@ -35,7 +41,7 @@ export async function getManifest(): Promise<ScenarioManifest> {
   return await coverageClient.manifest.get();
 }
 
-export async function getCoverageSummary(): Promise<CoverageSummary> {
+export async function getCoverageSummary(): Promise<CoverageSummaryAllTypes> {
   const coverageClient = getCoverageClient();
   const [manifest, generatorReports] = await Promise.all([
     coverageClient.manifest.get(),
@@ -50,8 +56,8 @@ export async function getCoverageSummary(): Promise<CoverageSummary> {
 async function loadReports(
   coverageClient: CadlRanchCoverageClient,
   generatorNames: GeneratorNames[],
-): Promise<Record<GeneratorNames, ResolvedCoverageReport | undefined>> {
-  const items: [GeneratorNames, ResolvedCoverageReport | undefined][] = await Promise.all(
+): Promise<Record<GeneratorNames, ResolvedCoverageReport[] | undefined>> {
+  const items: [GeneratorNames, ResolvedCoverageReport[] | undefined][] = await Promise.all(
     generatorNames.map(async (generatorName) => {
       try {
         const report = await coverageClient.coverage.getLatestCoverageFor(generatorName);

@@ -6,6 +6,8 @@ import { ScenarioLocation, ScenarioManifest } from "@azure-tools/cadl-ranch-cove
 import { getSourceLocation, normalizePath } from "@typespec/compiler";
 import { relative } from "path";
 
+const scenarioTypes = ["branded", "unbranded"];
+
 export async function computeScenarioManifest(
   scenariosPath: string,
 ): Promise<[ScenarioManifest | undefined, readonly Diagnostic[]]> {
@@ -38,5 +40,6 @@ export function createScenarioManifest(
       };
       return { name, scenarioDoc, location };
     }),
+    types: scenarioTypes,
   };
 }
