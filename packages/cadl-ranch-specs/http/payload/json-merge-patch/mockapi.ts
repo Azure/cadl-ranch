@@ -19,6 +19,8 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
         description: "innerDesc",
       },
     ],
+    intValue: 1,
+    floatValue: 1.1,
   };
   const expectedUpdateBody = {
     name: "Madge",
@@ -30,6 +32,8 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
       },
     },
     array: null,
+    intValue: null,
+    floatValue: null,
   };
   if (isUpdateRequest) {
     return mockapi.patch(url, (req) => {

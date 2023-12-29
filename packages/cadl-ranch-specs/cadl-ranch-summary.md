@@ -1599,7 +1599,9 @@ Expected input body:
       "name": "InnerMadge",
       "description": "innerDesc"
     }
-  ]
+  ],
+  "intValue": 1,
+  "floatValue": 1.1
 }
 ```
 
@@ -1620,7 +1622,9 @@ Expected response body:
       "name": "InnerMadge",
       "description": "innerDesc"
     }
-  ]
+  ],
+  "intValue": 1,
+  "floatValue": 1.1
 }
 ```
 
@@ -1645,7 +1649,9 @@ Expected input body:
       "name": "InnerMadge",
       "description": "innerDesc"
     }
-  ]
+  ],
+  "intValue": 1,
+  "floatValue": 1.1
 }
 ```
 
@@ -1666,7 +1672,9 @@ Returned response body:
       "name": "InnerMadge",
       "description": "innerDesc"
     }
-  ]
+  ],
+  "intValue": 1,
+  "floatValue": 1.1
 }
 ```
 
@@ -1688,7 +1696,9 @@ Expected input body:
       "description": null
     }
   },
-  "array": null
+  "array": null,
+  "intValue": null,
+  "floatValue": null
 }
 ```
 
@@ -1704,7 +1714,9 @@ Expected response body:
       "description": null
     }
   },
-  "array": null
+  "array": null,
+  "intValue": null,
+  "floatValue": null
 }
 ```
 
@@ -1726,8 +1738,9 @@ Expected input body:
       "description": null
     }
   },
-  "array": null
-}
+  "array": null,
+  "intValue": null,
+  "floatValue": null
 ```
 
 Returned response body:
@@ -1742,7 +1755,9 @@ Returned response body:
       "description": null
     }
   },
-  "array": null
+  "array": null,
+  "intValue": null,
+  "floatValue": null
 }
 ```
 
