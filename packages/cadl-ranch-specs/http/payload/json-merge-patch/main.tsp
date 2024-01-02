@@ -82,23 +82,6 @@ Should serialize null values with merge-patch+json enabled.
 Expected input body:
 ```json
 {
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
-    }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
-```
-
-Expected response body:
-```json
-{
-  "name": "Madge",
   "description": null,
   "map": {
     "key": {
@@ -111,11 +94,17 @@ Expected response body:
   "floatValue": null
 }
 ```
+
+Expected response body:
+No content response with status code 204.
 """)
 @doc("Test content-type: application/merge-patch+json with required body")
 @route("/update/resource")
 @patch
-op updateResource(@header("content-type") contentType: "application/merge-patch+json", @body body: Resource): Resource;
+op updateResource(
+  @header("content-type") contentType: "application/merge-patch+json",
+  @body body: Resource,
+): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
@@ -179,7 +168,6 @@ Should serialize null values with merge-patch+json enabled.
 Expected input body:
 ```json
 {
-  "name": "Madge",
   "description": null,
   "map": {
     "key": {
@@ -194,21 +182,7 @@ Expected input body:
 ```
 
 Expected response body:
-```json
-{
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
-    }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
-}
-```
+No content response with status code 204.
 """)
 @doc("Test content-type: application/merge-patch+json with optional body")
 @route("/update/resource/optional")
@@ -216,4 +190,4 @@ Expected response body:
 op updateOptionalResource(
   @header("content-type") contentType: "application/merge-patch+json",
   @body body?: Resource,
-): Resource;
+): NoContentResponse;

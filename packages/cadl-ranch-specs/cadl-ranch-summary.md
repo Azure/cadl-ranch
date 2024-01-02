@@ -1688,7 +1688,6 @@ Expected input body:
 
 ```json
 {
-  "name": "Madge",
   "description": null,
   "map": {
     "key": {
@@ -1703,22 +1702,7 @@ Expected input body:
 ```
 
 Expected response body:
-
-```json
-{
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
-    }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
-}
-```
+No content response with status code 204.
 
 ### Payload_JsonMergePatch_updateResource
 
@@ -1730,24 +1714,6 @@ Expected input body:
 
 ```json
 {
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
-    }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
-```
-
-Expected response body:
-
-```json
-{
-  "name": "Madge",
   "description": null,
   "map": {
     "key": {
@@ -1760,6 +1726,9 @@ Expected response body:
   "floatValue": null
 }
 ```
+
+Expected response body:
+No content response with status code 204.
 
 ### Payload_MediaType_StringBody_getAsJson
 
