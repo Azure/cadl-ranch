@@ -23,6 +23,7 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
     floatValue: 1.1,
   };
   const expectedUpdateBody = {
+    name: "Madge",
     description: null,
     map: {
       key: {
@@ -42,7 +43,8 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
       req.expect.deepEqual(req.body.intValue, expectedUpdateBody.intValue);
       req.expect.deepEqual(req.body.floatValue, expectedUpdateBody.floatValue);
       return {
-        status: 204,
+        status: 200,
+        body: json(expectedUpdateBody),
       };
     });
   } else {
