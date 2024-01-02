@@ -107,17 +107,13 @@ Expected input body:
 Expected response body:
 ```json
 {
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
+  name: "Madge",
+  map: {
+    key: {
+      name: "InnerMadge",
+      description: null
     }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
+  }
 }
 ```
 """)
@@ -207,17 +203,13 @@ Expected input body:
 Expected response body:
 ```json
 {
-  "name": "Madge",
-  "description": null,
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": null
+  name: "Madge",
+  map: {
+    key: {
+      name: "InnerMadge",
+      description: null,
     }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
+  }
 }
 ```
 """)

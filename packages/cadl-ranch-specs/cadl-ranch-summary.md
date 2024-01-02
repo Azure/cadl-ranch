@@ -1706,16 +1706,12 @@ Expected response body:
 ```json
 {
   "name": "Madge",
-  "description": null,
   "map": {
     "key": {
       "name": "InnerMadge",
       "description": null
     }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
+  }
 }
 ```
 
@@ -1747,16 +1743,12 @@ Expected response body:
 ```json
 {
   "name": "Madge",
-  "description": null,
   "map": {
     "key": {
       "name": "InnerMadge",
       "description": null
     }
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null
+  }
 }
 ```
 
