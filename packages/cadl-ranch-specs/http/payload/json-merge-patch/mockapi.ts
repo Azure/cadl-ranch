@@ -21,6 +21,11 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
     ],
     intValue: 1,
     floatValue: 1.1,
+    innerModel: {
+      name: "InnerMadge",
+      description: "innerDesc",
+    },
+    intArray: [1, 2, 3],
   };
   const expectedUpdateBody = {
     name: "Madge",
@@ -34,6 +39,8 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
     array: null,
     intValue: null,
     floatValue: null,
+    innerModel: null,
+    intArray: null,
   };
   if (isUpdateRequest) {
     return mockapi.patch(url, (req) => {
@@ -42,6 +49,8 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
       req.expect.deepEqual(req.body.array, expectedUpdateBody.array);
       req.expect.deepEqual(req.body.intValue, expectedUpdateBody.intValue);
       req.expect.deepEqual(req.body.floatValue, expectedUpdateBody.floatValue);
+      req.expect.deepEqual(req.body.innerModel, expectedUpdateBody.innerModel);
+      req.expect.deepEqual(req.body.intArray, expectedUpdateBody.intArray);
       return {
         status: 200,
         body: json({
@@ -49,7 +58,6 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
           map: {
             key: {
               name: "InnerMadge",
-              description: null,
             },
           },
         }),

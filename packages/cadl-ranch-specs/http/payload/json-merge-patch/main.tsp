@@ -15,6 +15,8 @@ model Resource {
   array?: InnerModel[];
   intValue?: int32;
   floatValue?: float32;
+  innerModel?: InnerModel;
+  intArray?: int32[];
 }
 
 @doc("Details about a resource for patch operation.")
@@ -24,11 +26,13 @@ model ResourcePatch {
   array?: InnerModel[];
   intValue?: int32;
   floatValue?: float32;
+  innerModel?: InnerModel;
+  intArray?: int32[];
 }
 
 @doc("It is the model used by Resource model")
 model InnerModel {
-  name: string;
+  name?: string;
   description?: string;
 }
 
@@ -53,7 +57,12 @@ Expected input body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -75,7 +84,12 @@ Expected response body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 """)
@@ -100,7 +114,9 @@ Expected input body:
   },
   "array": null,
   "intValue": null,
-  "floatValue": null
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
 }
 ```
 
@@ -110,8 +126,7 @@ Expected response body:
   name: "Madge",
   map: {
     key: {
-      name: "InnerMadge",
-      description: null
+      name: "InnerMadge"
     }
   }
 }
@@ -146,7 +161,12 @@ Expected input body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -168,7 +188,12 @@ Expected response body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 """)
@@ -196,7 +221,9 @@ Expected input body:
   },
   "array": null,
   "intValue": null,
-  "floatValue": null
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
 }
 ```
 
@@ -206,8 +233,7 @@ Expected response body:
   name: "Madge",
   map: {
     key: {
-      name: "InnerMadge",
-      description: null,
+      name: "InnerMadge"
     }
   }
 }

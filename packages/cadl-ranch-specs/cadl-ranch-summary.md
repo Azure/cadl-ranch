@@ -1601,7 +1601,12 @@ Expected input body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -1624,7 +1629,12 @@ Expected response body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -1651,7 +1661,12 @@ Expected input body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -1674,7 +1689,12 @@ Expected response body:
     }
   ],
   "intValue": 1,
-  "floatValue": 1.1
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
 }
 ```
 
@@ -1697,7 +1717,9 @@ Expected input body:
   },
   "array": null,
   "intValue": null,
-  "floatValue": null
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
 }
 ```
 
@@ -1708,8 +1730,7 @@ Expected response body:
   "name": "Madge",
   "map": {
     "key": {
-      "name": "InnerMadge",
-      "description": null
+      "name": "InnerMadge"
     }
   }
 }
@@ -1734,7 +1755,9 @@ Expected input body:
   },
   "array": null,
   "intValue": null,
-  "floatValue": null
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
 }
 ```
 
@@ -1745,8 +1768,7 @@ Expected response body:
   "name": "Madge",
   "map": {
     "key": {
-      "name": "InnerMadge",
-      "description": null
+      "name": "InnerMadge"
     }
   }
 }
