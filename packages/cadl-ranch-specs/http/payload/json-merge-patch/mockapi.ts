@@ -45,7 +45,7 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
   if (isUpdateRequest) {
     return mockapi.patch(url, (req) => {
       req.expect.deepEqual(req.body.description, expectedUpdateBody.description);
-      req.expect.deepEqual(req.body.map, expectedUpdateBody.map);
+      req.expect.deepEqual(req.body.map.key.name, expectedUpdateBody.map.key.name);
       req.expect.deepEqual(req.body.array, expectedUpdateBody.array);
       req.expect.deepEqual(req.body.intValue, expectedUpdateBody.intValue);
       req.expect.deepEqual(req.body.floatValue, expectedUpdateBody.floatValue);

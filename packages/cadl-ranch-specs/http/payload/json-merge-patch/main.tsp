@@ -110,7 +110,8 @@ Expected input body:
     "key": {
       "name": "InnerMadge",
       "description": null
-    }
+    },
+    "key2": null
   },
   "array": null,
   "intValue": null,
@@ -217,7 +218,8 @@ Expected input body:
     "key": {
       "name": "InnerMadge",
       "description": null
-    }
+    },
+    "key2": null
   },
   "array": null,
   "intValue": null,
