@@ -3376,6 +3376,70 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
+### Type_Model_Flatten_putFlattenModel
+
+- Endpoint: `put /type/model/flatten/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "child": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "child": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Type_Model_Flatten_putNestedFlattenModel
+
+- Endpoint: `put /type/model/flatten/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "child": {
+    "summary": "bar",
+    "child": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "child": {
+    "summary": "test",
+    "child": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
+
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
 - Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
