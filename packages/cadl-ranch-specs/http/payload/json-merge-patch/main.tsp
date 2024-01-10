@@ -108,7 +108,6 @@ Expected input body:
   "description": null,
   "map": {
     "key": {
-      "name": "InnerMadge",
       "description": null
     },
     "key2": null
@@ -216,7 +215,6 @@ Expected input body:
   "description": null,
   "map": {
     "key": {
-      "name": "InnerMadge",
       "description": null
     },
     "key2": null
