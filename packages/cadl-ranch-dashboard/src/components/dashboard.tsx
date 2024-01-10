@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { CoverageSummary, CoverageSummaryAllTypes, GeneratorNames } from "../apis.js";
+import { CoverageSummary, CoverageSummaryAllTypes } from "../apis.js";
 import { DashboardTable } from "./dashboard-table.js";
 import { ResolvedCoverageReport } from "@azure-tools/cadl-ranch-coverage-sdk";
 export interface DashboardProps {
@@ -9,7 +9,7 @@ export interface DashboardProps {
 export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummaryAllTypes }) => {
   const coverageSummaries: CoverageSummary[] = [];
   for (const type of coverageSummaryAllTypes.manifest.types) {
-    let generatorReports: Record<string, ResolvedCoverageReport | undefined> = {};
+    const generatorReports: Record<string, ResolvedCoverageReport | undefined> = {};
     for (const name in coverageSummaryAllTypes.generatorReports) {
       const reports = coverageSummaryAllTypes.generatorReports[name as keyof typeof coverageSummaryAllTypes.generatorReports];
       const report = reports?.find(report => report.generatorMetadata.type === type);
