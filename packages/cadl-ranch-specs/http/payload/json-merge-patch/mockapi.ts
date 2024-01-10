@@ -78,9 +78,6 @@ function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
 
 Scenarios.Payload_JsonMergePatch_createResource = passOnSuccess(createMockApis("create/resource", false));
 Scenarios.Payload_JsonMergePatch_updateResource = passOnSuccess(createMockApis("update/resource", true));
-Scenarios.Payload_JsonMergePatch_createOptionalResource = passOnSuccess(
-  createMockApis("create/resource/optional", false),
-);
 Scenarios.Payload_JsonMergePatch_updateOptionalResource = passOnSuccess(
   createMockApis("update/resource/optional", true),
 );
