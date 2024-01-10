@@ -15,7 +15,7 @@ model FlattenModel {
 
   #suppress "deprecated" "@flattenProperty decorator is not recommended to use."
   @flattenProperty
-  child: ChildModel;
+  properties: ChildModel;
 }
 
 @doc("This is the model with two levels of flattening.")
@@ -24,7 +24,7 @@ model NestedFlattenModel {
 
   #suppress "deprecated" "@flattenProperty decorator is not recommended to use."
   @flattenProperty
-  child: ChildFlattenModel;
+  properties: ChildFlattenModel;
 }
 
 @doc("This is the child model to be flattened.")
@@ -39,7 +39,7 @@ model ChildFlattenModel {
 
   #suppress "deprecated" "@flattenProperty decorator is not recommended to use."
   @flattenProperty
-  child: ChildModel;
+  properties: ChildModel;
 }
 
 @scenario
@@ -50,7 +50,7 @@ Expected input body:
 ```json
 {
   "name": "foo",
-  "child": {
+  "properties": {
     "description": "bar",
     "age": 10
   }
@@ -61,7 +61,7 @@ Expected response body:
 ```json
 {
   "name": "test",
-  "child": {
+  "properties": {
     "description": "test",
     "age": 1
   }
@@ -79,9 +79,9 @@ Expected input body:
 ```json
 {
   "name": "foo",
-  "child": {
+  "properties": {
     "summary": "bar",
-    "child": {
+    "properties": {
       "description": "test",
       "age": 10
     }
@@ -93,9 +93,9 @@ Expected response body:
 ```json
 {
   "name": "test",
-  "child": {
+  "properties": {
     "summary": "test",
-    "child": {
+    "properties": {
       "description": "foo",
       "age": 1
     }

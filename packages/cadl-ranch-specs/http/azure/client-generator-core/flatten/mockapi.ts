@@ -25,14 +25,14 @@ Scenarios.Type_Model_Flatten_putFlattenModel = passOnSuccess(
     "flattenModel",
     {
       name: "foo",
-      child: {
+      properties: {
         description: "bar",
         age: 10,
       },
     },
     {
       name: "test",
-      child: {
+      properties: {
         description: "test",
         age: 1,
       },
@@ -45,9 +45,9 @@ Scenarios.Type_Model_Flatten_putNestedFlattenModel = passOnSuccess(
     "nestedFlattenModel",
     {
       name: "foo",
-      child: {
+      properties: {
         summary: "bar",
-        child: {
+        properties: {
           description: "test",
           age: 10,
         },
@@ -55,9 +55,9 @@ Scenarios.Type_Model_Flatten_putNestedFlattenModel = passOnSuccess(
     },
     {
       name: "test",
-      child: {
+      properties: {
         summary: "test",
-        child: {
+        properties: {
           description: "foo",
           age: 1,
         },
