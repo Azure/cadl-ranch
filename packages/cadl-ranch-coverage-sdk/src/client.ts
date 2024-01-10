@@ -96,7 +96,7 @@ export class CadlRanchCoverageOperations {
           generatorMetadata: {
             version: blob.metadata?.generatorversion,
             name: blob.metadata?.generatorname,
-            reportType: blob.metadata?.reportType,
+            type: "azure",
           },
           ...report,
         },
@@ -113,7 +113,7 @@ export class CadlRanchCoverageOperations {
           generatorMetadata: {
             version: blob.metadata?.generatorversion,
             name: blob.metadata?.generatorname,
-            reportType: blob.metadata?.reportType,
+            type: blob.metadata?.reportType,
           },
           ...report,
         });
@@ -123,15 +123,17 @@ export class CadlRanchCoverageOperations {
   }
 
   private async updateIndex(generatorName: string, version: string, type: string) {
-    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
-    const indexContent = await readJsonBlobFromStream<{ version: string; types: string[] }>(blobClient);
-
-    let data = {
+    const data = {
       version,
       types: [type],
     };
-    if (indexContent?.version === version && indexContent?.types?.includes(type) === false) {
-      data.types.push(...indexContent.types);
+
+    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
+    if (await blobClient.exists()) {
+      const indexContent = await readJsonBlobFromStream<{ version: string; types: string[] }>(blobClient);
+      if (indexContent?.version === version && indexContent?.types?.includes(type) === false) {
+        data.types.push(...indexContent.types);
+      }
     }
 
     const content = JSON.stringify(data, null, 2);
