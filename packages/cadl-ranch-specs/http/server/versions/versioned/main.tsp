@@ -48,7 +48,7 @@ op withoutApiVersion(): OkResponse;
 @scenarioDoc("A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-query-api-version?api-version=2022-12-01-preview'.")
 @route("/with-query-api-version")
 @head
-op withQueryApiVersion(@query apiVersion: string): OkResponse;
+op withQueryApiVersion(@query("api-version") apiVersion: string): OkResponse;
 
 @scenario
 @scenarioDoc("A simple operation with path api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-path-api-version/2022-12-01-preview'.")

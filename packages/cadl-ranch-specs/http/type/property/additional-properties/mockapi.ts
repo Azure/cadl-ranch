@@ -41,6 +41,33 @@ const extendsUnknown = createMockApis("extendsRecordUnknown", {
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_get = passOnSuccess(extendsUnknown.get);
 Scenarios.Type_Property_AdditionalProperties_ExtendsUnknown_put = passOnSuccess(extendsUnknown.put);
 
+const extendsUnknownDerived = createMockApis("extendsRecordUnknownDerived", {
+  name: "ExtendsUnknownAdditionalProperties",
+  index: 314,
+  age: 2.71828,
+  prop1: 32,
+  prop2: true,
+  prop3: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDerived_get = passOnSuccess(extendsUnknownDerived.get);
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDerived_put = passOnSuccess(extendsUnknownDerived.put);
+
+const extendsUnknownDiscriminated = createMockApis("extendsUnknownDiscriminated", {
+  kind: "derived",
+  name: "Derived",
+  index: 314,
+  age: 2.71828,
+  prop1: 32,
+  prop2: true,
+  prop3: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_get = passOnSuccess(
+  extendsUnknownDiscriminated.get,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_put = passOnSuccess(
+  extendsUnknownDiscriminated.put,
+);
+
 const isUnknown = createMockApis("isRecordUnknown", {
   name: "IsUnknownAdditionalProperties",
   prop1: 32,
@@ -49,6 +76,29 @@ const isUnknown = createMockApis("isRecordUnknown", {
 });
 Scenarios.Type_Property_AdditionalProperties_IsUnknown_get = passOnSuccess(isUnknown.get);
 Scenarios.Type_Property_AdditionalProperties_IsUnknown_put = passOnSuccess(isUnknown.put);
+
+const isUnknownDerived = createMockApis("isRecordUnknownDerived", {
+  name: "IsUnknownAdditionalProperties",
+  index: 314,
+  age: 2.71828,
+  prop1: 32,
+  prop2: true,
+  prop3: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_IsUnknownDerived_get = passOnSuccess(isUnknownDerived.get);
+Scenarios.Type_Property_AdditionalProperties_IsUnknownDerived_put = passOnSuccess(isUnknownDerived.put);
+
+const isUnknownDiscriminated = createMockApis("isUnknownDiscriminated", {
+  kind: "derived",
+  name: "Derived",
+  index: 314,
+  age: 2.71828,
+  prop1: 32,
+  prop2: true,
+  prop3: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_IsUnknownDiscriminated_get = passOnSuccess(isUnknownDiscriminated.get);
+Scenarios.Type_Property_AdditionalProperties_IsUnknownDiscriminated_put = passOnSuccess(isUnknownDiscriminated.put);
 
 // **************************************************** Record<string> ****************************************************
 const extendsString = createMockApis("extendsRecordString", {

@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.28.5
+
+### Patch Changes
+
+- a891c70: Add a few new cases to type/property/additional-properties to cover the case when a model with additional properties is derived by other models
+
+## 0.28.4
+
+### Patch Changes
+
+- 57d760b: Add complex scenario for multipart/form-data
+
+## 0.28.3
+
+### Patch Changes
+
+- c5ba3ea: Fix the api version issue
+
 ## 0.28.2
 
 ### Patch Changes

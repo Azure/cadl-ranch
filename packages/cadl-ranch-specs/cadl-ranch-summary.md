@@ -1606,7 +1606,13 @@ Expected request body is a string '{cat}'.
 
 - Endpoint: `post /multipart/form-data/mixed-parts`
 
-Expect request:
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
 
 ```
 POST /upload HTTP/1.1
@@ -1615,11 +1621,199 @@ Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
 Content-Disposition: form-data; name="id"
+Content-Type: text/plain
 
 123
 --abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_binaryArrayParts
+
+- Endpoint: `post /multipart/form-data/binary-array-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_complex
+
+- Endpoint: `post /multipart/form-data/complex-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_jsonArrayParts
+
+- Endpoint: `post /multipart/form-data/json-array-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_jsonPart
+
+- Endpoint: `post /multipart/form-data/json-part`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_multiBinaryParts
+
+- Endpoint: `post /multipart/form-data/multi-binary-parts`
+
+Please send request twice, first time with only profileImage, second time with both profileImage and picture(
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="picture"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345--
@@ -3858,6 +4052,76 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_AdditionalProperties_IsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordFloat`
@@ -3962,6 +4226,76 @@ Expected input body:
 ```json
 {
   "name": "IsUnknownAdditionalProperties",
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71828,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
