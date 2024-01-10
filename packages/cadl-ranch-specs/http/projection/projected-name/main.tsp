@@ -17,6 +17,7 @@ namespace Property {
     @doc("Pass in true")
     @projectedName("client", "_DoNotUseMeAsAName_") // Should be ignored
     @projectedName("csharp", "CSName")
+    @projectedName("go", "GoName")
     @projectedName("java", "JavaName")
     @projectedName("javascript", "TSName")
     @projectedName("python", "python_name")
@@ -134,6 +135,7 @@ op parameter(
 namespace Model {
   @projectedName("client", "_NotUseMeAsAName_") // Should be ignored
   @projectedName("csharp", "CSModel")
+  @projectedName("go", "GoModel")
   @projectedName("java", "JavaModel")
   @projectedName("javascript", "TSModel")
   @projectedName("python", "PythonModel")
