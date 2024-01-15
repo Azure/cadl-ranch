@@ -7,7 +7,15 @@ import {
 
 const storageAccountName = "cadlranchstorage";
 
-export type GeneratorNames = "python" | "typescript/rlc" | "typescript/modular" | "csharp" | "java" | "test";
+export type GeneratorNames =
+  | "python"
+  | "typescript/rlc"
+  | "typescript/modular"
+  | "csharp"
+  | "java"
+  | "go"
+  | "cpp"
+  | "test";
 const query = new URLSearchParams(window.location.search);
 const generatorNames: GeneratorNames[] = [
   "python",
@@ -15,6 +23,8 @@ const generatorNames: GeneratorNames[] = [
   "typescript/modular",
   "csharp",
   "java",
+  "go",
+  "cpp",
   ...(query.has("showtest") ? (["test"] as const) : []),
 ];
 
