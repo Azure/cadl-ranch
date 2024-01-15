@@ -5,7 +5,7 @@ import {
   GeneratorMode,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
 
-const storageAccountName = "cadlranchstorage";
+const storageAccountName = "azuresdkcadlranch";
 
 export type GeneratorNames =
   | "python"

@@ -152,14 +152,3 @@ async function readJsonBlob<T>(blobClient: BlockBlobClient): Promise<T> {
   const content = await body?.text();
   return content ? JSON.parse(content) : undefined;
 }
-
-async function readJsonBlobFromStream<T>(blobClient: BlockBlobClient): Promise<T> {
-  const blob = await blobClient.download();
-  let result = "";
-  if (blob.readableStreamBody) {
-    for await (const chunk of blob.readableStreamBody) {
-      result += chunk;
-    }
-  }
-  return result ? JSON.parse(result) : undefined;
-}
