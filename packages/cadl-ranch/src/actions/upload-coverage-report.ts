@@ -10,7 +10,7 @@ export interface UploadCoverageReportConfig {
   generatorName: string;
   generatorVersion: string;
   generatorCommit?: string;
-  reportType: string;
+  generatorMode: string;
 }
 
 export async function uploadCoverageReport({
@@ -19,7 +19,7 @@ export async function uploadCoverageReport({
   generatorName,
   generatorVersion,
   generatorCommit: geenratorCommit,
-  reportType,
+  generatorMode,
 }: UploadCoverageReportConfig) {
   const content = await readFile(coverageFile);
   const coverage: CoverageReport = JSON.parse(content.toString());
@@ -28,7 +28,7 @@ export async function uploadCoverageReport({
   const generatorMetadata: GeneratorMetadata = {
     name: generatorName,
     version: generatorVersion,
-    type: reportType,
+    mode: generatorMode,
     commit: geenratorCommit,
   };
   await client.coverage.upload(generatorMetadata, coverage);

@@ -2,11 +2,9 @@ import { Scenario } from "@azure-tools/cadl-ranch-expect";
 import { loadScenarios } from "../scenarios-resolver.js";
 import { Diagnostic } from "../utils/diagnostic-reporter.js";
 import { getCommit, getPackageJson } from "../utils/misc-utils.js";
-import { ScenarioLocation, ScenarioManifest } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { ScenarioLocation, ScenarioManifest, GeneratorMode } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { getSourceLocation, normalizePath } from "@typespec/compiler";
 import { relative } from "path";
-
-const scenarioTypes = ["azure", "non-azure"];
 
 export async function computeScenarioManifest(
   scenariosPath: string,
@@ -40,6 +38,6 @@ export function createScenarioManifest(
       };
       return { name, scenarioDoc, location };
     }),
-    types: scenarioTypes,
+    modes: GeneratorMode,
   };
 }

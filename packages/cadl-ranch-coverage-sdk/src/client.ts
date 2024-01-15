@@ -61,7 +61,7 @@ export class CadlRanchCoverageOperations {
 
   public async upload(generatorMetadata: GeneratorMetadata, report: CoverageReport): Promise<void> {
     const blob = this.#container.getBlockBlobClient(
-      `${generatorMetadata.name}/reports/${generatorMetadata.version}/${generatorMetadata.type}.json`,
+      `${generatorMetadata.name}/reports/${generatorMetadata.version}/${generatorMetadata.mode}.json`,
     );
     const resolvedReport: ResolvedCoverageReport = { ...report, generatorMetadata };
     const content = JSON.stringify(resolvedReport, null, 2);
@@ -69,75 +69,67 @@ export class CadlRanchCoverageOperations {
       metadata: {
         generatorName: generatorMetadata.name,
         generatorVersion: generatorMetadata.version,
-        reportType: generatorMetadata.type,
+        generatorMode: generatorMetadata.mode,
       },
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
       },
     });
 
-    await this.updateIndex(generatorMetadata.name, generatorMetadata.version, generatorMetadata.type);
+    await this.updateIndex(generatorMetadata.name, generatorMetadata.version);
   }
 
-  public async getLatestCoverageFor(generatorName: string): Promise<ResolvedCoverageReport[]> {
+  public async getLatestCoverageFor(
+    generatorName: string,
+    generatorMode: string,
+  ): Promise<ResolvedCoverageReport | undefined> {
     const index = await readJsonBlob<{ version: string; types: string[] }>(
       this.#container.getBlockBlobClient(`${generatorName}/index.json`),
     );
 
-    if (!index.types) {
-      // Compatible with current format, delete later
-      const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
-      const blob = await blobClient.download();
+    // Compatible with current format, delete later
+    const blobClientOldVersion = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
+    if (await blobClientOldVersion.exists()) {
+      const blob = await blobClientOldVersion.download();
       const body = await blob.blobBody;
       const content = await body?.text();
       const report = content ? JSON.parse(content) : undefined;
-      return [
-        {
-          generatorMetadata: {
-            version: blob.metadata?.generatorversion,
-            name: blob.metadata?.generatorname,
-            type: "azure",
-          },
-          ...report,
+      return {
+        generatorMetadata: {
+          version: blob.metadata?.generatorversion,
+          name: blob.metadata?.generatorname,
+          mode: "azure",
         },
-      ];
+        ...report,
+      };
     } else {
-      const results = [];
-      for (const type of index.types) {
-        const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}/${type}.json`);
+      const blobClient = this.#container.getBlockBlobClient(
+        `${generatorName}/reports/${index.version}/${generatorMode}.json`,
+      );
+      if (await blobClient.exists()) {
         const blob = await blobClient.download();
         const body = await blob.blobBody;
         const content = await body?.text();
         const report = content ? JSON.parse(content) : undefined;
-        results.push({
+        return {
           generatorMetadata: {
             version: blob.metadata?.generatorversion,
             name: blob.metadata?.generatorname,
-            type: blob.metadata?.reportType,
+            mode: blob.metadata?.generatorMode,
           },
           ...report,
-        });
-      }
-      return results;
+        };
+      } else return undefined;
     }
   }
 
-  private async updateIndex(generatorName: string, version: string, type: string) {
+  private async updateIndex(generatorName: string, version: string) {
+    const blob = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
     const data = {
       version,
-      types: [type],
     };
-
-    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/index.json`);
-    if (await blobClient.exists()) {
-      const indexContent = await readJsonBlobFromStream<{ version: string; types: string[] }>(blobClient);
-      if (indexContent?.version === version && indexContent?.types?.includes(type) === false) {
-        data.types.push(...indexContent.types);
-      }
-    }
-
     const content = JSON.stringify(data, null, 2);
-    await blobClient.upload(content, content.length, {
+    await blob.upload(content, content.length, {
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
       },

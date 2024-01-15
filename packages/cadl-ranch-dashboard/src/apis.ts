@@ -2,9 +2,10 @@ import {
   CadlRanchCoverageClient,
   ResolvedCoverageReport,
   ScenarioManifest,
+  GeneratorMode,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
 
-const storageAccountName = "azuresdkcadlranch";
+const storageAccountName = "cadlranchstorage";
 
 export type GeneratorNames = "python" | "typescript/rlc" | "typescript/modular" | "csharp" | "java" | "test";
 const query = new URLSearchParams(window.location.search);
@@ -20,12 +21,7 @@ const generatorNames: GeneratorNames[] = [
 export interface CoverageSummary {
   manifest: ScenarioManifest;
   generatorReports: Record<GeneratorNames, ResolvedCoverageReport | undefined>;
-  type: string;
-}
-
-export interface CoverageSummaryAllTypes {
-  manifest: ScenarioManifest;
-  generatorReports: Record<GeneratorNames, ResolvedCoverageReport[] | undefined>;
+  mode: string;
 }
 
 let client: CadlRanchCoverageClient | undefined;
@@ -41,35 +37,47 @@ export async function getManifest(): Promise<ScenarioManifest> {
   return await coverageClient.manifest.get();
 }
 
-export async function getCoverageSummary(): Promise<CoverageSummaryAllTypes> {
+export async function getCoverageSummaries(): Promise<CoverageSummary[]> {
   const coverageClient = getCoverageClient();
   const [manifest, generatorReports] = await Promise.all([
     coverageClient.manifest.get(),
     loadReports(coverageClient, generatorNames),
   ]);
-  return {
+  return GeneratorMode.map((mode) => ({
     manifest,
-    generatorReports,
-  };
+    generatorReports: generatorReports[mode],
+    mode,
+  }));
 }
 
 async function loadReports(
   coverageClient: CadlRanchCoverageClient,
   generatorNames: GeneratorNames[],
-): Promise<Record<GeneratorNames, ResolvedCoverageReport[] | undefined>> {
-  const items: [GeneratorNames, ResolvedCoverageReport[] | undefined][] = await Promise.all(
-    generatorNames.map(async (generatorName) => {
-      try {
-        const report = await coverageClient.coverage.getLatestCoverageFor(generatorName);
-        return [generatorName, report];
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Error resolving report", error);
+): Promise<{ [mode: string]: Record<GeneratorNames, ResolvedCoverageReport | undefined> }> {
+  const results = await Promise.all(
+    GeneratorMode.map(async (mode): Promise<[string, Record<GeneratorNames, ResolvedCoverageReport | undefined>]> => {
+      const items = await Promise.all(
+        generatorNames.map(async (generatorName): Promise<[GeneratorNames, ResolvedCoverageReport | undefined]> => {
+          try {
+            const report = await coverageClient.coverage.getLatestCoverageFor(generatorName, mode);
+            return [generatorName, report];
+          } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error("Error resolving report", error);
 
-        return [generatorName, undefined];
-      }
+            return [generatorName, undefined];
+          }
+        }),
+      );
+      return [mode, Object.fromEntries(items) as any];
     }),
   );
 
-  return Object.fromEntries(items) as any;
+  return results.reduce<{ [mode: string]: Record<GeneratorNames, ResolvedCoverageReport | undefined> }>(
+    (results, [mode, reports]) => {
+      results[mode] = reports;
+      return results;
+    },
+    {},
+  );
 }
