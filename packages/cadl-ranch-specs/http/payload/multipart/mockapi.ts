@@ -83,8 +83,34 @@ function createMockApis(route: string, checkList: ((param: MockRequest) => void)
 
 Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(createMockApis("mixed-parts", [checkId, checkProfileImage]));
 
-Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
-  createMockApis("complex-parts", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+Scenarios.Payload_MultiPart_FormData_complex = withKeys(["two-pictures", "no-pictures"]).pass(
+  mockapi.post("/multipart/form-data/complex-parts", (req) => {
+    const errorMessage = "1 'profileImage' file, 0 or 2 'pictures' files are expected";
+    const validate = (checkList: (typeof checkProfileImage)[]) => {
+      for (const callback of checkList) {
+        callback(req);
+      }
+    };
+    if (req.files) {
+      const checks = [checkId, checkAddress, checkPreviousAddresses];
+      switch (req.files.length) {
+        case 1:
+          // case of 1 'profileImage'
+          checks.push(checkProfileImage);
+          validate(checks);
+          return { pass: "no-pictures", status: 204 } as const;
+        case 3:
+          // case of 1 'profileImage' and 2 'pictures'
+          checks.push(checkAllFiles);
+          validate(checks);
+          return { pass: "two-pictures", status: 204 } as const;
+        default:
+          throw new ValidationError("Number of files is incorrect", errorMessage, req.body);
+      }
+    } else {
+      throw new ValidationError("Can't parse files from request", errorMessage, req.body);
+    }
+  }),
 );
 
 Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
