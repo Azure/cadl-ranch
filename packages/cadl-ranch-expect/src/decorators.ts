@@ -226,9 +226,7 @@ export function $scenarioService(
   context.program.stateSet(ScenarioServiceKey).add(target);
 
   const versions = options?.properties.get("versioned")?.type;
-  if (versions === undefined) {
-    properties.set("version", { type: { kind: "String", value: "1.0.0" } });
-  } else {
+  if (versions) {
     context.call($versioned, target, versions as Enum);
   }
   context.call($service, target, {
