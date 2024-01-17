@@ -146,7 +146,7 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRowProps> = ({ covera
   });
   return (
     <tr>
-      <th>Scenario name</th>
+      <th>Scenario name (mode: {coverageSummary.mode})</th>
       {data.map(([lang, status, report]) => (
         <GeneratorHeaderCell key={lang} status={status} report={report} />
       ))}
