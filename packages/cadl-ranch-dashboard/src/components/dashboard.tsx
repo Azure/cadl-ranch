@@ -9,8 +9,8 @@ export interface DashboardProps {
 }
 
 export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummaries }) => {
-  const summaryTables = coverageSummaries.map((coverageSummary) => (
-    <div css={{ margin: 5 }}>
+  const summaryTables = coverageSummaries.map((coverageSummary, i) => (
+    <div key={i} css={{ margin: 5 }}>
       <DashboardTable coverageSummary={coverageSummary} />
     </div>
   ));
@@ -41,25 +41,27 @@ const CadlRanchSpecsCard: FunctionComponent<{ coverageSummary: CoverageSummary }
     <Card css={{ width: 500 }}>
       <CardHeader header={<Text weight="bold">Specs Manifest</Text>} />
       <table>
-        <InfoRow
-          label="Commit"
-          caption="Git Sha of the manifest used to create this report."
-          value={
-            <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
-              {coverageSummary.manifest.commit.slice(0, 6)}
-            </a>
-          }
-        />
-        <InfoRow
-          label="Version"
-          caption="Version of the cadl-ranch-specs package used to create this report."
-          value={coverageSummary.manifest.version}
-        />
-        <InfoRow
-          label="Scenario count"
-          caption="Number of scenarios at this time"
-          value={coverageSummary.manifest.scenarios.length}
-        />
+        <tbody>
+          <InfoRow
+            label="Commit"
+            caption="Git Sha of the manifest used to create this report."
+            value={
+              <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
+                {coverageSummary.manifest.commit.slice(0, 6)}
+              </a>
+            }
+          />
+          <InfoRow
+            label="Version"
+            caption="Version of the cadl-ranch-specs package used to create this report."
+            value={coverageSummary.manifest.version}
+          />
+          <InfoRow
+            label="Scenario count"
+            caption="Number of scenarios at this time"
+            value={coverageSummary.manifest.scenarios.length}
+          />
+        </tbody>
       </table>
     </Card>
   );
