@@ -1,6 +1,6 @@
 # @azure-tools/cadl-ranch-specs
 
-## 1.0.0
+## 0.28.6
 
 ### Patch Changes
 
