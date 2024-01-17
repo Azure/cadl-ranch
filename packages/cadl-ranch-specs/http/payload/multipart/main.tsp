@@ -79,7 +79,7 @@ Content-Type: application/octet-stream;
 
   @scenario
   @scenarioDoc("""
-Please send request twice, first time with 2 files in "pictures", second time no file in "pictures" (
+Expect request (
   - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with 
     appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
   - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
@@ -243,7 +243,7 @@ Content-Type: application/json
 
   @scenario
   @scenarioDoc("""
-Please send request twice, first time with only "profileImage", second time with both "profileImage" and "picture" (
+Please send request twice, first time with only profileImage, second time with both profileImage and picture(
   - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with 
     appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
   - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
