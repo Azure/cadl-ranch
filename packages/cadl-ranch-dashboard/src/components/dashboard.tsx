@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { CoverageSummary } from "../apis.js";
 import { DashboardTable } from "./dashboard-table.js";
 import { Card, CardHeader, Text, tokens } from "@fluentui/react-components";
+import { InfoRow } from "./generator-information.js";
 
 export interface DashboardProps {
   coverageSummary: CoverageSummary;
@@ -33,16 +34,29 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }
 
 const CadlRanchSpecsCard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
   return (
-    <Card css={{ width: 300 }}>
+    <Card css={{ width: 500 }}>
       <CardHeader header={<Text weight="bold">Specs Manifest</Text>} />
-      <div>
-        Commit:{" "}
-        <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
-          {coverageSummary.manifest.commit.slice(0, 6)}
-        </a>
-      </div>
-      <div>Version: {coverageSummary.manifest.version}</div>
-      <div>Scenario count: {coverageSummary.manifest.scenarios.length}</div>
+      <table>
+        <InfoRow
+          label="Commit"
+          caption="Git Sha of the manifest used to create this report."
+          value={
+            <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
+              {coverageSummary.manifest.commit.slice(0, 6)}
+            </a>
+          }
+        />
+        <InfoRow
+          label="Version"
+          caption="Version of the cadl-ranch-specs package used to create this report."
+          value={coverageSummary.manifest.version}
+        />
+        <InfoRow
+          label="Scenario count"
+          caption="Number of scenarios at this time"
+          value={coverageSummary.manifest.scenarios.length}
+        />
+      </table>
     </Card>
   );
 };

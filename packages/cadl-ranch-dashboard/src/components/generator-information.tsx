@@ -55,7 +55,8 @@ type InfoEntryProps = {
   value: string | any;
   valueTitle?: string;
 };
-const InfoRow: FunctionComponent<InfoEntryProps> = ({ label, caption, value, valueTitle }) => {
+
+export const InfoRow: FunctionComponent<InfoEntryProps> = ({ label, caption, value, valueTitle }) => {
   return (
     <tr css={{ margin: "10px 0" }}>
       <td>
