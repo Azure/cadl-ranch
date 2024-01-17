@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.8.1
+
+### Patch Changes
+
+- 68a7bde: Add typespec-azure-resource-manager package to typespec-bump-deps
+
 ## 0.8.0
 
 ### Minor Changes

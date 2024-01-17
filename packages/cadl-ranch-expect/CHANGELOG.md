@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.11.0
+
+### Minor Changes
+
+- 626365a: remove behavior defaulting service version to 1.0.0 in the @scenarioService decorator
+
 ## 0.10.0
 
 ### Minor Changes

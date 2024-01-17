@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.6.1
+
+### Patch Changes
+
+- 893527f: Add go and cpp to dashboard
+
 ## 0.6.0
 
 ### Minor Changes
