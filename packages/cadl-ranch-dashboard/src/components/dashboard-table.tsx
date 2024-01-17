@@ -7,8 +7,8 @@ import { ScenarioGroupRatioStatusBox } from "./scenario-group-status.js";
 import { ScenarioStatusBox } from "./scenario-status.js";
 import { RowLabelCell } from "./tree-table/row-label-cell.js";
 import { ManifestTreeNode, TreeTableRow } from "./tree-table/types.js";
-import { CodeBlock16Filled, Info16Filled, Print16Filled } from "@fluentui/react-icons";
-import { Button, Popover, PopoverSurface, PopoverTrigger } from "@fluentui/react-components";
+import { CodeBlock16Filled, Print16Filled } from "@fluentui/react-icons";
+import { Popover, PopoverSurface, PopoverTrigger } from "@fluentui/react-components";
 import { GeneratorInformation } from "./generator-information.js";
 
 export interface DashboardTableProps {
@@ -148,7 +148,7 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRowProps> = ({ covera
     <tr>
       <th>Scenario name (mode: {coverageSummary.mode})</th>
       {data.map(([lang, status, report]) => (
-        <GeneratorHeaderCell key={lang} status={status} report={report} />
+        <GeneratorHeaderCell key={lang} status={status} report={report} language={lang} />
       ))}
     </tr>
   );
@@ -176,14 +176,19 @@ const ScenarioStatusCellStyles = css({
 export interface GeneratorHeaderCellProps {
   status: number;
   report: ResolvedCoverageReport | undefined;
+  language: string;
 }
 
-export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = ({ status, report }) => {
+export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = ({ status, report, language }) => {
   return (
     <th css={{ padding: "0 !important" }}>
       <div
         css={{
           display: "grid",
+          height: "100%",
+          gridTemplateRows: "auto 26px 32px",
+          gridTemplateColumns: "1fr 1fr",
+          borderBottom: `2px solid ${Colors.borderDefault}`,
           gridTemplateAreas: `
             "name name"
             "gen-version spec-version"
@@ -193,12 +198,20 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
       >
         <div
           title="Generator name"
-          css={{ gridArea: "name", borderBottom: `1px solid ${Colors.borderDefault}`, padding: 5, textAlign: "center", minWidth: "160px" }}
+          css={{
+            "gridArea": "name",
+            "borderBottom": `1px solid ${Colors.borderDefault}`,
+            "padding": 5,
+            "textAlign": "center",
+            "cursor": "pointer",
+            "&:hover": {
+              background: Colors.borderDefault,
+            },
+          }}
         >
-          {report?.generatorMetadata?.name}
           <Popover withArrow>
             <PopoverTrigger>
-              <Button icon={<Info16Filled />} appearance="transparent"></Button>
+              <div>{report?.generatorMetadata?.name ?? language}</div>
             </PopoverTrigger>
             <PopoverSurface>{report && <GeneratorInformation status={status} report={report} />}</PopoverSurface>
           </Popover>
@@ -213,7 +226,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <Print16Filled css={{ marginRight: 5 }} />
+          <Print16Filled css={{ marginRight: 5, flex: "0 0 auto" }} />
 
           {report?.generatorMetadata?.version ?? "?"}
         </div>
@@ -226,7 +239,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
             },
           ]}
         >
-          <CodeBlock16Filled css={{ marginRight: 5 }} />
+          <CodeBlock16Filled css={{ marginRight: 5, flex: "0 0 auto" }} />
           {report?.scenariosMetadata?.version ?? "?"}
         </div>
         <div
@@ -248,6 +261,8 @@ const versionStyles = css({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   display: "flex",
+  width: 60,
+  overflow: "hidden",
 });
 
 function createTree(manifest: ScenarioManifest): ManifestTreeNode {
