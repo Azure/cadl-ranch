@@ -148,7 +148,7 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRowProps> = ({ covera
     <tr>
       <th>Scenario name (mode: {coverageSummary.mode})</th>
       {data.map(([lang, status, report]) => (
-        <GeneratorHeaderCell key={lang} status={status} report={report} />
+        <GeneratorHeaderCell key={lang} status={status} report={report} language={lang} />
       ))}
     </tr>
   );
@@ -176,9 +176,10 @@ const ScenarioStatusCellStyles = css({
 export interface GeneratorHeaderCellProps {
   status: number;
   report: ResolvedCoverageReport | undefined;
+  language: string;
 }
 
-export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = ({ status, report }) => {
+export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = ({ status, report, language }) => {
   return (
     <th css={{ padding: "0 !important" }}>
       <div
@@ -210,7 +211,7 @@ export const GeneratorHeaderCell: FunctionComponent<GeneratorHeaderCellProps> = 
         >
           <Popover withArrow>
             <PopoverTrigger>
-              <div>{report?.generatorMetadata?.name}</div>
+              <div>{report?.generatorMetadata?.name ?? language}</div>
             </PopoverTrigger>
             <PopoverSurface>{report && <GeneratorInformation status={status} report={report} />}</PopoverSurface>
           </Popover>
