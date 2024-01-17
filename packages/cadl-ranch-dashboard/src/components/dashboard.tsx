@@ -5,10 +5,16 @@ import { Card, CardHeader, Text, tokens } from "@fluentui/react-components";
 import { InfoRow } from "./generator-information.js";
 
 export interface DashboardProps {
-  coverageSummary: CoverageSummary;
+  coverageSummaries: CoverageSummary[];
 }
 
-export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
+export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummaries }) => {
+  const summaryTables = coverageSummaries.map((coverageSummary) => (
+    <div css={{ margin: 5 }}>
+      <DashboardTable coverageSummary={coverageSummary} />
+    </div>
+  ));
+
   return (
     <div>
       <div
@@ -22,17 +28,15 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({ coverageSummary }
         <h1 style={{ fontSize: 20, padding: "0 5px" }}>Cadl Ranch Coverage Dashboard</h1>
       </div>
       <div css={{ margin: 5 }}>
-        <CadlRanchSpecsCard coverageSummary={coverageSummary} />
+        <CadlRanchSpecsCard coverageSummary={coverageSummaries[0]} />
       </div>
       <div css={{ height: 30 }}></div>
-      <div css={{ margin: 5 }}>
-        <DashboardTable coverageSummary={coverageSummary} />
-      </div>
+      {summaryTables}
     </div>
   );
 };
 
-const CadlRanchSpecsCard: FunctionComponent<DashboardProps> = ({ coverageSummary }) => {
+const CadlRanchSpecsCard: FunctionComponent<{ coverageSummary: CoverageSummary }> = ({ coverageSummary }) => {
   return (
     <Card css={{ width: 500 }}>
       <CardHeader header={<Text weight="bold">Specs Manifest</Text>} />
