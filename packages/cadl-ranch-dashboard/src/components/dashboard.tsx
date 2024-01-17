@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { CoverageSummary } from "../apis.js";
 import { DashboardTable } from "./dashboard-table.js";
 import { Card, CardHeader, Text, tokens } from "@fluentui/react-components";
-import { InfoRow } from "./generator-information.js";
+import { InfoEntry, InfoReport } from "./info-table.js";
 
 export interface DashboardProps {
   coverageSummaries: CoverageSummary[];
@@ -40,29 +40,27 @@ const CadlRanchSpecsCard: FunctionComponent<{ coverageSummary: CoverageSummary }
   return (
     <Card css={{ width: 500 }}>
       <CardHeader header={<Text weight="bold">Specs Manifest</Text>} />
-      <table>
-        <tbody>
-          <InfoRow
-            label="Commit"
-            caption="Git Sha of the manifest used to create this report."
-            value={
-              <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
-                {coverageSummary.manifest.commit.slice(0, 6)}
-              </a>
-            }
-          />
-          <InfoRow
-            label="Version"
-            caption="Version of the cadl-ranch-specs package used to create this report."
-            value={coverageSummary.manifest.version}
-          />
-          <InfoRow
-            label="Scenario count"
-            caption="Number of scenarios at this time"
-            value={coverageSummary.manifest.scenarios.length}
-          />
-        </tbody>
-      </table>
+      <InfoReport>
+        <InfoEntry
+          label="Commit"
+          caption="Git Sha of the manifest used to create this report."
+          value={
+            <a href={`https://github.com/Azure/cadl-ranch/commit/${coverageSummary.manifest.commit}`}>
+              {coverageSummary.manifest.commit.slice(0, 6)}
+            </a>
+          }
+        />
+        <InfoEntry
+          label="Version"
+          caption="Version of the cadl-ranch-specs package used to create this report."
+          value={coverageSummary.manifest.version}
+        />
+        <InfoEntry
+          label="Scenario count"
+          caption="Number of scenarios at this time"
+          value={coverageSummary.manifest.scenarios.length}
+        />
+      </InfoReport>
     </Card>
   );
 };
