@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.11.1
+
+### Patch Changes
+
+- 36ec209: Add Go to the projected-name test
+- Updated dependencies [626365a]
+  - @azure-tools/cadl-ranch-expect@0.11.0
+
 ## 0.11.0
 
 ### Minor Changes
