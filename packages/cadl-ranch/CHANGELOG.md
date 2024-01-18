@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.11.2
+
+### Patch Changes
+
+- c5a78e9: Add types to dashboard
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.1
+
 ## 0.11.1
 
 ### Patch Changes

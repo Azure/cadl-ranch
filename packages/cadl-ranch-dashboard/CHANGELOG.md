@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.6.2
+
+### Patch Changes
+
+- 0a7c000: Change to the dashboard style: Fix the overflow of typescript header and other style tweaks
+- c5a78e9: Add types to dashboard
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.1
+
 ## 0.6.1
 
 ### Patch Changes
