@@ -392,6 +392,77 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocationAndResourceLocation
+
+- Endpoints:
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location-final-result-in-resource-location`
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location-final-result-in-resource-location`
+  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location-final-result-in-resource-location/documentModels:build`
+
+POST to create resource.
+Poll URL via operation-location header in response.
+Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
+
+Expected verb: POST
+Expected request body:
+
+```json
+{
+  "modelId": "123",
+  "description": "hello"
+}
+```
+
+Expected status code: 202
+Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/operations/1234567890?api-version=2022-12-01-preview
+No response body.
+
+Expected verb: GET
+Expected URL: {endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/operations/1234567890?api-version=2022-12-01-preview
+
+Expected status code: 200
+Expected response body:
+
+```json
+{
+  "operationId": "1234567890",
+  "status": "notStarted",
+  "resourceLocation": "{endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/documentModels/123?api-version=2022-12-01-preview"
+}
+```
+
+Expected verb: GET
+Expected URL: {endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/operations/1234567890?api-version=2022-12-01-preview
+
+Expected status code: 200
+Expected response body:
+
+````json
+{
+  "operationId": "1234567890",
+  "status": "succeeded",
+  "resourceLocation": "{endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/documentModels/123?api-version=2022-12-01-preview",
+  "result": {
+    "modelId": "123",
+    "description": "hello"
+  }
+}
+
+# The following part is not necessary for LRO
+Some SDK may send final GET with "resourceLocation" of response body before end LRO (e.g. python)
+Expected verb: GET
+Expected URL: {endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/documentModels/123?api-version=2022-12-01-preview
+
+Expected status code: 200
+Expected response body:
+```json
+{
+  "modelId": "123",
+  "description": "hello"
+}
+
+````
+
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
