@@ -192,7 +192,7 @@ model OperationDetails {
 @scenario
 @doc("""
 POST to create resource, poll URL via operation-location header. The response body of last poll contains `resourceLocation`,
-if you get final result by it, there is no need to extract "result" filed from response body.
+if SDK get final result by it, SDK should not extract "result" field from response body.
 """)
 @summary("POST to create resource, poll URL via operation-location header.")
 @scenarioDoc("""
@@ -269,6 +269,7 @@ interface CreateResourcePollViaOperationLocationAndResourceLocation {
   @pollingOperation(CreateResourcePollViaOperationLocationAndResourceLocation.pollingOperation)
   @doc("Creates a Model")
   @route("/documentModels:build")
+  @post
   buildModel is Foundations.Operation<
     DocumentModel,
     AcceptedResponse & Foundations.LongRunningStatusLocation<OperationDetails>
