@@ -241,6 +241,7 @@ Expected response body:
     "description": "hello"
   }
 }
+```
 
 # The following part is not necessary for LRO
 Some SDK may send final GET with "resourceLocation" of response body before end LRO (e.g. python)
@@ -254,7 +255,6 @@ Expected response body:
   "modelId": "123",
   "description": "hello"
 }
-
 ```
 """)
 @route("/create-resource-poll-via-operation-location-final-result-in-resource-location")

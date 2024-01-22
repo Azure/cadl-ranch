@@ -437,7 +437,7 @@ Expected URL: {endpoint}/create-resource-poll-via-operation-location-final-resul
 Expected status code: 200
 Expected response body:
 
-````json
+```json
 {
   "operationId": "1234567890",
   "status": "succeeded",
@@ -447,21 +447,23 @@ Expected response body:
     "description": "hello"
   }
 }
+```
 
 # The following part is not necessary for LRO
+
 Some SDK may send final GET with "resourceLocation" of response body before end LRO (e.g. python)
 Expected verb: GET
 Expected URL: {endpoint}/create-resource-poll-via-operation-location-final-result-in-resource-location/documentModels/123?api-version=2022-12-01-preview
 
 Expected status code: 200
 Expected response body:
+
 ```json
 {
   "modelId": "123",
   "description": "hello"
 }
-
-````
+```
 
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
