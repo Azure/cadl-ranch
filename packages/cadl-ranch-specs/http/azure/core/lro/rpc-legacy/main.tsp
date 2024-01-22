@@ -170,7 +170,6 @@ model DocumentModelDetails {
 
 @doc("Operation info.")
 @resource("operations")
-@discriminator("kind")
 model OperationDetails {
   @doc("Operation ID")
   @key
