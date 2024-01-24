@@ -62,7 +62,7 @@ function checkProfileImage(req: MockRequest) {
 
 function checkFileNameAndContentType(req: MockRequest) {
   if (req.files instanceof Array && req.files?.length > 0) {
-    checkJpgFile(req, req.files[0], "image/jpg", "image.jpg");
+    checkJpgFile(req, req.files[0], "image/jpg", "hello.jpg");
   } else {
     throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
   }
