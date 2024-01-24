@@ -1667,6 +1667,30 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_checkFileNameAndContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-content-type`
+
+this case will check filename and content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="image.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_MultiPart_FormData_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts`

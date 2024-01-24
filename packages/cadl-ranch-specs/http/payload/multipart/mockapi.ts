@@ -23,24 +23,46 @@ function checkPreviousAddresses(req: MockRequest) {
   req.expect.deepEqual(JSON.parse(req.body.previousAddresses), [{ city: "Y" }, { city: "Z" }]);
 }
 
-function checkFile(req: MockRequest, file: Record<string, any>, expected: Buffer) {
-  req.expect.deepEqual(file.mimetype, "application/octet-stream");
+function checkFile(
+  req: MockRequest,
+  file: Record<string, any>,
+  expected: Buffer,
+  contentType: string = "application/octet-stream",
+  fileName: string | undefined = undefined,
+) {
+  req.expect.deepEqual(file.mimetype, contentType);
   req.expect.deepEqual(file.buffer, expected);
+  if (fileName) {
+    req.expect.deepEqual(file.originalname, fileName);
+  }
 }
 
-function checkJpgFile(req: MockRequest, file: Record<string, any>) {
+function checkJpgFile(
+  req: MockRequest,
+  file: Record<string, any>,
+  contentType: string = "application/octet-stream",
+  fileName: string | undefined = undefined,
+) {
   req.expect.deepEqual(file.fieldname, "profileImage");
-  checkFile(req, file, jpgFile);
+  checkFile(req, file, jpgFile, contentType, fileName);
 }
 
-function checkPngFile(req: MockRequest, file: Record<string, any>, fileName: string = "pictures") {
-  req.expect.deepEqual(file.fieldname, fileName);
+function checkPngFile(req: MockRequest, file: Record<string, any>, fieldName: string = "pictures") {
+  req.expect.deepEqual(file.fieldname, fieldName);
   checkFile(req, file, pngFile);
 }
 
 function checkProfileImage(req: MockRequest) {
   if (req.files instanceof Array && req.files?.length > 0) {
     checkJpgFile(req, req.files[0]);
+  } else {
+    throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
+  }
+}
+
+function checkFileNameAndContentType(req: MockRequest) {
+  if (req.files instanceof Array && req.files?.length > 0) {
+    checkJpgFile(req, req.files[0], "image/jpg", "image.jpg");
   } else {
     throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
   }
@@ -133,4 +155,8 @@ Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage"
       throw new ValidationError("Can't parse files from request", "jpg/png files are expected", req.body);
     }
   }),
+);
+
+Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentType = passOnSuccess(
+  createMockApis("check-filename-and-content-type", [checkId, checkFileNameAndContentType]),
 );
