@@ -1803,6 +1803,30 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_checkFileNameAndContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-content-type`
+
+this case will check filename and content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_MultiPart_FormData_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts`
@@ -3511,6 +3535,70 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
+
+### Type_Model_Flatten_putFlattenModel
+
+- Endpoint: `put /type/model/flatten/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Type_Model_Flatten_putNestedFlattenModel
+
+- Endpoint: `put /type/model/flatten/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 

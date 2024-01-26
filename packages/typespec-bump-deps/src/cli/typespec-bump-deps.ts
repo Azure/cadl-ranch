@@ -11,6 +11,7 @@ const knownPackages = [
   "@typespec/versioning",
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
+  "@azure-tools/typespec-azure-resource-manager",
   "@typespec/eslint-config-typespec",
   "@typespec/library-linter",
 ];

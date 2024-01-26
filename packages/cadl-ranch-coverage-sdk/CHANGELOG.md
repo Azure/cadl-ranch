@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.6.1
+
+### Patch Changes
+
+- c5a78e9: Add types to dashboard
+
 ## 0.6.0
 
 ### Minor Changes
