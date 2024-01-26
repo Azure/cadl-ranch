@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.29.0
+
+### Minor Changes
+
+- ef67ab7: add test cases for `@flattenProperty`
+- ef67ab7: test(model): add flattening cases
+
+### Patch Changes
+
+- 1e88ede: Add cadl-ranch cases for json merge patch
+- 3e57bec: Add test case to check file name and content type for mulipart/form-data
+
 ## 0.28.7
 
 ### Patch Changes
