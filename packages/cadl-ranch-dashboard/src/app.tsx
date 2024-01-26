@@ -1,22 +1,22 @@
 import { FunctionComponent, useState } from "react";
-import { CoverageSummary, getCoverageSummary } from "./apis.js";
+import { CoverageSummary, getCoverageSummaries } from "./apis.js";
 import { Dashboard } from "./components/dashboard.js";
 import { useEffectAsync } from "./utils.js";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 
 export const App: FunctionComponent = () => {
-  const [coverageSummary, setCoverageSummary] = useState<CoverageSummary | undefined>(undefined);
+  const [coverageSummaries, setCoverageSummaries] = useState<CoverageSummary[] | undefined>(undefined);
 
   useEffectAsync(async () => {
-    const coverageSummary = await getCoverageSummary();
+    const coverageSummaries = await getCoverageSummaries();
 
-    if (coverageSummary) {
-      setCoverageSummary(() => coverageSummary);
+    if (coverageSummaries) {
+      setCoverageSummaries(() => coverageSummaries);
     }
   }, []);
   return (
     <FluentProvider theme={webLightTheme}>
-      <div>{coverageSummary ? <Dashboard coverageSummary={coverageSummary}></Dashboard> : "Loading"}</div>
+      <div>{coverageSummaries ? <Dashboard coverageSummaries={coverageSummaries}></Dashboard> : "Loading"}</div>
     </FluentProvider>
   );
 };

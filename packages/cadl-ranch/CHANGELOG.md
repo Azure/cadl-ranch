@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch
 
+## 0.11.2
+
+### Patch Changes
+
+- c5a78e9: Add types to dashboard
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.1
+
+## 0.11.1
+
+### Patch Changes
+
+- 36ec209: Add Go to the projected-name test
+- Updated dependencies [626365a]
+  - @azure-tools/cadl-ranch-expect@0.11.0
+
 ## 0.11.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 {
   "name": "@azure-tools/cadl-ranch-dashboard",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Cadl Ranch Dashboard website",
   "main": "dist/index.js",
   "type": "module",
@@ -46,6 +46,6 @@
     "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.9.0",
     "typescript": "~5.2.2",
-    "vite": "^4.3.9"
+    "vite": "^4.5.2"
   }
 }
