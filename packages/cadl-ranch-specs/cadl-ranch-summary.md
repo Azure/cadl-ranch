@@ -3410,7 +3410,7 @@ Expected input body:
 ```json
 {
   "name": "foo",
-  "child": {
+  "properties": {
     "description": "bar",
     "age": 10
   }
@@ -3422,7 +3422,7 @@ Expected response body:
 ```json
 {
   "name": "test",
-  "child": {
+  "properties": {
     "description": "test",
     "age": 1
   }
@@ -3439,9 +3439,9 @@ Expected input body:
 ```json
 {
   "name": "foo",
-  "child": {
+  "properties": {
     "summary": "bar",
-    "child": {
+    "properties": {
       "description": "test",
       "age": 10
     }
@@ -3454,9 +3454,9 @@ Expected response body:
 ```json
 {
   "name": "test",
-  "child": {
+  "properties": {
     "summary": "test",
-    "child": {
+    "properties": {
       "description": "foo",
       "age": 1
     }
