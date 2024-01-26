@@ -1578,6 +1578,142 @@ Scenario that returns a different file encoding depending on the accept header.
 - image/png return a png image
 - image/jpeg return a jpeg image
 
+### Payload_JsonMergePatch_createResource
+
+- Endpoint: `put /json-merge-patch/create/resource`
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ],
+  "intValue": 1,
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ],
+  "intValue": 1,
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
+}
+```
+
+### Payload_JsonMergePatch_updateOptionalResource
+
+- Endpoint: `patch /json-merge-patch/update/resource/optional`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "description": null,
+  "map": {
+    "key": {
+      "description": null
+    },
+    "key2": null
+  },
+  "array": null,
+  "intValue": null,
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "map": {
+    "key": {
+      "name": "InnerMadge"
+    }
+  }
+}
+```
+
+### Payload_JsonMergePatch_updateResource
+
+- Endpoint: `patch /json-merge-patch/update/resource`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "description": null,
+  "map": {
+    "key": {
+      "description": null
+    },
+    "key2": null
+  },
+  "array": null,
+  "intValue": null,
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "map": {
+    "key": {
+      "name": "InnerMadge"
+    }
+  }
+}
+```
+
 ### Payload_MediaType_StringBody_getAsJson
 
 - Endpoint: `get /payload/media-type/string-body/getAsJson`
