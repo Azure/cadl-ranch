@@ -284,6 +284,11 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
