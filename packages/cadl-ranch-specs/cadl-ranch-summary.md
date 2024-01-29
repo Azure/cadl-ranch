@@ -1747,7 +1747,7 @@ Expect request (
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1761,7 +1761,7 @@ Content-Type: text/plain
 
 123
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream;
 
 {…file content…}
@@ -1777,7 +1777,7 @@ Expect request (
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1791,12 +1791,12 @@ Content-Type: text/plain
 
 123
 --abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
@@ -1836,7 +1836,7 @@ Expect request (
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1857,7 +1857,7 @@ Content-Type: application/json
   "city": "X"
 }
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
@@ -1871,12 +1871,12 @@ Content-Type: application/json
   "city": "Z"
 }]
 --abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
@@ -1892,7 +1892,7 @@ Expect request (
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1901,7 +1901,7 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
@@ -1926,7 +1926,7 @@ Expect request (
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1942,7 +1942,7 @@ Content-Type: application/json
   "city": "X"
 }
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
@@ -1958,7 +1958,7 @@ Please send request twice, first time with only profileImage, second time with b
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
   appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
 - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 
 ```
@@ -1967,12 +1967,12 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345
-Content-Disposition: form-data; name="picture"; filename="<any-name-is-ok>"
+Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
