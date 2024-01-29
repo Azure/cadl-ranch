@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.7.0
+
+### Minor Changes
+
+- f4683bf: fix change log and fix missing version bumps
+
 ## 0.6.1
 
 ### Patch Changes

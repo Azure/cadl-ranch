@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.7.0
+
+### Minor Changes
+
+- f4683bf: fix change log and fix missing version bumps
+
+### Patch Changes
+
+- Updated dependencies [f4683bf]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.7.0
+
 ## 0.6.2
 
 ### Patch Changes
