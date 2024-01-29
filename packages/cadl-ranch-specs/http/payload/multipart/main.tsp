@@ -274,4 +274,33 @@ Content-Type: application/octet-stream
     @header contentType: "multipart/form-data",
     @body body: MultiBinaryPartsRequest,
   ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+this case will check filename and content-type of file part, so expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
+```
+""")
+  @doc("Test content-type: multipart/form-data")
+  @post
+  @route("/check-filename-and-content-type")
+  op checkFileNameAndContentType(
+    @header contentType: "multipart/form-data",
+    @body body: MultiPartRequest,
+  ): NoContentResponse;
 }

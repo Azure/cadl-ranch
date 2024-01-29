@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
-    "@typespec/eslint-config-typespec": "~0.51.0",
+    "@typespec/eslint-config-typespec": "~0.52.0",
     "@types/semver": "^7.5.0",
     "@types/pacote": "11.1.6",
     "@types/node": "^18.16.0",

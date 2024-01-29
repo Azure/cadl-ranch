@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.12.0
+
+### Minor Changes
+
+- f4683bf: fix change log and fix missing version bumps
+
 ## 0.11.0
 
 ### Minor Changes
