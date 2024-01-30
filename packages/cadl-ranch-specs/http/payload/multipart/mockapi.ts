@@ -162,5 +162,5 @@ Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentType = passOnSuccess
 );
 
 Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
-  createMockApis("anonymous-model", [checkId, checkProfileImage]),
+  createMockApis("anonymous-model", [checkProfileImage]),
 );

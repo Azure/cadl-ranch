@@ -12,11 +12,6 @@ model MultiPartRequest {
   profileImage: bytes;
 }
 
-alias MultiPartAnonymousRequest = {
-  id: MultiPartRequest.id;
-  profileImage: MultiPartRequest.profileImage;
-};
-
 model Address {
   city: string;
 }
@@ -338,5 +333,8 @@ Content-Type: application/octet-stream;
   @doc("Test content-type: multipart/form-data")
   @post
   @route("/anonymous-model")
-  op anonymousModel(@header contentType: "multipart/form-data", ...MultiPartAnonymousRequest): NoContentResponse;
+  op anonymousModel(
+    @header contentType: "multipart/form-data",
+    profileImage: MultiPartRequest.profileImage,
+  ): NoContentResponse;
 }
