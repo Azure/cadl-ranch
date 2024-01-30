@@ -7,15 +7,14 @@ using Azure.ClientGenerator.Core;
 
 @doc("Projection")
 @supportedBy("dpg")
-@scenarioService("/projection/client-encoded-name")
-namespace Projection.ClientEncodedName;
+@scenarioService("/projection/client-name-and-encoded-name")
+namespace Projection.ClientNameAndEncodedName;
 
 @route("/property")
 @operationGroup
 namespace Property {
-  model LanguageClientEncodedNameModel {
+  model LanguageClientNameAndEncodedNameModel {
     @doc("Pass in true")
-    @clientName("_DoNotUseMeAsAName_") // Should be ignored
     @clientName("CSName", "csharp")
     @clientName("GoName", "go")
     @clientName("JavaName", "java")
@@ -24,19 +23,19 @@ namespace Property {
     defaultName: boolean;
   }
 
-  model JsonClientEncodedNameModel {
+  model JsonClientNameAndEncodedNameModel {
     @doc("Pass in true")
     @encodedName("application/json", "wireName")
     defaultName: boolean;
   }
 
-  model ClientClientEncodedNameModel {
+  model ClientClientNameAndEncodedNameModel {
     @doc("Pass in true")
     @clientName("clientName")
     defaultName: boolean;
   }
 
-  model JsonAndClientClientEncodedNameModel {
+  model JsonAndClientClientNameAndEncodedNameModel {
     @doc("Pass in true")
     @clientName("clientName")
     @encodedName("application/json", "wireName")
@@ -46,7 +45,7 @@ namespace Property {
   @scenario
   @scenarioDoc("""
   Testing that we can project the JSON name on the wire from defaultName -> wireName.
-  Your generated SDK should generate JsonClientEncodedNameModel with one property `defaultName` with wire name `wireName`.
+  Your generated SDK should generate JsonClientNameAndEncodedNameModel with one property `defaultName` with wire name `wireName`.
 
   Expected request body:
   ```json
@@ -55,12 +54,12 @@ namespace Property {
   """)
   @route("/json")
   @post
-  op json(...JsonClientEncodedNameModel): NoContentResponse;
+  op json(...JsonClientNameAndEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientClientEncodedNameModel with one property `clientName` with wire name `defaultName`.
+Your generated SDK should generate ClientClientNameAndEncodedNameModel with one property `clientName` with wire name `defaultName`.
 
 Expected request body:
 ```json
@@ -69,12 +68,12 @@ Expected request body:
 """)
   @route("/client")
   @post
-  op client(...ClientClientEncodedNameModel): NoContentResponse;
+  op client(...ClientClientNameAndEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate ClientClientEncodedNameModel with one property with your language specific property name and wire name `defaultName`.
+Your generated SDK should generate ClientClientNameAndEncodedNameModel with one property with your language specific property name and wire name `defaultName`.
 
 Expected request body:
 ```json
@@ -83,12 +82,12 @@ Expected request body:
 """)
   @route("/language")
   @post
-  op language(...LanguageClientEncodedNameModel): NoContentResponse;
+  op language(...LanguageClientNameAndEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the client name and the wire name.
-Your generated SDK should generate JsonAndClientClientEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
+Your generated SDK should generate JsonAndClientClientNameAndEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
 
 Expected request body:
 ```json
@@ -97,7 +96,7 @@ Expected request body:
 """)
   @route("/json-and-client")
   @post
-  op jsonAndClient(...JsonAndClientClientEncodedNameModel): NoContentResponse;
+  op jsonAndClient(...JsonAndClientClientNameAndEncodedNameModel): NoContentResponse;
 }
 
 // May add query/header project after https://github.com/microsoft/cadl/issues/1487
@@ -133,19 +132,18 @@ op parameter(
 @route("/model")
 @operationGroup
 namespace Model {
-  @clientName("_NotUseMeAsAName_") // Should be ignored
   @clientName("CSModel", "csharp")
   @clientName("GoModel", "go")
   @clientName("JavaModel", "java")
   @clientName("TSModel", "javascript")
   @clientName("PythonModel", "python")
-  model ModelWithLanguageClientEncodedName {
+  model ModelWithLanguageClientNameAndEncodedName {
     @doc("Pass in true")
     defaultName: boolean;
   }
 
   @clientName("ClientModel")
-  model ModelWithClientClientEncodedName {
+  model ModelWithClientClientNameAndEncodedName {
     @doc("Pass in true")
     defaultName: boolean;
   }
@@ -162,7 +160,7 @@ Expected request body:
 """)
   @route("/client")
   @post
-  op client(...ModelWithClientClientEncodedName): NoContentResponse;
+  op client(...ModelWithClientClientNameAndEncodedName): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -176,5 +174,5 @@ Expected request body:
 """)
   @route("/language")
   @post
-  op language(...ModelWithLanguageClientEncodedName): NoContentResponse;
+  op language(...ModelWithLanguageClientNameAndEncodedName): NoContentResponse;
 }
