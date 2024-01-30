@@ -1,5 +1,37 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.29.0
+
+### Minor Changes
+
+- ef67ab7: add test cases for `@flattenProperty`
+- ef67ab7: test(model): add flattening cases
+
+### Patch Changes
+
+- 1e88ede: Add cadl-ranch cases for json merge patch
+- 3e57bec: Add test case to check file name and content type for multipart/form-data
+- Updated dependencies [f4683bf]
+  - @azure-tools/cadl-ranch-expect@0.12.0
+  - @azure-tools/cadl-ranch@0.11.3
+
+## 0.28.7
+
+### Patch Changes
+
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch@0.11.2
+
+## 0.28.6
+
+### Patch Changes
+
+- 36ec209: Add Go to the projected-name test
+- Updated dependencies [36ec209]
+- Updated dependencies [626365a]
+  - @azure-tools/cadl-ranch@0.11.1
+  - @azure-tools/cadl-ranch-expect@0.11.0
+
 ## 0.28.5
 
 ### Patch Changes

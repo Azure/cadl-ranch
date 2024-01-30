@@ -3,4 +3,4 @@
 "@azure-tools/cadl-ranch": patch
 ---
 
-Add Go to the projected-name test
+Fix typos in MFD tests
