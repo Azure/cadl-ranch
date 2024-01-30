@@ -1751,7 +1751,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /multipart/form-data/anonymous-model HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 

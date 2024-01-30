@@ -313,7 +313,7 @@ Expect request (
   If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
 ):
 ```
-POST /upload HTTP/1.1
+POST /multipart/form-data/anonymous-model HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
