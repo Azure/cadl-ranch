@@ -21,7 +21,7 @@ model ComplexPartsRequest {
   address: Address;
   profileImage: bytes;
   previousAddresses: Address[];
-  pictures?: bytes[];
+  pictures: bytes[];
 }
 
 model JsonPartRequest {
@@ -32,6 +32,11 @@ model JsonPartRequest {
 model BinaryArrayPartsRequest {
   id: string;
   pictures: bytes[];
+}
+
+model OptionalBinaryArrayPartsRequest {
+  profileImage: bytes;
+  pictures?: bytes[];
 }
 
 model JsonArrayPartsRequest {
@@ -55,7 +60,7 @@ Expect request (
   If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
 ):
 ```
-POST /upload HTTP/1.1
+POST /mixed-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -86,7 +91,7 @@ Expect request (
     If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 ```
-POST /upload HTTP/1.1
+POST /complex-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -143,7 +148,7 @@ Expect request (
     If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 ```
-POST /upload HTTP/1.1
+POST /json-part HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -176,7 +181,7 @@ Expect request (
     If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 ```
-POST /upload HTTP/1.1
+POST /binary-array-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -208,6 +213,30 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
+Expect request ("pictures" field is optional in request, do not send in test):
+```
+POST /optional-binary-array-parts HTTP/1.1
+Content-Length: <length>
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+""")
+  @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
+  @post
+  @route("/optional-binary-array-parts")
+  op optionalBinaryArrayParts(
+    @header contentType: "multipart/form-data",
+    @body body: OptionalBinaryArrayPartsRequest,
+  ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
 Expect request (
   - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
     appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
@@ -215,7 +244,7 @@ Expect request (
     If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 ```
-POST /upload HTTP/1.1
+POST /json-array-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -250,7 +279,7 @@ Please send request twice, first time with only profileImage, second time with b
     If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
   ):
 ```
-POST /upload HTTP/1.1
+POST /multi-binary-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -279,7 +308,7 @@ Content-Type: application/octet-stream
   @scenarioDoc("""
 this case will check filename and content-type of file part, so expect request:
 ```
-POST /upload HTTP/1.1
+POST /check-filename-and-content-type HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 

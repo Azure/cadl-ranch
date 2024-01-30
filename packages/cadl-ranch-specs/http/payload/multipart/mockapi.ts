@@ -117,6 +117,23 @@ Scenarios.Payload_MultiPart_FormData_binaryArrayParts = passOnSuccess(
   createMockApis("binary-array-parts", [checkId, checkPictures]),
 );
 
+Scenarios.Payload_MultiPart_FormData_optionalBinaryArrayParts = passOnSuccess(
+  mockapi.post("/multipart/form-data/optional-binary-array-parts", (req) => {
+    const errorMessage = "One 'profileImage' file is expected.";
+    if (req.files instanceof Array) {
+      switch (req.files.length) {
+        case 1:
+          checkProfileImage(req);
+          return { status: 204 } as const;
+        default:
+          throw new ValidationError("Number of files is incorrect", errorMessage, req.body);
+      }
+    } else {
+      throw new ValidationError("Cannot parse files from request", errorMessage, req.body);
+    }
+  }),
+);
+
 Scenarios.Payload_MultiPart_FormData_jsonArrayParts = passOnSuccess(
   createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );
