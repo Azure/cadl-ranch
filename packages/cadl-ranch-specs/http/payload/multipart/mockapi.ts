@@ -76,7 +76,7 @@ function checkAllFiles(req: MockRequest) {
       } else if (file.fieldname === "pictures") {
         checkPngFile(req, file);
       } else {
-        throw new ValidationError("unexpected filename", "profileImage or pictures", file.fieldname);
+        throw new ValidationError("unexpected fieldname", "profileImage or pictures", file.fieldname);
       }
     }
   } else {
@@ -139,7 +139,7 @@ Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage"
               checkPngFile(req, file, "picture");
               picture = true;
             } else {
-              throw new ValidationError("unexpected filename", "profileImage or picture", file.fieldname);
+              throw new ValidationError("unexpected fieldname", "profileImage or picture", file.fieldname);
             }
           }
           if (!profileImage) {
