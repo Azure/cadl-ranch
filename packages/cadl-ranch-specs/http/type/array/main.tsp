@@ -5,7 +5,7 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates various of dictionaries.")
+@doc("Illustrates various types of arrays.")
 @scenarioService("/type/array")
 namespace Type.Array;
 
