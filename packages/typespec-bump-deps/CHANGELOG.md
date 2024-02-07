@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
 ## 0.8.1
 
 ### Patch Changes
