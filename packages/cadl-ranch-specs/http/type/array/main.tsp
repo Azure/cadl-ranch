@@ -65,7 +65,7 @@ interface StringValue extends ArrayOperations<string[], "['hello', '']"> {}
 @doc("Array of float values")
 @route("/float32")
 @operationGroup
-interface Float32Value extends ArrayOperations<float32[], "[42.42]"> {}
+interface Float32Value extends ArrayOperations<float32[], "[43.125]"> {}
 
 @doc("Array of datetime values")
 @route("/datetime")
