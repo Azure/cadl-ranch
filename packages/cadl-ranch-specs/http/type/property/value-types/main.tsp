@@ -87,7 +87,7 @@ interface Int extends ModelOperations<IntProperty, "42"> {}
 model FloatProperty is ModelTemplate<float32>;
 @route("/float")
 @operationGroup
-interface Float extends ModelOperations<FloatProperty, "42.42"> {}
+interface Float extends ModelOperations<FloatProperty, "43.125"> {}
 
 // Test a model with a decimal property
 @doc("Model with a decimal property")
@@ -239,10 +239,10 @@ model IntLiteralProperty is ModelTemplate<42>;
 interface IntLiteral extends ModelOperations<IntLiteralProperty, "42"> {}
 
 @doc("Model with a float literal property.")
-model FloatLiteralProperty is ModelTemplate<42.42>;
+model FloatLiteralProperty is ModelTemplate<43.125>;
 @route("/float/literal")
 @operationGroup
-interface FloatLiteral extends ModelOperations<FloatLiteralProperty, "42.42"> {}
+interface FloatLiteral extends ModelOperations<FloatLiteralProperty, "43.125"> {}
 
 @doc("Model with a boolean literal property.")
 model BooleanLiteralProperty is ModelTemplate<true>;
@@ -263,7 +263,7 @@ model UnionIntLiteralProperty is ModelTemplate<42 | 43>;
 interface UnionIntLiteral extends ModelOperations<UnionIntLiteralProperty, "42"> {}
 
 @doc("Model with a union of float literal as property.")
-model UnionFloatLiteralProperty is ModelTemplate<42.42 | 43.43>;
+model UnionFloatLiteralProperty is ModelTemplate<43.125 | 46.875>;
 @route("/union/float/literal")
 @operationGroup
-interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "43.43"> {}
+interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "46.875"> {}
