@@ -68,7 +68,9 @@ model JobResult {
 }
 
 @doc("The status of the processing job.")
-enum JobStatus {
+union JobStatus {
+  string,
+
   @doc("The operation is not started.")
   NotStarted: "notStarted",
 
@@ -76,10 +78,10 @@ enum JobStatus {
   Running: "running",
 
   @doc("The operation has completed successfully.")
-  Succeeded: "succeeded",
+  Succeeded: "Succeeded",
 
   @doc("The operation has failed.")
-  Failed: "failed",
+  Failed: "Failed",
 
   @doc("The operation has been canceled by the user.")
   Canceled: "canceled",
@@ -130,7 +132,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "succeeded",
+  "status": "Succeeded",
   "results": ["job1 result"]
 }
 ```
