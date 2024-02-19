@@ -7,27 +7,29 @@ using TypeSpec.Http;
 namespace Type.Enum.Extensible;
 
 @doc("Days of the week")
-enum DaysOfWeekExtensibleEnum {
+union DaysOfWeekExtensibleEnum {
+  string,
+
   @doc("Monday.")
-  Monday,
+  Monday: "Monday",
 
   @doc("Tuesday.")
-  Tuesday,
+  Tuesday: "Tuesday",
 
   @doc("Wednesday.")
-  Wednesday,
+  Wednesday: "Wednesday",
 
   @doc("Thursday.")
-  Thursday,
+  Thursday: "Thursday",
 
   @doc("Friday.")
-  Friday,
+  Friday: "Friday",
 
   @doc("Saturday.")
-  Saturday,
+  Saturday: "Saturday",
 
   @doc("Sunday.")
-  Sunday,
+  Sunday: "Sunday",
 }
 
 @route("/string")

@@ -10,7 +10,9 @@ using Azure.Core;
 namespace Type.Model.Inheritance.EnumDiscriminator;
 
 @doc("extensible enum type for discriminator")
-enum DogKind {
+union DogKind {
+  string,
+
   @doc("Species golden")
   Golden: "golden",
 }
@@ -31,9 +33,7 @@ model Golden extends Dog {
   kind: DogKind.Golden;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing fixed enum as discriminator property"
 @doc("fixed enum type for discriminator")
-@fixed
 enum SnakeKind {
   @doc("Species cobra")
   Cobra: "cobra",
