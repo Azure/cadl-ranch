@@ -99,7 +99,6 @@ Expected request body:
   op jsonAndClient(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
-// May add query/header project after https://github.com/microsoft/cadl/issues/1487
 
 @scenario
 @scenarioDoc("""
@@ -145,10 +144,15 @@ op header(
   @encodedName("application/json", "header-name")
   @header
   defaultName: string,
-): NoContentResponse;
+): {
+  @header
+  @encodedName("application/json", "header-name")
+  defaultName: string;
+};
 
 @route("/model")
 @operationGroup
+@clientName("ClientModel")
 namespace Model {
   @clientName("CSModel", "csharp")
   @clientName("GoModel", "go")

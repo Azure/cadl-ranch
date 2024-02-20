@@ -61,6 +61,9 @@ Scenarios.Projection_ClientNameAndEncodedName_header = passOnSuccess(
     req.expect.containsHeader("header-name", "true");
     return {
       status: 204,
+      headers: {
+        "header-name": "true"
+      }
     };
   }),
 );
