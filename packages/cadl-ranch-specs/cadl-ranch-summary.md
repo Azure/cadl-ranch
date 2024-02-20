@@ -3207,7 +3207,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Float32Value_put
@@ -3217,7 +3217,7 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Int32Value_get
@@ -3407,7 +3407,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Float32Value_put
@@ -3417,7 +3417,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Int32Value_get
@@ -4269,7 +4269,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsFloat_put
@@ -4279,7 +4279,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_get
@@ -4449,7 +4449,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsFloat_put
@@ -4459,7 +4459,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_get
@@ -5695,7 +5695,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Float_put
@@ -5705,7 +5705,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_get
@@ -5715,7 +5715,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_put
@@ -5725,7 +5725,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Int_get
@@ -5855,7 +5855,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_put
@@ -5865,7 +5865,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionIntLiteral_get
