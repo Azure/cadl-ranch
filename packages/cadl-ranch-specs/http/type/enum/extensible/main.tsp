@@ -38,13 +38,17 @@ interface String {
   @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
   @get
   @route("/known-value")
-  getKnownValue(): DaysOfWeekExtensibleEnum;
+  getKnownValue(): {
+    @body body: DaysOfWeekExtensibleEnum;
+  };
 
   @scenario
   @scenarioDoc("Expect to handle an unknown value. Mock api will return 'Weekend'")
   @get
   @route("/unknown-value")
-  getUnknownValue(): DaysOfWeekExtensibleEnum;
+  getUnknownValue(): {
+    @body body: DaysOfWeekExtensibleEnum;
+  };
 
   @scenario
   @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")
