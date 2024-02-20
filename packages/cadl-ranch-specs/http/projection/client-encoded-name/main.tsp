@@ -137,13 +137,13 @@ namespace Model {
   @clientName("JavaModel", "java")
   @clientName("TSModel", "javascript")
   @clientName("PythonModel", "python")
-  model ModelWithLanguageClientNameAndEncodedName {
+  model ModelWithLanguageClientName {
     @doc("Pass in true")
     defaultName: boolean;
   }
 
   @clientName("ClientModel")
-  model ModelWithClientClientNameAndEncodedName {
+  model ModelWithClientClientName {
     @doc("Pass in true")
     defaultName: boolean;
   }
@@ -160,7 +160,7 @@ Expected request body:
 """)
   @route("/client")
   @post
-  op client(...ModelWithClientClientNameAndEncodedName): NoContentResponse;
+  op client(...ModelWithClientClientName): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -174,5 +174,5 @@ Expected request body:
 """)
   @route("/language")
   @post
-  op language(...ModelWithLanguageClientNameAndEncodedName): NoContentResponse;
+  op language(...ModelWithLanguageClientName): NoContentResponse;
 }
