@@ -138,7 +138,6 @@ Your generated SDK should generate an operation header `parameter` with a single
 Expected header parameter: `header-name="true"`
 
 """)
-
 @route("/header")
 @post
 op header(
