@@ -13,7 +13,7 @@ namespace Projection.ClientNameAndEncodedName;
 @route("/property")
 @operationGroup
 namespace Property {
-  model LanguageClientNameAndEncodedNameModel {
+  model LanguageClientNameModel {
     @doc("Pass in true")
     @clientName("CSName", "csharp")
     @clientName("GoName", "go")
@@ -23,19 +23,19 @@ namespace Property {
     defaultName: boolean;
   }
 
-  model JsonClientNameAndEncodedNameModel {
+  model JsonEncodedNameModel {
     @doc("Pass in true")
     @encodedName("application/json", "wireName")
     defaultName: boolean;
   }
 
-  model ClientClientNameAndEncodedNameModel {
+  model ClientNameModel {
     @doc("Pass in true")
     @clientName("clientName")
     defaultName: boolean;
   }
 
-  model JsonAndClientClientNameAndEncodedNameModel {
+  model ClientNameAndJsonEncodedNameModel {
     @doc("Pass in true")
     @clientName("clientName")
     @encodedName("application/json", "wireName")
@@ -45,7 +45,7 @@ namespace Property {
   @scenario
   @scenarioDoc("""
   Testing that we can project the JSON name on the wire from defaultName -> wireName.
-  Your generated SDK should generate JsonClientNameAndEncodedNameModel with one property `defaultName` with wire name `wireName`.
+  Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
 
   Expected request body:
   ```json
@@ -54,12 +54,12 @@ namespace Property {
   """)
   @route("/json")
   @post
-  op json(...JsonClientNameAndEncodedNameModel): NoContentResponse;
+  op json(...JsonEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientClientNameAndEncodedNameModel with one property `clientName` with wire name `defaultName`.
+Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
 
 Expected request body:
 ```json
@@ -68,12 +68,12 @@ Expected request body:
 """)
   @route("/client")
   @post
-  op client(...ClientClientNameAndEncodedNameModel): NoContentResponse;
+  op client(...ClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate ClientClientNameAndEncodedNameModel with one property with your language specific property name and wire name `defaultName`.
+Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
 
 Expected request body:
 ```json
@@ -82,12 +82,12 @@ Expected request body:
 """)
   @route("/language")
   @post
-  op language(...LanguageClientNameAndEncodedNameModel): NoContentResponse;
+  op language(...LanguageClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
 Testing that we can project the client name and the wire name.
-Your generated SDK should generate JsonAndClientClientNameAndEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
+Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
 
 Expected request body:
 ```json
@@ -96,7 +96,7 @@ Expected request body:
 """)
   @route("/json-and-client")
   @post
-  op jsonAndClient(...JsonAndClientClientNameAndEncodedNameModel): NoContentResponse;
+  op jsonAndClient(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
 // May add query/header project after https://github.com/microsoft/cadl/issues/1487
@@ -118,15 +118,34 @@ op operation(): NoContentResponse;
 Testing that we can project a parameter name.
 Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
 
-Expected query parameter: `default-name="true"`
+Expected query parameter: `query-name="true"`
 
 """)
 @route("/parameter")
 @post
 op parameter(
   @clientName("clientName")
+  @encodedName("application/json", "query-name")
   @query
-  `default-name`: string,
+  defaultName: string,
+): NoContentResponse;
+
+@scenario
+@scenarioDoc("""
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+Expected header parameter: `header-name="true"`
+
+""")
+
+@route("/header")
+@post
+op header(
+  @clientName("clientName")
+  @encodedName("application/json", "header-name")
+  @header
+  defaultName: string,
 ): NoContentResponse;
 
 @route("/model")
