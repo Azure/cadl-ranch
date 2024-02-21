@@ -99,7 +99,6 @@ Expected request body:
   op jsonAndClient(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
-
 @scenario
 @scenarioDoc("""
 Testing that we can project the operation name.

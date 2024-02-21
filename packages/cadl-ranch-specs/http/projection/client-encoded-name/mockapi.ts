@@ -62,8 +62,8 @@ Scenarios.Projection_ClientNameAndEncodedName_header = passOnSuccess(
     return {
       status: 204,
       headers: {
-        "header-name": "true"
-      }
+        "header-name": "true",
+      },
     };
   }),
 );
