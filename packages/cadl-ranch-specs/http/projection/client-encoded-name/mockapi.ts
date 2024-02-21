@@ -49,7 +49,7 @@ Scenarios.Projection_ClientNameAndEncodedName_operation = passOnSuccess(
 
 Scenarios.Projection_ClientNameAndEncodedName_parameter = passOnSuccess(
   mockapi.post("/projection/client-name-and-encoded-name/parameter", (req) => {
-    req.expect.containsQueryParam("query-name", "true");
+    req.expect.containsQueryParam("defaultName", "true");
     return {
       status: 204,
     };
@@ -58,11 +58,11 @@ Scenarios.Projection_ClientNameAndEncodedName_parameter = passOnSuccess(
 
 Scenarios.Projection_ClientNameAndEncodedName_header = passOnSuccess(
   mockapi.post("/projection/client-name-and-encoded-name/header", (req) => {
-    req.expect.containsHeader("header-name", "true");
+    req.expect.containsHeader("default-name", "true");
     return {
       status: 204,
       headers: {
-        "header-name": "true",
+        "default-name": "true",
       },
     };
   }),
