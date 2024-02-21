@@ -117,14 +117,13 @@ op operation(): NoContentResponse;
 Testing that we can project a parameter name.
 Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
 
-Expected query parameter: `query-name="true"`
+Expected query parameter: `defaultName="true"`
 
 """)
 @route("/parameter")
 @post
 op parameter(
   @clientName("clientName")
-  @encodedName("application/json", "query-name")
   @query
   defaultName: string,
 ): NoContentResponse;
@@ -134,20 +133,19 @@ op parameter(
 Testing that we can project a header name.
 Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
 
-Expected header parameter: `header-name="true"`
-
+Expected header parameter: `default-name="true"`
+Expected response header: `default-name="true"`
 """)
 @route("/header")
 @post
 op header(
   @clientName("clientName")
-  @encodedName("application/json", "header-name")
   @header
-  defaultName: string,
+  `default-name`: string,
 ): {
+  @clientName("clientName")
   @header
-  @encodedName("application/json", "header-name")
-  defaultName: string;
+  `default-name`: string;
 };
 
 @route("/model")

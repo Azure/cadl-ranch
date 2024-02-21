@@ -2030,7 +2030,8 @@ maxpagesize=3
 Testing that we can project a header name.
 Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
 
-Expected header parameter: `header-name="true"`
+Expected header parameter: `default-name="true"`
+Expected response header: `default-name="true"`
 
 ### Projection_ClientNameAndEncodedName_Model_client
 
@@ -2074,7 +2075,7 @@ Expected status code: 204
 Testing that we can project a parameter name.
 Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
 
-Expected query parameter: `query-name="true"`
+Expected query parameter: `defaultName="true"`
 
 ### Projection_ClientNameAndEncodedName_Property_client
 
