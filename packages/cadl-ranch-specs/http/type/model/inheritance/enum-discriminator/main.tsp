@@ -33,7 +33,9 @@ model Golden extends Dog {
   kind: DogKind.Golden;
 }
 
+#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
 @doc("fixed enum type for discriminator")
+@fixed
 enum SnakeKind {
   @doc("Species cobra")
   Cobra: "cobra",
