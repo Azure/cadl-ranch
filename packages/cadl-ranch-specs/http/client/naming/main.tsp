@@ -8,7 +8,7 @@ using Azure.ClientGenerator.Core;
 @doc("Projection")
 @supportedBy("dpg")
 @scenarioService("/projection/client-name-and-encoded-name")
-namespace Projection.ClientNameAndEncodedName;
+namespace Client.Naming;
 
 @route("/property")
 @operationGroup
@@ -20,12 +20,6 @@ namespace Property {
     @clientName("JavaName", "java")
     @clientName("TSName", "javascript")
     @clientName("python_name", "python")
-    defaultName: boolean;
-  }
-
-  model JsonEncodedNameModel {
-    @doc("Pass in true")
-    @encodedName("application/json", "wireName")
     defaultName: boolean;
   }
 
@@ -41,20 +35,6 @@ namespace Property {
     @encodedName("application/json", "wireName")
     defaultName: boolean;
   }
-
-  @scenario
-  @scenarioDoc("""
-  Testing that we can project the JSON name on the wire from defaultName -> wireName.
-  Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
-
-  Expected request body:
-  ```json
-  {"wireName": true}
-  ```
-  """)
-  @route("/json")
-  @post
-  op json(...JsonEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -94,9 +74,9 @@ Expected request body:
 {"wireName": true}
 ```
 """)
-  @route("/json-and-client")
+  @route("/compatible-with-encoded-name")
   @post
-  op jsonAndClient(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
+  op compatibleWithEncodedName(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
 @scenario
