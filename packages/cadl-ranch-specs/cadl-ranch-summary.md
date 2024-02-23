@@ -670,7 +670,7 @@ Expected response body:
 }
 ```
 
-### Client_Naming_header
+### Client_Naming_Header_request
 
 - Endpoint: `post /client/naming/header`
 
@@ -678,6 +678,14 @@ Testing that we can project a header name.
 Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
 
 Expected header parameter: `default-name="true"`
+
+### Client_Naming_Header_response
+
+- Endpoint: `get /client/naming/header`
+
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
 Expected response header: `default-name="true"`
 
 ### Client_Naming_Model_client
