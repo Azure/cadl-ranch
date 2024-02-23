@@ -47,9 +47,17 @@ Scenarios.Client_Naming_parameter = passOnSuccess(
   }),
 );
 
-Scenarios.Client_Naming_header = passOnSuccess(
+Scenarios.Client_Naming_Header_request = passOnSuccess(
   mockapi.post("/client/naming/header", (req) => {
     req.expect.containsHeader("default-name", "true");
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Client_Naming_Header_response = passOnSuccess(
+  mockapi.post("/client/naming/header", (req) => {
     return {
       status: 204,
       headers: {
