@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.1
+
+### Patch Changes
+
+- 8e6e124: Updated expected `float32` values (42.42 and 43.43) to the values that can be exactly represented as IEEE754 (43.125 and 46.875 respectively).
+
 ## 0.12.0
 
 ### Minor Changes
