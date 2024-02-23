@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Serialization_EncodedName_Json_send = passOnSuccess(
+Scenarios.Serialization_EncodedName_Json_Property_send = passOnSuccess(
   mockapi.post("/serialization/encoded-name/json/property", (req) => {
     req.expect.bodyEquals({ wireName: true });
     return {
@@ -11,7 +11,7 @@ Scenarios.Serialization_EncodedName_Json_send = passOnSuccess(
     };
   }),
 );
-Scenarios.Serialization_EncodedName_Json_get = passOnSuccess(
+Scenarios.Serialization_EncodedName_Json_Property_get = passOnSuccess(
   mockapi.get("/serialization/encoded-name/json/property", (req) => {
     return {
       status: 200,
