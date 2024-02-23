@@ -5,9 +5,11 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Projection")
+/**
+ * Describe changing names of types in a client with `@clientName`
+ */
 @supportedBy("dpg")
-@scenarioService("/projection/client-name-and-encoded-name")
+@scenarioService("/client/naming")
 namespace Client.Naming;
 
 @route("/property")

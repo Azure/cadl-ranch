@@ -672,7 +672,7 @@ Expected response body:
 
 ### Client_Naming_header
 
-- Endpoint: `post /projection/client-name-and-encoded-name/header`
+- Endpoint: `post /client/naming/header`
 
 Testing that we can project a header name.
 Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
@@ -682,7 +682,7 @@ Expected response header: `default-name="true"`
 
 ### Client_Naming_Model_client
 
-- Endpoint: `post /projection/client-name-and-encoded-name/model/client`
+- Endpoint: `post /client/naming/model/client`
 
 Testing that we can project the client name in our generated SDKs.
 Your generated SDK should generate the model with name `ClientModel`.
@@ -695,7 +695,7 @@ Expected request body:
 
 ### Client_Naming_Model_language
 
-- Endpoint: `post /projection/client-name-and-encoded-name/model/language`
+- Endpoint: `post /client/naming/model/language`
 
 Testing that we can project the language specific name in our generated SDKs.
 Your generated SDK should generate the model with your language specific model name.
@@ -708,7 +708,7 @@ Expected request body:
 
 ### Client_Naming_operation
 
-- Endpoint: `post /projection/client-name-and-encoded-name/operation`
+- Endpoint: `post /client/naming/operation`
 
 Testing that we can project the operation name.
 Your generated SDK should generate an operation called `clientName`.
@@ -717,7 +717,7 @@ Expected status code: 204
 
 ### Client_Naming_parameter
 
-- Endpoint: `post /projection/client-name-and-encoded-name/parameter`
+- Endpoint: `post /client/naming/parameter`
 
 Testing that we can project a parameter name.
 Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
@@ -726,7 +726,7 @@ Expected query parameter: `defaultName="true"`
 
 ### Client_Naming_Property_client
 
-- Endpoint: `post /projection/client-name-and-encoded-name/property/client`
+- Endpoint: `post /client/naming/property/client`
 
 Testing that we can project the client name in our generated SDKs.
 Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
@@ -739,7 +739,7 @@ Expected request body:
 
 ### Client_Naming_Property_compatibleWithEncodedName
 
-- Endpoint: `post /projection/client-name-and-encoded-name/property/compatible-with-encoded-name`
+- Endpoint: `post /client/naming/property/compatible-with-encoded-name`
 
 Testing that we can project the client name and the wire name.
 Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
@@ -752,7 +752,7 @@ Expected request body:
 
 ### Client_Naming_Property_language
 
-- Endpoint: `post /projection/client-name-and-encoded-name/property/language`
+- Endpoint: `post /client/naming/property/language`
 
 Testing that we can project the language specific name in our generated SDKs.
 Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
