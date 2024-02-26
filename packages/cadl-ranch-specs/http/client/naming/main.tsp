@@ -5,13 +5,14 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Projection")
+/**
+ * Describe changing names of types in a client with `@clientName`
+ */
 @supportedBy("dpg")
-@scenarioService("/projection/client-name-and-encoded-name")
-namespace Projection.ClientNameAndEncodedName;
+@scenarioService("/client/naming")
+namespace Client.Naming;
 
 @route("/property")
-@operationGroup
 namespace Property {
   model LanguageClientNameModel {
     @doc("Pass in true")
@@ -20,12 +21,6 @@ namespace Property {
     @clientName("JavaName", "java")
     @clientName("TSName", "javascript")
     @clientName("python_name", "python")
-    defaultName: boolean;
-  }
-
-  model JsonEncodedNameModel {
-    @doc("Pass in true")
-    @encodedName("application/json", "wireName")
     defaultName: boolean;
   }
 
@@ -44,59 +39,45 @@ namespace Property {
 
   @scenario
   @scenarioDoc("""
-  Testing that we can project the JSON name on the wire from defaultName -> wireName.
-  Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
+    Testing that we can project the client name in our generated SDKs.
+    Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
 
-  Expected request body:
-  ```json
-  {"wireName": true}
-  ```
-  """)
-  @route("/json")
-  @post
-  op json(...JsonEncodedNameModel): NoContentResponse;
-
-  @scenario
-  @scenarioDoc("""
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
-
-Expected request body:
-```json
-{"defaultName": true}
-```
-""")
+    Expected request body:
+    ```json
+    {"defaultName": true}
+    ```
+    """)
   @route("/client")
   @post
   op client(...ClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
+    Testing that we can project the language specific name in our generated SDKs.
+    Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
 
-Expected request body:
-```json
-{"defaultName": true}
-```
-""")
+    Expected request body:
+    ```json
+    {"defaultName": true}
+    ```
+    """)
   @route("/language")
   @post
   op language(...LanguageClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-Testing that we can project the client name and the wire name.
-Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
+    Testing that we can project the client name and the wire name.
+    Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
 
-Expected request body:
-```json
-{"wireName": true}
-```
-""")
-  @route("/json-and-client")
+    Expected request body:
+    ```json
+    {"wireName": true}
+    ```
+    """)
+  @route("/compatible-with-encoded-name")
   @post
-  op jsonAndClient(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
+  op compatibleWithEncodedName(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
 @scenario
@@ -127,25 +108,36 @@ op parameter(
   defaultName: string,
 ): NoContentResponse;
 
-@scenario
-@scenarioDoc("""
-Testing that we can project a header name.
-Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
-
-Expected header parameter: `default-name="true"`
-Expected response header: `default-name="true"`
-""")
 @route("/header")
-@post
-op header(
-  @clientName("clientName")
-  @header
-  `default-name`: string,
-): {
-  @clientName("clientName")
-  @header
-  `default-name`: string;
-};
+namespace Header {
+  @scenario
+  @scenarioDoc("""
+    Testing that we can project a header name.
+    Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+    Expected header parameter: `default-name="true"`
+    """)
+  @post
+  op request(
+    @clientName("clientName")
+    @header
+    `default-name`: string,
+  ): void;
+
+  @scenario
+  @scenarioDoc("""
+    Testing that we can project a header name.
+    Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+    Expected response header: `default-name="true"`
+    """)
+  @get
+  op response(): {
+    @clientName("clientName")
+    @header
+    `default-name`: string;
+  };
+}
 
 @route("/model")
 @operationGroup
@@ -169,28 +161,28 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate the model with name `ClientModel`.
+    Testing that we can project the client name in our generated SDKs.
+    Your generated SDK should generate the model with name `ClientModel`.
 
-Expected request body:
-```json
-{"defaultName": true}
-```
-""")
+    Expected request body:
+    ```json
+    {"defaultName": true}
+    ```
+    """)
   @route("/client")
   @post
   op client(...ModelWithClientClientName): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate the model with your language specific model name.
+    Testing that we can project the language specific name in our generated SDKs.
+    Your generated SDK should generate the model with your language specific model name.
 
-Expected request body:
-```json
-{"defaultName": true}
-```
-""")
+    Expected request body:
+    ```json
+    {"defaultName": true}
+    ```
+    """)
   @route("/language")
   @post
   op language(...ModelWithLanguageClientName): NoContentResponse;
