@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.2
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+- Updated dependencies [055bd17]
+  - @azure-tools/cadl-ranch-expect@0.13.1
+
 ## 0.12.1
 
 ### Patch Changes
