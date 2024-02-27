@@ -387,7 +387,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "succeeded",
+  "status": "Succeeded",
   "results": ["job1 result"]
 }
 ```

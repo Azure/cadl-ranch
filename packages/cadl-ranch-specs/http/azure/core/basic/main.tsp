@@ -219,12 +219,14 @@ model ListItemInput {
 }
 
 @doc("An extensible enum input parameter.")
-enum ListItemInputExtensibleEnum {
+union ListItemInputExtensibleEnum {
+  string,
+
   @doc("The first enum value.")
-  First,
+  First: "First",
 
   @doc("The second enum value.")
-  Second,
+  Second: "Second",
 }
 
 @doc("The body of the input.")

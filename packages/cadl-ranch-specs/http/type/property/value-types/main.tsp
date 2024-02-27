@@ -118,13 +118,15 @@ model DurationProperty is ModelTemplate<duration>;
 interface Duration extends ModelOperations<DurationProperty, "P123DT22H14M12.011S"> {}
 
 // Test a model with an enum property
-@doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
-enum InnerEnum {
+@doc("Enum that will be used as a property for model EnumProperty. Extensible.")
+union InnerEnum {
+  string,
+
   @doc("First value.")
-  ValueOne,
+  ValueOne: "ValueOne",
 
   @doc("Second value.")
-  ValueTwo,
+  ValueTwo: "ValueTwo",
 }
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
