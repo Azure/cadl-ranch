@@ -57,7 +57,7 @@ Scenarios.Client_Naming_Header_request = passOnSuccess(
 );
 
 Scenarios.Client_Naming_Header_response = passOnSuccess(
-  mockapi.post("/client/naming/header", (req) => {
+  mockapi.get("/client/naming/header", (req) => {
     return {
       status: 204,
       headers: {
