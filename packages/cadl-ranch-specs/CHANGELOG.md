@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.0
+
+### Minor Changes
+
+- 055bd17: Use union for extensible enum
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+- 5178ee8: Bug fix on Scenarios.Client_Naming_Header_response
+- Updated dependencies [055bd17]
+  - @azure-tools/cadl-ranch-expect@0.13.1
+  - @azure-tools/cadl-ranch@0.12.2
+
 ## 0.30.1
 
 ### Patch Changes
