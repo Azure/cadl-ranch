@@ -117,8 +117,8 @@ Scenarios.Type_Property_AdditionalProperties_IsString_put = passOnSuccess(isStri
 
 // **************************************************** Record<float32> ****************************************************
 const recordFloatBody = {
-  id: 42.42,
-  prop: 42.42,
+  id: 43.125,
+  prop: 43.125,
 };
 const extendsFloat = createMockApis("extendsRecordFloat", recordFloatBody);
 Scenarios.Type_Property_AdditionalProperties_ExtendsFloat_get = passOnSuccess(extendsFloat.get);

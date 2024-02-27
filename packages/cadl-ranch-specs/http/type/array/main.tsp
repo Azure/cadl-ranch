@@ -5,7 +5,7 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates various of dictionaries.")
+@doc("Illustrates various types of arrays.")
 @scenarioService("/type/array")
 namespace Type.Array;
 
@@ -65,7 +65,7 @@ interface StringValue extends ArrayOperations<string[], "['hello', '']"> {}
 @doc("Array of float values")
 @route("/float32")
 @operationGroup
-interface Float32Value extends ArrayOperations<float32[], "[42.42]"> {}
+interface Float32Value extends ArrayOperations<float32[], "[43.125]"> {}
 
 @doc("Array of datetime values")
 @route("/datetime")

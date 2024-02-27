@@ -66,7 +66,7 @@ interface StringValue extends DictionaryOperations<Record<string>, "{'k1': 'hell
 @doc("Dictionary of float values")
 @route("/float32")
 @operationGroup
-interface Float32Value extends DictionaryOperations<Record<float32>, "{'k1': 42.42}"> {}
+interface Float32Value extends DictionaryOperations<Record<float32>, "{'k1': 43.125}"> {}
 
 @doc("Dictionary of datetime values")
 @route("/datetime")

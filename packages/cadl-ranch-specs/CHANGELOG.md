@@ -1,5 +1,31 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.30.1
+
+### Patch Changes
+
+- 034ee63: add test case for `@clientName` and `@encodedName`
+- 8e6e124: Updated expected `float32` values (42.42 and 43.43) to the values that can be exactly represented as IEEE754 (43.125 and 46.875 respectively).
+- Updated dependencies [bf5c192]
+- Updated dependencies [8e6e124]
+  - @azure-tools/cadl-ranch@0.12.1
+
+## 0.30.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+### Patch Changes
+
+- c611311: Fix typos in MFD tests
+- 697a257: Corrected document for Type.Array namespace
+- Updated dependencies [c611311]
+- Updated dependencies [697a257]
+- Updated dependencies [f2a9bce]
+  - @azure-tools/cadl-ranch@0.12.0
+  - @azure-tools/cadl-ranch-expect@0.13.0
+
 ## 0.29.0
 
 ### Minor Changes

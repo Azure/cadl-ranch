@@ -670,6 +670,107 @@ Expected response body:
 }
 ```
 
+### Client_Naming_Header_request
+
+- Endpoint: `post /client/naming/header`
+
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+Expected header parameter: `default-name="true"`
+
+### Client_Naming_Header_response
+
+- Endpoint: `get /client/naming/header`
+
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+Expected response header: `default-name="true"`
+
+### Client_Naming_Model_client
+
+- Endpoint: `post /client/naming/model/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate the model with name `ClientModel`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_Model_language
+
+- Endpoint: `post /client/naming/model/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate the model with your language specific model name.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_operation
+
+- Endpoint: `post /client/naming/operation`
+
+Testing that we can project the operation name.
+Your generated SDK should generate an operation called `clientName`.
+
+Expected status code: 204
+
+### Client_Naming_parameter
+
+- Endpoint: `post /client/naming/parameter`
+
+Testing that we can project a parameter name.
+Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
+
+Expected query parameter: `defaultName="true"`
+
+### Client_Naming_Property_client
+
+- Endpoint: `post /client/naming/property/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_Property_compatibleWithEncodedName
+
+- Endpoint: `post /client/naming/property/compatible-with-encoded-name`
+
+Testing that we can project the client name and the wire name.
+Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
+
+Expected request body:
+
+```json
+{ "wireName": true }
+```
+
+### Client_Naming_Property_language
+
+- Endpoint: `post /client/naming/property/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
 ### Client_Structure_MultiClient
 
 - Endpoints:
@@ -2232,6 +2333,33 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
+### Serialization_EncodedName_Json_Property_get
+
+- Endpoint: `get /serialization/encoded-name/json/property`
+
+Testing that you deserialize the right json name over the wire.
+
+Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
+
+Expected response body:
+
+```json
+{ "wireName": true }
+```
+
+### Serialization_EncodedName_Json_Property_send
+
+- Endpoint: `post /serialization/encoded-name/json/property`
+
+Testing that you send the right JSON name on the wire.
+Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
+
+Expected request body:
+
+```json
+{ "wireName": true }
+```
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /server/path/multiple/{apiVersion}`
@@ -3136,7 +3264,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Float32Value_put
@@ -3146,7 +3274,7 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Int32Value_get
@@ -3336,7 +3464,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Float32Value_put
@@ -3346,7 +3474,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Int32Value_get
@@ -4198,7 +4326,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsFloat_put
@@ -4208,7 +4336,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_get
@@ -4378,7 +4506,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsFloat_put
@@ -4388,7 +4516,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_get
@@ -5624,7 +5752,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Float_put
@@ -5634,7 +5762,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_get
@@ -5644,7 +5772,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_put
@@ -5654,7 +5782,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Int_get
@@ -5784,7 +5912,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_put
@@ -5794,7 +5922,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionIntLiteral_get

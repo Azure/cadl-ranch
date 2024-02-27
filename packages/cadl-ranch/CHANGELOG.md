@@ -1,5 +1,25 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.1
+
+### Patch Changes
+
+- 8e6e124: Updated expected `float32` values (42.42 and 43.43) to the values that can be exactly represented as IEEE754 (43.125 and 46.875 respectively).
+
+## 0.12.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+### Patch Changes
+
+- c611311: Fix typos in MFD tests
+- 697a257: Corrected document for Type.Array namespace
+- Updated dependencies [f2a9bce]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.0
+  - @azure-tools/cadl-ranch-expect@0.13.0
+
 ## 0.11.3
 
 ### Patch Changes

@@ -209,7 +209,7 @@ model ExtendsFloatAdditionalProperties extends Record<float32> {
 
 @route("/extendsRecordFloat")
 @operationGroup
-interface ExtendsFloat extends ModelOperations<ExtendsFloatAdditionalProperties, "{'id': 42.42, 'prop': 42.42}"> {}
+interface ExtendsFloat extends ModelOperations<ExtendsFloatAdditionalProperties, "{'id': 43.125, 'prop': 43.125}"> {}
 
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
 @doc("The model is from Record<float32> type.")
@@ -220,7 +220,7 @@ model IsFloatAdditionalProperties is Record<float32> {
 
 @route("/isRecordFloat")
 @operationGroup
-interface IsFloat extends ModelOperations<IsFloatAdditionalProperties, "{'id': 42.42, 'prop': 42.42}"> {}
+interface IsFloat extends ModelOperations<IsFloatAdditionalProperties, "{'id': 43.125, 'prop': 43.125}"> {}
 
 // ********************************************** Record<Model> **********************************************
 @doc("model for record")

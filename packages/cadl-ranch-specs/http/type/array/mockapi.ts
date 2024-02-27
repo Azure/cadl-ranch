@@ -46,7 +46,7 @@ const StringValueMock = createModelMockApis("string", ["hello", ""]);
 Scenarios.Type_Array_StringValue_get = passOnSuccess(StringValueMock.get);
 Scenarios.Type_Array_StringValue_put = passOnSuccess(StringValueMock.put);
 
-const Float32ValueMock = createModelMockApis("float32", [42.42]);
+const Float32ValueMock = createModelMockApis("float32", [43.125]);
 Scenarios.Type_Array_Float32Value_get = passOnSuccess(Float32ValueMock.get);
 Scenarios.Type_Array_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
