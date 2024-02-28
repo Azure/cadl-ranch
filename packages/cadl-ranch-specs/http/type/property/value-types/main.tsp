@@ -144,13 +144,13 @@ enum FixedInnerEnum {
 model EnumProperty is ModelTemplate<FixedInnerEnum>;
 @route("/enum")
 @operationGroup
-interface Enum extends ModelOperations<EnumProperty, "ValueOne"> {}
+interface Enum extends ModelOperations<EnumProperty, "\"ValueOne\""> {}
 
 @doc("Model with extensible enum properties")
 model ExtensibleEnumProperty is ModelTemplate<InnerEnum>;
 @route("/extensible-enum")
 @operationGroup
-interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "UnknownValue"> {}
+interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "\"UnknownValue\""> {}
 
 // Test a model with a model property
 @doc("Inner model. Will be a property type for ModelWithModelProperties")
@@ -284,4 +284,4 @@ model EnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
 
 @route("/enum-value")
 @operationGroup
-interface EnumValue extends ModelOperations<EnumValueProperty, "value2"> {}
+interface EnumValue extends ModelOperations<EnumValueProperty, "\"value2\""> {}
