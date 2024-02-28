@@ -187,3 +187,31 @@ namespace Model {
   @post
   op language(...ModelWithLanguageClientName): NoContentResponse;
 }
+
+@operationGroup
+@route("/enum")
+namespace Enum {
+  @clientName("ClientExtensibleEnum")
+  union ExtensibleEnum {
+    string,
+
+    @clientName("ClientEnumValue1")
+    EnumValue1: "value1",
+  }
+
+  @scenario
+  @scenarioDoc("""
+    Testing that we can project a enum name and enum value name.
+    Your generated SDK should generate an Enum "ClientExtensibleEnum".
+    The Enum would have a value "ClientEnumValue1".
+    (The exact name may depend on language convention)
+
+    Expected request body:
+    ```json
+    "value1"
+    ```
+  """)
+  @route("/client")
+  @post
+  op client(@body body: ExtensibleEnum): NoContentResponse;
+}

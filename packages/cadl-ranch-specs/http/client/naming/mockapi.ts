@@ -84,3 +84,12 @@ Scenarios.Client_Naming_Model_language = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Client_Naming_Enum_client = passOnSuccess(
+  mockapi.post("/client/naming/enum/client", (req) => {
+    req.expect.bodyEquals("value1");
+    return {
+      status: 204,
+    };
+  }),
+);
