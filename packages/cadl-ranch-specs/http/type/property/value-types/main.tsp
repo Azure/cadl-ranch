@@ -269,3 +269,19 @@ model UnionFloatLiteralProperty is ModelTemplate<43.125 | 46.875>;
 @route("/union/float/literal")
 @operationGroup
 interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "46.875"> {}
+
+union BaseEnum {
+  string,
+  EnumValue1: "value1",
+}
+
+union ExtendedEnum {
+  BaseEnum,
+  EnumValue2: "value2",
+}
+
+model EnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
+
+@route("/enum-value")
+@operationGroup
+interface EnumValue extends ModelOperations<EnumValueProperty, "value2"> {}

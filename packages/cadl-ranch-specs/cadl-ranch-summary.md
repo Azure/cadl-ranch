@@ -5700,6 +5700,26 @@ Expected input body:
 {"property": ValueOne}
 ```
 
+### Type_Property_ValueTypes_EnumValue_get
+
+- Endpoint: `get /type/property/value-types/enum-value`
+
+Expected response body:
+
+```json
+{"property": value2}
+```
+
+### Type_Property_ValueTypes_EnumValue_put
+
+- Endpoint: `put /type/property/value-types/enum-value`
+
+Expected input body:
+
+```json
+{"property": value2}
+```
+
 ### Type_Property_ValueTypes_ExtensibleEnum_get
 
 - Endpoint: `get /type/property/value-types/extensible-enum`
