@@ -101,7 +101,7 @@ Scenarios.Type_Property_Optional_IntLiteral_getDefault = passOnSuccess(intLitera
 Scenarios.Type_Property_Optional_IntLiteral_putAll = passOnSuccess(intLiteralMock.putAll);
 Scenarios.Type_Property_Optional_IntLiteral_putDefault = passOnSuccess(intLiteralMock.putDefault);
 
-const floatLiteralMock = createMockApis("float/literal", 1.2);
+const floatLiteralMock = createMockApis("float/literal", 1.25);
 Scenarios.Type_Property_Optional_FloatLiteral_getAll = passOnSuccess(floatLiteralMock.getAll);
 Scenarios.Type_Property_Optional_FloatLiteral_getDefault = passOnSuccess(floatLiteralMock.getDefault);
 Scenarios.Type_Property_Optional_FloatLiteral_putAll = passOnSuccess(floatLiteralMock.putAll);
@@ -125,7 +125,7 @@ Scenarios.Type_Property_Optional_UnionIntLiteral_getDefault = passOnSuccess(unio
 Scenarios.Type_Property_Optional_UnionIntLiteral_putAll = passOnSuccess(unionIntLiteralMock.putAll);
 Scenarios.Type_Property_Optional_UnionIntLiteral_putDefault = passOnSuccess(unionIntLiteralMock.putDefault);
 
-const unionFloatLiteralMock = createMockApis("union/float/literal", 2.3);
+const unionFloatLiteralMock = createMockApis("union/float/literal", 2.375);
 Scenarios.Type_Property_Optional_UnionFloatLiteral_getAll = passOnSuccess(unionFloatLiteralMock.getAll);
 Scenarios.Type_Property_Optional_UnionFloatLiteral_getDefault = passOnSuccess(unionFloatLiteralMock.getDefault);
 Scenarios.Type_Property_Optional_UnionFloatLiteral_putAll = passOnSuccess(unionFloatLiteralMock.putAll);
