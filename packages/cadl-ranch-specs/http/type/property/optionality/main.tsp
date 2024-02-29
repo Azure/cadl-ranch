@@ -144,10 +144,10 @@ interface IntLiteral extends OperationsTemplate<IntLiteralProperty, "1"> {}
 
 // Model with optional float literal property
 @doc("Model with float literal property")
-model FloatLiteralProperty is ModelTemplate<1.2>;
+model FloatLiteralProperty is ModelTemplate<1.25>;
 @route("/float/literal")
 @operationGroup
-interface FloatLiteral extends OperationsTemplate<FloatLiteralProperty, "1.2"> {}
+interface FloatLiteral extends OperationsTemplate<FloatLiteralProperty, "1.25"> {}
 
 // Model with optional boolean literal property
 @doc("Model with boolean literal property")
@@ -172,10 +172,10 @@ interface UnionIntLiteral extends OperationsTemplate<UnionIntLiteralProperty, "2
 
 // Model with union of float literal property
 @doc("Model with union of float literal property")
-model UnionFloatLiteralProperty is ModelTemplate<1.2 | 2.3>;
+model UnionFloatLiteralProperty is ModelTemplate<1.25 | 2.375>;
 @route("/union/float/literal")
 @operationGroup
-interface UnionFloatLiteral extends OperationsTemplate<UnionFloatLiteralProperty, "2.3"> {}
+interface UnionFloatLiteral extends OperationsTemplate<UnionFloatLiteralProperty, "2.375"> {}
 
 @doc("Model with required and optional properties")
 model RequiredAndOptionalProperty {
