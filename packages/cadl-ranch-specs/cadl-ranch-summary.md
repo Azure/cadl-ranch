@@ -3347,7 +3347,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
 ```
 
 ### Type_Array_NullableFloatValue_put
@@ -3357,7 +3357,7 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
 ```
 
 ### Type_Array_StringValue_get
@@ -3547,7 +3547,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_NullableFloatValue_put
@@ -3557,7 +3557,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_RecursiveModelValue_get
@@ -5175,7 +5175,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_getDefault
@@ -5195,7 +5195,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_putDefault
@@ -5375,7 +5375,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_getDefault
@@ -5395,7 +5395,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_putDefault

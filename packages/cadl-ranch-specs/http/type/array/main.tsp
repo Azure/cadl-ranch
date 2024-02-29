@@ -99,4 +99,4 @@ alias NullableFloat = float32 | null;
 @doc("Array of nullable float values")
 @route("/nullable-float")
 @operationGroup
-interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.2, null, 3.0]"> {}
+interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.25, null, 3.0]"> {}
