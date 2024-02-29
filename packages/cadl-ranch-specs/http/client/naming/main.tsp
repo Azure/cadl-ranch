@@ -202,6 +202,9 @@ namespace Enum {
 
     @clientName("ClientEnumValue1")
     EnumValue1: "value1",
+
+    @clientName("ClientEnumValue2")
+    "value2",
   }
 
   @scenario
@@ -222,7 +225,7 @@ namespace Enum {
   @scenario
   @scenarioDoc("""
     Testing that we can project a enum name and enum value name.
-    Your generated SDK should generate an Enum with a member "ClientEnumValue1".
+    Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
     (The exact name may depend on language convention)
 
     Expected request body:

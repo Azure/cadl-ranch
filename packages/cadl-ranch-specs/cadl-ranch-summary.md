@@ -675,7 +675,7 @@ Expected response body:
 - Endpoint: `post /client/naming/enum/enum-member-name`
 
   Testing that we can project a enum name and enum value name.
-  Your generated SDK should generate an Enum with a member "ClientEnumValue1".
+  Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
   (The exact name may depend on language convention)
 
   Expected request body:
