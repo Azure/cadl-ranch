@@ -3664,6 +3664,61 @@ Send a POST request with the following body {} which returns the same.
 
 Send a PUT request with the following body {}
 
+### Type_Model_Error_Inheritance_invalid400Response
+
+- Endpoint: `get /type/model/error/inheritance/invalid/400`
+
+Expect 400 Response, Should be deserialized by error model Standard4XXResponse.
+Expected error body:
+
+```json
+{ "code": "Bad Request" }
+```
+
+### Type_Model_Error_Inheritance_invalid500Response
+
+- Endpoint: `get /type/model/error/inheritance/invalid/500`
+
+Expect 500 Response. Should be deserialized by error model Standard5XXResponse.
+Expected error body:
+
+```json
+{ "code": "Internal Server Error" }
+```
+
+### Type_Model_Error_Inheritance_validResponse
+
+- Endpoint: `get /type/model/error/inheritance/valid`
+
+Expect 200 Response
+Expected response body:
+
+```json
+{ "username": "jane", "password": "doe" }
+```
+
+### Type_Model_Error_Single_invalidResponse
+
+- Endpoint: `get /type/model/error/single/invalid`
+
+Expect 304 Response
+Expected error body:
+
+```json
+{ "code": "Not Modified" }
+```
+
+### Type_Model_Error_Single_validResponse
+
+- Endpoint: `get /type/model/error/single/valid`
+
+Expect 200 Response
+Expected response body:
+
+```json
+{ "username": "jane", "password": "doe" }
+```
+
 ### Type_Model_Flatten_putFlattenModel
 
 - Endpoint: `put /type/model/flatten/flattenModel`
