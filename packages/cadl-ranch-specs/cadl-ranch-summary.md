@@ -670,13 +670,26 @@ Expected response body:
 }
 ```
 
-### Client_Naming_Enum_client
+### Client_Naming_Enum_enumMemberName
 
-- Endpoint: `post /client/naming/enum/client`
+- Endpoint: `post /client/naming/enum/enum-member-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum with a member "ClientEnumValue1".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
+### Client_Naming_Enum_enumName
+
+- Endpoint: `post /client/naming/enum/enum-name`
 
   Testing that we can project a enum name and enum value name.
   Your generated SDK should generate an Enum "ClientExtensibleEnum".
-  The Enum would have a value "ClientEnumValue1".
   (The exact name may depend on language convention)
 
   Expected request body:
