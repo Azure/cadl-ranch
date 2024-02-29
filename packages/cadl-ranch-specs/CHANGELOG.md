@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.1
+
+### Patch Changes
+
+- fe16d1c: Remove deprecated service version
+- b045692: Updated expected `float32` values (1.2 and 2.3) to the values that can be exactly represented as IEEE754 (1.25 and 2.375 respectively).
+- Updated dependencies [b045692]
+  - @azure-tools/cadl-ranch@0.12.3
+
 ## 0.31.0
 
 ### Minor Changes
