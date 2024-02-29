@@ -76,6 +76,6 @@ const RecursiveValueMock = createModelMockApis("model/recursive", {
 Scenarios.Type_Dictionary_RecursiveModelValue_get = passOnSuccess(RecursiveValueMock.get);
 Scenarios.Type_Dictionary_RecursiveModelValue_put = passOnSuccess(RecursiveValueMock.put);
 
-const NullableFloatValueMock = createModelMockApis("nullable-float", { k1: 1.2, k2: 0.5, k3: null });
+const NullableFloatValueMock = createModelMockApis("nullable-float", { k1: 1.25, k2: 0.5, k3: null });
 Scenarios.Type_Dictionary_NullableFloatValue_get = passOnSuccess(NullableFloatValueMock.get);
 Scenarios.Type_Dictionary_NullableFloatValue_put = passOnSuccess(NullableFloatValueMock.put);
