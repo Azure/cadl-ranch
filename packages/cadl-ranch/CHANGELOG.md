@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.4
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.1
+  - @azure-tools/cadl-ranch-expect@0.13.2
+
 ## 0.12.3
 
 ### Patch Changes
