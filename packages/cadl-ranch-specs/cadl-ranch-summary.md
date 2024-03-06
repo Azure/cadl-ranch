@@ -6257,7 +6257,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -6280,7 +6280,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected request to send body:
@@ -6303,7 +6303,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected response body:
@@ -6328,7 +6328,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected request to send body:
@@ -6435,7 +6435,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected response body:
@@ -6451,7 +6451,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected request to send body:
@@ -6499,7 +6499,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected response body:
@@ -6515,7 +6515,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected request to send body:
