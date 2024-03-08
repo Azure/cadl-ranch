@@ -46,7 +46,7 @@ interface AzureLocationScalar {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("""
-  Expect to send a model who has an azureLocation property.
+  Expect to send a model which has an azureLocation property.
 
   Expected request body:
   ```json

@@ -628,7 +628,7 @@ Expected header parameter: `region="eastus"`
 
 - Endpoint: `post /azure/core/scalar/azureLocation`
 
-Expect to send a model who has an azureLocation property.
+Expect to send a model which has an azureLocation property.
 
 Expected request body:
 
