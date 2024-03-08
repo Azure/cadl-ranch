@@ -611,6 +611,50 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Scalar_AzureLocationScalar_get
+
+- Endpoint: `get /azure/core/scalar/azureLocation`
+
+Expect to handle a azureLocation value. Mock api will return 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_header
+
+- Endpoint: `post /azure/core/scalar/azureLocation/header`
+
+Expect to send a azureLocation value as header.
+Expected header parameter: `region="eastus"`
+
+### Azure_Core_Scalar_AzureLocationScalar_post
+
+- Endpoint: `post /azure/core/scalar/azureLocation`
+
+Expect to send a model which has an azureLocation property.
+
+Expected request body:
+
+```json
+{ "location": "eastus" }
+```
+
+Expected response body:
+
+```json
+{ "location": "eastus" }
+```
+
+### Azure_Core_Scalar_AzureLocationScalar_put
+
+- Endpoint: `put /azure/core/scalar/azureLocation`
+
+Expect to send a azureLocation value. Mock api expect to receive 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_query
+
+- Endpoint: `post /azure/core/scalar/azureLocation/query`
+
+Expect to send a azureLocation value as query.
+Expected query parameter: `region="eastus"`
+
 ### Azure_Core_Traits_repeatableAction
 
 - Endpoint: `get /azure/core/traits`
