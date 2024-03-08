@@ -38,7 +38,7 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_header = passOnSuccess(
 
 Scenarios.Azure_Core_Scalar_AzureLocationScalar_query = passOnSuccess(
   mockapi.post("/azure/core/scalar/azureLocation/query", (req) => {
-    req.expect.containsQueryParam("regen", "eastus");
+    req.expect.containsQueryParam("region", "eastus");
 
     return { status: 204 };
   }),
