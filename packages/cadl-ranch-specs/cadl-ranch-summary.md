@@ -815,6 +815,34 @@ Expected request body:
 { "defaultName": true }
 ```
 
+### Client_Naming_UnionEnum_unionEnumMemberName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-member-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
+### Client_Naming_UnionEnum_unionEnumName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum "ClientExtensibleEnum".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
 ### Client_Structure_MultiClient
 
 - Endpoints:
