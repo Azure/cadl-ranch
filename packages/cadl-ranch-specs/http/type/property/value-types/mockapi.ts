@@ -144,6 +144,6 @@ const unionFloatLiteralMock = createMockApis("union/float/literal", 46.875);
 Scenarios.Type_Property_ValueTypes_UnionFloatLiteral_get = passOnSuccess(unionFloatLiteralMock.get);
 Scenarios.Type_Property_ValueTypes_UnionFloatLiteral_put = passOnSuccess(unionFloatLiteralMock.put);
 
-const enumValueMock = createMockApis("enum-value", "value2");
-Scenarios.Type_Property_ValueTypes_EnumValue_get = passOnSuccess(enumValueMock.get);
-Scenarios.Type_Property_ValueTypes_EnumValue_put = passOnSuccess(enumValueMock.put);
+const unionEnumValueMock = createMockApis("union-enum-value", "value2");
+Scenarios.Type_Property_ValueTypes_UnionEnumValue_get = passOnSuccess(unionEnumValueMock.get);
+Scenarios.Type_Property_ValueTypes_UnionEnumValue_put = passOnSuccess(unionEnumValueMock.put);

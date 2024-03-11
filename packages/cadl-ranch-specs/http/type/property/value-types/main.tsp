@@ -275,8 +275,8 @@ union ExtendedEnum {
   EnumValue2: "value2",
 }
 
-model EnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
+model UnionEnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
 
-@route("/enum-value")
+@route("/union-enum-value")
 @operationGroup
-interface EnumValue extends ModelOperations<EnumValueProperty, "\"value2\""> {}
+interface UnionEnumValue extends ModelOperations<UnionEnumValueProperty, "\"value2\""> {}
