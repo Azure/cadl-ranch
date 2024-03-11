@@ -270,13 +270,8 @@ model UnionFloatLiteralProperty is ModelTemplate<43.125 | 46.875>;
 @operationGroup
 interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "46.875"> {}
 
-union BaseEnum {
-  string,
-  EnumValue1: "value1",
-}
-
 union ExtendedEnum {
-  BaseEnum,
+  string,
   EnumValue2: "value2",
 }
 
