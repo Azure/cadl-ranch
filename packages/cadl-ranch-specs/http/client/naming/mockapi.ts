@@ -85,8 +85,8 @@ Scenarios.Client_Naming_Model_language = passOnSuccess(
   }),
 );
 
-Scenarios.Client_Naming_Enum_enumName = passOnSuccess(
-  mockapi.post("/client/naming/enum/enum-name", (req) => {
+Scenarios.Client_Naming_UnionEnum_unionEnumName = passOnSuccess(
+  mockapi.post("/client/naming/union-enum/union-enum-name", (req) => {
     req.expect.bodyEquals("value1");
     return {
       status: 204,
@@ -94,8 +94,8 @@ Scenarios.Client_Naming_Enum_enumName = passOnSuccess(
   }),
 );
 
-Scenarios.Client_Naming_Enum_enumMemberName = passOnSuccess(
-  mockapi.post("/client/naming/enum/enum-member-name", (req) => {
+Scenarios.Client_Naming_UnionEnum_unionEnumMemberName = passOnSuccess(
+  mockapi.post("/client/naming/union-enum/union-enum-member-name", (req) => {
     req.expect.bodyEquals("value1");
     return {
       status: 204,

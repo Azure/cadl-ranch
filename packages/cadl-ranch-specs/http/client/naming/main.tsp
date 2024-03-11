@@ -189,8 +189,8 @@ namespace Model {
 }
 
 @operationGroup
-@route("/enum")
-namespace Enum {
+@route("/union-enum")
+namespace UnionEnum {
   @clientName("ClientExtensibleEnum")
   union ServerExtensibleEnum {
     string,
@@ -218,9 +218,9 @@ namespace Enum {
     "value1"
     ```
   """)
-  @route("/enum-name")
+  @route("/union-enum-name")
   @post
-  op enumName(@body body: ServerExtensibleEnum): NoContentResponse;
+  op unionEnumName(@body body: ServerExtensibleEnum): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -233,7 +233,7 @@ namespace Enum {
     "value1"
     ```
   """)
-  @route("/enum-member-name")
+  @route("/union-enum-member-name")
   @post
-  op enumMemberName(@body body: ExtensibleEnum): NoContentResponse;
+  op unionEnumMemberName(@body body: ExtensibleEnum): NoContentResponse;
 }
