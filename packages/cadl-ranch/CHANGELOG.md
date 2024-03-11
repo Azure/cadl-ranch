@@ -1,5 +1,20 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.4
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.1
+  - @azure-tools/cadl-ranch-expect@0.13.2
+
+## 0.12.3
+
+### Patch Changes
+
+- b045692: Updated expected `float32` values (1.2 and 2.3) to the values that can be exactly represented as IEEE754 (1.25 and 2.375 respectively).
+
 ## 0.12.2
 
 ### Patch Changes
