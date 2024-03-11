@@ -611,6 +611,50 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Scalar_AzureLocationScalar_get
+
+- Endpoint: `get /azure/core/scalar/azureLocation`
+
+Expect to handle a azureLocation value. Mock api will return 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_header
+
+- Endpoint: `post /azure/core/scalar/azureLocation/header`
+
+Expect to send a azureLocation value as header.
+Expected header parameter: `region="eastus"`
+
+### Azure_Core_Scalar_AzureLocationScalar_post
+
+- Endpoint: `post /azure/core/scalar/azureLocation`
+
+Expect to send a model which has an azureLocation property.
+
+Expected request body:
+
+```json
+{ "location": "eastus" }
+```
+
+Expected response body:
+
+```json
+{ "location": "eastus" }
+```
+
+### Azure_Core_Scalar_AzureLocationScalar_put
+
+- Endpoint: `put /azure/core/scalar/azureLocation`
+
+Expect to send a azureLocation value. Mock api expect to receive 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_query
+
+- Endpoint: `post /azure/core/scalar/azureLocation/query`
+
+Expect to send a azureLocation value as query.
+Expected query parameter: `region="eastus"`
+
 ### Azure_Core_Traits_repeatableAction
 
 - Endpoint: `get /azure/core/traits`
@@ -6285,7 +6329,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -6308,7 +6352,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected request to send body:
@@ -6331,7 +6375,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected response body:
@@ -6356,7 +6400,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected request to send body:
@@ -6463,7 +6507,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected response body:
@@ -6479,7 +6523,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected request to send body:
@@ -6527,7 +6571,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected response body:
@@ -6543,7 +6587,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected request to send body:

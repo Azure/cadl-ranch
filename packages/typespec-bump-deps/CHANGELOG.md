@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.1
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+
 ## 0.9.0
 
 ### Minor Changes
