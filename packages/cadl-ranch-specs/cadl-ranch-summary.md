@@ -5731,7 +5731,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_Enum_put
@@ -5741,7 +5741,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_get
@@ -5751,7 +5751,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_put
@@ -5761,7 +5761,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_Float_get
@@ -5922,6 +5922,26 @@ Expected input body:
 
 ```json
 { "property": "hello" }
+```
+
+### Type_Property_ValueTypes_UnionEnumValue_get
+
+- Endpoint: `get /type/property/value-types/union-enum-value`
+
+Expected response body:
+
+```json
+{ "property": "value2" }
+```
+
+### Type_Property_ValueTypes_UnionEnumValue_put
+
+- Endpoint: `put /type/property/value-types/union-enum-value`
+
+Expected input body:
+
+```json
+{ "property": "value2" }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_get
