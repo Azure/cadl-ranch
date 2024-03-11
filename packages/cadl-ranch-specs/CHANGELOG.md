@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.3
+
+### Patch Changes
+
+- 14a953e: Add test case of enum value to type/property/valuetypes
+- e38de90: resolve typo in azureLocation scalar test
+- 9f6362a: add test for azureLocation scalar
+- a02ac03: Add test for client name on enum and its value
+
 ## 0.31.2
 
 ### Patch Changes
