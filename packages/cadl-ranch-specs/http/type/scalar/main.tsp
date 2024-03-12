@@ -153,13 +153,3 @@ interface NumberTypesVerifyOperations<T, VerifyValues extends string, ResultValu
   @route("/verify")
   verify(@body body: T): void;
 }
-
-@doc("Decimal type verification")
-@route("/decimal")
-@operationGroup
-interface DecimalVerify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}
-
-@doc("Decimal128 type verification")
-@route("/decimal128")
-@operationGroup
-interface Decimal128Verify extends NumberTypesVerifyOperations<decimal, "[0.1, 0.1, 0.1]", "0.3"> {}
