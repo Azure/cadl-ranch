@@ -2,6 +2,9 @@ import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-client-generator-core";
 
+/**
+ * LEGACY SCENARIO - NO NEED TO SUPPORT
+ */
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
@@ -14,6 +17,7 @@ namespace Projection.ProjectedName;
 @operationGroup
 namespace Property {
   model LanguageProjectedNameModel {
+    #suppress "deprecated" "Legacy scenario for @projectedName"
     @doc("Pass in true")
     @projectedName("client", "_DoNotUseMeAsAName_") // Should be ignored
     @projectedName("csharp", "CSName")
@@ -25,18 +29,21 @@ namespace Property {
   }
 
   model JsonProjectedNameModel {
+    #suppress "deprecated" "Legacy scenario for @projectedName"
     @doc("Pass in true")
     @projectedName("json", "wireName")
     defaultName: boolean;
   }
 
   model ClientProjectedNameModel {
+    #suppress "deprecated" "Legacy scenario for @projectedName"
     @doc("Pass in true")
     @projectedName("client", "clientName")
     defaultName: boolean;
   }
 
   model JsonAndClientProjectedNameModel {
+    #suppress "deprecated" "Legacy scenario for @projectedName"
     @doc("Pass in true")
     @projectedName("client", "clientName")
     @projectedName("json", "wireName")
@@ -101,7 +108,8 @@ Expected request body:
 }
 
 // May add query/header project after https://github.com/microsoft/cadl/issues/1487
-
+#suppress "deprecated" "Legacy scenario for @projectedName"
+#suppress "deprecated" "Legacy scenario for @projectedName"
 @scenario
 @scenarioDoc("""
 Testing that we can project the operation name.
@@ -125,6 +133,7 @@ Expected query parameter: `default-name="true"`
 @route("/parameter")
 @post
 op parameter(
+  #suppress "deprecated" "Legacy scenario for @projectedName"
   @projectedName("client", "clientName")
   @query
   `default-name`: string,
@@ -133,6 +142,7 @@ op parameter(
 @route("/model")
 @operationGroup
 namespace Model {
+  #suppress "deprecated" "Legacy scenario for @projectedName"
   @projectedName("client", "_NotUseMeAsAName_") // Should be ignored
   @projectedName("csharp", "CSModel")
   @projectedName("go", "GoModel")
@@ -144,6 +154,7 @@ namespace Model {
     defaultName: boolean;
   }
 
+  #suppress "deprecated" "Legacy scenario for @projectedName"
   @projectedName("client", "ClientModel")
   model ModelWithClientProjectedName {
     @doc("Pass in true")
