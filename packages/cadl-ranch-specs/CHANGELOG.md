@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.5
+
+### Patch Changes
+
+- 04e515a: Add tests for service not providing an endpoint
+
 ## 0.31.4
 
 ### Patch Changes
