@@ -13,7 +13,7 @@ using TypeSpec.Http;
 namespace Server.Endpoint.NotDefined;
 
 @scenario
-@scenarioDoc("A simple operation in a server without defining a endpoint. Expected uri: 'http://localhost:3000/operation'")
-@route("/operation")
+@scenarioDoc("A simple operation in a server without defining a endpoint. Expected uri: '<endpoint you start cadl-ranch>/valid'")
+@route("/valid")
 @head
-op operation(): OkResponse;
+op valid(): OkResponse;
