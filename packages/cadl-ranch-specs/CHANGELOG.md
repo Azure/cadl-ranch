@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.4
+
+### Patch Changes
+
+- 2d19233: Suppress deprecation warning for projectedName
+
 ## 0.31.3
 
 ### Patch Changes
