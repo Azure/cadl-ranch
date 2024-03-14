@@ -2407,6 +2407,12 @@ Expected request body:
 { "wireName": true }
 ```
 
+### Server_Endpoint_NotDefined_valid
+
+- Endpoint: `head /server/endpoint/not-defined/valid`
+
+A simple operation in a server without defining a endpoint. Expected uri: '<endpoint you start cadl-ranch>/valid'
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /server/path/multiple/{apiVersion}`
