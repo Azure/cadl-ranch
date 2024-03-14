@@ -2407,6 +2407,12 @@ Expected request body:
 { "wireName": true }
 ```
 
+### Server_Endpoint_NotDefined_operation
+
+- Endpoint: `head /server/endpoint/not-defined/operation`
+
+A simple operation in a server without defining a endpoint. Expected uri: 'http://localhost:3000/operation'
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /server/path/multiple/{apiVersion}`
