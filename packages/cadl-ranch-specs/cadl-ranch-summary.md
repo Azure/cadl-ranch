@@ -190,6 +190,30 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Basic_createUser
+
+- Endpoint: `get /azure/core/basic`
+
+Should only generate CreateUserRequest Model as input and CreateUserResponse as response body.
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "nickname": "nickname"
+}
+```
+
+Expected response body:
+
+````json
+{
+  "id": 1,
+  "name": "Madge",
+  "nickname": "nickname"
+}
+
 ### Azure_Core_Basic_delete
 
 - Endpoint: `get /azure/core/basic`
@@ -211,14 +235,13 @@ Expected query parameter: format=json
 Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
-
 ```json
 {
   "id": 1,
   "name": "Madge",
   "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
-```
+````
 
 ### Azure_Core_Basic_get
 
