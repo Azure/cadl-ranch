@@ -1,37 +1,47 @@
 trigger:
   - main
 
-pool:
-  name: azsdk-pool-mms-ubuntu-2004-general
+extends:
+  template: /eng/pipelines/templates/stages/1es-redirect.yml
+  parameters:
+    stages:
+      - stage: Release
+        jobs:
+          - job: Release
+            pool:
+              name: azsdk-pool-mms-ubuntu-2204-1es-pt
+              image: azsdk-pool-mms-ubuntu-2204-1espt
+              os: linux
 
-steps:
-  - script: npm install -g pnpm@7.27.1
-    displayName: Install PNPM
+            steps:
+              - script: npm install -g pnpm@7.27.1
+                displayName: Install PNPM
 
-  - script: pnpm install
-    displayName: Install dependencies
+              - script: pnpm install
+                displayName: Install dependencies
 
-  - script: pnpm run build
-    displayName: Build
+              - script: pnpm run build
+                displayName: Build
 
-  - script: ls ./packages/cadl-ranch-specs/node_modules/.bin
-    displayName: Test LS
+              - script: ls ./packages/cadl-ranch-specs/node_modules/.bin
+                displayName: Test LS
 
-  - script: pnpm run validate-scenarios --debug
-    displayName: Validate Scenarios
+              - script: pnpm run validate-scenarios --debug
+                displayName: Validate Scenarios
 
-  - script: pnpm run validate-scenarios --debug
-    displayName: Validate mock apis
+              - script: pnpm run validate-scenarios --debug
+                displayName: Validate mock apis
 
-  - script: |
-      pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-      pnpm -r publish --access public --no-git-checks
-    displayName: Publish packages
+              # TODO: Uncomment to enable publishing
+              # - script: |
+              #     pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+              #     pnpm -r publish --access public --no-git-checks
+              #   displayName: Publish packages
 
-  - task: AzureCLI@2
-    displayName: Upload scenario manifest
-    inputs:
-      azureSubscription: "Cadl Ranch Storage"
-      scriptType: "bash"
-      scriptLocation: "inlineScript"
-      inlineScript: "pnpm upload-manifest"
+              # - task: AzureCLI@2
+              #   displayName: Upload scenario manifest
+              #   inputs:
+              #     azureSubscription: "Cadl Ranch Storage"
+              #     scriptType: "bash"
+              #     scriptLocation: "inlineScript"
+              #     inlineScript: "pnpm upload-manifest"
