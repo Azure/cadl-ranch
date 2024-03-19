@@ -14,8 +14,8 @@ parameters:
     default: true
 
 extends:
-  ? ${{ if and(parameters.Use1ESOfficial, eq(variables['System.TeamProject'], 'internal')) }}
-  : template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  ${{ if and(parameters.Use1ESOfficial, eq(variables['System.TeamProject'], 'internal')) }}: 
+    template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   ${{ else }}:
     template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
