@@ -14,6 +14,7 @@ parameters:
     default: true
 
 extends:
+  # prettier-ignore
   ${{ if and(parameters.Use1ESOfficial, eq(variables['System.TeamProject'], 'internal')) }}: 
     template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   ${{ else }}:
