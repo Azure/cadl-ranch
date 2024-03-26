@@ -36,16 +36,15 @@ extends:
               - script: pnpm run validate-scenarios --debug
                 displayName: Validate mock apis
 
-              # TODO: Uncomment to enable publishing
-              # - script: |
-              #     pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-              #     pnpm -r publish --access public --no-git-checks
-              #   displayName: Publish packages
+              - script: |
+                  pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                  pnpm -r publish --access public --no-git-checks
+                displayName: Publish packages
 
-              # - task: AzureCLI@2
-              #   displayName: Upload scenario manifest
-              #   inputs:
-              #     azureSubscription: "Cadl Ranch Storage"
-              #     scriptType: "bash"
-              #     scriptLocation: "inlineScript"
-              #     inlineScript: "pnpm upload-manifest"
+              - task: AzureCLI@2
+                displayName: Upload scenario manifest
+                inputs:
+                  azureSubscription: "Cadl Ranch Storage"
+                  scriptType: "bash"
+                  scriptLocation: "inlineScript"
+                  inlineScript: "pnpm upload-manifest"
