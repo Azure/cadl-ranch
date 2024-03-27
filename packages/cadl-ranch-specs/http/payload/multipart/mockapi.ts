@@ -160,3 +160,7 @@ Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage"
 Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentType = passOnSuccess(
   createMockApis("check-filename-and-content-type", [checkId, checkFileNameAndContentType]),
 );
+
+Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
+  createMockApis("anonymous-model", [checkProfileImage]),
+);
