@@ -116,6 +116,17 @@ interface ScalarTypesOperations<T, TDoc extends string> {
 @operationGroup
 interface DecimalType extends ScalarTypesOperations<decimal, "0.33333"> {}
 
+@doc("Decimal type for big int")
+@route("/decimal/big_int")
+@operationGroup
+interface DecimalBigIntType extends ScalarTypesOperations<decimal, "9223372036854775807"> {}
+
+@doc("Decimal type for high precision fraction")
+@route("/decimal/high_precision_fraction")
+@operationGroup
+interface DecimalHighPrecisionFractionType
+  extends ScalarTypesOperations<decimal, "0.14285714285714285714285714285714"> {}
+
 @doc("Decimal128 type")
 @route("/decimal128")
 @operationGroup

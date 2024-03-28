@@ -1385,6 +1385,69 @@ Test unixTimestamp encode for datetime header.
 Expected response header:
 value=1686566864
 
+### Encode_Decimal_Property_default
+
+- Endpoint: `post /encode/decimal/property/default`
+
+Test operation with request and response model contains a decimal property with default encode.
+Expected request body:
+
+```json
+{
+  "value": 0.6666
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 0.6666
+}
+```
+
+### Encode_Decimal_Property_string
+
+- Endpoint: `post /encode/decimal/property/string`
+
+Test operation with request and response model contains a decimal property with default encode.
+Expected request body:
+
+```json
+{
+  "value": "0.6666"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "0.6666"
+}
+```
+
+### Encode_Decimal_Property_stringDecimalArray
+
+- Endpoint: `get /encode/decimal/property/string-decimal-array`
+
+Test operation with request and response model contains an array property which elements are decimal with string encode.
+Expected request body:
+
+```json
+{
+  "value": ["0.6666", "0.3333"]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": ["0.6666", "0.3333"]
+}
+```
+
 ### Encode_Duration_Header_default
 
 - Endpoint: `get /encode/duration/header/default`
@@ -6076,6 +6139,60 @@ Expected input body:
 
 ```json
 0.3
+```
+
+### Type_Scalar_DecimalBigIntType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/big_int/resquest_body`
+
+Expected input body:
+
+```json
+9223372036854775807
+```
+
+### Type_Scalar_DecimalBigIntType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/big_int/request_parameter`
+
+Expected request parameter:
+value=9223372036854775807
+
+### Type_Scalar_DecimalBigIntType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/big_int/response_body`
+
+Expected response body:
+
+```json
+9223372036854775807
+```
+
+### Type_Scalar_DecimalHighPrecisionFractionType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/high_precision_fraction/resquest_body`
+
+Expected input body:
+
+```json
+0.14285714285714285714285714285714
+```
+
+### Type_Scalar_DecimalHighPrecisionFractionType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/high_precision_fraction/request_parameter`
+
+Expected request parameter:
+value=0.14285714285714285714285714285714
+
+### Type_Scalar_DecimalHighPrecisionFractionType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/high_precision_fraction/response_body`
+
+Expected response body:
+
+```json
+0.14285714285714285714285714285714
 ```
 
 ### Type_Scalar_DecimalType_requestBody

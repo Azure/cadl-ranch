@@ -84,6 +84,51 @@ Scenarios.Type_Scalar_Decimal128Type_responseBody = passOnSuccess(Decimal128Type
 Scenarios.Type_Scalar_Decimal128Type_requestBody = passOnSuccess(Decimal128TypeMock.requestBody);
 Scenarios.Type_Scalar_Decimal128Type_requestParameter = passOnSuccess(Decimal128TypeMock.requestParameter);
 
+function createModelMockApisWithRawContent(route: string, value: any): MockApiOperations {
+  return {
+    responseBody: mockapi.get(`/type/scalar/${route}/response_body`, (req) => {
+      return {
+        status: 200,
+        body: {
+          contentType: "application/json",
+          rawContent: value,
+        },
+      };
+    }),
+    requestBody: mockapi.put(`/type/scalar/${route}/resquest_body`, (req) => {
+      req.expect.rawBodyEquals(value);
+      return {
+        status: 204,
+      };
+    }),
+    requestParameter: mockapi.get(`/type/scalar/${route}/request_parameter`, (req) => {
+      req.expect.containsQueryParam("value", value);
+      return {
+        status: 204,
+      };
+    }),
+  };
+}
+
+const DecimalBigIntTypeMock = createModelMockApisWithRawContent("decimal/big_int", "9223372036854775807");
+Scenarios.Type_Scalar_DecimalBigIntType_responseBody = passOnSuccess(DecimalBigIntTypeMock.responseBody);
+Scenarios.Type_Scalar_DecimalBigIntType_requestBody = passOnSuccess(DecimalBigIntTypeMock.requestBody);
+Scenarios.Type_Scalar_DecimalBigIntType_requestParameter = passOnSuccess(DecimalBigIntTypeMock.requestParameter);
+
+const DecimalHighPrecisionFractionTypeMock = createModelMockApisWithRawContent(
+  "decimal/high_precision_fraction",
+  "0.14285714285714285714285714285714",
+);
+Scenarios.Type_Scalar_DecimalHighPrecisionFractionType_responseBody = passOnSuccess(
+  DecimalHighPrecisionFractionTypeMock.responseBody,
+);
+Scenarios.Type_Scalar_DecimalHighPrecisionFractionType_requestBody = passOnSuccess(
+  DecimalHighPrecisionFractionTypeMock.requestBody,
+);
+Scenarios.Type_Scalar_DecimalHighPrecisionFractionType_requestParameter = passOnSuccess(
+  DecimalHighPrecisionFractionTypeMock.requestParameter,
+);
+
 interface NumberTypesVerifyOperations {
   prepareVerify: MockApi;
   verify: MockApi;
