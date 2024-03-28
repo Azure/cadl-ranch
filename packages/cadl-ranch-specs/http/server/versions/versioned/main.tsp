@@ -9,12 +9,8 @@ using TypeSpec.Versioning;
 /**
  * Illustrates versioned server.
  */
-@scenarioService(
-  "/server/versions/versioned",
-  {
-    versioned: Versions,
-  }
-)
+@service
+@versioned(Versions)
 @server(
   "{endpoint}",
   "Testserver endpoint",
@@ -25,6 +21,7 @@ using TypeSpec.Versioning;
     endpoint: url,
   }
 )
+@route("/server/versions/versioned")
 namespace Server.Versions.Versioned;
 
 /**
