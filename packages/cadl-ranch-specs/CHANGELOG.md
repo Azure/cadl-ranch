@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.6
+
+### Patch Changes
+
+- fb5ed08: fix duplicate `@server` definition
+- 7956a78: delete-projected-name-as-deprecated
+- Updated dependencies [7956a78]
+  - @azure-tools/cadl-ranch@0.12.5
+
 ## 0.31.5
 
 ### Patch Changes
