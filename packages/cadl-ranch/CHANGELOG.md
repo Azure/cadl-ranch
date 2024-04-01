@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.5
+
+### Patch Changes
+
+- 7956a78: delete-projected-name-as-deprecated
+
 ## 0.12.4
 
 ### Patch Changes
