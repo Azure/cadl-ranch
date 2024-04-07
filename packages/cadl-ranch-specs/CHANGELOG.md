@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.7
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-expect@0.13.3
+  - @azure-tools/cadl-ranch@0.12.6
+
 ## 0.31.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.2
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+
 ## 0.9.1
 
 ### Patch Changes
