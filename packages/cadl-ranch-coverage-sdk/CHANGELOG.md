@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.8.2
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+
 ## 0.8.1
 
 ### Patch Changes
