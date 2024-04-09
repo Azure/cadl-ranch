@@ -2375,6 +2375,12 @@ A simple operation with path api-version, whose default value is defined as '202
 
 A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-query-api-version?api-version=2022-12-01-preview'.
 
+### Server_Versions_Versioned_withQueryOldApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-query-old-api-version`
+
+A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
+
 ### SpecialHeaders_ClientRequestId
 
 - Endpoint: `get /special-headers/client-request-id/`
