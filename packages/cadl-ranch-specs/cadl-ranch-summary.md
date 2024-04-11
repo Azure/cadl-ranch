@@ -1911,6 +1911,31 @@ Expected request body is "foo".
 
 Expected request body is a string '{cat}'.
 
+### Payload_MultiPart_FormData_anonymousModel
+
+- Endpoint: `post /multipart/form-data/anonymous-model`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /multipart/form-data/anonymous-model HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_MultiPart_FormData_basic
 
 - Endpoint: `post /multipart/form-data/mixed-parts`
