@@ -387,7 +387,7 @@ Expected response body:
 {
   "jobId": "job1",
   "comment": "async job",
-  "status": "succeeded",
+  "status": "Succeeded",
   "results": ["job1 result"]
 }
 ```
@@ -611,6 +611,50 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Scalar_AzureLocationScalar_get
+
+- Endpoint: `get /azure/core/scalar/azureLocation`
+
+Expect to handle a azureLocation value. Mock api will return 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_header
+
+- Endpoint: `post /azure/core/scalar/azureLocation/header`
+
+Expect to send a azureLocation value as header.
+Expected header parameter: `region="eastus"`
+
+### Azure_Core_Scalar_AzureLocationScalar_post
+
+- Endpoint: `post /azure/core/scalar/azureLocation`
+
+Expect to send a model which has an azureLocation property.
+
+Expected request body:
+
+```json
+{ "location": "eastus" }
+```
+
+Expected response body:
+
+```json
+{ "location": "eastus" }
+```
+
+### Azure_Core_Scalar_AzureLocationScalar_put
+
+- Endpoint: `put /azure/core/scalar/azureLocation`
+
+Expect to send a azureLocation value. Mock api expect to receive 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_query
+
+- Endpoint: `post /azure/core/scalar/azureLocation/query`
+
+Expect to send a azureLocation value as query.
+Expected query parameter: `region="eastus"`
+
 ### Azure_Core_Traits_repeatableAction
 
 - Endpoint: `get /azure/core/traits`
@@ -770,6 +814,34 @@ Expected request body:
 ```json
 { "defaultName": true }
 ```
+
+### Client_Naming_UnionEnum_unionEnumMemberName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-member-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
+### Client_Naming_UnionEnum_unionEnumName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum "ClientExtensibleEnum".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
 
 ### Client_Structure_MultiClient
 
@@ -2149,102 +2221,6 @@ maxpagesize=3
 }
 ```
 
-### Projection_ProjectedName_Model_client
-
-- Endpoint: `post /projection/projected-name/model/client`
-
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate the model with name `ClientModel`.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
-```
-
-### Projection_ProjectedName_Model_language
-
-- Endpoint: `post /projection/projected-name/model/language`
-
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate the model with your language specific model name.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
-```
-
-### Projection_ProjectedName_operation
-
-- Endpoint: `post /projection/projected-name/operation`
-
-Testing that we can project the operation name.
-Your generated SDK should generate an operation called `clientName`.
-
-Expected status code: 204
-
-### Projection_ProjectedName_parameter
-
-- Endpoint: `post /projection/projected-name/parameter`
-
-Testing that we can project a parameter name.
-Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
-
-Expected query parameter: `default-name="true"`
-
-### Projection_ProjectedName_Property_client
-
-- Endpoint: `post /projection/projected-name/property/client`
-
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property `clientName` with wire name `defaultName`.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
-```
-
-### Projection_ProjectedName_Property_json
-
-- Endpoint: `post /projection/projected-name/property/json`
-
-Testing that we can project the JSON name on the wire from defaultName -> wireName.
-Your generated SDK should generate JsonProjectedNameModel with one property `defaultName` with wire name `wireName`.
-
-Expected request body:
-
-```json
-{ "wireName": true }
-```
-
-### Projection_ProjectedName_Property_jsonAndClient
-
-- Endpoint: `post /projection/projected-name/property/json-and-client`
-
-Testing that we can project the client name and the wire name.
-Your generated SDK should generate JsonAndClientProjectedNameModel with one property with client name `clientName` and wire name `wireName`.
-
-Expected request body:
-
-```json
-{ "wireName": true }
-```
-
-### Projection_ProjectedName_Property_language
-
-- Endpoint: `post /projection/projected-name/property/language`
-
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property with your language specific property name and wire name `defaultName`.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
-```
-
 ### Resiliency_ServiceDriven_addOperation
 
 - Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-operation`
@@ -2360,6 +2336,12 @@ Expected request body:
 { "wireName": true }
 ```
 
+### Server_Endpoint_NotDefined_valid
+
+- Endpoint: `head /server/endpoint/not-defined/valid`
+
+A simple operation in a server without defining a endpoint. Expected uri: '<endpoint you start cadl-ranch>/valid'
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /server/path/multiple/{apiVersion}`
@@ -2417,6 +2399,12 @@ A simple operation with path api-version, whose default value is defined as '202
 - Endpoint: `head /server/versions/versioned/with-query-api-version`
 
 A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-query-api-version?api-version=2022-12-01-preview'.
+
+### Server_Versions_Versioned_withQueryOldApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-query-old-api-version`
+
+A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
 ### SpecialHeaders_ClientRequestId
 
@@ -3344,7 +3332,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
 ```
 
 ### Type_Array_NullableFloatValue_put
@@ -3354,7 +3342,7 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
 ```
 
 ### Type_Array_StringValue_get
@@ -3544,7 +3532,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_NullableFloatValue_put
@@ -3554,7 +3542,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_RecursiveModelValue_get
@@ -5172,7 +5160,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_getDefault
@@ -5192,7 +5180,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_putDefault
@@ -5372,7 +5360,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_getDefault
@@ -5392,7 +5380,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_putDefault
@@ -5712,7 +5700,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_Enum_put
@@ -5722,7 +5710,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_get
@@ -5732,7 +5720,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_put
@@ -5742,7 +5730,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_Float_get
@@ -5903,6 +5891,26 @@ Expected input body:
 
 ```json
 { "property": "hello" }
+```
+
+### Type_Property_ValueTypes_UnionEnumValue_get
+
+- Endpoint: `get /type/property/value-types/union-enum-value`
+
+Expected response body:
+
+```json
+{ "property": "value2" }
+```
+
+### Type_Property_ValueTypes_UnionEnumValue_put
+
+- Endpoint: `put /type/property/value-types/union-enum-value`
+
+Expected input body:
+
+```json
+{ "property": "value2" }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_get
@@ -6282,7 +6290,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -6305,7 +6313,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected request to send body:
@@ -6328,7 +6336,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected response body:
@@ -6353,7 +6361,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected request to send body:
@@ -6460,7 +6468,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected response body:
@@ -6476,7 +6484,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected request to send body:
@@ -6524,7 +6532,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected response body:
@@ -6540,7 +6548,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected request to send body:

@@ -6,7 +6,7 @@ using TypeSpec.Http;
 /**
  * Illustrates not-versioned server.
  */
-@scenarioService("/server/versions/not-versioned")
+@service
 @server(
   "{endpoint}",
   "Testserver endpoint",
@@ -17,6 +17,7 @@ using TypeSpec.Http;
     endpoint: url,
   }
 )
+@route("/server/versions/not-versioned")
 namespace Server.Versions.NotVersioned;
 
 @scenario

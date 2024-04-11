@@ -10,7 +10,9 @@ using Azure.Core;
 namespace Type.Model.Inheritance.EnumDiscriminator;
 
 @doc("extensible enum type for discriminator")
-enum DogKind {
+union DogKind {
+  string,
+
   @doc("Species golden")
   Golden: "golden",
 }

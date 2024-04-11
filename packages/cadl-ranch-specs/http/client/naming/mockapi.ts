@@ -57,7 +57,7 @@ Scenarios.Client_Naming_Header_request = passOnSuccess(
 );
 
 Scenarios.Client_Naming_Header_response = passOnSuccess(
-  mockapi.post("/client/naming/header", (req) => {
+  mockapi.get("/client/naming/header", (req) => {
     return {
       status: 204,
       headers: {
@@ -79,6 +79,24 @@ Scenarios.Client_Naming_Model_client = passOnSuccess(
 Scenarios.Client_Naming_Model_language = passOnSuccess(
   mockapi.post("/client/naming/model/language", (req) => {
     req.expect.bodyEquals({ defaultName: true });
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Client_Naming_UnionEnum_unionEnumName = passOnSuccess(
+  mockapi.post("/client/naming/union-enum/union-enum-name", (req) => {
+    req.expect.bodyEquals("value1");
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Client_Naming_UnionEnum_unionEnumMemberName = passOnSuccess(
+  mockapi.post("/client/naming/union-enum/union-enum-member-name", (req) => {
+    req.expect.bodyEquals("value1");
     return {
       status: 204,
     };

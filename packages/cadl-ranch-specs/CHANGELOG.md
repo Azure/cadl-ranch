@@ -1,5 +1,76 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.7
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-expect@0.13.3
+  - @azure-tools/cadl-ranch@0.12.6
+
+## 0.31.6
+
+### Patch Changes
+
+- fb5ed08: fix duplicate `@server` definition
+- 7956a78: delete-projected-name-as-deprecated
+- Updated dependencies [7956a78]
+  - @azure-tools/cadl-ranch@0.12.5
+
+## 0.31.5
+
+### Patch Changes
+
+- 04e515a: Add tests for service not providing an endpoint
+
+## 0.31.4
+
+### Patch Changes
+
+- 2d19233: Suppress deprecation warning for projectedName
+
+## 0.31.3
+
+### Patch Changes
+
+- 14a953e: Add test case of enum value to type/property/valuetypes
+- e38de90: resolve typo in azureLocation scalar test
+- 9f6362a: add test for azureLocation scalar
+- a02ac03: Add test for client name on enum and its value
+
+## 0.31.2
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-expect@0.13.2
+  - @azure-tools/cadl-ranch@0.12.4
+
+## 0.31.1
+
+### Patch Changes
+
+- fe16d1c: Remove deprecated service version
+- b045692: Updated expected `float32` values (1.2 and 2.3) to the values that can be exactly represented as IEEE754 (1.25 and 2.375 respectively).
+- Updated dependencies [b045692]
+  - @azure-tools/cadl-ranch@0.12.3
+
+## 0.31.0
+
+### Minor Changes
+
+- 055bd17: Use union for extensible enum
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+- 5178ee8: Bug fix on Scenarios.Client_Naming_Header_response
+- Updated dependencies [055bd17]
+  - @azure-tools/cadl-ranch-expect@0.13.1
+  - @azure-tools/cadl-ranch@0.12.2
+
 ## 0.30.1
 
 ### Patch Changes

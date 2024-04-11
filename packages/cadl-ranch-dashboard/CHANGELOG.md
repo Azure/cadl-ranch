@@ -1,5 +1,21 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.2
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.2
+
+## 0.8.1
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.1
+
 ## 0.8.0
 
 ### Minor Changes

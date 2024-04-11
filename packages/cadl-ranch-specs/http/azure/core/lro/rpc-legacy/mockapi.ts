@@ -4,7 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const jobInProgress = { jobId: "job1", comment: "async job", status: "running" };
-const jobSucceeded = { jobId: "job1", comment: "async job", status: "succeeded", results: ["job1 result"] };
+const jobSucceeded = { jobId: "job1", comment: "async job", status: "Succeeded", results: ["job1 result"] };
 let createPollCount = 0;
 
 Scenarios.Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation = passOnSuccess([

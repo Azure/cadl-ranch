@@ -118,13 +118,15 @@ model DurationProperty is ModelTemplate<duration>;
 interface Duration extends ModelOperations<DurationProperty, "P123DT22H14M12.011S"> {}
 
 // Test a model with an enum property
-@doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
-enum InnerEnum {
+@doc("Enum that will be used as a property for model EnumProperty. Extensible.")
+union InnerEnum {
+  string,
+
   @doc("First value.")
-  ValueOne,
+  ValueOne: "ValueOne",
 
   @doc("Second value.")
-  ValueTwo,
+  ValueTwo: "ValueTwo",
 }
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
@@ -142,13 +144,13 @@ enum FixedInnerEnum {
 model EnumProperty is ModelTemplate<FixedInnerEnum>;
 @route("/enum")
 @operationGroup
-interface Enum extends ModelOperations<EnumProperty, "ValueOne"> {}
+interface Enum extends ModelOperations<EnumProperty, "\"ValueOne\""> {}
 
 @doc("Model with extensible enum properties")
 model ExtensibleEnumProperty is ModelTemplate<InnerEnum>;
 @route("/extensible-enum")
 @operationGroup
-interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "UnknownValue"> {}
+interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "\"UnknownValue\""> {}
 
 // Test a model with a model property
 @doc("Inner model. Will be a property type for ModelWithModelProperties")
@@ -267,3 +269,14 @@ model UnionFloatLiteralProperty is ModelTemplate<43.125 | 46.875>;
 @route("/union/float/literal")
 @operationGroup
 interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "46.875"> {}
+
+union ExtendedEnum {
+  string,
+  EnumValue2: "value2",
+}
+
+model UnionEnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
+
+@route("/union-enum-value")
+@operationGroup
+interface UnionEnumValue extends ModelOperations<UnionEnumValueProperty, "\"value2\""> {}

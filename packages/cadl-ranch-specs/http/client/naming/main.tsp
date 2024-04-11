@@ -187,3 +187,53 @@ namespace Model {
   @post
   op language(...ModelWithLanguageClientName): NoContentResponse;
 }
+
+@operationGroup
+@route("/union-enum")
+namespace UnionEnum {
+  @clientName("ClientExtensibleEnum")
+  union ServerExtensibleEnum {
+    string,
+    EnumValue1: "value1",
+  }
+
+  union ExtensibleEnum {
+    string,
+
+    @clientName("ClientEnumValue1")
+    EnumValue1: "value1",
+
+    @clientName("ClientEnumValue2")
+    "value2",
+  }
+
+  @scenario
+  @scenarioDoc("""
+    Testing that we can project a enum name and enum value name.
+    Your generated SDK should generate an Enum "ClientExtensibleEnum".
+    (The exact name may depend on language convention)
+
+    Expected request body:
+    ```json
+    "value1"
+    ```
+  """)
+  @route("/union-enum-name")
+  @post
+  op unionEnumName(@body body: ServerExtensibleEnum): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+    Testing that we can project a enum name and enum value name.
+    Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
+    (The exact name may depend on language convention)
+
+    Expected request body:
+    ```json
+    "value1"
+    ```
+  """)
+  @route("/union-enum-member-name")
+  @post
+  op unionEnumMemberName(@body body: ExtensibleEnum): NoContentResponse;
+}
