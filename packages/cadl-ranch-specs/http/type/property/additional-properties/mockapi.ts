@@ -214,6 +214,66 @@ Scenarios.Type_Property_AdditionalProperties_SpreadDifferentModelArray_put = pas
   spreadDifferentRecordModelArray.put,
 );
 
+// **************************************************** extends from a model has spread Record<string> ****************************************************
+const extendsModelSpreadStringBody = {
+  id: 43.125,
+  prop: "abc",
+  derivedProp: "abc",
+};
+
+const extendsModelSpreadString = createMockApis("extendsDifferentSpreadString", extendsModelSpreadStringBody);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_get = passOnSuccess(
+  extendsModelSpreadString.get,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_put = passOnSuccess(
+  extendsModelSpreadString.put,
+);
+
+// **************************************************** extends from a model has spread Record<float32> ****************************************************
+const extendsModelSpreadFloatBody = {
+  name: "abc",
+  prop: 43.125,
+  derivedProp: 43.125,
+};
+const extendsModelSpreadFloat = createMockApis("extendsDifferentSpreadFloat", extendsModelSpreadFloatBody);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get = passOnSuccess(
+  extendsModelSpreadFloat.get,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_put = passOnSuccess(
+  extendsModelSpreadFloat.put,
+);
+
+// **************************************************** extends from a model has spread Record<Model> ****************************************************
+const extendsModelSpreadModelBody = {
+  knownProp: "abc",
+  prop: { state: "ok" },
+  derivedProp: { state: "ok" },
+};
+const extendsModelSpreadModel = createMockApis("extendsDifferentSpreadModel", extendsModelSpreadModelBody);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_get = passOnSuccess(
+  extendsModelSpreadModel.get,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_put = passOnSuccess(
+  extendsModelSpreadModel.put,
+);
+
+// **************************************************** extends from a model has spread Record<Model[]> ****************************************************
+const extendsModelSpreadModelArrayBody = {
+  knownProp: "abc",
+  prop: [{ state: "ok" }, { state: "ok" }],
+  derivedProp: [{ state: "ok" }, { state: "ok" }],
+};
+const extendsModelSpreadModelArray = createMockApis(
+  "extendsDifferentSpreadModelArray",
+  extendsModelSpreadModelArrayBody,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_get = passOnSuccess(
+  extendsModelSpreadModelArray.get,
+);
+Scenarios.Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_put = passOnSuccess(
+  extendsModelSpreadModelArray.put,
+);
+
 // **************************************************** Multiple spread of Records ****************************************************
 const multipleSpreadBody = {
   flag: true,

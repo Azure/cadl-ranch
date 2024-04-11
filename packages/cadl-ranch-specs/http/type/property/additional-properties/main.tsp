@@ -386,6 +386,61 @@ interface SpreadDifferentModelArray
       "{'knownProp': 'abc', 'prop': [{'state': 'ok'}, {'state': 'ok'}]}"
     > {}
 
+// ****************** extends model has spread Record<string> **************************
+@doc("The model extends from a model that spread Record<string> with the different known property type")
+model DifferentSpreadStringDerived extends DifferentSpreadStringRecord {
+  @doc("The index property")
+  derivedProp: string;
+}
+
+@route("/extendsDifferentSpreadString")
+@operationGroup
+interface ExtendsDifferentSpreadString
+  extends ModelOperations<DifferentSpreadStringDerived, "{'id': 43.125, 'prop': 'abc', 'derivedProp': 'abc'}"> {}
+
+// ****************** extends model has spread Record<float32> **************************
+@doc("The model extends from a model that spread Record<float32> with the different known property type")
+model DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
+  @doc("The index property")
+  derivedProp: float32;
+}
+
+@route("/extendsDifferentSpreadFloat")
+@operationGroup
+interface ExtendsDifferentSpreadFloat
+  extends ModelOperations<DifferentSpreadFloatDerived, "{'name': 'abc', 'prop': 43.125, 'derivedProp': 43.125}"> {}
+
+// ****************** extends model has spread Record<Model> **************************
+
+@doc("The model extends from a model that spread Record<ModelForRecord> with the different known property type")
+model DifferentSpreadModelDerived extends DifferentSpreadModelRecord {
+  @doc("The index property")
+  derivedProp: ModelForRecord;
+}
+
+@route("/extendsDifferentSpreadModel")
+@operationGroup
+interface ExtendsDifferentSpreadModel
+  extends ModelOperations<
+      DifferentSpreadModelDerived,
+      "{'knownProp': 'abc', 'prop': {'state': 'ok'}, 'derivedProp': {'state': 'ok'}}"
+    > {}
+
+// ****************** extends model has spread Record<Model[]> **************************
+@doc("The model extends from a model that spread Record<ModelForRecord[]> with the different known property type")
+model DifferentSpreadModelArrayDerived extends DifferentSpreadModelArrayRecord {
+  @doc("The index property")
+  derivedProp: ModelForRecord[];
+}
+
+@route("/extendsDifferentSpreadModelArray")
+@operationGroup
+interface ExtendsDifferentSpreadModelArray
+  extends ModelOperations<
+      DifferentSpreadModelArrayDerived,
+      "{'knownProp': 'abc', 'prop': [{'state': 'ok'}, {'state': 'ok'}], 'derivedProp': [{'state': 'ok'}, {'state': 'ok'}]}"
+    > {}
+
 // ****************** multiple spread of records **************************
 @doc("The model spread Record<string> and Record<float32>")
 model MultipleSpreadRecord {

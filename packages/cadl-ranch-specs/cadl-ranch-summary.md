@@ -4307,6 +4307,102 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
+
+Expected response body:
+
+```json
+{ "name": "abc", "prop": 43.125, "derivedProp": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadFloat`
+
+Expected input body:
+
+```json
+{ "name": "abc", "prop": 43.125, "derivedProp": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadModel`
+
+Expected response body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": { "state": "ok" },
+  "derivedProp": { "state": "ok" }
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadModel`
+
+Expected input body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": { "state": "ok" },
+  "derivedProp": { "state": "ok" }
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadModelArray`
+
+Expected response body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": [{ "state": "ok" }, { "state": "ok" }],
+  "derivedProp": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadModelArray`
+
+Expected input body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": [{ "state": "ok" }, { "state": "ok" }],
+  "derivedProp": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadString`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": "abc", "derivedProp": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadString`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": "abc", "derivedProp": "abc" }
+```
+
 ### Type_Property_AdditionalProperties_ExtendsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
