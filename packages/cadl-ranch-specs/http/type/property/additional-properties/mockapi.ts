@@ -115,6 +115,13 @@ const isString = createMockApis("isRecordString", {
 Scenarios.Type_Property_AdditionalProperties_IsString_get = passOnSuccess(isString.get);
 Scenarios.Type_Property_AdditionalProperties_IsString_put = passOnSuccess(isString.put);
 
+const spreadString = createMockApis("spreadRecordString", {
+  name: "SpreadSpringRecord",
+  prop: "abc",
+});
+Scenarios.Type_Property_AdditionalProperties_SpreadString_get = passOnSuccess(spreadString.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadString_put = passOnSuccess(spreadString.put);
+
 // **************************************************** Record<float32> ****************************************************
 const recordFloatBody = {
   id: 43.125,
@@ -128,8 +135,13 @@ const isFloat = createMockApis("isRecordFloat", recordFloatBody);
 Scenarios.Type_Property_AdditionalProperties_IsFloat_get = passOnSuccess(isFloat.get);
 Scenarios.Type_Property_AdditionalProperties_IsFloat_put = passOnSuccess(isFloat.put);
 
+const spreadFloat = createMockApis("spreadRecordFloat", recordFloatBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadFloat_get = passOnSuccess(spreadFloat.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadFloat_put = passOnSuccess(spreadFloat.put);
+
 // **************************************************** Record<Model> ****************************************************
 const recordModelBody = {
+  knownProp: { state: "ok" },
   prop: { state: "ok" },
 };
 const extendsModel = createMockApis("extendsRecordModel", recordModelBody);
@@ -140,8 +152,13 @@ const isModel = createMockApis("isRecordModel", recordModelBody);
 Scenarios.Type_Property_AdditionalProperties_IsModel_get = passOnSuccess(isModel.get);
 Scenarios.Type_Property_AdditionalProperties_IsModel_put = passOnSuccess(isModel.put);
 
+const spreadModel = createMockApis("spreadRecordModel", recordModelBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadModel_get = passOnSuccess(spreadModel.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadModel_put = passOnSuccess(spreadModel.put);
+
 // **************************************************** Record<Model[]> ****************************************************
 const recordModelArrayBody = {
+  knownProp: [{ state: "ok" }, { state: "ok" }],
   prop: [{ state: "ok" }, { state: "ok" }],
 };
 const extendsModelArray = createMockApis("extendsRecordModelArray", recordModelArrayBody);
@@ -151,3 +168,149 @@ Scenarios.Type_Property_AdditionalProperties_ExtendsModelArray_put = passOnSucce
 const isModelArray = createMockApis("isRecordModelArray", recordModelArrayBody);
 Scenarios.Type_Property_AdditionalProperties_IsModelArray_get = passOnSuccess(isModelArray.get);
 Scenarios.Type_Property_AdditionalProperties_IsModelArray_put = passOnSuccess(isModelArray.put);
+
+const spreadModelArray = createMockApis("spreadRecordModelArray", recordModelArrayBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadModelArray_get = passOnSuccess(spreadModelArray.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadModelArray_put = passOnSuccess(spreadModelArray.put);
+
+// **************************************************** Spread different Record type ****************************************************
+const differentRecordStringBody = {
+  id: 43.125,
+  prop: "abc",
+};
+const spreadDifferentRecordString = createMockApis("spreadDifferentRecordString", differentRecordStringBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentString_get = passOnSuccess(spreadDifferentRecordString.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentString_put = passOnSuccess(spreadDifferentRecordString.put);
+
+const differentRecordFloatBody = {
+  name: "abc",
+  prop: 43.125,
+};
+const spreadDifferentRecordFloat = createMockApis("spreadDifferentRecordFloat", differentRecordFloatBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentFloat_get = passOnSuccess(spreadDifferentRecordFloat.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentFloat_put = passOnSuccess(spreadDifferentRecordFloat.put);
+
+const differentRecordModelBody = {
+  knownProp: "abc",
+  prop: { state: "ok" },
+};
+
+const spreadDifferentRecordModel = createMockApis("spreadDifferentRecordModel", differentRecordModelBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentModel_get = passOnSuccess(spreadDifferentRecordModel.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentModel_put = passOnSuccess(spreadDifferentRecordModel.put);
+
+const differentRecordModelArrayBody = {
+  knownProp: "abc",
+  prop: [{ state: "ok" }, { state: "ok" }],
+};
+const spreadDifferentRecordModelArray = createMockApis(
+  "spreadDifferentRecordModelArray",
+  differentRecordModelArrayBody,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentModelArray_get = passOnSuccess(
+  spreadDifferentRecordModelArray.get,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadDifferentModelArray_put = passOnSuccess(
+  spreadDifferentRecordModelArray.put,
+);
+
+// **************************************************** Multiple spread of Records ****************************************************
+const multipleSpreadBody = {
+  flag: true,
+  prop1: "abc",
+  prop2: 43.125,
+};
+const multipleSpreadRecord = createMockApis("multipleSpreadRecord", multipleSpreadBody);
+Scenarios.Type_Property_AdditionalProperties_MultipleSpread_get = passOnSuccess(multipleSpreadRecord.get);
+Scenarios.Type_Property_AdditionalProperties_MultipleSpread_put = passOnSuccess(multipleSpreadRecord.put);
+
+// **************************************************** Record of union ****************************************************
+const recordUnionBody = multipleSpreadBody;
+const recordUnion = createMockApis("spreadRecordUnion", recordUnionBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordUnion_get = passOnSuccess(recordUnion.get);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordUnion_put = passOnSuccess(recordUnion.put);
+
+// **************************************************** Record of discriminated union ****************************************************
+const recordDiscriminatedUnionBody = {
+  name: "abc",
+  prop1: {
+    kind: "kind0",
+    fooProp: "abc",
+  },
+  prop2: {
+    kind: "kind1",
+    start: "2021-01-01T00:00:00Z",
+    end: "2021-01-02T00:00:00Z",
+  },
+};
+
+const recordDiscriminatedUnion = createMockApis("spreadRecordDiscriminatedUnion", recordDiscriminatedUnionBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_get = passOnSuccess(
+  recordDiscriminatedUnion.get,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_put = passOnSuccess(
+  recordDiscriminatedUnion.put,
+);
+
+// **************************************************** Record of non discriminated union ****************************************************
+const recordNonDiscriminatedUnion = createMockApis("spreadRecordNonDiscriminatedUnion", recordDiscriminatedUnionBody);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_get = passOnSuccess(
+  recordNonDiscriminatedUnion.get,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_put = passOnSuccess(
+  recordNonDiscriminatedUnion.put,
+);
+
+// **************************************************** Record of non discriminated union 2 ****************************************************
+const recordNonDiscriminatedUnion2Body = {
+  name: "abc",
+  prop1: {
+    kind: "kind1",
+    start: "2021-01-01T00:00:00Z",
+  },
+  prop2: {
+    kind: "kind1",
+    start: "2021-01-01T00:00:00Z",
+    end: "2021-01-02T00:00:00Z",
+  },
+};
+const recordNonDiscriminatedUnion2 = createMockApis(
+  "spreadRecordNonDiscriminatedUnion2",
+  recordNonDiscriminatedUnion2Body,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_get = passOnSuccess(
+  recordNonDiscriminatedUnion2.get,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_put = passOnSuccess(
+  recordNonDiscriminatedUnion2.put,
+);
+
+// **************************************************** Record of non discriminated union 3 ****************************************************
+const recordNonDiscriminatedUnion3Body = {
+  name: "abc",
+  prop1: [
+    {
+      kind: "kind1",
+      start: "2021-01-01T00:00:00Z",
+    },
+    {
+      kind: "kind1",
+      start: "2021-01-01T00:00:00Z",
+    },
+  ],
+  prop2: {
+    kind: "kind1",
+    start: "2021-01-01T00:00:00Z",
+    end: "2021-01-02T00:00:00Z",
+  },
+};
+const recordNonDiscriminatedUnion3 = createMockApis(
+  "spreadRecordNonDiscriminatedUnion3",
+  recordNonDiscriminatedUnion3Body,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_get = passOnSuccess(
+  recordNonDiscriminatedUnion3.get,
+);
+Scenarios.Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_put = passOnSuccess(
+  recordNonDiscriminatedUnion3.put,
+);

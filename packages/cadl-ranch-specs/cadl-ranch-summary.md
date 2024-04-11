@@ -4334,7 +4334,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_put
@@ -4344,7 +4344,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_get
@@ -4354,7 +4354,10 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_put
@@ -4364,7 +4367,10 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsString_get
@@ -4514,7 +4520,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_put
@@ -4524,7 +4530,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_get
@@ -4534,7 +4540,10 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_put
@@ -4544,7 +4553,10 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_IsString_get
@@ -4665,6 +4677,340 @@ Expected input body:
   "prop2": true,
   "prop3": "abc"
 }
+```
+
+### Type_Property_AdditionalProperties_MultipleSpread_get
+
+- Endpoint: `get /type/property/additionalProperties/multipleSpreadRecord`
+
+Expected response body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_MultipleSpread_put
+
+- Endpoint: `put /type/property/additionalProperties/multipleSpreadRecord`
+
+Expected input body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordFloat`
+
+Expected response body:
+
+```json
+{ "name": "abc", "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordFloat`
+
+Expected input body:
+
+```json
+{ "name": "abc", "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModel_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordModel`
+
+Expected response body:
+
+```json
+{ "knownProp": "abc", "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModel_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordModel`
+
+Expected input body:
+
+```json
+{ "knownProp": "abc", "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordModelArray`
+
+Expected response body:
+
+```json
+{ "knownProp": "abc", "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordModelArray`
+
+Expected input body:
+
+```json
+{ "knownProp": "abc", "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentString_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordString`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentString_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordString`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadModel_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordModel`
+
+Expected response body:
+
+```json
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadModel_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordModel`
+
+Expected input body:
+
+```json
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordModelArray`
+
+Expected response body:
+
+```json
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordModelArray`
+
+Expected input body:
+
+```json
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordDiscriminatedUnion`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordDiscriminatedUnion`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion2`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind1", "start": "2021-01-01T00:00:00Z" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion2`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind1", "start": "2021-01-01T00:00:00Z" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3`
+
+Expected response body:
+
+```json
+{'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3`
+
+Expected input body:
+
+```json
+{'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordUnion`
+
+Expected response body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordUnion`
+
+Expected input body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadString_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordString`
+
+Expected response body:
+
+```json
+{ "name": "SpreadSpringRecord", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadString_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordString`
+
+Expected input body:
+
+```json
+{ "name": "SpreadSpringRecord", "prop": "abc" }
 ```
 
 ### Type_Property_Nullable_Bytes_getNonNull
