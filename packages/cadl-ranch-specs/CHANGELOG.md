@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.31.8
+
+### Patch Changes
+
+- 56f07cf: additional-properties-add-test-cases-for-spread-of-record
+- 339d172: add test case which contains anonymous model for multipart/form-data
+- 68dfb72: Add old API version test
+- Updated dependencies [56f07cf]
+- Updated dependencies [68dfb72]
+  - @azure-tools/cadl-ranch@0.12.7
+
 ## 0.31.7
 
 ### Patch Changes

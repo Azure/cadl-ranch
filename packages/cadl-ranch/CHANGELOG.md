@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch
 
+## 0.12.7
+
+### Patch Changes
+
+- 56f07cf: additional-properties-add-test-cases-for-spread-of-record
+- 68dfb72: Add old API version test
+
 ## 0.12.6
 
 ### Patch Changes
