@@ -172,6 +172,9 @@ model MixedTypesCases {
 
   /** This should be receive/send the boolean variant */
   boolean: MixedTypesUnion;
+
+  /** This should be receive/send 4 element with Cat, "a", int, and boolean */
+  array: MixedTypesUnion[];
 }
 
 /**
