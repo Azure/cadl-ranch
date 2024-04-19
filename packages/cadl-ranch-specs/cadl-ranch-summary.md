@@ -1560,6 +1560,27 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Encode_Union_unixTimestampUnion
+
+- Endpoint: `post /encode/union/unix-timestamp-union`
+
+Test operation with request and response model contains datetime property with unixTimestamp encode.
+Expected request body:
+
+```json
+{
+  "value": 1686566864
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 1686566864
+}
+```
+
 ### Parameters_BodyOptionality_OptionalExplicit
 
 - Endpoints:
