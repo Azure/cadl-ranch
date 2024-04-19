@@ -192,7 +192,15 @@ interface MixedTypes
         },
         "literal": "a",
         "int": 2,
-        "boolean": true
+        "boolean": true,
+        "array": [
+          {
+            "name": "test"
+          },
+          "a",
+          2,
+          true
+        ]
       }
       """,
       MixedTypesCases

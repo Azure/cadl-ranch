@@ -6791,7 +6791,15 @@ Expected response body:
     },
     "literal": "a",
     "int": 2,
-    "boolean": true
+    "boolean": true,
+    "array": [
+      {
+        "name": "test"
+      },
+      "a",
+      2,
+      true
+    ]
   }
 }
 ```
@@ -6816,7 +6824,15 @@ Expected request to send body:
     },
     "literal": "a",
     "int": 2,
-    "boolean": true
+    "boolean": true,
+    "array": [
+      {
+        "name": "test"
+      },
+      "a",
+      2,
+      true
+    ]
   }
 }
 ```
