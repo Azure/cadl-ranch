@@ -341,57 +341,6 @@ Expected response body:
 
 This scenario is to test two operations with two different page item types.
 
-### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
-
-- Endpoints:
-  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location`
-  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
-
-POST to create resource.
-Poll URL via operation-location header in response.
-Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
-
-Expected verb: POST
-Expected request body:
-```json
-{
-  "comment": "async job"
-}
-````
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
-No response body.
-
-Expected verb: GET
-Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "running"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "Succeeded",
-  "results": ["job1 result"]
-}
-```
-
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
@@ -401,12 +350,11 @@ GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
-
 ```json
 {
   "prompt": "text"
 }
-```
+````
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/generations/operations/operation1
