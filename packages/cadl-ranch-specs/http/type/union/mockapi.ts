@@ -72,6 +72,14 @@ const Type_Union_MixedTypes = createGetSendScenario("/type/union/mixed-types", {
   literal: "a",
   int: 2,
   boolean: true,
+  array: [
+    {
+      name: "test",
+    },
+    "a",
+    2,
+    true,
+  ],
 });
 Scenarios.Type_Union_MixedTypes_get = Type_Union_MixedTypes.get;
 Scenarios.Type_Union_MixedTypes_send = Type_Union_MixedTypes.send;

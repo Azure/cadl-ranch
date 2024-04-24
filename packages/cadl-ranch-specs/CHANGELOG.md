@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.32.0
+
+### Minor Changes
+
+- dca2382: remove lro-rpc-legacy test since no services use it
+
+### Patch Changes
+
+- 2839b97: add a union array case
+
 ## 0.31.8
 
 ### Patch Changes
