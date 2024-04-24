@@ -6,8 +6,8 @@ using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
 @doc("Illustrates the model flatten cases.")
-@scenarioService("/type/model/flatten")
-namespace Type.Model.Flatten;
+@scenarioService("/azure/client-generator/core/flatten")
+namespace Azure.ClientGenerator.Core.Flatten;
 
 @doc("This is the model with one level of flattening.")
 model FlattenModel {

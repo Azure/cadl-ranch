@@ -5,12 +5,12 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 /**
  * Return the put operation.
- * @param route The route under /type/model/flatten for your function.
+ * @param route The route under /azure/client-generator/core/flatten for your function.
  * @param request The request body you are expecting and will return.
  * @param response The response body you are expecting and will return.
  */
 function createMockApis(route: string, request: any, response: any): MockApi {
-  const url = `/type/model/flatten/${route}`;
+  const url = `/azure/client-generator/core/flatten/${route}`;
   return mockapi.put(url, (req) => {
     req.expect.bodyEquals(request);
     return {
@@ -20,7 +20,7 @@ function createMockApis(route: string, request: any, response: any): MockApi {
   });
 }
 
-Scenarios.Type_Model_Flatten_putFlattenModel = passOnSuccess(
+Scenarios.Azure_ClientGenerator_Core_Flatten_putFlattenModel = passOnSuccess(
   createMockApis(
     "flattenModel",
     {
@@ -40,7 +40,7 @@ Scenarios.Type_Model_Flatten_putFlattenModel = passOnSuccess(
   ),
 );
 
-Scenarios.Type_Model_Flatten_putNestedFlattenModel = passOnSuccess(
+Scenarios.Azure_ClientGenerator_Core_Flatten_putNestedFlattenModel = passOnSuccess(
   createMockApis(
     "nestedFlattenModel",
     {
