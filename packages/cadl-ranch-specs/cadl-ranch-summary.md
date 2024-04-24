@@ -128,70 +128,6 @@ Expected response body:
 }
 ```
 
-### Azure_ClientGenerator_Core_Flatten_putFlattenModel
-
-- Endpoint: `put /azure/client-generator/core/flatten/flattenModel`
-
-Update and receive model with 1 level of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "description": "bar",
-    "age": 10
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "description": "test",
-    "age": 1
-  }
-}
-```
-
-### Azure_ClientGenerator_Core_Flatten_putNestedFlattenModel
-
-- Endpoint: `put /azure/client-generator/core/flatten/nestedFlattenModel`
-
-Update and receive model with 2 levels of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "summary": "bar",
-    "properties": {
-      "description": "test",
-      "age": 10
-    }
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "summary": "test",
-    "properties": {
-      "description": "foo",
-      "age": 1
-    }
-  }
-}
-```
-
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -726,16 +662,16 @@ Expected response body:
 }
 ```
 
-### Azure_SpecialHeaders_ClientRequestId
+### Azure_SpecialHeaders_XmsClientRequestId
 
-- Endpoint: `get /azure/special-headers/client-request-id/`
+- Endpoint: `get /azure/special-headers/x-ms-client-request-id/`
 
-Test case for azure client request id header. SDK should not genreate `clientRequestId` parameter but use policy to auto-set the header.
+Test case for azure client request id header. SDK should not generate `clientRequestId` paramerter but use policy to auto-set the header.
 Expected header parameters:
 
-- client-request-id=<any uuid string>
+- x-ms-client-request-id=<any uuid string>
   Expected response header:
-- client-request-id=<uuid string same with request header>
+- x-ms-client-request-id=<uuid string same with request header>
 
 ### Client_Naming_Header_request
 
@@ -3688,6 +3624,70 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
+
+### Type_Model_Flatten_putFlattenModel
+
+- Endpoint: `put /type/model/flatten/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Type_Model_Flatten_putNestedFlattenModel
+
+- Endpoint: `put /type/model/flatten/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
