@@ -37,6 +37,126 @@ namespace Model {
   @route("/request-body")
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
+
+  @doc("This is a model only with `@body` property.")
+  model CompositeRequestOnlyWithBody {
+    @body body: BodyParameter;
+  }
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread model only with `@body` property. 
+  
+  Should generate request body model named `BodyParameter`.
+  Should not generate model named `CompositeRequestOnlyWithBody`.
+  Should generate an operation like below:
+  ```
+  spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+  
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/composite-request-only-with-body")
+  @put
+  op spreadCompositeRequestOnlyWithBody(...CompositeRequestOnlyWithBody): NoContentResponse;
+
+  @doc("This is a model without `@body` property.")
+  model CompositeRequestWithoutBody {
+    @path
+    name: string;
+
+    @header
+    testHeader: string;
+  }
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread model without `@body` property. 
+  
+  Should not generate model named `CompositeRequestOnlyWithBody`.
+  Should generate an operation like below:
+  ```
+  spreadCompositeRequestWithoutBody(name: string, testHeader: string)
+  ```
+
+  Expected path parameter: name="foo"
+  Expected header parameter: testHeader="bar"
+  """)
+  @route("/composite-request-without-body/{name}")
+  @put
+  op spreadCompositeRequestWithoutBody(...CompositeRequestWithoutBody): NoContentResponse;
+
+  @doc("This is a model with all http request decorator.")
+  model CompositeRequest {
+    @path
+    name: string;
+
+    @header
+    testHeader: string;
+
+    @body
+    body: BodyParameter;
+  }
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread model with all http request decorator. 
+  
+  Should generate request body model named `BodyParameter`.
+  Should not generate model named `CompositeRequest`.
+  Should generate an operation like below:
+  ```
+  spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+  
+  Expected path parameter: name="foo"
+  Expected header parameter: testHeader="bar"
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/composite-request/{name}")
+  @put
+  op spreadCompositeRequest(...CompositeRequest): NoContentResponse;
+
+  @doc("This is a model with non-body http request decorator.")
+  model CompositeRequestMix {
+    @path
+    name: string;
+
+    @header
+    testHeader: string;
+
+    prop: string;
+  }
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread model with non-body http request decorator. 
+  
+  Should generate request body model named `CompositeRequestMix`.
+  Should generate an operation like below:
+  ```
+  spreadCompositeRequestMix(name: string, testHeader: string, bodyParameter: CompositeRequestMix)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+  
+  Expected path parameter: name="foo"
+  Expected header parameter: testHeader="bar"
+  Expected request body:
+  ```json
+  { "prop": "foo" }
+  ```
+  """)
+  @route("/composite-request-mix/{name}")
+  @put
+  op spreadCompositeRequestMix(...CompositeRequestMix): NoContentResponse;
 }
 
 @route("/alias")
