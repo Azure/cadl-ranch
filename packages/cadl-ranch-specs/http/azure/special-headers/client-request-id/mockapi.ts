@@ -2,8 +2,8 @@ import { passOnSuccess, ScenarioMockApi, mockapi, validateValueFormat } from "@a
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.SpecialHeaders_ClientRequestId = passOnSuccess(
-  mockapi.get("/special-headers/client-request-id", (req) => {
+Scenarios.Azure_SpecialHeaders_ClientRequestId = passOnSuccess(
+  mockapi.get("/azure/special-headers/client-request-id", (req) => {
     validateValueFormat(req.headers["client-request-id"], "uuid");
     return {
       status: 204,
