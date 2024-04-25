@@ -48,7 +48,7 @@ namespace ImplicitBody {
   
   Should generate an operation like below:
   ```
-  simple(name: striing)
+  simple(name: string)
   ```
   
   Expected request body:
