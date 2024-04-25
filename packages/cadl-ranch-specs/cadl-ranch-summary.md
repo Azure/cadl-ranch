@@ -1508,6 +1508,45 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Parameters_Basic_ExplicitBody_simple
+
+- Endpoint: `put /parameters/basic/explicit-body/simple`
+
+Test case for simple explicit body.
+
+Should generate request body model named `User`.
+Should generate an operation like below:
+
+```
+spreadAsRequestBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Basic_ImplicitBody_simple
+
+- Endpoint: `put /parameters/basic/implicit-body/simple`
+
+Test case for simple implicit body.
+
+Should generate an operation like below:
+
+```
+simple(name: string)
+```
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_BodyOptionality_OptionalExplicit
 
 - Endpoints:
@@ -1676,6 +1715,91 @@ Expected request body:
 ```json
 { "name": "foo" }
 ```
+
+### Parameters_Spread_Model_spreadCompositeRequest
+
+- Endpoint: `put /parameters/spread/model/composite-request/{name}`
+
+Test case for spread model with all http request decorator.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequest`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestMix
+
+- Endpoint: `put /parameters/spread/model/composite-request-mix/{name}`
+
+Test case for spread model with non-body http request decorator.
+
+Should generate request body model named `CompositeRequestMix`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestMix(name: string, testHeader: string, bodyParameter: CompositeRequestMix)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-only-with-body`
+
+Test case for spread model only with `@body` property.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestWithoutBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-without-body/{name}`
+
+Test case for spread model without `@body` property.
+
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestWithoutBody(name: string, testHeader: string)
+```
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
 
 ### Payload_ContentNegotiation_DifferentBody
 
