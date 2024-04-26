@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.0
+
+### Minor Changes
+
+- ff9a60f: move flatten model and client request id azure tests into azure folder and namespace
+
 ## 0.32.0
 
 ### Minor Changes
