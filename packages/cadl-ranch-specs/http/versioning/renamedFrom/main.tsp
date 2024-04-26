@@ -107,5 +107,5 @@ Expected request body for test:
 interface NewInterface {
   @post
   @route("/test")
-  test(@body body: NewModel): NewModel;
+  newOpInNewInterface(@body body: NewModel): NewModel;
 }

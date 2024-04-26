@@ -24,7 +24,7 @@ Scenarios.Versioning_Added_v2 = passOnSuccess(
   }),
 );
 
-Scenarios.Versioning_Added_InterfaceV2_v2InInterface = passOnSuccess(
+Scenarios.Versioning_Added_InterfaceV2 = passOnSuccess(
   mockapi.post("/versioning/added/api-version:v2/interface-v2/v2", (req) => {
     req.expect.bodyEquals({ prop: "foo", enumProp: "enumMember", unionProp: "bar" });
     return {

@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Versioning_RenamedFrom_test = passOnSuccess(
+Scenarios.Versioning_RenamedFrom_newOp = passOnSuccess(
   mockapi.post("/versioning/renamed-from/api-version:v2/test", (req) => {
     req.expect.bodyEquals({ newProp: "foo", enumProp: "newEnumMember", unionProp: 10 });
     req.expect.containsQueryParam("newQuery", "bar");
@@ -14,7 +14,7 @@ Scenarios.Versioning_RenamedFrom_test = passOnSuccess(
   }),
 );
 
-Scenarios.Versioning_RenamedFrom_NewInterface_test = passOnSuccess(
+Scenarios.Versioning_RenamedFrom_NewInterface = passOnSuccess(
   mockapi.post("/versioning/renamed-from/api-version:v2/interface/test", (req) => {
     req.expect.bodyEquals({ newProp: "foo", enumProp: "newEnumMember", unionProp: 10 });
     return {
