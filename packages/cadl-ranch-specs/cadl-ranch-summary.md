@@ -7072,7 +7072,7 @@ Expected request body:
 
 ```json
 { "prop": "foo", "changedProp": "bar" }
+```
 
 Expected query param:
 param="baz"
-```

@@ -56,10 +56,10 @@ This operation should be generated with latest version's signature.
 Expected request body:
 ```json
 { "prop": "foo", "changedProp": "bar" }
+```
 
 Expected query param:
 param="baz"
-```
 
 """)
 @route("/test")
