@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.1
+
+### Patch Changes
+
+- 70161f9: add test for versioning
+- 99dc009: add more parameter tests
+- d7308c1: Add @body to some response.
+
 ## 0.33.0
 
 ### Minor Changes
