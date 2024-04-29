@@ -662,6 +662,17 @@ Expected response body:
 }
 ```
 
+### Azure_SpecialHeaders_XmsClientRequestId
+
+- Endpoint: `get /azure/special-headers/x-ms-client-request-id/`
+
+Test case for azure client request id header. SDK should not generate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- x-ms-client-request-id=<any uuid string>
+  Expected response header:
+- x-ms-client-request-id=<uuid string same with request header>
+
 ### Client_Naming_Header_request
 
 - Endpoint: `post /client/naming/header`
@@ -1508,6 +1519,45 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Parameters_Basic_ExplicitBody_simple
+
+- Endpoint: `put /parameters/basic/explicit-body/simple`
+
+Test case for simple explicit body.
+
+Should generate request body model named `User`.
+Should generate an operation like below:
+
+```
+spreadAsRequestBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Basic_ImplicitBody_simple
+
+- Endpoint: `put /parameters/basic/implicit-body/simple`
+
+Test case for simple implicit body.
+
+Should generate an operation like below:
+
+```
+simple(name: string)
+```
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_BodyOptionality_OptionalExplicit
 
 - Endpoints:
@@ -1676,6 +1726,91 @@ Expected request body:
 ```json
 { "name": "foo" }
 ```
+
+### Parameters_Spread_Model_spreadCompositeRequest
+
+- Endpoint: `put /parameters/spread/model/composite-request/{name}`
+
+Test case for spread model with all http request decorator.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequest`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestMix
+
+- Endpoint: `put /parameters/spread/model/composite-request-mix/{name}`
+
+Test case for spread model with non-body http request decorator.
+
+Should generate request body model named `CompositeRequestMix`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestMix(name: string, testHeader: string, bodyParameter: CompositeRequestMix)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-only-with-body`
+
+Test case for spread model only with `@body` property.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestWithoutBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-without-body/{name}`
+
+Test case for spread model without `@body` property.
+
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestWithoutBody(name: string, testHeader: string)
+```
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
 
 ### Payload_ContentNegotiation_DifferentBody
 
@@ -2353,17 +2488,6 @@ A simple operation with query api-version, whose default value is defined as '20
 - Endpoint: `head /server/versions/versioned/with-query-old-api-version`
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
-
-### SpecialHeaders_ClientRequestId
-
-- Endpoint: `get /special-headers/client-request-id/`
-
-Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
-Expected header parameters:
-
-- client-request-id=<any uuid string>
-  Expected response header:
-- client-request-id=<uuid string same with request header>
 
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
@@ -6962,3 +7086,117 @@ Expected request to send body:
 ```json
 { "prop": "b" }
 ```
+
+### Versioning_Added_InterfaceV2
+
+- Endpoint: `post /versioning/added/api-version:{version}/interface-v2/v2`
+
+This operation group should only be generated with latest version.
+
+Expected request body for v2InInterface:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_Added_v1
+
+- Endpoint: `post /versioning/added/api-version:{version}/v1`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": 10 }
+```
+
+Expected header:
+header-v2=bar
+
+### Versioning_Added_v2
+
+- Endpoint: `post /versioning/added/api-version:{version}/v2`
+
+This operation should only be generated with latest version.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_MadeOptional_test
+
+- Endpoint: `post /versioning/made-optional/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Versioning_Removed_v2
+
+- Endpoint: `post /versioning/removed/api-version:{version}/v2`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
+```
+
+### Versioning_RenamedFrom_NewInterface
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/interface/test`
+
+This operation group should only be generated with latest version's signature.
+
+Expected request body for test:
+
+```json
+{ "prop": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+### Versioning_RenamedFrom_newOp
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "newProp": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+Expected query:
+newQuery=bar
+
+### Versioning_ReturnTypeChangedFrom_test
+
+- Endpoint: `post /versioning/return-type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body: "test"
+Expected response body: "test"
+
+### Versioning_TypeChangedFrom_test
+
+- Endpoint: `post /versioning/type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "changedProp": "bar" }
+```
+
+Expected query param:
+param="baz"

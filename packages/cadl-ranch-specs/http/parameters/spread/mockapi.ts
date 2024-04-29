@@ -10,6 +10,36 @@ Scenarios.Parameters_Spread_Model_spreadAsRequestBody = passOnSuccess(
   }),
 );
 
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody = passOnSuccess(
+  mockapi.put("/parameters/spread/model/composite-request-only-with-body", (req) => {
+    req.expect.bodyEquals({ name: "foo" });
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestWithoutBody = passOnSuccess(
+  mockapi.put("/parameters/spread/model/composite-request-without-body/foo", (req) => {
+    req.expect.containsHeader("test-header", "bar");
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Model_spreadCompositeRequest = passOnSuccess(
+  mockapi.put("/parameters/spread/model/composite-request/foo", (req) => {
+    req.expect.containsHeader("test-header", "bar");
+    req.expect.bodyEquals({ name: "foo" });
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestMix = passOnSuccess(
+  mockapi.put("/parameters/spread/model/composite-request-mix/foo", (req) => {
+    req.expect.containsHeader("test-header", "bar");
+    req.expect.bodyEquals({ prop: "foo" });
+    return { status: 204 };
+  }),
+);
+
 Scenarios.Parameters_Spread_Alias_spreadAsRequestBody = passOnSuccess(
   mockapi.put("/parameters/spread/alias/request-body", (req) => {
     req.expect.bodyEquals({ name: "foo" });
