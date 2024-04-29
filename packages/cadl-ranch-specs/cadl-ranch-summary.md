@@ -662,6 +662,17 @@ Expected response body:
 }
 ```
 
+### Azure_SpecialHeaders_XmsClientRequestId
+
+- Endpoint: `get /azure/special-headers/x-ms-client-request-id/`
+
+Test case for azure client request id header. SDK should not generate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- x-ms-client-request-id=<any uuid string>
+  Expected response header:
+- x-ms-client-request-id=<uuid string same with request header>
+
 ### Client_Naming_Header_request
 
 - Endpoint: `post /client/naming/header`
@@ -2477,17 +2488,6 @@ A simple operation with query api-version, whose default value is defined as '20
 - Endpoint: `head /server/versions/versioned/with-query-old-api-version`
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
-
-### SpecialHeaders_ClientRequestId
-
-- Endpoint: `get /special-headers/client-request-id/`
-
-Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
-Expected header parameters:
-
-- client-request-id=<any uuid string>
-  Expected response header:
-- client-request-id=<uuid string same with request header>
 
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
