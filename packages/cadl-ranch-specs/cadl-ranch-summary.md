@@ -7086,3 +7086,117 @@ Expected request to send body:
 ```json
 { "prop": "b" }
 ```
+
+### Versioning_Added_InterfaceV2
+
+- Endpoint: `post /versioning/added/api-version:{version}/interface-v2/v2`
+
+This operation group should only be generated with latest version.
+
+Expected request body for v2InInterface:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_Added_v1
+
+- Endpoint: `post /versioning/added/api-version:{version}/v1`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": 10 }
+```
+
+Expected header:
+header-v2=bar
+
+### Versioning_Added_v2
+
+- Endpoint: `post /versioning/added/api-version:{version}/v2`
+
+This operation should only be generated with latest version.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_MadeOptional_test
+
+- Endpoint: `post /versioning/made-optional/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Versioning_Removed_v2
+
+- Endpoint: `post /versioning/removed/api-version:{version}/v2`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
+```
+
+### Versioning_RenamedFrom_NewInterface
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/interface/test`
+
+This operation group should only be generated with latest version's signature.
+
+Expected request body for test:
+
+```json
+{ "prop": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+### Versioning_RenamedFrom_newOp
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "newProp": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+Expected query:
+newQuery=bar
+
+### Versioning_ReturnTypeChangedFrom_test
+
+- Endpoint: `post /versioning/return-type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body: "test"
+Expected response body: "test"
+
+### Versioning_TypeChangedFrom_test
+
+- Endpoint: `post /versioning/type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "changedProp": "bar" }
+```
+
+Expected query param:
+param="baz"
