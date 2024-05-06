@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.2
+
+### Patch Changes
+
+- c786854: Add float64 test cases for encode/duration
+
 ## 0.33.1
 
 ### Patch Changes
