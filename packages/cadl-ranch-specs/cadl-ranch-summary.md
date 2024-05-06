@@ -1351,6 +1351,13 @@ value=1686566864
 Test default encode for a duration header.
 Expected header `input=P40D`
 
+### Encode_Duration_Header_float64Seconds
+
+- Endpoint: `get /encode/duration/header/float64-seconds`
+
+Test float64 seconds encode for a duration header.
+Expected header `duration: 35.621`
+
 ### Encode_Duration_Header_floatSeconds
 
 - Endpoint: `get /encode/duration/header/float-seconds`
@@ -1397,6 +1404,27 @@ Expected response body:
 ```json
 {
   "value": "P40D"
+}
+```
+
+### Encode_Duration_Property_float64Seconds
+
+- Endpoint: `get /encode/duration/property/float64-seconds`
+
+Test operation with request and response model contains a duration property with float seconds encode.
+Expected request body:
+
+```json
+{
+  "value": 35.621
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 35.621
 }
 ```
 
@@ -1490,6 +1518,13 @@ Expected response body:
 
 Test default encode for a duration parameter.
 Expected query parameter `input=P40D`
+
+### Encode_Duration_Query_float64Seconds
+
+- Endpoint: `get /encode/duration/query/float64-seconds`
+
+Test float seconds encode for a duration parameter.
+Expected query parameter `input=35.621`
 
 ### Encode_Duration_Query_floatSeconds
 

@@ -60,6 +60,18 @@ namespace Query {
     input: duration,
   ): NoContentResponse;
 
+  @route("/float64-seconds")
+  @scenario
+  @scenarioDoc("""
+  Test float seconds encode for a duration parameter.
+  Expected query parameter `input=35.621`
+  """)
+  op float64Seconds(
+    @query
+    @encode(DurationKnownEncoding.seconds, float64)
+    input: duration,
+  ): NoContentResponse;
+
   @encode(DurationKnownEncoding.seconds, int32)
   scalar Int32Duration extends duration;
 
@@ -96,6 +108,11 @@ namespace Property {
 
   model FloatSecondsDurationProperty {
     @encode(DurationKnownEncoding.seconds, float)
+    value: duration;
+  }
+
+  model Float64SecondsDurationProperty {
+    @encode(DurationKnownEncoding.seconds, float64)
     value: duration;
   }
 
@@ -184,6 +201,25 @@ namespace Property {
   """)
   op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
 
+  @route("/float64-seconds")
+  @scenario
+  @scenarioDoc("""
+  Test operation with request and response model contains a duration property with float seconds encode.
+  Expected request body:
+  ```json
+  {
+    "value": 35.621
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "value": 35.621
+  }
+  ```
+  """)
+  op float64Seconds(@body body: Float64SecondsDurationProperty): Float64SecondsDurationProperty;
+
   @route("/float-seconds-array")
   @scenario
   @scenarioDoc("""
@@ -267,6 +303,18 @@ namespace Header {
   op floatSeconds(
     @header
     @encode(DurationKnownEncoding.seconds, float)
+    duration: duration,
+  ): NoContentResponse;
+
+  @route("/float64-seconds")
+  @scenario
+  @scenarioDoc("""
+  Test float64 seconds encode for a duration header.
+  Expected header `duration: 35.621`
+  """)
+  op float64Seconds(
+    @header
+    @encode(DurationKnownEncoding.seconds, float64)
     duration: duration,
   ): NoContentResponse;
 }
