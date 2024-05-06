@@ -1411,7 +1411,7 @@ Expected response body:
 
 - Endpoint: `get /encode/duration/property/float64-seconds`
 
-Test operation with request and response model contains a duration property with float seconds encode.
+Test operation with request and response model contains a duration property with float64 seconds encode.
 Expected request body:
 
 ```json
@@ -1523,7 +1523,7 @@ Expected query parameter `input=P40D`
 
 - Endpoint: `get /encode/duration/query/float64-seconds`
 
-Test float seconds encode for a duration parameter.
+Test float64 seconds encode for a duration parameter.
 Expected query parameter `input=35.621`
 
 ### Encode_Duration_Query_floatSeconds

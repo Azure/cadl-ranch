@@ -63,7 +63,7 @@ namespace Query {
   @route("/float64-seconds")
   @scenario
   @scenarioDoc("""
-  Test float seconds encode for a duration parameter.
+  Test float64 seconds encode for a duration parameter.
   Expected query parameter `input=35.621`
   """)
   op float64Seconds(
@@ -204,7 +204,7 @@ namespace Property {
   @route("/float64-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with float seconds encode.
+  Test operation with request and response model contains a duration property with float64 seconds encode.
   Expected request body:
   ```json
   {
