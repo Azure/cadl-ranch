@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.3
+
+### Patch Changes
+
+- b66f861: Fix invalid with value world
+
 ## 0.33.2
 
 ### Patch Changes
