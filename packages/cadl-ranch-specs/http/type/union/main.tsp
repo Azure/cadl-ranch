@@ -209,7 +209,7 @@ interface MixedTypes
 /**
  * Helper interface to describe a test involving getting and sending a specific data
  */
-interface GetAndSend<Union, Payload extends valueof string, Cases = Union> {
+interface GetAndSend<Union, Payload extends string, Cases = Union> {
   @scenario
   @scenarioDoc(
     """
