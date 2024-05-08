@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.4
+
+### Patch Changes
+
+- e82e2b2: Compatibility for 0.56 http lib
+- 614aa62: bump internal dependency to 0.56.0
+- Updated dependencies [614aa62]
+  - @azure-tools/cadl-ranch-expect@0.13.4
+  - @azure-tools/cadl-ranch@0.12.8
+
 ## 0.33.3
 
 ### Patch Changes

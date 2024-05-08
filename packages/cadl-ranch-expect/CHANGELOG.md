@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.13.4
+
+### Patch Changes
+
+- 614aa62: bump internal dependency to 0.56.0
+
 ## 0.13.3
 
 ### Patch Changes
