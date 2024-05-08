@@ -1,5 +1,41 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.33.3
+
+### Patch Changes
+
+- b66f861: Fix invalid with value world
+
+## 0.33.2
+
+### Patch Changes
+
+- c786854: Add float64 test cases for encode/duration
+
+## 0.33.1
+
+### Patch Changes
+
+- 70161f9: add test for versioning
+- 99dc009: add more parameter tests
+- d7308c1: Add @body to some response.
+
+## 0.33.0
+
+### Minor Changes
+
+- ff9a60f: move flatten model and client request id azure tests into azure folder and namespace
+
+## 0.32.0
+
+### Minor Changes
+
+- dca2382: remove lro-rpc-legacy test since no services use it
+
+### Patch Changes
+
+- 2839b97: add a union array case
+
 ## 0.31.8
 
 ### Patch Changes

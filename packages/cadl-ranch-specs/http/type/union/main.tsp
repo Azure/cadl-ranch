@@ -172,6 +172,9 @@ model MixedTypesCases {
 
   /** This should be receive/send the boolean variant */
   boolean: MixedTypesUnion;
+
+  /** This should be receive/send 4 element with Cat, "a", int, and boolean */
+  array: MixedTypesUnion[];
 }
 
 /**
@@ -189,7 +192,15 @@ interface MixedTypes
         },
         "literal": "a",
         "int": 2,
-        "boolean": true
+        "boolean": true,
+        "array": [
+          {
+            "name": "test"
+          },
+          "a",
+          2,
+          true
+        ]
       }
       """,
       MixedTypesCases
@@ -198,7 +209,7 @@ interface MixedTypes
 /**
  * Helper interface to describe a test involving getting and sending a specific data
  */
-interface GetAndSend<Union, Payload extends valueof string, Cases = Union> {
+interface GetAndSend<Union, Payload extends string, Cases = Union> {
   @scenario
   @scenarioDoc(
     """

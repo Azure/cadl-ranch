@@ -48,7 +48,10 @@ Expected response body:
 ```
 """)
 @get
-op getModel(@body input: VisibilityModel): VisibilityModel;
+op getModel(@body input: VisibilityModel): {
+  @body
+  output: VisibilityModel;
+};
 
 @scenario
 @scenarioDoc("""
