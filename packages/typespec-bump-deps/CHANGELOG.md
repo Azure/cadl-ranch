@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.3
+
+### Patch Changes
+
+- a14450b: Include typespec-autorest in packages, it is used by typespec-azure-resource-manager
+
 ## 0.9.2
 
 ### Patch Changes
