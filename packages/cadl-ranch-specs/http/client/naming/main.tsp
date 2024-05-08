@@ -133,6 +133,8 @@ namespace Header {
     """)
   @get
   op response(): {
+    @statusCode _: 204;
+
     @clientName("clientName")
     @header
     `default-name`: string;
