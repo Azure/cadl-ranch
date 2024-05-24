@@ -35,7 +35,6 @@ model Golden extends Dog {
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing fixed enum as discriminator property"
 @doc("fixed enum type for discriminator")
-@fixed
 enum SnakeKind {
   @doc("Species cobra")
   Cobra: "cobra",

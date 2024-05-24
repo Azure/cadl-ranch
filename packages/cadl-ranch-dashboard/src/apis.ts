@@ -15,6 +15,7 @@ export type GeneratorNames =
   | "java"
   | "go"
   | "cpp"
+  | "rust"
   | "test";
 const query = new URLSearchParams(window.location.search);
 const generatorNames: GeneratorNames[] = [
@@ -25,6 +26,7 @@ const generatorNames: GeneratorNames[] = [
   "java",
   "go",
   "cpp",
+  "rust",
   ...(query.has("showtest") ? (["test"] as const) : []),
 ];
 

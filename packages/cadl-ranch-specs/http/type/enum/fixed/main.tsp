@@ -9,7 +9,6 @@ using TypeSpec.Http;
 namespace Type.Enum.Fixed;
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
-@fixed
 @doc("Days of the week")
 enum DaysOfWeekEnum {
   @doc("Monday.")
