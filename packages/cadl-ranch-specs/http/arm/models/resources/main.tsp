@@ -1,9 +1,12 @@
+import "@azure-tools/cadl-ranch-expect";
 import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
 import "@azure-tools/typespec-client-generator-core";
+import "./toplevel.tsp";
+import "./nested.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -33,24 +36,3 @@ union ProvisioningState {
   Deleting: "Deleting",
   Accepted: "Accepted",
 }
-
-@resource("topLevelArmResources")
-model TopLevelArmResource is TrackedResource<TopLevelArmResourceProperties> {
-  @key("topLevelArmResourceName")
-  @path
-  @segment("topLevelArmResources")
-  @doc("arm resource name for path")
-  @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
-  name: string;
-}
-
-@doc("Top Level Arm Resource Properties.")
-model TopLevelArmResourceProperties {
-  @visibility("read")
-  @doc("The status of the last operation.")
-  provisioningState?: ProvisioningState;
-}
-
-@scenario
-@scenarioDoc("Resource Get.")
-op get is ArmResourceRead<TopLevelArmResource>;
