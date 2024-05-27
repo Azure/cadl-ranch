@@ -32,30 +32,142 @@ model TopLevelArmResourceProperties {
 }
 
 @armResourceOperations
-@scenario
-@scenarioDoc("""
-Resource Get operation.
-Expected resourceId: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
-Expected query parameter: api-version=2023-12-01-preview
-Expected response body:
-```json
-{
-  "id": <any string>,
-  "name": <any string>,
-  "type": <any string>,
-  "description": <any string>,
-  "systemData": <any object>
-}
-```
-""")
 interface TopLevelArmResources {
+  @scenario
+  @scenarioDoc("""
+  Resource GET operation.
+  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+  ```json
+  {
+    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+    "name": topLevelResource,
+    "type": topLevel,
+    "properties":{
+      "description": <any string>,
+      "provisioningState": "Succeeded"
+    },
+    "systemData": <any object>
+  }
+  ```
+  """)
   get is ArmResourceRead<TopLevelArmResource>;
 
+  @scenario
+  @scenarioDoc("""
+  Resource PUT operation.
+  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+  ```json
+  {
+    "properties":{
+      "description": <any string>
+    }
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+    "name": topLevelResource,
+    "type": topLevel,
+    "properties":{
+      "description": <given string in request body>,
+      "provisioningState": "Succeeded"
+    },
+    "systemData": <any object>
+  }
+  ```
+  """)
   createOrReplace is ArmResourceCreateOrReplaceAsync<TopLevelArmResource>;
+
+  @scenario
+  @scenarioDoc("""
+  Resource PATCH operation.
+  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+  ```json
+  {
+    "properties":{
+      "description": <any string>
+    }
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+    "name": topLevelResource,
+    "type": topLevel,
+    "properties":{
+      "description": <given string in request body>,
+      "provisioningState": "Succeeded"
+    },
+    "systemData": <any object>
+  }
+  ```
+  """)
   update is ArmResourcePatchAsync<TopLevelArmResource, TopLevelArmResourceProperties>;
 
+  @scenario
+  @scenarioDoc("""
+  Resource DELETE operation.
+  Expected url: /subscriptions/00000000-000000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected query parameter: api-version=2023-12-01-preview
+  ```
+  Expected response status code: 204
+  """)
   delete is ArmResourceDeleteWithoutOkAsync<TopLevelArmResource>;
 
+  @scenario
+  @scenarioDoc("""
+  Resource LIST operation.
+  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+  ```json
+  {
+    "value": [{
+      "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+      "name": topLevelResource,
+      "type": topLevel,
+      "properties":{
+        "description": <any string>,
+        "provisioningState": "Succeeded"
+      },
+      "systemData": <any object>
+    }]
+  }
+  ```
+  """)
   listByResourceGroup is ArmResourceListByParent<TopLevelArmResource>;
+
+  @scenario
+  @scenarioDoc("""
+  Resource LIST operation.
+  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+  ```json
+  {
+    "value": [{
+      "id": /subscriptions/00000000-0000-0000-0000-000000000000/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+      "name": topLevelResource,
+      "type": topLevel,
+      "properties":{
+        "description": <any string>,
+        "provisioningState": "Succeeded"
+      },
+      "systemData": <any object>
+    }]
+  }
+  ```
+  """)
   listBySubscription is ArmListBySubscription<TopLevelArmResource>;
 }

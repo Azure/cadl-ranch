@@ -1,28 +1,53 @@
 import { passOnSuccess, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { ResourceRepository } from "../../repository.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources = passOnSuccess([
-  createGetApi(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/:provider/topLevelArmResources/:topLevelResourceName",
-  ),
-  createPutApi(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/:provider/topLevelArmResources/:topLevelResourceName",
-  ),
-  createListBySubscriptionApi(
-    "/subscriptions/:subscriptionId/providers/:provider/topLevelArmResources",
-  ),
-  createListByResourceGroupApi(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/:provider/topLevelArmResources",
-  ),
-  createDeleteApi(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/:provider/topLevelArmResources/:topLevelResourceName",
-  )
+const resource = {
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource",
+  name: "topLevelResource",
+  type: "dummy",
+  properties: {
+    "provisioningState": "Succeeded",
+    "description": "any string"
+  },
+  systemData: {
+    createdBy: "AzureSDK",
+    createdByType: "User",
+    createdAt: new Date(),
+    lastModifiedBy: "AzureSDK",
+    lastModifiedAt: new Date(),
+    lastModifiedByType: "User",
+  }
+}
+
+Scenarios.Arm_Models_Resources_TopLevelArmResources_get = passOnSuccess([
+  mockapi.get("/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource", (req) => {
+    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+    return {
+      status: 200,
+      body: json(resource)
+    }
+  })
 ]);
 
-const repository = new ResourceRepository();
+Scenarios.Arm_Models_Resources_TopLevelArmResources_createOrReplace = passOnSuccess([
+  mockapi.put("/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource", (req) => {
+    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+    req.expect.bodyNotEmpty();
+    const body = req.body;
+    const description = body.properties?.description;
+    if (!Boolean(description)) {
+      return {
+        status: "400"
+      }
+    }
+    return {
+      status: 200,
+      body: json(resource)
+    }
+  })
+]);
 
 function createGetApi(url: string): MockApi {
   return mockapi.get(url, (req) => {
