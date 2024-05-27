@@ -36,20 +36,27 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource GET operation.
-  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
-    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
-    "name": topLevelResource,
+    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
+    "name": {resourceName},
     "type": topLevel,
     "properties":{
       "description": <any string>,
       "provisioningState": "Succeeded"
     },
-    "systemData": <any object>
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": new Date(),
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": new Date(),
+      "lastModifiedByType": "User",
+    }
   }
   ```
   """)
@@ -58,7 +65,7 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource PUT operation.
-  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
@@ -71,14 +78,21 @@ interface TopLevelArmResources {
   Expected response body:
   ```json
   {
-    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
-    "name": topLevelResource,
+    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
+    "name": {resourceName},
     "type": topLevel,
     "properties":{
       "description": <given string in request body>,
       "provisioningState": "Succeeded"
     },
-    "systemData": <any object>
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": new Date(),
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": new Date(),
+      "lastModifiedByType": "User",
+    }
   }
   ```
   """)
@@ -87,7 +101,7 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource PATCH operation.
-  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
@@ -100,14 +114,21 @@ interface TopLevelArmResources {
   Expected response body:
   ```json
   {
-    "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
-    "name": topLevelResource,
+    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
+    "name": {resourceName},
     "type": topLevel,
     "properties":{
       "description": <given string in request body>,
       "provisioningState": "Succeeded"
     },
-    "systemData": <any object>
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": new Date(),
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": new Date(),
+      "lastModifiedByType": "User",
+    }
   }
   ```
   """)
@@ -116,7 +137,7 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource DELETE operation.
-  Expected url: /subscriptions/00000000-000000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource
+  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
   Expected query parameter: api-version=2023-12-01-preview
   ```
   Expected response status code: 204
@@ -126,21 +147,28 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource LIST operation.
-  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources
+  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
     "value": [{
-      "id": /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+      "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resource/topLevelArmResources/topLevelResource,
       "name": topLevelResource,
       "type": topLevel,
       "properties":{
         "description": <any string>,
         "provisioningState": "Succeeded"
       },
-      "systemData": <any object>
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": new Date(),
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": new Date(),
+        "lastModifiedByType": "User",
+      }
     }]
   }
   ```
@@ -150,21 +178,28 @@ interface TopLevelArmResources {
   @scenario
   @scenarioDoc("""
   Resource LIST operation.
-  Expected url: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources
+  Expected url: /subscriptions/{subscriptionId}/providers/Arm.Models.Resources/topLevelArmResources
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
     "value": [{
-      "id": /subscriptions/00000000-0000-0000-0000-000000000000/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
+      "id": /subscriptions/{subscriptionId}/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
       "name": topLevelResource,
       "type": topLevel,
       "properties":{
         "description": <any string>,
         "provisioningState": "Succeeded"
       },
-      "systemData": <any object>
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": new Date(),
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": new Date(),
+        "lastModifiedByType": "User",
+      }
     }]
   }
   ```
