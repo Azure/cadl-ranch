@@ -1,17 +1,16 @@
 # Cadl Ranch Project summary
 
-### Arm_Models_Resources_NestedTrackedResources_createOrReplace
+### Arm_Models_Resources_NestedProxyResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
 ```json
 {
-  "location": "eastus",
   "properties": {
     "description": "valid"
   }
@@ -22,10 +21,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
-  "location": "eastus",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -41,31 +39,30 @@ Expected response body:
 }
 ```
 
-### Arm_Models_Resources_NestedTrackedResources_delete
+### Arm_Models_Resources_NestedProxyResources_delete
 
 - Endpoint: `delete https://management.azure.com`
 
 Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected response status code: 204
 
-### Arm_Models_Resources_NestedTrackedResources_get
+### Arm_Models_Resources_NestedProxyResources_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
-  "location": "eastus",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -81,12 +78,12 @@ Expected response body:
 }
 ```
 
-### Arm_Models_Resources_NestedTrackedResources_listByTopLevelTrackedResource
+### Arm_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
 
 - Endpoint: `get https://management.azure.com`
 
-Resource LIST operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
+Resource LIST by parent resource operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -94,10 +91,9 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
     "name": "nested",
     "type": "nested",
-    "location": "eastus",
     "properties":{
       "description": "valid",
       "provisioningState": "Succeeded"
@@ -114,12 +110,12 @@ Expected response body:
 }
 ```
 
-### Arm_Models_Resources_NestedTrackedResources_update
+### Arm_Models_Resources_NestedProxyResources_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -135,10 +131,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
-  "location": "eastus",
   "properties":{
     "description": "valid2",
     "provisioningState": "Succeeded"

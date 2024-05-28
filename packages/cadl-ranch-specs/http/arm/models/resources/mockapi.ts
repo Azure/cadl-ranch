@@ -25,10 +25,9 @@ const validTopLevelResource = {
 };
 
 const validNestedResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
   name: "nested",
   type: "nested",
-  location: "eastus",
   properties: {
     provisioningState: "Succeeded",
     description: "valid",
@@ -182,10 +181,10 @@ Scenarios.Arm_Models_Resources_TopLevelTrackedResources_listBySubscription = pas
   }),
 ]);
 
-// nested tracked resource
-Scenarios.Arm_Models_Resources_NestedTrackedResources_get = passOnSuccess([
+// nested proxy resource
+Scenarios.Arm_Models_Resources_NestedProxyResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -208,9 +207,9 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_get = passOnSuccess([
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedTrackedResources_createOrReplace = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedProxyResources_createOrReplace = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -226,7 +225,6 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_createOrReplace = passOnSu
         throw new ValidationError("Unexpected nested resource name", "nested", req.params.nestedResourceName);
       }
       req.expect.bodyEquals({
-        location: "eastus",
         properties: {
           description: "valid",
         },
@@ -239,9 +237,9 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_createOrReplace = passOnSu
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedTrackedResources_update = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedProxyResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -273,9 +271,9 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_update = passOnSuccess([
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedTrackedResources_delete = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedProxyResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       return {
@@ -285,9 +283,9 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_delete = passOnSuccess([
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedTrackedResources_listByTopLevelTrackedResource = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
