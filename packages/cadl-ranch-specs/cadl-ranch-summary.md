@@ -125,9 +125,8 @@ Expected request body:
 
 ```json
 {
-  "location": "eastus",
   "properties": {
-    "description": "valid"
+    "description": "valid2"
   }
 }
 ```
@@ -141,7 +140,7 @@ Expected response body:
   "type": "nested",
   "location": "eastus",
   "properties":{
-    "description": "valid",
+    "description": "valid2",
     "provisioningState": "Succeeded"
   },
   "systemData": {
@@ -314,9 +313,8 @@ Expected request body:
 
 ```json
 {
-  "location": "eastus",
   "properties": {
-    "description": "valid"
+    "description": "valid2"
   }
 }
 ```
@@ -330,7 +328,7 @@ Expected response body:
   "type": "topLevel",
   "location": "eastus",
   "properties":{
-    "description": "valid",
+    "description": "valid2",
     "provisioningState": "Succeeded"
   },
   "systemData": {

@@ -111,9 +111,8 @@ interface NestedTrackedResources {
   Expected request body:
   ```json
   {
-    "location": "eastus",
     "properties":{
-      "description": "valid"
+      "description": "valid2"
     }
   }
   ```
@@ -125,7 +124,7 @@ interface NestedTrackedResources {
     "type": "nested",
     "location": "eastus",
     "properties":{
-      "description": "valid",
+      "description": "valid2",
       "provisioningState": "Succeeded"
     },
     "systemData": {

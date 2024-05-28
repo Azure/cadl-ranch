@@ -109,9 +109,8 @@ interface TopLevelTrackedResources {
   Expected request body:
   ```json
   {
-    "location": "eastus",
     "properties": {
-      "description": "valid"
+      "description": "valid2"
     }
   }
   ```
@@ -123,7 +122,7 @@ interface TopLevelTrackedResources {
     "type": "topLevel",
     "location": "eastus",
     "properties":{
-      "description": "valid",
+      "description": "valid2",
       "provisioningState": "Succeeded"
     },
     "systemData": {

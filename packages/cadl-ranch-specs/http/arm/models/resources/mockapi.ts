@@ -110,12 +110,16 @@ Scenarios.Arm_Models_Resources_TopLevelTrackedResources_update = passOnSuccess([
       }
       req.expect.bodyEquals({
         properties: {
-          description: "valid",
+          description: "valid2",
         },
       });
+      const resource = {
+        ...validTopLevelResource,
+      };
+      resource.properties.description = "valid2";
       return {
         status: 200,
-        body: json(validTopLevelResource),
+        body: json(resource),
       };
     },
   ),
@@ -254,12 +258,16 @@ Scenarios.Arm_Models_Resources_NestedTrackedResources_update = passOnSuccess([
       }
       req.expect.bodyEquals({
         properties: {
-          description: "valid",
+          description: "valid2",
         },
       });
+      const resource = {
+        ...validNestedResource,
+      };
+      resource.properties.description = "valid2";
       return {
         status: 200,
-        body: json(validNestedResource),
+        body: json(resource),
       };
     },
   ),
