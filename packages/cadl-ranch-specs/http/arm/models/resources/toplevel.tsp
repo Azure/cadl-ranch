@@ -11,18 +11,18 @@ using TypeSpec.OpenAPI;
 
 namespace Arm.Models.Resources;
 
-@resource("topLevelArmResources")
-model TopLevelArmResource is TrackedResource<TopLevelArmResourceProperties> {
-  @key("topLevelArmResourceName")
+@resource("topLevelTrackedResources")
+model TopLevelTrackedResource is TrackedResource<TopLevelTrackedResourceProperties> {
+  @key("topLevelTrackedResourceName")
   @path
-  @segment("topLevelArmResources")
+  @segment("topLevelTrackedResources")
   @doc("arm resource name for path")
   @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
   name: string;
 }
 
 @doc("Top Level Arm Resource Properties.")
-model TopLevelArmResourceProperties {
+model TopLevelTrackedResourceProperties {
   @visibility("read")
   @doc("The status of the last operation.")
   provisioningState?: ProvisioningState;
@@ -32,21 +32,22 @@ model TopLevelArmResourceProperties {
 }
 
 @armResourceOperations
-interface TopLevelArmResources {
+interface TopLevelTrackedResources {
   @scenario
   @scenarioDoc("""
   Resource GET operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
-    "name": {resourceName},
-    "type": topLevel,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
     "properties":{
-      "description": <any string>,
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -60,29 +61,31 @@ interface TopLevelArmResources {
   }
   ```
   """)
-  get is ArmResourceRead<TopLevelArmResource>;
+  get is ArmResourceRead<TopLevelTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource PUT operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
   {
-    "properties":{
-      "description": <any string>
+    "location": "eastus",
+    "properties": {
+      "description": "valid"
     }
   }
   ```
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
-    "name": {resourceName},
-    "type": topLevel,
-    "properties":{
-      "description": <given string in request body>,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties": {
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -96,29 +99,31 @@ interface TopLevelArmResources {
   }
   ```
   """)
-  createOrReplace is ArmResourceCreateOrReplaceAsync<TopLevelArmResource>;
+  createOrReplace is ArmResourceCreateOrReplaceAsync<TopLevelTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource PATCH operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
   {
-    "properties":{
-      "description": <any string>
+    "location": "eastus",
+    "properties": {
+      "description": "valid"
     }
   }
   ```
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName},
-    "name": {resourceName},
-    "type": topLevel,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
     "properties":{
-      "description": <given string in request body>,
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -132,33 +137,34 @@ interface TopLevelArmResources {
   }
   ```
   """)
-  update is ArmResourcePatchAsync<TopLevelArmResource, TopLevelArmResourceProperties>;
+  update is ArmResourcePatchAsync<TopLevelTrackedResource, TopLevelTrackedResourceProperties>;
 
   @scenario
   @scenarioDoc("""
   Resource DELETE operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top
   Expected query parameter: api-version=2023-12-01-preview
   ```
   Expected response status code: 204
   """)
-  delete is ArmResourceDeleteWithoutOkAsync<TopLevelArmResource>;
+  delete is ArmResourceDeleteWithoutOkAsync<TopLevelTrackedResource>;
 
   @scenario
   @scenarioDoc("""
-  Resource LIST operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources
+  Resource LIST by resource group operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
     "value": [{
-      "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resource/topLevelArmResources/topLevelResource,
-      "name": topLevelResource,
-      "type": topLevel,
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top",
+      "name": "top",
+      "type": "topLevel",
+      "location": "eastus",
       "properties":{
-        "description": <any string>,
+        "description": "valid",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -173,23 +179,24 @@ interface TopLevelArmResources {
   }
   ```
   """)
-  listByResourceGroup is ArmResourceListByParent<TopLevelArmResource>;
+  listByResourceGroup is ArmResourceListByParent<TopLevelTrackedResource>;
 
   @scenario
   @scenarioDoc("""
-  Resource LIST operation.
-  Expected url: /subscriptions/{subscriptionId}/providers/Arm.Models.Resources/topLevelArmResources
+  Resource LIST by subscription operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
     "value": [{
-      "id": /subscriptions/{subscriptionId}/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource,
-      "name": topLevelResource,
-      "type": topLevel,
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top",
+      "name": "top",
+      "type": "topLevel",
+      "location": "eastus",
       "properties":{
-        "description": <any string>,
+        "description": "valid",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -204,5 +211,5 @@ interface TopLevelArmResources {
   }
   ```
   """)
-  listBySubscription is ArmListBySubscription<TopLevelArmResource>;
+  listBySubscription is ArmListBySubscription<TopLevelTrackedResource>;
 }

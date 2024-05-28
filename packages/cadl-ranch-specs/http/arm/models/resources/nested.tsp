@@ -11,41 +11,45 @@ using TypeSpec.OpenAPI;
 
 namespace Arm.Models.Resources;
 
-@doc("Nested child of Top Level Arm Resource.")
-@parentResource(TopLevelArmResource)
-model NestedChildResource is TrackedResource<NestedChildResourceProperties> {
-  @key("nextedResourceName")
-  @doc("ChildResources")
+@doc("Nested child of Top Level Tracked Resource.")
+@parentResource(TopLevelTrackedResource)
+model NestedTrackedResource is TrackedResource<NestedTrackedResourceProperties> {
+  @key("nextedTrackedResourceName")
+  @doc("Name of the nested resource.")
   @visibility("read")
   @path
-  @segment("nestedResources")
+  @segment("nestedTrackedResources")
   @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
   name: string;
 }
 
-@doc("Nested child Resource Properties.")
-model NestedChildResourceProperties {
+@doc("Nested tracked Resource Properties.")
+model NestedTrackedResourceProperties {
   @visibility("read")
-  @doc("Provisioning State of Top Level Arm Resource")
+  @doc("Provisioning State of the nested child Resource")
   provisioningState?: ProvisioningState;
+
+  @doc("Nested resource description.")
+  description?: string;
 }
 
 @armResourceOperations
-interface NestedChildResources {
+interface NestedTrackedResources {
   @scenario
   @scenarioDoc("""
   Resource GET operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName},
-    "name": {nestedResourceName},
-    "type": nested,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "location": "eastus",
     "properties":{
-      "description": <any string>,
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -59,29 +63,31 @@ interface NestedChildResources {
   }
   ```
   """)
-  get is ArmResourceRead<NestedChildResource>;
+  get is ArmResourceRead<NestedTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource PUT operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
+  Expected path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
   {
+    "location": "eastus",
     "properties":{
-      "description": <any string>
+      "description": "valid"
     }
   }
   ```
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName},
-    "name": {nestedResourceName},
-    "type": nested,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "location": "eastus",
     "properties":{
-      "description": <given string in request body>,
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -95,29 +101,31 @@ interface NestedChildResources {
   }
   ```
   """)
-  createOrReplace is ArmResourceCreateOrReplaceAsync<NestedChildResource>;
+  createOrReplace is ArmResourceCreateOrReplaceAsync<NestedTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource PATCH operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
   {
+    "location": "eastus",
     "properties":{
-      "description": <any string>
+      "description": "valid"
     }
   }
   ```
   Expected response body:
   ```json
   {
-    "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName},
-    "name": {nestedResourceName},
-    "type": nested,
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "location": "eastus",
     "properties":{
-      "description": <given string in request body>,
+      "description": "valid",
       "provisioningState": "Succeeded"
     },
     "systemData": {
@@ -131,32 +139,33 @@ interface NestedChildResources {
   }
   ```
   """)
-  update is ArmResourcePatchAsync<NestedChildResource, NestedChildResourceProperties>;
+  update is ArmResourcePatchAsync<NestedTrackedResource, NestedTrackedResourceProperties>;
 
   @scenario
   @scenarioDoc("""
   Resource DELETE operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources/{nestedResourceName}
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
   Expected query parameter: api-version=2023-12-01-preview
   Expected response status code: 204
   """)
-  delete is ArmResourceDeleteWithoutOkAsync<NestedChildResource>;
+  delete is ArmResourceDeleteWithoutOkAsync<NestedTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource LIST operation.
-  Expected url: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
     "value": [{
-      "id": /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/{resourceName}/nestedResources,
-      "name": nestedResource,
-      "type": nested,
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested",
+      "name": "nested",
+      "type": "nested",
+      "location": "eastus",
       "properties":{
-        "description": <any string>,
+        "description": "valid",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -171,5 +180,5 @@ interface NestedChildResources {
   }
   ```
   """)
-  listByParent is ArmResourceListByParent<NestedChildResource>;
+  listByParent is ArmResourceListByParent<NestedTrackedResource>;
 }

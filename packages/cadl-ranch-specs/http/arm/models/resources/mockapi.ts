@@ -1,15 +1,18 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const dummyTopLevelResource = {
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Arm.Models.Resources/topLevelArmResources/topLevelResource",
-  name: "topLevelResource",
+const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const RESOURCE_GROUP_EXPECTED = "test-rg";
+const validTopLevelResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Arm.Models.Resources/topLevelTrackedResources/top`,
+  name: "top",
   type: "topLevel",
+  location: "eastus",
   properties: {
     provisioningState: "Succeeded",
-    description: "any string",
+    description: "valid",
   },
   systemData: {
     createdBy: "AzureSDK",
@@ -21,114 +24,117 @@ const dummyTopLevelResource = {
   },
 };
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources_get = passOnSuccess([
+const validNestedResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Arm.Models.Resources/topLevelTrackedResources/top/nestedTrackedResources/nested`,
+  name: "nested",
+  type: "nested",
+  location: "eastus",
+  properties: {
+    provisioningState: "Succeeded",
+    description: "valid",
+  },
+  systemData: {
+    createdBy: "AzureSDK",
+    createdByType: "User",
+    createdAt: new Date(),
+    lastModifiedBy: "AzureSDK",
+    lastModifiedAt: new Date(),
+    lastModifiedByType: "User",
+  },
+};
+
+// top level tracked resource
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      return {
-        status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.topLevelResourceName,
-          type: "topLevel",
-          properties: {
-            provisioningState: "Succeeded",
-            description: "any string",
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
-      };
-    },
-  ),
-]);
-
-Scenarios.Arm_Models_Resources_TopLevelArmResources_createOrReplace = passOnSuccess([
-  mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      req.expect.bodyNotEmpty();
-      const body = req.body;
-      const description = body.properties?.description;
-      if (!Boolean(description)) {
-        return {
-          status: 400,
-        };
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       return {
         status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.topLevelResourceName,
-          type: "topLevel",
-          properties: {
-            provisioningState: "Succeeded",
-            description: description,
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
+        body: json(validTopLevelResource),
       };
     },
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources_update = passOnSuccess([
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_createOrReplace = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      req.expect.bodyNotEmpty();
-      const body = req.body;
-      const description = body.properties?.description;
-      if (!Boolean(description)) {
-        return {
-          status: 400,
-        };
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
       }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      req.expect.bodyEquals({
+        location: "eastus",
+        properties: {
+          description: "valid",
+        },
+      });
       return {
         status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.topLevelResourceName,
-          type: "topLevel",
-          properties: {
-            provisioningState: "Succeeded",
-            description: description,
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
+        body: json(validTopLevelResource),
       };
     },
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources_delete = passOnSuccess([
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_update = passOnSuccess([
+  mockapi.patch(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      req.expect.bodyEquals({
+        properties: {
+          description: "valid",
+        },
+      });
+      return {
+        status: 200,
+        body: json(validTopLevelResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
       return {
         status: 204,
       };
@@ -136,150 +142,132 @@ Scenarios.Arm_Models_Resources_TopLevelArmResources_delete = passOnSuccess([
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources_listByResourceGroup = passOnSuccess([
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_listByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      const resource = {
-        ...dummyTopLevelResource,
-      };
-      resource.id = resource.id
-        .replace("00000000-0000-0000-0000-000000000000", req.params.subscriptionId)
-        .replace("/test-rg/", `/${req.params.resourceGroup}/`);
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
       return {
         status: 200,
         body: json({
-          value: [resource],
+          value: [validTopLevelResource],
         }),
       };
     },
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_TopLevelArmResources_listBySubscription = passOnSuccess([
-  mockapi.get("/subscriptions/:subscriptionId/providers/Arm.Models.Resources/topLevelArmResources", (req) => {
+Scenarios.Arm_Models_Resources_TopLevelTrackedResources_listBySubscription = passOnSuccess([
+  mockapi.get("/subscriptions/:subscriptionId/providers/Arm.Models.Resources/topLevelTrackedResources", (req) => {
     req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-    const resource = {
-      ...dummyTopLevelResource,
-    };
-    resource.id = resource.id.replace("00000000-0000-0000-0000-000000000000", req.params.subscriptionId);
+    if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+      throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+    }
     return {
       status: 200,
       body: json({
-        value: [resource],
+        value: [validTopLevelResource],
       }),
     };
   }),
 ]);
 
-// nested child resource
-Scenarios.Arm_Models_Resources_NestedChildResources_get = passOnSuccess([
+// nested tracked resource
+Scenarios.Arm_Models_Resources_NestedTrackedResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName/nestedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      return {
-        status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.nestedResourceName,
-          type: "nested",
-          properties: {
-            provisioningState: "Succeeded",
-            description: "any string",
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
-      };
-    },
-  ),
-]);
-
-Scenarios.Arm_Models_Resources_NestedChildResources_createOrReplace = passOnSuccess([
-  mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName/nestedResources/:nestedResourceName",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      req.expect.bodyNotEmpty();
-      const body = req.body;
-      const description = body.properties?.description;
-      if (!Boolean(description)) {
-        return {
-          status: 400,
-        };
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      if (req.params.nestedResourceName.toLowerCase() !== "nested") {
+        throw new ValidationError("Unexpected nested resource name", "nested", req.params.nestedResourceName);
       }
       return {
         status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.nestedResourceName,
-          type: "nested",
-          properties: {
-            provisioningState: "Succeeded",
-            description: description,
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
+        body: json(validNestedResource),
       };
     },
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedChildResources_update = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedTrackedResources_createOrReplace = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName/nestedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      req.expect.bodyNotEmpty();
-      const body = req.body;
-      const description = body.properties?.description;
-      if (!Boolean(description)) {
-        return {
-          status: 400,
-        };
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
       }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      if (req.params.nestedResourceName.toLowerCase() !== "nested") {
+        throw new ValidationError("Unexpected nested resource name", "nested", req.params.nestedResourceName);
+      }
+      req.expect.bodyEquals({
+        location: "eastus",
+        properties: {
+          description: "valid",
+        },
+      });
       return {
         status: 200,
-        body: json({
-          id: req.originalRequest.path,
-          name: req.params.nestedResourceName,
-          type: "nested",
-          properties: {
-            provisioningState: "Succeeded",
-            description: description,
-          },
-          systemData: {
-            createdBy: "AzureSDK",
-            createdByType: "User",
-            createdAt: new Date(),
-            lastModifiedBy: "AzureSDK",
-            lastModifiedAt: new Date(),
-            lastModifiedByType: "User",
-          },
-        }),
+        body: json(validNestedResource),
       };
     },
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedChildResources_delete = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedTrackedResources_update = passOnSuccess([
+  mockapi.patch(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      if (req.params.nestedResourceName.toLowerCase() !== "nested") {
+        throw new ValidationError("Unexpected nested resource name", "nested", req.params.nestedResourceName);
+      }
+      req.expect.bodyEquals({
+        properties: {
+          description: "valid",
+        },
+      });
+      return {
+        status: 200,
+        body: json(validNestedResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Arm_Models_Resources_NestedTrackedResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName/nestedResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       return {
@@ -289,33 +277,24 @@ Scenarios.Arm_Models_Resources_NestedChildResources_delete = passOnSuccess([
   ),
 ]);
 
-Scenarios.Arm_Models_Resources_NestedChildResources_listByTopLevelArmResource = passOnSuccess([
+Scenarios.Arm_Models_Resources_NestedTrackedResources_listByTopLevelTrackedResource = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelArmResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedTrackedResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
       return {
         status: 200,
         body: json({
-          value: [
-            {
-              id: `/subscriptions/${req.params.subscriptionId}/resourceGroups/${req.params.resourceGroup}/providers/Arm.Models.Resources/topLevelArmResources/${req.params.topLevelResourceName}/nestedResources/nestedResource`,
-              name: req.params.nestedResourceName,
-              type: "nested",
-              properties: {
-                provisioningState: "Succeeded",
-                description: "any string",
-              },
-              systemData: {
-                createdBy: "AzureSDK",
-                createdByType: "User",
-                createdAt: new Date(),
-                lastModifiedBy: "AzureSDK",
-                lastModifiedAt: new Date(),
-                lastModifiedByType: "User",
-              },
-            },
-          ],
+          value: [validNestedResource],
         }),
       };
     },
