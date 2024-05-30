@@ -147,3 +147,19 @@ model CollectionsModelProperty is ModelTemplate<InnerModel[]>;
 @operationGroup
 interface CollectionsModel
   extends OperationsTemplate<CollectionsModelProperty, "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+// Model with nullable collection int property
+@doc("Model with collection int properties)
+model CollectionsIntProperty is ModelTemplate<int[]>
+@route("/collections/int")
+@operationGroup
+interface CollectionsInt
+  extends OperationsTemplate<CollectionsIntProperty, "[123, 456]"> {}
+
+// Model with nullable collection string property
+@doc("Model with collection string properties)
+model CollectionsIntProperty is ModelTemplate<string[]>
+@route("/collections/string")
+@operationGroup
+interface CollectionsString
+  extends OperationsTemplate<CollectionsStringProperty, "['hello', 'world']"> {}
