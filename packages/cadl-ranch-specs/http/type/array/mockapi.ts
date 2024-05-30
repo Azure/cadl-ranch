@@ -69,3 +69,19 @@ Scenarios.Type_Array_ModelValue_put = passOnSuccess(ModelValueMock.put);
 const NullableFloatMock = createModelMockApis("nullable-float", [1.25, null, 3.0]);
 Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableFloatMock.get);
 Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableFloatMock.put);
+
+const NullableIntMock = createModelMockApis("nullable-int", [1, null, 3]);
+Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableIntMock.get);
+Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableIntMock.put);
+
+const NullableStringMock = createModelMockApis("nullable-string", ["hello", null, "world"]);
+Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableStringMock.get);
+Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableStringMock.put);
+
+const NullableBooleanMock = createModelMockApis("nullable-boolean", [true, null, false]);
+Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableBooleanMock.get);
+Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableBooleanMock.put);
+
+const NullableModelMock = createModelMockApis("nullable-model", [{ property: "hello" }, null, { property: "world" }]);
+Scenarios.Type_Array_NullableModelValue_get = passOnSuccess(NullableBooleanMock.get);
+Scenarios.Type_Array_NullableModelValue_put = passOnSuccess(NullableBooleanMock.put);
