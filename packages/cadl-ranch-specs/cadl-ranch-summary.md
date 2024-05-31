@@ -133,6 +133,7 @@ Expected response body:
 - Endpoints:
   - `post /azure/client-generator-core/usage/inputToInputOutput`
   - `post /azure/client-generator-core/usage/outputToInputOutput`
+  - `post /azure/client-generator-core/usage/modelInReadOnlyProperty`
 
 This scenario contains two public operations. Both should be generated and exported.
 The models are override to roundtrip, so they should be generated and exported as well.
