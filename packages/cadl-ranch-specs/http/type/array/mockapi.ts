@@ -83,5 +83,5 @@ Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableBooleanMock.
 Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableBooleanMock.put);
 
 const NullableModelMock = createModelMockApis("nullable-model", [{ property: "hello" }, null, { property: "world" }]);
-Scenarios.Type_Array_NullableModelValue_get = passOnSuccess(NullableBooleanMock.get);
-Scenarios.Type_Array_NullableModelValue_put = passOnSuccess(NullableBooleanMock.put);
+Scenarios.Type_Array_NullableModelValue_get = passOnSuccess(NullableModelMock.get);
+Scenarios.Type_Array_NullableModelValue_put = passOnSuccess(NullableModelMock.put);
