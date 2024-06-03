@@ -89,8 +89,14 @@ Scenarios.Type_Property_Nullable_CollectionsModel_getNull = passOnSuccess(collec
 Scenarios.Type_Property_Nullable_CollectionsModel_patchNonNull = passOnSuccess(collectionsModelMock.patchNonNull);
 Scenarios.Type_Property_Nullable_CollectionsModel_patchNull = passOnSuccess(collectionsModelMock.patchNull);
 
-const collectionsIntMock = createMockApis("collections/int", ["123", "456"]);
-Scenarios.Type_Property_Nullable_CollectionsInt_getNonNull = passOnSuccess(collectionsIntMock.getNonNull);
-Scenarios.Type_Property_Nullable_CollectionsInt_getNull = passOnSuccess(collectionsIntMock.getNull);
-Scenarios.Type_Property_Nullable_CollectionsInt_patchNonNull = passOnSuccess(collectionsIntMock.patchNonNull);
-Scenarios.Type_Property_Nullable_CollectionsInt_patchNull = passOnSuccess(collectionsIntMock.patchNull);
+const collectionsIntMock = createMockApis("collections/int32", ["123", "456"]);
+Scenarios.Type_Property_Nullable_CollectionsInt32_getNonNull = passOnSuccess(collectionsIntMock.getNonNull);
+Scenarios.Type_Property_Nullable_CollectionsInt32_getNull = passOnSuccess(collectionsIntMock.getNull);
+Scenarios.Type_Property_Nullable_CollectionsInt32_patchNonNull = passOnSuccess(collectionsIntMock.patchNonNull);
+Scenarios.Type_Property_Nullable_CollectionsInt32_patchNull = passOnSuccess(collectionsIntMock.patchNull);
+
+const collectionsStringMock = createMockApis("collections/string", ["hello", "world"]);
+Scenarios.Type_Property_Nullable_CollectionsString_getNonNull = passOnSuccess(collectionsStringMock.getNonNull);
+Scenarios.Type_Property_Nullable_CollectionsString_getNull = passOnSuccess(collectionsStringMock.getNull);
+Scenarios.Type_Property_Nullable_CollectionsString_patchNonNull = passOnSuccess(collectionsStringMock.patchNonNull);
+Scenarios.Type_Property_Nullable_CollectionsString_patchNull = passOnSuccess(collectionsStringMock.patchNull);
