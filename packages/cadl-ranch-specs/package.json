@@ -54,7 +54,6 @@
     "@typespec/compiler": "~0.56.0",
     "@typespec/http": "~0.56.0",
     "@typespec/rest": "~0.56.0",
-    "@typespec/versioning": "~0.56.0",
-    "@azure-tools/typespec-azure-resource-manager": "~0.42.1"
+    "@typespec/versioning": "~0.56.0"
   }
 }
