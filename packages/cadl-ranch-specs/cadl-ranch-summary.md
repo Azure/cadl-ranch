@@ -102,9 +102,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
@@ -141,9 +141,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
@@ -172,9 +172,9 @@ Expected response body:
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }]
@@ -212,9 +212,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
@@ -253,9 +253,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
@@ -294,9 +294,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
@@ -326,9 +326,9 @@ Expected response body:
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }]
@@ -359,9 +359,9 @@ Expected response body:
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }]
@@ -400,9 +400,9 @@ Expected response body:
   "systemData": {
     "createdBy": "AzureSDK",
     "createdByType": "User",
-    "createdAt": new Date(),
+    "createdAt": <any date>,
     "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": new Date(),
+    "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
 }
