@@ -54,9 +54,9 @@ interface NestedProxyResources {
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }
@@ -90,9 +90,9 @@ interface NestedProxyResources {
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }
@@ -126,9 +126,9 @@ interface NestedProxyResources {
     "systemData": {
       "createdBy": "AzureSDK",
       "createdByType": "User",
-      "createdAt": new Date(),
+      "createdAt": <any date>,
       "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": new Date(),
+      "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
   }
@@ -165,9 +165,9 @@ interface NestedProxyResources {
       "systemData": {
         "createdBy": "AzureSDK",
         "createdByType": "User",
-        "createdAt": new Date(),
+        "createdAt": <any date>,
         "lastModifiedBy": "AzureSDK",
-        "lastModifiedAt": new Date(),
+        "lastModifiedAt": <any date>,
         "lastModifiedByType": "User",
       }
     }]
