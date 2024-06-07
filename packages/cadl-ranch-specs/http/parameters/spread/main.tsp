@@ -206,7 +206,7 @@ namespace Alias {
   Should  generate a model named `BodyParameterAliasWithModel`.
   Should generate an operation like:
   ```
-  spreadAliasWithModel(BodyParameterAliasWithModel: withModelParameter)
+  spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
@@ -326,7 +326,7 @@ namespace Alias {
   Should  generate a model named `BodyParameterAliasWithOptionalProps`.
   Should generate an operation like:
   ```
-  spreadAliasWithOptionalProps(spreadAliasWithOptionalProps: optionalProps)
+  spreadWithOptionalProps(spreadAliasWithOptionalProps: optionalProps)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
@@ -334,12 +334,27 @@ namespace Alias {
   Expected header parameter: x-ms-test-header="bar"
   Expected request body:
   ```json
-  { "name": "foo" 
-  "color": "red",
-    "age": 10,
-    "items": [1, 2, 3],
-    "elements": ["a", "b", "c"]}
+  { "name": "dog" 
+    "color": "red",
+    "age": 3,
+    "items": [1, 2, 3, 4],
+    "elements": ["a", "b"]}
   ```
+
+  Should generate an operation like:
+  ```
+  spreadWithoutOptionalProps(spreadAliasWithOptionalProps: optionalProps)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+
+  Expected path parameter: id="1"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  { "name": "dog" 
+    "items": [1, 2, 3],}
+  ```
+
   """)
   @route("/spread-Alias-With-Optional-Props/{id}")
   @put
@@ -360,14 +375,14 @@ namespace Alias {
   Should  generate a model named `AliasWithRequiredAndOptionalCollections`.
   Should generate an operation like:
   ```
-  spreadAliasWithOptionalCollections(AliasWithRequiredAndOptionalCollections: optionalCollections)
+  SpreadAliasWithRequiredAndOptionalCollections(AliasWithRequiredAndOptionalCollections: optionalCollections)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
   Expected request body:
   ```json
   { requiredStringList: ["a", "b"],
-  optionalStringList: ["c", "d"]}
+    optionalStringList: ["c", "d"]}
   ```
   """)
   @route("/spread-Alias-With-Optional-Collections")
