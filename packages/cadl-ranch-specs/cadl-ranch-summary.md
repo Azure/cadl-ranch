@@ -1670,6 +1670,77 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
+### Parameters_Spread_Alias_spreadAliasWithModel
+
+- Endpoint: `put /parameters/spread/alias/request-with-model/{id}`
+
+Test case for spread alias.
+
+Should generate a model named `BodyParameterAliasWithModel`.
+Should generate an operation like:
+
+```
+spreadAliasWithModel(BodyParameterAliasWithModel: withModelParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadAliasWithOptionalCollections
+
+- Endpoint: `put /parameters/spread/alias/spread-Alias-With-Optional-Collections`
+
+Test case for spread alias.
+
+Should generate a model named `AliasWithRequiredAndOptionalCollections`.
+Should generate an operation like:
+
+```
+spreadAliasWithOptionalCollections(AliasWithRequiredAndOptionalCollections: optionalCollections)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "requiredStringList": ["a", "b"], "optionalStringList": ["c", "d"] }
+```
+
+### Parameters_Spread_Alias_spreadAliasWithOptionalProps
+
+- Endpoint: `put /parameters/spread/alias/spread-Alias-With-Optional-Props/{id}`
+
+Test case for spread alias.
+
+Should generate a model named `BodyParameterAliasWithOptionalProps`.
+Should generate an operation like:
+
+```
+spreadAliasWithOptionalProps(spreadAliasWithOptionalProps: optionalProps)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo"
+"color": "red",
+  "age": 10,
+  "items": [1, 2, 3],
+  "elements": ["a", "b", "c"]}
+```
+
 ### Parameters_Spread_Alias_spreadAsRequestBody
 
 - Endpoint: `put /parameters/spread/alias/request-body`
