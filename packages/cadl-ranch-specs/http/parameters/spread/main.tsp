@@ -352,7 +352,7 @@ namespace Alias {
   Expected request body:
   ```json
   { "name": "dog" 
-    "items": [1, 2, 3],}
+    "items": [1, 2, 3]}
   ```
 
   """)
