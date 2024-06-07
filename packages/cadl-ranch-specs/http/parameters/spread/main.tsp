@@ -185,11 +185,15 @@ namespace Alias {
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 
+  model ModelParameter {
+    name: string;
+  }
+
   alias BodyParameterAliasWithModel = {
     @path
     id: string;
 
-    ...BodyParameter;
+    ...ModelParameter;
 
     @header
     `x-ms-test-header`: string;
@@ -305,7 +309,8 @@ namespace Alias {
     @doc("age of the Thing")
     age?: int32;
 
-    @header top: int32;
+    @header
+    `x-ms-test-header`: string;
 
     @doc("required array")
     items: int32[];
