@@ -323,14 +323,14 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
-  Should  generate a model named `BodyParameterAliasWithOptionalProps`.
+  Should not generate any model named `BodyParameterAliasWithOptionalProps`.
   Should generate an operation like:
   ```
-  spreadWithOptionalProps(spreadAliasWithOptionalProps: optionalProps)
+  spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: string, age?: int32, items: int32[], elements?: string[])
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
-  Expected path parameter: id="1"
+  Expected path parameter: id="2"
   Expected header parameter: x-ms-test-header="bar"
   Expected request body:
   ```json
@@ -343,7 +343,7 @@ namespace Alias {
 
   Should generate an operation like:
   ```
-  spreadWithoutOptionalProps(spreadAliasWithOptionalProps: optionalProps)
+  spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: null, age?: null, items: int32[], elements?: null)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
@@ -372,10 +372,10 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
-  Should  generate a model named `AliasWithRequiredAndOptionalCollections`.
+  Should not generate any model named `AliasWithRequiredAndOptionalCollections`.
   Should generate an operation like:
   ```
-  SpreadAliasWithRequiredAndOptionalCollections(AliasWithRequiredAndOptionalCollections: optionalCollections)
+  SpreadAliasWithRequiredAndOptionalCollections(requiredStringList: string[], optionalStringList?: string[])
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
