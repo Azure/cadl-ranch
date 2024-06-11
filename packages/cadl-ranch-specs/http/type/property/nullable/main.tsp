@@ -153,11 +153,11 @@ interface CollectionsModel
 model CollectionsInt32Property is ModelTemplate<int32[]>;
 @route("/collections/int32")
 @operationGroup
-interface CollectionsInt32 extends OperationsTemplate<CollectionsInt32Property, "[123, 456]"> {}
+interface CollectionsInt32 extends OperationsTemplate<CollectionsInt32Property, "[123]"> {}
 
 // Model with nullable collection string property
 @doc("Model with collection string properties")
 model CollectionsStringProperty is ModelTemplate<string[]>;
 @route("/collections/string")
 @operationGroup
-interface CollectionsString extends OperationsTemplate<CollectionsStringProperty, "['hello', 'world']"> {}
+interface CollectionsString extends OperationsTemplate<CollectionsStringProperty, "['hello']"> {}

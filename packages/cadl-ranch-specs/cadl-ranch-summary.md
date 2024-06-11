@@ -5304,7 +5304,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "requiredProperty": "foo", "nullableProperty": [123, 456] }
+{ "requiredProperty": "foo", "nullableProperty": [123] }
 ```
 
 ### Type_Property_Nullable_CollectionsInt32_getNull
@@ -5324,7 +5324,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "nullableProperty": [123, 456] }
+{ "requiredProperty": "foo", "nullableProperty": [123] }
 ```
 
 ### Type_Property_Nullable_CollectionsInt32_patchNull
@@ -5390,7 +5390,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+{ "requiredProperty": "foo", "nullableProperty": ["hello"] }
 ```
 
 ### Type_Property_Nullable_CollectionsString_getNull
@@ -5410,7 +5410,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+{ "requiredProperty": "foo", "nullableProperty": ["hello"] }
 ```
 
 ### Type_Property_Nullable_CollectionsString_patchNull
