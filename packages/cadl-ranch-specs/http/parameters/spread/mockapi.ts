@@ -71,7 +71,7 @@ Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
 );
 
 Scenarios.Parameters_Spread_Alias_spreadAliasWithModel = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/request-with-model/1", (req) => {
+  mockapi.post("/parameters/spread/alias/request-with-model/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({ name: "foo" });
     return { status: 204 };
@@ -79,7 +79,7 @@ Scenarios.Parameters_Spread_Alias_spreadAliasWithModel = passOnSuccess(
 );
 
 Scenarios.Parameters_Spread_Alias_spreadAliasWithoutOptionalProps = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/spread-Alias-With-Optional-Props/1", (req) => {
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-props/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     const spreadAliasWithoutOptionalPropRequest = {
       name: "dog",
@@ -91,7 +91,7 @@ Scenarios.Parameters_Spread_Alias_spreadAliasWithoutOptionalProps = passOnSucces
 );
 
 Scenarios.Parameters_Spread_Alias_spreadAliasWithOptionalProps = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/spread-Alias-With-Optional-Props/2", (req) => {
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-props/2", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     const spreadAliasWithOptionalPropRequest = {
       name: "dog",
@@ -106,7 +106,7 @@ Scenarios.Parameters_Spread_Alias_spreadAliasWithOptionalProps = passOnSuccess(
 );
 
 Scenarios.Parameters_Spread_Alias_spreadAliasWithOptionalCollections = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/spread-Alias-With-Optional-Collections", (req) => {
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-collections", (req) => {
     const spreadAliasWithRequiredAndOptionalCollections = {
       requiredStringList: ["a", "b"],
       optionalStringList: ["c", "d"],

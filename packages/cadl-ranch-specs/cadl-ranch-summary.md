@@ -1672,7 +1672,7 @@ This test is testing sending a tsv collection format array query parameters
 
 ### Parameters_Spread_Alias_spreadAliasWithModel
 
-- Endpoint: `put /parameters/spread/alias/request-with-model/{id}`
+- Endpoint: `post /parameters/spread/alias/request-with-model/{id}`
 
 Test case for spread alias.
 
@@ -1695,7 +1695,7 @@ Expected request body:
 
 ### Parameters_Spread_Alias_spreadAliasWithOptionalCollections
 
-- Endpoint: `put /parameters/spread/alias/spread-Alias-With-Optional-Collections`
+- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-collections`
 
 Test case for spread alias.
 
@@ -1716,7 +1716,7 @@ Expected request body:
 
 ### Parameters_Spread_Alias_spreadAliasWithOptionalProps
 
-- Endpoint: `put /parameters/spread/alias/spread-Alias-With-Optional-Props/{id}`
+- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-props/{id}`
 
 Test case for spread alias.
 

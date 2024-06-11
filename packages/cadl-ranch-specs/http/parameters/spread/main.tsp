@@ -218,7 +218,7 @@ namespace Alias {
   ```
   """)
   @route("/request-with-model/{id}")
-  @put
+  @post
   op spreadAliasWithModel(...BodyParameterAliasWithModel): NoContentResponse;
 
   alias RequestParameter = {
@@ -356,8 +356,8 @@ namespace Alias {
   ```
 
   """)
-  @route("/spread-Alias-With-Optional-Props/{id}")
-  @put
+  @route("/spread-alias-with-optional-props/{id}")
+  @post
   op spreadAliasWithOptionalProps(...BodyParameterAliasWithOptionalProps): NoContentResponse;
 
   alias AliasWithRequiredAndOptionalCollections = {
@@ -385,7 +385,7 @@ namespace Alias {
     optionalStringList: ["c", "d"]}
   ```
   """)
-  @route("/spread-Alias-With-Optional-Collections")
-  @put
+  @route("/spread-alias-with-optional-collections")
+  @post
   op spreadAliasWithOptionalCollections(...AliasWithRequiredAndOptionalCollections): NoContentResponse;
 }
