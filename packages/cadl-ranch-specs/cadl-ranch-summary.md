@@ -2068,7 +2068,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /mixed-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2098,7 +2098,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /binary-array-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2127,7 +2127,7 @@ Content-Type: application/octet-stream
 this case will check filename and content-type of file part, so expect request:
 
 ```
-POST /upload HTTP/1.1
+POST /check-filename-and-content-type HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2157,7 +2157,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /complex-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2213,7 +2213,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /json-array-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2247,7 +2247,7 @@ Expect request (
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /json-part HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2279,7 +2279,7 @@ Please send request twice, first time with only profileImage, second time with b
   ):
 
 ```
-POST /upload HTTP/1.1
+POST /multi-binary-parts HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
@@ -2290,6 +2290,25 @@ Content-Type: application/octet-stream
 {…file content…}
 --abcde12345
 Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_optionalBinaryArrayParts
+
+- Endpoint: `post /multipart/form-data/optional-binary-array-parts`
+
+Expect request ("pictures" field is optional in request, do not send in test):
+
+```
+POST /optional-binary-array-parts HTTP/1.1
+Content-Length: <length>
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
