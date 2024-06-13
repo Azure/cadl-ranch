@@ -24,10 +24,7 @@ export interface ResolveModuleHost {
 
 type ResolveModuleErrorCode = "MODULE_NOT_FOUND";
 export class ResolveModuleError extends Error {
-  public constructor(
-    public code: ResolveModuleErrorCode,
-    message: string,
-  ) {
+  public constructor(public code: ResolveModuleErrorCode, message: string) {
     super(message);
   }
 }

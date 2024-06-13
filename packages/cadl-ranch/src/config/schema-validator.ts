@@ -7,10 +7,7 @@ export interface SchemaValidatorOptions {
 export class SchemaValidator<T> {
   private ajv: any;
 
-  public constructor(
-    private schema: JSONSchemaType<T>,
-    options: SchemaValidatorOptions = {},
-  ) {
+  public constructor(private schema: JSONSchemaType<T>, options: SchemaValidatorOptions = {}) {
     // https://github.com/ajv-validator/ajv/issues/2047
     this.ajv = new (Ajv as any)({
       strict: true,
