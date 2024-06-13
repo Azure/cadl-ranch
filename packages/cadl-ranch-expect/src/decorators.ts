@@ -238,6 +238,16 @@ export function $scenarioService(
     derivedModels: [],
     projectionsByName: [],
   } as any);
-  context.call($server, target, "http://localhost:3000", "TestServer endpoint");
+
+  context.call($server, target, "{endpoint}", "Test server endpoint", {
+    kind: "Model",
+    properties: new Map().set("endpoint", { name: "endpoint", type: { kind: "url" } }),
+    decorators: [],
+    projections: [],
+    name: "parameters",
+    derivedModels: [],
+    projectionsByName: [],
+  } as any);
+
   context.call($route, target, route);
 }
