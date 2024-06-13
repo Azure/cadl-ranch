@@ -127,8 +127,8 @@ function getRouteSegments(program: Program, target: Operation | Interface | Name
       return target.interface
         ? [...getRouteSegments(program, target.interface), ...seg]
         : target.namespace
-          ? [...getRouteSegments(program, target.namespace), ...seg]
-          : seg;
+        ? [...getRouteSegments(program, target.namespace), ...seg]
+        : seg;
   }
 }
 
