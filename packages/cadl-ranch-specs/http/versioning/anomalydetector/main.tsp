@@ -13,7 +13,7 @@ using TypeSpec.Versioning;
 @service
 @versioned(Versions)
 @server(
-  "{Endpoint}/versioning/anomalydetector/api-version:{ApiVersion}",
+  "{Endpoint}/versioning/anomalydetector/{ApiVersion}",
   "Testserver endpoint",
   {
     @doc("""
@@ -46,6 +46,7 @@ model DetectionResult {
 @scenarioDoc("""
 This operation should be generated with latest version's signature.
 
+Expected path parameter: Version="V1"
 Expected request body:
 ```json
 { "resultId": "73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a" }
