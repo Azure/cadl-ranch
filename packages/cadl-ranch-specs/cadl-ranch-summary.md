@@ -5680,6 +5680,46 @@ Expected request body:
 { "requiredProperty": "foo", "nullableProperty": null }
 ```
 
+### Type_Property_Nullable_CollectionsString_getNonNull
+
+- Endpoint: `get /type/property/nullable/collections/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+```
+
+### Type_Property_Nullable_CollectionsString_getNull
+
+- Endpoint: `get /type/property/nullable/collections/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_CollectionsString_patchNonNull
+
+- Endpoint: `patch /type/property/nullable/collections/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+```
+
+### Type_Property_Nullable_CollectionsString_patchNull
+
+- Endpoint: `patch /type/property/nullable/collections/string/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
 ### Type_Property_Nullable_Datetime_getNonNull
 
 - Endpoint: `get /type/property/nullable/datetime/non-null`
