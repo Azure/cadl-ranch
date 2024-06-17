@@ -7202,6 +7202,19 @@ Expected request body:
 { "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
 ```
 
+### Versioning_Anomaly_GetAnomalyDetectionResult
+
+- Endpoint: `get {Endpoint}/versioning/anomaly/{ApiVersion}/result/{resultId}`
+
+This operation should be generated with latest version's signature.
+
+Expected path parameter: Version="V1"
+Expected request body:
+
+```json
+{ "resultId": "73f411fe-4f43-4b4b-9cbd-6828d8f4cf9a" }
+```
+
 ### Versioning_MadeOptional_test
 
 - Endpoint: `post /versioning/made-optional/api-version:{version}/test`
