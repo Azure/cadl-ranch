@@ -9,6 +9,7 @@ using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
 
+@armCommonTypesVersion(CommonTypes.Versions.v5)
 namespace Azure.Arm.Models.Resources;
 
 @resource("topLevelTrackedResources")
