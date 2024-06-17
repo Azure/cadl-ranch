@@ -8,12 +8,12 @@ using Azure.ClientGenerator.Core;
 using TypeSpec.Versioning;
 
 /**
- * Test for the `@anomalydetector` decorator.
+ * Test for the `@anomaly` decorator.
  */
 @service
 @versioned(Versions)
 @server(
-  "{Endpoint}/versioning/anomalydetector/{ApiVersion}",
+  "{Endpoint}/versioning/anomaly/{ApiVersion}",
   "Testserver endpoint",
   {
     @doc("""
@@ -27,7 +27,7 @@ Need to be set as 'http://localhost:3000' in client.
   }
 )
 @doc("CADL project to test api versions.")
-namespace Versioning.AnomalyDetector;
+namespace Versioning.Anomaly;
 
 enum Versions {
   v1: "v1",
