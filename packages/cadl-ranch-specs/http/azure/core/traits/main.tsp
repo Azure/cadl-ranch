@@ -122,4 +122,10 @@ Expected response body:
 }
 ```
 """)
-op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<User, UserActionParam, UserActionResponse>;
+op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<
+  User,
+  {
+    @body body: UserActionParam;
+  },
+  UserActionResponse
+>;

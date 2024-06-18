@@ -95,4 +95,10 @@ Expected response body:
 ```
 """)
 @route("/generations:submit")
-op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<GenerationOptions, GenerationResponse, GenerationResult>;
+op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<
+  {
+    @body body: GenerationOptions;
+  },
+  GenerationResponse,
+  GenerationResult
+>;
