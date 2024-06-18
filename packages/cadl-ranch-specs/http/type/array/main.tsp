@@ -100,3 +100,28 @@ alias NullableFloat = float32 | null;
 @route("/nullable-float")
 @operationGroup
 interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.25, null, 3.0]"> {}
+
+alias NullableInt32 = int32 | null;
+@doc("Array of nullable int32 values")
+@route("/nullable-int32")
+@operationGroup
+interface NullableInt32Value extends ArrayOperations<NullableInt32[], "[1, null, 3]"> {}
+
+alias NullableBoolean = boolean | null;
+@doc("Array of nullable boolean values")
+@route("/nullable-boolean")
+@operationGroup
+interface NullableBooleanValue extends ArrayOperations<NullableBoolean[], "[true, null, false]"> {}
+
+alias NullableString = string | null;
+@doc("Array of nullable string values")
+@route("/nullable-string")
+@operationGroup
+interface NullableStringValue extends ArrayOperations<NullableString[], "['hello', null, 'world']"> {}
+
+alias NullableModel = InnerModel | null;
+@doc("Array of nullable model values")
+@route("/nullable-model")
+@operationGroup
+interface NullableModelValue
+  extends ArrayOperations<NullableModel[], "[{'property': 'hello'}, null, {'property': 'world'}]"> {}

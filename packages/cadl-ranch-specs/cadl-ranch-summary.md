@@ -3770,6 +3770,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Type_Array_NullableBooleanValue_get
+
+- Endpoint: `get /type/array/nullable-boolean`
+
+Expected Array response body:
+
+```json
+[true, null, false]
+```
+
+### Type_Array_NullableBooleanValue_put
+
+- Endpoint: `put /type/array/nullable-boolean`
+
+Expected Array input body:
+
+```json
+[true, null, false]
+```
+
 ### Type_Array_NullableFloatValue_get
 
 - Endpoint: `get /type/array/nullable-float`
@@ -3788,6 +3808,66 @@ Expected Array input body:
 
 ```json
 [1.25, null, 3.0]
+```
+
+### Type_Array_NullableInt32Value_get
+
+- Endpoint: `get /type/array/nullable-int32`
+
+Expected Array response body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableInt32Value_put
+
+- Endpoint: `put /type/array/nullable-int32`
+
+Expected Array input body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableModelValue_get
+
+- Endpoint: `get /type/array/nullable-model`
+
+Expected Array response body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableModelValue_put
+
+- Endpoint: `put /type/array/nullable-model`
+
+Expected Array input body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableStringValue_get
+
+- Endpoint: `get /type/array/nullable-string`
+
+Expected Array response body:
+
+```json
+["hello", null, "world"]
+```
+
+### Type_Array_NullableStringValue_put
+
+- Endpoint: `put /type/array/nullable-string`
+
+Expected Array input body:
+
+```json
+["hello", null, "world"]
 ```
 
 ### Type_Array_StringValue_get
