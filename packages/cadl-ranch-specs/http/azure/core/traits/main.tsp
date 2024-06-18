@@ -125,7 +125,7 @@ Expected response body:
 op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<
   User,
   {
-    @body body: UserActionParam;
+    @bodyRoot body: UserActionParam;
   },
   UserActionResponse
 >;
