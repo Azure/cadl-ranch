@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.3
+
+### Patch Changes
+
+- 439256b: Add rust to dashboard
+
 ## 0.8.2
 
 ### Patch Changes
