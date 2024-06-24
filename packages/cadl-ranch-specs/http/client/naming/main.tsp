@@ -173,7 +173,7 @@ namespace Model {
     """)
   @route("/client")
   @post
-  op client(...ModelWithClientClientName): NoContentResponse;
+  op client(@bodyRoot body: ModelWithClientClientName): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -187,7 +187,7 @@ namespace Model {
     """)
   @route("/language")
   @post
-  op language(...ModelWithLanguageClientName): NoContentResponse;
+  op language(@bodyRoot body: ModelWithLanguageClientName): NoContentResponse;
 }
 
 @operationGroup
