@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch
 
+## 0.13.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+
+### Patch Changes
+
+- Updated dependencies [87a8ccc]
+  - @azure-tools/cadl-ranch-expect@0.14.0
+
 ## 0.12.8
 
 ### Patch Changes
