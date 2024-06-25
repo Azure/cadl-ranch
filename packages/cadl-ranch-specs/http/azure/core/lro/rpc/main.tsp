@@ -101,7 +101,7 @@ op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<
   GenerationResult
 >;
 
-alias BodyParameter<T, TName extends valueof string = "body", TDoc extends valueof string = ""> = {
+alias BodyParameter<T, TName extends valueof string = "body", TDoc extends valueof string = "The body parameter."> = {
   @doc(TDoc)
   @friendlyName(TName)
   @bodyRoot
