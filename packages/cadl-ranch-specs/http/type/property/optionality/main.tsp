@@ -15,6 +15,27 @@ model ModelTemplate<TProperty> {
   property?: TProperty;
 }
 
+@doc("Template type for testing models with read only optional property. Pass in the type of the property you are looking for")
+model ReadOnlyModelTemplate<TProperty> {
+  @doc("ReadOnlyProperty")
+  @visibility("read")
+  property?: TProperty;
+}
+
+@doc("Template type for testing models with read only optional property list. Pass in the type of the property you are looking for")
+model ReadOnlyModelListTemplate<TProperty> {
+  @doc("ReadOnlyProperty")
+  @visibility("read")
+  propertylist?: TProperty[];
+}
+
+@doc("Template type for testing models with read only optional property record. Pass in the type of the property you are looking for")
+model ReadOnlyModelRecordTemplate<TProperty> {
+  @doc("ReadOnlyProperty")
+  @visibility("read")
+  propertyrecord?: Record<TProperty>;
+}
+
 @doc("Operations associated with getting and putting models with optional properties.")
 interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends string = "{}"> {
   @doc("Get models that will return all properties in the model")
@@ -237,3 +258,93 @@ interface RequiredAndOptional {
   @put
   putRequiredOnly(@body body: RequiredAndOptionalProperty): void;
 }
+
+// Model with optional readonly string property
+model ReadOnlyStringProperty is ReadOnlyModelTemplate<string>;
+@route("/readonly/string")
+@operationGroup
+interface ReadOnlyString extends OperationsTemplate<ReadOnlyStringProperty, "\"hello\""> {}
+
+// Model with optional readonly int property
+model ReadOnlyIntProperty is ReadOnlyModelTemplate<int32>;
+@route("/readonly/int")
+@operationGroup
+interface ReadOnlyInt extends OperationsTemplate<ReadOnlyIntProperty, "123"> {}
+
+// Model with optional readonly int property
+model ReadOnlyInnerModel {
+  @visibility("read")
+  name: string;
+}
+model ReadOnlyModelProperty is ReadOnlyModelTemplate<ReadOnlyInnerModel>;
+@route("/readonly/int")
+@operationGroup
+interface ReadOnlyModel extends OperationsTemplate<ReadOnlyModelProperty, "{name: \"hello\"}"> {}
+
+@scenario
+@scenarioDoc("""
+    Expected body parameter: 
+  ```json
+  {
+  }
+  ```
+
+  Expected response body: 
+  ```json
+  {
+    "name": "hello"
+  }
+  ```
+  """)
+@route("/readonly/model")
+@get
+op optionalReadOnlyModel(@body body: ReadOnlyModelProperty): {
+  @body body: ReadOnlyModelProperty;
+};
+
+// Model with optional readonly list of string property
+model ReadOnlyStringListProperty is ReadOnlyModelListTemplate<string>;
+
+@scenario
+@scenarioDoc("""
+    Expected body parameter: 
+  ```json
+  {
+  }
+  ```
+
+  Expected response body: 
+  ```json
+  {
+    ["hello", "world"]
+  }
+  ```
+  """)
+@route("/readonly/string/list")
+@get
+op optionalReadOnlyStringList(@body body: ReadOnlyStringListProperty): {
+  @body body: ReadOnlyStringListProperty;
+};
+
+// Model with optional readonly record of string property
+model ReadOnlyStringRecordProperty is ReadOnlyModelRecordTemplate<string>;
+@scenario
+@scenarioDoc("""
+    Expected body parameter: 
+  ```json
+  {
+  }
+  ```
+
+  Expected response body: 
+  ```json
+  {
+    ["hello", "world"]
+  }
+  ```
+  """)
+@route("/readonly/string/list")
+@get
+op optionalReadOnlyStringList(@body body: ReadOnlyStringListProperty): {
+  @body body: ReadOnlyStringListProperty;
+};

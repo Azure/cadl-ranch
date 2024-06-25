@@ -9,6 +9,13 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/type/array")
 namespace Type.Array;
 
+@doc("Template type for testing models with read only required property. Pass in the type of the property you are looking for")
+model ReadOnlyRequiredModelTemplate<TProperty> {
+  @doc("ReadOnlyProperty")
+  @visibility("read")
+  property: TProperty;
+}
+
 @doc("Template to have Array operations")
 interface ArrayOperations<TArr, TDoc extends string> {
   @scenario
@@ -94,6 +101,33 @@ model InnerModel {
 @route("/model")
 @operationGroup
 interface ModelValue extends ArrayOperations<InnerModel[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+@doc("Array of read only string values")
+model RequiredReadOnlyStringProperty is ReadOnlyRequiredModelTemplate<string>;
+@route("/required/readonly-string")
+@operationGroup
+interface ReadOnlyStringValue
+  extends ArrayOperations<RequiredReadOnlyStringProperty[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+@doc("Array of read only int values")
+model RequiredReadOnlyIntProperty is ReadOnlyRequiredModelTemplate<int32>;
+@route("/required/readonly-string")
+@operationGroup
+interface ReadOnlyIntValue
+  extends ArrayOperations<RequiredReadOnlyIntProperty[], "[{'property': 1}, {'property': 2}]"> {}
+
+model ReadonlyInnerModel {
+  @doc("Required string property")
+  @visibility("read")
+  property: string;
+}
+
+@doc("Array of read only model values")
+model RequiredReadOnlyModelProperty is ReadOnlyRequiredModelTemplate<ReadonlyInnerModel>;
+@route("/required/readonly-string")
+@operationGroup
+interface ReadOnlyModelValue
+  extends ArrayOperations<RequiredReadOnlyModelProperty[], "[{{'property': 'hello'}}, {{'property': 'world'}}]"> {}
 
 alias NullableFloat = float32 | null;
 @doc("Array of nullable float values")
