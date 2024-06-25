@@ -241,7 +241,20 @@ export function $scenarioService(
 
   context.call($server, target, "{endpoint}", "Test server endpoint", {
     kind: "Model",
-    properties: new Map().set("endpoint", { name: "endpoint", type: { kind: "url" } }),
+    properties: new Map().set("endpoint", {
+      name: "endpoint",
+      type: {
+        kind: "Scalar",
+        name: "string",
+        derivedScalars: [],
+        projections: [],
+        projectionsByName: [],
+        isFinished: false,
+        decorators: [],
+        namespace: { kind: "Namespace", name: "TypeSpec", namespace: context.program.getGlobalNamespaceType() },
+      },
+      default: { kind: "String", value: "http://localhost:3000" },
+    }),
     decorators: [],
     projections: [],
     name: "parameters",
