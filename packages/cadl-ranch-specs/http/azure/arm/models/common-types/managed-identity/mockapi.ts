@@ -91,34 +91,3 @@ Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_updateWithU
     },
   ),
 ]);
-
-Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_updateWithUserAssignedOnly = passOnSuccess([
-  mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-        throw new ValidationError("Unexpected top level resource name", "identity", req.params.topLevelResourceName);
-      }
-      req.expect.bodyEquals({
-        identity: {
-          type: "UserAssigned",
-        }
-      });
-      const resource = {
-        ...validManagedIdentityResource,
-      };
-      resource.identity.type = "UserAssigned";
-      return {
-        status: 200,
-        body: json(resource),
-      };
-    },
-  ),
-]);

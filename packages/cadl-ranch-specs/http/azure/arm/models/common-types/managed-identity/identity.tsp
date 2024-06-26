@@ -93,28 +93,4 @@ interface ManagedIdentityTrackedResources {
   ```
   """)
   updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedResourceIdentities>;
-
-  @scenario
-  @scenarioDoc("""
-  Resource PATCH operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  Expected query parameter: api-version=2023-12-01-preview
-  Expected request body:
-  ```json
-  {
-    "identity":{
-      "type": "UserAssigned"
-    }
-  }
-  ```
-   Expected response body:
-  ```json
-  {
-    "identity":{
-      "type": "UserAssigned"
-    }
-  }
-  ```
-  """)
-  updateWithUserAssignedOnly is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedResourceIdentities>;
 }

@@ -71,30 +71,12 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_Arm_Models_Resources_NestedProxyResources_get
-
-- Endpoint: `get https://management.azure.com`
-
-Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/identity
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "identity": {
-    "type": "SystemAssigned"
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_ManagedIdentityProxyResources_createWithSystemAssignedOnly
+### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssignedOnly
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/identity
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -116,12 +98,30 @@ Expected response body:
 }
 ```
 
-### Azure_Arm_Models_Resources_ManagedIdentityProxyResources_updateWithUserAssignedAndSystemAssigned
+### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
+```
+
+### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/identity
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -139,33 +139,6 @@ Expected response body:
 {
   "identity": {
     "type": "SystemAssigned,UserAssigned"
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_ManagedIdentityProxyResources_updateWithUserAssignedOnly
-
-- Endpoint: `patch https://management.azure.com`
-
-Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/identity
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "identity": {
-    "type": "UserAssigned"
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "identity": {
-    "type": "UserAssigned"
   }
 }
 ```
