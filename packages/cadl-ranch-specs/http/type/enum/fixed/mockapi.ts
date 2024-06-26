@@ -29,13 +29,12 @@ Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnCode(
 // Read only values
 Scenarios.Type_Enum_Fixed_String_getRequiredReadonlyValue = passOnSuccess(
   mockapi.get("/type/enum/fixed/string/readonly-required-value", (req) => {
-    req.expect.bodyEquals({ day: "Monday" });
     return { status: 200, body: json({ day: "Monday" }) };
   }),
 );
 
 Scenarios.Type_Enum_Fixed_String_getOptionalReadonlyValue = passOnSuccess(
   mockapi.get("/type/enum/fixed/string/readonly-optional-value", (req) => {
-    return { status: 200, body: json({ day: "Monday" }) };
+    return { status: 200, body: json({ day: null }) };
   }),
 );

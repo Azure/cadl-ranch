@@ -66,18 +66,18 @@ interface String {
   putUnknownValue(@body @doc("_") body: DaysOfWeekEnum): void;
 
   @scenario
-  @scenarioDoc("Expect to send and handle a read-only required value. Mock api expect to receive {day: 'Monday'} and return {day: 'Monday'}")
+  @scenarioDoc("Expect to handle a read-only required value. Mock api expect to return {day: 'Monday'}")
   @get
   @route("/readonly-required-value")
-  getRequiredReadonlyVaule(@body body: workday): {
+  getRequiredReadonlyValue(): {
     @body body: workday;
   };
 
   @scenario
-  @scenarioDoc("Expect to send and handle a read-only optional value. Mock api expect to receive {} and return {day: 'Monday'}")
+  @scenarioDoc("Expect to handle a read-only optional value. Mock api expect to return {}")
   @get
   @route("/readonly-optional-value")
-  getOptionalReadonlyVaule(@body body: workday): {
+  getOptionalReadonlyValue(): {
     @body body: workday;
   };
 }
