@@ -22,10 +22,10 @@ namespace Model {
   @scenarioDoc("""
   Test case for spread named model. 
   
-  Should generate request body model named `BodyParameter`.
+  Should not generate request body model named `BodyParameter`.
   Should generate an operation like below:
   ```
-  spreadAsRequestBody(bodyParameter: BodyParameter)
+  spreadAsRequestBody(name: string)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
   
