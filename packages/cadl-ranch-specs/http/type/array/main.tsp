@@ -49,6 +49,24 @@ interface ArrayOperations<TArr, TDoc extends string> {
   put(@body body: TArr): void;
 }
 
+@doc("Template to have Array operations")
+interface ReadOnltArrayOperations<TArr, TDoc extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Expected Array response body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  get(): TArr;
+}
+
 @doc("Array of int32 values")
 @route("/int32")
 @operationGroup
@@ -104,30 +122,33 @@ interface ModelValue extends ArrayOperations<InnerModel[], "[{'property': 'hello
 
 @doc("Array of read only string values")
 model RequiredReadOnlyStringProperty is ReadOnlyRequiredModelTemplate<string>;
-@route("/required/readonly-string")
+@route("/readonly-string")
 @operationGroup
 interface ReadOnlyStringValue
-  extends ArrayOperations<RequiredReadOnlyStringProperty[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+  extends ReadOnltArrayOperations<RequiredReadOnlyStringProperty[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
 
 @doc("Array of read only int values")
 model RequiredReadOnlyIntProperty is ReadOnlyRequiredModelTemplate<int32>;
-@route("/required/readonly-string")
+@route("/readonly-int")
 @operationGroup
 interface ReadOnlyIntValue
-  extends ArrayOperations<RequiredReadOnlyIntProperty[], "[{'property': 1}, {'property': 2}]"> {}
+  extends ReadOnltArrayOperations<RequiredReadOnlyIntProperty[], "[{'property': 1}, {'property': 2}]"> {}
 
 model ReadonlyInnerModel {
   @doc("Required string property")
   @visibility("read")
-  property: string;
+  name: string;
 }
 
 @doc("Array of read only model values")
 model RequiredReadOnlyModelProperty is ReadOnlyRequiredModelTemplate<ReadonlyInnerModel>;
-@route("/required/readonly-string")
+@route("/readonly-model")
 @operationGroup
 interface ReadOnlyModelValue
-  extends ArrayOperations<RequiredReadOnlyModelProperty[], "[{{'property': 'hello'}}, {{'property': 'world'}}]"> {}
+  extends ReadOnltArrayOperations<
+      RequiredReadOnlyModelProperty[],
+      "[{'property': {'name': 'hello'}}, {'property': {'name': 'world'}}]"
+    > {}
 
 alias NullableFloat = float32 | null;
 @doc("Array of nullable float values")

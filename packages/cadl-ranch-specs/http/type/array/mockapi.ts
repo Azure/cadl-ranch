@@ -7,6 +7,10 @@ interface MockApiGetPut {
   put: MockApi;
 }
 
+interface MockApiGet {
+  get: MockApi;
+}
+
 /**
  * Return the get and put operations
  * @param route The route within /dictionary for your function.
@@ -25,6 +29,18 @@ function createModelMockApis(route: string, value: any[]): MockApiGetPut {
       req.expect.coercedBodyEquals(value);
       return {
         status: 204,
+      };
+    }),
+  };
+}
+
+function createReadOnlyModelMockApis(route: string, value: any[]): MockApiGet {
+  const url = `/type/array/${route}`;
+  return {
+    get: mockapi.get(url, (req) => {
+      return {
+        status: 200,
+        body: json(value),
       };
     }),
   };
@@ -85,3 +101,18 @@ Scenarios.Type_Array_NullableBooleanValue_put = passOnSuccess(NullableBooleanMoc
 const NullableModelMock = createModelMockApis("nullable-model", [{ property: "hello" }, null, { property: "world" }]);
 Scenarios.Type_Array_NullableModelValue_get = passOnSuccess(NullableModelMock.get);
 Scenarios.Type_Array_NullableModelValue_put = passOnSuccess(NullableModelMock.put);
+
+const ReadOnlyInt32ValueMock = createReadOnlyModelMockApis("readonly-int32", [{ property: 1 }, { property: 2 }]);
+Scenarios.Type_Array_ReadOnlyInt32Value_get = passOnSuccess(ReadOnlyInt32ValueMock.get);
+
+const ReadOnlyStringValuesMock = createReadOnlyModelMockApis("readonly-string", [
+  { property: "hello" },
+  { property: "world" },
+]);
+Scenarios.Type_Array_ReadOnlyStringValues_get = passOnSuccess(ReadOnlyStringValuesMock.get);
+
+const ReadOnlyModelValuesMock = createReadOnlyModelMockApis("readonly-model", [
+  { property: { name: "hello" } },
+  { property: { name: "world" } },
+]);
+Scenarios.Type_Array_ReadOnlyModelValues_get = passOnSuccess(ReadOnlyModelValuesMock.get);

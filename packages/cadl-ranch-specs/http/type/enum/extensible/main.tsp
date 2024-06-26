@@ -35,7 +35,7 @@ union DaysOfWeekExtensibleEnum {
 model workday {
   @doc("The day of the week")
   @visibility("read")
-  day: DaysOfWeekExtensibleEnum;
+  day?: DaysOfWeekExtensibleEnum;
 }
 
 @route("/string")
@@ -69,18 +69,18 @@ interface String {
   putUnknownValue(@body body: DaysOfWeekExtensibleEnum): void;
 
   @scenario
-  @scenarioDoc("Expect to send and handle a read only required value. Mock api expect to receive {day: 'Monday'} and return {day: 'Monday'}")
+  @scenarioDoc("Expect to send and handle a read-only required value. Mock api expect to receive {day: 'Monday'} and return {day: 'Monday'}")
   @get
   @route("/readonly-required-value")
-  getRequiredReadonlyVaule(@body body: workday): {
+  getRequiredReadonlyValue(@body body: workday): {
     @body body: workday;
   };
 
   @scenario
-  @scenarioDoc("Expect to send and handle a read only optional value. Mock api expect to receive {} and return {day: 'Monday'}")
+  @scenarioDoc("Expect to send and handle a read-only optional value. Mock api expect to receive {} and return {day: 'Monday'}")
   @get
   @route("/readonly-optional-value")
-  getOptionalReadonlyVaule(@body body: workday): {
+  getOptionalReadonlyValue(@body body: workday): {
     @body body: workday;
   };
 }
