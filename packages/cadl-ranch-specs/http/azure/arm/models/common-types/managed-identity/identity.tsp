@@ -12,8 +12,8 @@ using TypeSpec.OpenAPI;
 namespace Azure.Arm.Models.CommonTypes.ManagedIdentity;
 
 @doc("Nested child of Top Level Tracked Resource.")
-@parentResource(ManagedIdentityTrackedResource)
-model ManagedIdentityProxyResource is ProxyResource<ManagedIdentityProxyResourceProperties> {
+@resource("managedIdentityTrackedResources")
+model ManagedIdentityProxyResource is ProxyResource<ManagedIdentityProxyResourceIdentities> {
   @key("managedIdentityProxyResourceName")
   @doc("Name of the managed identity resource.")
   @visibility("read")
@@ -25,13 +25,12 @@ model ManagedIdentityProxyResource is ProxyResource<ManagedIdentityProxyResource
 
 @doc("Managed Identity Proxy Resource Identities.")
 model ManagedIdentityProxyResourceIdentities {
-  @visibility("read")
   @doc("The type of managed identity.")
   type?: string;
 }
 
 @armResourceOperations
-interface ManagedIdentityProxyResources {
+interface ManagedIdentityTrackedResources {
   @scenario
   @scenarioDoc("""
   Resource GET operation.
@@ -47,7 +46,7 @@ interface ManagedIdentityProxyResources {
   }
   ```
   """)
-  get is ArmResourceRead<ManagedIdentityProxyResource>;
+  get is ArmResourceRead<ManagedIdentityTrackedResource>;
 
   @scenario
   @scenarioDoc("""
@@ -71,7 +70,7 @@ interface ManagedIdentityProxyResources {
   }
   ```
   """)
-  createWithSystemAssignedOnly is ArmResourceCreateOrReplaceAsync<ManagedIdentityProxyResource>;
+  createWithSystemAssignedOnly is ArmResourceCreateOrReplaceAsync<ManagedIdentityTrackedResources>;
 
   @scenario
   @scenarioDoc("""
@@ -95,9 +94,9 @@ interface ManagedIdentityProxyResources {
   }
   ```
   """)
-  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<ManagedIdentityProxyResource, ManagedIdentityProxyResourceProperties>;
+  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedIdentities>;
 
-    @scenario
+  @scenario
   @scenarioDoc("""
   Resource PATCH operation.
   Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/identity",
@@ -119,5 +118,5 @@ interface ManagedIdentityProxyResources {
   }
   ```
   """)
-  updateWithUserAssignedOnly is ArmResourcePatchAsync<ManagedIdentityProxyResource, ManagedIdentityProxyResourceProperties>;
+  updateWithUserAssignedOnly is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedIdentities>;
 }
