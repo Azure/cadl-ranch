@@ -65,6 +65,7 @@ interface String {
   @doc("putUnknownValue")
   putUnknownValue(@body @doc("_") body: DaysOfWeekEnum): void;
 
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("Expect to handle a read-only required value. Mock api expect to return {day: 'Monday'}")
   @get
@@ -73,6 +74,7 @@ interface String {
     @body body: workday;
   };
 
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("Expect to handle a read-only optional value. Mock api expect to return {}")
   @get

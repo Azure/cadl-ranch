@@ -35,6 +35,6 @@ Scenarios.Type_Enum_Fixed_String_getRequiredReadonlyValue = passOnSuccess(
 
 Scenarios.Type_Enum_Fixed_String_getOptionalReadonlyValue = passOnSuccess(
   mockapi.get("/type/enum/fixed/string/readonly-optional-value", (req) => {
-    return { status: 200, body: json({ day: null }) };
+    return { status: 200, body: json({}) };
   }),
 );
