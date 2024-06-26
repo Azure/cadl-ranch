@@ -33,12 +33,12 @@ Scenarios.Type_Enum_Extensible_String_putUnknownValue = passOnSuccess(
 
 Scenarios.Type_Enum_Extensible_String_getRequiredReadonlyValue = passOnSuccess(
   mockapi.get("/type/enum/extensible/string/readonly-required-value", (req) => {
-    return { status: 200, body: json({}) };
+    return { status: 200, body: json({ day: "Monday" }) };
   }),
 );
 
 Scenarios.Type_Enum_Extensible_String_getOptionalReadonlyValue = passOnSuccess(
   mockapi.get("/type/enum/extensible/string/readonly-optional-value", (req) => {
-    return { status: 200, body: json({ day: "Monday" }) };
+    return { status: 200, body: json({}) };
   }),
 );
