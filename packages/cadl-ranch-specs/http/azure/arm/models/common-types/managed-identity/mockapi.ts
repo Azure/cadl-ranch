@@ -14,7 +14,7 @@ const validManagedIdentityResource = {
 // top level tracked resource
 Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -36,7 +36,7 @@ Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_get = passO
 
 Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_createWithSystemAssignedOnly = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -63,7 +63,7 @@ Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_createWithS
 
 Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -94,7 +94,7 @@ Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_updateWithU
 
 Scenarios.Azure_Arm_Models_Resources_ManagedIdentityTrackedResources_updateWithUserAssignedOnly = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {

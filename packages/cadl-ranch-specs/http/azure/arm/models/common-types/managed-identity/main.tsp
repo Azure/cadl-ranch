@@ -17,7 +17,7 @@ using TypeSpec.OpenAPI;
 @armProviderNamespace
 @service
 @versioned(Versions)
-@doc("Arm Resource Provider management API.")
+@doc("Arm Common Types Managed Identity Provider management API.")
 namespace Azure.Arm.Models.CommonTypes.ManagedIdentity;
 
 @doc("Azure API versions.")
