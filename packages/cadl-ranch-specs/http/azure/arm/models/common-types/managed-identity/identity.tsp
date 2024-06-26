@@ -68,7 +68,7 @@ interface ManagedIdentityTrackedResources {
   }
   ```
   """)
-  createWithSystemAssignedOnly is ArmResourceCreateOrReplaceAsync<ManagedIdentityTrackedResources>;
+  createWithSystemAssignedOnly is ArmResourceCreateOrReplaceAsync<ManagedIdentityTrackedResource>;
 
   @scenario
   @scenarioDoc("""
@@ -92,7 +92,7 @@ interface ManagedIdentityTrackedResources {
   }
   ```
   """)
-  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedIdentities>;
+  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedResourceIdentities>;
 
   @scenario
   @scenarioDoc("""
@@ -116,5 +116,5 @@ interface ManagedIdentityTrackedResources {
   }
   ```
   """)
-  updateWithUserAssignedOnly is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedIdentities>;
+  updateWithUserAssignedOnly is ArmResourcePatchAsync<ManagedIdentityTrackedResource, ManagedIdentityTrackedResourceIdentities>;
 }
