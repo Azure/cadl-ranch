@@ -27,7 +27,7 @@ namespace Property {
     ```
     """)
   @post
-  op send(...JsonEncodedNameModel): NoContentResponse;
+  op send(@bodyRoot body: JsonEncodedNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
