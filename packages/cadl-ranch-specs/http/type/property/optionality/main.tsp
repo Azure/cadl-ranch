@@ -507,6 +507,49 @@ Expected request body:
 @convenientAPI(true)
 op inputToRoundTrip(@body input: InputModel): RoundTripModel;
 
+@scenario
+@scenarioDoc("""
+Expected response body:
+```json
+{optionalString: "hello",
+  optionalInt: 123,
+  optionalStringList: ["hello", "world"],
+  optionalIntList: [123, 456],
+  optionalModelList: [{"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}}],
+  optionalModel: {"requiredList": ["hello", "world"]},
+  optionalModelWithPropertiesOnBase: {"requiredList": ["hello", "world"]},
+  optionalFixedStringEnum: "1",
+  optionalExtensibleEnum: "1",
+  optionalIntRecord: {"1": 123},
+  optionalStringRecord: {"hello": "world"},
+  optionalModelRecord: {"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}},
+  optionalPlainDate: "2023-02-14",
+  optionalPlainTime: "1.02:59:59",
+  optionalCollectionWithNullableIntElement: [123, null],
+  }
+```
+
+Expected request body:
+```json
+  {optionalString: "hello",
+  optionalInt: 123,
+  optionalStringList: ["hello", "world"],
+  optionalIntList: [123, 456],
+  optionalModelList: [{"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}}],
+  optionalModel: {"requiredList": ["hello", "world"]},
+  optionalModelWithPropertiesOnBase: {"requiredList": ["hello", "world"]},
+  optionalFixedStringEnum: "1",
+  optionalExtensibleEnum: "1",
+  optionalIntRecord: {"1": 123},
+  optionalStringRecord: {"hello": "world"},
+  optionalModelRecord: {"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}},
+  optionalPlainDate: "2023-02-14",
+  optionalPlainTime: "1.02:59:59",
+  optionalCollectionWithNullableIntElement: [123, null],
+  }
+```
+
+""")
 @route("/inputToRoundTripOptional")
 @doc("Input to RoundTripOptional")
 @get
