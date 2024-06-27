@@ -237,3 +237,278 @@ interface RequiredAndOptional {
   @put
   putRequiredOnly(@body body: RequiredAndOptionalProperty): void;
 }
+
+//model with required and optional properties
+@doc("Base model")
+model BaseModel {}
+
+@doc("Derived model")
+model DerivedModel extends BaseModel {
+  @doc("Required collection")
+  requiredList: CollectionItem[];
+}
+
+@doc("Collection item model")
+model CollectionItem {
+  @doc("Required model record")
+  requiredModelRecord: Record<RecordItem>;
+}
+
+@doc("Record item model")
+model RecordItem extends DerivedModel {}
+
+@doc("Derived model with properties")
+model DerivedModelWithProperties {
+  @doc("Required collection")
+  requiredList: string[];
+}
+
+@doc("Fixed string enum")
+enum FixedStringEnum {
+  One: "1",
+  Two: "2",
+  Four: "4",
+}
+
+@doc("Extensible enum")
+union ExtensibleEnum {
+  string,
+  One: "1",
+  Two: "2",
+  Four: "4",
+}
+
+model InputModel {
+  @doc("Required string")
+  requiredString: string;
+
+  @doc("Required int")
+  requiredInt: int32;
+
+  @doc("Required nullable int")
+  requiredNullableInt: int32 | null;
+
+  @doc("Required nullable string")
+  requiredNullableString: string | null;
+
+  @doc("Optional nullable int")
+  nonRequiredNullableInt?: int32 | null;
+
+  @doc("Optional nullable string")
+  nonRequiredNullableString?: string | null;
+
+  @doc("Required model")
+  requiredModel: BaseModel;
+
+  @doc("Required model")
+  requiredModel2: BaseModel;
+
+  @doc("Required primitive value type collection")
+  requiredIntList: int32[];
+
+  @doc("Required primitive reference type collection")
+  requiredStringList: string[];
+
+  @doc("Required model collection")
+  requiredModelList: CollectionItem[];
+
+  @doc("Required model record")
+  requiredModelRecord: Record<RecordItem>;
+
+  @doc("Required collection of which the element is a nullable float")
+  requiredCollectionWithNullableFloatElement: (null | float32)[];
+
+  @doc("Required collection of which the element is a nullable boolean")
+  requiredCollectionWithNullableBooleanElement: (boolean | null)[];
+
+  @doc("Required model nullable collection")
+  requiredNullableModelList: CollectionItem[] | null;
+
+  @doc("Required string nullable collection")
+  requiredNullableStringList: string[] | null;
+
+  @doc("Required int nullable collection")
+  requiredNullableIntList: int32[] | null;
+
+  @doc("Optional model collection")
+  nonRequiredModelList?: CollectionItem[];
+
+  @doc("Optional string collection")
+  nonRequiredStringList?: string[];
+
+  @doc("Optional int collection")
+  nonRequiredIntList?: int32[];
+
+  @doc("Optional model nullable collection")
+  nonRequiredNullableModelList?: CollectionItem[] | null;
+
+  @doc("Optional string nullable collection")
+  nonRequiredNullableStringList?: string[] | null;
+
+  @doc("Optional int nullable collection")
+  nonRequiredNullableIntList?: int32[] | null;
+}
+
+@doc("Model used both as input and output")
+model RoundTripModel extends BaseModel {
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
+
+  @doc("Required int, illustrating a value type property.")
+  requiredInt: int32;
+
+  @doc("Optional string")
+  nonRequiredString?: string;
+
+  @doc("Optional int")
+  nonRequiredInt?: int32;
+
+  @doc("Required nullable int")
+  requiredNullableInt: int32 | null;
+
+  @doc("Required nullable string")
+  requiredNullableString: string | null;
+
+  @doc("Optional nullable int")
+  nonRequiredNullableInt?: int32 | null;
+
+  @doc("Optional nullable string")
+  nonRequiredNullableString?: string | null;
+
+  @doc("Required readonly int")
+  @visibility("read")
+  requiredReadonlyInt: int32;
+
+  @doc("Optional readonly int")
+  @visibility("read")
+  nonRequiredReadonlyInt?: int32;
+
+  @doc("Required fixed string enum")
+  requiredFixedStringEnum: FixedStringEnum;
+
+  @doc("Required extensible enum")
+  requiredExtensibleEnum: ExtensibleEnum;
+
+  @doc("Required collection")
+  requiredList: CollectionItem[];
+
+  @doc("Required int record")
+  requiredIntRecord: Record<int32>;
+
+  @doc("Required string record")
+  requiredStringRecord: Record<string>;
+
+  @doc("Required Model Record")
+  requiredModelRecord: Record<RecordItem>;
+
+  @doc("Required bytes")
+  requiredBytes: bytes;
+
+  @doc("Optional bytes")
+  optionalBytes?: bytes;
+
+  @doc("Required uint8[]")
+  requiredUint8Array: uint8[];
+
+  @doc("Optional uint8[]")
+  optionalUint8Array?: uint8[];
+
+  @doc("Required unknown")
+  requiredUnknown: unknown;
+
+  @doc("Optional unknown")
+  optionalUnknown?: unknown;
+
+  @doc("Required int8[]")
+  requiredInt8Array: int8[];
+
+  @doc("Optional int8[]")
+  optionalInt8Array?: int8[];
+
+  @doc("Required nullable int list")
+  requiredNullableIntList: int32[] | null;
+
+  @doc("Required nullable string list")
+  requiredNullableStringList: string[] | null;
+
+  @doc("Optional nullable model list")
+  nonRequiredNullableIntList?: int32[] | null;
+
+  @doc("Optional nullable string list")
+  nonRequiredNullableStringList?: string[] | null;
+}
+
+@doc("RoundTrip model with optional properties.")
+model RoundTripOptionalModel {
+  @doc("Optional string, illustrating an optional reference type property.")
+  optionalString?: string;
+
+  @doc("Optional int, illustrating an optional value type property.")
+  optionalInt?: int32;
+
+  @doc("Optional string collection.")
+  optionalStringList?: string[];
+
+  @doc("Optional int collection.")
+  optionalIntList?: int32[];
+
+  @doc("Optional model collection")
+  optionalModelList?: CollectionItem[];
+
+  @doc("Optional model.")
+  optionalModel?: DerivedModel;
+
+  @doc("Optional model with properties on base")
+  optionalModelWithPropertiesOnBase?: DerivedModelWithProperties;
+
+  @doc("Optional fixed string enum")
+  optionalFixedStringEnum?: FixedStringEnum;
+
+  @doc("Optional extensible enum")
+  optionalExtensibleEnum?: ExtensibleEnum;
+
+  @doc("Optional int record")
+  optionalIntRecord?: Record<int32>;
+
+  @doc("Optional string record")
+  optionalStringRecord?: Record<string>;
+
+  @doc("Optional model record")
+  optionalModelRecord?: Record<RecordItem>;
+
+  @doc("Optional plainDate")
+  optionalPlainDate?: plainDate;
+
+  @doc("Optional plainTime")
+  optionalPlainTime?: plainTime;
+
+  @doc("Optional collection of which the element is a nullable int")
+  optionalCollectionWithNullableIntElement?: (int32 | null)[];
+}
+
+@scenario
+@scenarioDoc("""
+Expected response body:
+```json
+{optionalPlainDate: "2023-02-14",
+  optionalPlainTime: "1.02:59:59",
+  optionalCollectionWithNullableIntElement: [123, null],
+  }
+```
+
+Expected request body:
+```json
+  {optionalCollectionWithNullableIntElement: [null, 123],}
+```
+""")
+@route("/inputToRoundTrip")
+@doc("Input to RoundTrip")
+@get
+@convenientAPI(true)
+op inputToRoundTrip(@body input: InputModel): RoundTripModel;
+
+@route("/inputToRoundTripOptional")
+@doc("Input to RoundTripOptional")
+@get
+@convenientAPI(true)
+op inputToRoundTripOptional(@body input: RoundTripOptionalModel): RoundTripOptionalModel;
