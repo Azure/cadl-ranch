@@ -178,7 +178,7 @@ Scenarios.Type_Property_Optional_RequiredAndOptional_putRequiredOnly = passOnSuc
 );
 
 Scenarios.Type_Property_Optional_InputToRoundTripOptional = passOnSuccess([
-  mockapi.get(`${requiredAndOptionalBaseUrl}/inputToRoundTripOptional`, (req) => {
+  mockapi.get(`/type/property/optional/inputToRoundTripOptional`, (req) => {
     req.expect.bodyEquals({
       optionalPlainDate: "2023-02-14",
       optionalPlainTime: "1.02:59:59",
@@ -194,7 +194,7 @@ Scenarios.Type_Property_Optional_InputToRoundTripOptional = passOnSuccess([
 ]);
 
 Scenarios.Type_Property_Optional_inputToRoundTrip = passOnSuccess([
-  mockapi.get(`${requiredAndOptionalBaseUrl}/inputToRoundTrip`, (req) => {
+  mockapi.get(`/type/property/optional/inputToRoundTrip`, (req) => {
     req.expect.bodyEquals({
       requiredString: "test",
       requiredInt: 2,
@@ -220,14 +220,13 @@ Scenarios.Type_Property_Optional_inputToRoundTrip = passOnSuccess([
         requiredNullableString: null,
         requiredNullableInt: null,
         requiredReadonlyInt: 3,
-        requiredModel: { requiredPropertyOnBase: 123 },
         requiredFixedStringEnum: "1",
         requiredFixedIntEnum: 2,
         requiredExtensibleEnum: "1",
         requiredList: [{ requiredModelRecord: {} }],
         requiredIntRecord: { "1": 1 },
         requiredStringRecord: { "1": "1" },
-        requiredModelRecord: { "1": { requiredList: ["a"] } },
+        requiredModelRecord: {},
         requiredBytes: "aGVsbG8=",
         requiredUint8Array: [1, 2],
         requiredUnknown: "unknown",

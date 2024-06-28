@@ -357,7 +357,7 @@ model InputModel {
 }
 
 @doc("Model used both as input and output")
-model RoundTripModel extends BaseModel {
+model RoundTripModel {
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 
@@ -525,14 +525,13 @@ Expected request body:
    requiredNullableString: null,
    requiredNullableInt: null,
    requiredReadonlyInt: 3,
-   requiredModel: { requiredPropertyOnBase: 123},
    requiredFixedStringEnum: "1",
    requiredFixedIntEnum: 2,
    requiredExtensibleEnum: "1",
    requiredList: [{ requiredModelRecord: {} }],
    requiredIntRecord: { "1": 1 },
    requiredStringRecord: { "1": "1" },
-   requiredModelRecord: { "1": { requiredList: ["a"] } },
+   requiredModelRecord: {},
    requiredBytes: "aGVsbG8=",
    requiredUint8Array: [1, 2],
    requiredUnknown: "unknown",
