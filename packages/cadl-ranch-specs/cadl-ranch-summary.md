@@ -71,343 +71,6 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_Arm_Models_Resources_NestedProxyResources_createOrReplace
-
-- Endpoint: `put https://management.azure.com`
-
-Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "properties": {
-    "description": "valid"
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-  "name": "nested",
-  "type": "nested",
-  "properties":{
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_NestedProxyResources_delete
-
-- Endpoint: `delete https://management.azure.com`
-
-Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-Expected query parameter: api-version=2023-12-01-preview
-Expected response status code: 204
-
-### Azure_Arm_Models_Resources_NestedProxyResources_get
-
-- Endpoint: `get https://management.azure.com`
-
-Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-  "name": "nested",
-  "type": "nested",
-  "properties":{
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
-
-- Endpoint: `get https://management.azure.com`
-
-Resource LIST by parent resource operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-    "name": "nested",
-    "type": "nested",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }]
-}
-```
-
-### Azure_Arm_Models_Resources_NestedProxyResources_update
-
-- Endpoint: `patch https://management.azure.com`
-
-Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "properties": {
-    "description": "valid2"
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-  "name": "nested",
-  "type": "nested",
-  "properties":{
-    "description": "valid2",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_createOrReplace
-
-- Endpoint: `put https://management.azure.com`
-
-Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "location": "eastus",
-  "properties": {
-    "description": "valid"
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top",
-  "name": "top",
-  "type": "topLevel",
-  "location": "eastus",
-  "properties": {
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-```
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_delete
-
-- Endpoint: `delete https://management.azure.com`
-
-Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top
-Expected query parameter: api-version=2023-12-01-preview
-
-````
-Expected response status code: 204
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_get
-
-- Endpoint: `get https://management.azure.com`
-
-Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top",
-  "name": "top",
-  "type": "topLevel",
-  "location": "eastus",
-  "properties":{
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-````
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_listByResourceGroup
-
-- Endpoint: `get https://management.azure.com`
-
-Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top",
-    "name": "top",
-    "type": "topLevel",
-    "location": "eastus",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }]
-}
-```
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_listBySubscription
-
-- Endpoint: `get https://management.azure.com`
-
-Resource LIST by subscription operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top",
-    "name": "top",
-    "type": "topLevel",
-    "location": "eastus",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }]
-}
-```
-
-### Azure_Arm_Models_Resources_TopLevelTrackedResources_update
-
-- Endpoint: `patch https://management.azure.com`
-
-Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "properties": {
-    "description": "valid2"
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top",
-  "name": "top",
-  "type": "topLevel",
-  "location": "eastus",
-  "properties":{
-    "description": "valid2",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
-  }
-}
-```
-
 ### Azure_ClientGenerator_Core_Access_InternalOperation
 
 - Endpoints:
@@ -997,6 +660,343 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge"
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by parent resource operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+````
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+````
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by subscription operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
 }
 ```
 
