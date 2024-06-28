@@ -19,11 +19,11 @@ using TypeSpec.OpenAPI;
 @service
 @versioned(Versions)
 @doc("Arm Resource Provider management API.")
-namespace Azure.Arm.Models.Resources;
+namespace Azure.ResourceManager.Models.Resources;
 
 @doc("Azure API versions.")
 enum Versions {
-  @armCommonTypesVersion(CommonTypes.Versions.v5)
+  @armCommonTypesVersion(CommonTypes.Versions.v3)
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @doc("Preview API version 2023-12-01-preview.")
