@@ -88,3 +88,9 @@ Scenarios.Type_Property_Nullable_CollectionsModel_getNonNull = passOnSuccess(col
 Scenarios.Type_Property_Nullable_CollectionsModel_getNull = passOnSuccess(collectionsModelMock.getNull);
 Scenarios.Type_Property_Nullable_CollectionsModel_patchNonNull = passOnSuccess(collectionsModelMock.patchNonNull);
 Scenarios.Type_Property_Nullable_CollectionsModel_patchNull = passOnSuccess(collectionsModelMock.patchNull);
+
+const collectionsStringMock = createMockApis("collections/string", ["hello", "world"]);
+Scenarios.Type_Property_Nullable_CollectionsString_getNonNull = passOnSuccess(collectionsStringMock.getNonNull);
+Scenarios.Type_Property_Nullable_CollectionsString_getNull = passOnSuccess(collectionsStringMock.getNull);
+Scenarios.Type_Property_Nullable_CollectionsString_patchNonNull = passOnSuccess(collectionsStringMock.patchNonNull);
+Scenarios.Type_Property_Nullable_CollectionsString_patchNull = passOnSuccess(collectionsStringMock.patchNull);

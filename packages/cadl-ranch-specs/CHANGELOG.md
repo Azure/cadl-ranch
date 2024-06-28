@@ -1,5 +1,24 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+- 2fb006d: Add typespec-azure-resource-manager dependency to cadl-ranch-specs.
+- 8b42129: Added tests for ARM's tracked resource and nested resource.
+
+### Patch Changes
+
+- 656524d: Disable patch convenience method for csharp
+- d983279: Add nullable int/string/boolean/model test cases for Type/Array
+- fa9490e: Remove fixed from enum.
+- 4026382: Add usage test case for model used in read-only property
+- 83c129b: Add nullable list of int/string test cases for type/property/nullable
+- Updated dependencies [87a8ccc]
+  - @azure-tools/cadl-ranch-expect@0.14.0
+  - @azure-tools/cadl-ranch@0.13.0
+
 ## 0.33.4
 
 ### Patch Changes

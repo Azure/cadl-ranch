@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-Remove fixed from enum.
+Use explicit body to avoid model get spread
