@@ -2481,6 +2481,30 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_checkFileNameAndContentTypeWithHttpPart
+
+- Endpoint: `post /multipart/form-data/check-filename-and-content-type-with-httppart`
+
+This case will check filename and content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
+```
+
 ### Payload_MultiPart_FormData_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts`
@@ -2531,6 +2555,57 @@ Content-Type: application/octet-stream
 {…file content…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_complexWithHttpPart
+
+- Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
+
+For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
+content-type will be checked with value "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
 {…file content…}
