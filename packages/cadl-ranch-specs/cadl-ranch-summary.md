@@ -4792,6 +4792,60 @@ Expected input body:
 }
 ```
 
+### Type_Model_Visibility_inputToRoundTripReadOnly
+
+- Endpoint: `get /type/model/visibility/inputToRoundTripReadOnly`
+
+Generate abd send input model and handle readonly properties.
+Expected input body:
+
+```json
+{
+  "requiredString": "test",
+  "requiredInt": 2,
+  "requiredNullableString": null,
+  "requiredNullableInt": null,
+  "requiredModel": { "requiredList": [null] },
+  "requiredModel2": { "requiredList": [null] },
+  "requiredIntList": [1, 2],
+  "requiredStringList": ["a", null],
+  "requiredModelList": [{ "requiredModelRecord": {} }],
+  "requiredModelRecord": {},
+  "requiredCollectionWithNullableFloatElement": [],
+  "requiredCollectionWithNullableBooleanElement": [],
+  "requiredNullableModelList": null,
+  "requiredNullableStringList": null,
+  "requiredNullableIntList": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "requiredReadonlyString": "test",
+  "requiredReadonlyInt": 12,
+  "optionalReadonlyInt": 11,
+  "requiredReadonlyModel": { "requiredList": [] },
+  "requiredReadonlyFixedStringEnum": "1",
+  "requiredReadonlyExtensibleEnum": "3",
+  "optionalReadonlyFixedStringEnum": "2",
+  "optionalReadonlyExtensibleEnum": "1",
+  "requiredReadonlyStringList": ["abc"],
+  "requiredReadonlyIntList": [],
+  "requiredReadOnlyModelList": [],
+  "requiredReadOnlyIntRecord": { "test": 1 },
+  "requiredStringRecord": { "test": "1" },
+  "requiredReadOnlyModelRecord": {},
+  "optionalReadonlyStringList": [null],
+  "optionalReadOnlyModelList": [],
+  "optionalReadOnlyStringRecord": {},
+  "optionalModelRecord": { "test": { "requiredList": [] } },
+  "requiredCollectionWithNullableIntElement": [null, 123],
+  "optionalCollectionWithNullableBooleanElement": [null, false, true]
+}
+```
+
 ### Type_Model_Visibility_patchModel
 
 - Endpoint: `patch /type/model/visibility`
@@ -6198,6 +6252,81 @@ Expected request body:
 
 ```json
 {}
+```
+
+### Type_Property_Optional_inputToRoundTrip
+
+- Endpoint: `get /type/property/optional/inputToRoundTrip`
+
+Expected response body:
+
+```json
+{
+  "requiredString": "test",
+  "requiredInt": 2,
+  "requiredNullableString": null,
+  "requiredNullableInt": null,
+  "requiredModel": { "requiredList": [null] },
+  "requiredModel2": { "requiredList": [null] },
+  "requiredIntList": [1, 2],
+  "requiredStringList": ["a", null],
+  "requiredModelList": [{ "requiredModelRecord": {} }],
+  "requiredModelRecord": {},
+  "requiredCollectionWithNullableFloatElement": [],
+  "requiredCollectionWithNullableBooleanElement": [],
+  "requiredNullableModelList": null,
+  "requiredNullableStringList": null,
+  "requiredNullableIntList": null
+}
+```
+
+Expected request body:
+
+```json
+  {requiredString: "test",
+   requiredInt: 2,
+   requiredNullableString: null,
+   requiredNullableInt: null,
+   requiredReadonlyInt: 3,
+   requiredFixedStringEnum: "1",
+   requiredFixedIntEnum: 2,
+   requiredExtensibleEnum: "1",
+   requiredList: [{ requiredModelRecord: {} }],
+   requiredIntRecord: { "1": 1 },
+   requiredStringRecord: { "1": "1" },
+   requiredModelRecord: {},
+   requiredBytes: "aGVsbG8=",
+   requiredUint8Array: [1, 2],
+   requiredUnknown: "unknown",
+   requiredInt8Array: [1, 2],
+   requiredNullableIntList: [1, 2, null],
+   requiredNullableStringList: ["a", "b", null],
+   nonRequiredNullableIntList: [1, 2, null],
+   nonRequiredNullableStringList: ["a", "b", null],
+    }
+   }
+```
+
+### Type_Property_Optional_inputToRoundTripOptional
+
+- Endpoint: `get /type/property/optional/inputToRoundTripOptional`
+
+Expected response body:
+
+```json
+{
+  "optionalPlainDate": "2023-02-14",
+  "optionalPlainTime": "1.02:59:59",
+  "optionalCollectionWithNullableIntElement": [123, null]
+}
+```
+
+Expected request body:
+
+```json
+{
+  "optionalCollectionWithNullableIntElement": [null, 123]
+}
 ```
 
 ### Type_Property_Optional_IntLiteral_getAll
