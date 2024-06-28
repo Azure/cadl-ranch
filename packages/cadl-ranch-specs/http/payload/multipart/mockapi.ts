@@ -164,3 +164,11 @@ Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentType = passOnSuccess
 Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
   createMockApis("anonymous-model", [checkProfileImage]),
 );
+
+Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentTypeWithHttpPart = passOnSuccess(
+  createMockApis("check-filename-and-content-type-with-httppart", [checkId, checkFileNameAndContentType]),
+);
+
+Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
+  createMockApis("/complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+);
