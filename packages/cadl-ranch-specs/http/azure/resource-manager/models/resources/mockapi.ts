@@ -84,7 +84,6 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_create
         properties: {
           description: "valid",
         },
-        tags: {}, // Workaround here because of https://github.com/Azure/autorest.csharp/issues/4876
       });
       return {
         status: 200,
