@@ -1694,14 +1694,14 @@ Expected header `input=P40D`
 - Endpoint: `get /encode/duration/header/float64-seconds`
 
 Test float64 seconds encode for a duration header.
-Expected header `duration: 35.621`
+Expected header `duration: 35.625`
 
 ### Encode_Duration_Header_floatSeconds
 
 - Endpoint: `get /encode/duration/header/float-seconds`
 
 Test float seconds encode for a duration header.
-Expected header `duration: 35.621`
+Expected header `duration: 35.625`
 
 ### Encode_Duration_Header_int32Seconds
 
@@ -1754,7 +1754,7 @@ Expected request body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1762,7 +1762,7 @@ Expected response body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1775,7 +1775,7 @@ Expected request body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1783,7 +1783,7 @@ Expected response body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1796,7 +1796,7 @@ Expected request body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1804,7 +1804,7 @@ Expected response body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1862,14 +1862,14 @@ Expected query parameter `input=P40D`
 - Endpoint: `get /encode/duration/query/float64-seconds`
 
 Test float64 seconds encode for a duration parameter.
-Expected query parameter `input=35.621`
+Expected query parameter `input=35.625`
 
 ### Encode_Duration_Query_floatSeconds
 
 - Endpoint: `get /encode/duration/query/float-seconds`
 
 Test float seconds encode for a duration parameter.
-Expected query parameter `input=35.621`
+Expected query parameter `input=35.625`
 
 ### Encode_Duration_Query_int32Seconds
 
