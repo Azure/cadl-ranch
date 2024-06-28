@@ -270,6 +270,13 @@ enum FixedStringEnum {
   Four: "4",
 }
 
+@doc("Fixed int enum")
+enum FixedIntEnum {
+  One: 1,
+  Two: 2,
+  Four: 4,
+}
+
 @doc("Extensible enum")
 union ExtensibleEnum {
   string,
@@ -386,6 +393,9 @@ model RoundTripModel extends BaseModel {
   @doc("Required fixed string enum")
   requiredFixedStringEnum: FixedStringEnum;
 
+  @doc("Required fixed int enum")
+  requiredFixedIntEnum: FixedIntEnum;
+
   @doc("Required extensible enum")
   requiredExtensibleEnum: ExtensibleEnum;
 
@@ -490,15 +500,49 @@ model RoundTripOptionalModel {
 @scenarioDoc("""
 Expected response body:
 ```json
-{optionalPlainDate: "2023-02-14",
-  optionalPlainTime: "1.02:59:59",
-  optionalCollectionWithNullableIntElement: [123, null],
+{ requiredString: "test",
+  requiredInt: 2,
+  requiredNullableString: null,
+  requiredNullableInt: null,
+  requiredModel: { requiredList: [null] },
+  requiredModel2: { requiredList: [null] },
+  requiredIntList: [1, 2],
+  requiredStringList: ["a", null],
+  requiredModelList: [{ requiredModelRecord: {} }],
+  requiredModelRecord: {},
+  requiredCollectionWithNullableFloatElement: [],
+  requiredCollectionWithNullableBooleanElement: [],
+  requiredNullableModelList: null,
+  requiredNullableStringList: null,
+  requiredNullableIntList: null,
   }
 ```
 
 Expected request body:
 ```json
-  {optionalCollectionWithNullableIntElement: [null, 123],}
+  {requiredString: "test",
+   requiredInt: 2,
+   requiredNullableString: null,
+   requiredNullableInt: null,
+   requiredReadonlyInt: 3,
+   requiredModel: { requiredPropertyOnBase: 123},
+   requiredFixedStringEnum: "1",
+   requiredFixedIntEnum: 2,
+   requiredExtensibleEnum: "1",
+   requiredList: [{ requiredModelRecord: {} }],
+   requiredIntRecord: { "1": 1 },
+   requiredStringRecord: { "1": "1" },
+   requiredModelRecord: { "1": { requiredList: ["a"] } },
+   requiredBytes: "aGVsbG8=",
+   requiredUint8Array: [1, 2],
+   requiredUnknown: "unknown",
+   requiredInt8Array: [1, 2],
+   requiredNullableIntList: [1, 2, null],
+   requiredNullableStringList: ["a", "b", null],
+   nonRequiredNullableIntList: [1, 2, null],
+   nonRequiredNullableStringList: ["a", "b", null],
+    }
+   }
 ```
 """)
 @route("/inputToRoundTrip")
@@ -511,19 +555,7 @@ op inputToRoundTrip(@body input: InputModel): RoundTripModel;
 @scenarioDoc("""
 Expected response body:
 ```json
-{optionalString: "hello",
-  optionalInt: 123,
-  optionalStringList: ["hello", "world"],
-  optionalIntList: [123, 456],
-  optionalModelList: [{"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}}],
-  optionalModel: {"requiredList": ["hello", "world"]},
-  optionalModelWithPropertiesOnBase: {"requiredList": ["hello", "world"]},
-  optionalFixedStringEnum: "1",
-  optionalExtensibleEnum: "1",
-  optionalIntRecord: {"1": 123},
-  optionalStringRecord: {"hello": "world"},
-  optionalModelRecord: {"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}},
-  optionalPlainDate: "2023-02-14",
+{ optionalPlainDate: "2023-02-14",
   optionalPlainTime: "1.02:59:59",
   optionalCollectionWithNullableIntElement: [123, null],
   }
@@ -531,21 +563,8 @@ Expected response body:
 
 Expected request body:
 ```json
-  {optionalString: "hello",
-  optionalInt: 123,
-  optionalStringList: ["hello", "world"],
-  optionalIntList: [123, 456],
-  optionalModelList: [{"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}}],
-  optionalModel: {"requiredList": ["hello", "world"]},
-  optionalModelWithPropertiesOnBase: {"requiredList": ["hello", "world"]},
-  optionalFixedStringEnum: "1",
-  optionalExtensibleEnum: "1",
-  optionalIntRecord: {"1": 123},
-  optionalStringRecord: {"hello": "world"},
-  optionalModelRecord: {"requiredModelRecord": {"requiredString": "hello", "requiredInt": 123}},
-  optionalPlainDate: "2023-02-14",
-  optionalPlainTime: "1.02:59:59",
-  optionalCollectionWithNullableIntElement: [123, null],
+  {
+  optionalCollectionWithNullableIntElement: [null, 123],
   }
 ```
 

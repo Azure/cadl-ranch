@@ -64,3 +64,50 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Models_InputToRoundTripReadOnly = passOnSuccess([
+  mockapi.get("/type/model/visibility/inputToRoundTripReadOnly", (req) => {
+    req.expect.bodyEquals({
+      requiredString: "test",
+      requiredInt: 2,
+      requiredNullableString: null,
+      requiredNullableInt: null,
+      requiredModel: { requiredList: [null] },
+      requiredModel2: { requiredList: [null] },
+      requiredIntList: [1, 2],
+      requiredStringList: ["a", null],
+      requiredModelList: [{ requiredModelRecord: {} }],
+      requiredModelRecord: {},
+      requiredCollectionWithNullableFloatElement: [],
+      requiredCollectionWithNullableBooleanElement: [],
+      requiredNullableModelList: null,
+      requiredNullableStringList: null,
+      requiredNullableIntList: null,
+    });
+    return {
+      status: 200,
+      body: json({
+        requiredReadonlyString: "test",
+        requiredReadonlyInt: 12,
+        optionalReadonlyInt: 11,
+        requiredReadonlyModel: { requiredList: [] },
+        requiredReadonlyFixedStringEnum: "1",
+        requiredReadonlyExtensibleEnum: "3",
+        optionalReadonlyFixedStringEnum: "2",
+        optionalReadonlyExtensibleEnum: "1",
+        requiredReadonlyStringList: ["abc"],
+        requiredReadonlyIntList: [],
+        requiredReadOnlyModelList: [],
+        requiredReadOnlyIntRecord: { test: 1 },
+        requiredStringRecord: { test: "1" },
+        requiredReadOnlyModelRecord: {},
+        optionalReadonlyStringList: [null],
+        optionalReadOnlyModelList: [],
+        optionalReadOnlyStringRecord: {},
+        optionalModelRecord: { test: { requiredList: [] } },
+        requiredCollectionWithNullableIntElement: [null, 123],
+        optionalCollectionWithNullableBooleanElement: [null, false, true],
+      }),
+    };
+  }),
+]);
