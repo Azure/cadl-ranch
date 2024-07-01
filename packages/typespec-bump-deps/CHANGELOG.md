@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.4
+
+### Patch Changes
+
+- bbd186f: Add typespec-azure-rulesets to typespec-bump-deps
+
 ## 0.9.3
 
 ### Patch Changes
