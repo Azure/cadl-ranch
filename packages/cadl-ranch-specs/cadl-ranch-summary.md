@@ -560,6 +560,36 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Model_AzureCoreEmbeddingVector_get
+
+- Endpoint: `get /azure/core/model/embeddingVector`
+
+Expect to handle an embedding vector. Mock api will return [0, 1, 2, 3, 4]
+
+### Azure_Core_Model_AzureCoreEmbeddingVector_post
+
+- Endpoint: `post /azure/core/model/embeddingVector`
+
+Expect to send a model which has an embedding vector property.
+
+Expected request body:
+
+```json
+{ "embedding": [0, 1, 2, 3, 4] }
+```
+
+Expected response body:
+
+```json
+{ "embedding": [5, 6, 7, 8, 9] }
+```
+
+### Azure_Core_Model_AzureCoreEmbeddingVector_put
+
+- Endpoint: `put /azure/core/model/embeddingVector`
+
+Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
+
 ### Azure_Core_Scalar_AzureLocationScalar_get
 
 - Endpoint: `get /azure/core/scalar/azureLocation`
