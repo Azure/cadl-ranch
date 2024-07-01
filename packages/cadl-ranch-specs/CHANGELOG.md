@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.2
+
+### Patch Changes
+
+- 31a98d7: add the embedding vector scenario
+- Updated dependencies [31a98d7]
+  - @azure-tools/cadl-ranch@0.13.2
+
 ## 0.34.1
 
 ### Patch Changes
