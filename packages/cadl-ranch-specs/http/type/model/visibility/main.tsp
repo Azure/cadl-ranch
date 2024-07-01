@@ -37,18 +37,15 @@ model BaseModel {}
 
 @doc("Derived model")
 model DerivedModel extends BaseModel {
-  @doc("Required collection")
-  requiredList: CollectionItem[];
+  @doc("Required property")
+  resourceName: string;
 }
 
 @doc("Collection item model")
 model CollectionItem {
-  @doc("Required model record")
-  requiredModelRecord: Record<RecordItem>;
+  @doc("Required resource id")
+  requiredId: int32;
 }
-
-@doc("Record item model")
-model RecordItem extends DerivedModel {}
 
 @doc("Fixed string enum")
 enum FixedStringEnum {
@@ -63,78 +60,6 @@ union ExtensibleEnum {
   One: "1",
   Two: "2",
   Four: "4",
-}
-
-@doc("Model used only as input")
-model InputModel {
-  @doc("Required string")
-  requiredString: string;
-
-  @doc("Required int")
-  requiredInt: int32;
-
-  @doc("Required nullable int")
-  requiredNullableInt: int32 | null;
-
-  @doc("Required nullable string")
-  requiredNullableString: string | null;
-
-  @doc("Optional nullable int")
-  nonRequiredNullableInt?: int32 | null;
-
-  @doc("Optional nullable string")
-  nonRequiredNullableString?: string | null;
-
-  @doc("Required model")
-  requiredModel: BaseModel;
-
-  @doc("Required model")
-  requiredModel2: BaseModel;
-
-  @doc("Required primitive value type collection")
-  requiredIntList: int32[];
-
-  @doc("Required primitive reference type collection")
-  requiredStringList: string[];
-
-  @doc("Required model collection")
-  requiredModelList: CollectionItem[];
-
-  @doc("Required model record")
-  requiredModelRecord: Record<RecordItem>;
-
-  @doc("Required collection of which the element is a nullable float")
-  requiredCollectionWithNullableFloatElement: (null | float32)[];
-
-  @doc("Required collection of which the element is a nullable boolean")
-  requiredCollectionWithNullableBooleanElement: (boolean | null)[];
-
-  @doc("Required model nullable collection")
-  requiredNullableModelList: CollectionItem[] | null;
-
-  @doc("Required string nullable collection")
-  requiredNullableStringList: string[] | null;
-
-  @doc("Required int nullable collection")
-  requiredNullableIntList: int32[] | null;
-
-  @doc("Optional model collection")
-  nonRequiredModelList?: CollectionItem[];
-
-  @doc("Optional string collection")
-  nonRequiredStringList?: string[];
-
-  @doc("Optional int collection")
-  nonRequiredIntList?: int32[];
-
-  @doc("Optional model nullable collection")
-  nonRequiredNullableModelList?: CollectionItem[] | null;
-
-  @doc("Optional string nullable collection")
-  nonRequiredNullableStringList?: string[] | null;
-
-  @doc("Optional int nullable collection")
-  nonRequiredNullableIntList?: int32[] | null;
 }
 
 @doc("Output model with readonly properties.")
@@ -154,6 +79,62 @@ model RoundTripReadOnlyModel {
   @doc("Optional int, illustrating a readonly value type property.")
   @visibility("read")
   optionalReadonlyInt?: int32;
+
+  @doc("Required readonly bytes")
+  @visibility("read")
+  requiredReadonlyBytes: bytes;
+
+  @doc("Optional readonly bytes")
+  @visibility("read")
+  optionalReadonlyBytes?: bytes;
+
+  @doc("Required readonly uint8[]")
+  @visibility("read")
+  requiredReadonlyUint8Array: uint8[];
+
+  @doc("Optional readonly uint8[]")
+  @visibility("read")
+  optionalReadonlyUint8Array?: uint8[];
+
+  @doc("Required readonly unknown array")
+  @visibility("read")
+  requiredReadonlyUnknown: unknown[];
+
+  @doc("Optional readonly unknown array")
+  @visibility("read")
+  optionalReadonlyUnknown?: unknown[];
+
+  @doc("Required readonly int8[]")
+  @visibility("read")
+  requiredReadonlyInt8Array: int8[];
+
+  @doc("Optional readonly int8[]")
+  @visibility("read")
+  optionalReadonlyInt8Array?: int8[];
+
+  @doc("Optional readonly nullable int")
+  @visibility("read")
+  nonRequiredReadOnlyNullableInt?: int32 | null;
+
+  @doc("Optional readonly nullable string")
+  @visibility("read")
+  nonRequiredReadOnlyNullableString?: string | null;
+
+  @doc("ReadOnly plainDate")
+  @visibility("read")
+  requiredReadOnlyPlainDate: plainDate;
+
+  @doc("ReadOnly plainTime")
+  @visibility("read")
+  requiredReadOnlyPlainTime: plainTime;
+
+  @doc("Optional plainDate")
+  @visibility("read")
+  optionalReadOnlyPlainDate?: plainDate;
+
+  @doc("Optional plainTime")
+  @visibility("read")
+  optionalReadOnlyPlainTime?: plainTime;
 
   @doc("Required readonly model.")
   @visibility("read")
@@ -197,11 +178,11 @@ model RoundTripReadOnlyModel {
 
   @doc("Required string record")
   @visibility("read")
-  requiredStringRecord: Record<string>;
+  requiredReadonlyStringRecord: Record<string>;
 
   @doc("Required model record")
   @visibility("read")
-  requiredReadOnlyModelRecord: Record<RecordItem>;
+  requiredReadOnlyModelRecord: Record<DerivedModel>;
 
   @doc("Optional readonly string collection.")
   @visibility("read")
@@ -216,20 +197,40 @@ model RoundTripReadOnlyModel {
   optionalReadOnlyModelList?: CollectionItem[];
 
   @doc("Optional int record")
+  @visibility("read")
   optionalReadOnlyIntRecord: Record<int32>;
 
   @doc("Optional string record")
+  @visibility("read")
   optionalReadOnlyStringRecord: Record<string>;
 
   @doc("Optional model record")
   @visibility("read")
-  optionalModelRecord?: Record<RecordItem>;
+  optionalReadOnlyModelRecord?: Record<DerivedModel>;
 
-  @doc("Required collection of which the element is a nullable int")
-  requiredCollectionWithNullableIntElement: (null | int32)[];
+  @doc("Required ReadOnly collection of which the element is a nullable int")
+  @visibility("read")
+  requiredReadOnlyCollectionWithNullableIntElement: (int32 | null)[];
 
-  @doc("Optional collection of which the element is a nullable boolean")
-  optionalCollectionWithNullableBooleanElement?: (boolean | null)[];
+  @doc("Optional ReadOnly collection of which the element is a nullable boolean")
+  @visibility("read")
+  optionalReadOnlyCollectionWithNullableBooleanElement?: (boolean | null)[];
+
+  @doc("Required readonly nullable int list")
+  @visibility("read")
+  requiredReadOnlyNullableIntList: int32[] | null;
+
+  @doc("Required readonly nullable string list")
+  @visibility("read")
+  requiredReadOnlyNullableStringList: string[] | null;
+
+  @doc("Optional readonly nullable model list")
+  @visibility("read")
+  nonRequiredReadOnlyNullableIntList?: int32[] | null;
+
+  @doc("Optional readonly nullable string list")
+  @visibility("read")
+  nonRequiredReadOnlyNullableStringList?: string[] | null;
 }
 
 @scenario
@@ -329,52 +330,49 @@ Generate abd send input model and handle readonly properties.
 Expected input body:
 ```json
 {
-  requiredString: "test",
-  requiredInt: 2,
-  requiredNullableString: null,
-  requiredNullableInt: null,
-  requiredModel: { requiredList: [null] },
-  requiredModel2: { requiredList: [null] },
-  requiredIntList: [1, 2],
-  requiredStringList: ["a", null],
-  requiredModelList: [{ requiredModelRecord: {} }],
-  requiredModelRecord: {},
-  requiredCollectionWithNullableFloatElement: [],
-  requiredCollectionWithNullableBooleanElement: [],
-  requiredNullableModelList: null,
-  requiredNullableStringList: null,
-  requiredNullableIntList: null,
-}
-```
-Expected response body:
-```json
-{
-  requiredReadonlyString: "test",
-  requiredReadonlyInt: 12,
-  optionalReadonlyInt: 11,
-  requiredReadonlyModel: { requiredList: [] },
+  requiredReadonlyString: "String",
+  requiredReadonlyInt: 123,
+  optionalReadonlyString: "optionalString",
+  optionalReadonlyInt: 456,
+  requiredReadonlyBytes: new Uint8Array([1, 2, 3]),
+  optionalReadonlyBytes: new Uint8Array([4, 5, 6]),
+  requiredReadonlyUint8Array: [1, 2, 3],
+  optionalReadonlyUint8Array: [4, 5, 6],
+  requiredReadonlyUnknown: [1, "string", true],
+  requiredReadonlyInt8Array: [-1, -2, -3],
+  optionalReadonlyInt8Array: [-4, -5, -6],
+  nonRequiredReadOnlyNullableInt: 1,
+  nonRequiredReadOnlyNullableString: null,
+  requiredReadOnlyPlainDate: "2023-01-01",
+  requiredReadOnlyPlainTime: "12:00:00",
+  optionalReadOnlyPlainDate: "2023-01-02",
+  optionalReadOnlyPlainTime: "13:00:00",
+  requiredReadonlyModel: { resourceName: "testResource" },
   requiredReadonlyFixedStringEnum: "1",
-  requiredReadonlyExtensibleEnum: "3",
+  requiredReadonlyExtensibleEnum: "2",
   optionalReadonlyFixedStringEnum: "2",
-  optionalReadonlyExtensibleEnum: "1",
-  requiredReadonlyStringList: ["abc"],
-  requiredReadonlyIntList: [],
-  requiredReadOnlyModelList: [],
-  requiredReadOnlyIntRecord: { test: 1 },
-  requiredStringRecord: { test: "1" },
-  requiredReadOnlyModelRecord: {},
-  optionalReadonlyStringList: [null],
-  optionalReadOnlyModelList: [],
-  optionalReadOnlyStringRecord: {},
-  optionalModelRecord: { test: { requiredList: [] } },
-  requiredCollectionWithNullableIntElement: [null, 123],
-  optionalCollectionWithNullableBooleanElement: [
-    null,
-    false,
-    true,
-    ],
+  optionalReadonlyExtensibleEnum: "4",
+  requiredReadonlyStringList: ["string1", "string2"],
+  requiredReadonlyIntList: [1, 2],
+  requiredReadOnlyModelList: [{ requireId: "14159" }],
+  requiredReadOnlyIntRecord: { key1: 1, key2: 2 },
+  requiredReadonlyStringRecord: { key1: "value1", key2: "value2" },
+  requiredReadOnlyModelRecord: {
+    Key1: { resourceName: "recordtest" },
+    Key2: { resourceName: "recordtest2" },
+  },
+  optionalReadonlyStringList: ["optionalString1", "optionalString2"],
+  optionalReadonlyIntList: [3, 4],
+  optionalReadOnlyIntRecord: { key3: 3, key4: 4 },
+  optionalReadOnlyStringRecord: { key3: "value3", key4: "value4" },
+  requiredReadOnlyCollectionWithNullableIntElement: [null, 1, null],
+  optionalReadOnlyCollectionWithNullableBooleanElement: [null, true, false],
+  requiredReadOnlyNullableIntList: null,
+  requiredReadOnlyNullableStringList: null,
+  nonRequiredReadOnlyNullableIntList: null,
+  nonRequiredReadOnlyNullableStringList: null,
 }
 ```
 """)
-@get
-op inputToRoundTripReadOnly(@body input: InputModel): RoundTripReadOnlyModel;
+@put
+op inputToRoundTripReadOnly(@body input: RoundTripReadOnlyModel): void;
