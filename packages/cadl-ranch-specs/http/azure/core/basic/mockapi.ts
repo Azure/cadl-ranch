@@ -141,3 +141,19 @@ Scenarios.Azure_Core_Basic_export = passOnSuccess(
     return { status: 200, body: json(validUser) };
   }),
 );
+
+Scenarios.Azure_Core_Basic_createUser = passOnSuccess(
+  mockapi.post("/azure/core/basic/users/create", (req) => {
+    const validBody = { name: "Madge", nickname: "nickname" };
+    req.expect.bodyEquals(validBody);
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    return {
+      status: 200,
+      body: json({
+        id: "1",
+        name: "Madge",
+        nickname: "nickname",
+      }),
+    };
+  }),
+);
