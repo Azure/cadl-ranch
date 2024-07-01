@@ -58,7 +58,6 @@ interface AzureCoreEmbeddingVector {
   {"embedding": [5, 6, 7, 8, 9]}
   ```
   """)
-  @scenarioDoc("Expect to send a model who has an embedding vector. Mock api expect to receive '{location: [0, 1, 2, 3, 4]}'")
   @post
   @doc("post a model which has an embeddingVector property")
   post(@body @doc("_") body: AzureEmbeddingModel): AzureEmbeddingModel;
