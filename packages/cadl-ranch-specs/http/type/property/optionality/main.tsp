@@ -357,7 +357,7 @@ model InputModel {
 }
 
 @doc("Model used both as input and output")
-model RoundTripModel {
+model RoundTripModel extends BaseModel {
   @doc("Required string, illustrating a reference type property.")
   requiredString: string;
 
@@ -547,7 +547,6 @@ Expected request body:
 @route("/inputToRoundTrip")
 @doc("Input to RoundTrip")
 @get
-@convenientAPI(true)
 op inputToRoundTrip(@body input: InputModel): RoundTripModel;
 
 @scenario
@@ -571,5 +570,4 @@ Expected request body:
 @route("/inputToRoundTripOptional")
 @doc("Input to RoundTripOptional")
 @get
-@convenientAPI(true)
 op inputToRoundTripOptional(@body input: RoundTripOptionalModel): RoundTripOptionalModel;

@@ -377,5 +377,4 @@ Expected response body:
 ```
 """)
 @get
-@convenientAPI(true)
 op inputToRoundTripReadOnly(@body input: InputModel): RoundTripReadOnlyModel;
