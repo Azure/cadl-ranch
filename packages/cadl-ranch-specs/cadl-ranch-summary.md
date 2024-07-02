@@ -5136,7 +5136,7 @@ Expected response body:
 {
   "name": "ExtendsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5153,7 +5153,7 @@ Expected input body:
 {
   "name": "ExtendsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5171,7 +5171,7 @@ Expected response body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5189,7 +5189,7 @@ Expected input body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5322,7 +5322,7 @@ Expected response body:
 {
   "name": "IsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5339,7 +5339,7 @@ Expected input body:
 {
   "name": "IsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5357,7 +5357,7 @@ Expected response body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5375,7 +5375,7 @@ Expected input body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
