@@ -78,7 +78,7 @@ model ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditional
 interface ExtendsUnknownDerived
   extends ModelOperations<
       ExtendsUnknownAdditionalPropertiesDerived,
-      "{'name': 'ExtendsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+      "{'name': 'ExtendsUnknownAdditionalProperties', 'index': 314, 'age': 2.71875, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 @doc("The model extends from Record<unknown> with a discriminator.")
@@ -107,7 +107,7 @@ model ExtendsUnknownAdditionalPropertiesDiscriminatedDerived extends ExtendsUnkn
 interface ExtendsUnknownDiscriminated
   extends ModelOperations<
       ExtendsUnknownAdditionalPropertiesDiscriminated,
-      "{'kind': 'derived', 'name': 'Derived', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+      "{'kind': 'derived', 'name': 'Derived', 'index': 314, 'age': 2.71875, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 #suppress "@azure-tools/typespec-azure-core/bad-record-type" "For testing"
@@ -139,7 +139,7 @@ model IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties
 interface IsUnknownDerived
   extends ModelOperations<
       IsUnknownAdditionalPropertiesDerived,
-      "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+      "{'name': 'IsUnknownAdditionalProperties', 'index': 314, 'age': 2.71875, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 @doc("The model is Record<unknown> with a discriminator.")
@@ -168,7 +168,7 @@ model IsUnknownAdditionalPropertiesDiscriminatedDerived extends IsUnknownAdditio
 interface IsUnknownDiscriminated
   extends ModelOperations<
       IsUnknownAdditionalPropertiesDiscriminated,
-      "{'kind': 'derived', 'name': 'Derived', 'index': 314, 'age': 2.71828, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
+      "{'kind': 'derived', 'name': 'Derived', 'index': 314, 'age': 2.71875, 'prop1': 32, 'prop2': true, 'prop3': 'abc'}"
     > {}
 
 // ***************** Known properties type is the same with additional properties type **************************
