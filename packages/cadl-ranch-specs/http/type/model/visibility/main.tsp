@@ -321,8 +321,8 @@ Expected input body:
 @delete
 op deleteModel(@body input: VisibilityModel): void;
 
-@route("/inputToRoundTripReadOnly")
-@doc("Input to RoundTripReadOnly")
+@route("/readonlyroundtrip")
+@doc("ReadOnly Property RoundTrip")
 @scenario
 @scenarioDoc("""
 Generate abd send input model and handle readonly properties.
