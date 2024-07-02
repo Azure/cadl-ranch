@@ -4862,6 +4862,55 @@ Expected input body:
 }
 ```
 
+### Type_Model_Visibility_readOnlyRoundTrip
+
+- Endpoint: `put /type/model/visibility/readonlyroundtrip`
+
+Generate abd send input model and handle readonly properties.
+Expected input body:
+
+```json
+{}
+```
+
+Expected response body:
+
+```json
+{
+  "requiredReadOnlyString": "requiredString",
+  "requiredReadOnlyInt": 123,
+  "optionalReadOnlyString": "optionalString",
+  "requiredReadOnlyUint8Array": [1, 2, 3],
+  "optionalReadOnlyUint8Array": [4, 5, 6],
+  "requiredReadOnlyUnknown": [1, "string", true],
+  "requiredReadOnlyInt8Array": [-1, -2, -3],
+  "nonRequiredReadOnlyNullableInt": 1,
+  "nonRequiredReadOnlyNullableString": null,
+  "requiredReadOnlyPlainDate": "2023-01-01",
+  "requiredReadOnlyPlainTime": "12:00:00",
+  "optionalReadOnlyPlainDate": "2023-01-02",
+  "requiredReadOnlyModel": { "resourceName": "testResource" },
+  "requiredReadOnlyFixedStringEnum": "1",
+  "requiredReadOnlyExtensibleEnum": "2",
+  "optionalReadOnlyFixedStringEnum": "2",
+  "optionalReadOnlyExtensibleEnum": "4",
+  "requiredReadOnlyStringList": ["string1", "string2"],
+  "requiredReadOnlyIntList": [1, 2],
+  "requiredReadOnlyModelList": [{ "resourceName": "list1" }, { "resourceName": "list2" }],
+  "requiredReadOnlyIntRecord": { "key1": 1, "key2": 2 },
+  "requiredReadOnlyStringRecord": { "key1": "value1", "key2": "value2" },
+  "requiredReadOnlyModelRecord": {
+    "Key1": { "resourceName": "recordtest" },
+    "Key2": { "resourceName": "recordtest2" }
+  },
+  "requiredReadOnlyCollectionWithNullableIntElement": [null, 1, null],
+  "optionalReadOnlyCollectionWithNullableBooleanElement": [null, true, false],
+  "requiredReadOnlyNullableIntList": null,
+  "requiredReadOnlyNullableStringList": null,
+  "nonRequiredReadOnlyNullableIntList": null
+}
+```
+
 ### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
