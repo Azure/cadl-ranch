@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.13.3
+
+### Patch Changes
+
+- c117010: Updated expected float value of 2.71828 to 2.71875, a value that can be exactly represented as IEEE754 (http/type/property/additional-properties).
+
 ## 0.13.2
 
 ### Patch Changes
