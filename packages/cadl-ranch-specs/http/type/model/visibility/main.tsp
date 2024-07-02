@@ -345,8 +345,7 @@ Expected response body:
   requiredReadOnlyIntRecord: { key1: 1, key2: 2 },
   requiredReadOnlyStringRecord: { key1: "value1", key2: "value2" },
   requiredReadOnlyModelRecord: {
-    Key1: { resourceName: "recordtest" },
-    Key2: { resourceName: "recordtest2" },
+    Key1: { resourceName: "recordtest" }, Key2: { resourceName: "recordtest2" },
   },
   requiredReadOnlyCollectionWithNullableIntElement: [null, 1, null],
   optionalReadOnlyCollectionWithNullableBooleanElement: [null, true, false],
