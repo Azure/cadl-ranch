@@ -2160,11 +2160,11 @@ Expected request body:
 
 Test case for spread model with non-body http request decorator.
 
-Should generate request body model named `CompositeRequestMix`.
+Should not generate model named `CompositeRequestMix`.
 Should generate an operation like below:
 
 ```
-spreadCompositeRequestMix(name: string, testHeader: string, bodyParameter: CompositeRequestMix)
+spreadCompositeRequestMix(name: string, testHeader: string, prop: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
