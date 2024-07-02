@@ -33,6 +33,20 @@ enum DaysOfWeekEnum {
   Sunday,
 }
 
+@doc("Fixed int enum")
+enum FixedIntEnum {
+  One: 1,
+  Two: 2,
+  Four: 4,
+}
+
+@doc("Fixed float enum")
+enum FixedFloatEnum {
+  One: 1.1,
+  Two: 2.1,
+  Four: 4.0,
+}
+
 @route("/string")
 interface String {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
@@ -58,4 +72,58 @@ interface String {
   @route("/unknown-value")
   @doc("putUnknownValue")
   putUnknownValue(@body @doc("_") body: DaysOfWeekEnum): void;
+}
+
+@route("/int")
+interface Int {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle a known value. Mock api will return '1'")
+  @get
+  @route("/known-value")
+  @doc("getKnownValue")
+  getKnownValue(): FixedIntEnum;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to send a known value. Mock api expect to receive '1'")
+  @put
+  @route("/known-value")
+  @doc("putKnownValue")
+  putKnownValue(@body @doc("_") body: FixedIntEnum): void;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle an unknown value. Mock api expect to receive '6'")
+  @put
+  @route("/unknown-value")
+  @doc("putUnknownValue")
+  putUnknownValue(@body @doc("_") body: FixedIntEnum): void;
+}
+
+@route("/float")
+interface Float {
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle a known value. Mock api will return '1.1'")
+  @get
+  @route("/known-value")
+  @doc("getKnownValue")
+  getKnownValue(): FixedFloatEnum;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to send a known value. Mock api expect to receive '1.1'")
+  @put
+  @route("/known-value")
+  @doc("putKnownValue")
+  putKnownValue(@body @doc("_") body: FixedFloatEnum): void;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle an unknown value. Mock api expect to receive '6.1'")
+  @put
+  @route("/unknown-value")
+  @doc("putUnknownValue")
+  putUnknownValue(@body @doc("_") body: FixedFloatEnum): void;
 }

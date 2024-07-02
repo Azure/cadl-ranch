@@ -30,3 +30,31 @@ Scenarios.Type_Enum_Extensible_String_putUnknownValue = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+// Known Values
+Scenarios.Type_Enum_Extensible_Int_getKnownValue = passOnSuccess(
+  mockapi.get("/type/enum/extensible/int/known-value", (req) => {
+    return { status: 200, body: json(1) };
+  }),
+);
+
+Scenarios.Type_Enum_Extensible_Int_putKnownValue = passOnSuccess(
+  mockapi.put("/type/enum/extensible/int/known-value", (req) => {
+    req.expect.bodyEquals(1);
+    return { status: 204 };
+  }),
+);
+
+// Unknown values
+Scenarios.Type_Enum_Extensible_Int_getUnknownValue = passOnSuccess(
+  mockapi.get("/type/enum/extensible/int/unknown-value", (req) => {
+    return { status: 200, body: json(2) };
+  }),
+);
+
+Scenarios.Type_Enum_Extensible_Int_putUnknownValue = passOnSuccess(
+  mockapi.put("/type/enum/extensible/int/unknown-value", (req) => {
+    req.expect.bodyEquals(2);
+    return { status: 204 };
+  }),
+);
