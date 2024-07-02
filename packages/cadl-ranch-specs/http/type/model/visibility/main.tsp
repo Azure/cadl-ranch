@@ -64,9 +64,8 @@ union ExtensibleEnum {
 
 @doc("Output model with readonly properties.")
 model RoundTripReadOnlyModel {
-  @doc("Required string, illustrating a readonly reference type property.")
-  @visibility("read")
-  requiredReadonlyString: string;
+  @doc("Required string, illustrating a reference type property.")
+  requiredString: string;
 
   @doc("Required int, illustrating a readonly value type property.")
   @visibility("read")
@@ -330,39 +329,45 @@ Generate abd send input model and handle readonly properties.
 Expected input body:
 ```json
 {
-  requiredReadonlyString: "String",
-  requiredReadonlyInt: 123,
-  optionalReadonlyString: "optionalString",
-  optionalReadonlyInt: 456,
-  requiredReadonlyBytes: new Uint8Array([1, 2, 3]),
-  optionalReadonlyBytes: new Uint8Array([4, 5, 6]),
-  requiredReadonlyUint8Array: [1, 2, 3],
-  optionalReadonlyUint8Array: [4, 5, 6],
-  requiredReadonlyUnknown: [1, "string", true],
-  requiredReadonlyInt8Array: [-1, -2, -3],
-  optionalReadonlyInt8Array: [-4, -5, -6],
+  requiredString: "writableString",
+}
+```
+Expected response body:
+```json
+{
+  requiredString: "writableString",
+  requiredReadOnlyInt: 123,
+  optionalReadOnlyString: "optionalString",
+  optionalReadOnlyInt: 456,
+  requiredReadOnlyBytes: new Uint8Array([1, 2, 3]),
+  optionalReadOnlyBytes: new Uint8Array([4, 5, 6]),
+  requiredReadOnlyUint8Array: [1, 2, 3],
+  optionalReadOnlyUint8Array: [4, 5, 6],
+  requiredReadOnlyUnknown: [1, "string", true],
+  requiredReadOnlyInt8Array: [-1, -2, -3],
+  optionalReadOnlyInt8Array: [-4, -5, -6],
   nonRequiredReadOnlyNullableInt: 1,
   nonRequiredReadOnlyNullableString: null,
   requiredReadOnlyPlainDate: "2023-01-01",
   requiredReadOnlyPlainTime: "12:00:00",
   optionalReadOnlyPlainDate: "2023-01-02",
   optionalReadOnlyPlainTime: "13:00:00",
-  requiredReadonlyModel: { resourceName: "testResource" },
-  requiredReadonlyFixedStringEnum: "1",
-  requiredReadonlyExtensibleEnum: "2",
-  optionalReadonlyFixedStringEnum: "2",
-  optionalReadonlyExtensibleEnum: "4",
-  requiredReadonlyStringList: ["string1", "string2"],
-  requiredReadonlyIntList: [1, 2],
+  requiredReadOnlyModel: { resourceName: "testResource" },
+  requiredReadOnlyFixedStringEnum: "1",
+  requiredReadOnlyExtensibleEnum: "2",
+  optionalReadOnlyFixedStringEnum: "2",
+  optionalReadOnlyExtensibleEnum: "4",
+  requiredReadOnlyStringList: ["string1", "string2"],
+  requiredReadOnlyIntList: [1, 2],
   requiredReadOnlyModelList: [{ requireId: "14159" }],
   requiredReadOnlyIntRecord: { key1: 1, key2: 2 },
-  requiredReadonlyStringRecord: { key1: "value1", key2: "value2" },
+  requiredReadOnlyStringRecord: { key1: "value1", key2: "value2" },
   requiredReadOnlyModelRecord: {
     Key1: { resourceName: "recordtest" },
     Key2: { resourceName: "recordtest2" },
   },
-  optionalReadonlyStringList: ["optionalString1", "optionalString2"],
-  optionalReadonlyIntList: [3, 4],
+  optionalReadOnlyStringList: ["optionalString1", "optionalString2"],
+  optionalReadOnlyIntList: [3, 4],
   optionalReadOnlyIntRecord: { key3: 3, key4: 4 },
   optionalReadOnlyStringRecord: { key3: "value3", key4: "value4" },
   requiredReadOnlyCollectionWithNullableIntElement: [null, 1, null],
@@ -375,4 +380,4 @@ Expected input body:
 ```
 """)
 @put
-op inputToRoundTripReadOnly(@body input: RoundTripReadOnlyModel): void;
+op ReadOnlyRoundTrip(@body input: RoundTripReadOnlyModel): RoundTripReadOnlyModel;
