@@ -82,9 +82,11 @@ Expected request body:
 
 ```json
 {
+  "location": "eastus",
   "identity": {
     "type": "SystemAssigned"
-  }
+  },
+  "properties": {}
 }
 ```
 
@@ -92,8 +94,17 @@ Expected response body:
 
 ```json
 {
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
   "identity": {
-    "type": "SystemAssigned"
+    "type": "SystemAssigned",
+    // this is for system-assigned
+    "principalId": <any uuid string>,
+    // this is for system-assigned
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
   }
 }
 ```
@@ -110,8 +121,17 @@ Expected response body:
 
 ```json
 {
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
   "identity": {
-    "type": "SystemAssigned"
+    "type": "SystemAssigned",
+    // this is for system-assigned
+    "principalId": <any uuid string>
+    // this is for system-assigned
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
   }
 }
 ```
@@ -128,7 +148,10 @@ Expected request body:
 ```json
 {
   "identity": {
-    "type": "SystemAssigned,UserAssigned"
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+    }
   }
 }
 ```
@@ -137,8 +160,24 @@ Expected response body:
 
 ```json
 {
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
   "identity": {
-    "type": "SystemAssigned,UserAssigned"
+    "type": "SystemAssigned,UserAssigned",
+    // this is user-assigned
+    "userAssignedIdentities": {
+      "<user-assigned-identity-id>": {
+        "principalId": <any uuid string>,
+        "clientId": <any uuid string>
+      },
+    },
+    // this is for system-assigned
+    "principalId": <any uuid string>,
+    // this is for system-assignedcd
+    "tenantId": <any uuid string>
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
   }
 }
 ```

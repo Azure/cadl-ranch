@@ -12,19 +12,22 @@ using TypeSpec.OpenAPI;
 namespace Azure.Arm.Models.CommonTypes.ManagedIdentity;
 
 @resource("managedIdentityTrackedResources")
-model ManagedIdentityTrackedResource is TrackedResource<ManagedIdentityTrackedResourceIdentities> {
+model ManagedIdentityTrackedResource is TrackedResource<ManagedIdentityTrackedResourceProperties> {
   @key("managedIdentityTrackedResourceName")
   @path
   @segment("managedIdentityTrackedResources")
   @doc("arm resource name for path")
   @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
   name: string;
+
+  ...ManagedServiceIdentityProperty;
 }
 
-@doc("Managed Identity Tracked Resource Identities.")
-model ManagedIdentityTrackedResourceIdentities {
-  @doc("The type of managed identity.")
-  type?: string;
+@doc("Managed Identity Arm Resource Properties.")
+model ManagedIdentityTrackedResourceProperties {
+  @visibility("read")
+  @doc("The status of the last operation.")
+  provisioningState?: ProvisioningState;
 }
 
 @armResourceOperations
@@ -38,8 +41,17 @@ interface ManagedIdentityTrackedResources {
   Expected response body:
   ```json
   {
-    "identity":{
-      "type": "SystemAssigned"
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "location": "eastus",
+    "identity": {
+      "type": "SystemAssigned",
+      // this is for system-assigned
+      "principalId": <any uuid string>
+      // this is for system-assigned
+      "tenantId": <any uuid string>
+     },
+    "properties": {
+      "provisioningState": "Succeeded"
     }
   }
   ```
@@ -54,16 +66,27 @@ interface ManagedIdentityTrackedResources {
   Expected request body:
   ```json
   {
-    "identity":{
+    "location": "eastus",
+    "identity": {
       "type": "SystemAssigned"
-    }
+    },
+    "properties": {}
   }
   ```
    Expected response body:
   ```json
   {
-    "identity":{
-      "type": "SystemAssigned"
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "location": "eastus",
+    "identity": {
+      "type": "SystemAssigned",
+      // this is for system-assigned
+      "principalId": <any uuid string>,
+      // this is for system-assigned
+      "tenantId": <any uuid string>
+     },
+    "properties": {
+      "provisioningState": "Succeeded"
     }
   }
   ```
@@ -78,22 +101,41 @@ interface ManagedIdentityTrackedResources {
   Expected request body:
   ```json
   {
-    "identity":{
-      "type": "SystemAssigned,UserAssigned"
+    "identity": {
+      "type": "SystemAssigned,UserAssigned",
+      "userAssignedIdentities": {
+        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+      }
     }
   }
   ```
    Expected response body:
   ```json
   {
-    "identity":{
-      "type": "SystemAssigned,UserAssigned"
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "location": "eastus",
+    "identity": {
+      "type": "SystemAssigned,UserAssigned",
+      // this is user-assigned
+      "userAssignedIdentities": {
+        "<user-assigned-identity-id>": {
+          "principalId": <any uuid string>,
+          "clientId": <any uuid string>
+        },
+      },
+      // this is for system-assigned
+      "principalId": <any uuid string>,
+      // this is for system-assignedcd
+      "tenantId": <any uuid string>
+    },
+    "properties": {
+      "provisioningState": "Succeeded"
     }
   }
   ```
   """)
   updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<
     ManagedIdentityTrackedResource,
-    ManagedIdentityTrackedResourceIdentities
+    ManagedIdentityTrackedResourceProperties
   >;
 }

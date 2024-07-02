@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": major
 ---
 
-Added tests for ARM's managed identity tracked resource.
+Added tests for ARM common-type's managed-identity.
