@@ -33,6 +33,12 @@ enum DaysOfWeekEnum {
   Sunday,
 }
 
+model workday {
+  @doc("The day of the week")
+  @visibility("read")
+  day?: DaysOfWeekEnum;
+}
+
 @route("/string")
 interface String {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
@@ -58,4 +64,22 @@ interface String {
   @route("/unknown-value")
   @doc("putUnknownValue")
   putUnknownValue(@body @doc("_") body: DaysOfWeekEnum): void;
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle a read-only required value. Mock api expect to return {day: 'Monday'}")
+  @get
+  @route("/readonly-required-value")
+  getRequiredReadonlyValue(): {
+    @body body: workday;
+  };
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
+  @scenario
+  @scenarioDoc("Expect to handle a read-only optional value. Mock api expect to return {}")
+  @get
+  @route("/readonly-optional-value")
+  getOptionalReadonlyValue(): {
+    @body body: workday;
+  };
 }

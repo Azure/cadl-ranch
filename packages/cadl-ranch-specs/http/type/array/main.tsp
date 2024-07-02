@@ -9,6 +9,13 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/type/array")
 namespace Type.Array;
 
+@doc("Template type for testing models with read only required property. Pass in the type of the property you are looking for")
+model ReadOnlyRequiredModelTemplate<TProperty> {
+  @doc("ReadOnlyProperty")
+  @visibility("read")
+  property: TProperty;
+}
+
 @doc("Template to have Array operations")
 interface ArrayOperations<TArr, TDoc extends string> {
   @scenario
@@ -40,6 +47,24 @@ interface ArrayOperations<TArr, TDoc extends string> {
   )
   @put
   put(@body body: TArr): void;
+}
+
+@doc("Template to have Array operations")
+interface ReadOnltArrayOperations<TArr, TDoc extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Expected Array response body:
+  ```json
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  get(): TArr;
 }
 
 @doc("Array of int32 values")
@@ -94,6 +119,36 @@ model InnerModel {
 @route("/model")
 @operationGroup
 interface ModelValue extends ArrayOperations<InnerModel[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+@doc("Array of read only string values")
+model RequiredReadOnlyStringProperty is ReadOnlyRequiredModelTemplate<string>;
+@route("/readonly-string")
+@operationGroup
+interface ReadOnlyStringValue
+  extends ReadOnltArrayOperations<RequiredReadOnlyStringProperty[], "[{'property': 'hello'}, {'property': 'world'}]"> {}
+
+@doc("Array of read only int values")
+model RequiredReadOnlyIntProperty is ReadOnlyRequiredModelTemplate<int32>;
+@route("/readonly-int")
+@operationGroup
+interface ReadOnlyIntValue
+  extends ReadOnltArrayOperations<RequiredReadOnlyIntProperty[], "[{'property': 1}, {'property': 2}]"> {}
+
+model ReadonlyInnerModel {
+  @doc("Required string property")
+  @visibility("read")
+  name: string;
+}
+
+@doc("Array of read only model values")
+model RequiredReadOnlyModelProperty is ReadOnlyRequiredModelTemplate<ReadonlyInnerModel>;
+@route("/readonly-model")
+@operationGroup
+interface ReadOnlyModelValue
+  extends ReadOnltArrayOperations<
+      RequiredReadOnlyModelProperty[],
+      "[{'property': {'name': 'hello'}}, {'property': {'name': 'world'}}]"
+    > {}
 
 alias NullableFloat = float32 | null;
 @doc("Array of nullable float values")

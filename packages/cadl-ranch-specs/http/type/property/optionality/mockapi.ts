@@ -9,6 +9,11 @@ interface MockApiGetPut {
   putDefault: MockApi;
 }
 
+interface MockApiGet {
+  getAll: MockApi;
+  getDefault: MockApi;
+}
+
 /**
  * Return the get and put operations
  * @param route The route within /models/properties/optional/all/ for your function.
@@ -50,6 +55,30 @@ function createMockApis(route: string, value: any): MockApiGetPut {
     getDefault: getDefault,
     putAll: putAll,
     putDefault: putDefault,
+  };
+}
+
+function createReadOnlyMockapis(route: string, value: any): MockApiGet {
+  const url = `/type/property/optional/${route}`;
+  const allUrl = `${url}/all`;
+  const defaultUrl = `${url}/default`;
+  const allBody = { property: value };
+  const defaultBody = {};
+  const getAll = mockapi.get(allUrl, (req) => {
+    return {
+      status: 200,
+      body: json(allBody),
+    };
+  });
+  const getDefault = mockapi.get(defaultUrl, (req) => {
+    return {
+      status: 200,
+      body: json(defaultBody),
+    };
+  });
+  return {
+    getAll: getAll,
+    getDefault: getDefault,
   };
 }
 
@@ -130,6 +159,42 @@ Scenarios.Type_Property_Optional_UnionFloatLiteral_getAll = passOnSuccess(unionF
 Scenarios.Type_Property_Optional_UnionFloatLiteral_getDefault = passOnSuccess(unionFloatLiteralMock.getDefault);
 Scenarios.Type_Property_Optional_UnionFloatLiteral_putAll = passOnSuccess(unionFloatLiteralMock.putAll);
 Scenarios.Type_Property_Optional_UnionFloatLiteral_putDefault = passOnSuccess(unionFloatLiteralMock.putDefault);
+
+const readonlyStringMock = createReadOnlyMockapis("readonly/string", "hello");
+Scenarios.Type_Property_Optional_ReadOnlyString_getAll = passOnSuccess(readonlyStringMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyString_getDefault = passOnSuccess(readonlyStringMock.getDefault);
+
+const readonlyIntMock = createReadOnlyMockapis("readonly/int", 123);
+Scenarios.Type_Property_Optional_ReadOnlyInt_getAll = passOnSuccess(readonlyIntMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyInt_getDefault = passOnSuccess(readonlyIntMock.getDefault);
+
+const readonlyModelMock = createReadOnlyMockapis("readonly/model", { name: "hello" });
+Scenarios.Type_Property_Optional_ReadOnlyModel_getAll = passOnSuccess(readonlyModelMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyModel_getDefault = passOnSuccess(readonlyModelMock.getDefault);
+
+const readonlyStringListMock = createReadOnlyMockapis("readonly/string/list", ["hello", "world"]);
+Scenarios.Type_Property_Optional_ReadOnlyStringList_getAll = passOnSuccess(readonlyStringListMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyStringList_getDefault = passOnSuccess(readonlyStringListMock.getDefault);
+
+const readonlyModelListMock = createReadOnlyMockapis("readonly/model/list", [{ name: "hello" }, { name: "world" }]);
+Scenarios.Type_Property_Optional_ReadOnlyModelList_getAll = passOnSuccess(readonlyModelListMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyModelList_getDefault = passOnSuccess(readonlyModelListMock.getDefault);
+
+const readonlyIntListMock = createReadOnlyMockapis("readonly/int/list", [1, 2]);
+Scenarios.Type_Property_Optional_ReadOnlyIntList_getAll = passOnSuccess(readonlyIntListMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyIntList_getDefault = passOnSuccess(readonlyIntListMock.getDefault);
+
+const readonlyStringRecordMock = createReadOnlyMockapis("readonly/string/record", { key1: "hello" });
+Scenarios.Type_Property_Optional_ReadOnlyStringRecord_getAll = passOnSuccess(readonlyStringRecordMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyStringRecord_getDefault = passOnSuccess(readonlyStringRecordMock.getDefault);
+
+const readonlyModelRecordMock = createReadOnlyMockapis("readonly/model/record", { key1: { name: "hello" } });
+Scenarios.Type_Property_Optional_ReadOnlyModelRecord_getAll = passOnSuccess(readonlyModelRecordMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyModelRecord_getDefault = passOnSuccess(readonlyModelRecordMock.getDefault);
+
+const readonlyIntRecordMock = createReadOnlyMockapis("readonly/int/record", { key1: 1 });
+Scenarios.Type_Property_Optional_ReadOnlyIntRecord_getAll = passOnSuccess(readonlyIntRecordMock.getAll);
+Scenarios.Type_Property_Optional_ReadOnlyIntRecord_getDefault = passOnSuccess(readonlyIntRecordMock.getDefault);
 
 // TEST REQUIRED AND OPTIONAL PROPERTIES
 
