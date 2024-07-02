@@ -109,12 +109,12 @@ const mockApiExpectBody = {
   nonRequiredReadOnlyNullableStringList: null,
 };
 
-Scenarios.Type_Model_Visibility_readOnlyRoundTrip = passOnSuccess([
+Scenarios.Type_Model_Visibility_readOnlyRoundTrip = passOnSuccess(
   mockapi.put("/type/model/visibility/readonlyroundtrip", (req) => {
-    req.expect.bodyEquals({ requiredString: "writeableString" });
+    req.expect.bodyEquals({ requiredString: "writableString" });
     return {
       status: 200,
       body: json(mockApiExpectBody),
     };
   }),
-]);
+);
