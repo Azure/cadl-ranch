@@ -2037,6 +2037,94 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
+### Parameters_Spread_Alias_spreadAliasWithModel
+
+- Endpoint: `post /parameters/spread/alias/request-with-model/{id}`
+
+Test case for spread alias.
+
+Should generate a model named `BodyParameterAliasWithModel`.
+Should generate an operation like:
+
+```
+spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadAliasWithOptionalCollections
+
+- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-collections`
+
+Test case for spread alias.
+
+Should not generate any model named `AliasWithRequiredAndOptionalCollections`.
+Should generate an operation like:
+
+```
+SpreadAliasWithRequiredAndOptionalCollections(requiredStringList: string[], optionalStringList?: string[])
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "requiredStringList": ["a", "b"], "optionalStringList": ["c", "d"] }
+```
+
+### Parameters_Spread_Alias_spreadAliasWithOptionalProps
+
+- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-props/{id}`
+
+Test case for spread alias.
+
+Should not generate any model named `BodyParameterAliasWithOptionalProps`.
+Should generate an operation like:
+
+```
+spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: string, age?: int32, items: int32[], elements?: string[])
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="2"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "dog"
+  "color": "red",
+  "age": 3,
+  "items": [1, 2, 3, 4],
+  "elements": ["a", "b"]}
+```
+
+Should generate an operation like:
+
+```
+spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: null, age?: null, items: int32[], elements?: null)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "dog"
+  "items": [1, 2, 3]}
+```
+
 ### Parameters_Spread_Alias_spreadAsRequestBody
 
 - Endpoint: `put /parameters/spread/alias/request-body`

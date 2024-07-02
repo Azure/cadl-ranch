@@ -69,3 +69,51 @@ Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Parameters_Spread_Alias_spreadAliasWithModel = passOnSuccess(
+  mockapi.post("/parameters/spread/alias/request-with-model/1", (req) => {
+    req.expect.containsHeader("x-ms-test-header", "bar");
+    req.expect.bodyEquals({ name: "foo" });
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Alias_spreadAliasWithoutOptionalProps = passOnSuccess(
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-props/1", (req) => {
+    req.expect.containsHeader("x-ms-test-header", "bar");
+    const spreadAliasWithoutOptionalPropRequest = {
+      name: "dog",
+      items: [1, 2, 3],
+    };
+    req.expect.bodyEquals(spreadAliasWithoutOptionalPropRequest);
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Alias_spreadAliasWithOptionalProps = passOnSuccess(
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-props/2", (req) => {
+    req.expect.containsHeader("x-ms-test-header", "bar");
+    const spreadAliasWithOptionalPropRequest = {
+      name: "dog",
+      color: "red",
+      age: 3,
+      items: [1, 2, 3, 4],
+      elements: ["a", "b"],
+    };
+    req.expect.bodyEquals(spreadAliasWithOptionalPropRequest);
+    return { status: 204 };
+  }),
+);
+
+Scenarios.Parameters_Spread_Alias_spreadAliasWithOptionalCollections = passOnSuccess(
+  mockapi.post("/parameters/spread/alias/spread-alias-with-optional-collections", (req) => {
+    const spreadAliasWithRequiredAndOptionalCollections = {
+      requiredStringList: ["a", "b"],
+      optionalStringList: ["c", "d"],
+    };
+    req.expect.bodyEquals(spreadAliasWithRequiredAndOptionalCollections);
+    return {
+      status: 204,
+    };
+  }),
+);

@@ -185,6 +185,42 @@ namespace Alias {
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 
+  model ModelParameter {
+    name: string;
+  }
+
+  alias BodyParameterAliasWithModel = {
+    @path
+    id: string;
+
+    ...ModelParameter;
+
+    @header
+    `x-ms-test-header`: string;
+  };
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias. 
+  
+  Should  generate a model named `BodyParameterAliasWithModel`.
+  Should generate an operation like:
+  ```
+  spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+
+  Expected path parameter: id="1"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  { "name": "foo" }
+  ```
+  """)
+  @route("/request-with-model/{id}")
+  @post
+  op spreadAliasWithModel(...BodyParameterAliasWithModel): NoContentResponse;
+
   alias RequestParameter = {
     @path
     id: string;
@@ -260,4 +296,96 @@ namespace Alias {
   @route("/multiple-parameters/{id}")
   @put
   op spreadWithMultipleParameters(...MultipleRequestParameters): NoContentResponse;
+
+  alias BodyParameterAliasWithOptionalProps = {
+    @path id: string;
+
+    @doc("name of the Thing")
+    name: string;
+
+    @doc("optional property of the Thing")
+    color?: string;
+
+    @doc("age of the Thing")
+    age?: int32;
+
+    @header
+    `x-ms-test-header`: string;
+
+    @doc("required array")
+    items: int32[];
+
+    @doc("optional array")
+    elements?: string[];
+  };
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias. 
+  
+  Should not generate any model named `BodyParameterAliasWithOptionalProps`.
+  Should generate an operation like:
+  ```
+  spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: string, age?: int32, items: int32[], elements?: string[])
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+
+  Expected path parameter: id="2"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  { "name": "dog" 
+    "color": "red",
+    "age": 3,
+    "items": [1, 2, 3, 4],
+    "elements": ["a", "b"]}
+  ```
+
+  Should generate an operation like:
+  ```
+  spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: null, age?: null, items: int32[], elements?: null)
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+
+  Expected path parameter: id="1"
+  Expected header parameter: x-ms-test-header="bar"
+  Expected request body:
+  ```json
+  { "name": "dog" 
+    "items": [1, 2, 3]}
+  ```
+
+  """)
+  @route("/spread-alias-with-optional-props/{id}")
+  @post
+  op spreadAliasWithOptionalProps(...BodyParameterAliasWithOptionalProps): NoContentResponse;
+
+  alias AliasWithRequiredAndOptionalCollections = {
+    @doc("required list")
+    requiredStringList: string[];
+
+    @doc("optional list")
+    optionalStringList?: string[];
+  };
+
+  @scenario
+  @scenarioDoc("""
+  Test case for spread alias. 
+  
+  Should not generate any model named `AliasWithRequiredAndOptionalCollections`.
+  Should generate an operation like:
+  ```
+  SpreadAliasWithRequiredAndOptionalCollections(requiredStringList: string[], optionalStringList?: string[])
+  ```
+  Note the parameter name is guessed from the model name and it may vary by language.
+
+  Expected request body:
+  ```json
+  { requiredStringList: ["a", "b"],
+    optionalStringList: ["c", "d"]}
+  ```
+  """)
+  @route("/spread-alias-with-optional-collections")
+  @post
+  op spreadAliasWithOptionalCollections(...AliasWithRequiredAndOptionalCollections): NoContentResponse;
 }
