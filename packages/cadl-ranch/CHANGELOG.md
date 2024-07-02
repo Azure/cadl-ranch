@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch
 
+## 0.13.2
+
+### Patch Changes
+
+- 31a98d7: add the embedding vector scenario
+
+## 0.13.1
+
+### Patch Changes
+
+- d82838f: Updated expected float duration values (35.621 and 46.781) to the values that can be exactly represented as IEEE754 (35.625 and 46.75 respectively).
+
 ## 0.13.0
 
 ### Minor Changes

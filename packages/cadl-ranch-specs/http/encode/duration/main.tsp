@@ -52,7 +52,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test float seconds encode for a duration parameter.
-  Expected query parameter `input=35.621`
+  Expected query parameter `input=35.625`
   """)
   op floatSeconds(
     @query
@@ -64,7 +64,7 @@ namespace Query {
   @scenario
   @scenarioDoc("""
   Test float64 seconds encode for a duration parameter.
-  Expected query parameter `input=35.621`
+  Expected query parameter `input=35.625`
   """)
   op float64Seconds(
     @query
@@ -189,13 +189,13 @@ namespace Property {
   Expected request body:
   ```json
   {
-    "value": 35.621
+    "value": 35.625
   }
   ```
   Expected response body:
   ```json
   {
-    "value": 35.621
+    "value": 35.625
   }
   ```
   """)
@@ -208,13 +208,13 @@ namespace Property {
   Expected request body:
   ```json
   {
-    "value": 35.621
+    "value": 35.625
   }
   ```
   Expected response body:
   ```json
   {
-    "value": 35.621
+    "value": 35.625
   }
   ```
   """)
@@ -227,13 +227,13 @@ namespace Property {
   Expected request body:
   ```json
   {
-    "value": [35.621, 46.781]
+    "value": [35.625, 46.75]
   }
   ```
   Expected response body:
   ```json
   {
-    "value": [35.621, 46.781]
+    "value": [35.625, 46.75]
   }
   ```
   """)
@@ -298,7 +298,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test float seconds encode for a duration header.
-  Expected header `duration: 35.621`
+  Expected header `duration: 35.625`
   """)
   op floatSeconds(
     @header
@@ -310,7 +310,7 @@ namespace Header {
   @scenario
   @scenarioDoc("""
   Test float64 seconds encode for a duration header.
-  Expected header `duration: 35.621`
+  Expected header `duration: 35.625`
   """)
   op float64Seconds(
     @header
