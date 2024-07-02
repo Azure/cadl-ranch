@@ -357,4 +357,4 @@ Expected response body:
 ```
 """)
 @put
-op ReadOnlyRoundTrip(@body input: RoundTripReadOnlyModel): RoundTripReadOnlyModel;
+op readOnlyRoundTrip(@body input: RoundTripReadOnlyModel): RoundTripReadOnlyModel;

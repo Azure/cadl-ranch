@@ -4862,7 +4862,7 @@ Expected input body:
 }
 ```
 
-### Type_Model_Visibility_ReadOnlyRoundTrip
+### Type_Model_Visibility_readOnlyRoundTrip
 
 - Endpoint: `put /type/model/visibility/readonlyroundtrip`
 
