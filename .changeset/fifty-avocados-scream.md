@@ -1,6 +1,4 @@
 ---
 "@azure-tools/cadl-ranch-specs": patch
 ---
-
-Add RoundTripModel, InputModel, Optional Model in type/property/optionality
-Add RoundTripReadOnlyModel in type/model/visibility
+Add RoundTripReadOnlyModel and put operation in type/model/visibility
