@@ -41,12 +41,6 @@ model DerivedModel extends BaseModel {
   resourceName: string;
 }
 
-@doc("Collection item model")
-model CollectionItem {
-  @doc("Required resource id")
-  requiredId: int32;
-}
-
 @doc("Fixed string enum")
 enum FixedStringEnum {
   One: "1",
@@ -62,10 +56,11 @@ union ExtensibleEnum {
   Four: "4",
 }
 
-@doc("Output model with readonly properties.")
+@doc("RoundTrip model with readonly properties.")
 model RoundTripReadOnlyModel {
-  @doc("Required string, illustrating a reference type property.")
-  requiredString: string;
+  @doc("Required string, illustrating a readonly reference type property.")
+  @visibility("read")
+  requiredReadOnlyString: string;
 
   @doc("Required int, illustrating a readonly value type property.")
   @visibility("read")
@@ -169,7 +164,7 @@ model RoundTripReadOnlyModel {
 
   @doc("Required model collection")
   @visibility("read")
-  requiredReadOnlyModelList: CollectionItem[];
+  requiredReadOnlyModelList: DerivedModel[];
 
   @doc("Required int record")
   @visibility("read")
@@ -193,7 +188,7 @@ model RoundTripReadOnlyModel {
 
   @doc("Optional model collection")
   @visibility("read")
-  optionalReadOnlyModelList?: CollectionItem[];
+  optionalReadOnlyModelList?: DerivedModel[];
 
   @doc("Optional int record")
   @visibility("read")
@@ -329,14 +324,13 @@ Generate abd send input model and handle readonly properties.
 Expected input body:
 ```json
 {
-  requiredString: "writableString",
 }
 ```
 
 Expected response body:
 ```json
 {
-  requiredString: "writableString",
+  requiredReadOnlyString: "requiredString",
   requiredReadOnlyInt: 123,
   optionalReadOnlyString: "optionalString",
   requiredReadOnlyBytes: new Uint8Array([1, 2, 3]),
@@ -356,7 +350,7 @@ Expected response body:
   optionalReadOnlyExtensibleEnum: "4",
   requiredReadOnlyStringList: ["string1", "string2"],
   requiredReadOnlyIntList: [1, 2],
-  requiredReadOnlyModelList: [{ requireId: "14159" }],
+  requiredReadOnlyModelList: [{ resourceName: "list1" }, { resourceName: "list2" }],
   requiredReadOnlyIntRecord: { key1: 1, key2: 2 },
   requiredReadOnlyStringRecord: { key1: "value1", key2: "value2" },
   requiredReadOnlyModelRecord: {

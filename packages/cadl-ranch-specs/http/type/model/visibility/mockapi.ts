@@ -66,7 +66,7 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
 );
 
 const mockApiExpectBody = {
-  requiredString: "writableString",
+  requiredReadOnlyString: "requiredString",
   requiredReadOnlyInt: 123,
   optionalReadOnlyString: "optionalString",
   requiredReadOnlyBytes: new Uint8Array([1, 2, 3]),
@@ -86,7 +86,7 @@ const mockApiExpectBody = {
   optionalReadOnlyExtensibleEnum: "4",
   requiredReadOnlyStringList: ["string1", "string2"],
   requiredReadOnlyIntList: [1, 2],
-  requiredReadOnlyModelList: [{ requireId: "14159" }],
+  requiredReadOnlyModelList: [{ resourceName: "list1" }, { resourceName: "list2" }],
   requiredReadOnlyIntRecord: { key1: 1, key2: 2 },
   requiredReadOnlyStringRecord: { key1: "value1", key2: "value2" },
   requiredReadOnlyModelRecord: {
@@ -102,7 +102,7 @@ const mockApiExpectBody = {
 
 Scenarios.Type_Model_Visibility_readOnlyRoundTrip = passOnSuccess(
   mockapi.put("/type/model/visibility/readonlyroundtrip", (req) => {
-    req.expect.bodyEquals({ requiredString: "writableString" });
+    req.expect.bodyEquals({});
     return {
       status: 200,
       body: json(mockApiExpectBody),
