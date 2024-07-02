@@ -125,7 +125,7 @@ interface ManagedIdentityTrackedResources {
       },
       // this is for system-assigned
       "principalId": <any uuid string>,
-      // this is for system-assignedcd
+      // this is for system-assigned
       "tenantId": <any uuid string>
     },
     "properties": {
