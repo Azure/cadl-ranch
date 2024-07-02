@@ -4864,7 +4864,7 @@ Expected input body:
 
 ### Type_Model_Visibility_ReadOnlyRoundTrip
 
-- Endpoint: `put /type/model/visibility/inputToRoundTripReadOnly`
+- Endpoint: `put /type/model/visibility/readonlyroundtrip`
 
 Generate abd send input model and handle readonly properties.
 Expected input body:
