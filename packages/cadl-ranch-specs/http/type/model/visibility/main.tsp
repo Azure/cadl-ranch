@@ -332,6 +332,7 @@ Expected input body:
   requiredString: "writableString",
 }
 ```
+
 Expected response body:
 ```json
 {
