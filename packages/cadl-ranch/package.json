@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch",
-  "version": "0.13.0",
+  "version": "0.13.2",
   "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
   "main": "dist/index.js",
   "type": "module",
@@ -32,7 +32,7 @@
     "@azure-tools/cadl-ranch-api": "workspace:~",
     "@azure-tools/cadl-ranch-coverage-sdk": "workspace:~",
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure/identity": "^3.1.4",
+    "@azure/identity": "^4.2.1",
     "@types/js-yaml": "^4.0.5",
     "@typespec/compiler": "~0.57.0",
     "@typespec/http": "~0.57.0",
