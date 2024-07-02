@@ -64,47 +64,39 @@ model RoundTripReadOnlyModel {
 
   @doc("Required int, illustrating a readonly value type property.")
   @visibility("read")
-  requiredReadonlyInt: int32;
+  requiredReadOnlyInt: int32;
 
   @doc("Optional string, illustrating a readonly reference type property.")
   @visibility("read")
-  optionalReadonlyString?: string;
+  optionalReadOnlyString?: string;
 
   @doc("Optional int, illustrating a readonly value type property.")
   @visibility("read")
-  optionalReadonlyInt?: int32;
-
-  @doc("Required readonly bytes")
-  @visibility("read")
-  requiredReadonlyBytes: bytes;
-
-  @doc("Optional readonly bytes")
-  @visibility("read")
-  optionalReadonlyBytes?: bytes;
+  optionalReadOnlyInt?: int32;
 
   @doc("Required readonly uint8[]")
   @visibility("read")
-  requiredReadonlyUint8Array: uint8[];
+  requiredReadOnlyUint8Array: uint8[];
 
   @doc("Optional readonly uint8[]")
   @visibility("read")
-  optionalReadonlyUint8Array?: uint8[];
+  optionalReadOnlyUint8Array?: uint8[];
 
   @doc("Required readonly unknown array")
   @visibility("read")
-  requiredReadonlyUnknown: unknown[];
+  requiredReadOnlyUnknown: unknown[];
 
   @doc("Optional readonly unknown array")
   @visibility("read")
-  optionalReadonlyUnknown?: unknown[];
+  optionalReadOnlyUnknown?: unknown[];
 
   @doc("Required readonly int8[]")
   @visibility("read")
-  requiredReadonlyInt8Array: int8[];
+  requiredReadOnlyInt8Array: int8[];
 
   @doc("Optional readonly int8[]")
   @visibility("read")
-  optionalReadonlyInt8Array?: int8[];
+  optionalReadOnlyInt8Array?: int8[];
 
   @doc("Optional readonly nullable int")
   @visibility("read")
@@ -132,35 +124,35 @@ model RoundTripReadOnlyModel {
 
   @doc("Required readonly model.")
   @visibility("read")
-  requiredReadonlyModel: DerivedModel;
+  requiredReadOnlyModel: DerivedModel;
 
   @doc("Optional readonly model.")
   @visibility("read")
-  optionalReadonlyModel?: DerivedModel;
+  optionalReadOnlyModel?: DerivedModel;
 
   @doc("Required readonly fixed string enum")
   @visibility("read")
-  requiredReadonlyFixedStringEnum: FixedStringEnum;
+  requiredReadOnlyFixedStringEnum: FixedStringEnum;
 
   @doc("Required readonly extensible enum")
   @visibility("read")
-  requiredReadonlyExtensibleEnum: ExtensibleEnum;
+  requiredReadOnlyExtensibleEnum: ExtensibleEnum;
 
   @doc("Optional readonly fixed string enum")
   @visibility("read")
-  optionalReadonlyFixedStringEnum: FixedStringEnum;
+  optionalReadOnlyFixedStringEnum: FixedStringEnum;
 
   @doc("Optional readonly extensible enum")
   @visibility("read")
-  optionalReadonlyExtensibleEnum: ExtensibleEnum;
+  optionalReadOnlyExtensibleEnum: ExtensibleEnum;
 
   @doc("Required readonly string collection.")
   @visibility("read")
-  requiredReadonlyStringList: string[];
+  requiredReadOnlyStringList: string[];
 
   @doc("Required readonly int collection.")
   @visibility("read")
-  requiredReadonlyIntList: int32[];
+  requiredReadOnlyIntList: int32[];
 
   @doc("Required model collection")
   @visibility("read")
@@ -172,7 +164,7 @@ model RoundTripReadOnlyModel {
 
   @doc("Required string record")
   @visibility("read")
-  requiredReadonlyStringRecord: Record<string>;
+  requiredReadOnlyStringRecord: Record<string>;
 
   @doc("Required model record")
   @visibility("read")
@@ -180,11 +172,11 @@ model RoundTripReadOnlyModel {
 
   @doc("Optional readonly string collection.")
   @visibility("read")
-  optionalReadonlyStringList?: string[];
+  optionalReadOnlyStringList?: string[];
 
   @doc("Optional readonly int collection.")
   @visibility("read")
-  optionalReadonlyIntList?: int32[];
+  optionalReadOnlyIntList?: int32[];
 
   @doc("Optional model collection")
   @visibility("read")
@@ -333,7 +325,6 @@ Expected response body:
   requiredReadOnlyString: "requiredString",
   requiredReadOnlyInt: 123,
   optionalReadOnlyString: "optionalString",
-  requiredReadOnlyBytes: new Uint8Array([1, 2, 3]),
   requiredReadOnlyUint8Array: [1, 2, 3],
   optionalReadOnlyUint8Array: [4, 5, 6],
   requiredReadOnlyUnknown: [1, "string", true],

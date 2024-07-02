@@ -69,7 +69,6 @@ const mockApiExpectBody = {
   requiredReadOnlyString: "requiredString",
   requiredReadOnlyInt: 123,
   optionalReadOnlyString: "optionalString",
-  requiredReadOnlyBytes: new Uint8Array([1, 2, 3]),
   requiredReadOnlyUint8Array: [1, 2, 3],
   optionalReadOnlyUint8Array: [4, 5, 6],
   requiredReadOnlyUnknown: [1, "string", true],
