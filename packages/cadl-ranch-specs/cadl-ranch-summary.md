@@ -71,117 +71,6 @@ Expects header 'x-ms-api-key': 'valid-key'
 
 Expects header 'authorization': 'Bearer https://security.microsoft.com/.default'
 
-### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssignedOnly
-
-- Endpoint: `put https://management.azure.com`
-
-Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "location": "eastus",
-  "identity": {
-    "type": "SystemAssigned"
-  },
-  "properties": {}
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  "location": "eastus",
-  "identity": {
-    "type": "SystemAssigned",
-    // this is for system-assigned
-    "principalId": <any uuid string>,
-    // this is for system-assigned
-    "tenantId": <any uuid string>
-   },
-  "properties": {
-    "provisioningState": "Succeeded"
-  }
-}
-```
-
-### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
-
-- Endpoint: `get https://management.azure.com`
-
-Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  "location": "eastus",
-  "identity": {
-    "type": "SystemAssigned",
-    // this is for system-assigned
-    "principalId": <any uuid string>
-    // this is for system-assigned
-    "tenantId": <any uuid string>
-   },
-  "properties": {
-    "provisioningState": "Succeeded"
-  }
-}
-```
-
-### Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
-
-- Endpoint: `patch https://management.azure.com`
-
-Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-Expected query parameter: api-version=2023-12-01-preview
-Expected request body:
-
-```json
-{
-  "identity": {
-    "type": "SystemAssigned,UserAssigned",
-    "userAssignedIdentities": {
-      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
-    }
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  "location": "eastus",
-  "identity": {
-    "type": "SystemAssigned,UserAssigned",
-    // this is user-assigned
-    "userAssignedIdentities": {
-      "<user-assigned-identity-id>": {
-        "principalId": <any uuid string>,
-        "clientId": <any uuid string>
-      },
-    },
-    // this is for system-assigned
-    "principalId": <any uuid string>,
-    // this is for system-assigned
-    "tenantId": <any uuid string>
-  },
-  "properties": {
-    "provisioningState": "Succeeded"
-  }
-}
-```
-
 ### Azure_ClientGenerator_Core_Access_InternalOperation
 
 - Endpoints:
@@ -801,6 +690,113 @@ Expected response body:
 {
   "id": 1,
   "name": "Madge"
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {}
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    // this is user-assigned
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
+        "principalId": <any uuid string>,
+        "clientId": <any uuid string>
+      },
+    },
+    // this is for system-assigned
+    "principalId": <any uuid string>,
+    // this is for system-assigned
+    "tenantId": <any uuid string>
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
 }
 ```
 

@@ -1,15 +1,31 @@
+import "@azure-tools/cadl-ranch-expect";
 import "@typespec/http";
 import "@typespec/rest";
+import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
+using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
 
-namespace Azure.Arm.Models.CommonTypes.ManagedIdentity;
+@armProviderNamespace
+@service
+@versioned(Versions)
+@doc("Arm Managed Identity Provider management API.")
+namespace Azure.ResourceManager.Models.CommonTypes.ManagedIdentity;
+
+@doc("Azure API versions.")
+enum Versions {
+  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
+  @doc("Preview API version 2023-12-01-preview.")
+  v2023_12_01_preview: "2023-12-01-preview",
+}
 
 @resource("managedIdentityTrackedResources")
 model ManagedIdentityTrackedResource is TrackedResource<ManagedIdentityTrackedResourceProperties> {
@@ -27,7 +43,7 @@ model ManagedIdentityTrackedResource is TrackedResource<ManagedIdentityTrackedRe
 model ManagedIdentityTrackedResourceProperties {
   @visibility("read")
   @doc("The status of the last operation.")
-  provisioningState?: ProvisioningState;
+  provisioningState: string;
 }
 
 @armResourceOperations
@@ -35,19 +51,17 @@ interface ManagedIdentityTrackedResources {
   @scenario
   @scenarioDoc("""
   Resource GET operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   Expected query parameter: api-version=2023-12-01-preview
 
   Expected response body:
   ```json
   {
-    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
     "identity": {
       "type": "SystemAssigned",
-      // this is for system-assigned
       "principalId": <any uuid string>
-      // this is for system-assigned
       "tenantId": <any uuid string>
      },
     "properties": {
@@ -61,7 +75,7 @@ interface ManagedIdentityTrackedResources {
   @scenario
   @scenarioDoc("""
   Resource PUT operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
@@ -76,13 +90,11 @@ interface ManagedIdentityTrackedResources {
    Expected response body:
   ```json
   {
-    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
     "identity": {
       "type": "SystemAssigned",
-      // this is for system-assigned
       "principalId": <any uuid string>,
-      // this is for system-assigned
       "tenantId": <any uuid string>
      },
     "properties": {
@@ -91,12 +103,12 @@ interface ManagedIdentityTrackedResources {
   }
   ```
   """)
-  createWithSystemAssignedOnly is ArmResourceCreateOrReplaceAsync<ManagedIdentityTrackedResource>;
+  createWithSystemAssigned is ArmResourceCreateOrReplaceSync<ManagedIdentityTrackedResource>;
 
   @scenario
   @scenarioDoc("""
   Resource PATCH operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
   ```json
@@ -112,13 +124,13 @@ interface ManagedIdentityTrackedResources {
    Expected response body:
   ```json
   {
-    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+    "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
     "identity": {
       "type": "SystemAssigned,UserAssigned",
       // this is user-assigned
       "userAssignedIdentities": {
-        "<user-assigned-identity-id>": {
+        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
           "principalId": <any uuid string>,
           "clientId": <any uuid string>
         },
@@ -134,7 +146,7 @@ interface ManagedIdentityTrackedResources {
   }
   ```
   """)
-  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchAsync<
+  updateWithUserAssignedAndSystemAssigned is ArmResourcePatchSync<
     ManagedIdentityTrackedResource,
     ManagedIdentityTrackedResourceProperties
   >;

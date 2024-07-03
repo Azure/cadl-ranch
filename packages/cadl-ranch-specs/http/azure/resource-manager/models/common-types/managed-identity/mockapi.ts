@@ -6,7 +6,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
 const validSystemAssignedManagedIdentityResource = {
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   location: "eastus",
   identity: {
     type: "SystemAssigned",
@@ -19,7 +19,7 @@ const validSystemAssignedManagedIdentityResource = {
 };
 
 const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   location: "eastus",
   identity: {
     type: "SystemAssigned,UserAssigned",
@@ -39,9 +39,9 @@ const validUserAssignedAndSystemAssignedManagedIdentityResource = {
 };
 
 // managed identity tracked resource
-Scenarios.Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -65,10 +65,10 @@ Scenarios.Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedRes
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssignedOnly =
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned =
   passOnSuccess([
     mockapi.put(
-      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
       (req) => {
         req.expect.containsQueryParam("api-version", "2023-12-01-preview");
         if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -99,10 +99,10 @@ Scenarios.Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedRes
     ),
   ]);
 
-Scenarios.Azure_Arm_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned =
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned =
   passOnSuccess([
     mockapi.patch(
-      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
       (req) => {
         req.expect.containsQueryParam("api-version", "2023-12-01-preview");
         if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
