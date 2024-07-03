@@ -89,7 +89,6 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
           identity: {
             type: "SystemAssigned",
           },
-          properties: {},
         });
         return {
           status: 200,

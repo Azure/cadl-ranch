@@ -707,8 +707,7 @@ Expected request body:
   "location": "eastus",
   "identity": {
     "type": "SystemAssigned"
-  },
-  "properties": {}
+  }
 }
 ```
 
@@ -782,16 +781,13 @@ Expected response body:
   "location": "eastus",
   "identity": {
     "type": "SystemAssigned,UserAssigned",
-    // this is user-assigned
     "userAssignedIdentities": {
       "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
         "principalId": <any uuid string>,
         "clientId": <any uuid string>
       },
     },
-    // this is for system-assigned
     "principalId": <any uuid string>,
-    // this is for system-assigned
     "tenantId": <any uuid string>
   },
   "properties": {
