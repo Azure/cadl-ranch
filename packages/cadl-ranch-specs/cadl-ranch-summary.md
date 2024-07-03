@@ -4896,10 +4896,6 @@ Expected response body:
   "optionalReadOnlyExtensibleEnum": "4",
   "requiredReadOnlyStringList": ["string1", "string2"],
   "requiredReadOnlyIntList": [1, 2],
-  "requiredReadOnlyModelList": [
-    { "resourceName": "list1" },
-    { "resourceName": "list2" }
-  ],
   "requiredReadOnlyIntRecord": { "key1": 1, "key2": 2 },
   "requiredReadOnlyStringRecord": { "key1": "value1", "key2": "value2" },
   "requiredReadOnlyModelRecord": {
