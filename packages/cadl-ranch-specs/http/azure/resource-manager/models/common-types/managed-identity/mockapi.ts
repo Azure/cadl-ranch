@@ -4,14 +4,23 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const PRINCIPAL_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const TENANT_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const CLIENT_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const LOCATION_REGION_EXPECTED = "eastus";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
+const IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED = "SystemAssigned";
+const IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED = "SystemAssigned,UserAssigned";
 const validSystemAssignedManagedIdentityResource = {
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  location: "eastus",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  location: `${LOCATION_REGION_EXPECTED}`,
+  tags: {
+    tagKey1: "tagValue1",
+  },
   identity: {
-    type: "SystemAssigned",
-    principalId: "00000000-0000-0000-0000-000000000000",
-    tenantId: "00000000-0000-0000-0000-000000000000",
+    type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
+    principalId: `${PRINCIPAL_ID_EXPECTED}`,
+    tenantId: `${TENANT_ID_EXPECTED}`,
   },
   properties: {
     provisioningState: "Succeeded",
@@ -19,19 +28,22 @@ const validSystemAssignedManagedIdentityResource = {
 };
 
 const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
-  location: "eastus",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  location: `${LOCATION_REGION_EXPECTED}`,
+  tags: {
+    tagKey1: "tagValue1",
+  },
   identity: {
-    type: "SystemAssigned,UserAssigned",
+    type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
     userAssignedIdentities: {
       "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
         {
-          principalId: "00000000-0000-0000-0000-000000000000",
-          clientId: "00000000-0000-0000-0000-000000000000",
+          principalId: `${PRINCIPAL_ID_EXPECTED}`,
+          clientId: `${CLIENT_ID_EXPECTED}`,
         },
     },
-    principalId: "00000000-0000-0000-0000-000000000000",
-    tenantId: "00000000-0000-0000-0000-000000000000",
+    principalId: `${PRINCIPAL_ID_EXPECTED}`,
+    tenantId: `${TENANT_ID_EXPECTED}`,
   },
   properties: {
     provisioningState: "Succeeded",
@@ -85,9 +97,12 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
           );
         }
         req.expect.bodyEquals({
-          location: "eastus",
+          location: `${LOCATION_REGION_EXPECTED}`,
+          tags: {
+            tagKey1: "tagValue1",
+          },
           identity: {
-            type: "SystemAssigned",
+            type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
           },
         });
         return {
@@ -119,7 +134,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
         }
         req.expect.bodyEquals({
           identity: {
-            type: "SystemAssigned,UserAssigned",
+            type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
             userAssignedIdentities: {
               "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
                 {},

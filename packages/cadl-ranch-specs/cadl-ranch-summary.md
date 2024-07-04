@@ -705,6 +705,9 @@ Expected request body:
 ```json
 {
   "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
   "identity": {
     "type": "SystemAssigned"
   }
@@ -717,6 +720,9 @@ Expected response body:
 {
   "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
   "identity": {
     "type": "SystemAssigned",
     "principalId": <any uuid string>,
@@ -742,6 +748,9 @@ Expected response body:
 {
   "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
   "identity": {
     "type": "SystemAssigned",
     "principalId": <any uuid string>
@@ -779,6 +788,9 @@ Expected response body:
 {
   "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
   "identity": {
     "type": "SystemAssigned,UserAssigned",
     "userAssignedIdentities": {

@@ -59,6 +59,9 @@ interface ManagedIdentityTrackedResources {
   {
     "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
+    "tags": {
+      "tagKey1": "tagValue1"
+    },
     "identity": {
       "type": "SystemAssigned",
       "principalId": <any uuid string>
@@ -81,6 +84,9 @@ interface ManagedIdentityTrackedResources {
   ```json
   {
     "location": "eastus",
+    "tags": {
+      "tagKey1": "tagValue1"
+    },
     "identity": {
       "type": "SystemAssigned"
     }
@@ -91,6 +97,9 @@ interface ManagedIdentityTrackedResources {
   {
     "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
+    "tags": {
+      "tagKey1": "tagValue1"
+    },
     "identity": {
       "type": "SystemAssigned",
       "principalId": <any uuid string>,
@@ -125,6 +134,9 @@ interface ManagedIdentityTrackedResources {
   {
     "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
     "location": "eastus",
+    "tags": {
+      "tagKey1": "tagValue1"
+    },
     "identity": {
       "type": "SystemAssigned,UserAssigned",
       "userAssignedIdentities": {
