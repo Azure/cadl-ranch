@@ -4862,6 +4862,31 @@ Expected input body:
 }
 ```
 
+### Type_Model_Visibility_putReadOnlyModel
+
+- Endpoint: `put /type/model/visibility/readonlyroundtrip`
+
+Generate and receive output model with readonly properties.
+
+Expected input body:
+
+```json
+{}
+```
+
+Expected response body:
+
+```json
+{
+  "requiredIntList": [1, 2, 3],
+  "optionalIntList": null,
+  "requiredModelList": [{ "name": "foo" }, { "name": "bar" }],
+  "requiredStringRecord": { "k1": "value1", "k2": "value2" },
+  "optionalStringRecord": { "k1": "value1", "k2": "value2" },
+  "requiredModelRecord": { "k1": { "name": "foo" }, "k2": { "name": "bar" } }
+}
+```
+
 ### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
