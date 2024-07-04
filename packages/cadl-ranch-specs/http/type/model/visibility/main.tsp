@@ -30,6 +30,46 @@ model VisibilityModel {
   deleteProp: boolean;
 }
 
+/** Innermodel used as a readonly property for testing. */
+model InnerModel {
+  name: string;
+}
+
+/** RoundTrip model with readonly properties. */
+model ReadOnlyModel {
+  /** Required readonly nullable int list. */
+  @visibility("read")
+  requiredNullableIntList: int32[] | null;
+
+  /** Optional readonly nullable int list. */
+  @visibility("read")
+  optionalNullableIntList?: int32[] | null;
+
+  /** Reqqired readonly nullable model list. */
+  @visibility("read")
+  requiredNullableModelList: InnerModel[] | null;
+
+  /** Optional readonly nullable model list. */
+  @visibility("read")
+  optionalNullableModelList?: InnerModel[] | null;
+
+  /** Required readonly string dictionary. */
+  @visibility("read")
+  requiredStringRecord: Record<string>;
+
+  /** Optional readonly string dictionary. */
+  @visibility("read")
+  optionalStringRecord?: Record<string>;
+
+  /** Required readonly model dictionary. */
+  @visibility("read")
+  requiredModelRecord: Record<InnerModel>;
+
+  /** Optional readonly model dictionary. */
+  @visibility("read")
+  optionalModelRecord?: Record<InnerModel>;
+}
+
 @scenario
 @scenarioDoc("""
 Generate and receive output model with readonly properties.
@@ -118,3 +158,28 @@ Expected input body:
 """)
 @delete
 op deleteModel(@body input: VisibilityModel): void;
+
+@route("/readonlyroundtrip")
+@scenario
+@scenarioDoc("""
+Generate and receive output model with readonly properties.
+
+Expected input body:
+```json
+{}
+```
+
+Expected response body:
+```json
+{
+  requiredIntList: [1, 2, 3],
+  optionalIntList: null,
+  requiredModelList: [{name: "foo"}, {name: "bar"}],
+  requiredStringRecord: { k1: "value1", k2: "value2" },
+  optionalStringRecord: { k1: "value1", k2: "value2" },
+  requiredModelRecord: { k1: { name: "foo" }, k2: { name: "bar" } },
+}
+```
+""")
+@put
+op putReadOnlyModel(@body input: ReadOnlyModel): ReadOnlyModel;

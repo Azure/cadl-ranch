@@ -64,3 +64,19 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+const expectBody = {
+  requiredIntList: [1, 2, 3],
+  optionalIntList: null,
+  requiredModelList: [{ name: "foo" }, { name: "bar" }],
+  requiredStringRecord: { k1: "value1", k2: "value2" },
+  optionalStringRecord: { k1: "value1", k2: "value2" },
+  requiredModelRecord: { k1: { name: "foo" }, k2: { name: "bar" } },
+};
+
+Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess(
+  mockapi.put("/type/model/visibility/readonlyroundtrip", (req) => {
+    req.expect.bodyEquals({});
+    return { status: 204, body: json(expectBody) };
+  }),
+);
