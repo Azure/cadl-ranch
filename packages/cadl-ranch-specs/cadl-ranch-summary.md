@@ -4878,9 +4878,9 @@ Expected response body:
 
 ```json
 {
-  "requiredIntList": [1, 2, 3],
-  "optionalIntList": null,
-  "requiredModelList": [{ "name": "foo" }, { "name": "bar" }],
+  "requiredNullableIntList": [1, 2, 3],
+  "optionalNullableIntList": null,
+  "requiredNullableModelList": [{ "name": "foo" }, { "name": "bar" }],
   "requiredStringRecord": { "k1": "value1", "k2": "value2" },
   "optionalStringRecord": { "k1": "value1", "k2": "value2" },
   "requiredModelRecord": { "k1": { "name": "foo" }, "k2": { "name": "bar" } }
