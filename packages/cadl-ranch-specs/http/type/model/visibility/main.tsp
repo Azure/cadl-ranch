@@ -45,7 +45,7 @@ model ReadOnlyModel {
   @visibility("read")
   optionalNullableIntList?: int32[] | null;
 
-  /** Reqqired readonly nullable model list. */
+  /** Required readonly nullable model list. */
   @visibility("read")
   requiredNullableModelList: InnerModel[] | null;
 
