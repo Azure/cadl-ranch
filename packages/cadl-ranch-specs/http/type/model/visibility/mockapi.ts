@@ -67,11 +67,7 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
 
 const expectBody = {
   requiredNullableIntList: [1, 2, 3],
-  optionalNullableIntList: null,
-  requiredNullableModelList: [{ name: "foo" }, { name: "bar" }],
   requiredStringRecord: { k1: "value1", k2: "value2" },
-  optionalStringRecord: { k1: "value1", k2: "value2" },
-  requiredModelRecord: { k1: { name: "foo" }, k2: { name: "bar" } },
 };
 
 Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess(

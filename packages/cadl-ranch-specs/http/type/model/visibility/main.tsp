@@ -41,33 +41,9 @@ model ReadOnlyModel {
   @visibility("read")
   requiredNullableIntList: int32[] | null;
 
-  /** Optional readonly nullable int list. */
-  @visibility("read")
-  optionalNullableIntList?: int32[] | null;
-
-  /** Required readonly nullable model list. */
-  @visibility("read")
-  requiredNullableModelList: InnerModel[] | null;
-
-  /** Optional readonly nullable model list. */
-  @visibility("read")
-  optionalNullableModelList?: InnerModel[] | null;
-
   /** Required readonly string dictionary. */
   @visibility("read")
   requiredStringRecord: Record<string>;
-
-  /** Optional readonly string dictionary. */
-  @visibility("read")
-  optionalStringRecord?: Record<string>;
-
-  /** Required readonly model dictionary. */
-  @visibility("read")
-  requiredModelRecord: Record<InnerModel>;
-
-  /** Optional readonly model dictionary. */
-  @visibility("read")
-  optionalModelRecord?: Record<InnerModel>;
 }
 
 @scenario
@@ -173,11 +149,7 @@ Expected response body:
 ```json
 {
   requiredNullableIntList: [1, 2, 3],
-  optionalNullableIntList: null,
-  requiredNullableModelList: [{name: "foo"}, {name: "bar"}],
   requiredStringRecord: { k1: "value1", k2: "value2" },
-  optionalStringRecord: { k1: "value1", k2: "value2" },
-  requiredModelRecord: { k1: { name: "foo" }, k2: { name: "bar" } },
 }
 ```
 """)
