@@ -286,7 +286,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = p
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByParent = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
     (req) => {
