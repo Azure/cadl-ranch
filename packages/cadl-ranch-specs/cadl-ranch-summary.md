@@ -4879,11 +4879,7 @@ Expected response body:
 ```json
 {
   "requiredNullableIntList": [1, 2, 3],
-  "optionalNullableIntList": null,
-  "requiredNullableModelList": [{ "name": "foo" }, { "name": "bar" }],
-  "requiredStringRecord": { "k1": "value1", "k2": "value2" },
-  "optionalStringRecord": { "k1": "value1", "k2": "value2" },
-  "requiredModelRecord": { "k1": { "name": "foo" }, "k2": { "name": "bar" } }
+  "requiredStringRecord": { "k1": "value1", "k2": "value2" }
 }
 ```
 
@@ -6288,6 +6284,86 @@ Expected request body:
 ### Type_Property_Optional_IntLiteral_putDefault
 
 - Endpoint: `put /type/property/optional/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Plaindate_getAll
+
+- Endpoint: `get /type/property/optional/plaindate/all`
+
+Expected response body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_Plaindate_getDefault
+
+- Endpoint: `get /type/property/optional/plaindate/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Plaindate_putAll
+
+- Endpoint: `put /type/property/optional/plaindate/all`
+
+Expected request body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_Plaindate_putDefault
+
+- Endpoint: `put /type/property/optional/plaindate/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Plaintime_getAll
+
+- Endpoint: `get /type/property/optional/plaintime/all`
+
+Expected response body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_Plaintime_getDefault
+
+- Endpoint: `get /type/property/optional/plaintime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_Plaintime_putAll
+
+- Endpoint: `put /type/property/optional/plaintime/all`
+
+Expected request body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_Plaintime_putDefault
+
+- Endpoint: `put /type/property/optional/plaintime/default`
 
 Expected request body:
 
