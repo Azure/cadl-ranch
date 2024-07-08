@@ -2646,7 +2646,7 @@ Content-Type: application/octet-stream
 
 - Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
 
-Please send request twice, first time with no content-type and second time with content-type "applicaton/octet-stream". Expect request:
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
 
 ```
 POST /upload HTTP/1.1

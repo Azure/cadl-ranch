@@ -445,7 +445,7 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
-Please send request twice, first time with no content-type and second time with content-type "applicaton/octet-stream". Expect request:
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
 ```
 POST /upload HTTP/1.1
 Content-Length: 428
