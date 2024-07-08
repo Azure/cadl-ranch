@@ -6,9 +6,9 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
 const validTopLevelResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
   name: "top",
-  type: "topLevel",
+  type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
   location: "eastus",
   properties: {
     provisioningState: "Succeeded",
@@ -25,9 +25,9 @@ const validTopLevelResource = {
 };
 
 const validNestedResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
   name: "nested",
-  type: "nested",
+  type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
   properties: {
     provisioningState: "Succeeded",
     description: "valid",
@@ -43,9 +43,9 @@ const validNestedResource = {
 };
 
 // top level tracked resource
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -65,9 +65,9 @@ Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_get = passOnSucces
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_createOrReplace = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -93,9 +93,9 @@ Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_createOrReplace = 
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -124,9 +124,9 @@ Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_update = passOnSuc
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -145,9 +145,9 @@ Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_delete = passOnSuc
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_listByResourceGroup = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -166,25 +166,28 @@ Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_listByResourceGrou
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_TopLevelTrackedResources_listBySubscription = passOnSuccess([
-  mockapi.get("/subscriptions/:subscriptionId/providers/Azure.Arm.Models.Resources/topLevelTrackedResources", (req) => {
-    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-    if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-      throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-    }
-    return {
-      status: 200,
-      body: json({
-        value: [validTopLevelResource],
-      }),
-    };
-  }),
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      return {
+        status: 200,
+        body: json({
+          value: [validTopLevelResource],
+        }),
+      };
+    },
+  ),
 ]);
 
 // nested proxy resource
-Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -207,9 +210,9 @@ Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_get = passOnSuccess([
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_createOrReplace = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -237,9 +240,9 @@ Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_createOrReplace = pass
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -271,9 +274,9 @@ Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_update = passOnSuccess
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       return {
@@ -283,9 +286,9 @@ Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_delete = passOnSuccess
   ),
 ]);
 
-Scenarios.Azure_Arm_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
