@@ -33,6 +33,14 @@ model ComplexHttpPartsModelRequest {
   pictures: HttpPart<FileRequiredMetaData>[];
 }
 
+model FileWithOptionalContentType extends File {
+  filename: string;
+}
+
+model FileWithHttpPartOptionalContentTypeRequest {
+  profileImage: HttpPart<FileWithOptionalContentType>;
+}
+
 model ComplexPartsRequest {
   id: string;
   address: Address;
@@ -435,3 +443,27 @@ Content-Type: application/octet-stream
     @body body: ComplexHttpPartsModelRequest,
   ): NoContentResponse;
 }
+
+@scenario
+@scenarioDoc("""
+Please send request twice, first time with no content-type and second time with content-type "applicaton/octet-stream". Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+```
+""")
+@doc("Test content-type: multipart/form-data for optional content type")
+@post
+@route("/file-with-http-part-optional-content-type")
+op fileWithHttpPartOptionalContentType(
+  @header contentType: "multipart/form-data",
+  @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
+): NoContentResponse;

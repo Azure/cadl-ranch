@@ -29,8 +29,12 @@ function checkFile(
   expected: Buffer,
   contentType: string = "application/octet-stream",
   fileName: string | undefined = undefined,
+  mustCheckContentType: boolean = true,
 ) {
-  req.expect.deepEqual(file.mimetype, contentType);
+  // cadl-ranch depends on multer, which sets the mimetype to "text/plain" if this part has no content-type header
+  if (mustCheckContentType || file.mimetype !== "text/plain") {
+    req.expect.deepEqual(file.mimetype, contentType);
+  }
   req.expect.deepEqual(file.buffer, expected);
   if (fileName) {
     req.expect.deepEqual(file.originalname, fileName);
@@ -42,9 +46,18 @@ function checkJpgFile(
   file: Record<string, any>,
   contentType: string = "application/octet-stream",
   fileName: string | undefined = undefined,
+  mustCheckContentType: boolean = true,
 ) {
   req.expect.deepEqual(file.fieldname, "profileImage");
-  checkFile(req, file, jpgFile, contentType, fileName);
+  checkFile(req, file, jpgFile, contentType, fileName, mustCheckContentType);
+}
+
+function checkOptionalContentType(req: MockRequest) {
+  if (req.files instanceof Array && req.files?.length > 0) {
+    checkJpgFile(req, req.files[0], "application/octet-stream", undefined, false);
+  } else {
+    throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
+  }
 }
 
 function checkPngFile(req: MockRequest, file: Record<string, any>, fieldName: string = "pictures") {
@@ -171,4 +184,8 @@ Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentTypeWithHttpPart = p
 
 Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
   createMockApis("/complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+);
+
+Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passOnSuccess(
+  createMockApis("/file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
