@@ -124,7 +124,7 @@ interface Plaindate extends OperationsTemplate<PlaindateProperty, "\"2022-12-12\
 model PlainTimeProperty is ModelTemplate<plainTime>;
 @route("/plaintime")
 @operationGroup
-interface Pliantime extends OperationsTemplate<PlainTimeProperty, "\"13:06:12\""> {}
+interface Plaintime extends OperationsTemplate<PlainTimeProperty, "\"13:06:12\""> {}
 
 // Model with optional collection bytes property
 @doc("Model with collection bytes properties")
