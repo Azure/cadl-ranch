@@ -2642,6 +2642,25 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "applicaton/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+```
+
 ### Payload_MultiPart_FormData_jsonArrayParts
 
 - Endpoint: `post /multipart/form-data/json-array-parts`

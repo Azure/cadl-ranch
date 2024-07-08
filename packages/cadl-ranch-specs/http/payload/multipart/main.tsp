@@ -442,10 +442,9 @@ Content-Type: application/octet-stream
     @header contentType: "multipart/form-data",
     @body body: ComplexHttpPartsModelRequest,
   ): NoContentResponse;
-}
 
-@scenario
-@scenarioDoc("""
+  @scenario
+  @scenarioDoc("""
 Please send request twice, first time with no content-type and second time with content-type "applicaton/octet-stream". Expect request:
 ```
 POST /upload HTTP/1.1
@@ -460,10 +459,11 @@ Content-Type: application/octet-stream
 --abcde12345
 ```
 """)
-@doc("Test content-type: multipart/form-data for optional content type")
-@post
-@route("/file-with-http-part-optional-content-type")
-op fileWithHttpPartOptionalContentType(
-  @header contentType: "multipart/form-data",
-  @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
-): NoContentResponse;
+  @doc("Test content-type: multipart/form-data for optional content type")
+  @post
+  @route("/file-with-http-part-optional-content-type")
+  op fileWithHttpPartOptionalContentType(
+    @header contentType: "multipart/form-data",
+    @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
+  ): NoContentResponse;
+}
