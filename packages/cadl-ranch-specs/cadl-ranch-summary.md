@@ -7673,6 +7673,16 @@ Expected request body:
 { "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
 ```
 
+### Versioning_Removed_v3
+
+- Endpoint: `post /versioning/removed/api-version:{version}/v3`
+
+Expected request body:
+
+```json
+{ "id": "123", "type": "foo" }
+```
+
 ### Versioning_RenamedFrom_NewInterface
 
 - Endpoint: `post /versioning/renamed-from/api-version:{version}/interface/test`
