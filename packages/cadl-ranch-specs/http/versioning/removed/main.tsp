@@ -1,9 +1,13 @@
 import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
 
+using Azure.Core;
+using global.Azure.Core.Traits;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using TypeSpec.Rest;
 
 /**
  * Test for the `@removed` decorator.
@@ -66,6 +70,33 @@ model ModelV2 {
   unionProp: UnionV2;
 }
 
+@resource("models")
+model ModelV3 {
+  @key
+  id: string;
+
+  type: string;
+}
+
+model ExportSet {
+  @removed(Versions.v1)
+  @query
+  removedQueryParam?: string;
+
+  @removed(Versions.v1)
+  @added(Versions.v2)
+  @query
+  maxLines?: int32;
+}
+
+model ExportModelV3 {
+  id: string;
+
+  @removed(Versions.v1)
+  @added(Versions.v2)
+  type: string;
+}
+
 enum EnumV2 {
   @removed(Versions.v2)
   enumMemberV1,
@@ -123,3 +154,11 @@ interface InterfaceV1 {
   @route("/v1")
   v1InInterface(@body body: ModelV1): ModelV1;
 }
+
+/** This operation  should not be generated with old version */
+@scenario
+@scenarioDoc("""
+fdgd
+""")
+@route("/export")
+op export is ResourceOperations.LongRunningResourceAction<ModelV3, ExportSet, ExportModelV3>;
