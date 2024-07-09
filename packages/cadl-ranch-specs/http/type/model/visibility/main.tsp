@@ -30,11 +30,6 @@ model VisibilityModel {
   deleteProp: boolean;
 }
 
-/** Innermodel used as a readonly property for testing. */
-model InnerModel {
-  name: string;
-}
-
 /** RoundTrip model with readonly properties. */
 model ReadOnlyModel {
   /** Required readonly nullable int list. */
