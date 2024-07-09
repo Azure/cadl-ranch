@@ -12,3 +12,13 @@ Scenarios.Versioning_Removed_v2 = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Versioning_Removed_v3 = passOnSuccess(
+  mockapi.post("/versioning/removed/api-version:v3/v3", (req) => {
+    req.expect.bodyEquals({ id: "123", type: "bar" });
+    return {
+      status: 200,
+      body: json({ id: "123", type: "bar" }),
+    };
+  }),
+);
