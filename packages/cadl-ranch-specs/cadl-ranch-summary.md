@@ -2511,30 +2511,6 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_checkFileNameAndContentTypeWithHttpPart
-
-- Endpoint: `post /multipart/form-data/check-filename-and-content-type-with-httppart`
-
-This case will check filename and content-type of file part, so expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
-Content-Type: image/jpg
-
-{…file content…}
---abcde12345--
-```
-
 ### Payload_MultiPart_FormData_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts`
@@ -2659,6 +2635,44 @@ Content-Type: application/octet-stream
 
 {…file content…}
 --abcde12345
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
+
+This case will check filename and specific content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
 ```
 
 ### Payload_MultiPart_FormData_jsonArrayParts

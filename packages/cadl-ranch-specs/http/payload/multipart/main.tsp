@@ -16,13 +16,30 @@ model Address {
   city: string;
 }
 
+model FileSpecificContentType extends File {
+  filename: string;
+  contentType: "image/jpg";
+}
+
+model FileWithHttpPartSpecificContentTypeRequest {
+  profileImage: HttpPart<FileSpecificContentType>;
+}
+
 model FileRequiredMetaData extends File {
   filename: string;
   contentType: string;
 }
-model CheckRequiredMetaDataRequest {
-  id: HttpPart<string>;
+
+model FileWithHttpPartRequiredContentTypeRequest {
   profileImage: HttpPart<FileRequiredMetaData>;
+}
+
+model FileOptionalContentType extends File {
+  filename: string;
+}
+
+model FileWithHttpPartOptionalContentTypeRequest {
+  profileImage: HttpPart<FileOptionalContentType>;
 }
 
 model ComplexHttpPartsModelRequest {
@@ -31,14 +48,6 @@ model ComplexHttpPartsModelRequest {
   profileImage: HttpPart<FileRequiredMetaData>;
   previousAddresses: HttpPart<Address[]>;
   pictures: HttpPart<FileRequiredMetaData>[];
-}
-
-model FileWithOptionalContentType extends File {
-  filename: string;
-}
-
-model FileWithHttpPartOptionalContentTypeRequest {
-  profileImage: HttpPart<FileWithOptionalContentType>;
 }
 
 model ComplexPartsRequest {
@@ -360,17 +369,12 @@ Content-Type: application/octet-stream;
 
   @scenario
   @scenarioDoc("""
-This case will check filename and content-type of file part, so expect request:
+This case will check filename and specific content-type of file part, so expect request:
 ```
 POST /upload HTTP/1.1
 Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
 --abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
@@ -381,10 +385,58 @@ Content-Type: image/jpg
 """)
   @doc("Test content-type: multipart/form-data")
   @post
-  @route("/check-filename-and-content-type-with-httppart")
-  op checkFileNameAndContentTypeWithHttpPart(
+  @route("/check-filename-and-specific-content-type-with-httppart")
+  op fileWithHttpPartSpecificContentType(
     @header contentType: "multipart/form-data",
-    @body body: CheckRequiredMetaDataRequest,
+    @body body: FileWithHttpPartSpecificContentTypeRequest,
+  ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+This case will check required content-type of file part, so expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+""")
+  @doc("Test content-type: multipart/form-data")
+  @post
+  @route("/check-filename-and-required-content-type-with-httppart")
+  op fileWithHttpPartRequiredContentType(
+    @header contentType: "multipart/form-data",
+    @body body: FileWithHttpPartRequiredContentTypeRequest,
+  ): NoContentResponse;
+
+  @scenario
+  @scenarioDoc("""
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+```
+""")
+  @doc("Test content-type: multipart/form-data for optional content type")
+  @post
+  @route("/file-with-http-part-optional-content-type")
+  op fileWithHttpPartOptionalContentType(
+    @header contentType: "multipart/form-data",
+    @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
   ): NoContentResponse;
 
   @scenario
@@ -441,29 +493,5 @@ Content-Type: application/octet-stream
   op complexWithHttpPart(
     @header contentType: "multipart/form-data",
     @body body: ComplexHttpPartsModelRequest,
-  ): NoContentResponse;
-
-  @scenario
-  @scenarioDoc("""
-Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-```
-""")
-  @doc("Test content-type: multipart/form-data for optional content type")
-  @post
-  @route("/file-with-http-part-optional-content-type")
-  op fileWithHttpPartOptionalContentType(
-    @header contentType: "multipart/form-data",
-    @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
   ): NoContentResponse;
 }
