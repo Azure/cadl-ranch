@@ -18,8 +18,10 @@ extends:
               os: linux
 
             steps:
-              - script: npm install -g pnpm@7.27.1
-                displayName: Install PNPM
+              - script: |
+                  corepack enable
+                  corepack prepare pnpm --activate
+                displayName: Install pnpm
 
               - script: pnpm install
                 displayName: Install dependencies
