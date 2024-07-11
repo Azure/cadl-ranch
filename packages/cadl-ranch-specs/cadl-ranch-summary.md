@@ -2060,69 +2060,29 @@ Expected request body:
 { "name": "foo" }
 ```
 
-### Parameters_Spread_Alias_spreadAliasWithOptionalCollections
+### Parameters_Spread_Alias_spreadAliasWithSpreadAlias
 
-- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-collections`
+- Endpoint: `post /parameters/spread/alias/spreadAliasWithSpreadAlias`
 
-Test case for spread alias.
+Test case for spread alias with contains another alias property as body.
 
-Should not generate any model named `AliasWithRequiredAndOptionalCollections`.
-Should generate an operation like:
-
-```
-SpreadAliasWithRequiredAndOptionalCollections(requiredStringList: string[], optionalStringList?: string[])
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected request body:
-
-```json
-{ "requiredStringList": ["a", "b"], "optionalStringList": ["c", "d"] }
-```
-
-### Parameters_Spread_Alias_spreadAliasWithOptionalProps
-
-- Endpoint: `post /parameters/spread/alias/spread-alias-with-optional-props/{id}`
-
-Test case for spread alias.
-
-Should not generate any model named `BodyParameterAliasWithOptionalProps`.
-Should generate an operation like:
+Should not generate any model named `ThingAlias` and `ThingAliasWithSpreadAlias`.
+Should generate an operation like below:
 
 ```
-spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: string, age?: int32, items: int32[], elements?: string[])
+spreadAliasWithSpreadAlias(id: string, name: string, age: int32, top: int32)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected path parameter: id="2"
-Expected header parameter: x-ms-test-header="bar"
+Expected path parameter: id="top"
+Expected header parameter: top=1
 Expected request body:
 
 ```json
-{ "name": "dog"
-  "color": "red",
-  "age": 3,
-  "items": [1, 2, 3, 4],
-  "elements": ["a", "b"]}
-```
-
-Should generate an operation like:
-
-```
-spreadWithOptionalProps(id: string, x_ms_test_header: string, name: string, color?: null, age?: null, items: int32[], elements?: null)
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-
-```json
-{ "name": "dog"
-  "items": [1, 2, 3]}
+{
+  "name": "foo",
+  "age": 1
+}
 ```
 
 ### Parameters_Spread_Alias_spreadAsRequestBody
@@ -2173,11 +2133,11 @@ Expected request body:
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named `AliasMultipleRequestParameters`.
+Should not generate any model named `MultipleRequestParameters`.
 Should generate an operation like below:
 
 ```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
+spreadWithMultipleParameters(id: string, x_ms_test_header: string, requiredString: string, optionalInt?: int32, requiredIntList: int32[], optionalStringList?: string[])
 ```
 
 Note it's also acceptable if some languages handle it as property bag.
@@ -2188,12 +2148,10 @@ Expected request body:
 
 ```json
 {
-  "prop1": "foo1",
-  "prop2": "foo2",
-  "prop3": "foo3",
-  "prop4": "foo4",
-  "prop5": "foo5",
-  "prop6": "foo6"
+  "requiredString": "foo",
+  "optionalInt": 1,
+  "requiredIntList": [1, 2],
+  "optionalStringList": ["foo", "bar"]
 }
 ```
 
