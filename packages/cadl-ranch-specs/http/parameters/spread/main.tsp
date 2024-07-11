@@ -185,7 +185,7 @@ namespace Alias {
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 
-  model ModelParameter {
+  model ModelInAlias {
     name: string;
   }
 
@@ -193,7 +193,7 @@ namespace Alias {
     @path
     id: string;
 
-    ...ModelParameter;
+    ...ModelInAlias;
 
     @header
     `x-ms-test-header`: string;
@@ -260,12 +260,17 @@ namespace Alias {
     @header
     `x-ms-test-header`: string;
 
-    prop1: string;
-    prop2: string;
-    prop3: string;
-    prop4: string;
-    prop5: string;
-    prop6: string;
+    /** required string */
+    requiredString: string;
+
+    /** optional int */
+    optionalInt?: int32;
+
+    /** required int */
+    requiredIntList: int32[];
+
+    /** optional string */
+    optionalStringList?: string[];
   };
 
   @scenario
