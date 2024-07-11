@@ -3,7 +3,6 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 const validUser = { id: 1, name: "Madge", etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59" };
-const swapUser = { id: 1, name: "David", etag: "11bdc430-65e8-45ad-81d9-8ffa60d54a30" };
 Scenarios.Azure_Core_Basic_createOrUpdate = passOnSuccess(
   mockapi.patch("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {
@@ -143,9 +142,13 @@ Scenarios.Azure_Core_Basic_export = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_swapUsers = passOnSuccess(
-  mockapi.post("/azure/core/basic/users:swap", (req) => {
+Scenarios.Azure_Core_Basic_exportx = passOnSuccess(
+  mockapi.post("/azure/core/basic/users:id[:]exportx", (req) => {
+    if (req.params.id !== "1") {
+      throw new ValidationError("Expected path param id=1", "1", req.params.id);
+    }
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
-    return { status: 200, body: json(swapUser) };
+    req.expect.containsQueryParam("format", "json");
+    return { status: 200, body: json(validUser) };
   }),
 );

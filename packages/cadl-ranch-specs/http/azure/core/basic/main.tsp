@@ -70,20 +70,6 @@ model UserExportParams {
   format: string;
 }
 
-model SwapUsersOptions {
-  @doc("Represents the first user id.")
-  firstUserId: int32;
-
-  @doc("Represents the second user id.")
-  secondUserId: int32;
-}
-
-model SwapUsersParams {
-  @doc("The body schema of the operation.")
-  @body
-  body: SwapUsersOptions;
-}
-
 @scenario
 @doc("Creates or updates a User")
 @summary("Adds a user or updates a user's fields.")
@@ -371,7 +357,7 @@ Expected response body:
 """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
-/** Swaps two existing users' information with each other. */
+/** Try to use ResourceCollectionAction to implement the same export functionality. */
 @scenario
 @scenarioDoc("""
 Should only generate models named User and UserOrder.
@@ -381,9 +367,9 @@ Expected response body:
 ```json
 {
   "id": 1,
-  "name": "David",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d54a30"
+  "name": "Madge",
+  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
 """)
-@collectionAction(User, "swap")
-op swapUsers is ResourceOperations.ResourceCollectionAction<User, SwapUsersParams, User>;
+@collectionAction(User, "exportx")
+op exportx is ResourceOperations.ResourceCollectionAction<User, UserExportParams, User>;
