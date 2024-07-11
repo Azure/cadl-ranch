@@ -30,6 +30,17 @@ model VisibilityModel {
   deleteProp: boolean;
 }
 
+/** RoundTrip model with readonly optional properties. */
+model ReadOnlyModel {
+  /** Optional readonly nullable int list. */
+  @visibility("read")
+  optionalNullableIntList?: int32[] | null;
+
+  /** Optional readonly string dictionary. */
+  @visibility("read")
+  optionalStringRecord?: Record<string>;
+}
+
 @scenario
 @scenarioDoc("""
 Generate and receive output model with readonly properties.
@@ -118,3 +129,24 @@ Expected input body:
 """)
 @delete
 op deleteModel(@body input: VisibilityModel): void;
+
+@route("/readonlyroundtrip")
+@scenario
+@scenarioDoc("""
+Generate and receive output model with readonly properties.
+
+Expected input body:
+```json
+{}
+```
+
+Expected response body:
+```json
+{
+  optionalNullableIntList: [1, 2, 3],
+  optionalStringRecord: { k1: "value1", k2: "value2" },
+}
+```
+""")
+@put
+op putReadOnlyModel(@body input: ReadOnlyModel): ReadOnlyModel;
