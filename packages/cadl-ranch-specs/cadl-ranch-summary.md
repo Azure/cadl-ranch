@@ -4878,8 +4878,8 @@ Expected response body:
 
 ```json
 {
-  "requiredNullableIntList": [1, 2, 3],
-  "requiredStringRecord": { "k1": "value1", "k2": "value2" }
+  "optionalNullableIntList": [1, 2, 3],
+  "optionalStringRecord": { "k1": "value1", "k2": "value2" }
 }
 ```
 
