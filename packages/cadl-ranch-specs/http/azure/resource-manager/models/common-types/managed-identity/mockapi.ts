@@ -101,6 +101,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
           tags: {
             tagKey1: "tagValue1",
           },
+          properties: {},
           identity: {
             type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
           },

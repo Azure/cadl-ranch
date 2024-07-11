@@ -708,6 +708,7 @@ Expected request body:
   "tags": {
     "tagKey1": "tagValue1"
   },
+  "properties": {},
   "identity": {
     "type": "SystemAssigned"
   }
