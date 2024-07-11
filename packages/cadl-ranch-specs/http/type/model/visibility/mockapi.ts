@@ -64,3 +64,15 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+const expectBody = {
+  optionalNullableIntList: [1, 2, 3],
+  optionalStringRecord: { k1: "value1", k2: "value2" },
+};
+
+Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess(
+  mockapi.put("/type/model/visibility/readonlyroundtrip", (req) => {
+    req.expect.bodyEquals({});
+    return { status: 200, body: json(expectBody) };
+  }),
+);
