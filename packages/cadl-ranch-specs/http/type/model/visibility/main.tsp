@@ -34,11 +34,11 @@ model VisibilityModel {
 model ReadOnlyModel {
   /** Required readonly nullable int list. */
   @visibility("read")
-  requiredNullableIntList: int32[] | null;
+  requiredNullableIntList?: int32[] | null;
 
   /** Required readonly string dictionary. */
   @visibility("read")
-  requiredStringRecord: Record<string>;
+  requiredStringRecord?: Record<string>;
 }
 
 @scenario
