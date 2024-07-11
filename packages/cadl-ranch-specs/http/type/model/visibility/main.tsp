@@ -30,15 +30,15 @@ model VisibilityModel {
   deleteProp: boolean;
 }
 
-/** RoundTrip model with readonly properties. */
+/** RoundTrip model with readonly optional properties. */
 model ReadOnlyModel {
-  /** Required readonly nullable int list. */
+  /** Optional readonly nullable int list. */
   @visibility("read")
-  requiredNullableIntList?: int32[] | null;
+  optionalNullableIntList?: int32[] | null;
 
-  /** Required readonly string dictionary. */
+  /** Optional readonly string dictionary. */
   @visibility("read")
-  requiredStringRecord?: Record<string>;
+  optionalStringRecord?: Record<string>;
 }
 
 @scenario
@@ -143,8 +143,8 @@ Expected input body:
 Expected response body:
 ```json
 {
-  requiredNullableIntList: [1, 2, 3],
-  requiredStringRecord: { k1: "value1", k2: "value2" },
+  optionalNullableIntList: [1, 2, 3],
+  optionalStringRecord: { k1: "value1", k2: "value2" },
 }
 ```
 """)
