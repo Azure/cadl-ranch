@@ -1043,7 +1043,7 @@ Expected header parameters:
 
 ### Client_AzureExampleClient_basicAction
 
-- Endpoint: `post /basic`
+- Endpoint: `post /azure/example/basic/basic`
 
 Expected request and response is same as the JSON example at examples/2022-12-01-preview/basic.json
 

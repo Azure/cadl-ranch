@@ -4,7 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.Client_AzureExampleClient_basicAction = passOnSuccess(
-  mockapi.patch("/azure/example/basic/basic", (req) => {
+  mockapi.post("/azure/example/basic/basic", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.containsQueryParam("query-param", "query");
     req.expect.containsHeader("header-param", "header");
