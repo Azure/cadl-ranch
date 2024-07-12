@@ -2068,7 +2068,7 @@ Expected request body:
 
 Test case for spread alias.
 
-Should generate a model named `InnerModelParameter`.
+Should not generate any model named `InnerModelParameter`.
 Should generate an operation like:
 
 ```
@@ -2137,7 +2137,7 @@ Should not generate any model named `MultipleRequestParameters`.
 Should generate an operation like below:
 
 ```
-spreadWithMultipleParameters(string id, string xMsTestHeader, string requiredString, IEnumerable<int> requiredIntList, int? optionalInt = null, IEnumerable<string> optionalStringList = null)
+spreadWithMultipleParameters(id: string, x_ms_test_header: string, requiredString: string, requiredIntList: int32[], optionalInt?: int, optionalStringList?: string[])
 ```
 
 Note it's also acceptable if some languages handle it as property bag.
