@@ -185,15 +185,15 @@ namespace Alias {
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
 
-  model ModelInAlias {
+  model InnerModel {
     name: string;
   }
 
-  alias BodyParameterAliasWithModel = {
+  alias InnerModelParameter = {
     @path
     id: string;
 
-    ...ModelInAlias;
+    ...InnerModel;
 
     @header
     `x-ms-test-header`: string;
@@ -203,7 +203,7 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
-  Should  generate a model named `BodyParameterAliasWithModel`.
+  Should  generate a model named `InnerModelParameter`.
   Should generate an operation like:
   ```
   spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
@@ -219,7 +219,7 @@ namespace Alias {
   """)
   @route("/request-with-model/{id}")
   @post
-  op spreadAliasWithModel(...BodyParameterAliasWithModel): NoContentResponse;
+  op spreadAsInnerModelParameter(...InnerModelParameter): NoContentResponse;
 
   alias RequestParameter = {
     @path
@@ -280,7 +280,7 @@ namespace Alias {
   Should not generate any model named `MultipleRequestParameters`.
   Should generate an operation like below:
   ```
-  spreadWithMultipleParameters(id: string, x_ms_test_header: string, requiredString: string, optionalInt?: int32, requiredIntList: int32[], optionalStringList?: string[])
+  spreadWithMultipleParameters(string id, string xMsTestHeader, string requiredString, IEnumerable<int> requiredIntList, int? optionalInt = null, IEnumerable<string> optionalStringList = null)
   ```
   Note it's also acceptable if some languages handle it as property bag.
   
@@ -301,7 +301,7 @@ namespace Alias {
   @put
   op spreadWithMultipleParameters(...MultipleRequestParameters): NoContentResponse;
 
-  alias ThingAlias = {
+  alias InnerAlias = {
     @doc("name of the Thing")
     name: string;
 
@@ -309,9 +309,9 @@ namespace Alias {
     age: int32;
   };
 
-  alias ThingAliasWithSpreadAlias = {
+  alias InnerAliasParameter = {
     @path id: string;
-    ...ThingAlias;
+    ...InnerAlias;
 
     @header
     `x-ms-test-header`: string;
@@ -321,7 +321,7 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias with contains another alias property as body.
 
-  Should not generate any model named `ThingAlias` and `ThingAliasWithSpreadAlias`.
+  Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
   Should generate an operation like below:
   ```
   spreadAliasWithSpreadAlias(id: string, name: string, age: int32, top: int32)
@@ -341,5 +341,5 @@ namespace Alias {
   @doc("spread an alias with contains another alias property as body.")
   @post
   @convenientAPI(true)
-  op spreadAliasWithSpreadAlias(...ThingAliasWithSpreadAlias): void;
+  op spreadAliasWithSpreadAlias(...InnerAliasParameter): void;
 }

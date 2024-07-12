@@ -2037,36 +2037,13 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
-### Parameters_Spread_Alias_spreadAliasWithModel
-
-- Endpoint: `post /parameters/spread/alias/request-with-model/{id}`
-
-Test case for spread alias.
-
-Should generate a model named `BodyParameterAliasWithModel`.
-Should generate an operation like:
-
-```
-spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-
-```json
-{ "name": "foo" }
-```
-
 ### Parameters_Spread_Alias_spreadAliasWithSpreadAlias
 
 - Endpoint: `post /parameters/spread/alias/request-with-spread-alias`
 
 Test case for spread alias with contains another alias property as body.
 
-Should not generate any model named `ThingAlias` and `ThingAliasWithSpreadAlias`.
+Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
 Should generate an operation like below:
 
 ```
@@ -2083,6 +2060,29 @@ Expected request body:
   "name": "foo",
   "age": 1
 }
+```
+
+### Parameters_Spread_Alias_spreadAsInnerModelParameter
+
+- Endpoint: `post /parameters/spread/alias/request-with-model/{id}`
+
+Test case for spread alias.
+
+Should generate a model named `InnerModelParameter`.
+Should generate an operation like:
+
+```
+spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
 ```
 
 ### Parameters_Spread_Alias_spreadAsRequestBody
@@ -2137,7 +2137,7 @@ Should not generate any model named `MultipleRequestParameters`.
 Should generate an operation like below:
 
 ```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, requiredString: string, optionalInt?: int32, requiredIntList: int32[], optionalStringList?: string[])
+spreadWithMultipleParameters(string id, string xMsTestHeader, string requiredString, IEnumerable<int> requiredIntList, int? optionalInt = null, IEnumerable<string> optionalStringList = null)
 ```
 
 Note it's also acceptable if some languages handle it as property bag.
