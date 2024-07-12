@@ -2074,8 +2074,8 @@ spreadAliasWithSpreadAlias(id: string, name: string, age: int32, top: int32)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
-Expected path parameter: id="top"
-Expected header parameter: top=1
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
 Expected request body:
 
 ```json
