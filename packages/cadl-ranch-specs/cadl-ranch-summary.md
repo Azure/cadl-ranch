@@ -2062,7 +2062,7 @@ Expected request body:
 
 ### Parameters_Spread_Alias_spreadAliasWithSpreadAlias
 
-- Endpoint: `post /parameters/spread/alias/spreadAliasWithSpreadAlias`
+- Endpoint: `post /parameters/spread/alias/request-with-spread-alias`
 
 Test case for spread alias with contains another alias property as body.
 

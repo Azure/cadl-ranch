@@ -337,7 +337,7 @@ namespace Alias {
   }
   ```
   """)
-  @route("/spreadAliasWithSpreadAlias")
+  @route("/request-with-spread-alias")
   @doc("spread an alias with contains another alias property as body.")
   @post
   @convenientAPI(true)
