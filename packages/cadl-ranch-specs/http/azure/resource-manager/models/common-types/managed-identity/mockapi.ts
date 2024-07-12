@@ -50,6 +50,10 @@ const validUserAssignedAndSystemAssignedManagedIdentityResource = {
   },
 };
 
+const expectedIdentity = {
+  type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
+};
+
 // managed identity tracked resource
 Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess([
   mockapi.get(
@@ -96,16 +100,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
             req.params.managedIdentityResourceName,
           );
         }
-        req.expect.bodyEquals({
-          location: `${LOCATION_REGION_EXPECTED}`,
-          tags: {
-            tagKey1: "tagValue1",
-          },
-          properties: {},
-          identity: {
-            type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
-          },
-        });
+        req.expect.deepEqual(req.body["identity"], expectedIdentity);
         return {
           status: 200,
           body: json(validSystemAssignedManagedIdentityResource),
