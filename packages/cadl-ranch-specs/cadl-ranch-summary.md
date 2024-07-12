@@ -2072,7 +2072,7 @@ Should not generate any model named `InnerModelParameter`.
 Should generate an operation like:
 
 ```
-spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
+spreadAsInnerModelParameter(id: string, x_ms_test_header: string, name: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
@@ -2134,11 +2134,8 @@ Expected request body:
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
 Should not generate any model named `MultipleRequestParameters`.
-Should generate an operation like below:
 
-```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, requiredString: string, requiredIntList: int32[], optionalInt?: int, optionalStringList?: string[])
-```
+Since it contains both optional properties and required properties, the method signature might vary across different languages.
 
 Note it's also acceptable if some languages handle it as property bag.
 
