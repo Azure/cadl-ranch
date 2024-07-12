@@ -50,8 +50,16 @@ const validUserAssignedAndSystemAssignedManagedIdentityResource = {
   },
 };
 
-const expectedIdentity = {
+const createExpectedIdentity = {
   type: `${IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED}`,
+};
+
+const updateExpectedIdentity = {
+  type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
+  userAssignedIdentities: {
+    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
+      {},
+  },
 };
 
 // managed identity tracked resource
@@ -100,7 +108,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
             req.params.managedIdentityResourceName,
           );
         }
-        req.expect.deepEqual(req.body["identity"], expectedIdentity);
+        req.expect.deepEqual(req.body["identity"], createExpectedIdentity);
         return {
           status: 200,
           body: json(validSystemAssignedManagedIdentityResource),
@@ -128,15 +136,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
             req.params.managedIdentityResourceName,
           );
         }
-        req.expect.bodyEquals({
-          identity: {
-            type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
-            userAssignedIdentities: {
-              "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-                {},
-            },
-          },
-        });
+        req.expect.deepEqual(req.body["identity"], updateExpectedIdentity);
         return {
           status: 200,
           body: json(validUserAssignedAndSystemAssignedManagedIdentityResource),
