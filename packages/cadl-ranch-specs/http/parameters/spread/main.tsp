@@ -203,7 +203,7 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
-  Should  generate a model named `InnerModelParameter`.
+  Should not generate any model named `InnerModelParameter`.
   Should generate an operation like:
   ```
   spreadWithModel(BodyParameterAliasWithModel: ModelParameter)
