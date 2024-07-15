@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- df27070: Add @typespec/xml to typepsec-bump-deps
+- df27070: Add `@typespec/xml`
 
 ## 0.9.4
 
