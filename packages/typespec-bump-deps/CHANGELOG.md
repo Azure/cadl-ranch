@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.5
+
+### Patch Changes
+
+- df27070: Add @typespec/xml to typepsec-bump-deps
+
 ## 0.9.4
 
 ### Patch Changes

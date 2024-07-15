@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.4
+
+### Patch Changes
+
+- af62829: Added tests for ARM common-type's managed-identity.
+- 62477bf: Add a ReadOnlyModel with Read-Only types of list and record data in type/model/visibility.
+  Add PlainDate/PlainTime in type/property/optionality.
+- 082bb91: In ARM resource test case, fixed `listByParent` operation name to `listByTopLevelTrackedResource`.
+
 ## 0.34.3
 
 ### Patch Changes
