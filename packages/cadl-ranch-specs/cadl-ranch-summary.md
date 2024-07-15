@@ -708,6 +708,122 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "properties": {},
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
+        "principalId": <any uuid string>,
+        "clientId": <any uuid string>
+      },
+    },
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
 ### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
