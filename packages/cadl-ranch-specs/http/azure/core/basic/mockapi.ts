@@ -142,13 +142,12 @@ Scenarios.Azure_Core_Basic_export = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_exportx = passOnSuccess(
-  mockapi.post("/azure/core/basic/users:id[:]exportx", (req) => {
+Scenarios.Azure_Core_Basic_swapdogs = passOnSuccess(
+  mockapi.post("/azure/core/basic/users/:id/dogs:swapdogs", (req) => {
     if (req.params.id !== "1") {
       throw new ValidationError("Expected path param id=1", "1", req.params.id);
     }
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
-    req.expect.containsQueryParam("format", "json");
-    return { status: 200, body: json(validUser) };
+    return { status: 202 };
   }),
 );

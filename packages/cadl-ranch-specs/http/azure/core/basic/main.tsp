@@ -1,11 +1,13 @@
-import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-client-generator-core";
 import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/versioning";
 
 using Azure.Core;
 using global.Azure.Core.Traits;
+using global.Azure.Core.Foundations;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
@@ -46,6 +48,28 @@ model User {
   orders?: UserOrder[];
 
   ...global.Azure.Core.EtagProperty;
+}
+
+@parentResource(User)
+@doc("Details about User's pet dog.")
+model Dog {
+  @key("petdogName")
+  @segment("dogs")
+  name: string;
+}
+
+model SwapDogsOptions {
+  @doc("Represents the first dog name.")
+  firstDogName: string;
+
+  @doc("Represents the second dog name.")
+  secondDogName: string;
+}
+
+model SwapDogsParams {
+  @doc("The body schema of the operation.")
+  @body
+  body: SwapDogsOptions;
 }
 
 @doc("UserOrder for testing list with expand.")
@@ -357,19 +381,15 @@ Expected response body:
 """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
-/** Try to use ResourceCollectionAction to implement the same export functionality. */
+/** Swaps two existing dogs with each other. */
 @scenario
 @scenarioDoc("""
 Should only generate models named User and UserOrder.
 Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-}
 """)
-@collectionAction(User, "exportx")
-op exportx is ResourceOperations.ResourceCollectionAction<User, UserExportParams, User>;
+@collectionAction(Dog, "swapdogs")
+op swapdogs is ResourceOperations.ResourceCollectionAction<
+  Dog,
+  SwapDogsParams,
+  global.Azure.Core.Foundations.AcceptedResponse
+>;
