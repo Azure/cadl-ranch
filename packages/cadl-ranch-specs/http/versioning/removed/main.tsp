@@ -42,6 +42,11 @@ enum Versions {
    * The version v2.
    */
   v2: "v2",
+
+  /**
+   * The version v3.
+   */
+  v3: "v3",
 }
 
 @removed(Versions.v2)
@@ -71,8 +76,8 @@ model ModelV2 {
 model ModelV3 {
   id: string;
 
-  @removed(Versions.v1)
-  @added(Versions.v2)
+  @removed(Versions.v2)
+  @added(Versions.v3)
   type: string;
 }
 
@@ -134,7 +139,7 @@ interface InterfaceV1 {
   v1InInterface(@body body: ModelV1): ModelV1;
 }
 
-/** This operation should not be generated with old version */
+/** This operation should be generated with the signatures of both the latest and the initial versions, rather than those of any other versions. */
 @scenario
 @scenarioDoc("""
 
