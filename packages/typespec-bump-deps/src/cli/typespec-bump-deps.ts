@@ -9,6 +9,7 @@ const knownPackages = [
   "@typespec/openapi",
   "@typespec/rest",
   "@typespec/versioning",
+  "@typespec/xml",
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
   "@azure-tools/typespec-azure-resource-manager",
