@@ -2153,9 +2153,9 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
-### Parameters_Spread_Alias_spreadAliasWithSpreadAlias
+### Parameters_Spread_Alias_spreadAsInnerAliasParameter
 
-- Endpoint: `post /parameters/spread/alias/request-with-spread-alias`
+- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
 
 Test case for spread alias with contains another alias property as body.
 
@@ -2163,7 +2163,7 @@ Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
 Should generate an operation like below:
 
 ```
-spreadAliasWithSpreadAlias(id: string, name: string, age: int32, top: int32)
+spreadAsInnerAliasParameter(id: string, name: string, age: int32, x_ms_test_header: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
@@ -2180,7 +2180,7 @@ Expected request body:
 
 ### Parameters_Spread_Alias_spreadAsInnerModelParameter
 
-- Endpoint: `post /parameters/spread/alias/request-with-model/{id}`
+- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
 
 Test case for spread alias.
 
@@ -2250,9 +2250,7 @@ Expected request body:
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
 Should not generate any model named `MultipleRequestParameters`.
-
 Since it contains both optional properties and required properties, the method signature might vary across different languages.
-
 Note it's also acceptable if some languages handle it as property bag.
 
 Expected path parameter: id="1"

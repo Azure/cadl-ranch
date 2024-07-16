@@ -217,7 +217,7 @@ namespace Alias {
   { "name": "foo" }
   ```
   """)
-  @route("/request-with-model/{id}")
+  @route("/inner-model-parameter/{id}")
   @post
   op spreadAsInnerModelParameter(...InnerModelParameter): NoContentResponse;
 
@@ -278,9 +278,7 @@ namespace Alias {
   Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
   
   Should not generate any model named `MultipleRequestParameters`.
-
   Since it contains both optional properties and required properties, the method signature might vary across different languages.
-
   Note it's also acceptable if some languages handle it as property bag.
   
   Expected path parameter: id="1"
@@ -323,7 +321,7 @@ namespace Alias {
   Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
   Should generate an operation like below:
   ```
-  spreadAliasWithSpreadAlias(id: string, name: string, age: int32, top: int32)
+  spreadAsInnerAliasParameter(id: string, name: string, age: int32, x_ms_test_header: string)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
   Expected path parameter: id="1"
@@ -336,9 +334,8 @@ namespace Alias {
   }
   ```
   """)
-  @route("/request-with-spread-alias")
+  @route("/inner-alias-parameter")
   @doc("spread an alias with contains another alias property as body.")
   @post
-  @convenientAPI(true)
-  op spreadAliasWithSpreadAlias(...InnerAliasParameter): void;
+  op spreadAsInnerAliasParameter(...InnerAliasParameter): NoContentResponse;
 }
