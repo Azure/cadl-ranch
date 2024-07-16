@@ -203,6 +203,7 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
+  Should generate a model named `InnerModel`.
   Should not generate any model named `InnerModelParameter`.
   Should generate an operation like:
   ```
@@ -290,7 +291,6 @@ namespace Alias {
     "optionalInt": 1,
     "requiredIntList": [1, 2],
     "optionalStringList": ["foo", "bar"]
-
   }
   ```
   """)
