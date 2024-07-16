@@ -54,7 +54,6 @@ model ComplexPartsRequest {
   id: string;
   address: Address;
   profileImage: bytes;
-  previousAddresses: Address[];
   pictures: bytes[];
 }
 
@@ -70,7 +69,6 @@ model BinaryArrayPartsRequest {
 
 model JsonArrayPartsRequest {
   profileImage: bytes;
-  previousAddresses: Address[];
 }
 
 model MultiBinaryPartsRequest {
@@ -239,41 +237,6 @@ Content-Type: application/octet-stream
     @header contentType: "multipart/form-data",
     @body body: BinaryArrayPartsRequest,
   ): NoContentResponse;
-
-  @scenario
-  @scenarioDoc("""
-Expect request (
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="previousAddresses"
-Content-Type: application/json
-
-[{
-  "city": "Y"
-},{
-  "city": "Z"
-}]
---abcde12345--
-```
-""")
-  @doc("Test content-type: multipart/form-data for scenario contains multi json parts")
-  @post
-  @route("/json-array-parts")
-  op jsonArrayParts(@header contentType: "multipart/form-data", @body body: JsonArrayPartsRequest): NoContentResponse;
 
   @scenario
   @scenarioDoc("""

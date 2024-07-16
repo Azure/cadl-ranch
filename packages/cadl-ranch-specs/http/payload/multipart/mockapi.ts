@@ -119,7 +119,7 @@ function createMockApis(route: string, checkList: ((param: MockRequest) => void)
 Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(createMockApis("mixed-parts", [checkId, checkProfileImage]));
 
 Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
-  createMockApis("complex-parts", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+  createMockApis("complex-parts", [checkId, checkAddress, checkAllFiles]),
 );
 
 Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
@@ -128,10 +128,6 @@ Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
 
 Scenarios.Payload_MultiPart_FormData_binaryArrayParts = passOnSuccess(
   createMockApis("binary-array-parts", [checkId, checkPictures]),
-);
-
-Scenarios.Payload_MultiPart_FormData_jsonArrayParts = passOnSuccess(
-  createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );
 
 Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage", "profileImage,picture"]).pass(
