@@ -34,19 +34,19 @@ namespace Versioning.Removed;
  */
 enum Versions {
   /**
-   * The version v1.
+   * The original version v1.
    */
   v1: "v1",
 
   /**
-   * The version v2.
+   * The beta version.
    */
-  v2: "v2",
+  beta: "beta",
 
   /**
-   * The version v3.
+   * The latest version v2.
    */
-  v3: "v3",
+  v2: "v2",
 }
 
 @removed(Versions.v2)
@@ -76,8 +76,8 @@ model ModelV2 {
 model ModelV3 {
   id: string;
 
-  @removed(Versions.v2)
-  @added(Versions.v3)
+  @removed(Versions.beta)
+  @added(Versions.v2)
   type: string;
 }
 
@@ -139,7 +139,7 @@ interface InterfaceV1 {
   v1InInterface(@body body: ModelV1): ModelV1;
 }
 
-/** This operation should be generated with the signatures of both the latest and the initial versions, rather than those of any other versions. */
+/** This operation should be generated with the signatures of both the latest and the original versions, rather than beta version */
 @scenario
 @scenarioDoc("""
 
