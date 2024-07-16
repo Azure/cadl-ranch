@@ -203,6 +203,7 @@ namespace Alias {
   @scenarioDoc("""
   Test case for spread alias. 
   
+  Should not generate any model named `InnerModel`.
   Should not generate any model named `InnerModelParameter`.
   Should generate an operation like:
   ```
