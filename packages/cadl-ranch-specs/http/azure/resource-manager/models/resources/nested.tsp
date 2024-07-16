@@ -174,5 +174,5 @@ interface NestedProxyResources {
   }
   ```
   """)
-  listByParent is ArmResourceListByParent<NestedProxyResource>;
+  listByTopLevelTrackedResource is ArmResourceListByParent<NestedProxyResource>;
 }
