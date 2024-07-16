@@ -2184,7 +2184,6 @@ Expected request body:
 
 Test case for spread alias.
 
-Should generate a model named `InnerModel`.
 Should not generate any model named `InnerModelParameter`.
 Should generate an operation like:
 
