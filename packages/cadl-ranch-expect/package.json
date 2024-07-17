@@ -34,9 +34,9 @@
     "typescript": "~5.2.2"
   },
   "peerDependencies": {
-    "@typespec/compiler": "~0.57.0",
-    "@typespec/versioning": "~0.57.0",
-    "@typespec/http": "~0.57.0",
-    "@typespec/rest": "~0.57.0"
+    "@typespec/compiler": "~0.58.0",
+    "@typespec/versioning": "~0.58.0",
+    "@typespec/http": "~0.58.0",
+    "@typespec/rest": "~0.58.0"
   }
 }
