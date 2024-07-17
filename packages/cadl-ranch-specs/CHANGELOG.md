@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.6
+
+### Patch Changes
+
+- 86b5841: Fix body check on TrackedResource update.
+
 ## 0.34.5
 
 ### Patch Changes
