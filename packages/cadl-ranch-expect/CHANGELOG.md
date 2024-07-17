@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.14.1
+
+### Patch Changes
+
+- 760a4fe: Bump typespec 0.58.0
+
 ## 0.14.0
 
 ### Minor Changes
