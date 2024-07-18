@@ -112,19 +112,19 @@ model DurationProperty is ModelTemplate<duration>;
 @operationGroup
 interface Duration extends OperationsTemplate<DurationProperty, "\"P123DT22H14M12.011S\""> {}
 
-// Model with optional plaindate property
-@doc("Model with a plaindate property")
-model PlaindateProperty is ModelTemplate<plainDate>;
-@route("/plaindate")
+// Model with optional plainDate property
+@doc("Model with a plainDate property")
+model PlainDateProperty is ModelTemplate<plainDate>;
+@route("/plainDate")
 @operationGroup
-interface Plaindate extends OperationsTemplate<PlaindateProperty, "\"2022-12-12\""> {}
+interface PlainDate extends OperationsTemplate<PlainDateProperty, "\"2022-12-12\""> {}
 
 // Model with optional  property
-@doc("Model with a plaintime property")
+@doc("Model with a plainTime property")
 model PlainTimeProperty is ModelTemplate<plainTime>;
-@route("/plaintime")
+@route("/plainTime")
 @operationGroup
-interface Plaintime extends OperationsTemplate<PlainTimeProperty, "\"13:06:12\""> {}
+interface PlainTime extends OperationsTemplate<PlainTimeProperty, "\"13:06:12\""> {}
 
 // Model with optional collection bytes property
 @doc("Model with collection bytes properties")
