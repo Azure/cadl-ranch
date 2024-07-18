@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.7
+
+### Patch Changes
+
+- 4e524cb: bug fix in tcgc usage test
+- dd1b849: fix some typos in plain date and plain time scenarios
+
 ## 0.34.6
 
 ### Patch Changes
