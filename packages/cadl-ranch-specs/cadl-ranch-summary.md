@@ -2901,6 +2901,136 @@ maxpagesize=3
 }
 ```
 
+### Payload_Xml_getModelWithArrayOfModel
+
+- Endpoint: `get /payload/xml/modelWithArrayOfModel`
+
+Returns an instance of ModelWithArrayOfModel.
+Expected response body:
+
+```xml
+<ModelWithArrayOfModel>
+  <SimpleModel>
+    <Name>foo</Name>
+    <Age>123</Age>
+  </SimpleModel>
+  <SimpleModel>
+    <Name>bar</Name>
+    <Age>456</Age>
+  </SimpleModel>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_getModelWithOptionalField
+
+- Endpoint: `get /payload/xml/modelWithOptionalField`
+
+Returns an instance of ModelWithOptionalField.
+Expected response body:
+
+```xml
+<ModelWithOptionalField>
+  <Item>widget</Item>
+  <Counts />
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_getModelWithSimpleArrays
+
+- Endpoint: `get /payload/xml/modelWithSimpleArrays`
+
+Returns an instance of ModelWithSimpleArrays.
+Expected response body:
+
+```xml
+<ModelWithSimpleArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>1</Counts>
+  <Counts>2</Counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_getSimpleModel
+
+- Endpoint: `get /payload/xml/simpleModel`
+
+Returns an instance of SimpleModel.
+Expected response body:
+
+```xml
+<SimpleModel>
+  <Name>foo</Name>
+  <Age>123</Age>
+</SimpleModel>
+```
+
+### Payload_Xml_putModelWithArrayOfModel
+
+- Endpoint: `put /payload/xml/modelWithArrayOfModel`
+
+Sends an instance of ModelWithArrayOfModel.
+Expected request body:
+
+```xml
+<ModelWithArrayOfModel>
+  <SimpleModel>
+    <Name>foo</Name>
+    <Age>123</Age>
+  </SimpleModel>
+  <SimpleModel>
+    <Name>bar</Name>
+    <Age>456</Age>
+  </SimpleModel>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_putModelWithOptionalField
+
+- Endpoint: `put /payload/xml/modelWithOptionalField`
+
+Sends an instance of ModelWithOptionalField.
+Expected request body:
+
+```xml
+<ModelWithOptionalField>
+  <Item>widget</Item>
+  <Counts />
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_putModelWithSimpleArrays
+
+- Endpoint: `put /payload/xml/modelWithSimpleArrays`
+
+Sends an instance of ModelWithSimpleArrays.
+Expected request body:
+
+```xml
+<ModelWithSimpleArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>1</Counts>
+  <Counts>2</Counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_putSimpleModel
+
+- Endpoint: `put /payload/xml/simpleModel`
+
+Sends an instance of SimpleModel.
+Expected request body:
+
+```xml
+<SimpleModel>
+  <Name>foo</Name>
+  <Age>123</Age>
+</SimpleModel>
+```
+
 ### Resiliency_ServiceDriven_addOperation
 
 - Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-operation`
