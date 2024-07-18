@@ -6443,9 +6443,9 @@ Expected request body:
 {}
 ```
 
-### Type_Property_Optional_Plaindate_getAll
+### Type_Property_Optional_PlainDate_getAll
 
-- Endpoint: `get /type/property/optional/plaindate/all`
+- Endpoint: `get /type/property/optional/plainDate/all`
 
 Expected response body:
 
@@ -6453,9 +6453,9 @@ Expected response body:
 { "property": "2022-12-12" }
 ```
 
-### Type_Property_Optional_Plaindate_getDefault
+### Type_Property_Optional_PlainDate_getDefault
 
-- Endpoint: `get /type/property/optional/plaindate/default`
+- Endpoint: `get /type/property/optional/plainDate/default`
 
 Expected response body:
 
@@ -6463,9 +6463,9 @@ Expected response body:
 {}
 ```
 
-### Type_Property_Optional_Plaindate_putAll
+### Type_Property_Optional_PlainDate_putAll
 
-- Endpoint: `put /type/property/optional/plaindate/all`
+- Endpoint: `put /type/property/optional/plainDate/all`
 
 Expected request body:
 
@@ -6473,9 +6473,9 @@ Expected request body:
 { "property": "2022-12-12" }
 ```
 
-### Type_Property_Optional_Plaindate_putDefault
+### Type_Property_Optional_PlainDate_putDefault
 
-- Endpoint: `put /type/property/optional/plaindate/default`
+- Endpoint: `put /type/property/optional/plainDate/default`
 
 Expected request body:
 
@@ -6483,9 +6483,9 @@ Expected request body:
 {}
 ```
 
-### Type_Property_Optional_Plaintime_getAll
+### Type_Property_Optional_PlainTime_getAll
 
-- Endpoint: `get /type/property/optional/plaintime/all`
+- Endpoint: `get /type/property/optional/plainTime/all`
 
 Expected response body:
 
@@ -6493,9 +6493,9 @@ Expected response body:
 { "property": "13:06:12" }
 ```
 
-### Type_Property_Optional_Plaintime_getDefault
+### Type_Property_Optional_PlainTime_getDefault
 
-- Endpoint: `get /type/property/optional/plaintime/default`
+- Endpoint: `get /type/property/optional/plainTime/default`
 
 Expected response body:
 
@@ -6503,9 +6503,9 @@ Expected response body:
 {}
 ```
 
-### Type_Property_Optional_Plaintime_putAll
+### Type_Property_Optional_PlainTime_putAll
 
-- Endpoint: `put /type/property/optional/plaintime/all`
+- Endpoint: `put /type/property/optional/plainTime/all`
 
 Expected request body:
 
@@ -6513,9 +6513,9 @@ Expected request body:
 { "property": "13:06:12" }
 ```
 
-### Type_Property_Optional_Plaintime_putDefault
+### Type_Property_Optional_PlainTime_putDefault
 
-- Endpoint: `put /type/property/optional/plaintime/default`
+- Endpoint: `put /type/property/optional/plainTime/default`
 
 Expected request body:
 
