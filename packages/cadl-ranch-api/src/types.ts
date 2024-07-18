@@ -42,8 +42,9 @@ export type KeyedMockRequestHandler<T extends string = string> = (
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
 
-export type MockApiForHandler<Handler extends MockRequestHandler> =
-  Handler extends KeyedMockRequestHandler<infer K> ? KeyedMockApi<K> : MockApi;
+export type MockApiForHandler<Handler extends MockRequestHandler> = Handler extends KeyedMockRequestHandler<infer K>
+  ? KeyedMockApi<K>
+  : MockApi;
 
 export interface MockApi {
   method: HttpMethod;

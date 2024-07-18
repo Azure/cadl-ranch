@@ -3,16 +3,14 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const simpleModel =
-`
+const simpleModel = `
 <SimpleModel>
   <Name>foo</Name>
   <Age>123</Age>
 </SimpleModel>
 `;
 
-const modelWithSimpleArrays =
-`
+const modelWithSimpleArrays = `
 <ModelWithSimpleArrays>
   <Colors>red</Colors>
   <Colors>green</Colors>
@@ -22,8 +20,7 @@ const modelWithSimpleArrays =
 </ModelWithSimpleArrays>
 `;
 
-const modelWithArrayOfModel =
-`
+const modelWithArrayOfModel = `
 <ModelWithArrayOfModel>
   <SimpleModel>
     <Name>foo</Name>
@@ -36,8 +33,7 @@ const modelWithArrayOfModel =
 </ModelWithArrayOfModel>
 `;
 
-const modelWithOptionalField =
-`
+const modelWithOptionalField = `
 <ModelWithOptionalField>
   <Item>widget</Item>
   <Counts />
@@ -55,7 +51,7 @@ Scenarios.Payload_Xml_getSimpleModel = passOnSuccess(
 
 Scenarios.Payload_Xml_putSimpleModel = passOnSuccess(
   mockapi.put("/payload/xml/simpleModel", (req) => {
-    req.expect.containsHeader('content-type', 'application/xml');
+    req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(simpleModel);
     return {
       status: 204,
@@ -74,7 +70,7 @@ Scenarios.Payload_Xml_getModelWithSimpleArrays = passOnSuccess(
 
 Scenarios.Payload_Xml_putModelWithSimpleArrays = passOnSuccess(
   mockapi.put("/payload/xml/modelWithSimpleArrays", (req) => {
-    req.expect.containsHeader('content-type', 'application/xml');
+    req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithSimpleArrays);
     return {
       status: 204,
@@ -93,7 +89,7 @@ Scenarios.Payload_Xml_getModelWithArrayOfModel = passOnSuccess(
 
 Scenarios.Payload_Xml_putModelWithArrayOfModel = passOnSuccess(
   mockapi.put("/payload/xml/modelWithArrayOfModel", (req) => {
-    req.expect.containsHeader('content-type', 'application/xml');
+    req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithArrayOfModel);
     return {
       status: 204,
@@ -112,7 +108,7 @@ Scenarios.Payload_Xml_getModelWithOptionalField = passOnSuccess(
 
 Scenarios.Payload_Xml_putModelWithOptionalField = passOnSuccess(
   mockapi.put("/payload/xml/modelWithOptionalField", (req) => {
-    req.expect.containsHeader('content-type', 'application/xml');
+    req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithOptionalField);
     return {
       status: 204,

@@ -63,10 +63,7 @@ Expected request body:
 ```
 """)
 @put
-op putSimpleModel(
-  @header("content-type") contentType: "application/xml",
-  @body input: SimpleModel,
-): void;
+op putSimpleModel(@header("content-type") contentType: "application/xml", @body input: SimpleModel): void;
 
 @scenario
 @route("/modelWithSimpleArrays")

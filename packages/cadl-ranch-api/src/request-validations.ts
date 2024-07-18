@@ -43,7 +43,7 @@ export const validateXmlBodyEquals = (request: RequestExt, expectedBody: string)
 
   expectedBody = `<?xml version='1.0' encoding='UTF-8'?>` + expectedBody;
 
-  let actualParsedBody = '';
+  let actualParsedBody = "";
   parseString(request.rawBody!, (err: Error | null, result: any): void => {
     if (err !== null) {
       throw err;
@@ -51,7 +51,7 @@ export const validateXmlBodyEquals = (request: RequestExt, expectedBody: string)
     actualParsedBody = result;
   });
 
-  let expectedParsedBody = '';
+  let expectedParsedBody = "";
   parseString(expectedBody, (err: Error | null, result: any): void => {
     if (err !== null) {
       throw err;
@@ -60,7 +60,11 @@ export const validateXmlBodyEquals = (request: RequestExt, expectedBody: string)
   });
 
   if (!deepEqual(actualParsedBody, expectedParsedBody, { strict: true })) {
-    throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, xmlFormatter.default(expectedBody), xmlFormatter.default(request.body));
+    throw new ValidationError(
+      BODY_NOT_EQUAL_ERROR_MESSAGE,
+      xmlFormatter.default(expectedBody),
+      xmlFormatter.default(request.body),
+    );
   }
 };
 
