@@ -68,7 +68,7 @@ Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
   }),
 );
 
-Scenarios.Parameters_Spread_Alias_spreadAsInnerModelParameter = passOnSuccess(
+Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerModel = passOnSuccess(
   mockapi.post("/parameters/spread/alias/inner-model-parameter/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({ name: "foo" });
@@ -76,7 +76,7 @@ Scenarios.Parameters_Spread_Alias_spreadAsInnerModelParameter = passOnSuccess(
   }),
 );
 
-Scenarios.Parameters_Spread_Alias_spreadAsInnerAliasParameter = passOnSuccess(
+Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerAlias = passOnSuccess(
   mockapi.post("/parameters/spread/alias/inner-alias-parameter/1", (req) => {
     req.expect.containsHeader("x-ms-test-header", "bar");
     req.expect.bodyEquals({ name: "foo", age: 1 });

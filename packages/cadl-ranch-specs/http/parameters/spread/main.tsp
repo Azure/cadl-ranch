@@ -207,7 +207,7 @@ namespace Alias {
   Should not generate any model named `InnerModelParameter`.
   Should generate an operation like:
   ```
-  spreadAsInnerModelParameter(id: string, x_ms_test_header: string, name: string)
+  spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
 
@@ -220,7 +220,7 @@ namespace Alias {
   """)
   @route("/inner-model-parameter/{id}")
   @post
-  op spreadAsInnerModelParameter(...InnerModelParameter): NoContentResponse;
+  op spreadParameterWithInnerModel(...InnerModelParameter): NoContentResponse;
 
   alias RequestParameter = {
     @path
@@ -321,7 +321,7 @@ namespace Alias {
   Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
   Should generate an operation like below:
   ```
-  spreadAsInnerAliasParameter(id: string, name: string, age: int32, x_ms_test_header: string)
+  spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
   ```
   Note the parameter name is guessed from the model name and it may vary by language.
   Expected path parameter: id="1"
@@ -337,5 +337,5 @@ namespace Alias {
   @route("/inner-alias-parameter")
   @doc("spread an alias with contains another alias property as body.")
   @post
-  op spreadAsInnerAliasParameter(...InnerAliasParameter): NoContentResponse;
+  op spreadParameterWithInnerAlias(...InnerAliasParameter): NoContentResponse;
 }

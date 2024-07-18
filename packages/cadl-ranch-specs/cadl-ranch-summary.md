@@ -2189,55 +2189,6 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
-### Parameters_Spread_Alias_spreadAsInnerAliasParameter
-
-- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
-
-Test case for spread alias with contains another alias property as body.
-
-Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
-Should generate an operation like below:
-
-```
-spreadAsInnerAliasParameter(id: string, name: string, age: int32, x_ms_test_header: string)
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-
-```json
-{
-  "name": "foo",
-  "age": 1
-}
-```
-
-### Parameters_Spread_Alias_spreadAsInnerModelParameter
-
-- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
-
-Test case for spread alias.
-
-Should not generate any model named `InnerModel`.
-Should not generate any model named `InnerModelParameter`.
-Should generate an operation like:
-
-```
-spreadAsInnerModelParameter(id: string, x_ms_test_header: string, name: string)
-```
-
-Note the parameter name is guessed from the model name and it may vary by language.
-
-Expected path parameter: id="1"
-Expected header parameter: x-ms-test-header="bar"
-Expected request body:
-
-```json
-{ "name": "foo" }
-```
-
 ### Parameters_Spread_Alias_spreadAsRequestBody
 
 - Endpoint: `put /parameters/spread/alias/request-body`
@@ -2271,6 +2222,55 @@ spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
 ```
 
 Note the parameter name may be normalized and vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Alias_spreadParameterWithInnerAlias
+
+- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
+
+Test case for spread alias with contains another alias property as body.
+
+Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
+Should generate an operation like below:
+
+```
+spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "name": "foo",
+  "age": 1
+}
+```
+
+### Parameters_Spread_Alias_spreadParameterWithInnerModel
+
+- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
+
+Test case for spread alias.
+
+Should not generate any model named `InnerModel`.
+Should not generate any model named `InnerModelParameter`.
+Should generate an operation like:
+
+```
+spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
 
 Expected path parameter: id="1"
 Expected header parameter: x-ms-test-header="bar"
