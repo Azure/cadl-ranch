@@ -227,7 +227,7 @@ importers:
         specifier: ^18.16.0
         version: 18.16.14
       '@types/xml2js':
-        specifier: ^0.4.14
+        specifier: ^0.4.11
         version: 0.4.14
       '@types/yargs':
         specifier: ^17.0.24
