@@ -18,7 +18,7 @@ Scenarios.Azure_ClientGenerator_Core_Usage_ModelInOperation = passOnSuccess([
   mockapi.put("/azure/client-generator-core/usage/modelInReadOnlyProperty", (req) => {
     return {
       status: 200,
-      body: json({ name: "Madge" }),
+      body: json({ result: { name: "Madge" } }),
     };
   }),
 ]);
