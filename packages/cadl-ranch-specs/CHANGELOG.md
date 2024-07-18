@@ -1,5 +1,28 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.7
+
+### Patch Changes
+
+- 4e524cb: bug fix in tcgc usage test
+- dd1b849: fix some typos in plain date and plain time scenarios
+
+## 0.34.6
+
+### Patch Changes
+
+- 86b5841: Fix body check on TrackedResource update.
+
+## 0.34.5
+
+### Patch Changes
+
+- e44aa64: Add a test scenario for JSON example used in Azure
+- 760a4fe: Bump typespec 0.58.0
+- Updated dependencies [760a4fe]
+  - @azure-tools/cadl-ranch-expect@0.14.1
+  - @azure-tools/cadl-ranch@0.13.4
+
 ## 0.34.4
 
 ### Patch Changes

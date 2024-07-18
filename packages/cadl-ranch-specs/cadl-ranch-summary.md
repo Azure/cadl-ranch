@@ -2231,19 +2231,63 @@ Expected request body:
 { "name": "foo" }
 ```
 
+### Parameters_Spread_Alias_spreadParameterWithInnerAlias
+
+- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
+
+Test case for spread alias with contains another alias property as body.
+
+Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
+Should generate an operation like below:
+
+```
+spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "name": "foo",
+  "age": 1
+}
+```
+
+### Parameters_Spread_Alias_spreadParameterWithInnerModel
+
+- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
+
+Test case for spread alias.
+
+Should not generate any model named `InnerModel`.
+Should not generate any model named `InnerModelParameter`.
+Should generate an operation like:
+
+```
+spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_Spread_Alias_spreadWithMultipleParameters
 
 - Endpoint: `put /parameters/spread/alias/multiple-parameters/{id}`
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named `AliasMultipleRequestParameters`.
-Should generate an operation like below:
-
-```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
-```
-
+Should not generate any model named `MultipleRequestParameters`.
+Since it contains both optional properties and required properties, the method signature might vary across different languages.
 Note it's also acceptable if some languages handle it as property bag.
 
 Expected path parameter: id="1"
@@ -2252,12 +2296,10 @@ Expected request body:
 
 ```json
 {
-  "prop1": "foo1",
-  "prop2": "foo2",
-  "prop3": "foo3",
-  "prop4": "foo4",
-  "prop5": "foo5",
-  "prop6": "foo6"
+  "requiredString": "foo",
+  "optionalInt": 1,
+  "requiredIntList": [1, 2],
+  "optionalStringList": ["foo", "bar"]
 }
 ```
 
@@ -6517,9 +6559,9 @@ Expected request body:
 {}
 ```
 
-### Type_Property_Optional_Plaindate_getAll
+### Type_Property_Optional_PlainDate_getAll
 
-- Endpoint: `get /type/property/optional/plaindate/all`
+- Endpoint: `get /type/property/optional/plainDate/all`
 
 Expected response body:
 
@@ -6527,9 +6569,9 @@ Expected response body:
 { "property": "2022-12-12" }
 ```
 
-### Type_Property_Optional_Plaindate_getDefault
+### Type_Property_Optional_PlainDate_getDefault
 
-- Endpoint: `get /type/property/optional/plaindate/default`
+- Endpoint: `get /type/property/optional/plainDate/default`
 
 Expected response body:
 
@@ -6537,9 +6579,9 @@ Expected response body:
 {}
 ```
 
-### Type_Property_Optional_Plaindate_putAll
+### Type_Property_Optional_PlainDate_putAll
 
-- Endpoint: `put /type/property/optional/plaindate/all`
+- Endpoint: `put /type/property/optional/plainDate/all`
 
 Expected request body:
 
@@ -6547,9 +6589,9 @@ Expected request body:
 { "property": "2022-12-12" }
 ```
 
-### Type_Property_Optional_Plaindate_putDefault
+### Type_Property_Optional_PlainDate_putDefault
 
-- Endpoint: `put /type/property/optional/plaindate/default`
+- Endpoint: `put /type/property/optional/plainDate/default`
 
 Expected request body:
 
@@ -6557,9 +6599,9 @@ Expected request body:
 {}
 ```
 
-### Type_Property_Optional_Plaintime_getAll
+### Type_Property_Optional_PlainTime_getAll
 
-- Endpoint: `get /type/property/optional/plaintime/all`
+- Endpoint: `get /type/property/optional/plainTime/all`
 
 Expected response body:
 
@@ -6567,9 +6609,9 @@ Expected response body:
 { "property": "13:06:12" }
 ```
 
-### Type_Property_Optional_Plaintime_getDefault
+### Type_Property_Optional_PlainTime_getDefault
 
-- Endpoint: `get /type/property/optional/plaintime/default`
+- Endpoint: `get /type/property/optional/plainTime/default`
 
 Expected response body:
 
@@ -6577,9 +6619,9 @@ Expected response body:
 {}
 ```
 
-### Type_Property_Optional_Plaintime_putAll
+### Type_Property_Optional_PlainTime_putAll
 
-- Endpoint: `put /type/property/optional/plaintime/all`
+- Endpoint: `put /type/property/optional/plainTime/all`
 
 Expected request body:
 
@@ -6587,9 +6629,9 @@ Expected request body:
 { "property": "13:06:12" }
 ```
 
-### Type_Property_Optional_Plaintime_putDefault
+### Type_Property_Optional_PlainTime_putDefault
 
-- Endpoint: `put /type/property/optional/plaintime/default`
+- Endpoint: `put /type/property/optional/plainTime/default`
 
 Expected request body:
 

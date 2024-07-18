@@ -107,10 +107,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
       if (req.params.topLevelResourceName.toLowerCase() !== "top") {
         throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
-      req.expect.bodyEquals({
-        properties: {
-          description: "valid2",
-        },
+      req.expect.deepEqual(req.body.properties, {
+        description: "valid2",
       });
       const resource = {
         ...validTopLevelResource,
