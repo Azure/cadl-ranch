@@ -77,17 +77,17 @@ Scenarios.Type_Property_Optional_Duration_getDefault = passOnSuccess(durationMoc
 Scenarios.Type_Property_Optional_Duration_putAll = passOnSuccess(durationMock.putAll);
 Scenarios.Type_Property_Optional_Duration_putDefault = passOnSuccess(durationMock.putDefault);
 
-const plaindateMock = createMockApis("plaindate", "2022-12-12");
-Scenarios.Type_Property_Optional_Plaindate_getAll = passOnSuccess(plaindateMock.getAll);
-Scenarios.Type_Property_Optional_Plaindate_getDefault = passOnSuccess(plaindateMock.getDefault);
-Scenarios.Type_Property_Optional_Plaindate_putAll = passOnSuccess(plaindateMock.putAll);
-Scenarios.Type_Property_Optional_Plaindate_putDefault = passOnSuccess(plaindateMock.putDefault);
+const plainDateMock = createMockApis("plainDate", "2022-12-12");
+Scenarios.Type_Property_Optional_PlainDate_getAll = passOnSuccess(plainDateMock.getAll);
+Scenarios.Type_Property_Optional_PlainDate_getDefault = passOnSuccess(plainDateMock.getDefault);
+Scenarios.Type_Property_Optional_PlainDate_putAll = passOnSuccess(plainDateMock.putAll);
+Scenarios.Type_Property_Optional_PlainDate_putDefault = passOnSuccess(plainDateMock.putDefault);
 
-const plaindatetimeMock = createMockApis("plaintime", "13:06:12");
-Scenarios.Type_Property_Optional_Plaintime_getAll = passOnSuccess(plaindatetimeMock.getAll);
-Scenarios.Type_Property_Optional_Plaintime_getDefault = passOnSuccess(plaindatetimeMock.getDefault);
-Scenarios.Type_Property_Optional_Plaintime_putAll = passOnSuccess(plaindatetimeMock.putAll);
-Scenarios.Type_Property_Optional_Plaintime_putDefault = passOnSuccess(plaindatetimeMock.putDefault);
+const plainTimeMock = createMockApis("plainTime", "13:06:12");
+Scenarios.Type_Property_Optional_PlainTime_getAll = passOnSuccess(plainTimeMock.getAll);
+Scenarios.Type_Property_Optional_PlainTime_getDefault = passOnSuccess(plainTimeMock.getDefault);
+Scenarios.Type_Property_Optional_PlainTime_putAll = passOnSuccess(plainTimeMock.putAll);
+Scenarios.Type_Property_Optional_PlainTime_putDefault = passOnSuccess(plainTimeMock.putDefault);
 
 const collectionsBytesMock = createMockApis("collections/bytes", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]);
 Scenarios.Type_Property_Optional_CollectionsByte_getAll = passOnSuccess(collectionsBytesMock.getAll);
