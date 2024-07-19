@@ -2909,16 +2909,16 @@ Expected response body:
 
 ```xml
 <ModelWithArrayOfModel>
-  <Items>
+  <items>
     <SimpleModel>
-      <Name>foo</Name>
-      <Age>123</Age>
+      <name>foo</name>
+      <age>123</age>
     </SimpleModel>
     <SimpleModel>
-      <Name>bar</Name>
-      <Age>456</Age>
+      <name>bar</name>
+      <age>456</age>
     </SimpleModel>
-  </Items>
+  </items>
 </ModelWithArrayOfModel>
 ```
 
@@ -2930,16 +2930,16 @@ Expected request body:
 
 ```xml
 <ModelWithArrayOfModel>
-  <Items>
+  <items>
     <SimpleModel>
-      <Name>foo</Name>
-      <Age>123</Age>
+      <name>foo</name>
+      <age>123</age>
     </SimpleModel>
     <SimpleModel>
-      <Name>bar</Name>
-      <Age>456</Age>
+      <name>bar</name>
+      <age>456</age>
     </SimpleModel>
-  </Items>
+  </items>
 </ModelWithArrayOfModel>
 ```
 
@@ -2951,8 +2951,8 @@ Expected response body:
 
 ```xml
 <ModelWithOptionalField>
-  <Item>widget</Item>
-  <Counts />
+  <item>widget</item>
+  <counts />
 </ModelWithOptionalField>
 ```
 
@@ -2964,8 +2964,8 @@ Expected request body:
 
 ```xml
 <ModelWithOptionalField>
-  <Item>widget</Item>
-  <Counts />
+  <item>widget</item>
+  <counts />
 </ModelWithOptionalField>
 ```
 
@@ -2977,15 +2977,15 @@ Expected response body:
 
 ```xml
 <ModelWithSimpleArrays>
-  <Colors>
+  <colors>
     <string>red</string>
     <string>green</string>
     <string>blue</string>
-  </Colors>
-  <Counts>
+  </colors>
+  <counts>
     <int32>1</int32>
     <int32>2</int32>
-  </Counts>
+  </counts>
 </ModelWithSimpleArrays>
 ```
 
@@ -2997,15 +2997,15 @@ Expected request body:
 
 ```xml
 <ModelWithSimpleArrays>
-  <Colors>
+  <colors>
     <string>red</string>
     <string>green</string>
     <string>blue</string>
-  </Colors>
-  <Counts>
+  </colors>
+  <counts>
     <int32>1</int32>
     <int32>2</int32>
-  </Counts>
+  </counts>
 </ModelWithSimpleArrays>
 ```
 
@@ -3017,8 +3017,8 @@ Expected response body:
 
 ```xml
 <SimpleModel>
-  <Name>foo</Name>
-  <Age>123</Age>
+  <name>foo</name>
+  <age>123</age>
 </SimpleModel>
 ```
 
@@ -3030,8 +3030,8 @@ Expected request body:
 
 ```xml
 <SimpleModel>
-  <Name>foo</Name>
-  <Age>123</Age>
+  <name>foo</name>
+  <age>123</age>
 </SimpleModel>
 ```
 
