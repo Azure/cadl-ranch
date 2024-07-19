@@ -70,21 +70,20 @@ interface XmlOperations<TModel, TDoc extends string> {
 
 @doc("Operations for the SimpleModel type.")
 @route("/simpleModel")
-interface SimpleModelValue extends XmlOperations<
-  SimpleModel,
-  """
+interface SimpleModelValue
+  extends XmlOperations<SimpleModel, """
   <SimpleModel>
     <Name>foo</Name>
     <Age>123</Age>
   </SimpleModel>
-  """
-  > {}
+  """> {}
 
 @doc("Operations for the ModelWithSimpleArrays type.")
 @route("/modelWithSimpleArrays")
-interface ModelWithSimpleArraysValue extends XmlOperations<
-  ModelWithSimpleArrays,
-  """
+interface ModelWithSimpleArraysValue
+  extends XmlOperations<
+      ModelWithSimpleArrays,
+      """
   <ModelWithSimpleArrays>
     <Colors>red</Colors>
     <Colors>green</Colors>
@@ -93,14 +92,14 @@ interface ModelWithSimpleArraysValue extends XmlOperations<
     <Counts>2</Counts>
   </ModelWithSimpleArrays>
   """
-  > {}
-
+    > {}
 
 @doc("Operations for the ModelWithArrayOfModel type.")
 @route("/modelWithArrayOfModel")
-interface ModelWithArrayOfModelValue extends XmlOperations<
-  ModelWithArrayOfModel,
-  """
+interface ModelWithArrayOfModelValue
+  extends XmlOperations<
+      ModelWithArrayOfModel,
+      """
   <ModelWithArrayOfModel>
     <SimpleModel>
       <Name>foo</Name>
@@ -112,16 +111,17 @@ interface ModelWithArrayOfModelValue extends XmlOperations<
     </SimpleModel>
   </ModelWithArrayOfModel>
   """
-  > {}
+    > {}
 
 @doc("Operations for the ModelWithOptionalField type.")
 @route("/modelWithOptionalField")
-interface ModelWithOptionalFieldValue extends XmlOperations<
-  ModelWithOptionalField,
-  """
+interface ModelWithOptionalFieldValue
+  extends XmlOperations<
+      ModelWithOptionalField,
+      """
   <ModelWithOptionalField>
     <Item>widget</Item>
     <Counts />
   </ModelWithOptionalField>
   """
-  > {}
+    > {}
