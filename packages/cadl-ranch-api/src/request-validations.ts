@@ -37,14 +37,14 @@ export const validateBodyEquals = (request: RequestExt, expectedBody: unknown | 
 };
 
 export const validateXmlBodyEquals = (request: RequestExt, expectedBody: string): void => {
-  if (isBodyEmpty(request.rawBody)) {
+  if (request.rawBody === undefined || isBodyEmpty(request.rawBody)) {
     throw new ValidationError(BODY_EMPTY_ERROR_MESSAGE, expectedBody, request.rawBody);
   }
 
   expectedBody = `<?xml version='1.0' encoding='UTF-8'?>` + expectedBody;
 
   let actualParsedBody = "";
-  parseString(request.rawBody!, (err: Error | null, result: any): void => {
+  parseString(request.rawBody, (err: Error | null, result: any): void => {
     if (err !== null) {
       throw err;
     }
