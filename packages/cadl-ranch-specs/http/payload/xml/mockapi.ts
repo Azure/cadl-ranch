@@ -40,7 +40,7 @@ const modelWithOptionalField = `
 </ModelWithOptionalField>
 `;
 
-Scenarios.Payload_Xml_getSimpleModel = passOnSuccess(
+Scenarios.Payload_Xml_SimpleModelValue_get = passOnSuccess(
   mockapi.get("/payload/xml/simpleModel", (req) => {
     return {
       status: 200,
@@ -49,7 +49,7 @@ Scenarios.Payload_Xml_getSimpleModel = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_putSimpleModel = passOnSuccess(
+Scenarios.Payload_Xml_SimpleModelValue_put = passOnSuccess(
   mockapi.put("/payload/xml/simpleModel", (req) => {
     req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(simpleModel);
@@ -59,7 +59,7 @@ Scenarios.Payload_Xml_putSimpleModel = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_getModelWithSimpleArrays = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithSimpleArraysValue_get = passOnSuccess(
   mockapi.get("/payload/xml/modelWithSimpleArrays", (req) => {
     return {
       status: 200,
@@ -68,7 +68,7 @@ Scenarios.Payload_Xml_getModelWithSimpleArrays = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_putModelWithSimpleArrays = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithSimpleArraysValue_put = passOnSuccess(
   mockapi.put("/payload/xml/modelWithSimpleArrays", (req) => {
     req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithSimpleArrays);
@@ -78,7 +78,7 @@ Scenarios.Payload_Xml_putModelWithSimpleArrays = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_getModelWithArrayOfModel = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithArrayOfModelValue_get = passOnSuccess(
   mockapi.get("/payload/xml/modelWithArrayOfModel", (req) => {
     return {
       status: 200,
@@ -87,7 +87,7 @@ Scenarios.Payload_Xml_getModelWithArrayOfModel = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_putModelWithArrayOfModel = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithArrayOfModelValue_put = passOnSuccess(
   mockapi.put("/payload/xml/modelWithArrayOfModel", (req) => {
     req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithArrayOfModel);
@@ -97,7 +97,7 @@ Scenarios.Payload_Xml_putModelWithArrayOfModel = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_getModelWithOptionalField = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithOptionalFieldValue_get = passOnSuccess(
   mockapi.get("/payload/xml/modelWithOptionalField", (req) => {
     return {
       status: 200,
@@ -106,7 +106,7 @@ Scenarios.Payload_Xml_getModelWithOptionalField = passOnSuccess(
   }),
 );
 
-Scenarios.Payload_Xml_putModelWithOptionalField = passOnSuccess(
+Scenarios.Payload_Xml_ModelWithOptionalFieldValue_put = passOnSuccess(
   mockapi.put("/payload/xml/modelWithOptionalField", (req) => {
     req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithOptionalField);

@@ -2901,11 +2901,10 @@ maxpagesize=3
 }
 ```
 
-### Payload_Xml_getModelWithArrayOfModel
+### Payload_Xml_ModelWithArrayOfModelValue_get
 
 - Endpoint: `get /payload/xml/modelWithArrayOfModel`
 
-Returns an instance of ModelWithArrayOfModel.
 Expected response body:
 
 ```xml
@@ -2921,11 +2920,29 @@ Expected response body:
 </ModelWithArrayOfModel>
 ```
 
-### Payload_Xml_getModelWithOptionalField
+### Payload_Xml_ModelWithArrayOfModelValue_put
+
+- Endpoint: `put /payload/xml/modelWithArrayOfModel`
+
+Expected request body:
+
+```xml
+<ModelWithArrayOfModel>
+  <SimpleModel>
+    <Name>foo</Name>
+    <Age>123</Age>
+  </SimpleModel>
+  <SimpleModel>
+    <Name>bar</Name>
+    <Age>456</Age>
+  </SimpleModel>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_get
 
 - Endpoint: `get /payload/xml/modelWithOptionalField`
 
-Returns an instance of ModelWithOptionalField.
 Expected response body:
 
 ```xml
@@ -2935,11 +2952,23 @@ Expected response body:
 </ModelWithOptionalField>
 ```
 
-### Payload_Xml_getModelWithSimpleArrays
+### Payload_Xml_ModelWithOptionalFieldValue_put
+
+- Endpoint: `put /payload/xml/modelWithOptionalField`
+
+Expected request body:
+
+```xml
+<ModelWithOptionalField>
+  <Item>widget</Item>
+  <Counts />
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_get
 
 - Endpoint: `get /payload/xml/modelWithSimpleArrays`
 
-Returns an instance of ModelWithSimpleArrays.
 Expected response body:
 
 ```xml
@@ -2952,11 +2981,26 @@ Expected response body:
 </ModelWithSimpleArrays>
 ```
 
-### Payload_Xml_getSimpleModel
+### Payload_Xml_ModelWithSimpleArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithSimpleArrays`
+
+Expected request body:
+
+```xml
+<ModelWithSimpleArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>1</Counts>
+  <Counts>2</Counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_SimpleModelValue_get
 
 - Endpoint: `get /payload/xml/simpleModel`
 
-Returns an instance of SimpleModel.
 Expected response body:
 
 ```xml
@@ -2966,62 +3010,10 @@ Expected response body:
 </SimpleModel>
 ```
 
-### Payload_Xml_putModelWithArrayOfModel
-
-- Endpoint: `put /payload/xml/modelWithArrayOfModel`
-
-Sends an instance of ModelWithArrayOfModel.
-Expected request body:
-
-```xml
-<ModelWithArrayOfModel>
-  <SimpleModel>
-    <Name>foo</Name>
-    <Age>123</Age>
-  </SimpleModel>
-  <SimpleModel>
-    <Name>bar</Name>
-    <Age>456</Age>
-  </SimpleModel>
-</ModelWithArrayOfModel>
-```
-
-### Payload_Xml_putModelWithOptionalField
-
-- Endpoint: `put /payload/xml/modelWithOptionalField`
-
-Sends an instance of ModelWithOptionalField.
-Expected request body:
-
-```xml
-<ModelWithOptionalField>
-  <Item>widget</Item>
-  <Counts />
-</ModelWithOptionalField>
-```
-
-### Payload_Xml_putModelWithSimpleArrays
-
-- Endpoint: `put /payload/xml/modelWithSimpleArrays`
-
-Sends an instance of ModelWithSimpleArrays.
-Expected request body:
-
-```xml
-<ModelWithSimpleArrays>
-  <Colors>red</Colors>
-  <Colors>green</Colors>
-  <Colors>blue</Colors>
-  <Counts>1</Counts>
-  <Counts>2</Counts>
-</ModelWithSimpleArrays>
-```
-
-### Payload_Xml_putSimpleModel
+### Payload_Xml_SimpleModelValue_put
 
 - Endpoint: `put /payload/xml/simpleModel`
 
-Sends an instance of SimpleModel.
 Expected request body:
 
 ```xml
