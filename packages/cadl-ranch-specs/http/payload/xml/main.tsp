@@ -29,7 +29,7 @@ model ModelWithArrayOfModel {
 @doc("Contains an optional field.")
 model ModelWithOptionalField {
   item: string;
-  counts?: int32;
+  value?: int32;
 }
 
 @doc("Template for XML operations")
@@ -127,7 +127,6 @@ interface ModelWithOptionalFieldValue
       """
   <ModelWithOptionalField>
     <item>widget</item>
-    <counts />
   </ModelWithOptionalField>
   """
     > {}

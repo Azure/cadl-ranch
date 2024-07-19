@@ -42,7 +42,6 @@ const modelWithArrayOfModel = `
 const modelWithOptionalField = `
 <ModelWithOptionalField>
   <item>widget</item>
-  <counts />
 </ModelWithOptionalField>
 `;
 

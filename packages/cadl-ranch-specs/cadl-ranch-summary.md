@@ -2952,7 +2952,6 @@ Expected response body:
 ```xml
 <ModelWithOptionalField>
   <item>widget</item>
-  <counts />
 </ModelWithOptionalField>
 ```
 
@@ -2965,7 +2964,6 @@ Expected request body:
 ```xml
 <ModelWithOptionalField>
   <item>widget</item>
-  <counts />
 </ModelWithOptionalField>
 ```
 
