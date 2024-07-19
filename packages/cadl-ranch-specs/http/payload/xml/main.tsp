@@ -85,11 +85,15 @@ interface ModelWithSimpleArraysValue
       ModelWithSimpleArrays,
       """
   <ModelWithSimpleArrays>
-    <Colors>red</Colors>
-    <Colors>green</Colors>
-    <Colors>blue</Colors>
-    <Counts>1</Counts>
-    <Counts>2</Counts>
+    <Colors>
+      <string>red</string>
+      <string>green</string>
+      <string>blue</string>
+    </Colors>
+    <Counts>
+      <int32>1</int32>
+      <int32>2</int32>
+    </Counts>
   </ModelWithSimpleArrays>
   """
     > {}
@@ -101,14 +105,16 @@ interface ModelWithArrayOfModelValue
       ModelWithArrayOfModel,
       """
   <ModelWithArrayOfModel>
-    <SimpleModel>
-      <Name>foo</Name>
-      <Age>123</Age>
-    </SimpleModel>
-    <SimpleModel>
-      <Name>bar</Name>
-      <Age>456</Age>
-    </SimpleModel>
+    <Items>
+      <SimpleModel>
+        <Name>foo</Name>
+        <Age>123</Age>
+      </SimpleModel>
+      <SimpleModel>
+        <Name>bar</Name>
+        <Age>456</Age>
+      </SimpleModel>
+    </Items>
   </ModelWithArrayOfModel>
   """
     > {}
