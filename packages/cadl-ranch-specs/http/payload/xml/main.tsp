@@ -32,161 +32,96 @@ model ModelWithOptionalField {
   counts?: int32;
 }
 
-@scenario
+@doc("Template for XML operations")
+interface XmlOperations<TModel, TDoc extends string> {
+  @scenario
+  @scenarioDoc(
+    """
+  Expected response body:
+  ```xml
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @get
+  get(): {
+    @header("content-type") contentType: "application/xml";
+    @body body: TModel;
+  };
+
+  @scenario
+  @scenarioDoc(
+    """
+  Expected request body:
+  ```xml
+  {doc}
+  ```
+  """,
+    {
+      doc: TDoc,
+    }
+  )
+  @put
+  put(@header("content-type") contentType: "application/xml", @body input: TModel): void;
+}
+
+@doc("Operations for the SimpleModel type.")
 @route("/simpleModel")
-@scenarioDoc("""
-Returns an instance of SimpleModel.
-Expected response body:
-```xml
-<SimpleModel>
-  <Name>foo</Name>
-  <Age>123</Age>
-</SimpleModel>
-```
-""")
-@get
-op getSimpleModel(): {
-  @header("content-type") contentType: "application/xml";
-  @body body: SimpleModel;
-};
-
-@scenario
-@route("/simpleModel")
-@scenarioDoc("""
-Sends an instance of SimpleModel.
-Expected request body:
-```xml
-<SimpleModel>
-  <Name>foo</Name>
-  <Age>123</Age>
-</SimpleModel>
-```
-""")
-@put
-op putSimpleModel(@header("content-type") contentType: "application/xml", @body input: SimpleModel): void;
-
-@scenario
-@route("/modelWithSimpleArrays")
-@scenarioDoc("""
-Returns an instance of ModelWithSimpleArrays.
-Expected response body:
-```xml
-<ModelWithSimpleArrays>
-  <Colors>red</Colors>
-  <Colors>green</Colors>
-  <Colors>blue</Colors>
-  <Counts>1</Counts>
-  <Counts>2</Counts>
-</ModelWithSimpleArrays>
-```
-""")
-@get
-op getModelWithSimpleArrays(): {
-  @header("content-type") contentType: "application/xml";
-  @body body: ModelWithSimpleArrays;
-};
-
-@scenario
-@route("/modelWithSimpleArrays")
-@scenarioDoc("""
-Sends an instance of ModelWithSimpleArrays.
-Expected request body:
-```xml
-<ModelWithSimpleArrays>
-  <Colors>red</Colors>
-  <Colors>green</Colors>
-  <Colors>blue</Colors>
-  <Counts>1</Counts>
-  <Counts>2</Counts>
-</ModelWithSimpleArrays>
-```
-""")
-@put
-op putModelWithSimpleArrays(
-  @header("content-type") contentType: "application/xml",
-  @body input: ModelWithSimpleArrays,
-): void;
-
-@scenario
-@route("/modelWithArrayOfModel")
-@scenarioDoc("""
-Returns an instance of ModelWithArrayOfModel.
-Expected response body:
-```xml
-<ModelWithArrayOfModel>
+interface SimpleModelValue extends XmlOperations<
+  SimpleModel,
+  """
   <SimpleModel>
     <Name>foo</Name>
     <Age>123</Age>
   </SimpleModel>
-  <SimpleModel>
-    <Name>bar</Name>
-    <Age>456</Age>
-  </SimpleModel>
-</ModelWithArrayOfModel>
-```
-""")
-@get
-op getModelWithArrayOfModel(): {
-  @header("content-type") contentType: "application/xml";
-  @body body: ModelWithArrayOfModel;
-};
+  """
+  > {}
 
-@scenario
+@doc("Operations for the ModelWithSimpleArrays type.")
+@route("/modelWithSimpleArrays")
+interface ModelWithSimpleArraysValue extends XmlOperations<
+  ModelWithSimpleArrays,
+  """
+  <ModelWithSimpleArrays>
+    <Colors>red</Colors>
+    <Colors>green</Colors>
+    <Colors>blue</Colors>
+    <Counts>1</Counts>
+    <Counts>2</Counts>
+  </ModelWithSimpleArrays>
+  """
+  > {}
+
+
+@doc("Operations for the ModelWithArrayOfModel type.")
 @route("/modelWithArrayOfModel")
-@scenarioDoc("""
-Sends an instance of ModelWithArrayOfModel.
-Expected request body:
-```xml
-<ModelWithArrayOfModel>
-  <SimpleModel>
-    <Name>foo</Name>
-    <Age>123</Age>
-  </SimpleModel>
-  <SimpleModel>
-    <Name>bar</Name>
-    <Age>456</Age>
-  </SimpleModel>
-</ModelWithArrayOfModel>
-```
-""")
-@put
-op putModelWithArrayOfModel(
-  @header("content-type") contentType: "application/xml",
-  @body input: ModelWithArrayOfModel,
-): void;
+interface ModelWithArrayOfModelValue extends XmlOperations<
+  ModelWithArrayOfModel,
+  """
+  <ModelWithArrayOfModel>
+    <SimpleModel>
+      <Name>foo</Name>
+      <Age>123</Age>
+    </SimpleModel>
+    <SimpleModel>
+      <Name>bar</Name>
+      <Age>456</Age>
+    </SimpleModel>
+  </ModelWithArrayOfModel>
+  """
+  > {}
 
-@scenario
+@doc("Operations for the ModelWithOptionalField type.")
 @route("/modelWithOptionalField")
-@scenarioDoc("""
-Returns an instance of ModelWithOptionalField.
-Expected response body:
-```xml
-<ModelWithOptionalField>
-  <Item>widget</Item>
-  <Counts />
-</ModelWithOptionalField>
-```
-""")
-@get
-op getModelWithOptionalField(): {
-  @header("content-type") contentType: "application/xml";
-  @body body: ModelWithOptionalField;
-};
-
-@scenario
-@route("/modelWithOptionalField")
-@scenarioDoc("""
-Sends an instance of ModelWithOptionalField.
-Expected request body:
-```xml
-<ModelWithOptionalField>
-  <Item>widget</Item>
-  <Counts />
-</ModelWithOptionalField>
-```
-""")
-@put
-op putModelWithOptionalField(
-  @header("content-type") contentType: "application/xml",
-  @body input: ModelWithOptionalField,
-): void;
+interface ModelWithOptionalFieldValue extends XmlOperations<
+  ModelWithOptionalField,
+  """
+  <ModelWithOptionalField>
+    <Item>widget</Item>
+    <Counts />
+  </ModelWithOptionalField>
+  """
+  > {}
