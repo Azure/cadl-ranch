@@ -7,6 +7,7 @@
 - cee571f: Add spread-Alias-With-Optional-Properties test cases for type/parameters/spread
   Add spread-Alias-With-Optional-Collections test cases for type/parameters/spread
   Add spread-Alias-With-Model test cases for type/parameters/spread
+- 37dfce1: Add xml basic tests
 
 ## 0.34.7
 
