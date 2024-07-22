@@ -189,6 +189,12 @@ importers:
       winston:
         specifier: ^3.8.2
         version: 3.13.0
+      xml-formatter:
+        specifier: ^3.6.3
+        version: 3.6.3
+      xml2js:
+        specifier: ^0.5.0
+        version: 0.5.0
       yargs:
         specifier: ^17.7.1
         version: 17.7.2
@@ -220,6 +226,9 @@ importers:
       '@types/node':
         specifier: ^18.16.0
         version: 18.19.33
+      '@types/xml2js':
+        specifier: ^0.4.11
+        version: 0.4.14
       '@types/yargs':
         specifier: ^17.0.24
         version: 17.0.32
@@ -5783,6 +5792,14 @@ packages:
   xdg-basedir@5.1.0:
     resolution: {integrity: sha512-GCPAHLvrIH13+c0SuacwvRYj2SxJXQ4kaVTT5xgL3kPrz56XxkF21IGhjSE1+W0aw7gpBWRGXLCPnPby6lSpmQ==}
     engines: {node: '>=12'}
+
+  xml-formatter@3.6.3:
+    resolution: {integrity: sha512-++x1TlRO1FRlQ82AZ4WnoCSufaI/PT/sycn4K8nRl4gnrNC1uYY2VV/67aALZ2m0Q4Q/BLj/L69K360Itw9NNg==}
+    engines: {node: '>= 16'}
+
+  xml-parser-xo@4.1.2:
+    resolution: {integrity: sha512-Z/DRB0ZAKj5vAQg++XsfQQKfT73Vfj5n5lKIVXobBDQEva6NHWUTxOA6OohJmEcpoy8AEqBmSGkXXAnFwt5qAA==}
+    engines: {node: '>= 16'}
 
   xml2js@0.5.0:
     resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
@@ -12764,6 +12781,12 @@ snapshots:
       signal-exit: 3.0.7
 
   xdg-basedir@5.1.0: {}
+
+  xml-formatter@3.6.3:
+    dependencies:
+      xml-parser-xo: 4.1.2
+
+  xml-parser-xo@4.1.2: {}
 
   xml2js@0.5.0:
     dependencies:
