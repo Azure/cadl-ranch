@@ -1,8 +1,10 @@
 import "@typespec/http";
+import "@typespec/xml";
 import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
+using TypeSpec.Xml;
 using Azure.ClientGenerator.Core;
 
 @doc("Sends and receives bodies in XML format.")
@@ -30,6 +32,42 @@ model ModelWithArrayOfModel {
 model ModelWithOptionalField {
   item: string;
   value?: int32;
+}
+
+@doc("Contains fields that are XML attributes.")
+model ModelWithAttributes {
+  @attribute id1: int32;
+  @attribute id2: string;
+  @name("Enabled") enabled: boolean;
+}
+
+@doc("Contains fields of wrapped and unwrapped arrays of primitive types.")
+model ModelWithUnwrappedArray {
+  @name("Colors") @unwrapped colors: string[];
+  @name("Counts") counts: int32[];
+}
+
+@doc("Contains fields of the same type that have different XML representation.")
+@name("ModelWithRenamedFieldsSrc")
+model ModelWithRenamedFields {
+  @name("InputData") inputData: SimpleModel;
+  @name("OutputData") outputData: SimpleModel;
+}
+
+@doc("Contains an array of models that's supposed to be sent/received as an empty XML element.")
+model ModelWithEmptyArray {
+  items: SimpleModel[];
+}
+
+@doc("Contains an attribute and text.")
+model ModelWithText {
+  @attribute language: string;
+  @unwrapped content: string;
+}
+
+@doc("Contains a dictionary of key value pairs.")
+model ModelWithDictionary {
+  metadata: Record<string>;
 }
 
 @doc("Template for XML operations")
@@ -128,5 +166,91 @@ interface ModelWithOptionalFieldValue
   <ModelWithOptionalField>
     <item>widget</item>
   </ModelWithOptionalField>
+  """
+    > {}
+
+@doc("Operations for the ModelWithAttributes type.")
+@route("/modelWithAttributes")
+interface ModelWithAttributesValue
+  extends XmlOperations<
+      ModelWithAttributes,
+      """
+  <ModelWithAttributes id1="123" id2="foo">
+    <Enabled>true</Enabled>
+  </ModelWithAttributes>
+  """
+    > {}
+
+@doc("Operations for the ModelWithUnwrappedArray type.")
+@route("/modelWithUnwrappedArray")
+interface ModelWithUnwrappedArrayValue
+  extends XmlOperations<
+      ModelWithUnwrappedArray,
+      """
+  <ModelWithUnwrappedArray>
+    <Colors>red</Colors>
+    <Colors>green</Colors>
+    <Colors>blue</Colors>
+    <Counts>
+      <int32>1</int32>
+      <int32>2</int32>
+    </Counts>
+  </ModelWithUnwrappedArray>
+  """
+    > {}
+
+@doc("Operations for the ModelWithRenamedFields type.")
+@route("/modelWithRenamedFields")
+interface ModelWithRenamedFieldsValue
+  extends XmlOperations<
+      ModelWithRenamedFields,
+      """
+  <ModelWithRenamedFieldsSrc>
+    <InputData>
+      <name>foo</name>
+      <age>123</age>
+    </InputData>
+    <OutputData>
+      <name>bar</name>
+      <age>456</age>
+    </OutputData>
+  </ModelWithRenamedFieldsSrc>
+  """
+    > {}
+
+@doc("Operations for the ModelWithEmptyArray type.")
+@route("/modelWithEmptyArray")
+interface ModelWithEmptyArrayValue
+  extends XmlOperations<ModelWithEmptyArray, """
+  <ModelWithEmptyArray>
+    <items />
+  </ModelWithEmptyArray>
+  """> {}
+
+@doc("Operations for the ModelWithText type.")
+@route("/modelWithText")
+interface ModelWithTextValue
+  extends XmlOperations<
+      ModelWithText,
+      """
+  <ModelWithText language="foo">
+    This is some text.
+  </ModelWithText>
+  """
+    > {}
+
+@doc("Operations for the ModelWithDictionary type.")
+@route("/modelWithDictionary")
+interface ModelWithDictionaryValue
+  extends XmlOperations<
+      ModelWithDictionary,
+      """
+  <ModelWithDictionary>
+    <Metadata>
+      <Color>blue</Color>
+      <Count>123</Count>
+      <Enabled>false</Enabled>
+    </Metadata>
+  </ModelWithDictionary>
   """
     > {}

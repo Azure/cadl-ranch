@@ -2943,6 +2943,86 @@ Expected request body:
 </ModelWithArrayOfModel>
 ```
 
+### Payload_Xml_ModelWithAttributesValue_get
+
+- Endpoint: `get /payload/xml/modelWithAttributes`
+
+Expected response body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <Enabled>true</Enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithAttributesValue_put
+
+- Endpoint: `put /payload/xml/modelWithAttributes`
+
+Expected request body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <Enabled>true</Enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_get
+
+- Endpoint: `get /payload/xml/modelWithDictionary`
+
+Expected response body:
+
+```xml
+<ModelWithDictionary>
+  <Metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </Metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_put
+
+- Endpoint: `put /payload/xml/modelWithDictionary`
+
+Expected request body:
+
+```xml
+<ModelWithDictionary>
+  <Metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </Metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithEmptyArray`
+
+Expected response body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithEmptyArray`
+
+Expected request body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
 ### Payload_Xml_ModelWithOptionalFieldValue_get
 
 - Endpoint: `get /payload/xml/modelWithOptionalField`
@@ -2965,6 +3045,44 @@ Expected request body:
 <ModelWithOptionalField>
   <item>widget</item>
 </ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedFields`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedFields`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
 ```
 
 ### Payload_Xml_ModelWithSimpleArraysValue_get
@@ -3005,6 +3123,66 @@ Expected request body:
     <int32>2</int32>
   </counts>
 </ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithTextValue_get
+
+- Endpoint: `get /payload/xml/modelWithText`
+
+Expected response body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithTextValue_put
+
+- Endpoint: `put /payload/xml/modelWithText`
+
+Expected request body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithUnwrappedArray`
+
+Expected response body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithUnwrappedArray>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithUnwrappedArray`
+
+Expected request body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithUnwrappedArray>
 ```
 
 ### Payload_Xml_SimpleModelValue_get
