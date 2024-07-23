@@ -102,11 +102,11 @@ const modelWithText = `
 
 const modelWithDictionary = `
 <ModelWithDictionary>
-  <Metadata>
+  <metadata>
     <Color>blue</Color>
     <Count>123</Count>
     <Enabled>false</Enabled>
-  </Metadata>
+  </metadata>
 </ModelWithDictionary>
 `;
 

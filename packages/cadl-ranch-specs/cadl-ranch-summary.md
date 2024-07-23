@@ -2975,11 +2975,11 @@ Expected response body:
 
 ```xml
 <ModelWithDictionary>
-  <Metadata>
+  <metadata>
     <Color>blue</Color>
     <Count>123</Count>
     <Enabled>false</Enabled>
-  </Metadata>
+  </metadata>
 </ModelWithDictionary>
 ```
 
@@ -2991,11 +2991,11 @@ Expected request body:
 
 ```xml
 <ModelWithDictionary>
-  <Metadata>
+  <metadata>
     <Color>blue</Color>
     <Count>123</Count>
     <Enabled>false</Enabled>
-  </Metadata>
+  </metadata>
 </ModelWithDictionary>
 ```
 
