@@ -47,12 +47,24 @@ const modelWithOptionalField = `
 
 const modelWithAttributes = `
 <ModelWithAttributes id1="123" id2="foo">
-  <Enabled>true</Enabled>
+  <enabled>true</enabled>
 </ModelWithAttributes>
 `;
 
 const modelWithUnwrappedArray = `
 <ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
+`;
+
+const modelWithRenamedArrays = `
+<ModelWithRenamedArrays>
   <Colors>red</Colors>
   <Colors>green</Colors>
   <Colors>blue</Colors>
@@ -60,7 +72,7 @@ const modelWithUnwrappedArray = `
     <int32>1</int32>
     <int32>2</int32>
   </Counts>
-</ModelWithUnwrappedArray>
+</ModelWithRenamedArrays>
 `;
 
 const modelWithRenamedFields = `
@@ -96,6 +108,20 @@ const modelWithDictionary = `
     <Enabled>false</Enabled>
   </Metadata>
 </ModelWithDictionary>
+`;
+
+const modelWithEncodedNames = `
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
 `;
 
 Scenarios.Payload_Xml_SimpleModelValue_get = passOnSuccess(
@@ -212,6 +238,25 @@ Scenarios.Payload_Xml_ModelWithUnwrappedArrayValue_put = passOnSuccess(
   }),
 );
 
+Scenarios.Payload_Xml_ModelWithRenamedArraysValue_get = passOnSuccess(
+  mockapi.get("/payload/xml/modelWithRenamedArrays", (req) => {
+    return {
+      status: 200,
+      body: xml(modelWithRenamedArrays),
+    };
+  }),
+);
+
+Scenarios.Payload_Xml_ModelWithRenamedArraysValue_put = passOnSuccess(
+  mockapi.put("/payload/xml/modelWithRenamedArrays", (req) => {
+    req.expect.containsHeader("content-type", "application/xml");
+    req.expect.xmlBodyEquals(modelWithRenamedArrays);
+    return {
+      status: 204,
+    };
+  }),
+);
+
 Scenarios.Payload_Xml_ModelWithRenamedFieldsValue_get = passOnSuccess(
   mockapi.get("/payload/xml/modelWithRenamedFields", (req) => {
     return {
@@ -282,6 +327,25 @@ Scenarios.Payload_Xml_ModelWithDictionaryValue_put = passOnSuccess(
   mockapi.put("/payload/xml/modelWithDictionary", (req) => {
     req.expect.containsHeader("content-type", "application/xml");
     req.expect.xmlBodyEquals(modelWithDictionary);
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.Payload_Xml_ModelWithEncodedNamesValue_get = passOnSuccess(
+  mockapi.get("/payload/xml/modelWithEncodedNames", (req) => {
+    return {
+      status: 200,
+      body: xml(modelWithEncodedNames),
+    };
+  }),
+);
+
+Scenarios.Payload_Xml_ModelWithEncodedNamesValue_put = passOnSuccess(
+  mockapi.put("/payload/xml/modelWithEncodedNames", (req) => {
+    req.expect.containsHeader("content-type", "application/xml");
+    req.expect.xmlBodyEquals(modelWithEncodedNames);
     return {
       status: 204,
     };

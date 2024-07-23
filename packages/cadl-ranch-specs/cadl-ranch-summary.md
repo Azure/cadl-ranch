@@ -2951,7 +2951,7 @@ Expected response body:
 
 ```xml
 <ModelWithAttributes id1="123" id2="foo">
-  <Enabled>true</Enabled>
+  <enabled>true</enabled>
 </ModelWithAttributes>
 ```
 
@@ -2963,7 +2963,7 @@ Expected request body:
 
 ```xml
 <ModelWithAttributes id1="123" id2="foo">
-  <Enabled>true</Enabled>
+  <enabled>true</enabled>
 </ModelWithAttributes>
 ```
 
@@ -3023,6 +3023,46 @@ Expected request body:
 </ModelWithEmptyArray>
 ```
 
+### Payload_Xml_ModelWithEncodedNamesValue_get
+
+- Endpoint: `get /payload/xml/modelWithEncodedNames`
+
+Expected response body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_put
+
+- Endpoint: `put /payload/xml/modelWithEncodedNames`
+
+Expected request body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
 ### Payload_Xml_ModelWithOptionalFieldValue_get
 
 - Endpoint: `get /payload/xml/modelWithOptionalField`
@@ -3045,6 +3085,42 @@ Expected request body:
 <ModelWithOptionalField>
   <item>widget</item>
 </ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedArrays`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedArrays`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
 ```
 
 ### Payload_Xml_ModelWithRenamedFieldsValue_get
@@ -3157,13 +3233,13 @@ Expected response body:
 
 ```xml
 <ModelWithUnwrappedArray>
-  <Colors>red</Colors>
-  <Colors>green</Colors>
-  <Colors>blue</Colors>
-  <Counts>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
     <int32>1</int32>
     <int32>2</int32>
-  </Counts>
+  </counts>
 </ModelWithUnwrappedArray>
 ```
 
@@ -3175,13 +3251,13 @@ Expected request body:
 
 ```xml
 <ModelWithUnwrappedArray>
-  <Colors>red</Colors>
-  <Colors>green</Colors>
-  <Colors>blue</Colors>
-  <Counts>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
     <int32>1</int32>
     <int32>2</int32>
-  </Counts>
+  </counts>
 </ModelWithUnwrappedArray>
 ```
 

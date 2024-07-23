@@ -38,11 +38,17 @@ model ModelWithOptionalField {
 model ModelWithAttributes {
   @attribute id1: int32;
   @attribute id2: string;
-  @name("Enabled") enabled: boolean;
+  enabled: boolean;
 }
 
 @doc("Contains fields of wrapped and unwrapped arrays of primitive types.")
 model ModelWithUnwrappedArray {
+  @unwrapped colors: string[];
+  counts: int32[];
+}
+
+@doc("Contains fields of wrapped and unwrapped arrays of primitive types that have different XML representations.")
+model ModelWithRenamedArrays {
   @name("Colors") @unwrapped colors: string[];
   @name("Counts") counts: int32[];
 }
@@ -68,6 +74,13 @@ model ModelWithText {
 @doc("Contains a dictionary of key value pairs.")
 model ModelWithDictionary {
   metadata: Record<string>;
+}
+
+@doc("Uses encodedName instead of Xml.Name which is functionally equivalent.")
+@encodedName("application/xml", "ModelWithEncodedNamesSrc")
+model ModelWithEncodedNames {
+  @encodedName("application/xml", "SimpleModelData") modelData: SimpleModel;
+  @encodedName("application/xml", "PossibleColors") colors: string[];
 }
 
 @doc("Template for XML operations")
@@ -176,7 +189,7 @@ interface ModelWithAttributesValue
       ModelWithAttributes,
       """
   <ModelWithAttributes id1="123" id2="foo">
-    <Enabled>true</Enabled>
+    <enabled>true</enabled>
   </ModelWithAttributes>
   """
     > {}
@@ -188,6 +201,24 @@ interface ModelWithUnwrappedArrayValue
       ModelWithUnwrappedArray,
       """
   <ModelWithUnwrappedArray>
+    <colors>red</colors>
+    <colors>green</colors>
+    <colors>blue</colors>
+    <counts>
+      <int32>1</int32>
+      <int32>2</int32>
+    </counts>
+  </ModelWithUnwrappedArray>
+  """
+    > {}
+
+@doc("Operations for the ModelWithRenamedArrays type.")
+@route("/modelWithRenamedArrays")
+interface ModelWithRenamedArraysValue
+  extends XmlOperations<
+      ModelWithRenamedArrays,
+      """
+  <ModelWithRenamedArrays>
     <Colors>red</Colors>
     <Colors>green</Colors>
     <Colors>blue</Colors>
@@ -195,7 +226,7 @@ interface ModelWithUnwrappedArrayValue
       <int32>1</int32>
       <int32>2</int32>
     </Counts>
-  </ModelWithUnwrappedArray>
+  </ModelWithRenamedArrays>
   """
     > {}
 
@@ -252,5 +283,25 @@ interface ModelWithDictionaryValue
       <Enabled>false</Enabled>
     </Metadata>
   </ModelWithDictionary>
+  """
+    > {}
+
+@doc("Operations for the ModelWithEncodedNames type.")
+@route("/modelWithEncodedNames")
+interface ModelWithEncodedNamesValue
+  extends XmlOperations<
+      ModelWithEncodedNames,
+      """
+  <ModelWithEncodedNamesSrc>
+    <SimpleModelData>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModelData>
+    <PossibleColors>
+      <string>red</string>
+      <string>green</string>
+      <string>blue</string>
+    </PossibleColors>
+  </ModelWithEncodedNamesSrc>
   """
     > {}
