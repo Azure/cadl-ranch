@@ -5209,6 +5209,26 @@ Expected response body:
 }
 ```
 
+### Type_Model_Generic_genericType
+
+- Endpoint: `get /type/model/generic/genericType`
+
+Expected response body:
+
+```json
+{
+ "input": {
+    "kind":"Int32Values",
+    "values": 
+    [
+      1234
+    ],
+    "value": 1234,
+    "field": "<field>",
+  }
+}
+```
+
 ### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
