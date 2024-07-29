@@ -4622,6 +4622,26 @@ Expected response body:
 }
 ```
 
+### Type_Model_Generic_genericType
+
+- Endpoint: `get /type/model/generic/genericType`
+
+Send a GET request
+Expected response body:
+
+```json
+{
+  "input": {
+    "kind":"Int32Values",
+    "values":
+    [
+      1234
+    ],
+    "value": 1234,
+    "field": "<field>",
+}
+```
+
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
 - Endpoint: `get /type/model/inheritance/enum-discriminator/extensible-enum`
@@ -5206,26 +5226,6 @@ Expected response body:
 {
   "optionalNullableIntList": [1, 2, 3],
   "optionalStringRecord": { "k1": "value1", "k2": "value2" }
-}
-```
-
-### Type_Model_Generic_genericType
-
-- Endpoint: `get /type/model/generic/genericType`
-
-Expected response body:
-
-```json
-{
- "input": {
-    "kind":"Int32Values",
-    "values": 
-    [
-      1234
-    ],
-    "value": 1234,
-    "field": "<field>",
-  }
 }
 ```
 
