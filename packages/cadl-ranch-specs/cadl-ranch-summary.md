@@ -2901,6 +2901,138 @@ maxpagesize=3
 }
 ```
 
+### Payload_Xml_ModelWithArrayOfModelValue_get
+
+- Endpoint: `get /payload/xml/modelWithArrayOfModel`
+
+Expected response body:
+
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_ModelWithArrayOfModelValue_put
+
+- Endpoint: `put /payload/xml/modelWithArrayOfModel`
+
+Expected request body:
+
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_get
+
+- Endpoint: `get /payload/xml/modelWithOptionalField`
+
+Expected response body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_put
+
+- Endpoint: `put /payload/xml/modelWithOptionalField`
+
+Expected request body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithSimpleArrays`
+
+Expected response body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithSimpleArrays`
+
+Expected request body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_SimpleModelValue_get
+
+- Endpoint: `get /payload/xml/simpleModel`
+
+Expected response body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
+```
+
+### Payload_Xml_SimpleModelValue_put
+
+- Endpoint: `put /payload/xml/simpleModel`
+
+Expected request body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
+```
+
 ### Resiliency_ServiceDriven_addOperation
 
 - Endpoint: `delete /resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}/add-operation`
