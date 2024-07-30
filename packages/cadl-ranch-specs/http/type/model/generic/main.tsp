@@ -9,16 +9,9 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/type/model/generic")
 namespace Type.Model.Generic;
 
-@doc("Generic")
-model Generic {
-  @doc("A field to facet by, where the field is attributed as 'facetable'")
-  field: string;
-}
-
-model NumericType<T extends numeric> extends Generic {
-  @doc("The facet ranges to produce. The values must be listed in ascending order to get the expected results. For example, values=10,20 produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher.")
+model NumericType<T extends numeric> {
+  @doc("This model is used to perform facet processing on fields based on a specified range of values.")
   values: T[];
-
   value: T;
 }
 
@@ -30,21 +23,34 @@ model Int32Type extends NumericType<int32> {
 
 @scenario
 @scenarioDoc("""
-Send a GET request
-Expected response body:
+Expected input body:
 ```json
 {
   "input": {
-    "kind":"Int32Values",
+    "kind": "Int32Values",
     "values": 
     [
       1234
     ],
     "value": 1234,
-    "field": "<field>",
+    "field": "<field>"
+  }
+}
+
+Expected response body:
+```json
+{
+  "input": {
+    "kind": "Int32Values",
+    "values": 
+    [
+      1234
+    ],
+    "value": 1234,
+    "field": "<field>"
 }
 ```
 """)
 @route("/genericType")
-@get
+@put
 op genericType(@body input: Int32Type): void;

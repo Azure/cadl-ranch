@@ -13,7 +13,7 @@ const body = {
 };
 
 Scenarios.Type_Model_Generic_genericType = passOnSuccess(
-  mockapi.get("/type/model/generic/genericType", (req) => {
+  mockapi.put("/type/model/generic/genericType", (req) => {
     req.expect.bodyEquals(body);
     return { status: 204 };
   }),
