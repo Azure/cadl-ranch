@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.4
+
+### Patch Changes
+
+- 37dfce1: Add xml related support
+
 ## 0.4.3
 
 ### Patch Changes
