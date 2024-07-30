@@ -351,7 +351,7 @@ Content-Type: image/jpg
   @route("/check-filename-and-specific-content-type-with-httppart")
   op fileWithHttpPartSpecificContentType(
     @header contentType: "multipart/form-data",
-    @body body: FileWithHttpPartSpecificContentTypeRequest,
+    @multipartBody body: FileWithHttpPartSpecificContentTypeRequest,
   ): NoContentResponse;
 
   @scenario
@@ -375,7 +375,7 @@ Content-Type: application/octet-stream
   @route("/check-filename-and-required-content-type-with-httppart")
   op fileWithHttpPartRequiredContentType(
     @header contentType: "multipart/form-data",
-    @body body: FileWithHttpPartRequiredContentTypeRequest,
+    @multipartBody body: FileWithHttpPartRequiredContentTypeRequest,
   ): NoContentResponse;
 
   @scenario
@@ -455,6 +455,6 @@ Content-Type: application/octet-stream
   @route("/complex-parts-with-httppart")
   op complexWithHttpPart(
     @header contentType: "multipart/form-data",
-    @body body: ComplexHttpPartsModelRequest,
+    @multipartBody body: ComplexHttpPartsModelRequest,
   ): NoContentResponse;
 }
