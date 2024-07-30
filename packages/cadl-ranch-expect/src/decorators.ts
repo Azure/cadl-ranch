@@ -244,7 +244,7 @@ export function $scenarioService(
     properties: new Map().set("endpoint", {
       name: "endpoint",
       type: context.program!.getGlobalNamespaceType().namespaces.get("TypeSpec")!.scalars.get("string"),
-      defaultValue: { valueKind: "StringValue", value: "http://localhost:3000" },
+      defaultValue: { entityKind: "Value", valueKind: "StringValue", value: "http://localhost:3000" },
     }),
     decorators: [],
     projections: [],
