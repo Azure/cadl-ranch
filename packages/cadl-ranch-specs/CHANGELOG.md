@@ -1,5 +1,99 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.9
+
+### Patch Changes
+
+- Updated dependencies [1c7eaef]
+  - @azure-tools/cadl-ranch-api@0.4.4
+
+## 0.34.8
+
+### Patch Changes
+
+- cee571f: Add spread-Alias-With-Optional-Properties test cases for type/parameters/spread
+  Add spread-Alias-With-Optional-Collections test cases for type/parameters/spread
+  Add spread-Alias-With-Model test cases for type/parameters/spread
+- 37dfce1: Add xml basic tests
+
+## 0.34.7
+
+### Patch Changes
+
+- 4e524cb: bug fix in tcgc usage test
+- dd1b849: fix some typos in plain date and plain time scenarios
+
+## 0.34.6
+
+### Patch Changes
+
+- 86b5841: Fix body check on TrackedResource update.
+
+## 0.34.5
+
+### Patch Changes
+
+- e44aa64: Add a test scenario for JSON example used in Azure
+- 760a4fe: Bump typespec 0.58.0
+- Updated dependencies [760a4fe]
+  - @azure-tools/cadl-ranch-expect@0.14.1
+  - @azure-tools/cadl-ranch@0.13.4
+
+## 0.34.4
+
+### Patch Changes
+
+- af62829: Added tests for ARM common-type's managed-identity.
+- 62477bf: Add a ReadOnlyModel with Read-Only types of list and record data in type/model/visibility.
+  Add PlainDate/PlainTime in type/property/optionality.
+- 082bb91: In ARM resource test case, fixed `listByParent` operation name to `listByTopLevelTrackedResource`.
+
+## 0.34.3
+
+### Patch Changes
+
+- c117010: Updated expected float value of 2.71828 to 2.71875, a value that can be exactly represented as IEEE754 (http/type/property/additional-properties).
+- fd61404: Bug fix for spread.
+- Updated dependencies [c117010]
+  - @azure-tools/cadl-ranch@0.13.3
+
+## 0.34.2
+
+### Patch Changes
+
+- 31a98d7: add the embedding vector scenario
+- Updated dependencies [31a98d7]
+  - @azure-tools/cadl-ranch@0.13.2
+
+## 0.34.1
+
+### Patch Changes
+
+- 15cfc3e: Use explicit body to avoid model get spread
+- d82838f: Updated expected float duration values (35.621 and 46.781) to the values that can be exactly represented as IEEE754 (35.625 and 46.75 respectively).
+- 6ca2553: Rename arm tests to resourcemanager
+- Updated dependencies [d82838f]
+  - @azure-tools/cadl-ranch@0.13.1
+
+## 0.34.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+- 2fb006d: Add typespec-azure-resource-manager dependency to cadl-ranch-specs.
+- 8b42129: Added tests for ARM's tracked resource and nested resource.
+
+### Patch Changes
+
+- 656524d: Disable patch convenience method for csharp
+- d983279: Add nullable int/string/boolean/model test cases for Type/Array
+- fa9490e: Remove fixed from enum.
+- 4026382: Add usage test case for model used in read-only property
+- 83c129b: Add nullable list of int/string test cases for type/property/nullable
+- Updated dependencies [87a8ccc]
+  - @azure-tools/cadl-ranch-expect@0.14.0
+  - @azure-tools/cadl-ranch@0.13.0
+
 ## 0.33.4
 
 ### Patch Changes

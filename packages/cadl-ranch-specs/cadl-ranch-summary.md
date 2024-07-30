@@ -560,6 +560,36 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Model_AzureCoreEmbeddingVector_get
+
+- Endpoint: `get /azure/core/model/embeddingVector`
+
+Expect to handle an embedding vector. Mock api will return [0, 1, 2, 3, 4]
+
+### Azure_Core_Model_AzureCoreEmbeddingVector_post
+
+- Endpoint: `post /azure/core/model/embeddingVector`
+
+Expect to send a model which has an embedding vector property.
+
+Expected request body:
+
+```json
+{ "embedding": [0, 1, 2, 3, 4] }
+```
+
+Expected response body:
+
+```json
+{ "embedding": [5, 6, 7, 8, 9] }
+```
+
+### Azure_Core_Model_AzureCoreEmbeddingVector_put
+
+- Endpoint: `put /azure/core/model/embeddingVector`
+
+Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
+
 ### Azure_Core_Scalar_AzureLocationScalar_get
 
 - Endpoint: `get /azure/core/scalar/azureLocation`
@@ -663,6 +693,459 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "properties": {},
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
+        "principalId": <any uuid string>,
+        "clientId": <any uuid string>
+      },
+    },
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by parent resource operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+````
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+````
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by subscription operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
 ### Azure_SpecialHeaders_XmsClientRequestId
 
 - Endpoint: `get /azure/special-headers/x-ms-client-request-id/`
@@ -673,6 +1156,42 @@ Expected header parameters:
 - x-ms-client-request-id=<any uuid string>
   Expected response header:
 - x-ms-client-request-id=<uuid string same with request header>
+
+### Client_AzureExampleClient_basicAction
+
+- Endpoint: `post /azure/example/basic/basic`
+
+Expected request and response is same as the JSON example at examples/2022-12-01-preview/basic.json
+
+When generate the code, one need to set the "examples-directory" option.
+
+Expected query parameter: query-param=query&api-version=2022-12-01-preview
+Expected header parameter: header-param=header
+
+Expected input body:
+
+```json
+{
+  "stringProperty": "text",
+  "modelProperty": {
+    "int32Property": 1,
+    "float32Property": 1.5,
+    "enumProperty": "EnumValue1"
+  },
+  "arrayProperty": ["item"],
+  "recordProperty": {
+    "record": "value"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "stringProperty": "text"
+}
+```
 
 ### Client_Naming_Header_request
 
@@ -1357,14 +1876,14 @@ Expected header `input=P40D`
 - Endpoint: `get /encode/duration/header/float64-seconds`
 
 Test float64 seconds encode for a duration header.
-Expected header `duration: 35.621`
+Expected header `duration: 35.625`
 
 ### Encode_Duration_Header_floatSeconds
 
 - Endpoint: `get /encode/duration/header/float-seconds`
 
 Test float seconds encode for a duration header.
-Expected header `duration: 35.621`
+Expected header `duration: 35.625`
 
 ### Encode_Duration_Header_int32Seconds
 
@@ -1417,7 +1936,7 @@ Expected request body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1425,7 +1944,7 @@ Expected response body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1438,7 +1957,7 @@ Expected request body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1446,7 +1965,7 @@ Expected response body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1459,7 +1978,7 @@ Expected request body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1467,7 +1986,7 @@ Expected response body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1525,14 +2044,14 @@ Expected query parameter `input=P40D`
 - Endpoint: `get /encode/duration/query/float64-seconds`
 
 Test float64 seconds encode for a duration parameter.
-Expected query parameter `input=35.621`
+Expected query parameter `input=35.625`
 
 ### Encode_Duration_Query_floatSeconds
 
 - Endpoint: `get /encode/duration/query/float-seconds`
 
 Test float seconds encode for a duration parameter.
-Expected query parameter `input=35.621`
+Expected query parameter `input=35.625`
 
 ### Encode_Duration_Query_int32Seconds
 
@@ -1712,19 +2231,63 @@ Expected request body:
 { "name": "foo" }
 ```
 
+### Parameters_Spread_Alias_spreadParameterWithInnerAlias
+
+- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
+
+Test case for spread alias with contains another alias property as body.
+
+Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
+Should generate an operation like below:
+
+```
+spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "name": "foo",
+  "age": 1
+}
+```
+
+### Parameters_Spread_Alias_spreadParameterWithInnerModel
+
+- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
+
+Test case for spread alias.
+
+Should not generate any model named `InnerModel`.
+Should not generate any model named `InnerModelParameter`.
+Should generate an operation like:
+
+```
+spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_Spread_Alias_spreadWithMultipleParameters
 
 - Endpoint: `put /parameters/spread/alias/multiple-parameters/{id}`
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named `AliasMultipleRequestParameters`.
-Should generate an operation like below:
-
-```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
-```
-
+Should not generate any model named `MultipleRequestParameters`.
+Since it contains both optional properties and required properties, the method signature might vary across different languages.
 Note it's also acceptable if some languages handle it as property bag.
 
 Expected path parameter: id="1"
@@ -1733,12 +2296,10 @@ Expected request body:
 
 ```json
 {
-  "prop1": "foo1",
-  "prop2": "foo2",
-  "prop3": "foo3",
-  "prop4": "foo4",
-  "prop5": "foo5",
-  "prop6": "foo6"
+  "requiredString": "foo",
+  "optionalInt": 1,
+  "requiredIntList": [1, 2],
+  "optionalStringList": ["foo", "bar"]
 }
 ```
 
@@ -1748,11 +2309,11 @@ Expected request body:
 
 Test case for spread named model.
 
-Should generate request body model named `BodyParameter`.
+Should not generate request body model named `BodyParameter`.
 Should generate an operation like below:
 
 ```
-spreadAsRequestBody(bodyParameter: BodyParameter)
+spreadAsRequestBody(name: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
@@ -1793,11 +2354,11 @@ Expected request body:
 
 Test case for spread model with non-body http request decorator.
 
-Should generate request body model named `CompositeRequestMix`.
+Should not generate model named `CompositeRequestMix`.
 Should generate an operation like below:
 
 ```
-spreadCompositeRequestMix(name: string, testHeader: string, bodyParameter: CompositeRequestMix)
+spreadCompositeRequestMix(name: string, testHeader: string, prop: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
@@ -2338,6 +2899,138 @@ maxpagesize=3
     }
   ]
 }
+```
+
+### Payload_Xml_ModelWithArrayOfModelValue_get
+
+- Endpoint: `get /payload/xml/modelWithArrayOfModel`
+
+Expected response body:
+
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_ModelWithArrayOfModelValue_put
+
+- Endpoint: `put /payload/xml/modelWithArrayOfModel`
+
+Expected request body:
+
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_get
+
+- Endpoint: `get /payload/xml/modelWithOptionalField`
+
+Expected response body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_put
+
+- Endpoint: `put /payload/xml/modelWithOptionalField`
+
+Expected request body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithSimpleArrays`
+
+Expected response body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithSimpleArrays`
+
+Expected request body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_SimpleModelValue_get
+
+- Endpoint: `get /payload/xml/simpleModel`
+
+Expected response body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
+```
+
+### Payload_Xml_SimpleModelValue_put
+
+- Endpoint: `put /payload/xml/simpleModel`
+
+Expected request body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
 ```
 
 ### Resiliency_ServiceDriven_addOperation
@@ -3433,6 +4126,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Type_Array_NullableBooleanValue_get
+
+- Endpoint: `get /type/array/nullable-boolean`
+
+Expected Array response body:
+
+```json
+[true, null, false]
+```
+
+### Type_Array_NullableBooleanValue_put
+
+- Endpoint: `put /type/array/nullable-boolean`
+
+Expected Array input body:
+
+```json
+[true, null, false]
+```
+
 ### Type_Array_NullableFloatValue_get
 
 - Endpoint: `get /type/array/nullable-float`
@@ -3451,6 +4164,66 @@ Expected Array input body:
 
 ```json
 [1.25, null, 3.0]
+```
+
+### Type_Array_NullableInt32Value_get
+
+- Endpoint: `get /type/array/nullable-int32`
+
+Expected Array response body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableInt32Value_put
+
+- Endpoint: `put /type/array/nullable-int32`
+
+Expected Array input body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableModelValue_get
+
+- Endpoint: `get /type/array/nullable-model`
+
+Expected Array response body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableModelValue_put
+
+- Endpoint: `put /type/array/nullable-model`
+
+Expected Array input body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableStringValue_get
+
+- Endpoint: `get /type/array/nullable-string`
+
+Expected Array response body:
+
+```json
+["hello", null, "world"]
+```
+
+### Type_Array_NullableStringValue_put
+
+- Endpoint: `put /type/array/nullable-string`
+
+Expected Array input body:
+
+```json
+["hello", null, "world"]
 ```
 
 ### Type_Array_StringValue_get
@@ -4415,6 +5188,27 @@ Expected input body:
 }
 ```
 
+### Type_Model_Visibility_putReadOnlyModel
+
+- Endpoint: `put /type/model/visibility/readonlyroundtrip`
+
+Generate and receive output model with readonly properties.
+
+Expected input body:
+
+```json
+{}
+```
+
+Expected response body:
+
+```json
+{
+  "optionalNullableIntList": [1, 2, 3],
+  "optionalStringRecord": { "k1": "value1", "k2": "value2" }
+}
+```
+
 ### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
@@ -4637,7 +5431,7 @@ Expected response body:
 {
   "name": "ExtendsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4654,7 +5448,7 @@ Expected input body:
 {
   "name": "ExtendsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4672,7 +5466,7 @@ Expected response body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4690,7 +5484,7 @@ Expected input body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4823,7 +5617,7 @@ Expected response body:
 {
   "name": "IsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4840,7 +5634,7 @@ Expected input body:
 {
   "name": "IsUnknownAdditionalProperties",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4858,7 +5652,7 @@ Expected response body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -4876,7 +5670,7 @@ Expected input body:
   "kind": "derived",
   "name": "Derived",
   "index": 314,
-  "age": 2.71828,
+  "age": 2.71875,
   "prop1": 32,
   "prop2": true,
   "prop3": "abc"
@@ -5816,6 +6610,86 @@ Expected request body:
 ### Type_Property_Optional_IntLiteral_putDefault
 
 - Endpoint: `put /type/property/optional/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainDate_getAll
+
+- Endpoint: `get /type/property/optional/plainDate/all`
+
+Expected response body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_PlainDate_getDefault
+
+- Endpoint: `get /type/property/optional/plainDate/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainDate_putAll
+
+- Endpoint: `put /type/property/optional/plainDate/all`
+
+Expected request body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_PlainDate_putDefault
+
+- Endpoint: `put /type/property/optional/plainDate/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainTime_getAll
+
+- Endpoint: `get /type/property/optional/plainTime/all`
+
+Expected response body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_PlainTime_getDefault
+
+- Endpoint: `get /type/property/optional/plainTime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainTime_putAll
+
+- Endpoint: `put /type/property/optional/plainTime/all`
+
+Expected request body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_PlainTime_putDefault
+
+- Endpoint: `put /type/property/optional/plainTime/default`
 
 Expected request body:
 

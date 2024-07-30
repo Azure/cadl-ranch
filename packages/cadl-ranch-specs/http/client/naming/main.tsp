@@ -49,7 +49,7 @@ namespace Property {
     """)
   @route("/client")
   @post
-  op client(...ClientNameModel): NoContentResponse;
+  op client(@body body: ClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -63,7 +63,7 @@ namespace Property {
     """)
   @route("/language")
   @post
-  op language(...LanguageClientNameModel): NoContentResponse;
+  op language(@body body: LanguageClientNameModel): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -77,7 +77,7 @@ namespace Property {
     """)
   @route("/compatible-with-encoded-name")
   @post
-  op compatibleWithEncodedName(...ClientNameAndJsonEncodedNameModel): NoContentResponse;
+  op compatibleWithEncodedName(@body body: ClientNameAndJsonEncodedNameModel): NoContentResponse;
 }
 
 @scenario
@@ -173,7 +173,7 @@ namespace Model {
     """)
   @route("/client")
   @post
-  op client(...ModelWithClientClientName): NoContentResponse;
+  op client(@bodyRoot body: ModelWithClientClientName): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -187,7 +187,7 @@ namespace Model {
     """)
   @route("/language")
   @post
-  op language(...ModelWithLanguageClientName): NoContentResponse;
+  op language(@bodyRoot body: ModelWithLanguageClientName): NoContentResponse;
 }
 
 @operationGroup

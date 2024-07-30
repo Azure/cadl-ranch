@@ -77,6 +77,18 @@ Scenarios.Type_Property_Optional_Duration_getDefault = passOnSuccess(durationMoc
 Scenarios.Type_Property_Optional_Duration_putAll = passOnSuccess(durationMock.putAll);
 Scenarios.Type_Property_Optional_Duration_putDefault = passOnSuccess(durationMock.putDefault);
 
+const plainDateMock = createMockApis("plainDate", "2022-12-12");
+Scenarios.Type_Property_Optional_PlainDate_getAll = passOnSuccess(plainDateMock.getAll);
+Scenarios.Type_Property_Optional_PlainDate_getDefault = passOnSuccess(plainDateMock.getDefault);
+Scenarios.Type_Property_Optional_PlainDate_putAll = passOnSuccess(plainDateMock.putAll);
+Scenarios.Type_Property_Optional_PlainDate_putDefault = passOnSuccess(plainDateMock.putDefault);
+
+const plainTimeMock = createMockApis("plainTime", "13:06:12");
+Scenarios.Type_Property_Optional_PlainTime_getAll = passOnSuccess(plainTimeMock.getAll);
+Scenarios.Type_Property_Optional_PlainTime_getDefault = passOnSuccess(plainTimeMock.getDefault);
+Scenarios.Type_Property_Optional_PlainTime_putAll = passOnSuccess(plainTimeMock.putAll);
+Scenarios.Type_Property_Optional_PlainTime_putDefault = passOnSuccess(plainTimeMock.putDefault);
+
 const collectionsBytesMock = createMockApis("collections/bytes", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]);
 Scenarios.Type_Property_Optional_CollectionsByte_getAll = passOnSuccess(collectionsBytesMock.getAll);
 Scenarios.Type_Property_Optional_CollectionsByte_getDefault = passOnSuccess(collectionsBytesMock.getDefault);
