@@ -3218,6 +3218,12 @@ A simple operation with query api-version, whose default value is defined as '20
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
+### Server_Versions_Versioned_withQueryUnknownApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-query-unknown-api-version`
+
+A simple operation with path api-version, that do NOT use the default but '2022-07-09'.Expected url: '/with-old-path-api-version?api-version=2022-07-09'.
+
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
 - Endpoint: `post /special-headers/conditional-request/if-match`
