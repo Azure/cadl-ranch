@@ -175,15 +175,15 @@ Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
 );
 
 Scenarios.Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType = passOnSuccess(
-  createMockApis("/check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
+  createMockApis("check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
 );
 
 Scenarios.Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType = passOnSuccess(
-  createMockApis("/check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
+  createMockApis("check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
 );
 Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passOnSuccess(
-  createMockApis("/file-with-http-part-optional-content-type", [checkOptionalContentType]),
+  createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
 Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
-  createMockApis("/complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+  createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
