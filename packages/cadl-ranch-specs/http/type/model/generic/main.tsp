@@ -12,6 +12,7 @@ namespace Type.Model.Generic;
 model NumericType<T extends numeric> {
   @doc("This model is used to perform facet processing on fields based on a specified range of values.")
   values: T[];
+
   value: T;
 }
 
@@ -26,28 +27,12 @@ model Int32Type extends NumericType<int32> {
 Expected input body:
 ```json
 {
-  "input": {
-    "kind": "Int32Values",
-    "values": 
-    [
-      1234
-    ],
-    "value": 1234,
-    "field": "<field>"
-  }
-}
-
-Expected response body:
-```json
-{
-  "input": {
-    "kind": "Int32Values",
-    "values": 
-    [
-      1234
-    ],
-    "value": 1234,
-    "field": "<field>"
+  "kind": "Int32Values",
+  "values": 
+  [
+    1234
+  ],
+  "value": 1234
 }
 ```
 """)

@@ -4624,21 +4624,15 @@ Expected response body:
 
 ### Type_Model_Generic_genericType
 
-- Endpoint: `get /type/model/generic/genericType`
+- Endpoint: `put /type/model/generic/genericType`
 
-Send a GET request
-Expected response body:
+Expected input body:
 
 ```json
 {
-  "input": {
-    "kind":"Int32Values",
-    "values":
-    [
-      1234
-    ],
-    "value": 1234,
-    "field": "<field>",
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
 }
 ```
 
