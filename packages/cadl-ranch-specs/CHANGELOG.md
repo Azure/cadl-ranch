@@ -6,7 +6,6 @@
 
 - 1cdf0c8: updated dependencies @azure-tools/cadl-ranch-api@0.4.4
 
-
 ## 0.34.9
 
 ### Patch Changes
