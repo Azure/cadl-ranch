@@ -1,5 +1,185 @@
 # @azure-tools/cadl-ranch
 
+## 0.13.5
+
+### Patch Changes
+
+- 1cdf0c8: updated dependencies @azure-tools/cadl-ranch-api@0.4.4
+
+## 0.13.4
+
+### Patch Changes
+
+- 760a4fe: Bump typespec 0.58.0
+- Updated dependencies [760a4fe]
+  - @azure-tools/cadl-ranch-expect@0.14.1
+
+## 0.13.3
+
+### Patch Changes
+
+- c117010: Updated expected float value of 2.71828 to 2.71875, a value that can be exactly represented as IEEE754 (http/type/property/additional-properties).
+
+## 0.13.2
+
+### Patch Changes
+
+- 31a98d7: add the embedding vector scenario
+
+## 0.13.1
+
+### Patch Changes
+
+- d82838f: Updated expected float duration values (35.621 and 46.781) to the values that can be exactly represented as IEEE754 (35.625 and 46.75 respectively).
+
+## 0.13.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+
+### Patch Changes
+
+- Updated dependencies [87a8ccc]
+  - @azure-tools/cadl-ranch-expect@0.14.0
+
+## 0.12.8
+
+### Patch Changes
+
+- 614aa62: bump internal dependency to 0.56.0
+- Updated dependencies [614aa62]
+  - @azure-tools/cadl-ranch-expect@0.13.4
+
+## 0.12.7
+
+### Patch Changes
+
+- 56f07cf: additional-properties-add-test-cases-for-spread-of-record
+- 68dfb72: Add old API version test
+
+## 0.12.6
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.2
+  - @azure-tools/cadl-ranch-expect@0.13.3
+
+## 0.12.5
+
+### Patch Changes
+
+- 7956a78: delete-projected-name-as-deprecated
+
+## 0.12.4
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.1
+  - @azure-tools/cadl-ranch-expect@0.13.2
+
+## 0.12.3
+
+### Patch Changes
+
+- b045692: Updated expected `float32` values (1.2 and 2.3) to the values that can be exactly represented as IEEE754 (1.25 and 2.375 respectively).
+
+## 0.12.2
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+- Updated dependencies [055bd17]
+  - @azure-tools/cadl-ranch-expect@0.13.1
+
+## 0.12.1
+
+### Patch Changes
+
+- 8e6e124: Updated expected `float32` values (42.42 and 43.43) to the values that can be exactly represented as IEEE754 (43.125 and 46.875 respectively).
+
+## 0.12.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+### Patch Changes
+
+- c611311: Fix typos in MFD tests
+- 697a257: Corrected document for Type.Array namespace
+- Updated dependencies [f2a9bce]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.0
+  - @azure-tools/cadl-ranch-expect@0.13.0
+
+## 0.11.3
+
+### Patch Changes
+
+- Updated dependencies [f4683bf]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.7.0
+  - @azure-tools/cadl-ranch-expect@0.12.0
+
+## 0.11.2
+
+### Patch Changes
+
+- c5a78e9: Add types to dashboard
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.1
+
+## 0.11.1
+
+### Patch Changes
+
+- 36ec209: Add Go to the projected-name test
+- Updated dependencies [626365a]
+  - @azure-tools/cadl-ranch-expect@0.11.0
+
+## 0.11.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.0
+  - @azure-tools/cadl-ranch-expect@0.10.0
+
+## 0.10.2
+
+### Patch Changes
+
+- 0c77443: Fix for test case that request body is binary
+- Updated dependencies [0c77443]
+  - @azure-tools/cadl-ranch-api@0.4.3
+
+## 0.10.1
+
+### Patch Changes
+
+- d803994: add test case for multipart/form-data
+- Updated dependencies [d803994]
+  - @azure-tools/cadl-ranch-api@0.4.2
+
+## 0.10.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.5.0
+  - @azure-tools/cadl-ranch-expect@0.9.0
+
 ## 0.9.1
 
 ### Patch Changes

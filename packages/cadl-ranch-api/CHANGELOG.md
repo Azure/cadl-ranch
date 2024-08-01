@@ -1,5 +1,23 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.4
+
+### Patch Changes
+
+- 37dfce1: Add xml related support
+
+## 0.4.3
+
+### Patch Changes
+
+- 0c77443: Fix for test case that request body is binary
+
+## 0.4.2
+
+### Patch Changes
+
+- d803994: Fix order of actual and expected for deepEqual
+
 ## 0.4.1
 
 ### Patch Changes

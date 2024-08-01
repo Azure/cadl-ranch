@@ -5,7 +5,7 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates various of dictionaries.")
+@doc("Illustrates various types of arrays.")
 @scenarioService("/type/array")
 namespace Type.Array;
 
@@ -65,7 +65,7 @@ interface StringValue extends ArrayOperations<string[], "['hello', '']"> {}
 @doc("Array of float values")
 @route("/float32")
 @operationGroup
-interface Float32Value extends ArrayOperations<float32[], "[42.42]"> {}
+interface Float32Value extends ArrayOperations<float32[], "[43.125]"> {}
 
 @doc("Array of datetime values")
 @route("/datetime")
@@ -99,4 +99,29 @@ alias NullableFloat = float32 | null;
 @doc("Array of nullable float values")
 @route("/nullable-float")
 @operationGroup
-interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.2, null, 3.0]"> {}
+interface NullableFloatValue extends ArrayOperations<NullableFloat[], "[1.25, null, 3.0]"> {}
+
+alias NullableInt32 = int32 | null;
+@doc("Array of nullable int32 values")
+@route("/nullable-int32")
+@operationGroup
+interface NullableInt32Value extends ArrayOperations<NullableInt32[], "[1, null, 3]"> {}
+
+alias NullableBoolean = boolean | null;
+@doc("Array of nullable boolean values")
+@route("/nullable-boolean")
+@operationGroup
+interface NullableBooleanValue extends ArrayOperations<NullableBoolean[], "[true, null, false]"> {}
+
+alias NullableString = string | null;
+@doc("Array of nullable string values")
+@route("/nullable-string")
+@operationGroup
+interface NullableStringValue extends ArrayOperations<NullableString[], "['hello', null, 'world']"> {}
+
+alias NullableModel = InnerModel | null;
+@doc("Array of nullable model values")
+@route("/nullable-model")
+@operationGroup
+interface NullableModelValue
+  extends ArrayOperations<NullableModel[], "[{'property': 'hello'}, null, {'property': 'world'}]"> {}

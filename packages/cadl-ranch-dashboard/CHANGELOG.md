@@ -1,5 +1,86 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.3
+
+### Patch Changes
+
+- 439256b: Add rust to dashboard
+
+## 0.8.2
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.2
+
+## 0.8.1
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.1
+
+## 0.8.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+### Patch Changes
+
+- Updated dependencies [f2a9bce]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.0
+
+## 0.7.0
+
+### Minor Changes
+
+- f4683bf: fix change log and fix missing version bumps
+
+### Patch Changes
+
+- Updated dependencies [f4683bf]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.7.0
+
+## 0.6.2
+
+### Patch Changes
+
+- 0a7c000: Change to the dashboard style: Fix the overflow of typescript header and other style tweaks
+- c5a78e9: Add types to dashboard
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.1
+
+## 0.6.1
+
+### Patch Changes
+
+- 893527f: Add go and cpp to dashboard
+
+## 0.6.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.6.0
+
+## 0.5.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes

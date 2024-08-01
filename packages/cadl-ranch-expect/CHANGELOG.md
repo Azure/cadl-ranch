@@ -1,5 +1,71 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.14.1
+
+### Patch Changes
+
+- 760a4fe: Bump typespec 0.58.0
+
+## 0.14.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+
+## 0.13.4
+
+### Patch Changes
+
+- 614aa62: bump internal dependency to 0.56.0
+
+## 0.13.3
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+
+## 0.13.2
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+
+## 0.13.1
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+
+## 0.13.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+## 0.12.0
+
+### Minor Changes
+
+- f4683bf: fix change log and fix missing version bumps
+
+## 0.11.0
+
+### Minor Changes
+
+- 626365a: remove behavior defaulting service version to 1.0.0 in the `@scenarioService` decorator
+
+## 0.10.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+## 0.9.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
 ## 0.8.1
 
 ### Patch Changes

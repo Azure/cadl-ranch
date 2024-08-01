@@ -5,11 +5,16 @@ import { parseArgs } from "util";
 
 const knownPackages = [
   "@typespec/compiler",
-  "@typespec/rest",
   "@typespec/http",
+  "@typespec/openapi",
+  "@typespec/rest",
   "@typespec/versioning",
+  "@typespec/xml",
   "@azure-tools/typespec-client-generator-core",
   "@azure-tools/typespec-azure-core",
+  "@azure-tools/typespec-azure-resource-manager",
+  "@azure-tools/typespec-azure-rulesets",
+  "@azure-tools/typespec-autorest",
   "@typespec/eslint-config-typespec",
   "@typespec/library-linter",
 ];

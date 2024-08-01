@@ -61,7 +61,7 @@ export class CadlRanchCoverageOperations {
 
   public async upload(generatorMetadata: GeneratorMetadata, report: CoverageReport): Promise<void> {
     const blob = this.#container.getBlockBlobClient(
-      `${generatorMetadata.name}/reports/${generatorMetadata.version}.json`,
+      `${generatorMetadata.name}/reports/${generatorMetadata.version}/${generatorMetadata.mode}.json`,
     );
     const resolvedReport: ResolvedCoverageReport = { ...report, generatorMetadata };
     const content = JSON.stringify(resolvedReport, null, 2);
@@ -69,6 +69,7 @@ export class CadlRanchCoverageOperations {
       metadata: {
         generatorName: generatorMetadata.name,
         generatorVersion: generatorMetadata.version,
+        generatorMode: generatorMetadata.mode,
       },
       blobHTTPHeaders: {
         blobContentType: "application/json; charset=utf-8",
@@ -78,23 +79,48 @@ export class CadlRanchCoverageOperations {
     await this.updateIndex(generatorMetadata.name, generatorMetadata.version);
   }
 
-  public async getLatestCoverageFor(generatorName: string): Promise<ResolvedCoverageReport> {
-    const index = await readJsonBlob<{ version: string }>(
+  public async getLatestCoverageFor(
+    generatorName: string,
+    generatorMode: string,
+  ): Promise<ResolvedCoverageReport | undefined> {
+    const index = await readJsonBlob<{ version: string; types: string[] }>(
       this.#container.getBlockBlobClient(`${generatorName}/index.json`),
     );
 
-    const blobClient = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
-    const blob = await blobClient.download();
-    const body = await blob.blobBody;
-    const content = await body?.text();
-    const report = content ? JSON.parse(content) : undefined;
-    return {
-      generatorMetadata: {
-        version: blob.metadata?.generatorversion,
-        name: blob.metadata?.generatorname,
-      },
-      ...report,
-    };
+    // Compatible with current format, delete later
+    const blobClientOldVersion = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
+    if (await blobClientOldVersion.exists()) {
+      const blob = await blobClientOldVersion.download();
+      const body = await blob.blobBody;
+      const content = await body?.text();
+      const report = content ? JSON.parse(content) : undefined;
+      return {
+        generatorMetadata: {
+          version: blob.metadata?.generatorversion,
+          name: blob.metadata?.generatorname,
+          mode: "azure",
+        },
+        ...report,
+      };
+    } else {
+      const blobClient = this.#container.getBlockBlobClient(
+        `${generatorName}/reports/${index.version}/${generatorMode}.json`,
+      );
+      if (await blobClient.exists()) {
+        const blob = await blobClient.download();
+        const body = await blob.blobBody;
+        const content = await body?.text();
+        const report = content ? JSON.parse(content) : undefined;
+        return {
+          generatorMetadata: {
+            version: blob.metadata?.generatorversion,
+            name: blob.metadata?.generatorname,
+            mode: blob.metadata?.generatorMode,
+          },
+          ...report,
+        };
+      } else return undefined;
+    }
   }
 
   private async updateIndex(generatorName: string, version: string) {

@@ -7,6 +7,7 @@ import {
   validateCoercedDateBodyEquals,
   validateHeader,
   validateQueryParam,
+  validateXmlBodyEquals,
 } from "./request-validations.js";
 import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
@@ -21,7 +22,7 @@ export class RequestExpectation {
    * @param rawBody Raw request body.
    * @throws {ValidationError} if there is an error.
    */
-  public rawBodyEquals(expectedRawBody: string | undefined): void {
+  public rawBodyEquals(expectedRawBody: string | Buffer | undefined): void {
     validateRawBodyEquals(this.originalRequest, expectedRawBody);
   }
 
@@ -89,7 +90,17 @@ export class RequestExpectation {
    */
   public deepEqual(actual: unknown, expected: unknown, message = "Values not deep equal"): void {
     if (!deepEqual(actual, expected, { strict: true })) {
-      throw new ValidationError(message, actual, expected);
+      throw new ValidationError(message, expected, actual);
     }
+  }
+
+  /**
+   * Expect the body of the request to be semantically equivalent to the provided XML string.
+   * The XML declaration prefix will automatically be added to expectedBody.
+   * @param expectedBody expected value of request body.
+   * @throws {ValidationError} if there is an error.
+   */
+  public xmlBodyEquals(expectedBody: string): void {
+    validateXmlBodyEquals(this.originalRequest, expectedBody);
   }
 }

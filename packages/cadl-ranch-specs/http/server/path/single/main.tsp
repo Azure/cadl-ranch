@@ -4,7 +4,7 @@ import "@azure-tools/cadl-ranch-expect";
 using TypeSpec.Http;
 
 @doc("Illustrates server with a single path parameter @server")
-@scenarioService("/server/path/single")
+@service
 @server(
   "{endpoint}",
   "Testserver endpoint",
@@ -13,6 +13,7 @@ using TypeSpec.Http;
     endpoint: url,
   }
 )
+@route("/server/path/single")
 namespace Server.Path.Single;
 
 @scenario

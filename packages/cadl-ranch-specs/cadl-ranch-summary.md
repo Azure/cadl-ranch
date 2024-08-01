@@ -133,6 +133,7 @@ Expected response body:
 - Endpoints:
   - `post /azure/client-generator-core/usage/inputToInputOutput`
   - `post /azure/client-generator-core/usage/outputToInputOutput`
+  - `post /azure/client-generator-core/usage/modelInReadOnlyProperty`
 
 This scenario contains two public operations. Both should be generated and exported.
 The models are override to roundtrip, so they should be generated and exported as well.
@@ -270,57 +271,76 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Lro_Rpc_Legacy_CreateResourcePollViaOperationLocation
+### Azure_Core_Basic_listWithCustomPageModel
+
+- Endpoint: `get /azure/core/basic/custom-page`
+
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+{
+  "items":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_listWithPage
+
+- Endpoint: `get /azure/core/basic/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_listWithParameters
+
+- Endpoint: `get /azure/core/basic/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+```json
+{
+  "value":[
+     {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
+  ]
+}
+
+### Azure_Core_Basic_TwoModelsAsPageItem
 
 - Endpoints:
-  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location`
-  - `get /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs`
+  - `get /azure/core/basic/first-item`
+  - `get /azure/core/basic/second-item`
 
-POST to create resource.
-Poll URL via operation-location header in response.
-Poll response is the (InProgress) created resource. Poll ends when resource status property is Succeeded. Last poll response could be used for final result.
-
-Expected verb: POST
-Expected request body:
-
-```json
-{
-  "comment": "async job"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/create-resource-poll-via-operation-location/jobs/job1
-No response body.
-
-Expected verb: GET
-Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "running"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/create-resource-poll-via-operation-location/jobs/job1
-
-Expected status code: 200
-Expected response body:
-
-```json
-{
-  "jobId": "job1",
-  "comment": "async job",
-  "status": "succeeded",
-  "results": ["job1 result"]
-}
-```
+This scenario is to test two operations with two different page item types.
 
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
@@ -331,12 +351,11 @@ GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
-
 ```json
 {
   "prompt": "text"
 }
-```
+````
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/generations/operations/operation1
@@ -541,81 +560,79 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Page_listWithCustomPageModel
+### Azure_Core_Model_AzureCoreEmbeddingVector_get
 
-- Endpoint: `get /azure/core/page/custom-page`
+- Endpoint: `get /azure/core/model/embeddingVector`
 
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+Expect to handle an embedding vector. Mock api will return [0, 1, 2, 3, 4]
 
-Expected query parameter: api-version=2022-12-01-preview
+### Azure_Core_Model_AzureCoreEmbeddingVector_post
+
+- Endpoint: `post /azure/core/model/embeddingVector`
+
+Expect to send a model which has an embedding vector property.
+
+Expected request body:
+
+```json
+{ "embedding": [0, 1, 2, 3, 4] }
+```
 
 Expected response body:
 
 ```json
-{
-  "items": [
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    }
-  ]
-}
+{ "embedding": [5, 6, 7, 8, 9] }
 ```
 
-### Azure_Core_Page_listWithPage
+### Azure_Core_Model_AzureCoreEmbeddingVector_put
 
-- Endpoint: `get /azure/core/page/page`
+- Endpoint: `put /azure/core/model/embeddingVector`
 
-Should only generate models named User and UserOrder.
+Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
 
-Should not generate visible model like Page.
+### Azure_Core_Scalar_AzureLocationScalar_get
 
-Expected query parameter: api-version=2022-12-01-preview
+- Endpoint: `get /azure/core/scalar/azureLocation`
+
+Expect to handle a azureLocation value. Mock api will return 'eastus'
+
+### Azure_Core_Scalar_AzureLocationScalar_header
+
+- Endpoint: `post /azure/core/scalar/azureLocation/header`
+
+Expect to send a azureLocation value as header.
+Expected header parameter: `region="eastus"`
+
+### Azure_Core_Scalar_AzureLocationScalar_post
+
+- Endpoint: `post /azure/core/scalar/azureLocation`
+
+Expect to send a model which has an azureLocation property.
+
+Expected request body:
+
+```json
+{ "location": "eastus" }
+```
 
 Expected response body:
 
 ```json
-{
-  "value": [
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    }
-  ]
-}
+{ "location": "eastus" }
 ```
 
-### Azure_Core_Page_listWithParameters
+### Azure_Core_Scalar_AzureLocationScalar_put
 
-- Endpoint: `get /azure/core/page/parameters`
+- Endpoint: `put /azure/core/scalar/azureLocation`
 
-Expected query parameter: api-version=2022-12-01-preview&another=Second
+Expect to send a azureLocation value. Mock api expect to receive 'eastus'
 
-Expected body parameter: {"inputName": "Madge"}
+### Azure_Core_Scalar_AzureLocationScalar_query
 
-Expected response body:
+- Endpoint: `post /azure/core/scalar/azureLocation/query`
 
-```json
-{
-  "value": [
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    }
-  ]
-}
-```
-
-### Azure_Core_Page_TwoModelsAsPageItem
-
-- Endpoints:
-  - `get /azure/core/page/first-item`
-  - `get /azure/core/page/second-item`
-
-This scenario is to test two operations with two different page item types.
+Expect to send a azureLocation value as query.
+Expected query parameter: `region="eastus"`
 
 ### Azure_Core_Traits_repeatableAction
 
@@ -676,6 +693,635 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "properties": {},
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned",
+    "principalId": <any uuid string>
+    "tenantId": <any uuid string>
+   },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {}
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "location": "eastus",
+  "tags": {
+    "tagKey1": "tagValue1"
+  },
+  "identity": {
+    "type": "SystemAssigned,UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1": {
+        "principalId": <any uuid string>,
+        "clientId": <any uuid string>
+      },
+    },
+    "principalId": <any uuid string>,
+    "tenantId": <any uuid string>
+  },
+  "properties": {
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by parent resource operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+    "name": "nested",
+    "type": "nested",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_NestedProxyResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "name": "nested",
+  "type": "nested",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
+
+- Endpoint: `delete https://management.azure.com`
+
+Resource DELETE operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+````
+Expected response status code: 204
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+````
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by subscription operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+    "name": "top",
+    "type": "topLevel",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  "name": "top",
+  "type": "topLevel",
+  "location": "eastus",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_SpecialHeaders_XmsClientRequestId
+
+- Endpoint: `get /azure/special-headers/x-ms-client-request-id/`
+
+Test case for azure client request id header. SDK should not generate `clientRequestId` paramerter but use policy to auto-set the header.
+Expected header parameters:
+
+- x-ms-client-request-id=<any uuid string>
+  Expected response header:
+- x-ms-client-request-id=<uuid string same with request header>
+
+### Client_AzureExampleClient_basicAction
+
+- Endpoint: `post /azure/example/basic/basic`
+
+Expected request and response is same as the JSON example at examples/2022-12-01-preview/basic.json
+
+When generate the code, one need to set the "examples-directory" option.
+
+Expected query parameter: query-param=query&api-version=2022-12-01-preview
+Expected header parameter: header-param=header
+
+Expected input body:
+
+```json
+{
+  "stringProperty": "text",
+  "modelProperty": {
+    "int32Property": 1,
+    "float32Property": 1.5,
+    "enumProperty": "EnumValue1"
+  },
+  "arrayProperty": ["item"],
+  "recordProperty": {
+    "record": "value"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "stringProperty": "text"
+}
+```
+
+### Client_Naming_Header_request
+
+- Endpoint: `post /client/naming/header`
+
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+Expected header parameter: `default-name="true"`
+
+### Client_Naming_Header_response
+
+- Endpoint: `get /client/naming/header`
+
+Testing that we can project a header name.
+Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
+
+Expected response header: `default-name="true"`
+
+### Client_Naming_Model_client
+
+- Endpoint: `post /client/naming/model/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate the model with name `ClientModel`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_Model_language
+
+- Endpoint: `post /client/naming/model/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate the model with your language specific model name.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_operation
+
+- Endpoint: `post /client/naming/operation`
+
+Testing that we can project the operation name.
+Your generated SDK should generate an operation called `clientName`.
+
+Expected status code: 204
+
+### Client_Naming_parameter
+
+- Endpoint: `post /client/naming/parameter`
+
+Testing that we can project a parameter name.
+Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
+
+Expected query parameter: `defaultName="true"`
+
+### Client_Naming_Property_client
+
+- Endpoint: `post /client/naming/property/client`
+
+Testing that we can project the client name in our generated SDKs.
+Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_Property_compatibleWithEncodedName
+
+- Endpoint: `post /client/naming/property/compatible-with-encoded-name`
+
+Testing that we can project the client name and the wire name.
+Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
+
+Expected request body:
+
+```json
+{ "wireName": true }
+```
+
+### Client_Naming_Property_language
+
+- Endpoint: `post /client/naming/property/language`
+
+Testing that we can project the language specific name in our generated SDKs.
+Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
+
+Expected request body:
+
+```json
+{ "defaultName": true }
+```
+
+### Client_Naming_UnionEnum_unionEnumMemberName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-member-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
+### Client_Naming_UnionEnum_unionEnumName
+
+- Endpoint: `post /client/naming/union-enum/union-enum-name`
+
+  Testing that we can project a enum name and enum value name.
+  Your generated SDK should generate an Enum "ClientExtensibleEnum".
+  (The exact name may depend on language convention)
+
+  Expected request body:
+
+  ```json
+  "value1"
+  ```
+
 ### Client_Structure_MultiClient
 
 - Endpoints:
@@ -728,6 +1374,9 @@ client.group.renamedSix();
 ### Client_Structure_Service
 
 - Endpoints:
+  - `post /client/structure/{client}/seven`
+  - `post /client/structure/{client}/nine`
+  - `post /client/structure/{client}/eight`
   - `post /client/structure/{client}/three`
   - `post /client/structure/{client}/four`
   - `post /client/structure/{client}/five`
@@ -738,13 +1387,16 @@ client.group.renamedSix();
 This is to show that if we don't do any customization. The client side should be able to call the api like
 
 ```ts
-const client = new MultiClient("default");
+const client = new ServiceClient("default");
 client.one();
 client.two();
-client.three();
-client.four();
-client.five();
-client.six();
+client.foo.three();
+client.foo.four();
+client.bar.five();
+client.bar.six();
+client.baz.foo.seven();
+client.qux.eight();
+client.qux.bar.nine();
 ```
 
 ### Client_Structure_TwoOperationGroup
@@ -1219,12 +1871,19 @@ value=1686566864
 Test default encode for a duration header.
 Expected header `input=P40D`
 
+### Encode_Duration_Header_float64Seconds
+
+- Endpoint: `get /encode/duration/header/float64-seconds`
+
+Test float64 seconds encode for a duration header.
+Expected header `duration: 35.625`
+
 ### Encode_Duration_Header_floatSeconds
 
 - Endpoint: `get /encode/duration/header/float-seconds`
 
 Test float seconds encode for a duration header.
-Expected header `duration: 35.621`
+Expected header `duration: 35.625`
 
 ### Encode_Duration_Header_int32Seconds
 
@@ -1268,6 +1927,27 @@ Expected response body:
 }
 ```
 
+### Encode_Duration_Property_float64Seconds
+
+- Endpoint: `get /encode/duration/property/float64-seconds`
+
+Test operation with request and response model contains a duration property with float64 seconds encode.
+Expected request body:
+
+```json
+{
+  "value": 35.625
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": 35.625
+}
+```
+
 ### Encode_Duration_Property_floatSeconds
 
 - Endpoint: `get /encode/duration/property/float-seconds`
@@ -1277,7 +1957,7 @@ Expected request body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1285,7 +1965,7 @@ Expected response body:
 
 ```json
 {
-  "value": 35.621
+  "value": 35.625
 }
 ```
 
@@ -1298,7 +1978,7 @@ Expected request body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1306,7 +1986,7 @@ Expected response body:
 
 ```json
 {
-  "value": [35.621, 46.781]
+  "value": [35.625, 46.75]
 }
 ```
 
@@ -1359,12 +2039,19 @@ Expected response body:
 Test default encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Encode_Duration_Query_float64Seconds
+
+- Endpoint: `get /encode/duration/query/float64-seconds`
+
+Test float64 seconds encode for a duration parameter.
+Expected query parameter `input=35.625`
+
 ### Encode_Duration_Query_floatSeconds
 
 - Endpoint: `get /encode/duration/query/float-seconds`
 
 Test float seconds encode for a duration parameter.
-Expected query parameter `input=35.621`
+Expected query parameter `input=35.625`
 
 ### Encode_Duration_Query_int32Seconds
 
@@ -1386,6 +2073,45 @@ Expected query parameter `input=36,47`
 
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
+
+### Parameters_Basic_ExplicitBody_simple
+
+- Endpoint: `put /parameters/basic/explicit-body/simple`
+
+Test case for simple explicit body.
+
+Should generate request body model named `User`.
+Should generate an operation like below:
+
+```
+spreadAsRequestBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Basic_ImplicitBody_simple
+
+- Endpoint: `put /parameters/basic/implicit-body/simple`
+
+Test case for simple implicit body.
+
+Should generate an operation like below:
+
+```
+simple(name: string)
+```
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
 
 ### Parameters_BodyOptionality_OptionalExplicit
 
@@ -1505,19 +2231,63 @@ Expected request body:
 { "name": "foo" }
 ```
 
+### Parameters_Spread_Alias_spreadParameterWithInnerAlias
+
+- Endpoint: `post /parameters/spread/alias/inner-alias-parameter`
+
+Test case for spread alias with contains another alias property as body.
+
+Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
+Should generate an operation like below:
+
+```
+spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{
+  "name": "foo",
+  "age": 1
+}
+```
+
+### Parameters_Spread_Alias_spreadParameterWithInnerModel
+
+- Endpoint: `post /parameters/spread/alias/inner-model-parameter/{id}`
+
+Test case for spread alias.
+
+Should not generate any model named `InnerModel`.
+Should not generate any model named `InnerModelParameter`.
+Should generate an operation like:
+
+```
+spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: id="1"
+Expected header parameter: x-ms-test-header="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
 ### Parameters_Spread_Alias_spreadWithMultipleParameters
 
 - Endpoint: `put /parameters/spread/alias/multiple-parameters/{id}`
 
 Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
 
-Should not generate any model named `AliasMultipleRequestParameters`.
-Should generate an operation like below:
-
-```
-spreadWithMultipleParameters(id: string, x_ms_test_header: string, prop1: string, prop2: string, prop3: string, prop4: string, prop5: string, prop6: string)
-```
-
+Should not generate any model named `MultipleRequestParameters`.
+Since it contains both optional properties and required properties, the method signature might vary across different languages.
 Note it's also acceptable if some languages handle it as property bag.
 
 Expected path parameter: id="1"
@@ -1526,12 +2296,10 @@ Expected request body:
 
 ```json
 {
-  "prop1": "foo1",
-  "prop2": "foo2",
-  "prop3": "foo3",
-  "prop4": "foo4",
-  "prop5": "foo5",
-  "prop6": "foo6"
+  "requiredString": "foo",
+  "optionalInt": 1,
+  "requiredIntList": [1, 2],
+  "optionalStringList": ["foo", "bar"]
 }
 ```
 
@@ -1541,11 +2309,11 @@ Expected request body:
 
 Test case for spread named model.
 
-Should generate request body model named `BodyParameter`.
+Should not generate request body model named `BodyParameter`.
 Should generate an operation like below:
 
 ```
-spreadAsRequestBody(bodyParameter: BodyParameter)
+spreadAsRequestBody(name: string)
 ```
 
 Note the parameter name is guessed from the model name and it may vary by language.
@@ -1555,6 +2323,91 @@ Expected request body:
 ```json
 { "name": "foo" }
 ```
+
+### Parameters_Spread_Model_spreadCompositeRequest
+
+- Endpoint: `put /parameters/spread/model/composite-request/{name}`
+
+Test case for spread model with all http request decorator.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequest`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestMix
+
+- Endpoint: `put /parameters/spread/model/composite-request-mix/{name}`
+
+Test case for spread model with non-body http request decorator.
+
+Should not generate model named `CompositeRequestMix`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestMix(name: string, testHeader: string, prop: string)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-only-with-body`
+
+Test case for spread model only with `@body` property.
+
+Should generate request body model named `BodyParameter`.
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
+```
+
+Note the parameter name is guessed from the model name and it may vary by language.
+
+Expected request body:
+
+```json
+{ "name": "foo" }
+```
+
+### Parameters_Spread_Model_spreadCompositeRequestWithoutBody
+
+- Endpoint: `put /parameters/spread/model/composite-request-without-body/{name}`
+
+Test case for spread model without `@body` property.
+
+Should not generate model named `CompositeRequestOnlyWithBody`.
+Should generate an operation like below:
+
+```
+spreadCompositeRequestWithoutBody(name: string, testHeader: string)
+```
+
+Expected path parameter: name="foo"
+Expected header parameter: testHeader="bar"
 
 ### Payload_ContentNegotiation_DifferentBody
 
@@ -1577,6 +2430,432 @@ Scenario that returns a different file encoding depending on the accept header.
 
 - image/png return a png image
 - image/jpeg return a jpeg image
+
+### Payload_JsonMergePatch_createResource
+
+- Endpoint: `put /json-merge-patch/create/resource`
+
+Expected input body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ],
+  "intValue": 1,
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "description": "desc",
+  "map": {
+    "key": {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  },
+  "array": [
+    {
+      "name": "InnerMadge",
+      "description": "innerDesc"
+    }
+  ],
+  "intValue": 1,
+  "floatValue": 1.1,
+  "innerModel": {
+    "name": "InnerMadge",
+    "description": "innerDesc"
+  },
+  "intArray": [1, 2, 3]
+}
+```
+
+### Payload_JsonMergePatch_updateOptionalResource
+
+- Endpoint: `patch /json-merge-patch/update/resource/optional`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "description": null,
+  "map": {
+    "key": {
+      "description": null
+    },
+    "key2": null
+  },
+  "array": null,
+  "intValue": null,
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "map": {
+    "key": {
+      "name": "InnerMadge"
+    }
+  }
+}
+```
+
+### Payload_JsonMergePatch_updateResource
+
+- Endpoint: `patch /json-merge-patch/update/resource`
+
+Should serialize null values with merge-patch+json enabled.
+
+Expected input body:
+
+```json
+{
+  "description": null,
+  "map": {
+    "key": {
+      "description": null
+    },
+    "key2": null
+  },
+  "array": null,
+  "intValue": null,
+  "floatValue": null,
+  "innerModel": null,
+  "intArray": null
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "Madge",
+  "map": {
+    "key": {
+      "name": "InnerMadge"
+    }
+  }
+}
+```
+
+### Payload_MediaType_StringBody_getAsJson
+
+- Endpoint: `get /payload/media-type/string-body/getAsJson`
+
+Expected response body is "foo".
+
+### Payload_MediaType_StringBody_getAsText
+
+- Endpoint: `get /payload/media-type/string-body/getAsText`
+
+Expected response body is a string '{cat}'.
+
+### Payload_MediaType_StringBody_sendAsJson
+
+- Endpoint: `post /payload/media-type/string-body/sendAsJson`
+
+Expected request body is "foo".
+
+### Payload_MediaType_StringBody_sendAsText
+
+- Endpoint: `post /payload/media-type/string-body/sendAsText`
+
+Expected request body is a string '{cat}'.
+
+### Payload_MultiPart_FormData_anonymousModel
+
+- Endpoint: `post /multipart/form-data/anonymous-model`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /multipart/form-data/anonymous-model HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_basic
+
+- Endpoint: `post /multipart/form-data/mixed-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream;
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_binaryArrayParts
+
+- Endpoint: `post /multipart/form-data/binary-array-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_checkFileNameAndContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-content-type`
+
+this case will check filename and content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_complex
+
+- Endpoint: `post /multipart/form-data/complex-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_jsonArrayParts
+
+- Endpoint: `post /multipart/form-data/json-array-parts`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="previousAddresses"
+Content-Type: application/json
+
+[{
+  "city": "Y"
+},{
+  "city": "Z"
+}]
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_jsonPart
+
+- Endpoint: `post /multipart/form-data/json-part`
+
+Expect request (
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_multiBinaryParts
+
+- Endpoint: `post /multipart/form-data/multi-binary-parts`
+
+Please send request twice, first time with only profileImage, second time with both profileImage and picture(
+
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+  ):
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345
+Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content…}
+--abcde12345--
+```
 
 ### Payload_Pageable_list
 
@@ -1622,74 +2901,390 @@ maxpagesize=3
 }
 ```
 
-### Projection_ProjectedName_operation
+### Payload_Xml_ModelWithArrayOfModelValue_get
 
-- Endpoint: `post /projection/projected-name/operation`
+- Endpoint: `get /payload/xml/modelWithArrayOfModel`
 
-Testing that we can project the operation name.
-Your generated SDK should generate an operation called `clientName`.
+Expected response body:
 
-Expected status code: 204
-
-### Projection_ProjectedName_parameter
-
-- Endpoint: `post /projection/projected-name/parameter`
-
-Testing that we can project a parameter name.
-Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
-
-Expected query parameter: `default-name="true"`
-
-### Projection_ProjectedName_Property_client
-
-- Endpoint: `post /projection/projected-name/property/client`
-
-Testing that we can project the client name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property `clientName` with wire name `defaultName`.
-
-Expected request body:
-
-```json
-{ "defaultName": true }
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
 ```
 
-### Projection_ProjectedName_Property_json
+### Payload_Xml_ModelWithArrayOfModelValue_put
 
-- Endpoint: `post /projection/projected-name/property/json`
-
-Testing that we can project the JSON name on the wire from defaultName -> wireName.
-Your generated SDK should generate JsonProjectedNameModel with one property `defaultName` with wire name `wireName`.
+- Endpoint: `put /payload/xml/modelWithArrayOfModel`
 
 Expected request body:
 
-```json
-{ "wireName": true }
+```xml
+<ModelWithArrayOfModel>
+  <items>
+    <SimpleModel>
+      <name>foo</name>
+      <age>123</age>
+    </SimpleModel>
+    <SimpleModel>
+      <name>bar</name>
+      <age>456</age>
+    </SimpleModel>
+  </items>
+</ModelWithArrayOfModel>
 ```
 
-### Projection_ProjectedName_Property_jsonAndClient
+### Payload_Xml_ModelWithAttributesValue_get
 
-- Endpoint: `post /projection/projected-name/property/json-and-client`
+- Endpoint: `get /payload/xml/modelWithAttributes`
 
-Testing that we can project the client name and the wire name.
-Your generated SDK should generate JsonAndClientProjectedNameModel with one property with client name `clientName` and wire name `wireName`.
+Expected response body:
 
-Expected request body:
-
-```json
-{ "wireName": true }
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
 ```
 
-### Projection_ProjectedName_Property_language
+### Payload_Xml_ModelWithAttributesValue_put
 
-- Endpoint: `post /projection/projected-name/property/language`
-
-Testing that we can project the language specific name in our generated SDKs.
-Your generated SDK should generate ClientProjectedNameModel with one property with your language specific property name and wire name `defaultName`.
+- Endpoint: `put /payload/xml/modelWithAttributes`
 
 Expected request body:
 
-```json
-{ "defaultName": true }
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_get
+
+- Endpoint: `get /payload/xml/modelWithDictionary`
+
+Expected response body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_put
+
+- Endpoint: `put /payload/xml/modelWithDictionary`
+
+Expected request body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithEmptyArray`
+
+Expected response body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithEmptyArray`
+
+Expected request body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_get
+
+- Endpoint: `get /payload/xml/modelWithEncodedNames`
+
+Expected response body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_put
+
+- Endpoint: `put /payload/xml/modelWithEncodedNames`
+
+Expected request body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_get
+
+- Endpoint: `get /payload/xml/modelWithOptionalField`
+
+Expected response body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithOptionalFieldValue_put
+
+- Endpoint: `put /payload/xml/modelWithOptionalField`
+
+Expected request body:
+
+```xml
+<ModelWithOptionalField>
+  <item>widget</item>
+</ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedArrays`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedArrays`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedFields`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedFields`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithSimpleArrays`
+
+Expected response body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithSimpleArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithSimpleArrays`
+
+Expected request body:
+
+```xml
+<ModelWithSimpleArrays>
+  <colors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithTextValue_get
+
+- Endpoint: `get /payload/xml/modelWithText`
+
+Expected response body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithTextValue_put
+
+- Endpoint: `put /payload/xml/modelWithText`
+
+Expected request body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithUnwrappedArray`
+
+Expected response body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithUnwrappedArray`
+
+Expected request body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
+```
+
+### Payload_Xml_SimpleModelValue_get
+
+- Endpoint: `get /payload/xml/simpleModel`
+
+Expected response body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
+```
+
+### Payload_Xml_SimpleModelValue_put
+
+- Endpoint: `put /payload/xml/simpleModel`
+
+Expected request body:
+
+```xml
+<SimpleModel>
+  <name>foo</name>
+  <age>123</age>
+</SimpleModel>
 ```
 
 ### Resiliency_ServiceDriven_addOperation
@@ -1780,6 +3375,39 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
+### Serialization_EncodedName_Json_Property_get
+
+- Endpoint: `get /serialization/encoded-name/json/property`
+
+Testing that you deserialize the right json name over the wire.
+
+Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
+
+Expected response body:
+
+```json
+{ "wireName": true }
+```
+
+### Serialization_EncodedName_Json_Property_send
+
+- Endpoint: `post /serialization/encoded-name/json/property`
+
+Testing that you send the right JSON name on the wire.
+Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
+
+Expected request body:
+
+```json
+{ "wireName": true }
+```
+
+### Server_Endpoint_NotDefined_valid
+
+- Endpoint: `head /server/endpoint/not-defined/valid`
+
+A simple operation in a server without defining a endpoint. Expected uri: '<endpoint you start cadl-ranch>/valid'
+
 ### Server_Path_Multiple_noOperationParams
 
 - Endpoint: `get /server/path/multiple/{apiVersion}`
@@ -1802,16 +3430,47 @@ Expected path parameter: apiVersion=v1.0, keyword=test
 
 An simple operation in a parameterized server.
 
-### SpecialHeaders_ClientRequestId
+### Server_Versions_NotVersioned_withoutApiVersion
 
-- Endpoint: `get /special-headers/client-request-id/`
+- Endpoint: `head /server/versions/not-versioned/without-api-version`
 
-Test case for azure client request id header. SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
-Expected header parameters:
+A simple operation without api-version. Expected url: '/without-api-version', it should not contain any api-version.
 
-- client-request-id=<any uuid string>
-  Expected response header:
-- client-request-id=<uuid string same with request header>
+### Server_Versions_NotVersioned_withPathApiVersion
+
+- Endpoint: `head /server/versions/not-versioned/with-path-api-version`
+
+A simple operation with path api-version, which doesn't have any default value. Expected url: '/with-path-api-version/v1.0'.
+
+### Server_Versions_NotVersioned_withQueryApiVersion
+
+- Endpoint: `head /server/versions/not-versioned/with-query-api-version`
+
+A simple operation with query api-version, which doesn't have any default value. Expected url: '/with-query-api-version?api-version=v1.0'.
+
+### Server_Versions_Versioned_withoutApiVersion
+
+- Endpoint: `head /server/versions/versioned/without-api-version`
+
+A simple operation without api-version. Expected url: '/without-api-version', it should not contain any api-version.
+
+### Server_Versions_Versioned_withPathApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-path-api-version`
+
+A simple operation with path api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-path-api-version/2022-12-01-preview'.
+
+### Server_Versions_Versioned_withQueryApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-query-api-version`
+
+A simple operation with query api-version, whose default value is defined as '2022-12-01-preview'. Expected url: '/with-query-api-version?api-version=2022-12-01-preview'.
+
+### Server_Versions_Versioned_withQueryOldApiVersion
+
+- Endpoint: `head /server/versions/versioned/with-query-old-api-version`
+
+A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
@@ -2648,7 +4307,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Float32Value_put
@@ -2658,7 +4317,7 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[42.42]
+[43.125]
 ```
 
 ### Type_Array_Int32Value_get
@@ -2721,6 +4380,26 @@ Expected Array input body:
 [{ "property": "hello" }, { "property": "world" }]
 ```
 
+### Type_Array_NullableBooleanValue_get
+
+- Endpoint: `get /type/array/nullable-boolean`
+
+Expected Array response body:
+
+```json
+[true, null, false]
+```
+
+### Type_Array_NullableBooleanValue_put
+
+- Endpoint: `put /type/array/nullable-boolean`
+
+Expected Array input body:
+
+```json
+[true, null, false]
+```
+
 ### Type_Array_NullableFloatValue_get
 
 - Endpoint: `get /type/array/nullable-float`
@@ -2728,7 +4407,7 @@ Expected Array input body:
 Expected Array response body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
 ```
 
 ### Type_Array_NullableFloatValue_put
@@ -2738,7 +4417,67 @@ Expected Array response body:
 Expected Array input body:
 
 ```json
-[1.2, null, 3.0]
+[1.25, null, 3.0]
+```
+
+### Type_Array_NullableInt32Value_get
+
+- Endpoint: `get /type/array/nullable-int32`
+
+Expected Array response body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableInt32Value_put
+
+- Endpoint: `put /type/array/nullable-int32`
+
+Expected Array input body:
+
+```json
+[1, null, 3]
+```
+
+### Type_Array_NullableModelValue_get
+
+- Endpoint: `get /type/array/nullable-model`
+
+Expected Array response body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableModelValue_put
+
+- Endpoint: `put /type/array/nullable-model`
+
+Expected Array input body:
+
+```json
+[{ "property": "hello" }, null, { "property": "world" }]
+```
+
+### Type_Array_NullableStringValue_get
+
+- Endpoint: `get /type/array/nullable-string`
+
+Expected Array response body:
+
+```json
+["hello", null, "world"]
+```
+
+### Type_Array_NullableStringValue_put
+
+- Endpoint: `put /type/array/nullable-string`
+
+Expected Array input body:
+
+```json
+["hello", null, "world"]
 ```
 
 ### Type_Array_StringValue_get
@@ -2848,7 +4587,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Float32Value_put
@@ -2858,7 +4597,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 42.42 }
+{ "k1": 43.125 }
 ```
 
 ### Type_Dictionary_Int32Value_get
@@ -2928,7 +4667,7 @@ Expected dictionary input body:
 Expected dictionary response body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_NullableFloatValue_put
@@ -2938,7 +4677,7 @@ Expected dictionary response body:
 Expected dictionary input body:
 
 ```json
-{ "k1": 1.2, "k2": 0.5, "k3": null }
+{ "k1": 1.25, "k2": 0.5, "k3": null }
 ```
 
 ### Type_Dictionary_RecursiveModelValue_get
@@ -3072,6 +4811,70 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
+
+### Type_Model_Flatten_putFlattenModel
+
+- Endpoint: `put /type/model/flatten/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Type_Model_Flatten_putNestedFlattenModel
+
+- Endpoint: `put /type/model/flatten/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
@@ -3367,6 +5170,58 @@ Expected input body:
 
 Generate, send, and receive round-trip bottom model.
 
+### Type_Model_Inheritance_Recursive_get
+
+- Endpoint: `get /type/model/inheritance/recursive`
+
+Send a GET request which returns the following body:
+Expected response body:
+
+```json
+{
+  "level": 0,
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
+### Type_Model_Inheritance_Recursive_put
+
+- Endpoint: `put /type/model/inheritance/recursive`
+
+Send a PUT request with the following body:
+Expected input body:
+
+```json
+{
+  "level": 0,
+  "extension": [
+    {
+      "level": 1,
+      "extension": [
+        {
+          "level": 2
+        }
+      ]
+    },
+    {
+      "level": 1
+    }
+  ]
+}
+```
+
 ### Type_Model_Inheritance_SingleDiscriminator_getLegacyModel
 
 - Endpoint: `get /type/model/inheritance/single-discriminator/legacy-model`
@@ -3587,6 +5442,123 @@ Expected input body:
 }
 ```
 
+### Type_Model_Visibility_putReadOnlyModel
+
+- Endpoint: `put /type/model/visibility/readonlyroundtrip`
+
+Generate and receive output model with readonly properties.
+
+Expected input body:
+
+```json
+{}
+```
+
+Expected response body:
+
+```json
+{
+  "optionalNullableIntList": [1, 2, 3],
+  "optionalStringRecord": { "k1": "value1", "k2": "value2" }
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadFloat`
+
+Expected response body:
+
+```json
+{ "name": "abc", "prop": 43.125, "derivedProp": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadFloat`
+
+Expected input body:
+
+```json
+{ "name": "abc", "prop": 43.125, "derivedProp": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadModel`
+
+Expected response body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": { "state": "ok" },
+  "derivedProp": { "state": "ok" }
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModel_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadModel`
+
+Expected input body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": { "state": "ok" },
+  "derivedProp": { "state": "ok" }
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadModelArray`
+
+Expected response body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": [{ "state": "ok" }, { "state": "ok" }],
+  "derivedProp": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadModelArray`
+
+Expected input body:
+
+```json
+{
+  "knownProp": "abc",
+  "prop": [{ "state": "ok" }, { "state": "ok" }],
+  "derivedProp": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsDifferentSpreadString`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": "abc", "derivedProp": "abc" }
+```
+
+### Type_Property_AdditionalProperties_ExtendsDifferentSpreadString_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsDifferentSpreadString`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": "abc", "derivedProp": "abc" }
+```
+
 ### Type_Property_AdditionalProperties_ExtendsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/extendsRecordFloat`
@@ -3594,7 +5566,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsFloat_put
@@ -3604,7 +5576,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_get
@@ -3614,7 +5586,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModel_put
@@ -3624,7 +5596,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_get
@@ -3634,7 +5606,10 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsModelArray_put
@@ -3644,7 +5619,10 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_ExtendsString_get
@@ -3697,6 +5675,76 @@ Expected input body:
 }
 ```
 
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "ExtendsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_ExtendsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/extendsUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
 ### Type_Property_AdditionalProperties_IsFloat_get
 
 - Endpoint: `get /type/property/additionalProperties/isRecordFloat`
@@ -3704,7 +5752,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsFloat_put
@@ -3714,7 +5762,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "id": 42.42, "prop": 42.42 }
+{ "id": 43.125, "prop": 43.125 }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_get
@@ -3724,7 +5772,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModel_put
@@ -3734,7 +5782,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": { "state": "ok" } }
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_get
@@ -3744,7 +5792,10 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_IsModelArray_put
@@ -3754,7 +5805,10 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "prop": [{ "state": "ok" }, { "state": "ok" }] }
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
 ```
 
 ### Type_Property_AdditionalProperties_IsString_get
@@ -3805,6 +5859,410 @@ Expected input body:
   "prop2": true,
   "prop3": "abc"
 }
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_get
+
+- Endpoint: `get /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected response body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDerived_put
+
+- Endpoint: `put /type/property/additionalProperties/isRecordUnknownDerived`
+
+Expected input body:
+
+```json
+{
+  "name": "IsUnknownAdditionalProperties",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_get
+
+- Endpoint: `get /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected response body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_IsUnknownDiscriminated_put
+
+- Endpoint: `put /type/property/additionalProperties/isUnknownDiscriminated`
+
+Expected input body:
+
+```json
+{
+  "kind": "derived",
+  "name": "Derived",
+  "index": 314,
+  "age": 2.71875,
+  "prop1": 32,
+  "prop2": true,
+  "prop3": "abc"
+}
+```
+
+### Type_Property_AdditionalProperties_MultipleSpread_get
+
+- Endpoint: `get /type/property/additionalProperties/multipleSpreadRecord`
+
+Expected response body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_MultipleSpread_put
+
+- Endpoint: `put /type/property/additionalProperties/multipleSpreadRecord`
+
+Expected input body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordFloat`
+
+Expected response body:
+
+```json
+{ "name": "abc", "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordFloat`
+
+Expected input body:
+
+```json
+{ "name": "abc", "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModel_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordModel`
+
+Expected response body:
+
+```json
+{ "knownProp": "abc", "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModel_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordModel`
+
+Expected input body:
+
+```json
+{ "knownProp": "abc", "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordModelArray`
+
+Expected response body:
+
+```json
+{ "knownProp": "abc", "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordModelArray`
+
+Expected input body:
+
+```json
+{ "knownProp": "abc", "prop": [{ "state": "ok" }, { "state": "ok" }] }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentString_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadDifferentRecordString`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadDifferentString_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadDifferentRecordString`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadFloat_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordFloat`
+
+Expected response body:
+
+```json
+{ "id": 43.125, "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadFloat_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordFloat`
+
+Expected input body:
+
+```json
+{ "id": 43.125, "prop": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadModel_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordModel`
+
+Expected response body:
+
+```json
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadModel_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordModel`
+
+Expected input body:
+
+```json
+{ "knownProp": { "state": "ok" }, "prop": { "state": "ok" } }
+```
+
+### Type_Property_AdditionalProperties_SpreadModelArray_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordModelArray`
+
+Expected response body:
+
+```json
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadModelArray_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordModelArray`
+
+Expected input body:
+
+```json
+{
+  "knownProp": [{ "state": "ok" }, { "state": "ok" }],
+  "prop": [{ "state": "ok" }, { "state": "ok" }]
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordDiscriminatedUnion`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordDiscriminatedUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordDiscriminatedUnion`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind0", "fooProp": "abc" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion2`
+
+Expected response body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind1", "start": "2021-01-01T00:00:00Z" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion2_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion2`
+
+Expected input body:
+
+```json
+{
+  "name": "abc",
+  "prop1": { "kind": "kind1", "start": "2021-01-01T00:00:00Z" },
+  "prop2": {
+    "kind": "kind1",
+    "start": "2021-01-01T00:00:00Z",
+    "end": "2021-01-02T00:00:00Z"
+  }
+}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3`
+
+Expected response body:
+
+```json
+{'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordNonDiscriminatedUnion3_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3`
+
+Expected input body:
+
+```json
+{'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordUnion_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordUnion`
+
+Expected response body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadRecordUnion_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordUnion`
+
+Expected input body:
+
+```json
+{ "flag": true, "prop1": "abc", "prop2": 43.125 }
+```
+
+### Type_Property_AdditionalProperties_SpreadString_get
+
+- Endpoint: `get /type/property/additionalProperties/spreadRecordString`
+
+Expected response body:
+
+```json
+{ "name": "SpreadSpringRecord", "prop": "abc" }
+```
+
+### Type_Property_AdditionalProperties_SpreadString_put
+
+- Endpoint: `put /type/property/additionalProperties/spreadRecordString`
+
+Expected input body:
+
+```json
+{ "name": "SpreadSpringRecord", "prop": "abc" }
 ```
 
 ### Type_Property_Nullable_Bytes_getNonNull
@@ -3926,6 +6384,46 @@ Expected request body:
 ### Type_Property_Nullable_CollectionsModel_patchNull
 
 - Endpoint: `patch /type/property/nullable/collections/model/null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_CollectionsString_getNonNull
+
+- Endpoint: `get /type/property/nullable/collections/string/non-null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+```
+
+### Type_Property_Nullable_CollectionsString_getNull
+
+- Endpoint: `get /type/property/nullable/collections/string/null`
+
+Expected response body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": null }
+```
+
+### Type_Property_Nullable_CollectionsString_patchNonNull
+
+- Endpoint: `patch /type/property/nullable/collections/string/non-null`
+
+Expected request body:
+
+```json
+{ "requiredProperty": "foo", "nullableProperty": ["hello", "world"] }
+```
+
+### Type_Property_Nullable_CollectionsString_patchNull
+
+- Endpoint: `patch /type/property/nullable/collections/string/null`
 
 Expected request body:
 
@@ -4300,7 +6798,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_getDefault
@@ -4320,7 +6818,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 1.2 }
+{ "property": 1.25 }
 ```
 
 ### Type_Property_Optional_FloatLiteral_putDefault
@@ -4366,6 +6864,86 @@ Expected request body:
 ### Type_Property_Optional_IntLiteral_putDefault
 
 - Endpoint: `put /type/property/optional/int/literal/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainDate_getAll
+
+- Endpoint: `get /type/property/optional/plainDate/all`
+
+Expected response body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_PlainDate_getDefault
+
+- Endpoint: `get /type/property/optional/plainDate/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainDate_putAll
+
+- Endpoint: `put /type/property/optional/plainDate/all`
+
+Expected request body:
+
+```json
+{ "property": "2022-12-12" }
+```
+
+### Type_Property_Optional_PlainDate_putDefault
+
+- Endpoint: `put /type/property/optional/plainDate/default`
+
+Expected request body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainTime_getAll
+
+- Endpoint: `get /type/property/optional/plainTime/all`
+
+Expected response body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_PlainTime_getDefault
+
+- Endpoint: `get /type/property/optional/plainTime/default`
+
+Expected response body:
+
+```json
+{}
+```
+
+### Type_Property_Optional_PlainTime_putAll
+
+- Endpoint: `put /type/property/optional/plainTime/all`
+
+Expected request body:
+
+```json
+{ "property": "13:06:12" }
+```
+
+### Type_Property_Optional_PlainTime_putDefault
+
+- Endpoint: `put /type/property/optional/plainTime/default`
 
 Expected request body:
 
@@ -4500,7 +7078,7 @@ Expected request body:
 Expected response body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_getDefault
@@ -4520,7 +7098,7 @@ Expected response body:
 Expected request body:
 
 ```json
-{ "property": 2.3 }
+{ "property": 2.375 }
 ```
 
 ### Type_Property_Optional_UnionFloatLiteral_putDefault
@@ -4753,6 +7331,46 @@ Expected input body:
 {"property": 2022-08-26T18:38:00Z}
 ```
 
+### Type_Property_ValueTypes_Decimal_get
+
+- Endpoint: `get /type/property/value-types/decimal`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal_put
+
+- Endpoint: `put /type/property/value-types/decimal`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_get
+
+- Endpoint: `get /type/property/value-types/decimal128`
+
+Expected response body:
+
+```json
+{ "property": 0.33333 }
+```
+
+### Type_Property_ValueTypes_Decimal128_put
+
+- Endpoint: `put /type/property/value-types/decimal128`
+
+Expected input body:
+
+```json
+{ "property": 0.33333 }
+```
+
 ### Type_Property_ValueTypes_DictionaryString_get
 
 - Endpoint: `get /type/property/value-types/dictionary/string`
@@ -4800,7 +7418,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_Enum_put
@@ -4810,7 +7428,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": ValueOne}
+{ "property": "ValueOne" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_get
@@ -4820,7 +7438,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_ExtensibleEnum_put
@@ -4830,7 +7448,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{"property": UnknownValue}
+{ "property": "UnknownValue" }
 ```
 
 ### Type_Property_ValueTypes_Float_get
@@ -4840,7 +7458,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Float_put
@@ -4850,7 +7468,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_get
@@ -4860,7 +7478,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_FloatLiteral_put
@@ -4870,7 +7488,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 42.42 }
+{ "property": 43.125 }
 ```
 
 ### Type_Property_ValueTypes_Int_get
@@ -4993,6 +7611,26 @@ Expected input body:
 { "property": "hello" }
 ```
 
+### Type_Property_ValueTypes_UnionEnumValue_get
+
+- Endpoint: `get /type/property/value-types/union-enum-value`
+
+Expected response body:
+
+```json
+{ "property": "value2" }
+```
+
+### Type_Property_ValueTypes_UnionEnumValue_put
+
+- Endpoint: `put /type/property/value-types/union-enum-value`
+
+Expected input body:
+
+```json
+{ "property": "value2" }
+```
+
 ### Type_Property_ValueTypes_UnionFloatLiteral_get
 
 - Endpoint: `get /type/property/value-types/union/float/literal`
@@ -5000,7 +7638,7 @@ Expected input body:
 Expected response body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionFloatLiteral_put
@@ -5010,7 +7648,7 @@ Expected response body:
 Expected input body:
 
 ```json
-{ "property": 43.43 }
+{ "property": 46.875 }
 ```
 
 ### Type_Property_ValueTypes_UnionIntLiteral_get
@@ -5144,6 +7782,94 @@ Expect to handle a boolean value. Mock api will return true
 - Endpoint: `put /type/scalar/boolean`
 
 Expect to send a boolean value. Mock api expect to receive 'true'
+
+### Type_Scalar_Decimal128Type_requestBody
+
+- Endpoint: `put /type/scalar/decimal128/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Type_requestParameter
+
+- Endpoint: `get /type/scalar/decimal128/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_Decimal128Type_responseBody
+
+- Endpoint: `get /type/scalar/decimal128/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_Decimal128Verify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal128/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_Decimal128Verify_verify
+
+- Endpoint: `post /type/scalar/decimal128/verify`
+
+Expected input body:
+
+```json
+0.3
+```
+
+### Type_Scalar_DecimalType_requestBody
+
+- Endpoint: `put /type/scalar/decimal/resquest_body`
+
+Expected input body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalType_requestParameter
+
+- Endpoint: `get /type/scalar/decimal/request_parameter`
+
+Expected request parameter:
+value=0.33333
+
+### Type_Scalar_DecimalType_responseBody
+
+- Endpoint: `get /type/scalar/decimal/response_body`
+
+Expected response body:
+
+```json
+0.33333
+```
+
+### Type_Scalar_DecimalVerify_prepareVerify
+
+- Endpoint: `get /type/scalar/decimal/prepare_verify`
+
+Get verify values:
+[0.1, 0.1, 0.1]
+
+### Type_Scalar_DecimalVerify_verify
+
+- Endpoint: `post /type/scalar/decimal/verify`
+
+Expected input body:
+
+```json
+0.3
+```
 
 ### Type_Scalar_String_get
 
@@ -5282,7 +8008,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected response body:
@@ -5305,7 +8031,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | 2 | 3.3 | true
+"a" | 2 | 3.3 | true
 ```
 
 Expected request to send body:
@@ -5328,7 +8054,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected response body:
@@ -5341,7 +8067,15 @@ Expected response body:
     },
     "literal": "a",
     "int": 2,
-    "boolean": true
+    "boolean": true,
+    "array": [
+      {
+        "name": "test"
+      },
+      "a",
+      2,
+      true
+    ]
   }
 }
 ```
@@ -5353,7 +8087,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-Type.Union.Cat | a | int32 | boolean
+Type.Union.Cat | "a" | int32 | boolean
 ```
 
 Expected request to send body:
@@ -5366,7 +8100,15 @@ Expected request to send body:
     },
     "literal": "a",
     "int": 2,
-    "boolean": true
+    "boolean": true,
+    "array": [
+      {
+        "name": "test"
+      },
+      "a",
+      2,
+      true
+    ]
   }
 }
 ```
@@ -5460,7 +8202,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected response body:
@@ -5476,7 +8218,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-string | b | c
+string | "b" | "c"
 ```
 
 Expected request to send body:
@@ -5524,7 +8266,7 @@ Expected request to send body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected response body:
@@ -5540,7 +8282,7 @@ Expected response body:
 Verify a union can be processed in a response:
 
 ```tsp
-a | b | c
+"a" | "b" | "c"
 ```
 
 Expected request to send body:
@@ -5548,3 +8290,117 @@ Expected request to send body:
 ```json
 { "prop": "b" }
 ```
+
+### Versioning_Added_InterfaceV2
+
+- Endpoint: `post /versioning/added/api-version:{version}/interface-v2/v2`
+
+This operation group should only be generated with latest version.
+
+Expected request body for v2InInterface:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_Added_v1
+
+- Endpoint: `post /versioning/added/api-version:{version}/v1`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": 10 }
+```
+
+Expected header:
+header-v2=bar
+
+### Versioning_Added_v2
+
+- Endpoint: `post /versioning/added/api-version:{version}/v2`
+
+This operation should only be generated with latest version.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+```
+
+### Versioning_MadeOptional_test
+
+- Endpoint: `post /versioning/made-optional/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo" }
+```
+
+### Versioning_Removed_v2
+
+- Endpoint: `post /versioning/removed/api-version:{version}/v2`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
+```
+
+### Versioning_RenamedFrom_NewInterface
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/interface/test`
+
+This operation group should only be generated with latest version's signature.
+
+Expected request body for test:
+
+```json
+{ "prop": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+### Versioning_RenamedFrom_newOp
+
+- Endpoint: `post /versioning/renamed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "newProp": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+```
+
+Expected query:
+newQuery=bar
+
+### Versioning_ReturnTypeChangedFrom_test
+
+- Endpoint: `post /versioning/return-type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body: "test"
+Expected response body: "test"
+
+### Versioning_TypeChangedFrom_test
+
+- Endpoint: `post /versioning/type-changed-from/api-version:{version}/test`
+
+This operation should be generated with latest version's signature.
+
+Expected request body:
+
+```json
+{ "prop": "foo", "changedProp": "bar" }
+```
+
+Expected query param:
+param="baz"

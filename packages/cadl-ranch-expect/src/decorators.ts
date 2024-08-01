@@ -127,8 +127,8 @@ function getRouteSegments(program: Program, target: Operation | Interface | Name
       return target.interface
         ? [...getRouteSegments(program, target.interface), ...seg]
         : target.namespace
-        ? [...getRouteSegments(program, target.namespace), ...seg]
-        : seg;
+          ? [...getRouteSegments(program, target.namespace), ...seg]
+          : seg;
   }
 }
 
@@ -226,9 +226,7 @@ export function $scenarioService(
   context.program.stateSet(ScenarioServiceKey).add(target);
 
   const versions = options?.properties.get("versioned")?.type;
-  if (versions === undefined) {
-    properties.set("version", { type: { kind: "String", value: "1.0.0" } });
-  } else {
+  if (versions) {
     context.call($versioned, target, versions as Enum);
   }
   context.call($service, target, {

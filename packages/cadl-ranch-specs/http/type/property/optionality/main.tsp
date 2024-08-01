@@ -112,6 +112,20 @@ model DurationProperty is ModelTemplate<duration>;
 @operationGroup
 interface Duration extends OperationsTemplate<DurationProperty, "\"P123DT22H14M12.011S\""> {}
 
+// Model with optional plainDate property
+@doc("Model with a plainDate property")
+model PlainDateProperty is ModelTemplate<plainDate>;
+@route("/plainDate")
+@operationGroup
+interface PlainDate extends OperationsTemplate<PlainDateProperty, "\"2022-12-12\""> {}
+
+// Model with optional  property
+@doc("Model with a plainTime property")
+model PlainTimeProperty is ModelTemplate<plainTime>;
+@route("/plainTime")
+@operationGroup
+interface PlainTime extends OperationsTemplate<PlainTimeProperty, "\"13:06:12\""> {}
+
 // Model with optional collection bytes property
 @doc("Model with collection bytes properties")
 model CollectionsByteProperty is ModelTemplate<bytes[]>;
@@ -144,10 +158,10 @@ interface IntLiteral extends OperationsTemplate<IntLiteralProperty, "1"> {}
 
 // Model with optional float literal property
 @doc("Model with float literal property")
-model FloatLiteralProperty is ModelTemplate<1.2>;
+model FloatLiteralProperty is ModelTemplate<1.25>;
 @route("/float/literal")
 @operationGroup
-interface FloatLiteral extends OperationsTemplate<FloatLiteralProperty, "1.2"> {}
+interface FloatLiteral extends OperationsTemplate<FloatLiteralProperty, "1.25"> {}
 
 // Model with optional boolean literal property
 @doc("Model with boolean literal property")
@@ -172,10 +186,10 @@ interface UnionIntLiteral extends OperationsTemplate<UnionIntLiteralProperty, "2
 
 // Model with union of float literal property
 @doc("Model with union of float literal property")
-model UnionFloatLiteralProperty is ModelTemplate<1.2 | 2.3>;
+model UnionFloatLiteralProperty is ModelTemplate<1.25 | 2.375>;
 @route("/union/float/literal")
 @operationGroup
-interface UnionFloatLiteral extends OperationsTemplate<UnionFloatLiteralProperty, "2.3"> {}
+interface UnionFloatLiteral extends OperationsTemplate<UnionFloatLiteralProperty, "2.375"> {}
 
 @doc("Model with required and optional properties")
 model RequiredAndOptionalProperty {

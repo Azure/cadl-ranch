@@ -29,7 +29,6 @@ using Azure.ClientGenerator.Core;
 )
 @service({
   title: "MultiClient",
-  version: "1.0.0",
 })
 namespace Client.Structure.Service;
 
@@ -71,4 +70,27 @@ interface Bar {
   @route("/six")
   @post
   six(): void;
+}
+
+namespace Baz {
+  interface Foo {
+    #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
+    @route("/seven")
+    @post
+    seven(): void;
+  }
+}
+
+namespace Qux {
+  #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
+  @route("/eight")
+  @post
+  op eight(): void;
+
+  interface Bar {
+    #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
+    @route("/nine")
+    @post
+    nine(): void;
+  }
 }

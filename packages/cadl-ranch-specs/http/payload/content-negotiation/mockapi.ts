@@ -1,15 +1,8 @@
 import { mockapi, ValidationError, json, withKeys } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { resolvePath } from "@typespec/compiler";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
+import { pngFile, jpgFile } from "../../helper.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
-
-const root = resolvePath(fileURLToPath(import.meta.url), "../../../../../");
-
-const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
-const jpegImage = readFileSync(resolvePath(root, "assets/image.jpg"));
 
 Scenarios.Payload_ContentNegotiation_SameBody = withKeys(["image/png", "image/jpeg"]).pass(
   mockapi.get("/content-negotiation/same-body", (req) => {
@@ -30,7 +23,7 @@ Scenarios.Payload_ContentNegotiation_SameBody = withKeys(["image/png", "image/jp
           status: 200,
           body: {
             contentType: "image/jpeg",
-            rawContent: jpegImage,
+            rawContent: jpgFile,
           },
         } as const;
       default:

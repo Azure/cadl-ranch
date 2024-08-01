@@ -1,5 +1,6 @@
 import { Server, ServerResponse } from "http";
 import bodyParser from "body-parser";
+import multer from "multer";
 import express, { ErrorRequestHandler, RequestHandler, Response } from "express";
 import morgan from "morgan";
 import { logger } from "../logger.js";
@@ -16,8 +17,8 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   const errResponse = err.toJSON
     ? err.toJSON()
     : err instanceof Error
-    ? { name: err.name, message: err.message, stack: err.stack }
-    : err;
+      ? { name: err.name, message: err.message, stack: err.stack }
+      : err;
 
   res.status(err.status || 500);
   res.contentType("application/json").send(errResponse).end();
@@ -26,6 +27,12 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 const rawBodySaver = (req: RequestExt, res: ServerResponse, buf: Buffer, encoding: BufferEncoding) => {
   if (buf && buf.length) {
     req.rawBody = cleanupBody(buf.toString(encoding || "utf8"));
+  }
+};
+
+const rawBinaryBodySaver = (req: RequestExt, res: ServerResponse, buf: Buffer, encoding: BufferEncoding) => {
+  if (buf && buf.length) {
+    req.rawBody = buf;
   }
 };
 
@@ -45,7 +52,10 @@ export class MockApiServer {
     this.app.use(bodyParser.text({ type: "*/xml", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "*/pdf", verify: rawBodySaver }));
     this.app.use(bodyParser.text({ type: "text/plain" }));
-    this.app.use(bodyParser.raw({ type: "application/octet-stream", limit: "10mb" }));
+    this.app.use(
+      bodyParser.raw({ type: ["application/octet-stream", "image/png"], limit: "10mb", verify: rawBinaryBodySaver }),
+    );
+    this.app.use(multer().any());
   }
 
   public use(route: string, ...handlers: RequestHandler[]): void {

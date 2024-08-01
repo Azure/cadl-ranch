@@ -1,5 +1,384 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.34.10
+
+### Patch Changes
+
+- 1cdf0c8: updated dependencies @azure-tools/cadl-ranch-api@0.4.4
+
+## 0.34.9
+
+### Patch Changes
+
+- Updated dependencies [1c7eaef]
+  - @azure-tools/cadl-ranch-api@0.4.4
+
+## 0.34.8
+
+### Patch Changes
+
+- cee571f: Add spread-Alias-With-Optional-Properties test cases for type/parameters/spread
+  Add spread-Alias-With-Optional-Collections test cases for type/parameters/spread
+  Add spread-Alias-With-Model test cases for type/parameters/spread
+- 37dfce1: Add xml basic tests
+
+## 0.34.7
+
+### Patch Changes
+
+- 4e524cb: bug fix in tcgc usage test
+- dd1b849: fix some typos in plain date and plain time scenarios
+
+## 0.34.6
+
+### Patch Changes
+
+- 86b5841: Fix body check on TrackedResource update.
+
+## 0.34.5
+
+### Patch Changes
+
+- e44aa64: Add a test scenario for JSON example used in Azure
+- 760a4fe: Bump typespec 0.58.0
+- Updated dependencies [760a4fe]
+  - @azure-tools/cadl-ranch-expect@0.14.1
+  - @azure-tools/cadl-ranch@0.13.4
+
+## 0.34.4
+
+### Patch Changes
+
+- af62829: Added tests for ARM common-type's managed-identity.
+- 62477bf: Add a ReadOnlyModel with Read-Only types of list and record data in type/model/visibility.
+  Add PlainDate/PlainTime in type/property/optionality.
+- 082bb91: In ARM resource test case, fixed `listByParent` operation name to `listByTopLevelTrackedResource`.
+
+## 0.34.3
+
+### Patch Changes
+
+- c117010: Updated expected float value of 2.71828 to 2.71875, a value that can be exactly represented as IEEE754 (http/type/property/additional-properties).
+- fd61404: Bug fix for spread.
+- Updated dependencies [c117010]
+  - @azure-tools/cadl-ranch@0.13.3
+
+## 0.34.2
+
+### Patch Changes
+
+- 31a98d7: add the embedding vector scenario
+- Updated dependencies [31a98d7]
+  - @azure-tools/cadl-ranch@0.13.2
+
+## 0.34.1
+
+### Patch Changes
+
+- 15cfc3e: Use explicit body to avoid model get spread
+- d82838f: Updated expected float duration values (35.621 and 46.781) to the values that can be exactly represented as IEEE754 (35.625 and 46.75 respectively).
+- 6ca2553: Rename arm tests to resourcemanager
+- Updated dependencies [d82838f]
+  - @azure-tools/cadl-ranch@0.13.1
+
+## 0.34.0
+
+### Minor Changes
+
+- 87a8ccc: bump internal dependency to 0.57.0
+- 2fb006d: Add typespec-azure-resource-manager dependency to cadl-ranch-specs.
+- 8b42129: Added tests for ARM's tracked resource and nested resource.
+
+### Patch Changes
+
+- 656524d: Disable patch convenience method for csharp
+- d983279: Add nullable int/string/boolean/model test cases for Type/Array
+- fa9490e: Remove fixed from enum.
+- 4026382: Add usage test case for model used in read-only property
+- 83c129b: Add nullable list of int/string test cases for type/property/nullable
+- Updated dependencies [87a8ccc]
+  - @azure-tools/cadl-ranch-expect@0.14.0
+  - @azure-tools/cadl-ranch@0.13.0
+
+## 0.33.4
+
+### Patch Changes
+
+- e82e2b2: Compatibility for 0.56 http lib
+- 614aa62: bump internal dependency to 0.56.0
+- Updated dependencies [614aa62]
+  - @azure-tools/cadl-ranch-expect@0.13.4
+  - @azure-tools/cadl-ranch@0.12.8
+
+## 0.33.3
+
+### Patch Changes
+
+- b66f861: Fix invalid with value world
+
+## 0.33.2
+
+### Patch Changes
+
+- c786854: Add float64 test cases for encode/duration
+
+## 0.33.1
+
+### Patch Changes
+
+- 70161f9: add test for versioning
+- 99dc009: add more parameter tests
+- d7308c1: Add @body to some response.
+
+## 0.33.0
+
+### Minor Changes
+
+- ff9a60f: move flatten model and client request id azure tests into azure folder and namespace
+
+## 0.32.0
+
+### Minor Changes
+
+- dca2382: remove lro-rpc-legacy test since no services use it
+
+### Patch Changes
+
+- 2839b97: add a union array case
+
+## 0.31.8
+
+### Patch Changes
+
+- 56f07cf: additional-properties-add-test-cases-for-spread-of-record
+- 339d172: add test case which contains anonymous model for multipart/form-data
+- 68dfb72: Add old API version test
+- Updated dependencies [56f07cf]
+- Updated dependencies [68dfb72]
+  - @azure-tools/cadl-ranch@0.12.7
+
+## 0.31.7
+
+### Patch Changes
+
+- 7161c8c: feat(typespec): bump to 0.55.0
+- Updated dependencies [7161c8c]
+  - @azure-tools/cadl-ranch-expect@0.13.3
+  - @azure-tools/cadl-ranch@0.12.6
+
+## 0.31.6
+
+### Patch Changes
+
+- fb5ed08: fix duplicate `@server` definition
+- 7956a78: delete-projected-name-as-deprecated
+- Updated dependencies [7956a78]
+  - @azure-tools/cadl-ranch@0.12.5
+
+## 0.31.5
+
+### Patch Changes
+
+- 04e515a: Add tests for service not providing an endpoint
+
+## 0.31.4
+
+### Patch Changes
+
+- 2d19233: Suppress deprecation warning for projectedName
+
+## 0.31.3
+
+### Patch Changes
+
+- 14a953e: Add test case of enum value to type/property/valuetypes
+- e38de90: resolve typo in azureLocation scalar test
+- 9f6362a: add test for azureLocation scalar
+- a02ac03: Add test for client name on enum and its value
+
+## 0.31.2
+
+### Patch Changes
+
+- b871ba8: chore(typespec): bump to 0.54.0
+- Updated dependencies [b871ba8]
+  - @azure-tools/cadl-ranch-expect@0.13.2
+  - @azure-tools/cadl-ranch@0.12.4
+
+## 0.31.1
+
+### Patch Changes
+
+- fe16d1c: Remove deprecated service version
+- b045692: Updated expected `float32` values (1.2 and 2.3) to the values that can be exactly represented as IEEE754 (1.25 and 2.375 respectively).
+- Updated dependencies [b045692]
+  - @azure-tools/cadl-ranch@0.12.3
+
+## 0.31.0
+
+### Minor Changes
+
+- 055bd17: Use union for extensible enum
+
+### Patch Changes
+
+- 055bd17: Update dependencies
+- 5178ee8: Bug fix on Scenarios.Client_Naming_Header_response
+- Updated dependencies [055bd17]
+  - @azure-tools/cadl-ranch-expect@0.13.1
+  - @azure-tools/cadl-ranch@0.12.2
+
+## 0.30.1
+
+### Patch Changes
+
+- 034ee63: add test case for `@clientName` and `@encodedName`
+- 8e6e124: Updated expected `float32` values (42.42 and 43.43) to the values that can be exactly represented as IEEE754 (43.125 and 46.875 respectively).
+- Updated dependencies [bf5c192]
+- Updated dependencies [8e6e124]
+  - @azure-tools/cadl-ranch@0.12.1
+
+## 0.30.0
+
+### Minor Changes
+
+- f2a9bce: bump tsp package versions to 0.53.0
+
+### Patch Changes
+
+- c611311: Fix typos in MFD tests
+- 697a257: Corrected document for Type.Array namespace
+- Updated dependencies [c611311]
+- Updated dependencies [697a257]
+- Updated dependencies [f2a9bce]
+  - @azure-tools/cadl-ranch@0.12.0
+  - @azure-tools/cadl-ranch-expect@0.13.0
+
+## 0.29.0
+
+### Minor Changes
+
+- ef67ab7: add test cases for `@flattenProperty`
+- ef67ab7: test(model): add flattening cases
+
+### Patch Changes
+
+- 1e88ede: Add cadl-ranch cases for json merge patch
+- 3e57bec: Add test case to check file name and content type for multipart/form-data
+- Updated dependencies [f4683bf]
+  - @azure-tools/cadl-ranch-expect@0.12.0
+  - @azure-tools/cadl-ranch@0.11.3
+
+## 0.28.7
+
+### Patch Changes
+
+- Updated dependencies [c5a78e9]
+  - @azure-tools/cadl-ranch@0.11.2
+
+## 0.28.6
+
+### Patch Changes
+
+- 36ec209: Add Go to the projected-name test
+- Updated dependencies [36ec209]
+- Updated dependencies [626365a]
+  - @azure-tools/cadl-ranch@0.11.1
+  - @azure-tools/cadl-ranch-expect@0.11.0
+
+## 0.28.5
+
+### Patch Changes
+
+- a891c70: Add a few new cases to type/property/additional-properties to cover the case when a model with additional properties is derived by other models
+
+## 0.28.4
+
+### Patch Changes
+
+- 57d760b: Add complex scenario for multipart/form-data
+
+## 0.28.3
+
+### Patch Changes
+
+- c5ba3ea: Fix the api version issue
+
+## 0.28.2
+
+### Patch Changes
+
+- d3f6423: Add test case for api-version
+- d97491e: Optimize lro/rpc-legacy test case
+
+## 0.28.1
+
+### Patch Changes
+
+- c09109f: Add payload tests for string body and different content types
+- 6fafb9a: Add more cases for default client hierarchy
+
+## 0.28.0
+
+### Minor Changes
+
+- 12f3954: bump tsp version to 0.51.0
+
+### Patch Changes
+
+- 7184e71: fix for model inheritance recursive case
+- Updated dependencies [12f3954]
+  - @azure-tools/cadl-ranch-expect@0.10.0
+  - @azure-tools/cadl-ranch@0.11.0
+
+## 0.27.1
+
+### Patch Changes
+
+- 9a92742: Bug fix on type/union case
+- Updated dependencies [0c77443]
+  - @azure-tools/cadl-ranch-api@0.4.3
+  - @azure-tools/cadl-ranch@0.10.2
+
+## 0.27.0
+
+### Minor Changes
+
+- dd82266: add new a few new cases to project the model name
+
+### Patch Changes
+
+- d803994: add test case for multipart/form-data
+- Updated dependencies [d803994]
+- Updated dependencies [d803994]
+  - @azure-tools/cadl-ranch-api@0.4.2
+  - @azure-tools/cadl-ranch@0.10.1
+
+## 0.26.2
+
+### Patch Changes
+
+- 6c515cc: Add test case for inheritance recursion
+- de5a6ee: Add test for decimal basic type
+
+## 0.26.1
+
+### Patch Changes
+
+- 5f7ddf0: fix(union): add @operationGroup and fix errors
+
+## 0.26.0
+
+### Minor Changes
+
+- d0f5be0: bump tsp deps to 0.50.0
+
+### Patch Changes
+
+- Updated dependencies [d0f5be0]
+  - @azure-tools/cadl-ranch-expect@0.9.0
+  - @azure-tools/cadl-ranch@0.10.0
+
 ## 0.25.0
 
 ### Minor Changes

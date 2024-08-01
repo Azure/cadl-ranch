@@ -1,11 +1,18 @@
 import type { Request } from "express";
 import { MockRequest } from "./mock-request.js";
+import "multer";
 
 /**
  * Extension of the express.js request which include a rawBody.
  */
 export interface RequestExt extends Request {
-  rawBody?: string;
+  rawBody?: string | Buffer;
+  files?:
+    | {
+        [fieldname: string]: Express.Multer.File[];
+      }
+    | Express.Multer.File[]
+    | undefined;
 }
 
 export type ScenarioPassCondition = "response-success" | "status-code";
@@ -35,9 +42,8 @@ export type KeyedMockRequestHandler<T extends string = string> = (
 
 export type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
 
-export type MockApiForHandler<Handler extends MockRequestHandler> = Handler extends KeyedMockRequestHandler<infer K>
-  ? KeyedMockApi<K>
-  : MockApi;
+export type MockApiForHandler<Handler extends MockRequestHandler> =
+  Handler extends KeyedMockRequestHandler<infer K> ? KeyedMockApi<K> : MockApi;
 
 export interface MockApi {
   method: HttpMethod;
