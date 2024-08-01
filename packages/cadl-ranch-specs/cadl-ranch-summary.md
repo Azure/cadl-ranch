@@ -2612,7 +2612,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2642,7 +2642,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2672,12 +2672,12 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2701,7 +2701,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2738,7 +2738,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
@@ -2752,12 +2752,12 @@ Content-Type: application/json
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2789,7 +2789,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
@@ -2803,12 +2803,12 @@ Content-Type: application/json
 Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2827,7 +2827,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345
 ```
 
@@ -2846,7 +2846,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2865,7 +2865,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2897,7 +2897,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2922,12 +2922,12 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345
 Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
