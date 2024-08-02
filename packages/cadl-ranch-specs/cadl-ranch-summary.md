@@ -358,11 +358,12 @@ GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
+
 ```json
 {
   "prompt": "text"
 }
-````
+```
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/generations/operations/operation1
@@ -596,6 +597,82 @@ Expected response body:
 - Endpoint: `put /azure/core/model/embeddingVector`
 
 Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
+
+### Azure_Core_Page_listWithCustomPageModel
+
+- Endpoint: `get /azure/core/page/custom-page`
+
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_listWithPage
+
+- Endpoint: `get /azure/core/page/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_listWithParameters
+
+- Endpoint: `get /azure/core/page/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_TwoModelsAsPageItem
+
+- Endpoints:
+  - `get /azure/core/page/first-item`
+  - `get /azure/core/page/second-item`
+
+This scenario is to test two operations with two different page item types.
 
 ### Azure_Core_Scalar_AzureLocationScalar_get
 
@@ -1015,6 +1092,7 @@ Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup
 Expected query parameter: api-version=2023-12-01-preview
 
 ````
+
 Expected response status code: 204
 
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
@@ -1026,6 +1104,7 @@ Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
+
 ```json
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
@@ -1045,7 +1124,7 @@ Expected response body:
     "lastModifiedByType": "User",
   }
 }
-````
+```
 
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
 
@@ -2950,6 +3029,126 @@ Expected request body:
 </ModelWithArrayOfModel>
 ```
 
+### Payload_Xml_ModelWithAttributesValue_get
+
+- Endpoint: `get /payload/xml/modelWithAttributes`
+
+Expected response body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithAttributesValue_put
+
+- Endpoint: `put /payload/xml/modelWithAttributes`
+
+Expected request body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_get
+
+- Endpoint: `get /payload/xml/modelWithDictionary`
+
+Expected response body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_put
+
+- Endpoint: `put /payload/xml/modelWithDictionary`
+
+Expected request body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithEmptyArray`
+
+Expected response body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithEmptyArray`
+
+Expected request body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_get
+
+- Endpoint: `get /payload/xml/modelWithEncodedNames`
+
+Expected response body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_put
+
+- Endpoint: `put /payload/xml/modelWithEncodedNames`
+
+Expected request body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
 ### Payload_Xml_ModelWithOptionalFieldValue_get
 
 - Endpoint: `get /payload/xml/modelWithOptionalField`
@@ -2972,6 +3171,80 @@ Expected request body:
 <ModelWithOptionalField>
   <item>widget</item>
 </ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedArrays`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedArrays`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedFields`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedFields`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
 ```
 
 ### Payload_Xml_ModelWithSimpleArraysValue_get
@@ -3012,6 +3285,66 @@ Expected request body:
     <int32>2</int32>
   </counts>
 </ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithTextValue_get
+
+- Endpoint: `get /payload/xml/modelWithText`
+
+Expected response body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithTextValue_put
+
+- Endpoint: `put /payload/xml/modelWithText`
+
+Expected request body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithUnwrappedArray`
+
+Expected response body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithUnwrappedArray`
+
+Expected request body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
 ```
 
 ### Payload_Xml_SimpleModelValue_get
