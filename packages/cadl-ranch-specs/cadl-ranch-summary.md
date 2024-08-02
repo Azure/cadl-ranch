@@ -221,6 +221,31 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Basic_exportAllUsers
+
+- Endpoint: `get /azure/core/basic`
+
+Should generate a model named User.
+
+Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+````json
+[
+  {
+    "id": 1,
+    "name": "Madge",
+    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  },
+  {
+    "id": 2,
+    "name": "John",
+    "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  }
+]
+
 ### Azure_Core_Basic_get
 
 - Endpoint: `get /azure/core/basic`
@@ -231,14 +256,13 @@ Expected path parameter: id=1
 Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
-
 ```json
 {
   "id": 1,
   "name": "Madge",
   "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
 }
-```
+````
 
 ### Azure_Core_Basic_list
 
@@ -270,13 +294,6 @@ Expected response body:
   ]
 }
 ```
-
-### Azure_Core_Basic_swapdogs
-
-- Endpoint: `get /azure/core/basic`
-
-Should only generate models named User and UserOrder.
-Expected query parameter: api-version=2022-12-01-preview
 
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
