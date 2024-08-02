@@ -11,9 +11,6 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/type/model/generic")
 namespace Type.Model.Generic;
 
-/**
- * A template model for handling numeric types.
- */
 model NumericType<T extends numeric> {
   /**
    * An array of numeric values.
@@ -24,7 +21,7 @@ model NumericType<T extends numeric> {
 }
 
 /**
- * The parameters for the generic type operation.
+ * An instantiated type representing int32 type.
  */
 model Int32Type extends NumericType<int32> {
   /**
@@ -49,4 +46,4 @@ Expected input body:
 """)
 @route("/genericType")
 @put
-op genericType(@body input: Int32Type): void;
+op genericType(@body input: Int32Type): Int32Type;
