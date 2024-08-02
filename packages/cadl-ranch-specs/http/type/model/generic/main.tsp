@@ -5,24 +5,31 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Illustrates the model generic cases. There is a base generic type and an instantiated type extending from it.")
+/**
+ * Illustrates the model generic cases. There is a base generic type and an instantiated type extending from it.
+ */
 @scenarioService("/type/model/generic")
 namespace Type.Model.Generic;
 
-@doc("A template model for handling numeric types.")
+/**
+ * A template model for handling numeric types.
+ */
 model NumericType<T extends numeric> {
-  @doc("An array of numeric values.")
+  /**
+   * An array of numeric values.
+   */
   values: T[];
 
   value: T;
 }
 
 /**
- * Facets an int32 field by the specified value ranges.
+ * The parameters for the generic type operation.
  */
-@doc("The parameters for the generic type operation.")
 model Int32Type extends NumericType<int32> {
-  @doc("The Kind of the Int32Type.")
+  /**
+   * The Kind of the Int32Type.
+   */
   kind: "Int32Values";
 }
 
