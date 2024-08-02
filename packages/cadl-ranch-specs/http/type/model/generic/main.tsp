@@ -13,6 +13,7 @@ namespace Type.Model.Generic;
 model NumericType<T extends numeric> {
   @doc("An array of numeric values.")
   values: T[];
+
   value: T;
 }
 
