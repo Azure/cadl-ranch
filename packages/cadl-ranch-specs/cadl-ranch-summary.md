@@ -271,83 +271,12 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_listWithCustomPageModel
-
-- Endpoint: `get /azure/core/basic/custom-page`
-
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-
-````json
-{
-  "items":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithPage
-
-- Endpoint: `get /azure/core/basic/page`
-
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like Page.
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithParameters
-
-- Endpoint: `get /azure/core/basic/parameters`
-
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
 ### Azure_Core_Basic_swapdogs
 
 - Endpoint: `get /azure/core/basic`
 
 Should only generate models named User and UserOrder.
 Expected query parameter: api-version=2022-12-01-preview
-
-### Azure_Core_Basic_TwoModelsAsPageItem
-
-- Endpoints:
-  - `get /azure/core/basic/first-item`
-  - `get /azure/core/basic/second-item`
-
-This scenario is to test two operations with two different page item types.
 
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
@@ -1092,7 +1021,6 @@ Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup
 Expected query parameter: api-version=2023-12-01-preview
 
 ````
-
 Expected response status code: 204
 
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
@@ -1104,7 +1032,6 @@ Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
-
 ```json
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
@@ -1124,7 +1051,7 @@ Expected response body:
     "lastModifiedByType": "User",
   }
 }
-```
+````
 
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
 
