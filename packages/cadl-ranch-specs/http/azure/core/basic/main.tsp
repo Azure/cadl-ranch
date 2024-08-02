@@ -50,28 +50,6 @@ model User {
   ...global.Azure.Core.EtagProperty;
 }
 
-@parentResource(User)
-@doc("Details about User's pet dog.")
-model Dog {
-  @key("petdogName")
-  @segment("dogs")
-  name: string;
-}
-
-model SwapDogsOptions {
-  @doc("Represents the first dog name.")
-  firstDogName: string;
-
-  @doc("Represents the second dog name.")
-  secondDogName: string;
-}
-
-model SwapDogsParams {
-  @doc("The body schema of the operation.")
-  @body
-  body: SwapDogsOptions;
-}
-
 @doc("UserOrder for testing list with expand.")
 @resource("user")
 model UserOrder {
@@ -239,15 +217,40 @@ Expected response body:
 """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
-/** Swaps two existing dogs with each other. */
+model UserList {
+  collection: User[];
+}
+
 @scenario
+@doc("Exports all users")
+@summary("Exports all users.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
+Should generate a model named User.
+
+Expected query parameter: format=json
 Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+```json
+[
+  {
+    "id": 1,
+    "name": "Madge",
+    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  },
+  {
+    "id": 2,
+    "name": "John",
+    "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  }
+]
 """)
-@collectionAction(Dog, "swapdogs")
-op swapdogs is ResourceOperations.ResourceCollectionAction<
-  Dog,
-  SwapDogsParams,
-  global.Azure.Core.Foundations.AcceptedResponse
+@collectionAction(User, "exportallusers")
+op exportAllUsers is ResourceOperations.ResourceCollectionAction<
+  User,
+  UserExportParams,
+  UserList,
+  {
+    apiVersion: "2022-12-01-preview";
+  }
 >;
