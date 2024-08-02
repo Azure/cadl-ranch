@@ -46,7 +46,7 @@ const StringValueMock = createModelMockApis("string", ["hello", ""]);
 Scenarios.Type_Array_StringValue_get = passOnSuccess(StringValueMock.get);
 Scenarios.Type_Array_StringValue_put = passOnSuccess(StringValueMock.put);
 
-const Float32ValueMock = createModelMockApis("float32", [42.42]);
+const Float32ValueMock = createModelMockApis("float32", [43.125]);
 Scenarios.Type_Array_Float32Value_get = passOnSuccess(Float32ValueMock.get);
 Scenarios.Type_Array_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
@@ -66,6 +66,22 @@ const ModelValueMock = createModelMockApis("model", [{ property: "hello" }, { pr
 Scenarios.Type_Array_ModelValue_get = passOnSuccess(ModelValueMock.get);
 Scenarios.Type_Array_ModelValue_put = passOnSuccess(ModelValueMock.put);
 
-const NullableFloatMock = createModelMockApis("nullable-float", [1.2, null, 3.0]);
+const NullableFloatMock = createModelMockApis("nullable-float", [1.25, null, 3.0]);
 Scenarios.Type_Array_NullableFloatValue_get = passOnSuccess(NullableFloatMock.get);
 Scenarios.Type_Array_NullableFloatValue_put = passOnSuccess(NullableFloatMock.put);
+
+const NullableInt32Mock = createModelMockApis("nullable-int32", [1, null, 3]);
+Scenarios.Type_Array_NullableInt32Value_get = passOnSuccess(NullableInt32Mock.get);
+Scenarios.Type_Array_NullableInt32Value_put = passOnSuccess(NullableInt32Mock.put);
+
+const NullableStringMock = createModelMockApis("nullable-string", ["hello", null, "world"]);
+Scenarios.Type_Array_NullableStringValue_get = passOnSuccess(NullableStringMock.get);
+Scenarios.Type_Array_NullableStringValue_put = passOnSuccess(NullableStringMock.put);
+
+const NullableBooleanMock = createModelMockApis("nullable-boolean", [true, null, false]);
+Scenarios.Type_Array_NullableBooleanValue_get = passOnSuccess(NullableBooleanMock.get);
+Scenarios.Type_Array_NullableBooleanValue_put = passOnSuccess(NullableBooleanMock.put);
+
+const NullableModelMock = createModelMockApis("nullable-model", [{ property: "hello" }, null, { property: "world" }]);
+Scenarios.Type_Array_NullableModelValue_get = passOnSuccess(NullableModelMock.get);
+Scenarios.Type_Array_NullableModelValue_put = passOnSuccess(NullableModelMock.put);

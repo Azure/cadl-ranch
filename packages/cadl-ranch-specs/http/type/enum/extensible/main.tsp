@@ -7,27 +7,29 @@ using TypeSpec.Http;
 namespace Type.Enum.Extensible;
 
 @doc("Days of the week")
-enum DaysOfWeekExtensibleEnum {
+union DaysOfWeekExtensibleEnum {
+  string,
+
   @doc("Monday.")
-  Monday,
+  Monday: "Monday",
 
   @doc("Tuesday.")
-  Tuesday,
+  Tuesday: "Tuesday",
 
   @doc("Wednesday.")
-  Wednesday,
+  Wednesday: "Wednesday",
 
   @doc("Thursday.")
-  Thursday,
+  Thursday: "Thursday",
 
   @doc("Friday.")
-  Friday,
+  Friday: "Friday",
 
   @doc("Saturday.")
-  Saturday,
+  Saturday: "Saturday",
 
   @doc("Sunday.")
-  Sunday,
+  Sunday: "Sunday",
 }
 
 @route("/string")
@@ -36,13 +38,17 @@ interface String {
   @scenarioDoc("Expect to handle a known value. Mock api will return 'Monday'")
   @get
   @route("/known-value")
-  getKnownValue(): DaysOfWeekExtensibleEnum;
+  getKnownValue(): {
+    @body body: DaysOfWeekExtensibleEnum;
+  };
 
   @scenario
   @scenarioDoc("Expect to handle an unknown value. Mock api will return 'Weekend'")
   @get
   @route("/unknown-value")
-  getUnknownValue(): DaysOfWeekExtensibleEnum;
+  getUnknownValue(): {
+    @body body: DaysOfWeekExtensibleEnum;
+  };
 
   @scenario
   @scenarioDoc("Expect to send a known value. Mock api expect to receive 'Monday'")

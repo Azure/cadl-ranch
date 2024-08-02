@@ -46,7 +46,7 @@ const StringValueMock = createModelMockApis("string", { k1: "hello", k2: "" });
 Scenarios.Type_Dictionary_StringValue_get = passOnSuccess(StringValueMock.get);
 Scenarios.Type_Dictionary_StringValue_put = passOnSuccess(StringValueMock.put);
 
-const Float32ValueMock = createModelMockApis("float32", { k1: 42.42 });
+const Float32ValueMock = createModelMockApis("float32", { k1: 43.125 });
 Scenarios.Type_Dictionary_Float32Value_get = passOnSuccess(Float32ValueMock.get);
 Scenarios.Type_Dictionary_Float32Value_put = passOnSuccess(Float32ValueMock.put);
 
@@ -76,6 +76,6 @@ const RecursiveValueMock = createModelMockApis("model/recursive", {
 Scenarios.Type_Dictionary_RecursiveModelValue_get = passOnSuccess(RecursiveValueMock.get);
 Scenarios.Type_Dictionary_RecursiveModelValue_put = passOnSuccess(RecursiveValueMock.put);
 
-const NullableFloatValueMock = createModelMockApis("nullable-float", { k1: 1.2, k2: 0.5, k3: null });
+const NullableFloatValueMock = createModelMockApis("nullable-float", { k1: 1.25, k2: 0.5, k3: null });
 Scenarios.Type_Dictionary_NullableFloatValue_get = passOnSuccess(NullableFloatValueMock.get);
 Scenarios.Type_Dictionary_NullableFloatValue_put = passOnSuccess(NullableFloatValueMock.put);

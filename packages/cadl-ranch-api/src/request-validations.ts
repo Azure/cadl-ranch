@@ -1,4 +1,6 @@
 import deepEqual from "deep-equal";
+import * as xmlFormatter from "xml-formatter";
+import { parseString } from "xml2js";
 import { CollectionFormat, RequestExt } from "./types.js";
 import { ValidationError } from "./validation-error.js";
 
@@ -31,6 +33,38 @@ export const validateBodyEquals = (request: RequestExt, expectedBody: unknown | 
 
   if (!deepEqual(request.body, expectedBody, { strict: true })) {
     throw new ValidationError(BODY_NOT_EQUAL_ERROR_MESSAGE, expectedBody, request.body);
+  }
+};
+
+export const validateXmlBodyEquals = (request: RequestExt, expectedBody: string): void => {
+  if (request.rawBody === undefined || isBodyEmpty(request.rawBody)) {
+    throw new ValidationError(BODY_EMPTY_ERROR_MESSAGE, expectedBody, request.rawBody);
+  }
+
+  expectedBody = `<?xml version='1.0' encoding='UTF-8'?>` + expectedBody;
+
+  let actualParsedBody = "";
+  parseString(request.rawBody, (err: Error | null, result: any): void => {
+    if (err !== null) {
+      throw err;
+    }
+    actualParsedBody = result;
+  });
+
+  let expectedParsedBody = "";
+  parseString(expectedBody, (err: Error | null, result: any): void => {
+    if (err !== null) {
+      throw err;
+    }
+    expectedParsedBody = result;
+  });
+
+  if (!deepEqual(actualParsedBody, expectedParsedBody, { strict: true })) {
+    throw new ValidationError(
+      BODY_NOT_EQUAL_ERROR_MESSAGE,
+      xmlFormatter.default(expectedBody),
+      xmlFormatter.default(request.body),
+    );
   }
 };
 

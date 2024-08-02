@@ -29,7 +29,6 @@ using Azure.ClientGenerator.Core;
 )
 @service({
   title: "MultiClient",
-  version: "1.0.0",
 })
 namespace Client.Structure.Service;
 

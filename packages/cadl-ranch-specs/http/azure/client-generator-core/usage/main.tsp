@@ -55,6 +55,39 @@ namespace ModelInOperation {
   @route("/outputToInputOutput")
   @get
   op outputToInputOutput(): OutputModel;
+
+  model ResultModel {
+    name: string;
+  }
+
+  model RoundTripModel {
+    @visibility("read")
+    result: ResultModel;
+  }
+
+  @doc("""
+  "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
+  Expected body parameter: 
+  ```json
+  {
+  }
+  ```
+
+  Expected response body: 
+  ```json
+  {
+    "result": {
+      "name": <any string>
+    }
+  }
+  ```
+  """)
+  @route("/modelInReadOnlyProperty")
+  @put
+  op modelInReadOnlyProperty(@body body: RoundTripModel): {
+    @body body: RoundTripModel;
+  };
 }
 
 @doc("Not used anywhere, but access is override to public so still need to be generated and exported with serialization.")

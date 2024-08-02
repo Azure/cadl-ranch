@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: npm install -g pnpm@7.27.1
-        name: Install PNPM
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
 
       - run: pnpm install
         name: Install dependencies

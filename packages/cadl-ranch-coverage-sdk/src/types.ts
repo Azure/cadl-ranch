@@ -2,6 +2,7 @@ export type ScenarioManifest = {
   commit: string;
   version: string;
   scenarios: ScenarioData[];
+  modes: string[];
 };
 
 export type ScenarioData = {
@@ -62,5 +63,6 @@ export interface ScenariosMetadata {
 export interface GeneratorMetadata {
   name: string;
   version: string;
+  mode: string;
   commit?: string;
 }

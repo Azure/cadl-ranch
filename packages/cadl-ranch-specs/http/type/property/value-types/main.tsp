@@ -87,7 +87,7 @@ interface Int extends ModelOperations<IntProperty, "42"> {}
 model FloatProperty is ModelTemplate<float32>;
 @route("/float")
 @operationGroup
-interface Float extends ModelOperations<FloatProperty, "42.42"> {}
+interface Float extends ModelOperations<FloatProperty, "43.125"> {}
 
 // Test a model with a decimal property
 @doc("Model with a decimal property")
@@ -118,13 +118,15 @@ model DurationProperty is ModelTemplate<duration>;
 interface Duration extends ModelOperations<DurationProperty, "P123DT22H14M12.011S"> {}
 
 // Test a model with an enum property
-@doc("Enum that will be used as a property for model EnumProperty. Non-extensible.")
-enum InnerEnum {
+@doc("Enum that will be used as a property for model EnumProperty. Extensible.")
+union InnerEnum {
+  string,
+
   @doc("First value.")
-  ValueOne,
+  ValueOne: "ValueOne",
 
   @doc("Second value.")
-  ValueTwo,
+  ValueTwo: "ValueTwo",
 }
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "For testing"
@@ -142,13 +144,13 @@ enum FixedInnerEnum {
 model EnumProperty is ModelTemplate<FixedInnerEnum>;
 @route("/enum")
 @operationGroup
-interface Enum extends ModelOperations<EnumProperty, "ValueOne"> {}
+interface Enum extends ModelOperations<EnumProperty, "\"ValueOne\""> {}
 
 @doc("Model with extensible enum properties")
 model ExtensibleEnumProperty is ModelTemplate<InnerEnum>;
 @route("/extensible-enum")
 @operationGroup
-interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "UnknownValue"> {}
+interface ExtensibleEnum extends ModelOperations<ExtensibleEnumProperty, "\"UnknownValue\""> {}
 
 // Test a model with a model property
 @doc("Inner model. Will be a property type for ModelWithModelProperties")
@@ -239,10 +241,10 @@ model IntLiteralProperty is ModelTemplate<42>;
 interface IntLiteral extends ModelOperations<IntLiteralProperty, "42"> {}
 
 @doc("Model with a float literal property.")
-model FloatLiteralProperty is ModelTemplate<42.42>;
+model FloatLiteralProperty is ModelTemplate<43.125>;
 @route("/float/literal")
 @operationGroup
-interface FloatLiteral extends ModelOperations<FloatLiteralProperty, "42.42"> {}
+interface FloatLiteral extends ModelOperations<FloatLiteralProperty, "43.125"> {}
 
 @doc("Model with a boolean literal property.")
 model BooleanLiteralProperty is ModelTemplate<true>;
@@ -263,7 +265,18 @@ model UnionIntLiteralProperty is ModelTemplate<42 | 43>;
 interface UnionIntLiteral extends ModelOperations<UnionIntLiteralProperty, "42"> {}
 
 @doc("Model with a union of float literal as property.")
-model UnionFloatLiteralProperty is ModelTemplate<42.42 | 43.43>;
+model UnionFloatLiteralProperty is ModelTemplate<43.125 | 46.875>;
 @route("/union/float/literal")
 @operationGroup
-interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "43.43"> {}
+interface UnionFloatLiteral extends ModelOperations<UnionFloatLiteralProperty, "46.875"> {}
+
+union ExtendedEnum {
+  string,
+  EnumValue2: "value2",
+}
+
+model UnionEnumValueProperty is ModelTemplate<ExtendedEnum.EnumValue2>;
+
+@route("/union-enum-value")
+@operationGroup
+interface UnionEnumValue extends ModelOperations<UnionEnumValueProperty, "\"value2\""> {}

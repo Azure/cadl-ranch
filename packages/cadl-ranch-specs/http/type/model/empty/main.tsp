@@ -26,10 +26,14 @@ op putEmpty(@body input: EmptyInput): void;
 @scenarioDoc("Send a GET request which returns the following body {}")
 @route("/alone")
 @get
-op getEmpty(): EmptyOutput;
+op getEmpty(): {
+  @body body: EmptyOutput;
+};
 
 @scenario
 @scenarioDoc("Send a POST request with the following body {} which returns the same.")
 @route("/round-trip")
 @post
-op postRoundTripEmpty(@body body: EmptyInputOutput): EmptyInputOutput;
+op postRoundTripEmpty(@body body: EmptyInputOutput): {
+  @body body: EmptyInputOutput;
+};

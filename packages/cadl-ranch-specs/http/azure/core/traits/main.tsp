@@ -122,4 +122,15 @@ Expected response body:
 }
 ```
 """)
-op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<User, UserActionParam, UserActionResponse>;
+op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<
+  User,
+  BodyParameter<UserActionParam>,
+  UserActionResponse
+>;
+
+alias BodyParameter<T, TName extends valueof string = "body", TDoc extends valueof string = "The body parameter."> = {
+  @doc(TDoc)
+  @friendlyName(TName)
+  @bodyRoot
+  body: T;
+};
