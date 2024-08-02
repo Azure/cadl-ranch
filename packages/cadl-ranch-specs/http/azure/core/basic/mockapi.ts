@@ -97,7 +97,7 @@ Scenarios.Azure_Core_Basic_export = passOnSuccess(
 );
 
 const expectBody = { collection: [validUser, validUser2] };
-Scenarios.Azure_Core_Basic_exportallusers = passOnSuccess(
+Scenarios.Azure_Core_Basic_exportAllUsers = passOnSuccess(
   mockapi.post("/azure/core/basic/users:exportallusers", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");
     req.expect.containsQueryParam("format", "json");
