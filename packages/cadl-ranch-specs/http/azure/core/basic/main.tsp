@@ -218,7 +218,7 @@ Expected response body:
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
 model UserList {
-  collection: User[];
+  Users: User[];
 }
 
 @scenario
@@ -232,20 +232,23 @@ Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
 ```json
-[
-  {
-    "id": 1,
-    "name": "Madge",
-    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-  },
-  {
-    "id": 2,
-    "name": "John",
-    "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
-  }
-]
+{
+  [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
 """)
 @collectionAction(User, "exportallusers")
+@post
 op exportAllUsers is ResourceOperations.ResourceCollectionAction<
   User,
   UserExportParams,
