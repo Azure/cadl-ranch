@@ -34,3 +34,10 @@ Scenarios.Server_Versions_Versioned_withQueryOldApiVersion = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Server_Versions_Versioned_withQueryUnknownApiVersion = passOnSuccess(
+  mockapi.head("/server/versions/versioned/with-query-old-api-version", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-07-09");
+    return { status: 200 };
+  }),
+);

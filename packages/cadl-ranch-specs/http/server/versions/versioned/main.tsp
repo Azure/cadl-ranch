@@ -64,3 +64,9 @@ op withPathApiVersion(@path apiVersion: string): OkResponse;
 @route("/with-query-old-api-version")
 @head
 op withQueryOldApiVersion(@query("api-version") apiVersion: string): OkResponse;
+
+@scenario
+@scenarioDoc("A simple operation with path api-version, that do NOT use the default but '2022-07-09'.Expected url: '/with-old-path-api-version?api-version=2022-07-09'.")
+@route("/with-query-unknown-api-version")
+@head
+op withQueryUnknownApiVersion(@path apiVersion: "2022-07-09"): OkResponse;
