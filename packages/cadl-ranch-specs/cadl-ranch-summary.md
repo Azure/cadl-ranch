@@ -8360,6 +8360,19 @@ Expected request body:
 { "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
 ```
 
+### Versioning_Removed_v3
+
+- Endpoint: `post /versioning/removed/api-version:{version}/v3`
+
+Expected request body:
+
+```json
+v1/V2:
+{ "id": "123", "type": "foo" }
+ beta:
+{ "id": "123" }
+```
+
 ### Versioning_RenamedFrom_NewInterface
 
 - Endpoint: `post /versioning/renamed-from/api-version:{version}/interface/test`

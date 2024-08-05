@@ -1,9 +1,11 @@
 import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using TypeSpec.Rest;
 
 /**
  * Test for the `@removed` decorator.
@@ -32,12 +34,17 @@ namespace Versioning.Removed;
  */
 enum Versions {
   /**
-   * The version v1.
+   * The original version v1.
    */
   v1: "v1",
 
   /**
-   * The version v2.
+   * The beta version.
+   */
+  beta: "beta",
+
+  /**
+   * The latest version v2.
    */
   v2: "v2",
 }
@@ -64,6 +71,14 @@ model ModelV2 {
 
   @added(Versions.v1)
   unionProp: UnionV2;
+}
+
+model ModelV3 {
+  id: string;
+
+  @removed(Versions.beta)
+  @added(Versions.v2)
+  type: string;
 }
 
 enum EnumV2 {
@@ -123,3 +138,19 @@ interface InterfaceV1 {
   @route("/v1")
   v1InInterface(@body body: ModelV1): ModelV1;
 }
+
+/** This operation should be generated with the signatures of both the latest and the original versions, rather than beta version */
+@scenario
+@scenarioDoc("""
+
+Expected request body:
+```json
+v1/V2:
+{ "id": "123", "type": "foo" }
+ beta:
+{ "id": "123" }
+```
+""")
+@post
+@route("/v3")
+op v3(@body body: ModelV3): ModelV3;
