@@ -11,7 +11,7 @@ using Azure.ClientGenerator.Core;
 @scenarioService("/type/model/templated")
 namespace Type.Model.Templated;
 
-@friendlyName("{name}Template", T)
+@friendlyName("{name}Type", T)
 model NumericType<T extends numeric> {
   /**
    * An array of numeric values.
