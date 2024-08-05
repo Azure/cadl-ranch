@@ -145,7 +145,10 @@ interface InterfaceV1 {
 
 Expected request body:
 ```json
+v1/V2:
 { "id": "123", "type": "foo" }
+ beta:
+{ "id": "123" }
 ```
 """)
 @post

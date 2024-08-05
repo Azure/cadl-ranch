@@ -8367,7 +8367,10 @@ Expected request body:
 Expected request body:
 
 ```json
+v1/V2:
 { "id": "123", "type": "foo" }
+ beta:
+{ "id": "123" }
 ```
 
 ### Versioning_RenamedFrom_NewInterface
