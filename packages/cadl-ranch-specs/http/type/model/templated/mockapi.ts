@@ -9,8 +9,8 @@ const body = {
   value: 1234,
 };
 
-Scenarios.Type_Model_Generic_genericType = passOnSuccess(
-  mockapi.put("/type/model/generic/genericType", (req) => {
+Scenarios.Type_Model_Templated_templatedType = passOnSuccess(
+  mockapi.put("/type/model/templated/templatedType", (req) => {
     req.expect.bodyEquals(body);
     return {
       status: 200,

@@ -6,11 +6,12 @@ using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
 /**
- * Illustrates the model generic cases. There is a base generic type and an instantiated type extending from it.
+ * Illustrates the model templated cases. There is a base templated type and an instantiated type extending from it.
  */
-@scenarioService("/type/model/generic")
-namespace Type.Model.Generic;
+@scenarioService("/type/model/templated")
+namespace Type.Model.Templated;
 
+@friendlyName("{name}Template", T)
 model NumericType<T extends numeric> {
   /**
    * An array of numeric values.
@@ -43,7 +44,19 @@ Expected input body:
   "value": 1234
 }
 ```
+
+Expected response body:
+```json
+{
+  "kind": "Int32Values",
+  "values": 
+  [
+    1234
+  ],
+  "value": 1234
+}
+```
 """)
-@route("/genericType")
+@route("/templatedType")
 @put
-op genericType(@body input: Int32Type): Int32Type;
+op templatedType(@body input: Int32Type): Int32Type;
