@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.35.1
+
+### Patch Changes
+
+- 2aa44fb: Fix suppress wrong place
+
 ## 0.35.0
 
 ### Minor Changes
