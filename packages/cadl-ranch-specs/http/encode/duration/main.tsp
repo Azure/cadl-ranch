@@ -83,6 +83,7 @@ namespace Query {
   """)
   op int32SecondsArray(
     @query({
+      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     input: Int32Duration[],

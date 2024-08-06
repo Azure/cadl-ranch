@@ -63,6 +63,7 @@ namespace Query {
   """)
   op base64urlArray(
     @query({
+      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     value: base64urlBytes[],

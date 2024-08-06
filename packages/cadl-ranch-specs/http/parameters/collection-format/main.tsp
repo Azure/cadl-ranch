@@ -73,6 +73,7 @@ This test is testing sending a csv collection format array query parameters
   op csv(
     @doc("Possible values for colors are [blue,red,green]")
     @query({
+      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     colors: string[],
