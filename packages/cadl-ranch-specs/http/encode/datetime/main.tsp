@@ -75,8 +75,8 @@ namespace Query {
   value=1686566864, 1686734256
   """)
   op unixTimestampArray(
+    #suppress "deprecated" "Deprecated in next release"
     @query({
-      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     value: unixTimestampDatetime[],

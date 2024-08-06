@@ -82,8 +82,8 @@ namespace Query {
   Expected query parameter `input=36,47`
   """)
   op int32SecondsArray(
+    #suppress "deprecated" "Deprecated in next release"
     @query({
-      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     input: Int32Duration[],

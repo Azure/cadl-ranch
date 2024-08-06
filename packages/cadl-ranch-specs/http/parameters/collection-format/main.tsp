@@ -71,9 +71,9 @@ This test is testing sending a csv collection format array query parameters
 """)
   @route("/csv")
   op csv(
+    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
     @query({
-      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     colors: string[],
