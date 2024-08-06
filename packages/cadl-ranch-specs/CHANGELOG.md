@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.35.0
+
+### Minor Changes
+
+- b06f27c: added more tests to payload/xml
+
+### Patch Changes
+
+- fd4d452: Move azure page operation to a new folder
+- 44ce23e: Fixed resource-manager/resources mock implementation.
+- 96c1f90: Bug fix on azure example test route
+- 1a2c812: Fix deprecated csv format
+
 ## 0.34.10
 
 ### Patch Changes
