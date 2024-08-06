@@ -1429,6 +1429,27 @@ client.group2.five();
 client.group2.six();
 ```
 
+### Encode_AsString_Property_encodeAsString
+
+- Endpoint: `post /encode/string/property/string`
+
+Test operation with request and response model contains integer property with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
+}
+```
+
 ### Encode_Bytes_Header_base64
 
 - Endpoint: `get /encode/bytes/header/base64`
