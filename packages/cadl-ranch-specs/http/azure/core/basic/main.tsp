@@ -218,7 +218,7 @@ Expected response body:
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
 
 model UserList {
-  Users: User[];
+  users: User[];
 }
 
 @scenario
@@ -233,7 +233,7 @@ Expected query parameter: api-version=2022-12-01-preview
 Expected response body:
 ```json
 {
-  [
+  "users":[
     {
       "id": 1,
       "name": "Madge",

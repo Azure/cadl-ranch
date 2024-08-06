@@ -234,7 +234,7 @@ Expected response body:
 
 ````json
 {
-  [
+  "users":[
     {
       "id": 1,
       "name": "Madge",
