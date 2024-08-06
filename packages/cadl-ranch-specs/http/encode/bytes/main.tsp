@@ -62,8 +62,8 @@ namespace Query {
   value=dGVzdA, dGVzdA
   """)
   op base64urlArray(
+    #suppress "deprecated" "Deprecated in next release"
     @query({
-      #suppress "deprecated" "Deprecated in next release"
       format: "csv",
     })
     value: base64urlBytes[],
