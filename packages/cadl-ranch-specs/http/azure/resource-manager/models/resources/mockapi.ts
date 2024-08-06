@@ -110,9 +110,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
       req.expect.deepEqual(req.body.properties, {
         description: "valid2",
       });
-      const resource = {
-        ...validTopLevelResource,
-      };
+      const resource = JSON.parse(JSON.stringify(validTopLevelResource));
       resource.properties.description = "valid2";
       return {
         status: 200,
@@ -260,9 +258,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = p
           description: "valid2",
         },
       });
-      const resource = {
-        ...validNestedResource,
-      };
+      const resource = JSON.parse(JSON.stringify(validTopLevelResource));
       resource.properties.description = "valid2";
       return {
         status: 200,
