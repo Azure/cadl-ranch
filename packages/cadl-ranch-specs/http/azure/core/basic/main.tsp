@@ -246,6 +246,7 @@ Expected response body:
     }
   ]
 }
+```
 """)
 @collectionAction(User, "exportallusers")
 @post
