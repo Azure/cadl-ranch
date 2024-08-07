@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.35.2
+
+### Patch Changes
+
+- 13ec97f: Fixed ARM resources mock test.
+
 ## 0.35.1
 
 ### Patch Changes
