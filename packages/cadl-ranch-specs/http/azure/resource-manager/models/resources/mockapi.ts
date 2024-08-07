@@ -258,7 +258,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = p
           description: "valid2",
         },
       });
-      const resource = JSON.parse(JSON.stringify(validTopLevelResource));
+      const resource = JSON.parse(JSON.stringify(validNestedResource));
       resource.properties.description = "valid2";
       return {
         status: 200,
