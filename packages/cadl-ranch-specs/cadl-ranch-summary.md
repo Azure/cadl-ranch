@@ -2734,6 +2734,11 @@ Content-Type: text/plain
 
 123
 --abcde12345
+Content-Disposition: form-data; name="temperature"
+Content-Type: text/plain
+
+0.123
+--abcde12345
 Content-Disposition: form-data; name="address"
 Content-Type: application/json
 

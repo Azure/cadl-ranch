@@ -15,6 +15,10 @@ function checkId(req: MockRequest) {
   req.expect.deepEqual(req.body.id, "123");
 }
 
+function checkFloat(req: MockRequest) {
+  req.expect.deepEqual(parseFloat(req.body.temperature), 0.123);
+}
+
 function checkAddress(req: MockRequest) {
   req.expect.deepEqual(JSON.parse(req.body.address), { city: "X" });
 }
@@ -103,10 +107,12 @@ function createMockApis(route: string, checkList: ((param: MockRequest) => void)
   });
 }
 
-Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(createMockApis("mixed-parts", [checkId, checkProfileImage]));
+Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(
+  createMockApis("mixed-parts", [checkId, checkFloat, checkProfileImage]),
+);
 
 Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
-  createMockApis("complex-parts", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+  createMockApis("complex-parts", [checkId, checkFloat, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
 
 Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
