@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-expect",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Cadl Library providing decorator and validation for Cadl Ranch specs",
   "main": "dist/index.js",
   "tspMain": "lib/lib.tsp",
