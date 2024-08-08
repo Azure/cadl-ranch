@@ -12,9 +12,9 @@ namespace _Specs_.Azure.ClientGenerator.Core.Usage;
 
 @scenario
 @scenarioDoc("""
-This scenario contains two public operations. Both should be generated and exported.
-The models are override to roundtrip, so they should be generated and exported as well.
-""")
+  This scenario contains two public operations. Both should be generated and exported.
+  The models are override to roundtrip, so they should be generated and exported as well.
+  """)
 namespace ModelInOperation {
   @doc("Usage override to roundtrip.")
   @global.Azure.ClientGenerator.Core.usage(
@@ -25,13 +25,13 @@ namespace ModelInOperation {
   }
 
   @doc("""
-  Expected body parameter: 
-  ```json
-  {
-    "name": <any string>
-  }
-  ```
-  """)
+    Expected body parameter: 
+    ```json
+    {
+      "name": <any string>
+    }
+    ```
+    """)
   @route("/inputToInputOutput")
   @post
   op inputToInputOutput(@body body: InputModel): void;
@@ -45,13 +45,13 @@ namespace ModelInOperation {
   }
 
   @doc("""
-  Expected response body: 
-  ```json
-  {
-    "name": <any string>
-  }
-  ```
-  """)
+    Expected response body: 
+    ```json
+    {
+      "name": <any string>
+    }
+    ```
+    """)
   @route("/outputToInputOutput")
   @get
   op outputToInputOutput(): OutputModel;
@@ -66,23 +66,23 @@ namespace ModelInOperation {
   }
 
   @doc("""
-  "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
-
-  Expected body parameter: 
-  ```json
-  {
-  }
-  ```
-
-  Expected response body: 
-  ```json
-  {
-    "result": {
-      "name": <any string>
+    "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+    
+    Expected body parameter: 
+    ```json
+    {
     }
-  }
-  ```
-  """)
+    ```
+    
+    Expected response body: 
+    ```json
+    {
+      "result": {
+        "name": <any string>
+      }
+    }
+    ```
+    """)
   @route("/modelInReadOnlyProperty")
   @put
   op modelInReadOnlyProperty(@body body: RoundTripModel): {

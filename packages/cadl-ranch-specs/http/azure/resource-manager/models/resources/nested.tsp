@@ -37,124 +37,13 @@ model NestedProxyResourceProperties {
 interface NestedProxyResources {
   @scenario
   @scenarioDoc("""
-  Resource GET operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-  ```json
-  {
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-    "name": "nested",
-    "type": "nested",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }
-  ```
-  """)
-  get is ArmResourceRead<NestedProxyResource>;
-
-  @scenario
-  @scenarioDoc("""
-  Resource PUT operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-  Expected query parameter: api-version=2023-12-01-preview
-  Expected request body:
-  ```json
-  {
-    "properties":{
-      "description": "valid"
-    }
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-    "name": "nested",
-    "type": "nested",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }
-  ```
-  """)
-  createOrReplace is ArmResourceCreateOrReplaceAsync<NestedProxyResource>;
-
-  @scenario
-  @scenarioDoc("""
-  Resource PATCH operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-  Expected query parameter: api-version=2023-12-01-preview
-  Expected request body:
-  ```json
-  {
-    "properties":{
-      "description": "valid2"
-    }
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
-    "name": "nested",
-    "type": "nested",
-    "properties":{
-      "description": "valid2",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }
-  ```
-  """)
-  update is ArmResourcePatchAsync<NestedProxyResource, NestedProxyResourceProperties>;
-
-  @scenario
-  @scenarioDoc("""
-  Resource DELETE operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-  Expected query parameter: api-version=2023-12-01-preview
-  Expected response status code: 204
-  """)
-  delete is ArmResourceDeleteWithoutOkAsync<NestedProxyResource>;
-
-  @scenario
-  @scenarioDoc("""
-  Resource LIST by parent resource operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-  ```json
-  {
-    "value": [{
+    Resource GET operation.
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+    Expected query parameter: api-version=2023-12-01-preview
+    
+    Expected response body:
+    ```json
+    {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
       "name": "nested",
       "type": "nested",
@@ -170,9 +59,120 @@ interface NestedProxyResources {
         "lastModifiedAt": <any date>,
         "lastModifiedByType": "User",
       }
-    }]
-  }
-  ```
-  """)
+    }
+    ```
+    """)
+  get is ArmResourceRead<NestedProxyResource>;
+
+  @scenario
+  @scenarioDoc("""
+    Resource PUT operation.
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+    Expected query parameter: api-version=2023-12-01-preview
+    Expected request body:
+    ```json
+    {
+      "properties":{
+        "description": "valid"
+      }
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+      "name": "nested",
+      "type": "nested",
+      "properties":{
+        "description": "valid",
+        "provisioningState": "Succeeded"
+      },
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": <any date>,
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": <any date>,
+        "lastModifiedByType": "User",
+      }
+    }
+    ```
+    """)
+  createOrReplace is ArmResourceCreateOrReplaceAsync<NestedProxyResource>;
+
+  @scenario
+  @scenarioDoc("""
+    Resource PATCH operation.
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+    Expected query parameter: api-version=2023-12-01-preview
+    Expected request body:
+    ```json
+    {
+      "properties":{
+        "description": "valid2"
+      }
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+      "name": "nested",
+      "type": "nested",
+      "properties":{
+        "description": "valid2",
+        "provisioningState": "Succeeded"
+      },
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": <any date>,
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": <any date>,
+        "lastModifiedByType": "User",
+      }
+    }
+    ```
+    """)
+  update is ArmResourcePatchAsync<NestedProxyResource, NestedProxyResourceProperties>;
+
+  @scenario
+  @scenarioDoc("""
+    Resource DELETE operation.
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+    Expected query parameter: api-version=2023-12-01-preview
+    Expected response status code: 204
+    """)
+  delete is ArmResourceDeleteWithoutOkAsync<NestedProxyResource>;
+
+  @scenario
+  @scenarioDoc("""
+    Resource LIST by parent resource operation.
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
+    Expected query parameter: api-version=2023-12-01-preview
+    
+    Expected response body:
+    ```json
+    {
+      "value": [{
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+        "name": "nested",
+        "type": "nested",
+        "properties":{
+          "description": "valid",
+          "provisioningState": "Succeeded"
+        },
+        "systemData": {
+          "createdBy": "AzureSDK",
+          "createdByType": "User",
+          "createdAt": <any date>,
+          "lastModifiedBy": "AzureSDK",
+          "lastModifiedAt": <any date>,
+          "lastModifiedByType": "User",
+        }
+      }]
+    }
+    ```
+    """)
   listByTopLevelTrackedResource is ArmResourceListByParent<NestedProxyResource>;
 }

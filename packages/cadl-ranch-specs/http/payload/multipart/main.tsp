@@ -48,30 +48,30 @@ model MultiBinaryPartsRequest {
 namespace FormData {
   @scenario
   @scenarioDoc("""
-Expect request (
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream;
-
-{…file content…}
---abcde12345--
-```
-""")
+    Expect request (
+    - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+      appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+    - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+      If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+    ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="id"
+    Content-Type: text/plain
+    
+    123
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream;
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data")
   @post
   @route("/mixed-parts")
@@ -79,56 +79,56 @@ Content-Type: application/octet-stream;
 
   @scenario
   @scenarioDoc("""
-Expect request (
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="address"
-Content-Type: application/json
-
-{
-  "city": "X"
-}
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-Content-Disposition: form-data; name="previousAddresses"
-Content-Type: application/json
-
-[{
-  "city": "Y"
-},{
-  "city": "Z"
-}]
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-```
-""")
+    Expect request (
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+        appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+        If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+      ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="id"
+    Content-Type: text/plain
+    
+    123
+    --abcde12345
+    Content-Disposition: form-data; name="address"
+    Content-Type: application/json
+    
+    {
+      "city": "X"
+    }
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345--
+    Content-Disposition: form-data; name="previousAddresses"
+    Content-Type: application/json
+    
+    [{
+      "city": "Y"
+    },{
+      "city": "Z"
+    }]
+    --abcde12345
+    Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345
+    Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data for mixed scenarios")
   @post
   @route("/complex-parts")
@@ -136,32 +136,32 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
-Expect request (
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="address"
-Content-Type: application/json
-
-{
-  "city": "X"
-}
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-```
-""")
+    Expect request (
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+        appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+        If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+      ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="address"
+    Content-Type: application/json
+    
+    {
+      "city": "X"
+    }
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data for scenario contains json part and binary part ")
   @post
   @route("/json-part")
@@ -169,35 +169,35 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
-Expect request (
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-```
-""")
+    Expect request (
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+        appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+        If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+      ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="id"
+    Content-Type: text/plain
+    
+    123
+    --abcde12345
+    Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345
+    Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
   @post
   @route("/binary-array-parts")
@@ -208,34 +208,34 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
-Expect request (
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="previousAddresses"
-Content-Type: application/json
-
-[{
-  "city": "Y"
-},{
-  "city": "Z"
-}]
---abcde12345--
-```
-""")
+    Expect request (
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+        appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+        If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+      ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345
+    Content-Disposition: form-data; name="previousAddresses"
+    Content-Type: application/json
+    
+    [{
+      "city": "Y"
+    },{
+      "city": "Z"
+    }]
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data for scenario contains multi json parts")
   @post
   @route("/json-array-parts")
@@ -243,30 +243,30 @@ Content-Type: application/json
 
   @scenario
   @scenarioDoc("""
-Please send request twice, first time with only profileImage, second time with both profileImage and picture(
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-    appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-  - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-    If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345
-Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content…}
---abcde12345--
-```
-""")
+    Please send request twice, first time with only profileImage, second time with both profileImage and picture(
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
+        appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+      - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+        If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
+      ):
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345
+    Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
+    Content-Type: application/octet-stream
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data for scenario contains multi binary parts")
   @post
   @route("/multi-binary-parts")
@@ -277,25 +277,25 @@ Content-Type: application/octet-stream
 
   @scenario
   @scenarioDoc("""
-this case will check filename and content-type of file part, so expect request:
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="id"
-Content-Type: text/plain
-
-123
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
-Content-Type: image/jpg
-
-{…file content…}
---abcde12345--
-```
-""")
+    this case will check filename and content-type of file part, so expect request:
+    ```
+    POST /upload HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="id"
+    Content-Type: text/plain
+    
+    123
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+    Content-Type: image/jpg
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data")
   @post
   @route("/check-filename-and-content-type")
@@ -306,25 +306,25 @@ Content-Type: image/jpg
 
   @scenario
   @scenarioDoc("""
-Expect request (
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with 
-  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
-):
-```
-POST /multipart/form-data/anonymous-model HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream;
-
-{…file content…}
---abcde12345--
-```
-""")
+    Expect request (
+    - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with 
+      appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
+    - according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
+      If there are duplicated filename in same filedName, cadl-ranch can't parse them all.
+    ):
+    ```
+    POST /multipart/form-data/anonymous-model HTTP/1.1
+    Content-Length: 428
+    Content-Type: multipart/form-data; boundary=abcde12345
+    
+    --abcde12345
+    Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+    Content-Type: application/octet-stream;
+    
+    {…file content…}
+    --abcde12345--
+    ```
+    """)
   @doc("Test content-type: multipart/form-data")
   @post
   @route("/anonymous-model")

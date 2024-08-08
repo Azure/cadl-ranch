@@ -74,105 +74,105 @@ model UserExportParams {
 @doc("Creates or updates a User")
 @summary("Adds a user or updates a user's fields.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Expected path parameter: id=1
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected input body:
-```json
-{
-  "name": "Madge"
-}
-```
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge"
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Expected path parameter: id=1
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected input body:
+  ```json
+  {
+    "name": "Madge"
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "id": 1,
+    "name": "Madge"
+  }
+  ```
+  """)
 op createOrUpdate is ResourceOperations.ResourceCreateOrUpdate<User>;
 
 @scenario
 @doc("Creates or replaces a User")
 @summary("Adds a user or replaces a user's fields.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Expected path parameter: id=1
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected input body:
-```json
-{
-  "name": "Madge"
-}
-```
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Expected path parameter: id=1
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected input body:
+  ```json
+  {
+    "name": "Madge"
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "id": 1,
+    "name": "Madge",
+    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  }
+  ```
+  """)
 op createOrReplace is ResourceOperations.ResourceCreateOrReplace<User>;
 
 @scenario
 @doc("Gets a User")
 @summary("Gets a user.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Expected path parameter: id=1
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Expected path parameter: id=1
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "id": 1,
+    "name": "Madge",
+    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  }
+  ```
+  """)
 op get is ResourceOperations.ResourceRead<User>;
 
 @scenario
 @doc("Lists all Users")
 @summary("Lists all users.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like CustomPage.
-
-Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
-        "orders": [{ "id": 1, "userId": 1, detail: "a recorder" }]
-     },
-     {
-        "id":2,
-        "name":"John",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
-        "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
-     }
-  ]
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Should not generate visible model like CustomPage.
+  
+  Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "id":1,
+          "name":"Madge",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          "orders": [{ "id": 1, "userId": 1, detail: "a recorder" }]
+       },
+       {
+          "id":2,
+          "name":"John",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
+       }
+    ]
+  }
+  ```
+  """)
 op list is ResourceOperations.ResourceList<
   User,
   ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
@@ -186,31 +186,31 @@ op list is ResourceOperations.ResourceList<
 @doc("Deletes a User")
 @summary("Deletes a user.")
 @scenarioDoc("""
-Expected path parameter: id=1
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response of status code 204 with empty body.
-""")
+  Expected path parameter: id=1
+  
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response of status code 204 with empty body.
+  """)
 op delete is ResourceOperations.ResourceDelete<User>;
 
 @scenario
 @doc("Exports a User")
 @summary("Exports a user.")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Expected path parameter: id=1
-Expected query parameter: format=json
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge",
-  "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Expected path parameter: id=1
+  Expected query parameter: format=json
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "id": 1,
+    "name": "Madge",
+    "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  }
+  ```
+  """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
