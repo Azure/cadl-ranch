@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.4
+
+### Patch Changes
+
+- 53fe736: Add typespec/http-client-csharp column
+
 ## 0.8.3
 
 ### Patch Changes
