@@ -1328,6 +1328,32 @@ Expected request body:
   "value1"
   ```
 
+### Client_Structure_ClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/one`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+
+```ts
+const client1 = new FirstClient("client-operation-group");
+
+client1.one();
+
+client1.group1.two();
+client1.group1.three();
+
+client1.group2.four();
+
+const client2 = new SecondClient("client-operation-group");
+
+client2.five();
+client2.group3.six();
+```
+
 ### Client_Structure_MultiClient
 
 - Endpoints:
