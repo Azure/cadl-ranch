@@ -15,11 +15,6 @@ using Azure.ClientGenerator.Core;
   client1.group1.three();
 
   client1.group2.four();
-
-  const client2 = new SecondClient("client-operation-group");
-
-  client2.five();
-  client2.group3.six();
   ```
   """)
 @scenario
@@ -42,6 +37,17 @@ namespace Client.Structure.ClientOperationGroup {
   }
 }
 
+@scenarioDoc("""
+  This is to show we can have multiple clients, with multiple operation groups in each client.
+
+  ```ts
+  const client2 = new SubNamespace.SecondClient("client-operation-group");
+
+  client2.five();
+  client2.group3.six();
+  ```
+  """)
+@scenario
 @client({
   name: "SubNamespace.SecondClient",
   service: Client.Structure.Service,

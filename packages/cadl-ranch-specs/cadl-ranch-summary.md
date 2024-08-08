@@ -1347,8 +1347,18 @@ client1.group1.two();
 client1.group1.three();
 
 client1.group2.four();
+```
 
-const client2 = new SecondClient("client-operation-group");
+### Client_Structure_ClientOperationGroup2
+
+- Endpoints:
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/five`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+
+```ts
+const client2 = new SubNamespace.SecondClient("client-operation-group");
 
 client2.five();
 client2.group3.six();

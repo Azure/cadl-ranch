@@ -15,6 +15,9 @@ Scenarios.Client_Structure_ClientOperationGroup = passOnSuccess([
   mockapi.post("/client/structure/client-operation-group/four", (req) => {
     return { status: 204 };
   }),
+]);
+
+Scenarios.Client_Structure_ClientOperationGroup2 = passOnSuccess([
   mockapi.post("/client/structure/client-operation-group/five", (req) => {
     return { status: 204 };
   }),
