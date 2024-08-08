@@ -40,13 +40,13 @@
     "@azure-tools/typespec-autorest": "0.45.0",
     "@azure-tools/typespec-azure-resource-manager": "0.45.0",
     "@azure-tools/typespec-client-generator-core": "0.45.0",
-    "@types/node": "^18.16.0",
+    "@types/node": "^22.1.0",
     "@typespec/eslint-config-typespec": "~0.55.0",
     "@typespec/openapi": "~0.59.0",
     "@typespec/openapi3": "~0.59.0",
-    "eslint": "^8.50.0",
-    "rimraf": "^5.0.5",
-    "typescript": "~5.2.2"
+    "eslint": "^9.8.0",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.5.4"
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
