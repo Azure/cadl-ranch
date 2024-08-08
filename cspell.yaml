@@ -5,6 +5,8 @@ dictionaries:
   - node
   - typescript
 words:
+  - archerzz
+  - arraya
   - autorest
   - azsdkengsys
   - azurecr
@@ -13,22 +15,28 @@ words:
   - blockless
   - cadl
   - cadlranchcoverage
+  - chunyu
   - Contoso
   - CRUDL
   - devdriven
   - dogfood
   - eastus
+  - elif
   - esbuild
   - fluentui
   - globby
+  - haolingdong
   - Hdvcmxk
   - inmemory
   - instanceid
   - intrinsics
   - ints
+  - iscai
   - jsyaml
+  - lmazuel
   - msbuild
   - MSRC
+  - msyyc
   - munge
   - mylib
   - nostdlib
@@ -43,14 +51,22 @@ words:
   - picocolors
   - pnpm
   - positionals
+  - primitivea
   - proto
   - protobuf
   - protoc
+  - pshao
+  - qiaozha
+  - recorda
   - regen
   - rpaas
   - rushx
   - safeint
   - strs
+  - tadelesh
+  - tcgc
+  - timotheeguerin
+  - tjprescott
   - TSES
   - typespec
   - Uhoh
@@ -63,24 +79,9 @@ words:
   - unversioned
   - vsix
   - vswhere
+  - weidongxu
   - westus
   - xplat
-  - tcgc
-  - elif
-
-  # github aliases that show in changlog
-  - tadelesh
-  - timotheeguerin
-  - iscai
-  - qiaozha
-  - weidongxu
-  - lmazuel
-  - pshao
-  - chunyu
-  - haolingdong
-  - archerzz
-  - tjprescott
-  - msyyc
 ignorePaths:
   - "**/node_modules/**"
   - "**/dist/**"
