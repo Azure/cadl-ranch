@@ -48,13 +48,24 @@ namespace Client.Structure.ClientOperationGroup {
   ```
   """)
 @scenario
-@client({
-  name: "SubNamespace.SecondClient",
-  service: Client.Structure.Service,
-})
+@client(
+  {
+    name: "SubNamespace.SecondClient",
+    service: Client.Structure.Service,
+  },
+  "csharp,java,python"
+)
+@client(
+  {
+    name: "SecondClient",
+    service: Client.Structure.Service,
+  },
+  "javascript"
+)
 namespace Client.Structure.ClientOperationGroup2 {
   op five is Client.Structure.Service.Bar.five;
 
+  #suppress "@azure-tools/typespec-client-generator-core/client-service" "issue https://github.com/Azure/typespec-azure/issues/1326"
   @operationGroup
   interface Group5 {
     six is Client.Structure.Service.Bar.six;
