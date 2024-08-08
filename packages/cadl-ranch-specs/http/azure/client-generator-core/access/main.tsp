@@ -14,15 +14,15 @@ namespace _Specs_.Azure.ClientGenerator.Core.Access;
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
-This scenario contains public operations. It should be generated and exported.
-Expected query parameter: name=<any string>
-Expected response body:
-```json
-{
-  "name": <any string>
-}
-```
-""")
+  This scenario contains public operations. It should be generated and exported.
+  Expected query parameter: name=<any string>
+  Expected response body:
+  ```json
+  {
+    "name": <any string>
+  }
+  ```
+  """)
 namespace PublicOperation {
   @doc("Used in a public operation, should be generated and exported.")
   model NoDecoratorModelInPublic {
@@ -50,15 +50,15 @@ namespace PublicOperation {
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
-This scenario contains internal operations. All should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-```json
-{
-  "name": <any string>
-}
-```
-""")
+  This scenario contains internal operations. All should be generated but not exposed.
+  Expected query parameter: name=<any string>
+  Expected response body:
+  ```json
+  {
+    "name": <any string>
+  }
+  ```
+  """)
 namespace InternalOperation {
   @doc("Used in an internal operation, should be generated but not exported.")
   model NoDecoratorModelInInternal {
@@ -97,15 +97,15 @@ namespace InternalOperation {
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
-This scenario contains two operations, one public, another internal. The public one should be generated and exported while the internal one should be generated but not exposed.
-Expected query parameter: name=<any string>
-Expected response body:
-```json
-{
-  "name": <any string>
-}
-```
-""")
+  This scenario contains two operations, one public, another internal. The public one should be generated and exported while the internal one should be generated but not exposed.
+  Expected query parameter: name=<any string>
+  Expected response body:
+  ```json
+  {
+    "name": <any string>
+  }
+  ```
+  """)
 namespace SharedModelInOperation {
   @doc("Used by both public and internal operation. It should be generated and exported.")
   model SharedModel {
@@ -127,8 +127,8 @@ namespace SharedModelInOperation {
 @global.Azure.ClientGenerator.Core.operationGroup
 @scenario
 @scenarioDoc("""
-This scenario contains internal operations. All should be generated but not exposed.
-""")
+  This scenario contains internal operations. All should be generated but not exposed.
+  """)
 namespace RelativeModelInOperation {
   @doc("Used in internal operations, should be generated but not exported.")
   model OuterModel extends BaseModel {
@@ -157,33 +157,33 @@ namespace RelativeModelInOperation {
   }
 
   @doc("""
-  Expected query parameter: name=<any string>
-  Expected response body:
-  ```json
-  {
-    "name": <any string>,
-    "inner":
+    Expected query parameter: name=<any string>
+    Expected response body:
+    ```json
     {
-      "name": <any string>
+      "name": <any string>,
+      "inner":
+      {
+        "name": <any string>
+      }
     }
-  }
-  ```
-  """)
+    ```
+    """)
   @route("/operation")
   @get
   @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)
   op operation(@query name: string): OuterModel;
 
   @doc("""
-  Expected query parameter: kind=<any string>
-  Expected response body:
-  ```json
-  {
-    "name": <any string>,
-    "kind": "real"
-  }
-  ```
-  """)
+    Expected query parameter: kind=<any string>
+    Expected response body:
+    ```json
+    {
+      "name": <any string>,
+      "kind": "real"
+    }
+    ```
+    """)
   @route("/discriminator")
   @get
   @global.Azure.ClientGenerator.Core.access(global.Azure.ClientGenerator.Core.Access.internal)

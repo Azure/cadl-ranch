@@ -16,9 +16,9 @@ namespace Query {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for a duration parameter.
-  Expected query parameter `input=P40D`
-  """)
+    Test default encode for a duration parameter.
+    Expected query parameter `input=P40D`
+    """)
   op default(
     @query
     input: duration,
@@ -27,9 +27,9 @@ namespace Query {
   @route("/iso8601")
   @scenario
   @scenarioDoc("""
-  Test iso8601 encode for a duration parameter.
-  Expected query parameter `input=P40D`
-  """)
+    Test iso8601 encode for a duration parameter.
+    Expected query parameter `input=P40D`
+    """)
   op iso8601(
     @query
     @encode(DurationKnownEncoding.ISO8601)
@@ -39,9 +39,9 @@ namespace Query {
   @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
-  Test int32 seconds encode for a duration parameter.
-  Expected query parameter `input=36`
-  """)
+    Test int32 seconds encode for a duration parameter.
+    Expected query parameter `input=36`
+    """)
   op int32Seconds(
     @query
     @encode(DurationKnownEncoding.seconds, int32)
@@ -51,9 +51,9 @@ namespace Query {
   @route("/float-seconds")
   @scenario
   @scenarioDoc("""
-  Test float seconds encode for a duration parameter.
-  Expected query parameter `input=35.625`
-  """)
+    Test float seconds encode for a duration parameter.
+    Expected query parameter `input=35.625`
+    """)
   op floatSeconds(
     @query
     @encode(DurationKnownEncoding.seconds, float)
@@ -63,9 +63,9 @@ namespace Query {
   @route("/float64-seconds")
   @scenario
   @scenarioDoc("""
-  Test float64 seconds encode for a duration parameter.
-  Expected query parameter `input=35.625`
-  """)
+    Test float64 seconds encode for a duration parameter.
+    Expected query parameter `input=35.625`
+    """)
   op float64Seconds(
     @query
     @encode(DurationKnownEncoding.seconds, float64)
@@ -78,9 +78,9 @@ namespace Query {
   @route("/int32-seconds-array")
   @scenario
   @scenarioDoc("""
-  Test int32 seconds encode for a duration array parameter.
-  Expected query parameter `input=36,47`
-  """)
+    Test int32 seconds encode for a duration array parameter.
+    Expected query parameter `input=36,47`
+    """)
   op int32SecondsArray(
     #suppress "deprecated" "Deprecated in next release"
     @query({
@@ -127,117 +127,117 @@ namespace Property {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with default encode.
-  Expected request body:
-  ```json
-  {
-    "value": "P40D"
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": "P40D"
-  }
-  ```
-  """)
+    Test operation with request and response model contains a duration property with default encode.
+    Expected request body:
+    ```json
+    {
+      "value": "P40D"
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": "P40D"
+    }
+    ```
+    """)
   @post
   op default(@body body: DefaultDurationProperty): DefaultDurationProperty;
 
   @route("/iso8601")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with iso8601 encode.
-  Expected request body:
-  ```json
-  {
-    "value": "P40D"
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": "P40D"
-  }
-  ```
-  """)
+    Test operation with request and response model contains a duration property with iso8601 encode.
+    Expected request body:
+    ```json
+    {
+      "value": "P40D"
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": "P40D"
+    }
+    ```
+    """)
   @post
   op iso8601(@body body: ISO8601DurationProperty): ISO8601DurationProperty;
 
   @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with int32 seconds encode.
-  Expected request body:
-  ```json
-  {
-    "value": 36
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": 36
-  }
-  ```
-  """)
+    Test operation with request and response model contains a duration property with int32 seconds encode.
+    Expected request body:
+    ```json
+    {
+      "value": 36
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": 36
+    }
+    ```
+    """)
   op int32Seconds(@body body: Int32SecondsDurationProperty): Int32SecondsDurationProperty;
 
   @route("/float-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with float seconds encode.
-  Expected request body:
-  ```json
-  {
-    "value": 35.625
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": 35.625
-  }
-  ```
-  """)
+    Test operation with request and response model contains a duration property with float seconds encode.
+    Expected request body:
+    ```json
+    {
+      "value": 35.625
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": 35.625
+    }
+    ```
+    """)
   op floatSeconds(@body body: FloatSecondsDurationProperty): FloatSecondsDurationProperty;
 
   @route("/float64-seconds")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains a duration property with float64 seconds encode.
-  Expected request body:
-  ```json
-  {
-    "value": 35.625
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": 35.625
-  }
-  ```
-  """)
+    Test operation with request and response model contains a duration property with float64 seconds encode.
+    Expected request body:
+    ```json
+    {
+      "value": 35.625
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": 35.625
+    }
+    ```
+    """)
   op float64Seconds(@body body: Float64SecondsDurationProperty): Float64SecondsDurationProperty;
 
   @route("/float-seconds-array")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains an array property which elements are duration with float seconds encode.
-  Expected request body:
-  ```json
-  {
-    "value": [35.625, 46.75]
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": [35.625, 46.75]
-  }
-  ```
-  """)
+    Test operation with request and response model contains an array property which elements are duration with float seconds encode.
+    Expected request body:
+    ```json
+    {
+      "value": [35.625, 46.75]
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": [35.625, 46.75]
+    }
+    ```
+    """)
   op floatSecondsArray(@body body: FloatSecondsDurationArrayProperty): FloatSecondsDurationArrayProperty;
 }
 
@@ -247,9 +247,9 @@ namespace Header {
   @route("/default")
   @scenario
   @scenarioDoc("""
-  Test default encode for a duration header.
-  Expected header `input=P40D`
-  """)
+    Test default encode for a duration header.
+    Expected header `input=P40D`
+    """)
   op default(
     @header
     duration: duration,
@@ -258,9 +258,9 @@ namespace Header {
   @route("/iso8601")
   @scenario
   @scenarioDoc("""
-  Test iso8601 encode for a duration header.
-  Expected header `duration: P40D`
-  """)
+    Test iso8601 encode for a duration header.
+    Expected header `duration: P40D`
+    """)
   op iso8601(
     @header
     @encode(DurationKnownEncoding.ISO8601)
@@ -273,9 +273,9 @@ namespace Header {
   @route("/iso8601-array")
   @scenario
   @scenarioDoc("""
-  Test iso8601 encode for a duration array header.
-  Expected header `duration: [P40D,P50D]`
-  """)
+    Test iso8601 encode for a duration array header.
+    Expected header `duration: [P40D,P50D]`
+    """)
   op iso8601Array(
     @header({
       format: "csv",
@@ -286,9 +286,9 @@ namespace Header {
   @route("/int32-seconds")
   @scenario
   @scenarioDoc("""
-  Test int32 seconds encode for a duration header.
-  Expected header `duration: 36`
-  """)
+    Test int32 seconds encode for a duration header.
+    Expected header `duration: 36`
+    """)
   op int32Seconds(
     @header
     @encode(DurationKnownEncoding.seconds, int32)
@@ -298,9 +298,9 @@ namespace Header {
   @route("/float-seconds")
   @scenario
   @scenarioDoc("""
-  Test float seconds encode for a duration header.
-  Expected header `duration: 35.625`
-  """)
+    Test float seconds encode for a duration header.
+    Expected header `duration: 35.625`
+    """)
   op floatSeconds(
     @header
     @encode(DurationKnownEncoding.seconds, float)
@@ -310,9 +310,9 @@ namespace Header {
   @route("/float64-seconds")
   @scenario
   @scenarioDoc("""
-  Test float64 seconds encode for a duration header.
-  Expected header `duration: 35.625`
-  """)
+    Test float64 seconds encode for a duration header.
+    Expected header `duration: 35.625`
+    """)
   op float64Seconds(
     @header
     @encode(DurationKnownEncoding.seconds, float64)

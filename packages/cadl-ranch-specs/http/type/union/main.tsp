@@ -74,11 +74,15 @@ interface FloatsOnly extends GetAndSend<1.1 | 2.2 | 3.3, "2.2"> {}
  */
 @route("/models-only")
 @operationGroup
-interface ModelsOnly extends GetAndSend<Cat | Dog, """
-  {
-    "name": "test"
-  }
-  """> {}
+interface ModelsOnly
+  extends GetAndSend<
+      Cat | Dog,
+      """
+        {
+          "name": "test"
+        }
+        """
+    > {}
 
 model EnumsOnlyCases {
   /** This should be receive/send the left variant */
@@ -93,12 +97,17 @@ model EnumsOnlyCases {
  */
 @route("/enums-only")
 @operationGroup
-interface EnumsOnly extends GetAndSend<LR | UD, """
-  {
-    "lr": "right",
-    "ud": "up"
-  }
-  """, EnumsOnlyCases> {}
+interface EnumsOnly
+  extends GetAndSend<
+      LR | UD,
+      """
+        {
+          "lr": "right",
+          "ud": "up"
+        }
+        """,
+      EnumsOnlyCases
+    > {}
 
 model StringAndArrayCases {
   /** This should be receive/send the string variant */
@@ -117,11 +126,11 @@ interface StringAndArray
   extends GetAndSend<
       string | string[],
       """
-      {
-        "string": "test",
-        "array": ["test1", "test2"]
-      }
-      """,
+        {
+          "string": "test",
+          "array": ["test1", "test2"]
+        }
+        """,
       StringAndArrayCases
     > {}
 
@@ -149,13 +158,13 @@ interface MixedLiterals
   extends GetAndSend<
       MixedLiteralsUnion,
       """
-      {
-        "stringLiteral": "a",
-        "intLiteral": 2,
-        "floatLiteral": 3.3,
-        "booleanLiteral": true
-      }
-      """,
+        {
+          "stringLiteral": "a",
+          "intLiteral": 2,
+          "floatLiteral": 3.3,
+          "booleanLiteral": true
+        }
+        """,
       MixedLiteralsCases
     > {}
 
@@ -186,23 +195,23 @@ interface MixedTypes
   extends GetAndSend<
       MixedTypesUnion,
       """
-      {
-        "model": {
-          "name": "test"
-        },
-        "literal": "a",
-        "int": 2,
-        "boolean": true,
-        "array": [
-          {
+        {
+          "model": {
             "name": "test"
           },
-          "a",
-          2,
-          true
-        ]
-      }
-      """,
+          "literal": "a",
+          "int": 2,
+          "boolean": true,
+          "array": [
+            {
+              "name": "test"
+            },
+            "a",
+            2,
+            true
+          ]
+        }
+        """,
       MixedTypesCases
     > {}
 
@@ -213,16 +222,16 @@ interface GetAndSend<Union, Payload extends string, Cases = Union> {
   @scenario
   @scenarioDoc(
     """
-    Verify a union can be processed in a response: 
-    ```tsp
-    {type}
-    ```
-
-    Expected response body:
-    ```json
-    { "prop": {value}}
-    ```
-    """,
+      Verify a union can be processed in a response: 
+      ```tsp
+      {type}
+      ```
+      
+      Expected response body:
+      ```json
+      { "prop": {value}}
+      ```
+      """,
     {
       type: Union,
       value: Payload,
@@ -235,16 +244,16 @@ interface GetAndSend<Union, Payload extends string, Cases = Union> {
   @scenario
   @scenarioDoc(
     """
-    Verify a union can be processed in a response: 
-    ```tsp
-    {type}
-    ```
-
-    Expected request to send body:
-    ```json
-    { "prop": {value}}
-    ```
-    """,
+      Verify a union can be processed in a response: 
+      ```tsp
+      {type}
+      ```
+      
+      Expected request to send body:
+      ```json
+      { "prop": {value}}
+      ```
+      """,
     {
       type: Union,
       value: Payload,

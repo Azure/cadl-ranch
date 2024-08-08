@@ -24,11 +24,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  { "requiredProperty": "foo", "nullableProperty": {allDoc}}
-  ```
-  """,
+      Expected response body:
+      ```json
+      { "requiredProperty": "foo", "nullableProperty": {allDoc}}
+      ```
+      """,
     {
       allDoc: TDoc,
     }
@@ -41,11 +41,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  { "requiredProperty": "foo", "nullableProperty": {defaultDoc}}
-  ```
-  """,
+      Expected response body:
+      ```json
+      { "requiredProperty": "foo", "nullableProperty": {defaultDoc}}
+      ```
+      """,
     {
       defaultDoc: TDefaultDoc,
     }
@@ -58,11 +58,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected request body:
-  ```json
-  { "requiredProperty": "foo", "nullableProperty": {allDoc}}
-  ```
-  """,
+      Expected request body:
+      ```json
+      { "requiredProperty": "foo", "nullableProperty": {allDoc}}
+      ```
+      """,
     {
       allDoc: TDoc,
     }
@@ -81,11 +81,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected request body:
-  ```json
-  { "requiredProperty": "foo", "nullableProperty": {defaultDoc}}
-  ```
-  """,
+      Expected request body:
+      ```json
+      { "requiredProperty": "foo", "nullableProperty": {defaultDoc}}
+      ```
+      """,
     {
       defaultDoc: TDefaultDoc,
     }
