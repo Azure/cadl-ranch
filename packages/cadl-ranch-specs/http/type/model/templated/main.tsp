@@ -31,6 +31,16 @@ model Int32Type extends NumericType<int32> {
   kind: "Int32Values";
 }
 
+/**
+ * An instantiated type representing float type.
+ */
+model FloatType extends NumericType<float> {
+  /**
+   * The Kind of the FloatType.
+   */
+  kind: "FloatValues";
+}
+
 @scenario
 @scenarioDoc("""
 Expected input body:
