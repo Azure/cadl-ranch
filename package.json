@@ -6,15 +6,17 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "packageManager": "pnpm@9.5.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "watch": "tsc --build ./tsconfig.ws.json --watch",
     "build": "pnpm -r run build",
     "clean": "pnpm -r run clean",
-    "lint": "pnpm -r run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "npm run -s prettier -- --write",
-    "check-format": "npm run -s prettier -- --check",
+    "format:check": "npm run -s prettier -- --check",
     "check-version-mismatch": "syncpack list-mismatches",
     "fix-version-mismatch": "syncpack fix-mismatches",
     "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios",
@@ -41,17 +43,22 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
+    "@changesets/cli": "^2.27.7",
+    "@eslint/js": "^9.8.0",
+    "@types/node": "^22.1.0",
     "@typespec/prettier-plugin-typespec": "~0.59.0",
-    "cspell": "^7.3.7",
-    "eslint": "^8.50.0",
-    "eslint-plugin-import": "^2.28.1",
+    "cspell": "^8.13.2",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-unicorn": "^55.0.0",
+    "eslint-plugin-vitest": "^0.5.4",
+    "eslint": "^9.8.0",
     "jest": "^29.7.0",
-    "prettier": "^3.0.3",
-    "rimraf": "^5.0.5",
-    "syncpack": "^11.2.1",
-    "ts-jest": "^29.1.1",
-    "typescript": "~5.2.2"
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "syncpack": "^12.4.0",
+    "ts-jest": "^29.2.4",
+    "typescript-eslint": "^8.0.0",
+    "typescript": "~5.5.4"
   },
   "syncpack": {
     "dependencyTypes": [
