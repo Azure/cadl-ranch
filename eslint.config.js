@@ -15,7 +15,7 @@ export default tsEslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["eng/prepare-release-branch.js", "packages/*/cmd/cli.mjs"],
+          allowDefaultProject: ["eng/*.mjs", "packages/*/cmd/cli.mjs"],
           defaultProject: "./tsconfig.json",
         },
         tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
@@ -31,6 +31,8 @@ export default tsEslint.config(
       "prefer-const": "warn",
       "@typescript-eslint/no-floating-promises": "warn",
       "eqeqeq": ["warn", "always", { null: "ignore" }],
+      "no-case-declarations": "off",
+      "no-undef": "off",
     },
   },
   {

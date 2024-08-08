@@ -28,7 +28,7 @@ export function $modelNameScenario(context, target, name) {
   context.call(
     $scenarioDoc,
     target,
-    `Verify that the name "${name.value}" works. Send\n\`\`\`\json\n{"name": "ok"}\n\`\`\` `,
+    `Verify that the name "${name.value}" works. Send\n\`\`\`json\n{"name": "ok"}\n\`\`\` `,
   );
   context.call($route, target, `/${name.value}`);
 }
