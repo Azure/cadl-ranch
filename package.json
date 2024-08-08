@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "npm run -s prettier -- --write",
-    "check-format": "npm run -s prettier -- --check",
+    "format:check": "npm run -s prettier -- --check",
     "check-version-mismatch": "syncpack list-mismatches",
     "fix-version-mismatch": "syncpack fix-mismatches",
     "validate-scenarios": "pnpm -r --filter=@azure-tools/cadl-ranch-specs  run validate-scenarios",
