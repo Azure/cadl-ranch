@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.0
+
+### Minor Changes
+
+- 34e6b5a: Upgrade TypeSpec to 0.59.0
+
 ## 0.14.1
 
 ### Patch Changes
