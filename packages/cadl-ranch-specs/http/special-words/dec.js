@@ -3,6 +3,12 @@
 import { $scenario, $scenarioDoc } from "@azure-tools/cadl-ranch-expect";
 import { $route } from "@typespec/http";
 
+/**
+ *
+ * @param {*} context
+ * @param {*} target
+ * @param {*} name
+ */
 export function $opNameScenario(context, target, name) {
   context.call($scenario, target, name.value);
   context.call(
@@ -13,6 +19,12 @@ export function $opNameScenario(context, target, name) {
   context.call($route, target, `/${name.value}`);
 }
 
+/**
+ *
+ * @param {*} context
+ * @param {*} target
+ * @param {*} name
+ */
 export function $paramNameScenario(context, target, name) {
   context.call($scenario, target, name.value);
   context.call(
@@ -23,6 +35,12 @@ export function $paramNameScenario(context, target, name) {
   context.call($route, target, `/${name.value}`);
 }
 
+/**
+ *
+ * @param {*} context
+ * @param {*} target
+ * @param {*} name
+ */
 export function $modelNameScenario(context, target, name) {
   context.call($scenario, target, name.value);
   context.call(
