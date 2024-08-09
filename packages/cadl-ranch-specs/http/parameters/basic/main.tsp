@@ -20,20 +20,20 @@ namespace ExplicitBody {
 
   @scenario
   @scenarioDoc("""
-  Test case for simple explicit body. 
-  
-  Should generate request body model named `User`.
-  Should generate an operation like below:
-  ```
-  spreadAsRequestBody(bodyParameter: BodyParameter)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for simple explicit body. 
+    
+    Should generate request body model named `User`.
+    Should generate an operation like below:
+    ```
+    spreadAsRequestBody(bodyParameter: BodyParameter)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/simple")
   @put
   op simple(@body body: User): NoContentResponse;
@@ -44,18 +44,18 @@ namespace ExplicitBody {
 namespace ImplicitBody {
   @scenario
   @scenarioDoc("""
-  Test case for simple implicit body. 
-  
-  Should generate an operation like below:
-  ```
-  simple(name: string)
-  ```
-  
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for simple implicit body. 
+    
+    Should generate an operation like below:
+    ```
+    simple(name: string)
+    ```
+    
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/simple")
   @put
   op simple(name: string): NoContentResponse;

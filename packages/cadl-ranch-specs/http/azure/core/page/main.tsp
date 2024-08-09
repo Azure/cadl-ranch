@@ -64,25 +64,25 @@ model UserOrder {
 @doc("List with Azure.Core.Page<>.")
 @route("/page")
 @scenarioDoc("""
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like Page.
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-```
-""")
+  Should only generate models named User and UserOrder.
+  
+  Should not generate visible model like Page.
+  
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "id":1,
+          "name":"Madge",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+       }
+    ]
+  }
+  ```
+  """)
 op listWithPage is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<User>>;
 
 @doc("The parameters for listing users.")
@@ -116,23 +116,23 @@ model ListItemInputBody {
 @doc("List with extensible enum parameter Azure.Core.Page<>.")
 @route("/parameters")
 @scenarioDoc("""
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-```
-""")
+  Expected query parameter: api-version=2022-12-01-preview&another=Second
+  
+  Expected body parameter: {"inputName": "Madge"}
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "id": 1,
+          "name": "Madge",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+       }
+    ]
+  }
+  ```
+  """)
 @get
 op listWithParameters is global.Azure.Core.Foundations.Operation<ListItemInput, global.Azure.Core.Page<User>>;
 
@@ -153,23 +153,23 @@ model CustomPageModel<T> {
 @doc("List with custom page model.")
 @route("/custom-page")
 @scenarioDoc("""
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "items":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-```
-""")
+  Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+  
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "items":[
+       {
+          "id":1,
+          "name":"Madge",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+       }
+    ]
+  }
+  ```
+  """)
 op listWithCustomPageModel is global.Azure.Core.Foundations.Operation<{}, CustomPageModel<User>>;
 
 @doc("First item.")
@@ -188,8 +188,8 @@ model SecondItem {
 
 @scenario
 @scenarioDoc("""
-This scenario is to test two operations with two different page item types.
-""")
+  This scenario is to test two operations with two different page item types.
+  """)
 interface TwoModelsAsPageItem {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing global.Azure.Core.Page"
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for FirstItem.")

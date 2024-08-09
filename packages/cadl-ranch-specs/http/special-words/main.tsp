@@ -225,9 +225,9 @@ namespace ModelProperties {
   @scenario
   @scenarioDoc("""
     Verify that a property can be called the same as the model name. This can be an issue in some languages where the class name is the constructor.
-
+    
     Send 
-
+    
     ```json
     {"SameAsModel": "ok"}
     ```

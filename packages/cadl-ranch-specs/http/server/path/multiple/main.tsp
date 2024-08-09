@@ -31,16 +31,16 @@ enum Versions {
 
 @scenario
 @scenarioDoc("""
-Operation with client path parameters.
-
-Expected path parameter: apiVersion=v1.0
-""")
+  Operation with client path parameters.
+  
+  Expected path parameter: apiVersion=v1.0
+  """)
 op noOperationParams(): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-Operation with client and method path parameters.
-
-Expected path parameter: apiVersion=v1.0, keyword=test
-""")
+  Operation with client and method path parameters.
+  
+  Expected path parameter: apiVersion=v1.0, keyword=test
+  """)
 op withOperationPathParam(@path keyword: string): NoContentResponse;
