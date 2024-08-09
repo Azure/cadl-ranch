@@ -520,6 +520,38 @@ Expected response body:
 
 Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
 
+### Azure_Core_Page_AdditionalParameter
+
+- Endpoint: `get /azure/core/page/metric-dimensions`
+
+List the dimension values for the given metric dimension name.
+
+### Azure_Core_Page_ListPaginationLedgerEntries
+
+- Endpoint: `put /azure/core/page/ledger-entries`
+
+Expected input body:
+
+```json
+{
+  "requiredString": "string",
+  "requiredInt": 1
+}
+```
+
+Expected response body:
+
+````json
+{
+  "entries": [
+    {
+      "contents": "string",
+      "collectionId": "string",
+      "transactionId": "string"
+    }
+  ]
+}
+
 ### Azure_Core_Page_listWithCustomPageModel
 
 - Endpoint: `get /azure/core/page/custom-page`
@@ -529,18 +561,17 @@ Should ideally only generate models named User and UserOrder. If your language h
 Expected query parameter: api-version=2022-12-01-preview
 
 Expected response body:
-
 ```json
 {
-  "items": [
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    }
+  "items":[
+     {
+        "id":1,
+        "name":"Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+     }
   ]
 }
-```
+````
 
 ### Azure_Core_Page_listWithPage
 
@@ -588,6 +619,12 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Page_Pools
+
+- Endpoint: `get /azure/core/page/pools`
+
+Lists all of the Pools in the specified Account.
+
 ### Azure_Core_Page_TwoModelsAsPageItem
 
 - Endpoints:
@@ -595,6 +632,18 @@ Expected response body:
   - `get /azure/core/page/second-item`
 
 This scenario is to test two operations with two different page item types.
+
+### Azure_Core_Page_TwoResourcesAsListItems
+
+- Endpoints:
+  - `get /azure/core/page/text/blocklists`
+  - `get /azure/core/page/text/blockItems`
+
+This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
+
+### Azure_Core_Page_UseFoundationsResourceList
+
+- Endpoint: `get /azure/core/page/foundations-resource-list/custom-resource-list`
 
 ### Azure_Core_Scalar_AzureLocationScalar_get
 

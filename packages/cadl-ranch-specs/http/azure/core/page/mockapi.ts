@@ -50,3 +50,90 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
     return { status: 200, body: json(responseBody) };
   }),
 );
+
+Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
+  mockapi.put("/azure/core/page/ledger-entries", (req) => {
+    const requestBody = {
+      required: "required",
+      requireint: 1,
+    };
+    const responseBody = {
+      entries: [
+        {
+          contents: "string",
+          collectionId: "string",
+          transactionId: "string",
+        },
+      ],
+    };
+    req.expect.bodyEquals(requestBody);
+    return {
+      status: 200,
+      body: json(responseBody),
+    };
+  }),
+);
+
+Scenarios.Azure_Core_Page_AdditionalParameter = passOnSuccess(
+  mockapi.put("/azure/core/page/metric-dimensions", (req) => {
+    const body = {
+      testRunId: "1",
+      name: "name",
+      metricNamespace: "metricNamespace",
+      interval: "interval",
+      metricName: "metricName",
+      timespan: "timespan",
+      requestContext: {
+        requireString: "requireString",
+        requireInt: 1,
+      },
+    };
+    req.expect.bodyEquals(body);
+    return { status: 200, body: json(body) };
+  }),
+);
+
+Scenarios.Azure_Core_Page_Pools = passOnSuccess(
+  mockapi.put("/azure/core/page/pools", (req) => {
+    const requestBody = {
+      filter: "filter",
+      select: ["select"],
+      expand: ["expand"],
+    };
+    req.expect.bodyEquals(requestBody);
+    const responseBody = {
+      id: "id",
+      displayName: "displayName",
+      Url: "Url",
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);
+
+Scenarios.Azure_Core_Page_TwoResourcesAsListItems = passOnSuccess(
+  mockapi.get("/azure/core/page/text/blocklists", (req) => {
+    const responseBody = {
+      blockListsName: "blockListsName",
+      Description: "Description",
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);
+
+Scenarios.Azure_Core_Page_CustomResourceList = passOnSuccess(
+  mockapi.get("/azure/core/page/custom-resource-list", (req) => {
+    const responseBody = {
+      name: "name",
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);
+
+Scenarios.Azure_Core_Page_UseFoundationsResourceList = passOnSuccess(
+  mockapi.get("/azure/core/page//foundations-resource-list", (req) => {
+    const responseBody = {
+      name: "name",
+    };
+    return { status: 200, body: json(responseBody) };
+  }),
+);

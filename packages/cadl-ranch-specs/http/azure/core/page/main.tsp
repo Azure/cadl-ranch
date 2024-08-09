@@ -1,4 +1,5 @@
 import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-client-generator-core";
 import "@azure-tools/cadl-ranch-expect";
 import "@typespec/http";
 import "@typespec/rest";
@@ -199,4 +200,427 @@ interface TwoModelsAsPageItem {
   @doc("Two operations with two different page item types should be successfully generated. Should generate model for SecondItem.")
   @route("/second-item")
   listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
+}
+
+@resource("transactions")
+model LedgerEntry {
+  /**
+   * Contents of the ledger entry.
+   */
+  contents: string;
+
+  @visibility("read")
+  collectionId: string;
+
+  @key
+  @visibility("read")
+  transactionId: string;
+}
+
+/**
+ * Type for input model body
+ */
+model ListLedgerEntryInputBody {
+  /**
+   * Required string
+   */
+  requiredString: string;
+
+  /**
+   * Required int
+   */
+  requiredInt: int32;
+}
+
+/**
+ * Input model for the ListPaginationLedgerEntries
+ */
+model ListLedgerEntryInput {
+  /**
+   * Body parameter"
+   */
+  @body bodyInput: ListLedgerEntryInputBody;
+}
+
+/**
+ * Paginated ledger entries
+ */
+@global.Azure.Core.pagedResult
+model PagedLedgerEntries {
+  /**
+   * Array of ledger entries
+   */
+  @global.Azure.Core.items
+  entries: LedgerEntry[];
+
+  /**
+   * Path to retrieve next page of ledger entries
+   */
+  @global.Azure.Core.nextLink
+  customNextLink?: ResourceLocation<LedgerEntry>;
+}
+
+@scenario
+@scenarioDoc("""
+Expected input body:
+```json
+{
+  "requiredString": "string",
+  "requiredInt": 1
+}
+```
+
+Expected response body:
+```json
+{
+  "entries": [
+    {
+      "contents": "string",
+      "collectionId": "string",
+      "transactionId": "string"
+    }
+  ]
+}
+""")
+@route("/ledger-entries")
+@put
+op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
+  LedgerEntry,
+  ListLedgerEntryInput,
+  PagedLedgerEntries
+>;
+
+/**
+ * The interval
+ */
+union Interval {
+  string,
+
+  /**
+   * 5 seconds, available only if test run duration is less than 10 minutes
+   */
+  PT5S: "PT5S",
+
+  /**
+   * 10 seconds, available only if test run duration is less than 10 minutes
+   */
+  PT10S: "PT10S",
+
+  /**
+   * 1 minute
+   */
+  PT1M: "PT1M",
+
+  /**
+   * 5 minutes, available only if test run duration is greater than 1 minute
+   */
+  PT5M: "PT5M",
+
+  /**
+   * 1 hour, available only if test run duration is greater than 1 minute
+   */
+  PT1H: "PT1H",
+}
+
+model MetricDimensions {
+  /**
+   * The interval (i.e. timegrain) of the query.
+   */
+  @query
+  interval?: Interval;
+
+  /**
+   * Metric name
+   */
+  @query
+  metricName?: string;
+
+  /**
+   * Metric namespace to query metric definitions for.
+   */
+  @query
+  metricNamespace: string;
+
+  /**
+   *The timespan of the query. It is a string with the following format 'startDateTime_ISO/endDateTime_ISO'.
+   */
+  @query
+  timespan?: string;
+}
+
+@resource("values")
+@parentResource(Dimension)
+model DimensionValueListItem {
+  @key
+  value: string[];
+}
+
+@resource("metric-dimensions")
+@parentResource(TestRuns)
+model Dimension {
+  /**
+   *Dimension name
+   */
+  @key
+  @path("name")
+  @visibility("query")
+  name: string;
+}
+
+/**
+ * Load test run model
+ */
+@resource("test-runs")
+model TestRuns {
+  // FIXME: is testRunId optional or required in the response? Resource key and path params cannot be optional
+  /**
+   * Unique test run name as identifier
+   */
+  @key
+  @path
+  @visibility("read")
+  testRunId: string;
+}
+
+@scenario
+@scenarioDoc("""
+List the dimension values for the given metric dimension name.
+""")
+interface AdditionalParameter {
+  /**
+   * List the dimension values for the given metric dimension name.
+   */
+  @route("/metric-dimensions")
+  ListMetricDimensionValues is global.Azure.Core.ResourceList<
+    DimensionValueListItem,
+    global.Azure.Core.Traits.QueryParametersTrait<MetricDimensions>
+  >;
+}
+
+model BatchRequestHeaders {
+  /**
+   * An OData $filter clause.
+   */
+  @query
+  $filter?: string;
+
+  /**
+   * An OData $select clause.
+   */
+  @query({
+    format: "csv",
+  })
+  $select?: string[];
+
+  /**
+   * An OData $expand clause.
+   */
+  @query({
+    format: "csv",
+  })
+  $expand?: string[];
+}
+
+/**
+ * A Pool in the Azure Batch service.
+ */
+model BatchPool {
+  /**
+   * The id for the Pool.
+   */
+  @visibility("read")
+  id?: string;
+
+  /**
+   * The display name for the Pool.
+   */
+  @visibility("read")
+  displayName?: string;
+
+  /**
+   * The URL of the Pool.
+   */
+  @visibility("read")
+  url?: string;
+}
+/**
+ * "The result of listing the Pools in an Account.
+ */
+@global.Azure.Core.pagedResult
+model BatchPoolListResult {
+  /**
+   * The list of Pools.
+   */
+  @global.Azure.Core.items
+  value?: BatchPool[];
+
+  /**
+   * The URL to get the next set of results.
+   */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
+  @global.Azure.Core.nextLink
+  nextLink?: string;
+}
+
+/**
+ * Client related response header values
+ */
+model BatchResponseHeaders {
+  /**
+   * The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true.")
+   */
+  @header
+  `client-request-id`?: string;
+
+  /**
+   * A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in.")
+   */
+  @header
+  `request-id`?: string;
+
+  /**
+   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers.")
+   */
+  @header
+  ETag?: string;
+
+  /**
+   * The time at which the resource was last modified.
+   */
+  @header
+  @encode(DateTimeKnownEncoding.rfc7231)
+  `Last-Modified`?: utcDateTime;
+}
+
+/**
+ * An error response received from the Azure Batch service.
+ */
+@error
+model BatchError {
+  /**
+   * An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
+   */
+  code: string;
+}
+
+@scenario
+@scenarioDoc("""
+Lists all of the Pools in the specified Account.
+""")
+interface Pools {
+  /**
+   * Lists all of the Pools in the specified Account.
+   */
+  @route("/pools")
+  @get
+  listPools is global.Azure.Core.RpcOperation<
+    BatchRequestHeaders,
+    BatchPoolListResult,
+    BatchResponseHeaders,
+    BatchError
+  >;
+}
+/**
+ * Text Blocklist.
+ */
+@resource("text/blocklists")
+model TextBlocklist {
+  /**
+   * Text blocklist name. Only supports the following characters: 0-9  A-Z  a-z  -  .  _  ~
+   */
+  @key("blocklistName")
+  @visibility("read", "create", "query")
+  @maxLength(64)
+  blocklistName: string;
+
+  /**
+   * Text blocklist description.
+   */
+  @maxLength(1024)
+  description?: string;
+}
+
+/**
+ * Item in TextBlocklist.
+ */
+@resource("blockItems")
+@parentResource(TextBlocklist)
+model TextBlockItem {
+  /**
+   * Block Item Id.
+   */
+  @key("blockItemId")
+  @visibility("read", "create", "query")
+  @maxLength(64)
+  blockItemId: string;
+
+  /**
+   * Block item description.
+   */
+  @maxLength(1024)
+  description?: string;
+
+  /**
+   * Block item content.
+   */
+  @maxLength(128)
+  text: string;
+}
+
+@scenario
+@scenarioDoc("""
+This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
+""")
+interface TwoResourcesAsListItems {
+  /**
+   * Get all text blocklists details.
+   */
+  @route("/text/blocklists")
+  listTextBlocklists is global.Azure.Core.ResourceList<TextBlocklist>;
+
+  /**
+   * Get all blockItems in a text blocklist
+   */
+  @route("/text/blockItems")
+  listTextBlocklistItems is global.Azure.Core.ResourceList<
+    TextBlockItem,
+    global.Azure.Core.Traits.ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters>
+  >;
+}
+
+/**
+ * User roles
+ */
+union LedgerUserRoleKV {
+  string,
+  Administrator: "Administrator",
+  Contributor: "Contributor",
+  Reader: "Reader",
+}
+
+@scenario
+@scenarioDoc("""
+
+""")
+@friendlyName("List{name}resources", TResource)
+@route("/custom-resource-list")
+op CustomResourceList<
+  TResource extends {},
+  TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
+> is global.Azure.Core.Foundations.ResourceList<
+  TResource,
+  global.Azure.Core.Foundations.CustomParameters<TCustom>,
+  global.Azure.Core.Page<TResource>
+>;
+
+@scenario
+@scenarioDoc("""
+
+""")
+@route("/foundations-resource-list")
+interface UseFoundationsResourceList {
+  /**
+   * List upload detail for the discovery resource.
+   */
+  list is CustomResourceList<LedgerEntry>;
 }
