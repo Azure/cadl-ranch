@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "Cadl Ranch Tool to validate, run mock api, collect coverage.",
   "main": "dist/index.js",
   "type": "module",

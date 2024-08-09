@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.2
+
+### Patch Changes
+
+- 6f9ead2: Better warning for duplicate mockapi
+
 ## 0.14.1
 
 ### Patch Changes
