@@ -181,7 +181,7 @@ export async function loadScenarioMockApis(scenariosPath: string): Promise<Recor
       } else {
         duplicateTracker[key] = [file.path];
       }
-      duplicateTracker[key] = duplicateTracker[key] || [];
+      duplicateTracker[key] = duplicateTracker[key];
 
       result[key] = scenario;
     }
