@@ -5343,6 +5343,30 @@ Expected input body:
 }
 ```
 
+### Type_Model_Templated_templatedType
+
+- Endpoint: `put /type/model/templated/templatedType`
+
+Expected input body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
+}
+```
+
+Expected response body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
+}
+```
+
 ### Type_Model_Usage_input
 
 - Endpoint: `get /type/model/usage/input`
