@@ -46,18 +46,18 @@ interface AzureCoreEmbeddingVector {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("""
-  Expect to send a model which has an embedding vector property.
-
-  Expected request body:
-  ```json
-  {"embedding": [0, 1, 2, 3, 4]}
-  ```
-
-  Expected response body:
-  ```json
-  {"embedding": [5, 6, 7, 8, 9]}
-  ```
-  """)
+    Expect to send a model which has an embedding vector property.
+    
+    Expected request body:
+    ```json
+    {"embedding": [0, 1, 2, 3, 4]}
+    ```
+    
+    Expected response body:
+    ```json
+    {"embedding": [5, 6, 7, 8, 9]}
+    ```
+    """)
   @post
   @doc("post a model which has an embeddingVector property")
   post(@body @doc("_") body: AzureEmbeddingModel): AzureEmbeddingModel;

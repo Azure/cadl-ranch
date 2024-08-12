@@ -45,63 +45,63 @@ model ChildFlattenModel {
 @scenario
 @route("/flattenModel")
 @scenarioDoc("""
-Update and receive model with 1 level of flattening.
-Expected input body:
-```json
-{
-  "name": "foo",
-  "properties": {
-    "description": "bar",
-    "age": 10
+  Update and receive model with 1 level of flattening.
+  Expected input body:
+  ```json
+  {
+    "name": "foo",
+    "properties": {
+      "description": "bar",
+      "age": 10
+    }
   }
-}
-```
-
-Expected response body:
-```json
-{
-  "name": "test",
-  "properties": {
-    "description": "test",
-    "age": 1
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "name": "test",
+    "properties": {
+      "description": "test",
+      "age": 1
+    }
   }
-}
-```
-""")
+  ```
+  """)
 @put
 op putFlattenModel(@body input: FlattenModel): FlattenModel;
 
 @scenario
 @route("/nestedFlattenModel")
 @scenarioDoc("""
-Update and receive model with 2 levels of flattening.
-Expected input body:
-```json
-{
-  "name": "foo",
-  "properties": {
-    "summary": "bar",
+  Update and receive model with 2 levels of flattening.
+  Expected input body:
+  ```json
+  {
+    "name": "foo",
     "properties": {
-      "description": "test",
-      "age": 10
+      "summary": "bar",
+      "properties": {
+        "description": "test",
+        "age": 10
+      }
     }
   }
-}
-```
-
-Expected response body:
-```json
-{
-  "name": "test",
-  "properties": {
-    "summary": "test",
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "name": "test",
     "properties": {
-      "description": "foo",
-      "age": 1
+      "summary": "test",
+      "properties": {
+        "description": "foo",
+        "age": 1
+      }
     }
   }
-}
-```
-""")
+  ```
+  """)
 @put
 op putNestedFlattenModel(@body input: NestedFlattenModel): NestedFlattenModel;

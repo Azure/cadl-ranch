@@ -17,16 +17,16 @@ namespace Payload.MediaType;
 namespace StringBody {
   @scenario
   @scenarioDoc("""
-  Expected request body is a string '{cat}'.
-  """)
+    Expected request body is a string '{cat}'.
+    """)
   @post
   @route("/sendAsText")
   op sendAsText(@header contentType: "text/plain", @body text: string): OkResponse;
 
   @scenario
   @scenarioDoc("""
-  Expected response body is a string '{cat}'.
-  """)
+    Expected response body is a string '{cat}'.
+    """)
   @get
   @route("/getAsText")
   op getAsText(): {
@@ -36,16 +36,16 @@ namespace StringBody {
 
   @scenario
   @scenarioDoc("""
-  Expected request body is "foo".
-  """)
+    Expected request body is "foo".
+    """)
   @post
   @route("/sendAsJson")
   op sendAsJson(@header contentType: "application/json", @body text: string): OkResponse;
 
   @scenario
   @scenarioDoc("""
-  Expected response body is "foo".
-  """)
+    Expected response body is "foo".
+    """)
   @get
   @route("/getAsJson")
   op getAsJson(): {

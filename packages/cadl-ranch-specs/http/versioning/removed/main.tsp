@@ -101,13 +101,13 @@ op v1(@body body: ModelV1): ModelV1;
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body:
-```json
-{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
-```
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body:
+  ```json
+  { "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
+  ```
+  """)
 @route("/v2")
 @post
 op v2(@body body: ModelV2, @removed(Versions.v2) @query param: string): ModelV2;
