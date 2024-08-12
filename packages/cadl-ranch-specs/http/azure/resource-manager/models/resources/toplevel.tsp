@@ -31,6 +31,15 @@ model TopLevelTrackedResourceProperties {
   description?: string;
 }
 
+@doc("The details of a user notification.")
+model NotificationDetails {
+  @doc("The notification message.")
+  message: string;
+
+  @doc("If true, the notification is urgent.")
+  urgent: boolean;
+}
+
 @armResourceOperations
 interface TopLevelTrackedResources {
   @scenario
@@ -211,4 +220,19 @@ interface TopLevelTrackedResources {
     ```
     """)
   listBySubscription is ArmListBySubscription<TopLevelTrackedResource>;
+
+  @scenario
+  @scenarioDoc("""
+      Resource notify operation.
+      Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/operation
+      Expected query parameter: api-version=2023-12-01-preview
+      Expected request body:
+      ```json
+      {
+        "message": "Send a operation to top level.",
+        "urgent": true
+      }
+      ```
+    """)
+  operation is ArmResourceActionNoContentSync<TopLevelTrackedResource, NotificationDetails>;
 }

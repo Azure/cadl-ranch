@@ -1112,6 +1112,22 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_operation
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource notify operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/operation
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "message": "Send a operation to top level.",
+    "urgent": true
+  }
+  ```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
 
 - Endpoint: `patch https://management.azure.com`
