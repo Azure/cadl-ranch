@@ -2618,7 +2618,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2648,7 +2648,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2678,12 +2678,12 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2707,7 +2707,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2744,7 +2744,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
@@ -2758,26 +2758,21 @@ Content-Type: application/json
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_jsonArrayParts
+### Payload_MultiPart_FormData_complexWithHttpPart
 
-- Endpoint: `post /multipart/form-data/json-array-parts`
+- Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
-Expect request (
-
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
+For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
+content-type will be checked with value "application/octet-stream". Expect request:
 
 ```
 POST /upload HTTP/1.1
@@ -2785,11 +2780,23 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
---abcde12345
+{…file content of .jpg file…}
+--abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
 
@@ -2798,6 +2805,73 @@ Content-Type: application/json
 },{
   "city": "Z"
 }]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
+
+This case will check filename and specific content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2829,7 +2903,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2854,12 +2928,12 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345
 Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
