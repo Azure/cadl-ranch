@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.34.10",
+  "version": "0.35.3",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
@@ -8,8 +8,6 @@
     "watch": "tsc -p ./tsconfig.build.json --watch",
     "build": "tsc -p ./tsconfig.build.json",
     "clean": "rimraf dist/ temp/",
-    "lint": "eslint . --ext .ts --max-warnings=0",
-    "lint:fix": "eslint . --fix --ext .ts",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
     "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
     "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName azuresdkcadlranch",
@@ -37,24 +35,22 @@
     "@azure-tools/cadl-ranch-api": "workspace:~"
   },
   "devDependencies": {
-    "@azure-tools/typespec-autorest": "0.44.0",
-    "@azure-tools/typespec-client-generator-core": "0.44.0",
-    "@azure-tools/typespec-azure-resource-manager": "0.44.0",
-    "@types/node": "^18.16.0",
-    "@typespec/eslint-config-typespec": "~0.55.0",
-    "@typespec/openapi": "~0.58.0",
-    "@typespec/openapi3": "~0.58.0",
-    "eslint": "^8.50.0",
-    "rimraf": "^5.0.5",
-    "typescript": "~5.2.2"
+    "@azure-tools/typespec-autorest": "0.45.0",
+    "@azure-tools/typespec-azure-resource-manager": "0.45.0",
+    "@azure-tools/typespec-client-generator-core": "0.45.0",
+    "@types/node": "^22.1.0",
+    "@typespec/openapi": "~0.59.0",
+    "@typespec/openapi3": "~0.59.0",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.5.4"
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure-tools/typespec-azure-core": "~0.44.0",
-    "@typespec/compiler": "~0.58.0",
-    "@typespec/http": "~0.58.0",
-    "@typespec/rest": "~0.58.0",
-    "@typespec/versioning": "~0.58.0",
-    "@typespec/xml": "~0.58.0"
+    "@azure-tools/typespec-azure-core": "~0.45.0",
+    "@typespec/compiler": "~0.59.0",
+    "@typespec/http": "~0.59.0",
+    "@typespec/rest": "~0.59.0",
+    "@typespec/versioning": "~0.59.0",
+    "@typespec/xml": "~0.59.0"
   }
 }

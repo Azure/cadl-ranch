@@ -20,20 +20,20 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread named model. 
-  
-  Should not generate request body model named `BodyParameter`.
-  Should generate an operation like below:
-  ```
-  spreadAsRequestBody(name: string)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread named model. 
+    
+    Should not generate request body model named `BodyParameter`.
+    Should generate an operation like below:
+    ```
+    spreadAsRequestBody(name: string)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/request-body")
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
@@ -45,21 +45,21 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread model only with `@body` property. 
-  
-  Should generate request body model named `BodyParameter`.
-  Should not generate model named `CompositeRequestOnlyWithBody`.
-  Should generate an operation like below:
-  ```
-  spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread model only with `@body` property. 
+    
+    Should generate request body model named `BodyParameter`.
+    Should not generate model named `CompositeRequestOnlyWithBody`.
+    Should generate an operation like below:
+    ```
+    spreadCompositeRequestOnlyWithBody(bodyParameter: BodyParameter)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/composite-request-only-with-body")
   @put
   op spreadCompositeRequestOnlyWithBody(...CompositeRequestOnlyWithBody): NoContentResponse;
@@ -75,17 +75,17 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread model without `@body` property. 
-  
-  Should not generate model named `CompositeRequestOnlyWithBody`.
-  Should generate an operation like below:
-  ```
-  spreadCompositeRequestWithoutBody(name: string, testHeader: string)
-  ```
-
-  Expected path parameter: name="foo"
-  Expected header parameter: testHeader="bar"
-  """)
+    Test case for spread model without `@body` property. 
+    
+    Should not generate model named `CompositeRequestOnlyWithBody`.
+    Should generate an operation like below:
+    ```
+    spreadCompositeRequestWithoutBody(name: string, testHeader: string)
+    ```
+    
+    Expected path parameter: name="foo"
+    Expected header parameter: testHeader="bar"
+    """)
   @route("/composite-request-without-body/{name}")
   @put
   op spreadCompositeRequestWithoutBody(...CompositeRequestWithoutBody): NoContentResponse;
@@ -104,23 +104,23 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread model with all http request decorator. 
-  
-  Should generate request body model named `BodyParameter`.
-  Should not generate model named `CompositeRequest`.
-  Should generate an operation like below:
-  ```
-  spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  
-  Expected path parameter: name="foo"
-  Expected header parameter: testHeader="bar"
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread model with all http request decorator. 
+    
+    Should generate request body model named `BodyParameter`.
+    Should not generate model named `CompositeRequest`.
+    Should generate an operation like below:
+    ```
+    spreadCompositeRequest(name: string, testHeader: string, bodyParameter: BodyParameter)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected path parameter: name="foo"
+    Expected header parameter: testHeader="bar"
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/composite-request/{name}")
   @put
   op spreadCompositeRequest(...CompositeRequest): NoContentResponse;
@@ -138,22 +138,22 @@ namespace Model {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread model with non-body http request decorator. 
-  
-  Should not generate model named `CompositeRequestMix`.
-  Should generate an operation like below:
-  ```
-  spreadCompositeRequestMix(name: string, testHeader: string, prop: string)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  
-  Expected path parameter: name="foo"
-  Expected header parameter: testHeader="bar"
-  Expected request body:
-  ```json
-  { "prop": "foo" }
-  ```
-  """)
+    Test case for spread model with non-body http request decorator. 
+    
+    Should not generate model named `CompositeRequestMix`.
+    Should generate an operation like below:
+    ```
+    spreadCompositeRequestMix(name: string, testHeader: string, prop: string)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected path parameter: name="foo"
+    Expected header parameter: testHeader="bar"
+    Expected request body:
+    ```json
+    { "prop": "foo" }
+    ```
+    """)
   @route("/composite-request-mix/{name}")
   @put
   op spreadCompositeRequestMix(...CompositeRequestMix): NoContentResponse;
@@ -168,19 +168,19 @@ namespace Alias {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread alias. 
-  
-  Should not generate any model named `BodyParameter`.
-  Should generate an operation like:
-  ```
-  spreadAsRequestBody(name: string)
-  ```
-  
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread alias. 
+    
+    Should not generate any model named `BodyParameter`.
+    Should generate an operation like:
+    ```
+    spreadAsRequestBody(name: string)
+    ```
+    
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/request-body")
   @put
   op spreadAsRequestBody(...BodyParameter): NoContentResponse;
@@ -201,23 +201,23 @@ namespace Alias {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread alias. 
-  
-  Should not generate any model named `InnerModel`.
-  Should not generate any model named `InnerModelParameter`.
-  Should generate an operation like:
-  ```
-  spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-
-  Expected path parameter: id="1"
-  Expected header parameter: x-ms-test-header="bar"
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread alias. 
+    
+    Should not generate any model named `InnerModel`.
+    Should not generate any model named `InnerModelParameter`.
+    Should generate an operation like:
+    ```
+    spreadParameterWithInnerModel(id: string, x_ms_test_header: string, name: string)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    
+    Expected path parameter: id="1"
+    Expected header parameter: x-ms-test-header="bar"
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/inner-model-parameter/{id}")
   @post
   op spreadParameterWithInnerModel(...InnerModelParameter): NoContentResponse;
@@ -234,22 +234,22 @@ namespace Alias {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread alias with path and header parameter. 
-  
-  Should not generate any model named `RequestParameter`.
-  Should generate an operation like below:
-  ```
-  spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
-  ```
-  Note the parameter name may be normalized and vary by language.
-  
-  Expected path parameter: id="1"
-  Expected header parameter: x-ms-test-header="bar"
-  Expected request body:
-  ```json
-  { "name": "foo" }
-  ```
-  """)
+    Test case for spread alias with path and header parameter. 
+    
+    Should not generate any model named `RequestParameter`.
+    Should generate an operation like below:
+    ```
+    spreadAsRequestParameter(id: string, x_ms_test_header: string, name: string)
+    ```
+    Note the parameter name may be normalized and vary by language.
+    
+    Expected path parameter: id="1"
+    Expected header parameter: x-ms-test-header="bar"
+    Expected request body:
+    ```json
+    { "name": "foo" }
+    ```
+    """)
   @route("/request-parameter/{id}")
   @put
   op spreadAsRequestParameter(...RequestParameter): NoContentResponse;
@@ -276,24 +276,24 @@ namespace Alias {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
-  
-  Should not generate any model named `MultipleRequestParameters`.
-  Since it contains both optional properties and required properties, the method signature might vary across different languages.
-  Note it's also acceptable if some languages handle it as property bag.
-  
-  Expected path parameter: id="1"
-  Expected header parameter: x-ms-test-header="bar"
-  Expected request body:
-  ```json
-  {
-    "requiredString": "foo",
-    "optionalInt": 1,
-    "requiredIntList": [1, 2],
-    "optionalStringList": ["foo", "bar"]
-  }
-  ```
-  """)
+    Test case for spread alias including 6 parameters. May handle as property bag for these parameters.
+    
+    Should not generate any model named `MultipleRequestParameters`.
+    Since it contains both optional properties and required properties, the method signature might vary across different languages.
+    Note it's also acceptable if some languages handle it as property bag.
+    
+    Expected path parameter: id="1"
+    Expected header parameter: x-ms-test-header="bar"
+    Expected request body:
+    ```json
+    {
+      "requiredString": "foo",
+      "optionalInt": 1,
+      "requiredIntList": [1, 2],
+      "optionalStringList": ["foo", "bar"]
+    }
+    ```
+    """)
   @route("/multiple-parameters/{id}")
   @put
   op spreadWithMultipleParameters(...MultipleRequestParameters): NoContentResponse;
@@ -316,24 +316,24 @@ namespace Alias {
 
   @scenario
   @scenarioDoc("""
-  Test case for spread alias with contains another alias property as body.
-
-  Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
-  Should generate an operation like below:
-  ```
-  spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
-  ```
-  Note the parameter name is guessed from the model name and it may vary by language.
-  Expected path parameter: id="1"
-  Expected header parameter: x-ms-test-header="bar"
-  Expected request body:
-  ```json
-  {
-    "name": "foo",
-    "age": 1
-  }
-  ```
-  """)
+    Test case for spread alias with contains another alias property as body.
+    
+    Should not generate any model named `InnerAlias` and `InnerAliasParameter`.
+    Should generate an operation like below:
+    ```
+    spreadParameterWithInnerAlias(id: string, name: string, age: int32, x_ms_test_header: string)
+    ```
+    Note the parameter name is guessed from the model name and it may vary by language.
+    Expected path parameter: id="1"
+    Expected header parameter: x-ms-test-header="bar"
+    Expected request body:
+    ```json
+    {
+      "name": "foo",
+      "age": 1
+    }
+    ```
+    """)
   @route("/inner-alias-parameter")
   @doc("spread an alias with contains another alias property as body.")
   @post

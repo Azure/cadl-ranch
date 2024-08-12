@@ -12,6 +12,7 @@ export type GeneratorNames =
   | "typescript/rlc"
   | "typescript/modular"
   | "csharp"
+  | "@typespec/http-client-csharp"
   | "java"
   | "go"
   | "cpp"
@@ -23,6 +24,7 @@ const generatorNames: GeneratorNames[] = [
   "typescript/rlc",
   "typescript/modular",
   "csharp",
+  "@typespec/http-client-csharp",
   "java",
   "go",
   "cpp",

@@ -46,54 +46,54 @@ model GenerationResult {
 @doc("Generate data.")
 @summary("Generate data.")
 @scenarioDoc("""
-Should generate model GenerationOptions and GenerationResult.
-GenerationResponse could be generated, depending on implementation.
-
-Expected verb: POST
-Expected request body:
-```json
-{
-  "prompt": "text"
-}
-```
-
-Expected status code: 202
-Expected response header: operation-location={endpoint}/generations/operations/operation1
-Expected response body:
-```json
-{
-  "id": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/generations/operations/operation1
-
-Expected status code: 200
-Expected response body:
-```json
-{
-  "id": "operation1",
-  "status": "InProgress"
-}
-```
-
-Expected verb: GET
-Expected URL: {endpoint}/generations/operations/operation1
-
-Expected status code: 200
-Expected response body:
-```json
-{
-  "id": "operation1",
-  "status": "Succeeded",
-  "result": {
-    "data": "text data"
+  Should generate model GenerationOptions and GenerationResult.
+  GenerationResponse could be generated, depending on implementation.
+  
+  Expected verb: POST
+  Expected request body:
+  ```json
+  {
+    "prompt": "text"
   }
-}
-```
-""")
+  ```
+  
+  Expected status code: 202
+  Expected response header: operation-location={endpoint}/generations/operations/operation1
+  Expected response body:
+  ```json
+  {
+    "id": "operation1",
+    "status": "InProgress"
+  }
+  ```
+  
+  Expected verb: GET
+  Expected URL: {endpoint}/generations/operations/operation1
+  
+  Expected status code: 200
+  Expected response body:
+  ```json
+  {
+    "id": "operation1",
+    "status": "InProgress"
+  }
+  ```
+  
+  Expected verb: GET
+  Expected URL: {endpoint}/generations/operations/operation1
+  
+  Expected status code: 200
+  Expected response body:
+  ```json
+  {
+    "id": "operation1",
+    "status": "Succeeded",
+    "result": {
+      "data": "text data"
+    }
+  }
+  ```
+  """)
 @route("/generations:submit")
 op longRunningRpc is global.Azure.Core.LongRunningRpcOperation<
   BodyParameter<GenerationOptions>,

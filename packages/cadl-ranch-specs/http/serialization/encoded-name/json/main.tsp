@@ -20,7 +20,7 @@ namespace Property {
   @scenarioDoc("""
     Testing that you send the right JSON name on the wire.
     Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
-
+    
     Expected request body:
     ```json
     {"wireName": true}
@@ -32,9 +32,9 @@ namespace Property {
   @scenario
   @scenarioDoc("""
     Testing that you deserialize the right json name over the wire.
-
+    
     Your generated SDK should generate JsonEncodedNameModel with one property `defaultName` with wire name `wireName`.
-
+    
     Expected response body:
     ```json
     {"wireName": true}

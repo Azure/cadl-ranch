@@ -24,24 +24,24 @@ model Siamese extends Cat {
 
 @scenario
 @scenarioDoc("""
-Generate and send model.
-Expected input body:
-```json
-{"name": "abc", "age": 32, "smart": true}
-```
-""")
+  Generate and send model.
+  Expected input body:
+  ```json
+  {"name": "abc", "age": 32, "smart": true}
+  ```
+  """)
 @route("/valid")
 @post
 op postValid(@body input: Siamese): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-Generate and receive model.
-Expected response body:
-```json
-{"name": "abc", "age": 32, "smart": true}
-```
-""")
+  Generate and receive model.
+  Expected response body:
+  ```json
+  {"name": "abc", "age": 32, "smart": true}
+  ```
+  """)
 @route("/valid")
 @get
 op getValid(): Siamese;

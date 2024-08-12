@@ -12,13 +12,13 @@ namespace SpecialHeaders.ConditionalRequest;
 
 @scenario
 @doc("""
-Check when only If-Match in header is defined.
-""")
+  Check when only If-Match in header is defined.
+  """)
 @scenarioDoc("""
-Check when only If-Match in header is defined.
-Expected header parameters:
-- if-match="valid"
-""")
+  Check when only If-Match in header is defined.
+  Expected header parameters:
+  - if-match="valid"
+  """)
 @post
 @route("/if-match")
 op postIfMatch(
@@ -29,13 +29,13 @@ op postIfMatch(
 
 @scenario
 @doc("""
-Check when only If-None-Match in header is defined.
-""")
+  Check when only If-None-Match in header is defined.
+  """)
 @scenarioDoc("""
-Check when only If-None-Match in header is defined.
-Expected header parameters:
-- if-nonematch="invalid"
-""")
+  Check when only If-None-Match in header is defined.
+  Expected header parameters:
+  - if-nonematch="invalid"
+  """)
 @post
 @route("/if-none-match")
 op postIfNoneMatch(

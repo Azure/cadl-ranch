@@ -61,12 +61,12 @@ model Cobra extends Snake {
 @doc("Receive model with extensible enum discriminator type.")
 @scenario
 @scenarioDoc("""
-Receive model with extensible enum discriminator type.
-Expected response body:
-```json
-{"kind": "golden", "weight": 10}
-```
-""")
+  Receive model with extensible enum discriminator type.
+  Expected response body:
+  ```json
+  {"kind": "golden", "weight": 10}
+  ```
+  """)
 @route("/extensible-enum")
 @get
 op getExtensibleModel(): Dog;
@@ -75,12 +75,12 @@ op getExtensibleModel(): Dog;
 @doc("Send model with extensible enum discriminator type.")
 @scenario
 @scenarioDoc("""
-Send model with extensible enum discriminator type.
-Expected request body:
-```json
-{"kind": "golden", "weight": 10}
-```
-""")
+  Send model with extensible enum discriminator type.
+  Expected request body:
+  ```json
+  {"kind": "golden", "weight": 10}
+  ```
+  """)
 @route("/extensible-enum")
 @put
 op putExtensibleModel(@body @doc("Dog to create") input: Dog): NoContentResponse;
@@ -90,12 +90,12 @@ op putExtensibleModel(@body @doc("Dog to create") input: Dog): NoContentResponse
 @scenario
 @route("/extensible-enum/missingdiscriminator")
 @scenarioDoc("""
-Get a model omitting the discriminator.
-Expected response body:
-```json
-{"weight": 10}
-```
-""")
+  Get a model omitting the discriminator.
+  Expected response body:
+  ```json
+  {"weight": 10}
+  ```
+  """)
 @get
 op getExtensibleModelMissingDiscriminator(): Dog;
 
@@ -104,12 +104,12 @@ op getExtensibleModelMissingDiscriminator(): Dog;
 @scenario
 @route("/extensible-enum/wrongdiscriminator")
 @scenarioDoc("""
-Get a model containing discriminator value never defined.
-Expected response body:
-```json
-{"weight": 8, "kind": "wrongKind" }
-```
-""")
+  Get a model containing discriminator value never defined.
+  Expected response body:
+  ```json
+  {"weight": 8, "kind": "wrongKind" }
+  ```
+  """)
 @get
 op getExtensibleModelWrongDiscriminator(): Dog;
 
@@ -117,12 +117,12 @@ op getExtensibleModelWrongDiscriminator(): Dog;
 @doc("Receive model with fixed enum discriminator type.")
 @scenario
 @scenarioDoc("""
-Receive model with fixed enum discriminator type.
-Expected response body:
-```json
-{"kind": "cobra", "length": 10}
-```
-""")
+  Receive model with fixed enum discriminator type.
+  Expected response body:
+  ```json
+  {"kind": "cobra", "length": 10}
+  ```
+  """)
 @route("/fixed-enum")
 @get
 op getFixedModel(): Snake;
@@ -131,12 +131,12 @@ op getFixedModel(): Snake;
 @doc("Send model with fixed enum discriminator type.")
 @scenario
 @scenarioDoc("""
-Send model with fixed enum discriminator type.
-Expected request body:
-```json
-{"kind": "cobra", "length": 10}
-```
-""")
+  Send model with fixed enum discriminator type.
+  Expected request body:
+  ```json
+  {"kind": "cobra", "length": 10}
+  ```
+  """)
 @route("/fixed-enum")
 @put
 op putFixedModel(@body @doc("Snake to create") input: Snake): NoContentResponse;
@@ -146,12 +146,12 @@ op putFixedModel(@body @doc("Snake to create") input: Snake): NoContentResponse;
 @scenario
 @route("/fixed-enum/missingdiscriminator")
 @scenarioDoc("""
-Get a model omitting the discriminator.
-Expected response body:
-```json
-{"length": 10}
-```
-""")
+  Get a model omitting the discriminator.
+  Expected response body:
+  ```json
+  {"length": 10}
+  ```
+  """)
 @get
 op getFixedModelMissingDiscriminator(): Snake;
 
@@ -160,11 +160,11 @@ op getFixedModelMissingDiscriminator(): Snake;
 @scenario
 @route("/fixed-enum/wrongdiscriminator")
 @scenarioDoc("""
-Get a model containing discriminator value never defined.
-Expected response body:
-```json
-{"length": 8, "kind": "wrongKind" }
-```
-""")
+  Get a model containing discriminator value never defined.
+  Expected response body:
+  ```json
+  {"length": 8, "kind": "wrongKind" }
+  ```
+  """)
 @get
 op getFixedModelWrongDiscriminator(): Snake;

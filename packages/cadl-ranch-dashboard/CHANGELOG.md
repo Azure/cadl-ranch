@@ -1,5 +1,19 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.5
+
+### Patch Changes
+
+- 37c48cb: Upgrade dependencies
+- Updated dependencies [37c48cb]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.3
+
+## 0.8.4
+
+### Patch Changes
+
+- 53fe736: Add typespec/http-client-csharp column
+
 ## 0.8.3
 
 ### Patch Changes

@@ -21,11 +21,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  {"property": {allDoc}}
-  ```
-  """,
+      Expected response body:
+      ```json
+      {"property": {allDoc}}
+      ```
+      """,
     {
       allDoc: TDoc,
     }
@@ -38,11 +38,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  {defaultDoc}
-  ```
-  """,
+      Expected response body:
+      ```json
+      {defaultDoc}
+      ```
+      """,
     {
       defaultDoc: TDefaultDoc,
     }
@@ -55,11 +55,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected request body:
-  ```json
-  {"property": {allDoc}}
-  ```
-  """,
+      Expected request body:
+      ```json
+      {"property": {allDoc}}
+      ```
+      """,
     {
       allDoc: TDoc,
     }
@@ -72,11 +72,11 @@ interface OperationsTemplate<TModel, TDoc extends string, TDefaultDoc extends st
   @scenario
   @scenarioDoc(
     """
-  Expected request body:
-  ```json
-  {defaultDoc}
-  ```
-  """,
+      Expected request body:
+      ```json
+      {defaultDoc}
+      ```
+      """,
     {
       defaultDoc: TDefaultDoc,
     }
@@ -206,11 +206,11 @@ interface RequiredAndOptional {
   @doc("Get models that will return all properties in the model")
   @scenario
   @scenarioDoc("""
-  Expected response body:
-  ```json
-  {"optionalProperty": "hello", "requiredProperty": 42}
-  ```
-  """)
+    Expected response body:
+    ```json
+    {"optionalProperty": "hello", "requiredProperty": 42}
+    ```
+    """)
   @route("/all")
   @get
   getAll(): RequiredAndOptionalProperty;
@@ -218,11 +218,11 @@ interface RequiredAndOptional {
   @doc("Get models that will return only the required properties")
   @scenario
   @scenarioDoc("""
-  Expected response body:
-  ```json
-  {"requiredProperty": 42}
-  ```
-  """)
+    Expected response body:
+    ```json
+    {"requiredProperty": 42}
+    ```
+    """)
   @route("/requiredOnly")
   @get
   getRequiredOnly(): RequiredAndOptionalProperty;
@@ -230,11 +230,11 @@ interface RequiredAndOptional {
   @doc("Put a body with all properties present.")
   @scenario
   @scenarioDoc("""
-  Expected request body:
-  ```json
-  {"optionalProperty": "hello", "requiredProperty": 42}
-  ```
-  """)
+    Expected request body:
+    ```json
+    {"optionalProperty": "hello", "requiredProperty": 42}
+    ```
+    """)
   @route("/all")
   @put
   putAll(@body body: RequiredAndOptionalProperty): void;
@@ -242,11 +242,11 @@ interface RequiredAndOptional {
   @doc("Put a body with only required properties.")
   @scenario
   @scenarioDoc("""
-  Expected request body:
-  ```json
-  {"requiredProperty": 42}
-  ```
-  """)
+    Expected request body:
+    ```json
+    {"requiredProperty": 42}
+    ```
+    """)
   @route("/requiredOnly")
   @put
   putRequiredOnly(@body body: RequiredAndOptionalProperty): void;
