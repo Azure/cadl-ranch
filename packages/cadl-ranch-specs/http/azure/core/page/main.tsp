@@ -262,26 +262,26 @@ model PagedLedgerEntries {
 
 @scenario
 @scenarioDoc("""
-Expected input body:
-```json
-{
-  "requiredString": "string",
-  "requiredInt": 1
-}
-```
-
-Expected response body:
-```json
-{
-  "entries": [
-    {
-      "contents": "string",
-      "collectionId": "string",
-      "transactionId": "string"
-    }
-  ]
-}
-""")
+  Expected input body:
+  ```json
+  {
+    "requiredString": "string",
+    "requiredInt": 1
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "entries": [
+      {
+        "contents": "string",
+        "collectionId": "string",
+        "transactionId": "string"
+      }
+    ]
+  }
+  """)
 @route("/ledger-entries")
 @put
 op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
@@ -384,8 +384,8 @@ model TestRuns {
 
 @scenario
 @scenarioDoc("""
-List the dimension values for the given metric dimension name.
-""")
+  List the dimension values for the given metric dimension name.
+  """)
 interface AdditionalParameter {
   /**
    * List the dimension values for the given metric dimension name.
@@ -407,17 +407,13 @@ model BatchRequestHeaders {
   /**
    * An OData $select clause.
    */
-  @query({
-    format: "csv",
-  })
+  @query(#{ explode: true })
   $select?: string[];
 
   /**
    * An OData $expand clause.
    */
-  @query({
-    format: "csv",
-  })
+  @query(#{ explode: true })
   $expand?: string[];
 }
 
@@ -505,8 +501,8 @@ model BatchError {
 
 @scenario
 @scenarioDoc("""
-Lists all of the Pools in the specified Account.
-""")
+  Lists all of the Pools in the specified Account.
+  """)
 interface Pools {
   /**
    * Lists all of the Pools in the specified Account.
@@ -569,8 +565,8 @@ model TextBlockItem {
 
 @scenario
 @scenarioDoc("""
-This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
-""")
+  This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
+  """)
 interface TwoResourcesAsListItems {
   /**
    * Get all text blocklists details.
@@ -600,8 +596,8 @@ union LedgerUserRoleKV {
 
 @scenario
 @scenarioDoc("""
-
-""")
+  
+  """)
 @friendlyName("List{name}resources", TResource)
 @route("/custom-resource-list")
 op CustomResourceList<
@@ -615,8 +611,8 @@ op CustomResourceList<
 
 @scenario
 @scenarioDoc("""
-
-""")
+  
+  """)
 @route("/foundations-resource-list")
 interface UseFoundationsResourceList {
   /**
