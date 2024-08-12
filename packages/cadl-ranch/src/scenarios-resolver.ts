@@ -173,12 +173,24 @@ export async function loadScenarioMockApis(scenariosPath: string): Promise<Recor
   const files = await loadScenarioMockApiFiles(scenariosPath);
   const result: Record<string, ScenarioMockApi> = {};
 
+  const duplicateTracker: Record<string, string[]> = {};
   for (const file of files) {
     for (const [key, scenario] of Object.entries(file.scenarios)) {
-      if (key in result) {
-        logger.warn(`Scenario ${key} is being defined twice.`);
+      if (duplicateTracker[key]) {
+        duplicateTracker[key].push(file.path);
+      } else {
+        duplicateTracker[key] = [file.path];
       }
+
       result[key] = scenario;
+    }
+  }
+
+  for (const [key, paths] of Object.entries(duplicateTracker)) {
+    if (paths.length >= 2) {
+      logger.warn(
+        `Scenario ${key} is being defined multiple times in mockapis:\n${paths.map((x) => `    ${x}`).join("\n")}`,
+      );
     }
   }
   return result;
