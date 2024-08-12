@@ -5,15 +5,15 @@ using Azure.ClientGenerator.Core;
 
 @scenarioDoc("""
   This is to show we can have multiple clients, with multiple operation groups in each client.
-
+  
   ```ts
   const client1 = new FirstClient("client-operation-group");
-
+  
   client1.one();
   
   client1.group3.two();
   client1.group3.three();
-
+  
   client1.group4.four();
   ```
   """)
@@ -40,10 +40,10 @@ namespace Client.Structure.ClientOperationGroup {
 @scenarioDoc("""
   This is to show we can have multiple clients, with multiple operation groups in each client.
   The client and its operation groups can be moved to a sub namespace/package.
-
+  
   ```ts
   const client2 = new SubNamespace.SecondClient("client-operation-group");
-
+  
   client2.five();
   client2.group5.six();
   ```
