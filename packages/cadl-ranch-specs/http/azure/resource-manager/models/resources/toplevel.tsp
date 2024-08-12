@@ -224,7 +224,7 @@ interface TopLevelTrackedResources {
   @scenario
   @scenarioDoc("""
       Resource notify operation.
-      Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/operation
+      Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
       Expected query parameter: api-version=2023-12-01-preview
       Expected request body:
       ```json
@@ -234,5 +234,5 @@ interface TopLevelTrackedResources {
       }
       ```
     """)
-  operation is ArmResourceActionNoContentSync<TopLevelTrackedResource, NotificationDetails>;
+  actionSync is ArmResourceActionNoContentSync<TopLevelTrackedResource, NotificationDetails>;
 }
