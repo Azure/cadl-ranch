@@ -63,7 +63,7 @@ namespace Client.Structure.ClientOperationGroup {
   },
   "javascript"
 )
-namespace Client.Structure.ClientOperationGroup2 {
+namespace Client.Structure.AnotherClientOperationGroup {
   op five is Client.Structure.Service.Bar.five;
 
   #suppress "@azure-tools/typespec-client-generator-core/client-service" "issue https://github.com/Azure/typespec-azure/issues/1326"

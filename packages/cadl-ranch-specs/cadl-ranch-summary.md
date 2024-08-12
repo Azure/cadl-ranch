@@ -1328,6 +1328,22 @@ Expected request body:
   "value1"
   ```
 
+### Client_Structure_AnotherClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/five`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+The client and its operation groups can be moved to a sub namespace/package.
+
+```ts
+const client2 = new SubNamespace.SecondClient("client-operation-group");
+
+client2.five();
+client2.group5.six();
+```
+
 ### Client_Structure_ClientOperationGroup
 
 - Endpoints:
@@ -1347,22 +1363,6 @@ client1.group3.two();
 client1.group3.three();
 
 client1.group4.four();
-```
-
-### Client_Structure_ClientOperationGroup2
-
-- Endpoints:
-  - `post /client/structure/{client}/six`
-  - `post /client/structure/{client}/five`
-
-This is to show we can have multiple clients, with multiple operation groups in each client.
-The client and its operation groups can be moved to a sub namespace/package.
-
-```ts
-const client2 = new SubNamespace.SecondClient("client-operation-group");
-
-client2.five();
-client2.group5.six();
 ```
 
 ### Client_Structure_MultiClient
