@@ -1028,6 +1028,22 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource sync action.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "message": "Resource action at top level.",
+    "urgent": true
+  }
+  ```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
@@ -1391,6 +1407,43 @@ Expected request body:
   ```json
   "value1"
   ```
+
+### Client_Structure_AnotherClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/five`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+The client and its operation groups can be moved to a sub namespace/package.
+
+```ts
+const client2 = new SubNamespace.SecondClient("client-operation-group");
+
+client2.five();
+client2.group5.six();
+```
+
+### Client_Structure_ClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/one`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+
+```ts
+const client1 = new FirstClient("client-operation-group");
+
+client1.one();
+
+client1.group3.two();
+client1.group3.three();
+
+client1.group4.four();
+```
 
 ### Client_Structure_MultiClient
 
@@ -2682,7 +2735,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2712,7 +2765,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2742,12 +2795,12 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2771,7 +2824,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2808,7 +2861,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
@@ -2822,26 +2875,21 @@ Content-Type: application/json
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_jsonArrayParts
+### Payload_MultiPart_FormData_complexWithHttpPart
 
-- Endpoint: `post /multipart/form-data/json-array-parts`
+- Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
-Expect request (
-
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
+For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
+content-type will be checked with value "application/octet-stream". Expect request:
 
 ```
 POST /upload HTTP/1.1
@@ -2849,11 +2897,23 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
---abcde12345
+{…file content of .jpg file…}
+--abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
 
@@ -2862,6 +2922,73 @@ Content-Type: application/json
 },{
   "city": "Z"
 }]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
+
+This case will check filename and specific content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2893,7 +3020,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2918,12 +3045,12 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345
 Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
