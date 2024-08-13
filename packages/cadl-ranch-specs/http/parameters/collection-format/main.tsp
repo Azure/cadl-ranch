@@ -19,11 +19,8 @@ namespace Query {
     """)
   @route("/multi")
   op multi(
-    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
-    @query({
-      format: "multi",
-    })
+    @query(#{ explode: true })
     colors: string[],
   ): NoContentResponse;
 
@@ -75,12 +72,8 @@ namespace Query {
     """)
   @route("/csv")
   op csv(
-    #suppress "deprecated" "Deprecated in next release"
-    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
-    @query({
-      format: "csv",
-    })
+    @query
     colors: string[],
   ): NoContentResponse;
 }
@@ -94,7 +87,6 @@ namespace Header {
     """)
   @route("/csv")
   op csv(
-    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
     @header({
       format: "csv",
