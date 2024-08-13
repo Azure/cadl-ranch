@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.36.0
+
+### Minor Changes
+
+- dc9c981: Move `type/model/flatten` test to `azure/client-generator-core/flatten-property`
+
+### Patch Changes
+
+- 4a861c7: Minor change to avoid deprecated query parameter options.
+- 4022f01: Added tests for ARM, test case for resource action.
+
 ## 0.35.4
 
 ### Patch Changes
