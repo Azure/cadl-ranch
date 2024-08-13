@@ -964,6 +964,22 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource sync action.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "message": "Resource action at top level.",
+    "urgent": true
+  }
+  ```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
