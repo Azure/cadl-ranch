@@ -271,6 +271,23 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Facet_getInt32Facets
+
+- Endpoint: `get /azure/core/facet/int32`
+
+Should generate models named Facet, NumericValuesFacet, Int32ValuesFacet, priceresult and FacetResult.
+
+Expected request body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [10, 20],
+  "value": 15,
+  "field": "price"
+}
+```
+
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
