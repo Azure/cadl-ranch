@@ -34,7 +34,7 @@ model Facet {
 
 model NumericValuesFacet<T extends numeric> extends Facet {
   @doc("The facet ranges to produce. The values must be listed in ascending order to get the expected results.")
-  values: T[];
+  ranges: T[];
 
   value: T;
 }
@@ -71,9 +71,21 @@ model FacetResult {
   ```json
   {
     "kind": "Int32Values",
-    "values": [10, 20],
+    "ranges": [10, 20],
     "value": 15,
     "field": "price"
+  }
+  ```
+  Expected response body:
+  ```json
+  {
+    "field_name": "price",
+    "results": [
+      {
+        "value": 15,
+        "count": 1
+      },
+    ]
   }
   ```
   """)

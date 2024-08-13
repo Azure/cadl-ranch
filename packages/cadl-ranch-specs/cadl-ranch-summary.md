@@ -282,9 +282,23 @@ Expected request body:
 ```json
 {
   "kind": "Int32Values",
-  "values": [10, 20],
+  "ranges": [10, 20],
   "value": 15,
   "field": "price"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "field_name": "price",
+  "results": [
+    {
+      "value": 15,
+      "count": 1
+    }
+  ]
 }
 ```
 
