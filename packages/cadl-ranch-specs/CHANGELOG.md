@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.35.4
+
+### Patch Changes
+
+- 0d90fce: Add test case with `HttpPart` for multipart
+- d105b7e: Add test case of multiple clients and multiple operation groups.
+- Updated dependencies [6f9ead2]
+  - @azure-tools/cadl-ranch@0.14.2
+
 ## 0.35.3
 
 ### Patch Changes
