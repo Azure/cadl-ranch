@@ -975,7 +975,7 @@ Expected response body:
 
   ```json
   {
-    "message": "Resource action at top level.",
+    "message": <any string>,
     "urgent": true
   }
   ```
