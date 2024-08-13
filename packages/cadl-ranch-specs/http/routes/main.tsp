@@ -41,7 +41,7 @@ namespace PathParameters {
 
   @scenario
   @scenarioDoc("""
-    Path parameter defined implicitly
+    Path parameter defined explicitly
       Value: "a"
       Expected path: /routes/path/explicit/a
     """)
@@ -107,7 +107,7 @@ namespace PathParameters {
             Expected path: /routes/simple/standard/recorda,1,b,2
         """)
       @route("record{param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -137,7 +137,7 @@ namespace PathParameters {
             Expected path: /routes/simple/explode/recorda=1,b=2
         """)
       @route("record{param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 
@@ -170,7 +170,7 @@ namespace PathParameters {
             Expected path: /routes/path/standard/record/a,1,b,2
         """)
       @route("record{/param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -200,7 +200,7 @@ namespace PathParameters {
             Expected path: /routes/path/explode/record/a=1/b=2
         """)
       @route("record{/param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 
@@ -233,7 +233,7 @@ namespace PathParameters {
             Expected path: /routes/label/standard/record.a,1,b,2
         """)
       @route("record{.param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -263,7 +263,7 @@ namespace PathParameters {
             Expected path: /routes/label/explode/record.a=1.b=2
         """)
       @route("record{.param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 
@@ -296,7 +296,7 @@ namespace PathParameters {
             Expected path: /routes/matrix/standard/record;a,1,b,2
         """)
       @route("record{;param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -326,7 +326,7 @@ namespace PathParameters {
             Expected path: /routes/matrix/explode/record;a=1;b=2
         """)
       @route("record{;param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 }
@@ -377,7 +377,7 @@ namespace QueryParameters {
             Expected path: /routes/query/query-expansion/standard/record?param=a,1,b,2
         """)
       @route("record{?param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -407,7 +407,7 @@ namespace QueryParameters {
             Expected path: /routes/query/query-expansion/explode/record?a=1&b=2
         """)
       @route("record{?param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 
@@ -440,7 +440,7 @@ namespace QueryParameters {
             Expected path: /routes/query/query-continuation/standard/record?fixed=true&param=a,1,b,2
         """)
       @route("record?fixed=true{&param}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
 
     @route("explode")
@@ -470,7 +470,7 @@ namespace QueryParameters {
             Expected path: /routes/query/query-continuation/explode/record?fixed=true&a=1&b=2
         """)
       @route("record?fixed=true{&param*}")
-      op record(param: string[]): void;
+      op record(param: Record<int32>): void;
     }
   }
 }
