@@ -128,6 +128,70 @@ Expected response body:
 }
 ```
 
+### Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Azure_ClientGenerator_Core_FlattenProperty_putNestedFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
+
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -4944,70 +5008,6 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
-
-### Type_Model_Flatten_putFlattenModel
-
-- Endpoint: `put /type/model/flatten/flattenModel`
-
-Update and receive model with 1 level of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "description": "bar",
-    "age": 10
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "description": "test",
-    "age": 1
-  }
-}
-```
-
-### Type_Model_Flatten_putNestedFlattenModel
-
-- Endpoint: `put /type/model/flatten/nestedFlattenModel`
-
-Update and receive model with 2 levels of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "summary": "bar",
-    "properties": {
-      "description": "test",
-      "age": 10
-    }
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "summary": "test",
-    "properties": {
-      "description": "foo",
-      "age": 1
-    }
-  }
-}
-```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
