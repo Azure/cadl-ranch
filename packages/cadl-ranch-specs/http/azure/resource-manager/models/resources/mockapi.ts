@@ -42,6 +42,31 @@ const validNestedResource = {
   },
 };
 
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync = passOnSuccess([
+  mockapi.post(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/actionSync",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
+      }
+      req.expect.bodyEquals({
+        message: "Resource action at top level.",
+        urgent: true,
+      });
+      return {
+        status: 204,
+      };
+    },
+  ),
+]);
+
 // top level tracked resource
 Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = passOnSuccess([
   mockapi.get(
