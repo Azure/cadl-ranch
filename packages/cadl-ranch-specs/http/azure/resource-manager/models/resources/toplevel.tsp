@@ -223,13 +223,13 @@ interface TopLevelTrackedResources {
 
   @scenario
   @scenarioDoc("""
-      Resource notify operation.
+      Resource sync action.
       Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
       Expected query parameter: api-version=2023-12-01-preview
       Expected request body:
       ```json
       {
-        "message": "Send a operation to top level.",
+        "message": "Resource action at top level.",
         "urgent": true
       }
       ```

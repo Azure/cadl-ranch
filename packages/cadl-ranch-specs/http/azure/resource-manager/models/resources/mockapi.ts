@@ -57,7 +57,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_action
         throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       req.expect.bodyEquals({
-        message: "Send a operation to top level.",
+        message: "Resource action at top level.",
         urgent: true,
       });
       return {
