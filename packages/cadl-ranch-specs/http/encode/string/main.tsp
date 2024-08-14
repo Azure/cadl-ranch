@@ -38,7 +38,7 @@ namespace Property {
     value: safeint;
   }
 
-  @route("/int32")
+  @route("/uint32")
   @scenario
   @scenarioDoc("""
     Test operation with request and response model contains integer property with string encode.
@@ -56,10 +56,10 @@ namespace Property {
     ```
     """)
   @post
-  op int32AsStringOptional(@body body: Int32AsStringProperty): Int32AsStringProperty;
+  op uint32AsStringOptional(@body body: Uint32AsStringProperty): Uint32AsStringProperty;
 
-  model Int32AsStringProperty {
+  model Uint32AsStringProperty {
     @encode(string)
-    value?: int32;
+    value?: uint32;
   }
 }

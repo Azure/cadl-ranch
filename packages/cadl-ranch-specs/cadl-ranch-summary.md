@@ -1546,27 +1546,6 @@ client.group2.five();
 client.group2.six();
 ```
 
-### Encode_AsString_Property_int32AsStringOptional
-
-- Endpoint: `post /encode/string/property/int32`
-
-Test operation with request and response model contains integer property with string encode.
-Expected request body:
-
-```json
-{
-  "value": "1"
-}
-```
-
-Expected response body:
-
-```json
-{
-  "value": "1"
-}
-```
-
 ### Encode_AsString_Property_safeintAsString
 
 - Endpoint: `post /encode/string/property/safeint`
@@ -1585,6 +1564,27 @@ Expected response body:
 ```json
 {
   "value": "10000000000"
+}
+```
+
+### Encode_AsString_Property_uint32AsStringOptional
+
+- Endpoint: `post /encode/string/property/uint32`
+
+Test operation with request and response model contains integer property with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
 }
 ```
 
