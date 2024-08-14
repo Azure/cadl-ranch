@@ -34,7 +34,7 @@ function createPropertyMockApis(route: string, value: any): MockApi {
 function createHeaderMockApis(route: string, value: any): MockApi {
   const url = `/encode/bytes/header/${route}`;
   return mockapi.get(url, (req) => {
-    req.expect.containsHeader("value", value);
+    req.expect.containsHeader("value", value)
     return {
       status: 204,
     };
