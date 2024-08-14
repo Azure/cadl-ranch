@@ -9,7 +9,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
  * @param response The response body you are expecting and will return.
  */
 function createMockApis(route: string, request: any, response: any): MockApi {
-  const url = `/azure/client-generator-core/flatten-property${route}`;
+  const url = `/azure/client-generator-core/flatten-property/${route}`;
   return mockapi.put(url, (req) => {
     req.expect.bodyEquals(request);
     return {
