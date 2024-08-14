@@ -220,14 +220,14 @@ model LedgerEntry {
 /**
  * Type for input model body
  */
-model ListLedgerEntryInputBody {
+model ListPaginationLedgerEntryInputBody {
   /**
-   * Required string
+   * A required string parameter
    */
   requiredString: string;
 
   /**
-   * Required int
+   * A required integer parameter
    */
   requiredInt: int32;
 }
@@ -235,11 +235,11 @@ model ListLedgerEntryInputBody {
 /**
  * Input model for the ListPaginationLedgerEntries
  */
-model ListLedgerEntryInput {
+model ListPaginationLedgerEntryInput {
   /**
-   * Body parameter"
+   * Body parameter for the ListPaginationLedgerEntries input model
    */
-  @body bodyInput: ListLedgerEntryInputBody;
+  @body bodyInput: ListPaginationLedgerEntryInputBody;
 }
 
 /**
@@ -257,7 +257,7 @@ model PagedLedgerEntries {
    * Path to retrieve next page of ledger entries
    */
   @global.Azure.Core.nextLink
-  customNextLink?: ResourceLocation<LedgerEntry>;
+  nextPageLink?: ResourceLocation<LedgerEntry>;
 }
 
 @scenario
@@ -286,7 +286,7 @@ model PagedLedgerEntries {
 @put
 op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
   LedgerEntry,
-  ListLedgerEntryInput,
+  ListPaginationLedgerEntryInput,
   PagedLedgerEntries
 >;
 
@@ -294,31 +294,15 @@ op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
  * The interval
  */
 union Interval {
+  /**
+   * A string representing a custom interval.
+   */
   string,
 
-  /**
-   * 5 seconds, available only if test run duration is less than 10 minutes
-   */
   PT5S: "PT5S",
-
-  /**
-   * 10 seconds, available only if test run duration is less than 10 minutes
-   */
   PT10S: "PT10S",
-
-  /**
-   * 1 minute
-   */
   PT1M: "PT1M",
-
-  /**
-   * 5 minutes, available only if test run duration is greater than 1 minute
-   */
   PT5M: "PT5M",
-
-  /**
-   * 1 hour, available only if test run duration is greater than 1 minute
-   */
   PT1H: "PT1H",
 }
 
@@ -342,7 +326,7 @@ model MetricDimensions {
   metricNamespace: string;
 
   /**
-   *The timespan of the query. It is a string with the following format 'startDateTime_ISO/endDateTime_ISO'.
+   *The timespan of the query.
    */
   @query
   timespan?: string;
@@ -351,16 +335,16 @@ model MetricDimensions {
 @resource("values")
 @parentResource(Dimension)
 model DimensionValueListItem {
+  /**
+   * The values of the dimension.
+   */
   @key
   value: string[];
 }
 
-@resource("metric-dimensions")
+@resource("dimensions")
 @parentResource(TestRuns)
 model Dimension {
-  /**
-   *Dimension name
-   */
   @key
   @path("name")
   @visibility("query")
@@ -368,11 +352,10 @@ model Dimension {
 }
 
 /**
- * Load test run model
+ * Test run model
  */
 @resource("test-runs")
 model TestRuns {
-  // FIXME: is testRunId optional or required in the response? Resource key and path params cannot be optional
   /**
    * Unique test run name as identifier
    */
@@ -407,13 +390,19 @@ model BatchRequestHeaders {
   /**
    * An OData $select clause.
    */
-  @query(#{ explode: true })
+  #suppress "deprecated" "Deprecated in next release"
+  @query({
+    format: "csv",
+  })
   $select?: string[];
 
   /**
    * An OData $expand clause.
    */
-  @query(#{ explode: true })
+  #suppress "deprecated" "Deprecated in next release"
+  @query({
+    format: "csv",
+  })
   $expand?: string[];
 }
 
@@ -422,7 +411,7 @@ model BatchRequestHeaders {
  */
 model BatchPool {
   /**
-   * The id for the Pool.
+   * The unique identifier for the Pool.
    */
   @visibility("read")
   id?: string;
@@ -508,7 +497,7 @@ interface Pools {
    * Lists all of the Pools in the specified Account.
    */
   @route("/pools")
-  @get
+  @put
   listPools is global.Azure.Core.RpcOperation<
     BatchRequestHeaders,
     BatchPoolListResult,
@@ -516,13 +505,14 @@ interface Pools {
     BatchError
   >;
 }
+
 /**
  * Text Blocklist.
  */
-@resource("text/blocklists")
+@resource("blocklists")
 model TextBlocklist {
   /**
-   * Text blocklist name. Only supports the following characters: 0-9  A-Z  a-z  -  .  _  ~
+   * The name of the text blocklist. This can only include the following characters: 0-9 A-Z a-z - . _ ~
    */
   @key("blocklistName")
   @visibility("read", "create", "query")
@@ -530,7 +520,7 @@ model TextBlocklist {
   blocklistName: string;
 
   /**
-   * Text blocklist description.
+   * A description of the text blocklist.
    */
   @maxLength(1024)
   description?: string;
@@ -543,7 +533,7 @@ model TextBlocklist {
 @parentResource(TextBlocklist)
 model TextBlockItem {
   /**
-   * Block Item Id.
+   * The unique identifier for the block item.
    */
   @key("blockItemId")
   @visibility("read", "create", "query")
@@ -551,13 +541,13 @@ model TextBlockItem {
   blockItemId: string;
 
   /**
-   * Block item description.
+   * A description of the block item.
    */
   @maxLength(1024)
   description?: string;
 
   /**
-   * Block item content.
+   * The content of the block item.
    */
   @maxLength(128)
   text: string;
@@ -571,13 +561,13 @@ interface TwoResourcesAsListItems {
   /**
    * Get all text blocklists details.
    */
-  @route("/text/blocklists")
+  @route("/Text-blocklists")
   listTextBlocklists is global.Azure.Core.ResourceList<TextBlocklist>;
 
   /**
    * Get all blockItems in a text blocklist
    */
-  @route("/text/blockItems")
+  @route("/Text-blockItems")
   listTextBlocklistItems is global.Azure.Core.ResourceList<
     TextBlockItem,
     global.Azure.Core.Traits.ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters>
@@ -587,7 +577,7 @@ interface TwoResourcesAsListItems {
 /**
  * User roles
  */
-union LedgerUserRoleKV {
+union LedgerUserRole {
   string,
   Administrator: "Administrator",
   Contributor: "Contributor",
@@ -596,11 +586,10 @@ union LedgerUserRoleKV {
 
 @scenario
 @scenarioDoc("""
-  
+  This operation is used to list custom resources.
   """)
-@friendlyName("List{name}resources", TResource)
 @route("/custom-resource-list")
-op CustomResourceList<
+op ListCustomResource<
   TResource extends {},
   TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
 > is global.Azure.Core.Foundations.ResourceList<
@@ -611,12 +600,12 @@ op CustomResourceList<
 
 @scenario
 @scenarioDoc("""
-  
+  This interface is used to list resources using the foundations resource list.
   """)
 @route("/foundations-resource-list")
 interface UseFoundationsResourceList {
   /**
    * List upload detail for the discovery resource.
    */
-  list is CustomResourceList<LedgerEntry>;
+  GetResourcelist is ListCustomResource<LedgerEntry>;
 }

@@ -621,7 +621,7 @@ Expected response body:
 
 ### Azure_Core_Page_Pools
 
-- Endpoint: `get /azure/core/page/pools`
+- Endpoint: `put /azure/core/page/pools`
 
 Lists all of the Pools in the specified Account.
 
@@ -636,14 +636,16 @@ This scenario is to test two operations with two different page item types.
 ### Azure_Core_Page_TwoResourcesAsListItems
 
 - Endpoints:
-  - `get /azure/core/page/text/blocklists`
-  - `get /azure/core/page/text/blockItems`
+  - `get /azure/core/page/Text-blocklists`
+  - `get /azure/core/page/Text-blockItems`
 
 This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
 
 ### Azure_Core_Page_UseFoundationsResourceList
 
 - Endpoint: `get /azure/core/page/foundations-resource-list/custom-resource-list`
+
+This interface is used to list resources using the foundations resource list.
 
 ### Azure_Core_Scalar_AzureLocationScalar_get
 
