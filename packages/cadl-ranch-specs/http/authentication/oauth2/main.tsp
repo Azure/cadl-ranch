@@ -23,15 +23,15 @@ op valid(): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-Expect error code 400 and error body:
-  ```json
-  {
-    "message": "Expected Bearer x but got Bearer y",
-    "expected": "Bearer x",
-    "actual": "Bearer y",
-  }
-  ```
-""")
+  Expect error code 400 and error body:
+    ```json
+    {
+      "message": "Expected Bearer x but got Bearer y",
+      "expected": "Bearer x",
+      "actual": "Bearer y",
+    }
+    ```
+  """)
 @doc("Check whether client is authenticated. Will return an invalid bearer error.")
 @get
 @route("/invalid")

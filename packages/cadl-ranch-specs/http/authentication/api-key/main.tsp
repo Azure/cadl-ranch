@@ -17,16 +17,16 @@ op valid(): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-Expect error code 403 and error body:
-  ```json
-  {
-    "error": {
-      "code": "InvalidApiKey",
-      "message": "API key is invalid"
+  Expect error code 403 and error body:
+    ```json
+    {
+      "error": {
+        "code": "InvalidApiKey",
+        "message": "API key is invalid"
+      }
     }
-  }
-  ```
-""")
+    ```
+  """)
 @doc("Check whether client is authenticated.")
 @get
 @route("/invalid")

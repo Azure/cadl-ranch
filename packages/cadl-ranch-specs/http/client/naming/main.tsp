@@ -41,7 +41,7 @@ namespace Property {
   @scenarioDoc("""
     Testing that we can project the client name in our generated SDKs.
     Your generated SDK should generate ClientNameModel with one property `clientName` with wire name `defaultName`.
-
+    
     Expected request body:
     ```json
     {"defaultName": true}
@@ -55,7 +55,7 @@ namespace Property {
   @scenarioDoc("""
     Testing that we can project the language specific name in our generated SDKs.
     Your generated SDK should generate LanguageClientNameModel with one property with your language specific property name and wire name `defaultName`.
-
+    
     Expected request body:
     ```json
     {"defaultName": true}
@@ -69,7 +69,7 @@ namespace Property {
   @scenarioDoc("""
     Testing that we can project the client name and the wire name.
     Your generated SDK should generate ClientNameAndJsonEncodedNameModel with one property with client name `clientName` and wire name `wireName`.
-
+    
     Expected request body:
     ```json
     {"wireName": true}
@@ -82,11 +82,11 @@ namespace Property {
 
 @scenario
 @scenarioDoc("""
-Testing that we can project the operation name.
-Your generated SDK should generate an operation called `clientName`.
-
-Expected status code: 204
-""")
+  Testing that we can project the operation name.
+  Your generated SDK should generate an operation called `clientName`.
+  
+  Expected status code: 204
+  """)
 @route("/operation")
 @clientName("clientName")
 @post
@@ -94,12 +94,12 @@ op operation(): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-Testing that we can project a parameter name.
-Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
-
-Expected query parameter: `defaultName="true"`
-
-""")
+  Testing that we can project a parameter name.
+  Your generated SDK should generate an operation `parameter` with a single parameter called `clientName`.
+  
+  Expected query parameter: `defaultName="true"`
+  
+  """)
 @route("/parameter")
 @post
 op parameter(
@@ -114,7 +114,7 @@ namespace Header {
   @scenarioDoc("""
     Testing that we can project a header name.
     Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
-
+    
     Expected header parameter: `default-name="true"`
     """)
   @post
@@ -128,7 +128,7 @@ namespace Header {
   @scenarioDoc("""
     Testing that we can project a header name.
     Your generated SDK should generate an operation header `parameter` with a single parameter called `clientName`.
-
+    
     Expected response header: `default-name="true"`
     """)
   @get
@@ -165,7 +165,7 @@ namespace Model {
   @scenarioDoc("""
     Testing that we can project the client name in our generated SDKs.
     Your generated SDK should generate the model with name `ClientModel`.
-
+    
     Expected request body:
     ```json
     {"defaultName": true}
@@ -179,7 +179,7 @@ namespace Model {
   @scenarioDoc("""
     Testing that we can project the language specific name in our generated SDKs.
     Your generated SDK should generate the model with your language specific model name.
-
+    
     Expected request body:
     ```json
     {"defaultName": true}
@@ -211,30 +211,30 @@ namespace UnionEnum {
 
   @scenario
   @scenarioDoc("""
-    Testing that we can project a enum name and enum value name.
-    Your generated SDK should generate an Enum "ClientExtensibleEnum".
-    (The exact name may depend on language convention)
-
-    Expected request body:
-    ```json
-    "value1"
-    ```
-  """)
+      Testing that we can project a enum name and enum value name.
+      Your generated SDK should generate an Enum "ClientExtensibleEnum".
+      (The exact name may depend on language convention)
+    
+      Expected request body:
+      ```json
+      "value1"
+      ```
+    """)
   @route("/union-enum-name")
   @post
   op unionEnumName(@body body: ServerExtensibleEnum): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-    Testing that we can project a enum name and enum value name.
-    Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
-    (The exact name may depend on language convention)
-
-    Expected request body:
-    ```json
-    "value1"
-    ```
-  """)
+      Testing that we can project a enum name and enum value name.
+      Your generated SDK should generate an Enum with members "ClientEnumValue1", "ClientEnumValue2".
+      (The exact name may depend on language convention)
+    
+      Expected request body:
+      ```json
+      "value1"
+      ```
+    """)
   @route("/union-enum-member-name")
   @post
   op unionEnumMemberName(@body body: ExtensibleEnum): NoContentResponse;

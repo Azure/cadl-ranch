@@ -14,11 +14,11 @@ interface ArrayOperations<TArr, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected Array response body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected Array response body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
@@ -29,11 +29,11 @@ interface ArrayOperations<TArr, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected Array input body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected Array input body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
