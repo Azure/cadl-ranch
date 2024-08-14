@@ -5,10 +5,10 @@ import "@azure-tools/typespec-client-generator-core";
 using TypeSpec.Http;
 using Azure.ClientGenerator.Core;
 
-@doc("Test for encode decorator on integer as string.")
+@doc("Test for encode decorator on integer.")
 @supportedBy("dpg")
-@scenarioService("/encode/string")
-namespace Encode.AsString;
+@scenarioService("/encode/numeric")
+namespace Encode.Numeric;
 
 @operationGroup
 @route("/property")
@@ -16,7 +16,7 @@ namespace Property {
   @route("/safeint")
   @scenario
   @scenarioDoc("""
-    Test operation with request and response model contains integer property with string encode.
+    Test operation with request and response model contains property of safeint type with string encode.
     Expected request body:
     ```json
     {
@@ -41,7 +41,7 @@ namespace Property {
   @route("/uint32")
   @scenario
   @scenarioDoc("""
-    Test operation with request and response model contains integer property with string encode.
+    Test operation with request and response model contains property of uint32 type with string encode.
     Expected request body:
     ```json
     {
