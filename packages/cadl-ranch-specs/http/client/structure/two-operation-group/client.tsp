@@ -5,14 +5,14 @@ using Azure.ClientGenerator.Core;
 
 @scenarioDoc("""
   This is to show we can have more than one operation group in a client. The client side should be able to call the api like
-
+  
   ```ts
   const client = new TwoOperationGroupClient("two-operation-group");
-
+  
   client.group1.one();
   client.group1.three();
   client.group1.four();
-
+  
   client.group2.two();
   client.group2.five();
   client.group2.six();

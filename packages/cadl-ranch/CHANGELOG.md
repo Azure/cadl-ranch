@@ -1,5 +1,32 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.2
+
+### Patch Changes
+
+- 6f9ead2: Better warning for duplicate mockapi
+
+## 0.14.1
+
+### Patch Changes
+
+- 37c48cb: Upgrade dependencies
+- Updated dependencies [37c48cb]
+  - @azure-tools/cadl-ranch-api@0.4.5
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.3
+  - @azure-tools/cadl-ranch-expect@0.15.1
+
+## 0.14.0
+
+### Minor Changes
+
+- 34e6b5a: Upgrade TypeSpec to 0.59.0
+
+### Patch Changes
+
+- Updated dependencies [34e6b5a]
+  - @azure-tools/cadl-ranch-expect@0.15.0
+
 ## 0.13.5
 
 ### Patch Changes

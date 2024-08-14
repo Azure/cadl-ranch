@@ -1,5 +1,11 @@
 # @azure-tools/typespec-bump-deps
 
+## 0.9.6
+
+### Patch Changes
+
+- 37c48cb: Upgrade dependencies
+
 ## 0.9.5
 
 ### Patch Changes

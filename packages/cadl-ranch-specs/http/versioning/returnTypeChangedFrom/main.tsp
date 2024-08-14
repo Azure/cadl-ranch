@@ -44,12 +44,12 @@ enum Versions {
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body: "test"
-Expected response body: "test"
-
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body: "test"
+  Expected response body: "test"
+  
+  """)
 @route("/test")
 @post
 @returnTypeChangedFrom(Versions.v2, int32)

@@ -29,8 +29,12 @@ function checkFile(
   expected: Buffer,
   contentType: string = "application/octet-stream",
   fileName: string | undefined = undefined,
+  mustCheckContentType: boolean = true,
 ) {
-  req.expect.deepEqual(file.mimetype, contentType);
+  // cadl-ranch depends on multer, which sets the mimetype to "text/plain" if this part has no content-type header
+  if (mustCheckContentType || file.mimetype !== "text/plain") {
+    req.expect.deepEqual(file.mimetype, contentType);
+  }
   req.expect.deepEqual(file.buffer, expected);
   if (fileName) {
     req.expect.deepEqual(file.originalname, fileName);
@@ -42,9 +46,18 @@ function checkJpgFile(
   file: Record<string, any>,
   contentType: string = "application/octet-stream",
   fileName: string | undefined = undefined,
+  mustCheckContentType: boolean = true,
 ) {
   req.expect.deepEqual(file.fieldname, "profileImage");
-  checkFile(req, file, jpgFile, contentType, fileName);
+  checkFile(req, file, jpgFile, contentType, fileName, mustCheckContentType);
+}
+
+function checkOptionalContentType(req: MockRequest) {
+  if (req.files instanceof Array && req.files?.length > 0) {
+    checkJpgFile(req, req.files[0], "application/octet-stream", undefined, false);
+  } else {
+    throw new ValidationError("No profileImage found", "jpg file is expected", req.body);
+  }
 }
 
 function checkPngFile(req: MockRequest, file: Record<string, any>, fieldName: string = "pictures") {
@@ -106,7 +119,7 @@ function createMockApis(route: string, checkList: ((param: MockRequest) => void)
 Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(createMockApis("mixed-parts", [checkId, checkProfileImage]));
 
 Scenarios.Payload_MultiPart_FormData_complex = passOnSuccess(
-  createMockApis("complex-parts", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+  createMockApis("complex-parts", [checkId, checkAddress, checkAllFiles]),
 );
 
 Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
@@ -115,10 +128,6 @@ Scenarios.Payload_MultiPart_FormData_jsonPart = passOnSuccess(
 
 Scenarios.Payload_MultiPart_FormData_binaryArrayParts = passOnSuccess(
   createMockApis("binary-array-parts", [checkId, checkPictures]),
-);
-
-Scenarios.Payload_MultiPart_FormData_jsonArrayParts = passOnSuccess(
-  createMockApis("json-array-parts", [checkPreviousAddresses, checkProfileImage]),
 );
 
 Scenarios.Payload_MultiPart_FormData_multiBinaryParts = withKeys(["profileImage", "profileImage,picture"]).pass(
@@ -163,4 +172,18 @@ Scenarios.Payload_MultiPart_FormData_checkFileNameAndContentType = passOnSuccess
 
 Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
   createMockApis("anonymous-model", [checkProfileImage]),
+);
+
+Scenarios.Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType = passOnSuccess(
+  createMockApis("check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
+);
+
+Scenarios.Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType = passOnSuccess(
+  createMockApis("check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
+);
+Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passOnSuccess(
+  createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
+);
+Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
+  createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
