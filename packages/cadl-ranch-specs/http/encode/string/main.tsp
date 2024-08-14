@@ -13,28 +13,53 @@ namespace Encode.AsString;
 @operationGroup
 @route("/property")
 namespace Property {
-  @route("/string")
+  @route("/safeint")
   @scenario
   @scenarioDoc("""
-  Test operation with request and response model contains integer property with string encode.
-  Expected request body:
-  ```json
-  {
-    "value": "1"
-  }
-  ```
-  Expected response body:
-  ```json
-  {
-    "value": "1"
-  }
-  ```
-  """)
+    Test operation with request and response model contains integer property with string encode.
+    Expected request body:
+    ```json
+    {
+      "value": "10000000000"
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": "10000000000"
+    }
+    ```
+    """)
   @post
-  op encodeAsString(@body body: IntegerAsStringProperty): IntegerAsStringProperty;
+  op safeintAsString(@body body: SafeintAsStringProperty): SafeintAsStringProperty;
 
-  model IntegerAsStringProperty {
+  model SafeintAsStringProperty {
     @encode(string)
     value: safeint;
+  }
+
+  @route("/int32")
+  @scenario
+  @scenarioDoc("""
+    Test operation with request and response model contains integer property with string encode.
+    Expected request body:
+    ```json
+    {
+      "value": "1"
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": "1"
+    }
+    ```
+    """)
+  @post
+  op int32AsStringOptional(@body body: Int32AsStringProperty): Int32AsStringProperty;
+
+  model Int32AsStringProperty {
+    @encode(string)
+    value?: int32;
   }
 }

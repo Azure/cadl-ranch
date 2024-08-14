@@ -14,4 +14,6 @@ function createPropertyMockApis(route: string, value: string): MockApi {
   });
 }
 
-Scenarios.Encode_AsString_Property_encodeAsString = passOnSuccess(createPropertyMockApis("string", "1"));
+Scenarios.Encode_AsString_Property_safeintAsString = passOnSuccess(createPropertyMockApis("safeint", "10000000000"));
+
+Scenarios.Encode_AsString_Property_int32AsStringOptional = passOnSuccess(createPropertyMockApis("int32", "1"));
