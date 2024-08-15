@@ -44,7 +44,7 @@ const validNestedResource = {
 
 const validExtensionResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/extensionTrackedResources/extension`,
-  name: "roleAssign",
+  name: "extension",
   type: "extension",
   properties: {
     description: "valid",
@@ -59,26 +59,6 @@ const validExtensionResource = {
     lastModifiedByType: "User",
   },
 };
-
-const validExtensionResources = [
-  {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/extensionTrackedResources/extension`,
-    name: "roleAssign",
-    type: "extension",
-    properties: {
-      description: "valid",
-      provisioningState: "Succeeded",
-    },
-    systemData: {
-      createdBy: "AzureSDK",
-      createdByType: "User",
-      createdAt: new Date(),
-      lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
-      lastModifiedByType: "User",
-    },
-  },
-];
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionResources_get = passOnSuccess([
   mockapi.get(
@@ -192,7 +172,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_ExtensionResources_listByResour
       }
       return {
         status: 200,
-        body: json(validExtensionResources),
+        body: json({
+          value: [validExtensionResource],
+        }),
       };
     },
   ),
