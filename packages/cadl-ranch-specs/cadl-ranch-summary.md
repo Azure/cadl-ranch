@@ -2347,6 +2347,48 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Encode_Numeric_Property_safeintAsString
+
+- Endpoint: `post /encode/numeric/property/safeint`
+
+Test operation with request and response model contains property of safeint type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+### Encode_Numeric_Property_uint32AsStringOptional
+
+- Endpoint: `post /encode/numeric/property/uint32`
+
+Test operation with request and response model contains property of uint32 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
+}
+```
+
 ### Parameters_Basic_ExplicitBody_simple
 
 - Endpoint: `put /parameters/basic/explicit-body/simple`
