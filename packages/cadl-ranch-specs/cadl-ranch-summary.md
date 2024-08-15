@@ -1028,6 +1028,151 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
+  "name": "singleton",
+  "type": "singletonResource",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_get
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
+  "name": "singleton",
+  "type": "singletonResource",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
+    "name": "singleton",
+    "type": "singletonResource",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
+  "name": "singleton",
+  "type": "singletonResource",
+  "location": "eastus",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
 
 - Endpoint: `post https://management.azure.com`
