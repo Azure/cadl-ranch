@@ -199,7 +199,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_action
         urgent: true,
       });
       return {
-        status: 200,
+        status: 204,
       };
     },
   ),
