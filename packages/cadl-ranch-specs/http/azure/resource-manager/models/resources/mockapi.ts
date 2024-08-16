@@ -46,7 +46,7 @@ const validNestedResource = {
 const validLocationResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/employee`,
   name: "employee",
-  type: "locationTrackedResources/location",
+  type: "Azure.ResourceManager.Models.Resources/locationTrackedResources",
   location: "westus",
   properties: {
     age: 32,

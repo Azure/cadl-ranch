@@ -40,7 +40,7 @@ interface LocationTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
       "name": "employee",
-      "type": "locationTrackedResources/employee",
+      "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "eastus",
       "properties":{
         "age": 32,
@@ -78,7 +78,7 @@ interface LocationTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
       "name": "location",
-      "type": "locationTrackedResources/location",
+      "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties": {
         "age": 32,
@@ -116,7 +116,7 @@ interface LocationTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
       "name": "location",
-      "type": "locationTrackedResources/location",
+      "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties":{
         "age": 34,
@@ -157,7 +157,7 @@ interface LocationTrackedResources {
       "value": [{
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
         "name": "location",
-        "type": "locationTrackedResources/location",
+        "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
         "location": "westus",
         "properties":{
           "age": 32,
