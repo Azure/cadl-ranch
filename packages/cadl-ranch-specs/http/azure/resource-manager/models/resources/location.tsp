@@ -77,7 +77,7 @@ interface LocationTrackedResources {
     ```json
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-      "name": "location",
+      "name": "employee",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties": {
@@ -115,7 +115,7 @@ interface LocationTrackedResources {
     ```json
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-      "name": "location",
+      "name": "employee",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties":{
@@ -156,7 +156,7 @@ interface LocationTrackedResources {
     {
       "value": [{
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-        "name": "location",
+        "name": "employee",
         "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
         "location": "westus",
         "properties":{
