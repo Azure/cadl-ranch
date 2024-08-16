@@ -44,12 +44,12 @@ const validNestedResource = {
 };
 
 const validLocationResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/employee`,
-  name: "employee",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/location`,
+  name: "location",
   type: "Azure.ResourceManager.Models.Resources/locationTrackedResources",
   location: "westus",
   properties: {
-    age: 32,
+    description: "valid",
     provisioningState: "Succeeded",
   },
   systemData: {
@@ -76,8 +76,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_get = 
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "employee") {
-        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "location") {
+        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
       }
       return {
         status: 200,
@@ -101,13 +101,13 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_create
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "employee") {
-        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "location") {
+        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
       }
       req.expect.bodyEquals({
         location: "westus",
         properties: {
-          age: 32,
+          description: "valid",
         },
       });
       return {
@@ -132,17 +132,17 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_update
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "employee") {
-        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "location") {
+        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
       }
       req.expect.bodyEquals({
         location: "westus",
         properties: {
-          age: 34,
+          description: "valid2",
         },
       });
       const resource = JSON.parse(JSON.stringify(validLocationResource));
-      resource.properties.age = 34;
+      resource.properties.description = "valid2";
       return {
         status: 200,
         body: json(resource),
@@ -165,8 +165,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "employee") {
-        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "location") {
+        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
       }
       return {
         status: 204,

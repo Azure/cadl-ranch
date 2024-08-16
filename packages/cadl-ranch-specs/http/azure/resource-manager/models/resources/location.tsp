@@ -13,14 +13,14 @@ namespace Azure.ResourceManager.Models.Resources;
 
 @resource("locationTrackedResources")
 @parentResource(ArmLocationResource<"ResourceGroup">)
-model Employee is TrackedResource<EmployeeProperties> {
-  ...ResourceNameParameter<Employee>;
+model LocationTrackedResource is TrackedResource<LocationTrackedResourceProperties> {
+  ...ResourceNameParameter<LocationTrackedResource>;
 }
 
 /** Employee properties */
-model EmployeeProperties {
-  /** Age of employee */
-  age?: int32;
+model LocationTrackedResourceProperties {
+  @doc("The description of the resource.")
+  description?: string;
 
   /** The status of the last operation. */
   @visibility("read")
@@ -32,18 +32,18 @@ interface LocationTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-      "name": "employee",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
+      "name": "location",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "eastus",
       "properties":{
-        "age": 32,
+        "description": "valid",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -57,31 +57,31 @@ interface LocationTrackedResources {
     }
     ```
     """)
-  get is ArmResourceRead<Employee>;
+  get is ArmResourceRead<LocationTrackedResource>;
 
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
     {
       "location": "westus",
       "properties": {
-        "age": 32,
+        "description": "valid",
       }
     }
     ```
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-      "name": "employee",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
+      "name": "location",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties": {
-        "age": 32,
+        "description": "valid",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -95,31 +95,31 @@ interface LocationTrackedResources {
     }
     ```
     """)
-  createOrUpdate is ArmResourceCreateOrReplaceAsync<Employee>;
+  createOrUpdate is ArmResourceCreateOrReplaceSync<LocationTrackedResource>;
 
   @scenario
   @scenarioDoc("""
     Resource PATCH operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
     {
       "location": "westus",
       "properties": {
-        "age": 34,
+        "description": "valid2",
       }
     }
     ```
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-      "name": "employee",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
+      "name": "location",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties":{
-        "age": 34,
+        "description": "valid2",
         "provisioningState": "Succeeded"
       },
       "systemData": {
@@ -133,17 +133,17 @@ interface LocationTrackedResources {
     }
     ```
     """)
-  update is ArmResourcePatchSync<Employee, EmployeeProperties>;
+  update is ArmResourcePatchSync<LocationTrackedResource, LocationTrackedResourceProperties>;
 
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
     """)
-  delete is ArmResourceDeleteSync<Employee>;
+  delete is ArmResourceDeleteSync<LocationTrackedResource>;
 
   @scenario
   @scenarioDoc("""
@@ -155,12 +155,12 @@ interface LocationTrackedResources {
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/employee",
-        "name": "employee",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
+        "name": "location",
         "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
         "location": "westus",
         "properties":{
-          "age": 32,
+          "description": "valid",
           "provisioningState": "Succeeded"
         },
         "systemData": {
@@ -175,5 +175,5 @@ interface LocationTrackedResources {
     }
     ```
     """)
-  listByLocation is ArmResourceListByParent<Employee>;
+  listByLocation is ArmResourceListByParent<LocationTrackedResource>;
 }
