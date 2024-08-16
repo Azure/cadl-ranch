@@ -226,10 +226,10 @@ model UserList {
 @summary("Exports all users.")
 @scenarioDoc("""
   Should generate a model named User.
-
+  
   Expected query parameter: format=json
   Expected query parameter: api-version=2022-12-01-preview
-
+  
   Expected response body:
   ```json
   {
