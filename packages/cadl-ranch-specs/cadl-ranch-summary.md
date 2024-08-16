@@ -128,6 +128,70 @@ Expected response body:
 }
 ```
 
+### Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Azure_ClientGenerator_Core_FlattenProperty_putNestedFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
+
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -994,6 +1058,22 @@ Expected response body:
   }
 }
 ```
+
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource sync action.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "message": "Resource action at top level.",
+    "urgent": true
+  }
+  ```
 
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
 
@@ -2147,6 +2227,48 @@ Expected query parameter `input=36,47`
 
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
+
+### Encode_Numeric_Property_safeintAsString
+
+- Endpoint: `post /encode/numeric/property/safeint`
+
+Test operation with request and response model contains property of safeint type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+### Encode_Numeric_Property_uint32AsStringOptional
+
+- Endpoint: `post /encode/numeric/property/uint32`
+
+Test operation with request and response model contains property of uint32 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
+}
+```
 
 ### Parameters_Basic_ExplicitBody_simple
 
@@ -4959,70 +5081,6 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
-
-### Type_Model_Flatten_putFlattenModel
-
-- Endpoint: `put /type/model/flatten/flattenModel`
-
-Update and receive model with 1 level of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "description": "bar",
-    "age": 10
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "description": "test",
-    "age": 1
-  }
-}
-```
-
-### Type_Model_Flatten_putNestedFlattenModel
-
-- Endpoint: `put /type/model/flatten/nestedFlattenModel`
-
-Update and receive model with 2 levels of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "summary": "bar",
-    "properties": {
-      "description": "test",
-      "age": 10
-    }
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "summary": "test",
-    "properties": {
-      "description": "foo",
-      "age": 1
-    }
-  }
-}
-```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 
