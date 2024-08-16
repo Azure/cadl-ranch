@@ -225,29 +225,29 @@ model UserList {
 @doc("Exports all users")
 @summary("Exports all users.")
 @scenarioDoc("""
-Should generate a model named User.
+  Should generate a model named User.
 
-Expected query parameter: format=json
-Expected query parameter: api-version=2022-12-01-preview
+  Expected query parameter: format=json
+  Expected query parameter: api-version=2022-12-01-preview
 
-Expected response body:
-```json
-{
-  "users":[
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    },
-    {
-      "id": 2,
-      "name": "John",
-      "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    }
-  ]
-}
-```
-""")
+  Expected response body:
+  ```json
+  {
+    "users":[
+      {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      },
+      {
+        "id": 2,
+        "name": "John",
+        "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      }
+    ]
+  }
+  ```
+  """)
 @collectionAction(User, "exportallusers")
 @post
 op exportAllUsers is ResourceOperations.ResourceCollectionAction<
