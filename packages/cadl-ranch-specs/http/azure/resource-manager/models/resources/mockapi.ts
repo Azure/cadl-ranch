@@ -5,6 +5,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
+const LOCATION_EXPECTED = "eastus";
 const validTopLevelResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
   name: "top",
@@ -41,6 +42,162 @@ const validNestedResource = {
     lastModifiedByType: "User",
   },
 };
+
+const validLocationResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/employee`,
+  name: "employee",
+  type: "locationTrackedResources/location",
+  location: "westus",
+  properties: {
+    age: 32,
+    provisioningState: "Succeeded",
+  },
+  systemData: {
+    createdBy: "AzureSDK",
+    createdByType: "User",
+    createdAt: new Date(),
+    lastModifiedBy: "AzureSDK",
+    lastModifiedAt: new Date(),
+    lastModifiedByType: "User",
+  },
+};
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_get = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "employee") {
+        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      }
+      return {
+        status: 200,
+        body: json(validLocationResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_createOrUpdate = passOnSuccess([
+  mockapi.put(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "employee") {
+        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      }
+      req.expect.bodyEquals({
+        location: "westus",
+        properties: {
+          age: 32,
+        },
+      });
+      return {
+        status: 200,
+        body: json(validLocationResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_update = passOnSuccess([
+  mockapi.patch(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "employee") {
+        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      }
+      req.expect.bodyEquals({
+        location: "westus",
+        properties: {
+          age: 34,
+        },
+      });
+      const resource = JSON.parse(JSON.stringify(validLocationResource));
+      resource.properties.age = 34;
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete = passOnSuccess([
+  mockapi.delete(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "employee") {
+        throw new ValidationError("Unexpected resource name", "employee", req.params.locationResourceName);
+      }
+      return {
+        status: 204,
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_listByLocation = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      return {
+        status: 200,
+        body: json({
+          value: [validLocationResource],
+        }),
+      };
+    },
+  ),
+]);
 
 Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync = passOnSuccess([
   mockapi.post(
