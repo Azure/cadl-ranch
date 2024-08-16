@@ -45,7 +45,7 @@ const validNestedResource = {
 const validSingletonResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton`,
   name: "singleton",
-  type: "singletonResources",
+  type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
   location: "eastus",
   properties: {
     provisioningState: "Succeeded",

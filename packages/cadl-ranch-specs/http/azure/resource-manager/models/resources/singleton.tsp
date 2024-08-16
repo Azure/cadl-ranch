@@ -44,7 +44,7 @@ interface SingletonTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
       "name": "singleton",
-      "type": "singletonResource",
+      "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
       "location": "eastus",
       "properties":{
         "description": "valid",
@@ -82,7 +82,7 @@ interface SingletonTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
       "name": "singleton",
-      "type": "singletonResource",
+      "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
       "location": "eastus",
       "properties": {
         "description": "valid",
@@ -119,7 +119,7 @@ interface SingletonTrackedResources {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
       "name": "singleton",
-      "type": "singletonResource",
+      "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
       "location": "eastus",
       "properties":{
         "description": "valid2",
@@ -150,7 +150,7 @@ interface SingletonTrackedResources {
       "value": [{
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
         "name": "singleton",
-        "type": "singletonResource",
+        "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
         "location": "eastus",
         "properties":{
           "description": "valid",
