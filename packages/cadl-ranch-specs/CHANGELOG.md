@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.36.1
+
+### Patch Changes
+
+- 0cb765e: Bug fix on flatten-property mockapi.
+- cdb4a5f: Add test case for encode integer as string.
+- Updated dependencies [c936cb2]
+  - @azure-tools/cadl-ranch-api@0.4.6
+  - @azure-tools/cadl-ranch@0.14.3
+
 ## 0.36.0
 
 ### Minor Changes
