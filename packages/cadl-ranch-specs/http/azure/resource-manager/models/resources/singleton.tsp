@@ -11,7 +11,7 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.Models.Resources;
 
-@resource("singletonTrackedResources")
+@singleton("default")
 model SingletonTrackedResource is TrackedResource<SingletonTrackedResourceProperties> {
   @key("singletonTrackedResourceName")
   @path
@@ -36,14 +36,14 @@ interface SingletonTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
-      "name": "singleton",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+      "name": "default",
       "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
       "location": "eastus",
       "properties":{
@@ -61,12 +61,12 @@ interface SingletonTrackedResources {
     }
     ```
     """)
-  get is ArmResourceRead<SingletonTrackedResource>;
+  getByResourceGroup is ArmResourceRead<SingletonTrackedResource>;
 
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
@@ -80,8 +80,8 @@ interface SingletonTrackedResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
-      "name": "singleton",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+      "name": "default",
       "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
       "location": "eastus",
       "properties": {
@@ -104,11 +104,12 @@ interface SingletonTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource PATCH operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
     {
+      "location": "eastus2",
       "properties": {
         "description": "valid2"
       }
@@ -117,10 +118,10 @@ interface SingletonTrackedResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
-      "name": "singleton",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+      "name": "default",
       "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
-      "location": "eastus",
+      "location": "eastus2",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -148,8 +149,8 @@ interface SingletonTrackedResources {
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton",
-        "name": "singleton",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "name": "default",
         "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
         "location": "eastus",
         "properties":{

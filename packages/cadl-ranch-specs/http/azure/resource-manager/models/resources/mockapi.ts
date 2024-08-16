@@ -43,8 +43,8 @@ const validNestedResource = {
 };
 
 const validSingletonResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/singleton`,
-  name: "singleton",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+  name: "default",
   type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
   location: "eastus",
   properties: {
@@ -62,9 +62,9 @@ const validSingletonResource = {
 };
 
 // singleton tracked resource
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/:singletonResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -72,9 +72,6 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_get =
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.singletonResourceName.toLowerCase() !== "singleton") {
-        throw new ValidationError("Unexpected singleton resource name", "singleton", req.params.singletonResourceName);
       }
       return {
         status: 200,
@@ -86,7 +83,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_get =
 
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/:singletonResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -94,9 +91,6 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_creat
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.singletonResourceName.toLowerCase() !== "singleton") {
-        throw new ValidationError("Unexpected singleton resource name", "singleton", req.params.singletonResourceName);
       }
       req.expect.bodyEquals({
         location: "eastus",
@@ -114,7 +108,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_creat
 
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/:singletonResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -123,13 +117,14 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_updat
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
       }
-      if (req.params.singletonResourceName.toLowerCase() !== "singleton") {
-        throw new ValidationError("Unexpected singleton resource name", "singleton", req.params.singletonResourceName);
-      }
-      req.expect.deepEqual(req.body.properties, {
-        description: "valid2",
+      req.expect.bodyEquals({
+        location: "eastus2",
+        properties: {
+          description: "valid2",
+        },
       });
       const resource = JSON.parse(JSON.stringify(validSingletonResource));
+      resource.location = "eastus2";
       resource.properties.description = "valid2";
       return {
         status: 200,
