@@ -45,7 +45,7 @@ const validNestedResource = {
 const validExtensionResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role`,
   name: "role",
-  type: "extensionResource",
+  type: "Azure.ResourceManager.Models.Resources/roleAssignments",
   properties: {
     description: "valid",
     provisioningState: "Succeeded",

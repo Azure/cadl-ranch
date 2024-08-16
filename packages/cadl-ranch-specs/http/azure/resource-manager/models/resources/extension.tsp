@@ -39,7 +39,7 @@ interface RoleAssignments {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
       "name": "role",
-      "type": "extensionResource",
+      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -76,7 +76,7 @@ interface RoleAssignments {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
       "name": "role",
-      "type": "extensionResource",
+      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -113,7 +113,7 @@ interface RoleAssignments {
     {
       "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
       "name": "role",
-      "type": "extensionResource",
+      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -153,7 +153,7 @@ interface RoleAssignments {
       "value": [{
         "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
         "name": "role",
-        "type": "extensionResource",
+        "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
         "properties":{
           "description": "valid",
           "provisioningState": "Succeeded"

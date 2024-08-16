@@ -1051,7 +1051,7 @@ Expected response body:
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
   "name": "role",
-  "type": "extensionResource",
+  "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -1091,7 +1091,7 @@ Expected response body:
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
   "name": "role",
-  "type": "extensionResource",
+  "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -1122,7 +1122,7 @@ Expected response body:
   "value": [{
     "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
     "name": "role",
-    "type": "extensionResource",
+    "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
     "properties":{
       "description": "valid",
       "provisioningState": "Succeeded"
@@ -1162,7 +1162,7 @@ Expected response body:
 {
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
   "name": "role",
-  "type": "extensionResource",
+  "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
   "properties":{
     "description": "valid2",
     "provisioningState": "Succeeded"
