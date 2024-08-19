@@ -67,11 +67,11 @@ interface ScalarTypesOperations<T, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected response body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
@@ -83,11 +83,11 @@ interface ScalarTypesOperations<T, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected input body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected input body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
@@ -99,9 +99,9 @@ interface ScalarTypesOperations<T, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected request parameter:
-  value={doc}
-  """,
+      Expected request parameter:
+      value={doc}
+      """,
     {
       doc: TDoc,
     }
@@ -126,9 +126,9 @@ interface NumberTypesVerifyOperations<T, VerifyValues extends string, ResultValu
   @scenario
   @scenarioDoc(
     """
-  Get verify values:
-  {doc}
-  """,
+      Get verify values:
+      {doc}
+      """,
     {
       doc: VerifyValues,
     }
@@ -140,11 +140,11 @@ interface NumberTypesVerifyOperations<T, VerifyValues extends string, ResultValu
   @scenario
   @scenarioDoc(
     """
-  Expected input body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected input body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: ResultValue,
     }

@@ -1,5 +1,82 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.36.1
+
+### Patch Changes
+
+- 0cb765e: Bug fix on flatten-property mockapi.
+- cdb4a5f: Add test case for encode integer as string.
+- Updated dependencies [c936cb2]
+  - @azure-tools/cadl-ranch-api@0.4.6
+  - @azure-tools/cadl-ranch@0.14.3
+
+## 0.36.0
+
+### Minor Changes
+
+- dc9c981: Move `type/model/flatten` test to `azure/client-generator-core/flatten-property`
+
+### Patch Changes
+
+- 4a861c7: Minor change to avoid deprecated query parameter options.
+- 4022f01: Added tests for ARM, test case for resource action.
+
+## 0.35.4
+
+### Patch Changes
+
+- 0d90fce: Add test case with `HttpPart` for multipart
+- d105b7e: Add test case of multiple clients and multiple operation groups.
+- Updated dependencies [6f9ead2]
+  - @azure-tools/cadl-ranch@0.14.2
+
+## 0.35.3
+
+### Patch Changes
+
+- 37c48cb: Upgrade dependencies
+- Updated dependencies [37c48cb]
+  - @azure-tools/cadl-ranch-api@0.4.5
+  - @azure-tools/cadl-ranch-expect@0.15.1
+  - @azure-tools/cadl-ranch@0.14.1
+
+## 1.0.0
+
+### Minor Changes
+
+- 34e6b5a: Upgrade TypeSpec to 0.59.0
+
+### Patch Changes
+
+- Updated dependencies [34e6b5a]
+  - @azure-tools/cadl-ranch-expect@0.15.0
+  - @azure-tools/cadl-ranch@0.14.0
+
+## 0.35.2
+
+### Patch Changes
+
+- 13ec97f: Fixed ARM resources mock test.
+
+## 0.35.1
+
+### Patch Changes
+
+- 2aa44fb: Fix suppress wrong place
+
+## 0.35.0
+
+### Minor Changes
+
+- b06f27c: added more tests to payload/xml
+
+### Patch Changes
+
+- fd4d452: Move azure page operation to a new folder
+- 44ce23e: Fixed resource-manager/resources mock implementation.
+- 96c1f90: Bug fix on azure example test route
+- 1a2c812: Fix deprecated csv format
+
 ## 0.34.10
 
 ### Patch Changes

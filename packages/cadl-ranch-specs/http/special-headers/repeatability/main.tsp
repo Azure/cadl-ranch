@@ -23,11 +23,11 @@ model RepeatableResponse {
 
 @scenario
 @scenarioDoc("""
-Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
-""")
+  Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
+  """)
 @doc("""
-Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
-""")
+  Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
+  """)
 @post
 @route("/immediateSuccess")
 op immediateSuccess(

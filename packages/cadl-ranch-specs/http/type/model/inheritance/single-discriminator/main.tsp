@@ -51,121 +51,121 @@ model TRex extends Dinosaur {
 @scenario
 @route("/model")
 @scenarioDoc("""
-Generate and receive polymorphic model in single level inheritance with 1 discriminator.
-Expected response body:
-```json
-{"wingspan": 1, "kind": "sparrow"}
-```
-""")
+  Generate and receive polymorphic model in single level inheritance with 1 discriminator.
+  Expected response body:
+  ```json
+  {"wingspan": 1, "kind": "sparrow"}
+  ```
+  """)
 @get
 op getModel(): Bird;
 
 @scenario
 @route("/model")
 @scenarioDoc("""
-Generate and send polymorphic model in single level inheritance with 1 discriminator.
-Expected input body:
-```json
-{"wingspan": 1, "kind": "sparrow"}
-```
-""")
+  Generate and send polymorphic model in single level inheritance with 1 discriminator.
+  Expected input body:
+  ```json
+  {"wingspan": 1, "kind": "sparrow"}
+  ```
+  """)
 @put
 op putModel(@body input: Bird): NoContentResponse;
 
 @scenario
 @route("/recursivemodel")
 @scenarioDoc("""
-Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected response body:
-```json
-{
-  "wingspan": 5,
-  "kind": "eagle",
-  "partner": {
-    "wingspan": 2,
-    "kind": "goose"
-  },
-  "friends": [
-    {
+  Generate and receive polymorphic models has collection and dictionary properties referring to other polymorphic models.
+  Expected response body:
+  ```json
+  {
+    "wingspan": 5,
+    "kind": "eagle",
+    "partner": {
       "wingspan": 2,
-      "kind": "seagull"
-    }
-  ],
-  "hate": {
-    "key3": {
-      "wingspan": 1,
-      "kind": "sparrow"
+      "kind": "goose"
+    },
+    "friends": [
+      {
+        "wingspan": 2,
+        "kind": "seagull"
+      }
+    ],
+    "hate": {
+      "key3": {
+        "wingspan": 1,
+        "kind": "sparrow"
+      }
     }
   }
-}
-```
-""")
+  ```
+  """)
 @get
 op getRecursiveModel(): Bird;
 
 @scenario
 @route("/recursivemodel")
 @scenarioDoc("""
-Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
-Expected input body:
-```json
-{
-  "wingspan": 5,
-  "kind": "eagle",
-  "partner": {
-    "wingspan": 2,
-    "kind": "goose"
-  },
-  "friends": [
-    {
+  Generate and send polymorphic models has collection and dictionary properties referring to other polymorphic models.
+  Expected input body:
+  ```json
+  {
+    "wingspan": 5,
+    "kind": "eagle",
+    "partner": {
       "wingspan": 2,
-      "kind": "seagull"
-    }
-  ],
-  "hate": {
-    "key3": {
-      "wingspan": 1,
-      "kind": "sparrow"
+      "kind": "goose"
+    },
+    "friends": [
+      {
+        "wingspan": 2,
+        "kind": "seagull"
+      }
+    ],
+    "hate": {
+      "key3": {
+        "wingspan": 1,
+        "kind": "sparrow"
+      }
     }
   }
-}
-```
-""")
+  ```
+  """)
 @put
 op putRecursiveModel(@body input: Bird): NoContentResponse;
 
 @scenario
 @route("/missingdiscriminator")
 @scenarioDoc("""
-Get a model omitting the discriminator.
-Expected response body:
-```json
-{"wingspan": 1}
-```
-""")
+  Get a model omitting the discriminator.
+  Expected response body:
+  ```json
+  {"wingspan": 1}
+  ```
+  """)
 @get
 op getMissingDiscriminator(): Bird;
 
 @scenario
 @route("/wrongdiscriminator")
 @scenarioDoc("""
-Get a model containing discriminator value never defined.
-Expected response body:
-```json
-{"wingspan": 1, "kind": "wrongKind" }
-```
-""")
+  Get a model containing discriminator value never defined.
+  Expected response body:
+  ```json
+  {"wingspan": 1, "kind": "wrongKind" }
+  ```
+  """)
 @get
 op getWrongDiscriminator(): Bird;
 
 @scenario
 @route("/legacy-model")
 @scenarioDoc("""
-Generate and receive polymorphic model defined in legacy way.
-Expected response body:
-```json
-{"size": 20, "kind": "t-rex"}
-```
-""")
+  Generate and receive polymorphic model defined in legacy way.
+  Expected response body:
+  ```json
+  {"size": 20, "kind": "t-rex"}
+  ```
+  """)
 @get
 op getLegacyModel(): Dinosaur;

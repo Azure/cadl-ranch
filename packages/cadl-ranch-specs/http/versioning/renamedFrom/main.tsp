@@ -70,17 +70,17 @@ scalar NewScalar extends int32;
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body:
-```json
-{ "newProp": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
-```
-
-Expected query:
-newQuery=bar
-
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body:
+  ```json
+  { "newProp": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+  ```
+  
+  Expected query:
+  newQuery=bar
+  
+  """)
 @route("/test")
 @post
 @renamedFrom(Versions.v2, "oldOp")
@@ -95,14 +95,14 @@ op newOp(
 @renamedFrom(Versions.v2, "OldInterface")
 @scenario
 @scenarioDoc("""
-This operation group should only be generated with latest version's signature.
-
-Expected request body for test:
-```json
-{ "prop": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
-```
-
-""")
+  This operation group should only be generated with latest version's signature.
+  
+  Expected request body for test:
+  ```json
+  { "prop": "foo", "enumProp": "newEnumMember", "unionProp": 10 }
+  ```
+  
+  """)
 @route("/interface")
 interface NewInterface {
   @post

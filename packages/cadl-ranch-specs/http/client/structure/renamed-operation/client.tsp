@@ -7,11 +7,11 @@ using Azure.ClientGenerator.Core;
   This is to show we can have more than one operation group in a client. The client side should be able to call the api like
   ```ts
   const client = new RenamedOperationClient("renamed-operation");
-
+  
   client.renamedOne();
   client.renamedThree();
   client.renamedFive();
-
+  
   client.group.renamedTwo();
   client.group.renamedFour();
   client.group.renamedSix();
