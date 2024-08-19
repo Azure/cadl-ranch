@@ -592,7 +592,7 @@ List the dimension values for the given metric dimension name.
 
 ### Azure_Core_Page_ListPaginationLedgerEntries
 
-- Endpoint: `put /azure/core/page/ledger-entries`
+- Endpoint: `get /azure/core/page/ledger-entries`
 
 Expected input body:
 
@@ -707,7 +707,7 @@ This scenario is to demonstrate an interface with two operations, each returning
 
 ### Azure_Core_Page_UseFoundationsResourceList
 
-- Endpoint: `get /azure/core/page/foundations-resource-list/custom-resource-list`
+- Endpoint: `get /azure/core/page/foundations-resource-list`
 
 This interface is used to list resources using the foundations resource list.
 

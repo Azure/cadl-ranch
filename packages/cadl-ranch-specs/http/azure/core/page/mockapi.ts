@@ -52,7 +52,7 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
 );
 
 Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
-  mockapi.put("/azure/core/page/ledger-entries/transactions", (req) => {
+  mockapi.get("/azure/core/page/ledger-entries/transactions", (req) => {
     const requestBody = {
       requiredString: "required",
       requiredInt: 1,
@@ -65,6 +65,7 @@ Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
           transactionId: "1",
         },
       ],
+      nextPageLink: "/azure/core/page/ledger-entries/transactions?page=1",
     };
     req.expect.bodyEquals(requestBody);
     return {

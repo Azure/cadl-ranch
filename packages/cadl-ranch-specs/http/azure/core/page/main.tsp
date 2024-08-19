@@ -203,7 +203,7 @@ interface TwoModelsAsPageItem {
 }
 
 @resource("transactions")
-model LedgerEntry {
+model TransactionRecord {
   /**
    * Contents of the ledger entry.
    */
@@ -251,13 +251,13 @@ model PagedLedgerEntries {
    * Array of ledger entries
    */
   @global.Azure.Core.items
-  entries: LedgerEntry[];
+  entries: TransactionRecord[];
 
   /**
    * Path to retrieve next page of ledger entries
    */
   @global.Azure.Core.nextLink
-  nextPageLink?: ResourceLocation<LedgerEntry>;
+  nextPageLink?: ResourceLocation<TransactionRecord>;
 }
 
 @scenario
@@ -283,9 +283,8 @@ model PagedLedgerEntries {
   }
   """)
 @route("/ledger-entries")
-@put
 op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
-  LedgerEntry,
+  TransactionRecord,
   ListPaginationLedgerEntryInput,
   PagedLedgerEntries
 >;
@@ -442,7 +441,6 @@ model BatchPoolListResult {
   /**
    * The URL to get the next set of results.
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @global.Azure.Core.nextLink
   nextLink?: string;
 }
@@ -586,20 +584,6 @@ union LedgerUserRole {
 
 @scenario
 @scenarioDoc("""
-  This operation is used to list custom resources.
-  """)
-@route("/custom-resource-list")
-op ListCustomResource<
-  TResource extends {},
-  TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
-> is global.Azure.Core.Foundations.ResourceList<
-  TResource,
-  global.Azure.Core.Foundations.CustomParameters<TCustom>,
-  global.Azure.Core.Page<TResource>
->;
-
-@scenario
-@scenarioDoc("""
   This interface is used to list resources using the foundations resource list.
   """)
 @route("/foundations-resource-list")
@@ -607,5 +591,13 @@ interface UseFoundationsResourceList {
   /**
    * List upload detail for the discovery resource.
    */
-  GetResourcelist is ListCustomResource<LedgerEntry>;
+  @route("/custom-resource-list")
+  GetResourcelist<
+    TResource extends {},
+    TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
+  > is global.Azure.Core.Foundations.ResourceList<
+    TResource,
+    global.Azure.Core.Foundations.CustomParameters<TCustom>,
+    global.Azure.Core.Page<TResource>
+  >;
 }
