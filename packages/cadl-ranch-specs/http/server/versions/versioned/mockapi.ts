@@ -36,7 +36,7 @@ Scenarios.Server_Versions_Versioned_withQueryOldApiVersion = passOnSuccess(
 );
 
 Scenarios.Server_Versions_Versioned_withQueryUnknownApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/versioned/with-query-old-api-version", (req) => {
+  mockapi.head("/server/versions/versioned/with-query-unknown-api-version", (req) => {
     req.expect.containsQueryParam("api-version", "2022-07-09");
     return { status: 200 };
   }),
