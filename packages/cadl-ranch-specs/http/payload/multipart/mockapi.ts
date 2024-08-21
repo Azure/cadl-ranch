@@ -105,7 +105,9 @@ function checkPictures(req: MockRequest) {
     throw new ValidationError("No pictures found", "png files are expected", req.body);
   }
 }
-
+function checkFloat(req: MockRequest) {
+  req.expect.deepEqual(parseFloat(req.body.temperature), 0.123);
+}
 function createMockApis(route: string, checkList: ((param: MockRequest) => void)[]): MockApi {
   const url = `/multipart/form-data/${route}`;
   return mockapi.post(url, (req) => {
@@ -186,4 +188,7 @@ Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passO
 );
 Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
   createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
+);
+Scenarios.Payload_MultiPart_FormData_nonString = passOnSuccess(
+  createMockApis("non-string", [checkFloat]),
 );
