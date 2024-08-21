@@ -3124,6 +3124,25 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
+### Payload_MultiPart_FormData_nonString
+
+- Endpoint: `post /multipart/form-data/non-string`
+
+Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="temperature"
+Content-Type: text/plain
+
+0.123
+--abcde12345
+```
+
 ### Payload_Pageable_list
 
 - Endpoint: `get /payload/pageable`

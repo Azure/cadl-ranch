@@ -479,6 +479,11 @@ namespace FormData {
   @route("/non-string")
   op nonString(
     @header contentType: "multipart/form-data",
-    @multipartBody body: { temperature: HttpPart<{@body body: string; @header contentType: "text/plain"}> },
+    @multipartBody body: {
+      temperature: HttpPart<{
+        @body body: string;
+        @header contentType: "text/plain";
+      }>;
+    },
   ): NoContentResponse;
 }
