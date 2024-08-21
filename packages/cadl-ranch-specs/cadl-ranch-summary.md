@@ -5562,7 +5562,7 @@ Send a GET request which return the following body {requiredProp: "example-value
 
 - Endpoint: `delete /type/model/visibility`
 
-Generate abd send put model with write/create properties.
+Generate abd send put model with delete properties.
 Expected input body:
 
 ```json
@@ -5596,7 +5596,7 @@ Expected response body:
 
 - Endpoint: `head /type/model/visibility`
 
-Generate abd send put model with write/create properties.
+Generate abd send put model with query properties.
 Expected input body:
 
 ```json
