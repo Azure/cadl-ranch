@@ -106,7 +106,7 @@ function checkPictures(req: MockRequest) {
   }
 }
 function checkFloat(req: MockRequest) {
-  req.expect.deepEqual(parseFloat(req.body.temperature), 0.123);
+  req.expect.deepEqual(parseFloat(req.body.temperature), 0.5);
 }
 function createMockApis(route: string, checkList: ((param: MockRequest) => void)[]): MockApi {
   const url = `/multipart/form-data/${route}`;

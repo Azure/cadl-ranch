@@ -470,7 +470,7 @@ namespace FormData {
     Content-Disposition: form-data; name="temperature"
     Content-Type: text/plain
     
-    0.123
+    0.5
     --abcde12345
     ```
     """)
@@ -481,7 +481,7 @@ namespace FormData {
     @header contentType: "multipart/form-data",
     @multipartBody body: {
       temperature: HttpPart<{
-        @body body: string;
+        @body body: float;
         @header contentType: "text/plain";
       }>;
     },
