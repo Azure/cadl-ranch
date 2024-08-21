@@ -566,7 +566,7 @@ union LedgerUserRole {
 
 @scenario
 @scenarioDoc("""
-  This operation is used to list custom resources.
+  This operation is used to list resources.
   """)
 @route("/custom-resource-list")
 op ListResource<
