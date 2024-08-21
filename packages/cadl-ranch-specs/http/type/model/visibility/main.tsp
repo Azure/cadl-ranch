@@ -9,14 +9,6 @@ namespace Type.Model.Visibility;
 
 @doc("Output model with visibility properties.")
 model VisibilityModel {
-  @doc("Required string, illustrating a readonly property.")
-  @visibility("read")
-  readProp: string;
-
-  @doc("Required int32, illustrating a query property.")
-  @visibility("query")
-  queryProp: int32;
-
   @doc("Required string[], illustrating a create property.")
   @visibility("create")
   createProp: string[];
@@ -24,8 +16,39 @@ model VisibilityModel {
   @doc("Required int32[], illustrating a update property.")
   @visibility("update")
   updateProp: int32[];
+}
 
-  @doc("Required bool, illustrating a delete property.")
+/** Output model with readonly properties. */
+model ReadModel {
+  @doc("Required string, illustrating a readonly property.")
+  @visibility("read")
+  readProp: string;
+}
+
+/** Input model with readonly properties. */
+model QueryModel {
+  @doc("Required int32, illustrating a query property.")
+  @visibility("query")
+  queryProp: int32;
+}
+
+/** Input model with readonly properties. */
+model CreateModel {
+  @doc("Required string[], illustrating a create property.")
+  @visibility("create")
+  createProp: string[];
+}
+
+/** Input model with readonly properties. */
+model UpdateModel {
+  @doc("Required int32[], illustrating a update property.")
+  @visibility("update")
+  updateProp: int32[];
+}
+
+/** Input model with readonly properties. */
+model DeleteModel {
+  @doc("Required boolean, illustrating a delete property.")
   @visibility("delete")
   deleteProp: boolean;
 }
@@ -59,14 +82,14 @@ model ReadOnlyModel {
   ```
   """)
 @get
-op getModel(@body input: VisibilityModel): {
+op getModel(@body input: QueryModel): {
   @body
-  output: VisibilityModel;
+  output: ReadModel;
 };
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
+  Generate abd send put model with query properties.
   Expected input body:
   ```json
   {
@@ -75,7 +98,7 @@ op getModel(@body input: VisibilityModel): {
   ```
   """)
 @head
-op headModel(@body input: VisibilityModel): OkResponse;
+op headModel(@body input: QueryModel): OkResponse;
 
 @scenario
 @scenarioDoc("""
@@ -102,7 +125,7 @@ op putModel(@body input: VisibilityModel): void;
   ```
   """)
 @patch
-op patchModel(@body input: VisibilityModel): void;
+op patchModel(@body input: UpdateModel): void;
 
 @scenario
 @scenarioDoc("""
@@ -115,11 +138,11 @@ op patchModel(@body input: VisibilityModel): void;
   ```
   """)
 @post
-op postModel(@body input: VisibilityModel): void;
+op postModel(@body input: CreateModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
+  Generate abd send put model with delete properties.
   Expected input body:
   ```json
   {
@@ -128,7 +151,7 @@ op postModel(@body input: VisibilityModel): void;
   ```
   """)
 @delete
-op deleteModel(@body input: VisibilityModel): void;
+op deleteModel(@body input: DeleteModel): void;
 
 @route("/readonlyroundtrip")
 @scenario
