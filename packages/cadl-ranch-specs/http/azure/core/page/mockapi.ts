@@ -52,11 +52,7 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
 );
 
 Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
-  mockapi.get("/azure/core/page/ledger-entries/transactions", (req) => {
-    const requestBody = {
-      requiredString: "required",
-      requiredInt: 1,
-    };
+  mockapi.get("/azure/core/page/ledger-entries/transactions", () => {
     const responseBody = {
       entries: [
         {
@@ -67,7 +63,6 @@ Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
       ],
       nextPageLink: "/azure/core/page/ledger-entries/transactions?page=1",
     };
-    req.expect.bodyEquals(requestBody);
     return {
       status: 200,
       body: json(responseBody),
@@ -78,18 +73,24 @@ Scenarios.Azure_Core_Page_ListPaginationLedgerEntries = passOnSuccess(
 Scenarios.Azure_Core_Page_AdditionalParameter = passOnSuccess(
   mockapi.get("/azure/core/page/metric-dimensions/test-runs/1/dimensions/name/values", () => {
     const responseBody = {
-      value: [{ name: "Madge" }],
+      value: [{ value: ["dimension1"] }],
+      nextLink: "/azure/core/page/metric-dimensions/test-runs/1/dimensions/name/values?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),
 );
 
 Scenarios.Azure_Core_Page_Pools = passOnSuccess(
-  mockapi.put("/azure/core/page/pools", () => {
+  mockapi.get("/azure/core/page/pools", () => {
     const responseBody = {
-      id: "1",
-      displayName: "displayName",
-      Url: "Url",
+      items: [
+        {
+          id: "1",
+          displayName: "displayName",
+          url: "http://www.example.com",
+        },
+      ],
+      nextLink: "/azure/core/page/pools?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),
@@ -98,16 +99,26 @@ Scenarios.Azure_Core_Page_Pools = passOnSuccess(
 Scenarios.Azure_Core_Page_TwoResourcesAsListItems = passOnSuccess([
   mockapi.get("/azure/core/page/Text-blocklists/blocklists", () => {
     const responseBody = {
-      blockListsName: "blockListsName",
-      description: "description",
+      value: [
+        {
+          blocklistName: "blocklistName",
+          description: "description",
+        },
+      ],
+      nextLink: "/azure/core/page/Text-blocklists/blocklists?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),
   mockapi.get("/azure/core/page/Text-blockItems/blocklists/blocklistName/blockItems", (req) => {
     const responseBody = {
-      blockItemId: "1",
-      description: "description",
-      text: "text",
+      value: [
+        {
+          blockItemId: "1",
+          description: "description",
+          text: "text",
+        },
+      ],
+      nextLink: "/azure/core/page/Text-blockItems/blocklists/blocklistName/blockItems?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),
@@ -116,9 +127,14 @@ Scenarios.Azure_Core_Page_TwoResourcesAsListItems = passOnSuccess([
 Scenarios.Azure_Core_Page_UseFoundationsResourceList = passOnSuccess(
   mockapi.get("/azure/core/page/foundations-resource-list/custom-resource-list/transactions", (req) => {
     const responseBody = {
-      transactionId: "1",
-      collectionId: "1",
-      contents: "contents",
+      value: [
+        {
+          transactionId: "1",
+          collectionId: "1",
+          contents: "contents",
+        },
+      ],
+      nextLink: "/azure/core/page/foundations-resource-list/custom-resource-list/transactions?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),

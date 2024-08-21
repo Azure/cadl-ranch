@@ -713,7 +713,7 @@ Expected response body:
 
 ### Azure_Core_Page_Pools
 
-- Endpoint: `put /azure/core/page/pools`
+- Endpoint: `get /azure/core/page/pools`
 
 Lists all of the Pools in the specified Account.
 
@@ -735,7 +735,7 @@ This scenario is to demonstrate an interface with two operations, each returning
 
 ### Azure_Core_Page_UseFoundationsResourceList
 
-- Endpoint: `get /azure/core/page/foundations-resource-list`
+- Endpoint: `get /azure/core/page/foundations-resource-list/custom-resource-list`
 
 This interface is used to list resources using the foundations resource list.
 

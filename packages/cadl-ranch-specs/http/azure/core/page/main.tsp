@@ -427,23 +427,6 @@ model BatchPool {
   @visibility("read")
   url?: string;
 }
-/**
- * "The result of listing the Pools in an Account.
- */
-@global.Azure.Core.pagedResult
-model BatchPoolListResult {
-  /**
-   * The list of Pools.
-   */
-  @global.Azure.Core.items
-  value?: BatchPool[];
-
-  /**
-   * The URL to get the next set of results.
-   */
-  @global.Azure.Core.nextLink
-  nextLink?: string;
-}
 
 /**
  * Client related response header values
@@ -495,10 +478,9 @@ interface Pools {
    * Lists all of the Pools in the specified Account.
    */
   @route("/pools")
-  @put
   listPools is global.Azure.Core.RpcOperation<
     BatchRequestHeaders,
-    BatchPoolListResult,
+    CustomPageModel<BatchPool>,
     BatchResponseHeaders,
     BatchError
   >;
@@ -584,6 +566,20 @@ union LedgerUserRole {
 
 @scenario
 @scenarioDoc("""
+  This operation is used to list custom resources.
+  """)
+@route("/custom-resource-list")
+op ListResource<
+  TResource extends {},
+  TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
+> is global.Azure.Core.Foundations.ResourceList<
+  TResource,
+  global.Azure.Core.Foundations.CustomParameters<TCustom>,
+  global.Azure.Core.Page<TResource>
+>;
+
+@scenario
+@scenarioDoc("""
   This interface is used to list resources using the foundations resource list.
   """)
 @route("/foundations-resource-list")
@@ -592,12 +588,5 @@ interface UseFoundationsResourceList {
    * List upload detail for the discovery resource.
    */
   @route("/custom-resource-list")
-  GetResourcelist<
-    TResource extends {},
-    TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
-  > is global.Azure.Core.Foundations.ResourceList<
-    TResource,
-    global.Azure.Core.Foundations.CustomParameters<TCustom>,
-    global.Azure.Core.Page<TResource>
-  >;
+  GetResourcelist is ListResource<TransactionRecord>;
 }
