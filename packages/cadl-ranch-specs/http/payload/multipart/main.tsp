@@ -481,7 +481,7 @@ namespace FormData {
     @header contentType: "multipart/form-data",
     @multipartBody body: {
       temperature: HttpPart<{
-        @body body: float;
+        @body body: float64;
         @header contentType: "text/plain";
       }>;
     },
