@@ -3139,7 +3139,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="temperature"
 Content-Type: text/plain
 
-0.123
+0.5
 --abcde12345
 ```
 
