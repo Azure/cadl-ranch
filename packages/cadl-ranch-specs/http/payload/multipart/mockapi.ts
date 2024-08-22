@@ -189,4 +189,4 @@ Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passO
 Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
   createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
-Scenarios.Payload_MultiPart_FormData_nonString = passOnSuccess(createMockApis("non-string", [checkFloat]));
+Scenarios.Payload_MultiPart_FormData_floatWithHttpPart = passOnSuccess(createMockApis("non-string", [checkFloat]));
