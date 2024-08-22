@@ -476,8 +476,8 @@ namespace FormData {
     """)
   @doc("Test content-type: multipart/form-data for non string")
   @post
-  @route("/non-string")
-  op nonString(
+  @route("/non-string-float")
+  op floatWithHttpPart(
     @header contentType: "multipart/form-data",
     @multipartBody body: {
       temperature: HttpPart<{
