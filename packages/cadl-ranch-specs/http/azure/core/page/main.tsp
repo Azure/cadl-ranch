@@ -202,97 +202,10 @@ interface TwoModelsAsPageItem {
   listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
 }
 
-@resource("transactions")
-model TransactionRecord {
-  /**
-   * Contents of the ledger entry.
-   */
-  contents: string;
-
-  @visibility("read")
-  collectionId: string;
-
-  @key
-  @visibility("read")
-  transactionId: string;
-}
-
-/**
- * Type for input model body
- */
-model ListPaginationLedgerEntryInputBody {
-  /**
-   * A required string parameter
-   */
-  requiredString: string;
-
-  /**
-   * A required integer parameter
-   */
-  requiredInt: int32;
-}
-
-/**
- * Input model for the ListPaginationLedgerEntries
- */
-model ListPaginationLedgerEntryInput {
-  /**
-   * Body parameter for the ListPaginationLedgerEntries input model
-   */
-  @body bodyInput: ListPaginationLedgerEntryInputBody;
-}
-
-/**
- * Paginated ledger entries
- */
-@global.Azure.Core.pagedResult
-model PagedLedgerEntries {
-  /**
-   * Array of ledger entries
-   */
-  @global.Azure.Core.items
-  entries: TransactionRecord[];
-
-  /**
-   * Path to retrieve next page of ledger entries
-   */
-  @global.Azure.Core.nextLink
-  nextPageLink?: ResourceLocation<TransactionRecord>;
-}
-
-@scenario
-@scenarioDoc("""
-  Expected input body:
-  ```json
-  {
-    "requiredString": "string",
-    "requiredInt": 1
-  }
-  ```
-  
-  Expected response body:
-  ```json
-  {
-    "entries": [
-      {
-        "contents": "string",
-        "collectionId": "string",
-        "transactionId": "string"
-      }
-    ]
-  }
-  """)
-@route("/ledger-entries")
-op ListPaginationLedgerEntries is global.Azure.Core.Foundations.ResourceList<
-  TransactionRecord,
-  ListPaginationLedgerEntryInput,
-  PagedLedgerEntries
->;
-
 /**
  * The interval
  */
-union Interval {
+union TimeInterval {
   /**
    * A string representing a custom interval.
    */
@@ -305,45 +218,45 @@ union Interval {
   PT1H: "PT1H",
 }
 
-model MetricDimensions {
+model QueryParameters {
   /**
    * The interval (i.e. timegrain) of the query.
    */
   @query
-  interval?: Interval;
+  timeInterval?: TimeInterval;
 
   /**
-   * Metric name
+   * The specific parameter name to be queried.
    */
   @query
-  metricName?: string;
+  Name?: string;
 
   /**
-   * Metric namespace to query metric definitions for.
+   * The namespace that the query is performed within.
    */
   @query
-  metricNamespace: string;
+  Namespace: string;
 
   /**
-   *The timespan of the query.
+   * The specific timespan for the query, defining the range of time for the data.
    */
   @query
   timespan?: string;
 }
 
 @resource("values")
-@parentResource(Dimension)
-model DimensionValueListItem {
+@parentResource(Item)
+model ItemValues {
   /**
-   * The values of the dimension.
+   * The array of values associated with the item.
    */
   @key
   value: string[];
 }
 
-@resource("dimensions")
+@resource("items")
 @parentResource(TestRuns)
-model Dimension {
+model Item {
   @key
   @path("name")
   @visibility("query")
@@ -356,7 +269,7 @@ model Dimension {
 @resource("test-runs")
 model TestRuns {
   /**
-   * Unique test run name as identifier
+   * Unique identifier for the test run.
    */
   @key
   @path
@@ -366,227 +279,15 @@ model TestRuns {
 
 @scenario
 @scenarioDoc("""
-  List the dimension values for the given metric dimension name.
+  List the item values.
   """)
 interface AdditionalParameter {
   /**
-   * List the dimension values for the given metric dimension name.
+   * List the item values.
    */
-  @route("/metric-dimensions")
-  ListMetricDimensionValues is global.Azure.Core.ResourceList<
-    DimensionValueListItem,
-    global.Azure.Core.Traits.QueryParametersTrait<MetricDimensions>
+  @route("/items-traits")
+  listWithTraits is global.Azure.Core.ResourceList<
+    ItemValues,
+    global.Azure.Core.Traits.QueryParametersTrait<QueryParameters>
   >;
-}
-
-model BatchRequestHeaders {
-  /**
-   * An OData $filter clause.
-   */
-  @query
-  $filter?: string;
-
-  /**
-   * An OData $select clause.
-   */
-  #suppress "deprecated" "Deprecated in next release"
-  @query({
-    format: "csv",
-  })
-  $select?: string[];
-
-  /**
-   * An OData $expand clause.
-   */
-  #suppress "deprecated" "Deprecated in next release"
-  @query({
-    format: "csv",
-  })
-  $expand?: string[];
-}
-
-/**
- * A Pool in the Azure Batch service.
- */
-model BatchPool {
-  /**
-   * The unique identifier for the Pool.
-   */
-  @visibility("read")
-  id?: string;
-
-  /**
-   * The display name for the Pool.
-   */
-  @visibility("read")
-  displayName?: string;
-
-  /**
-   * The URL of the Pool.
-   */
-  @visibility("read")
-  url?: string;
-}
-
-/**
- * Client related response header values
- */
-model BatchResponseHeaders {
-  /**
-   * The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true.")
-   */
-  @header
-  `client-request-id`?: string;
-
-  /**
-   * A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in.")
-   */
-  @header
-  `request-id`?: string;
-
-  /**
-   * The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers.")
-   */
-  @header
-  ETag?: string;
-
-  /**
-   * The time at which the resource was last modified.
-   */
-  @header
-  @encode(DateTimeKnownEncoding.rfc7231)
-  `Last-Modified`?: utcDateTime;
-}
-
-/**
- * An error response received from the Azure Batch service.
- */
-@error
-model BatchError {
-  /**
-   * An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
-   */
-  code: string;
-}
-
-@scenario
-@scenarioDoc("""
-  Lists all of the Pools in the specified Account.
-  """)
-interface Pools {
-  /**
-   * Lists all of the Pools in the specified Account.
-   */
-  @route("/pools")
-  listPools is global.Azure.Core.RpcOperation<
-    BatchRequestHeaders,
-    CustomPageModel<BatchPool>,
-    BatchResponseHeaders,
-    BatchError
-  >;
-}
-
-/**
- * Text Blocklist.
- */
-@resource("blocklists")
-model TextBlocklist {
-  /**
-   * The name of the text blocklist. This can only include the following characters: 0-9 A-Z a-z - . _ ~
-   */
-  @key("blocklistName")
-  @visibility("read", "create", "query")
-  @maxLength(64)
-  blocklistName: string;
-
-  /**
-   * A description of the text blocklist.
-   */
-  @maxLength(1024)
-  description?: string;
-}
-
-/**
- * Item in TextBlocklist.
- */
-@resource("blockItems")
-@parentResource(TextBlocklist)
-model TextBlockItem {
-  /**
-   * The unique identifier for the block item.
-   */
-  @key("blockItemId")
-  @visibility("read", "create", "query")
-  @maxLength(64)
-  blockItemId: string;
-
-  /**
-   * A description of the block item.
-   */
-  @maxLength(1024)
-  description?: string;
-
-  /**
-   * The content of the block item.
-   */
-  @maxLength(128)
-  text: string;
-}
-
-@scenario
-@scenarioDoc("""
-  This scenario is to demonstrate an interface with two operations, each returning a list of different resource types.
-  """)
-interface TwoResourcesAsListItems {
-  /**
-   * Get all text blocklists details.
-   */
-  @route("/Text-blocklists")
-  listTextBlocklists is global.Azure.Core.ResourceList<TextBlocklist>;
-
-  /**
-   * Get all blockItems in a text blocklist
-   */
-  @route("/Text-blockItems")
-  listTextBlocklistItems is global.Azure.Core.ResourceList<
-    TextBlockItem,
-    global.Azure.Core.Traits.ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters>
-  >;
-}
-
-/**
- * User roles
- */
-union LedgerUserRole {
-  string,
-  Administrator: "Administrator",
-  Contributor: "Contributor",
-  Reader: "Reader",
-}
-
-@scenario
-@scenarioDoc("""
-  This operation is used to list resources.
-  """)
-@route("/custom-resource-list")
-op ListResource<
-  TResource extends {},
-  TCustom extends global.Azure.Core.Foundations.CustomizationFields = {}
-> is global.Azure.Core.Foundations.ResourceList<
-  TResource,
-  global.Azure.Core.Foundations.CustomParameters<TCustom>,
-  global.Azure.Core.Page<TResource>
->;
-
-@scenario
-@scenarioDoc("""
-  This interface is used to list resources using the foundations resource list.
-  """)
-@route("/foundations-resource-list")
-interface UseFoundationsResourceList {
-  /**
-   * List upload detail for the discovery resource.
-   */
-  @route("/custom-resource-list")
-  GetResourcelist is ListResource<TransactionRecord>;
 }
