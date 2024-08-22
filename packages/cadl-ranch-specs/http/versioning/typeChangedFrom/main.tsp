@@ -51,17 +51,17 @@ model TestModel {
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body:
-```json
-{ "prop": "foo", "changedProp": "bar" }
-```
-
-Expected query param:
-param="baz"
-
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body:
+  ```json
+  { "prop": "foo", "changedProp": "bar" }
+  ```
+  
+  Expected query param:
+  param="baz"
+  
+  """)
 @route("/test")
 @post
 op test(@body body: TestModel, @typeChangedFrom(Versions.v2, int32) @query param: string): TestModel;

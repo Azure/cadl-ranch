@@ -128,6 +128,70 @@ Expected response body:
 }
 ```
 
+### Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/flattenModel`
+
+Update and receive model with 1 level of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "description": "bar",
+    "age": 10
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "description": "test",
+    "age": 1
+  }
+}
+```
+
+### Azure_ClientGenerator_Core_FlattenProperty_putNestedFlattenModel
+
+- Endpoint: `put /azure/client-generator-core/flatten-property/nestedFlattenModel`
+
+Update and receive model with 2 levels of flattening.
+Expected input body:
+
+```json
+{
+  "name": "foo",
+  "properties": {
+    "summary": "bar",
+    "properties": {
+      "description": "test",
+      "age": 10
+    }
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "name": "test",
+  "properties": {
+    "summary": "test",
+    "properties": {
+      "description": "foo",
+      "age": 1
+    }
+  }
+}
+```
+
 ### Azure_ClientGenerator_Core_Usage_ModelInOperation
 
 - Endpoints:
@@ -221,6 +285,34 @@ Expected response body:
 }
 ```
 
+### Azure_Core_Basic_exportAllUsers
+
+- Endpoint: `post /azure/core/basic`
+
+Should generate a model named User.
+
+Expected query parameter: format=json
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
 ### Azure_Core_Basic_get
 
 - Endpoint: `get /azure/core/basic`
@@ -271,77 +363,6 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_listWithCustomPageModel
-
-- Endpoint: `get /azure/core/basic/custom-page`
-
-Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-
-````json
-{
-  "items":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithPage
-
-- Endpoint: `get /azure/core/basic/page`
-
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like Page.
-
-Expected query parameter: api-version=2022-12-01-preview
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id":1,
-        "name":"Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_listWithParameters
-
-- Endpoint: `get /azure/core/basic/parameters`
-
-Expected query parameter: api-version=2022-12-01-preview&another=Second
-
-Expected body parameter: {"inputName": "Madge"}
-
-Expected response body:
-```json
-{
-  "value":[
-     {
-        "id": 1,
-        "name": "Madge",
-        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-     }
-  ]
-}
-
-### Azure_Core_Basic_TwoModelsAsPageItem
-
-- Endpoints:
-  - `get /azure/core/basic/first-item`
-  - `get /azure/core/basic/second-item`
-
-This scenario is to test two operations with two different page item types.
-
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
@@ -351,11 +372,12 @@ GenerationResponse could be generated, depending on implementation.
 
 Expected verb: POST
 Expected request body:
+
 ```json
 {
   "prompt": "text"
 }
-````
+```
 
 Expected status code: 202
 Expected response header: operation-location={endpoint}/generations/operations/operation1
@@ -589,6 +611,82 @@ Expected response body:
 - Endpoint: `put /azure/core/model/embeddingVector`
 
 Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
+
+### Azure_Core_Page_listWithCustomPageModel
+
+- Endpoint: `get /azure/core/page/custom-page`
+
+Should ideally only generate models named User and UserOrder. If your language has to, you can also generate CustomPageModel
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_listWithPage
+
+- Endpoint: `get /azure/core/page/page`
+
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like Page.
+
+Expected query parameter: api-version=2022-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_listWithParameters
+
+- Endpoint: `get /azure/core/page/parameters`
+
+Expected query parameter: api-version=2022-12-01-preview&another=Second
+
+Expected body parameter: {"inputName": "Madge"}
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    }
+  ]
+}
+```
+
+### Azure_Core_Page_TwoModelsAsPageItem
+
+- Endpoints:
+  - `get /azure/core/page/first-item`
+  - `get /azure/core/page/second-item`
+
+This scenario is to test two operations with two different page item types.
 
 ### Azure_Core_Scalar_AzureLocationScalar_get
 
@@ -958,6 +1056,22 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource sync action.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "message": "Resource action at top level.",
+    "urgent": true
+  }
+  ```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
@@ -1321,6 +1435,43 @@ Expected request body:
   ```json
   "value1"
   ```
+
+### Client_Structure_AnotherClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/six`
+  - `post /client/structure/{client}/five`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+The client and its operation groups can be moved to a sub namespace/package.
+
+```ts
+const client2 = new SubNamespace.SecondClient("client-operation-group");
+
+client2.five();
+client2.group5.six();
+```
+
+### Client_Structure_ClientOperationGroup
+
+- Endpoints:
+  - `post /client/structure/{client}/two`
+  - `post /client/structure/{client}/three`
+  - `post /client/structure/{client}/four`
+  - `post /client/structure/{client}/one`
+
+This is to show we can have multiple clients, with multiple operation groups in each client.
+
+```ts
+const client1 = new FirstClient("client-operation-group");
+
+client1.one();
+
+client1.group3.two();
+client1.group3.three();
+
+client1.group4.four();
+```
 
 ### Client_Structure_MultiClient
 
@@ -2074,6 +2225,48 @@ Expected query parameter `input=36,47`
 Test iso8601 encode for a duration parameter.
 Expected query parameter `input=P40D`
 
+### Encode_Numeric_Property_safeintAsString
+
+- Endpoint: `post /encode/numeric/property/safeint`
+
+Test operation with request and response model contains property of safeint type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "10000000000"
+}
+```
+
+### Encode_Numeric_Property_uint32AsStringOptional
+
+- Endpoint: `post /encode/numeric/property/uint32`
+
+Test operation with request and response model contains property of uint32 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
+}
+```
+
 ### Parameters_Basic_ExplicitBody_simple
 
 - Endpoint: `put /parameters/basic/explicit-body/simple`
@@ -2612,7 +2805,7 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2642,7 +2835,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream;
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2672,12 +2865,12 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2701,7 +2894,7 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
 Content-Type: image/jpg
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2738,7 +2931,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
@@ -2752,26 +2945,21 @@ Content-Type: application/json
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345
 Content-Disposition: form-data; name="pictures"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_jsonArrayParts
+### Payload_MultiPart_FormData_complexWithHttpPart
 
-- Endpoint: `post /multipart/form-data/json-array-parts`
+- Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
-Expect request (
-
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.4, content-type of file part shall be labeled with
-  appropriate media type, cadl-ranch will check it; content-type of other parts is optional, cadl-ranch will ignore it.
-- according to https://datatracker.ietf.org/doc/html/rfc7578#section-4.2, filename of file part SHOULD be supplied.
-  If there are duplicated filename in same fieldName, cadl-ranch can't parse them all.
-  ):
+For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
+content-type will be checked with value "application/octet-stream". Expect request:
 
 ```
 POST /upload HTTP/1.1
@@ -2779,11 +2967,23 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+123
+--abcde12345
+Content-Disposition: form-data; name="address"
+Content-Type: application/json
+
+{
+  "city": "X"
+}
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
---abcde12345
+{…file content of .jpg file…}
+--abcde12345--
 Content-Disposition: form-data; name="previousAddresses"
 Content-Type: application/json
 
@@ -2792,6 +2992,73 @@ Content-Type: application/json
 },{
   "city": "Z"
 }]
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345
+Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .png file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
+
+This case will check filename and specific content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2823,7 +3090,7 @@ Content-Type: application/json
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345--
 ```
 
@@ -2848,12 +3115,12 @@ Content-Type: multipart/form-data; boundary=abcde12345
 Content-Disposition: form-data; name="profileImage"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .jpg file…}
 --abcde12345
 Content-Disposition: form-data; name="picture"; filename="<any-or-no-name-is-ok>"
 Content-Type: application/octet-stream
 
-{…file content…}
+{…file content of .png file…}
 --abcde12345--
 ```
 
@@ -2943,6 +3210,126 @@ Expected request body:
 </ModelWithArrayOfModel>
 ```
 
+### Payload_Xml_ModelWithAttributesValue_get
+
+- Endpoint: `get /payload/xml/modelWithAttributes`
+
+Expected response body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithAttributesValue_put
+
+- Endpoint: `put /payload/xml/modelWithAttributes`
+
+Expected request body:
+
+```xml
+<ModelWithAttributes id1="123" id2="foo">
+  <enabled>true</enabled>
+</ModelWithAttributes>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_get
+
+- Endpoint: `get /payload/xml/modelWithDictionary`
+
+Expected response body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithDictionaryValue_put
+
+- Endpoint: `put /payload/xml/modelWithDictionary`
+
+Expected request body:
+
+```xml
+<ModelWithDictionary>
+  <metadata>
+    <Color>blue</Color>
+    <Count>123</Count>
+    <Enabled>false</Enabled>
+  </metadata>
+</ModelWithDictionary>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithEmptyArray`
+
+Expected response body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEmptyArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithEmptyArray`
+
+Expected request body:
+
+```xml
+<ModelWithEmptyArray>
+  <items />
+</ModelWithEmptyArray>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_get
+
+- Endpoint: `get /payload/xml/modelWithEncodedNames`
+
+Expected response body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
+### Payload_Xml_ModelWithEncodedNamesValue_put
+
+- Endpoint: `put /payload/xml/modelWithEncodedNames`
+
+Expected request body:
+
+```xml
+<ModelWithEncodedNamesSrc>
+  <SimpleModelData>
+    <name>foo</name>
+    <age>123</age>
+  </SimpleModelData>
+  <PossibleColors>
+    <string>red</string>
+    <string>green</string>
+    <string>blue</string>
+  </PossibleColors>
+</ModelWithEncodedNamesSrc>
+```
+
 ### Payload_Xml_ModelWithOptionalFieldValue_get
 
 - Endpoint: `get /payload/xml/modelWithOptionalField`
@@ -2965,6 +3352,80 @@ Expected request body:
 <ModelWithOptionalField>
   <item>widget</item>
 </ModelWithOptionalField>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedArrays`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedArraysValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedArrays`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedArrays>
+  <Colors>red</Colors>
+  <Colors>green</Colors>
+  <Colors>blue</Colors>
+  <Counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </Counts>
+</ModelWithRenamedArrays>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_get
+
+- Endpoint: `get /payload/xml/modelWithRenamedFields`
+
+Expected response body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
+```
+
+### Payload_Xml_ModelWithRenamedFieldsValue_put
+
+- Endpoint: `put /payload/xml/modelWithRenamedFields`
+
+Expected request body:
+
+```xml
+<ModelWithRenamedFieldsSrc>
+  <InputData>
+    <name>foo</name>
+    <age>123</age>
+  </InputData>
+  <OutputData>
+    <name>bar</name>
+    <age>456</age>
+  </OutputData>
+</ModelWithRenamedFieldsSrc>
 ```
 
 ### Payload_Xml_ModelWithSimpleArraysValue_get
@@ -3005,6 +3466,66 @@ Expected request body:
     <int32>2</int32>
   </counts>
 </ModelWithSimpleArrays>
+```
+
+### Payload_Xml_ModelWithTextValue_get
+
+- Endpoint: `get /payload/xml/modelWithText`
+
+Expected response body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithTextValue_put
+
+- Endpoint: `put /payload/xml/modelWithText`
+
+Expected request body:
+
+```xml
+<ModelWithText language="foo">
+  This is some text.
+</ModelWithText>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_get
+
+- Endpoint: `get /payload/xml/modelWithUnwrappedArray`
+
+Expected response body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
+```
+
+### Payload_Xml_ModelWithUnwrappedArrayValue_put
+
+- Endpoint: `put /payload/xml/modelWithUnwrappedArray`
+
+Expected request body:
+
+```xml
+<ModelWithUnwrappedArray>
+  <colors>red</colors>
+  <colors>green</colors>
+  <colors>blue</colors>
+  <counts>
+    <int32>1</int32>
+    <int32>2</int32>
+  </counts>
+</ModelWithUnwrappedArray>
 ```
 
 ### Payload_Xml_SimpleModelValue_get
@@ -4557,70 +5078,6 @@ Send a POST request with the following body {} which returns the same.
 - Endpoint: `put /type/model/empty/alone`
 
 Send a PUT request with the following body {}
-
-### Type_Model_Flatten_putFlattenModel
-
-- Endpoint: `put /type/model/flatten/flattenModel`
-
-Update and receive model with 1 level of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "description": "bar",
-    "age": 10
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "description": "test",
-    "age": 1
-  }
-}
-```
-
-### Type_Model_Flatten_putNestedFlattenModel
-
-- Endpoint: `put /type/model/flatten/nestedFlattenModel`
-
-Update and receive model with 2 levels of flattening.
-Expected input body:
-
-```json
-{
-  "name": "foo",
-  "properties": {
-    "summary": "bar",
-    "properties": {
-      "description": "test",
-      "age": 10
-    }
-  }
-}
-```
-
-Expected response body:
-
-```json
-{
-  "name": "test",
-  "properties": {
-    "summary": "test",
-    "properties": {
-      "description": "foo",
-      "age": 1
-    }
-  }
-}
-```
 
 ### Type_Model_Inheritance_EnumDiscriminator_getExtensibleModel
 

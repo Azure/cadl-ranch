@@ -87,30 +87,30 @@ scalar V2Scalar extends int32;
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body:
-```json
-{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": 10 }
-```
-
-Expected header:
-header-v2=bar
-
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body:
+  ```json
+  { "prop": "foo", "enumProp": "enumMemberV2", "unionProp": 10 }
+  ```
+  
+  Expected header:
+  header-v2=bar
+  
+  """)
 @route("/v1")
 @post
 op v1(@body body: ModelV1, @added(Versions.v2) @header headerV2: string): ModelV1;
 
 @scenario
 @scenarioDoc("""
-This operation should only be generated with latest version.
-
-Expected request body:
-```json
-{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
-```
-""")
+  This operation should only be generated with latest version.
+  
+  Expected request body:
+  ```json
+  { "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+  ```
+  """)
 @route("/v2")
 @added(Versions.v2)
 @post
@@ -119,14 +119,14 @@ op v2(@body body: ModelV2): ModelV2;
 @added(Versions.v2)
 @scenario
 @scenarioDoc("""
-This operation group should only be generated with latest version.
-
-Expected request body for v2InInterface:
-```json
-{ "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
-```
-
-""")
+  This operation group should only be generated with latest version.
+  
+  Expected request body for v2InInterface:
+  ```json
+  { "prop": "foo", "enumProp": "enumMember", "unionProp": "bar" }
+  ```
+  
+  """)
 @route("/interface-v2")
 interface InterfaceV2 {
   @post

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
-    "tsBuildInfoFile": "temp/.tsbuildinfo"
+    "tsBuildInfoFile": "temp/.tsbuildinfo",
+    "allowJs": true
   },
   "include": ["./http/**/*.ts", "./http/**/*.js"]
 }

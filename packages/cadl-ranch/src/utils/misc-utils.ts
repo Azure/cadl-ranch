@@ -43,7 +43,9 @@ async function findProjectRoot(path: string): Promise<string | undefined> {
       if (stats?.isFile()) {
         return current;
       }
-    } catch {}
+    } catch {
+      // noop
+    }
 
     const parent = dirname(current);
     if (parent === current) {
