@@ -87,10 +87,11 @@ export class CadlRanchCoverageOperations {
       this.#container.getBlockBlobClient(`${generatorName}/index.json`),
     );
 
-    // Compatible with current format, delete later
-    const blobClientOldVersion = this.#container.getBlockBlobClient(`${generatorName}/reports/${index.version}.json`);
-    if (await blobClientOldVersion.exists()) {
-      const blob = await blobClientOldVersion.download();
+    const blobClient = this.#container.getBlockBlobClient(
+      `${generatorName}/reports/${index.version}/${generatorMode}.json`,
+    );
+    if (await blobClient.exists()) {
+      const blob = await blobClient.download();
       const body = await blob.blobBody;
       const content = await body?.text();
       const report = content ? JSON.parse(content) : undefined;
@@ -98,29 +99,11 @@ export class CadlRanchCoverageOperations {
         generatorMetadata: {
           version: blob.metadata?.generatorversion,
           name: blob.metadata?.generatorname,
-          mode: "azure",
+          mode: blob.metadata?.generatorMode,
         },
         ...report,
       };
-    } else {
-      const blobClient = this.#container.getBlockBlobClient(
-        `${generatorName}/reports/${index.version}/${generatorMode}.json`,
-      );
-      if (await blobClient.exists()) {
-        const blob = await blobClient.download();
-        const body = await blob.blobBody;
-        const content = await body?.text();
-        const report = content ? JSON.parse(content) : undefined;
-        return {
-          generatorMetadata: {
-            version: blob.metadata?.generatorversion,
-            name: blob.metadata?.generatorname,
-            mode: blob.metadata?.generatorMode,
-          },
-          ...report,
-        };
-      } else return undefined;
-    }
+    } else return undefined;
   }
 
   private async updateIndex(generatorName: string, version: string) {
