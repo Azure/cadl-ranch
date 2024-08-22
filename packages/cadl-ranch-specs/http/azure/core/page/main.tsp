@@ -229,13 +229,13 @@ model QueryParameters {
    * The specific parameter name to be queried.
    */
   @query
-  Name?: string;
+  parameterName?: string;
 
   /**
    * The namespace that the query is performed within.
    */
   @query
-  Namespace: string;
+  parameterNamespace: string;
 
   /**
    * The specific timespan for the query, defining the range of time for the data.

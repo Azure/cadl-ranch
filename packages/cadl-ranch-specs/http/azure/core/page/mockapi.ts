@@ -52,10 +52,10 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
 );
 
 Scenarios.Azure_Core_Page_AdditionalParameter = passOnSuccess(
-  mockapi.get("/azure/core/page/generic-traits/test-runs/1/genericTraits/name/values", () => {
+  mockapi.get("/azure/core/page/items-traits/test-runs/1/items/name/values", () => {
     const responseBody = {
       value: [{ value: ["Madge"] }],
-      nextLink: "/azure/core/page/generic-traits/test-runs/1/genericTraits/name/values?page=1",
+      nextLink: "/azure/core/page/items-traits/test-runs/1/items/name/values?page=1",
     };
     return { status: 200, body: json(responseBody) };
   }),
