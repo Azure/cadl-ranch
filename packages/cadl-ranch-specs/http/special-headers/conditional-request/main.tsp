@@ -57,13 +57,13 @@ op postIfNoneMatch(
 @route("/if-modified-since")
 op postIfModifiedSince(
   @doc("""
-  A timestamp indicating the last modified time of the resource known to the
-  client. The operation will be performed only if the resource on the service has
-  been modified since the specified time.
-  """)  
+    A timestamp indicating the last modified time of the resource known to the
+    client. The operation will be performed only if the resource on the service has
+    been modified since the specified time.
+    """)
   @header("If-Modified-Since")
   @encode(DateTimeKnownEncoding.rfc7231)
-  ifModifiedSince?: utcDateTime;
+  ifModifiedSince?: utcDateTime,
 ): NoContentResponse;
 
 @scenario
@@ -85,5 +85,5 @@ op postIfUnmodifiedSince(
     """)
   @header("If-Unmodified-Since")
   @encode(DateTimeKnownEncoding.rfc7231)
-  ifUnmodifiedSince?: utcDateTime;
+  ifUnmodifiedSince?: utcDateTime,
 ): NoContentResponse;

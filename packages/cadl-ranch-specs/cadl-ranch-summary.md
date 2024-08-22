@@ -3748,6 +3748,15 @@ Expected header parameters:
 
 - if-match="valid"
 
+### SpecialHeaders_ConditionalRequest_postIfModifiedSince
+
+- Endpoint: `post /special-headers/conditional-request/if-modified-since`
+
+Check when only If-Modified-Since in header is defined.
+Expected header parameters:
+
+- if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
+
 ### SpecialHeaders_ConditionalRequest_postIfNoneMatch
 
 - Endpoint: `post /special-headers/conditional-request/if-none-match`
@@ -3756,6 +3765,15 @@ Check when only If-None-Match in header is defined.
 Expected header parameters:
 
 - if-nonematch="invalid"
+
+### SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince
+
+- Endpoint: `post /special-headers/conditional-request/if-unmodified-since`
+
+Check when only If-Unmodified-Since in header is defined.
+Expected header parameters:
+
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
