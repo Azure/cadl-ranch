@@ -3,11 +3,11 @@ import "@azure-tools/cadl-ranch-expect";
 import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
-using Azure.ClientGenerator.Core;
+using global.Azure.ClientGenerator.Core;
 
 @doc("Illustrates the model flatten cases.")
 @scenarioService("/azure/client-generator-core/flatten-property")
-namespace Azure.ClientGenerator.Core.FlattenProperty;
+namespace _Specs_.Azure.ClientGenerator.Core.FlattenProperty;
 
 @doc("This is the model with one level of flattening.")
 model FlattenModel {
