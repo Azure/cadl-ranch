@@ -11,13 +11,18 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.Models.Resources;
 
-@resource("roleAssignments")
-model RoleAssignment is ExtensionResource<RoleAssignmentProperties> {
-  ...ResourceNameParameter<RoleAssignment>;
+@resource("customExtensionResources")
+model CustomExtensionResource is ExtensionResource<CustomExtensionResourceProperties> {
+  @key("customExtensionResourceName")
+  @path
+  @segment("customExtensionResources")
+  @doc("arm custom extension resource name name for path")
+  @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
+  name: string;
 }
 
-/** RoleAssignment properties */
-model RoleAssignmentProperties {
+/** CustomExtensionResource properties */
+model CustomExtensionResourceProperties {
   @doc("The description of the resource.")
   description?: string;
 
@@ -27,19 +32,19 @@ model RoleAssignmentProperties {
 }
 
 @armResourceOperations
-interface RoleAssignments {
+interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
-      "name": "role",
-      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -55,12 +60,12 @@ interface RoleAssignments {
     }
     ```
     """)
-  get is ArmResourceRead<RoleAssignment>;
+  get is ArmResourceRead<CustomExtensionResource>;
 
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -74,9 +79,9 @@ interface RoleAssignments {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
-      "name": "role",
-      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -92,12 +97,12 @@ interface RoleAssignments {
     }
     ```
     """)
-  createOrUpdate is ArmResourceCreateOrReplaceAsync<RoleAssignment>;
+  createOrUpdate is ArmResourceCreateOrReplaceAsync<CustomExtensionResource>;
 
   @scenario
   @scenarioDoc("""
     Resource Patch operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -111,9 +116,9 @@ interface RoleAssignments {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
-      "name": "role",
-      "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -129,31 +134,31 @@ interface RoleAssignments {
     }
     ```
     """)
-  update is ArmResourcePatchSync<RoleAssignment, RoleAssignmentProperties>;
+  update is ArmResourcePatchSync<CustomExtensionResource, CustomExtensionResourceProperties>;
 
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
     """)
-  delete is ArmResourceDeleteSync<RoleAssignment>;
+  delete is ArmResourceDeleteSync<CustomExtensionResource>;
 
   @scenario
   @scenarioDoc("""
     Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role",
-        "name": "role",
-        "type": "Azure.ResourceManager.Models.Resources/roleAssignments",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+        "name": "extension",
+        "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
         "properties":{
           "description": "valid",
           "provisioningState": "Succeeded"
@@ -170,5 +175,5 @@ interface RoleAssignments {
     }
     ```
     """)
-  listByResourceGroup is ArmResourceListByParent<RoleAssignment>;
+  listByResourceGroup is ArmResourceListByParent<CustomExtensionResource>;
 }

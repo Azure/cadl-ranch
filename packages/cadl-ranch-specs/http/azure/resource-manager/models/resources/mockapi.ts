@@ -43,9 +43,9 @@ const validNestedResource = {
 };
 
 const validExtensionResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/roleAssignments/role`,
-  name: "role",
-  type: "Azure.ResourceManager.Models.Resources/roleAssignments",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension`,
+  name: "extension",
+  type: "Azure.ResourceManager.Models.Resources/customExtensionResources",
   properties: {
     description: "valid",
     provisioningState: "Succeeded",
@@ -60,9 +60,9 @@ const validExtensionResource = {
   },
 };
 
-Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/roleAssignments/:roleAssignmentName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -71,8 +71,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_get = passOnSuc
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
       }
-      if (req.params.roleAssignmentName.toLowerCase() !== "role") {
-        throw new ValidationError("Unexpected role assignment name", "role", req.params.roleAssignmentName);
+      if (req.params.customExtensionName.toLowerCase() !== "extension") {
+        throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
       }
       return {
         status: 200,
@@ -82,9 +82,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_get = passOnSuc
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_createOrUpdate = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_createOrUpdate = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/roleAssignments/:roleAssignmentName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -93,8 +93,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_createOrUpdate 
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
       }
-      if (req.params.roleAssignmentName.toLowerCase() !== "role") {
-        throw new ValidationError("Unexpected role assignment name", "role", req.params.roleAssignmentName);
+      if (req.params.customExtensionName.toLowerCase() !== "extension") {
+        throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
       }
       req.expect.bodyEquals({
         properties: {
@@ -109,9 +109,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_createOrUpdate 
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/roleAssignments/:roleAssignmentName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -120,8 +120,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_update = passOn
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
       }
-      if (req.params.roleAssignmentName.toLowerCase() !== "role") {
-        throw new ValidationError("Unexpected role assignment name", "role", req.params.roleAssignmentName);
+      if (req.params.customExtensionName.toLowerCase() !== "extension") {
+        throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
       }
       req.expect.bodyEquals({
         properties: {
@@ -138,9 +138,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_update = passOn
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/roleAssignments/:roleAssignmentName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -149,8 +149,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_delete = passOn
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
       }
-      if (req.params.roleAssignmentName.toLowerCase() !== "role") {
-        throw new ValidationError("Unexpected role assignment name", "role", req.params.roleAssignmentName);
+      if (req.params.customExtensionName.toLowerCase() !== "extension") {
+        throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
       }
       return {
         status: 204,
@@ -159,9 +159,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_delete = passOn
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_RoleAssignments_listByResourceGroup = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_listByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/roleAssignments",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
