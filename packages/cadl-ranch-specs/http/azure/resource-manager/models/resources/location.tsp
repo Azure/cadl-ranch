@@ -12,7 +12,7 @@ using TypeSpec.OpenAPI;
 namespace Azure.ResourceManager.Models.Resources;
 
 @resource("locationTrackedResources")
-@parentResource(ArmLocationResource<"ResourceGroup">)
+@parentResource(ResourceGroupLocationResource)
 model LocationTrackedResource is TrackedResource<LocationTrackedResourceProperties> {
   ...ResourceNameParameter<LocationTrackedResource>;
 }
