@@ -29,15 +29,15 @@ op requiredExplicit(@body body: BodyModel): NoContentResponse;
 
 @scenario
 @scenarioDoc("""
-    Scenario defining how an explicit optional body parameter is specified.
-    
-    Expected request body for `set`
-    ```json
-    { "name": "foo" }
-    ```
-
-    Expected no request body for `omit`
-    """)
+  Scenario defining how an explicit optional body parameter is specified.
+  
+  Expected request body for `set`
+  ```json
+  { "name": "foo" }
+  ```
+  
+  Expected no request body for `omit`
+  """)
 @operationGroup
 @route("/optional-explicit")
 namespace OptionalExplicit {

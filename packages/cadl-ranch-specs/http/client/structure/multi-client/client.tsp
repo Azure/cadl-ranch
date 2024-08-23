@@ -8,11 +8,11 @@ using Azure.ClientGenerator.Core;
   ```ts
   const clientA = new ClientAClient("multi-client");
   const clientB = new ClientBClient("multi-client");
-
+  
   clientA.renamedOne();
   clientA.renamedThree();
   clientA.renamedFive();
-
+  
   clientB.renamedTwo();
   clientB.renamedFour();
   clientB.renamedSix();

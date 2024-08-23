@@ -38,61 +38,61 @@ model InnerModel {
 
 @scenario
 @scenarioDoc("""
-
-Expected input body:
-```json
-{
-  "name": "Madge",
-  "description": "desc",
-  "map": {
-    "key": {
+  
+  Expected input body:
+  ```json
+  {
+    "name": "Madge",
+    "description": "desc",
+    "map": {
+      "key": {
+        "name": "InnerMadge",
+        "description": "innerDesc"
+      }
+    },
+    "array": [
+      {
+        "name": "InnerMadge",
+        "description": "innerDesc"
+      }
+    ],
+    "intValue": 1,
+    "floatValue": 1.1,
+    "innerModel": {
       "name": "InnerMadge",
       "description": "innerDesc"
-    }
-  },
-  "array": [
-    {
+    },
+    "intArray": [1, 2, 3]
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "name": "Madge",
+    "description": "desc",
+    "map": {
+      "key": {
+        "name": "InnerMadge",
+        "description": "innerDesc"
+      }
+    },
+    "array": [
+      {
+        "name": "InnerMadge",
+        "description": "innerDesc"
+      }
+    ],
+    "intValue": 1,
+    "floatValue": 1.1,
+    "innerModel": {
       "name": "InnerMadge",
       "description": "innerDesc"
-    }
-  ],
-  "intValue": 1,
-  "floatValue": 1.1,
-  "innerModel": {
-    "name": "InnerMadge",
-    "description": "innerDesc"
-  },
-  "intArray": [1, 2, 3]
-}
-```
-
-Expected response body:
-```json
-{
-  "name": "Madge",
-  "description": "desc",
-  "map": {
-    "key": {
-      "name": "InnerMadge",
-      "description": "innerDesc"
-    }
-  },
-  "array": [
-    {
-      "name": "InnerMadge",
-      "description": "innerDesc"
-    }
-  ],
-  "intValue": 1,
-  "floatValue": 1.1,
-  "innerModel": {
-    "name": "InnerMadge",
-    "description": "innerDesc"
-  },
-  "intArray": [1, 2, 3]
-}
-```
-""")
+    },
+    "intArray": [1, 2, 3]
+  }
+  ```
+  """)
 @doc("Test content-type: application/merge-patch+json with required body")
 @route("/create/resource")
 @put
@@ -100,38 +100,38 @@ op createResource(@body body: Resource): Resource;
 
 @scenario
 @scenarioDoc("""
-Should serialize null values with merge-patch+json enabled.
-
-Expected input body:
-```json
-{
-  "description": null,
-  "map": {
-    "key": {
-      "description": null
+  Should serialize null values with merge-patch+json enabled.
+  
+  Expected input body:
+  ```json
+  {
+    "description": null,
+    "map": {
+      "key": {
+        "description": null
+      },
+      "key2": null
     },
-    "key2": null
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null,
-  "innerModel": null,
-  "intArray": null
-}
-```
-
-Expected response body:
-```json
-{
-  name: "Madge",
-  map: {
-    key: {
-      name: "InnerMadge"
+    "array": null,
+    "intValue": null,
+    "floatValue": null,
+    "innerModel": null,
+    "intArray": null
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    name: "Madge",
+    map: {
+      key: {
+        name: "InnerMadge"
+      }
     }
   }
-}
-```
-""")
+  ```
+  """)
 @doc("Test content-type: application/merge-patch+json with required body")
 @route("/update/resource")
 @patch
@@ -142,38 +142,38 @@ op updateResource(
 
 @scenario
 @scenarioDoc("""
-Should serialize null values with merge-patch+json enabled.
-
-Expected input body:
-```json
-{
-  "description": null,
-  "map": {
-    "key": {
-      "description": null
+  Should serialize null values with merge-patch+json enabled.
+  
+  Expected input body:
+  ```json
+  {
+    "description": null,
+    "map": {
+      "key": {
+        "description": null
+      },
+      "key2": null
     },
-    "key2": null
-  },
-  "array": null,
-  "intValue": null,
-  "floatValue": null,
-  "innerModel": null,
-  "intArray": null
-}
-```
-
-Expected response body:
-```json
-{
-  name: "Madge",
-  map: {
-    key: {
-      name: "InnerMadge"
+    "array": null,
+    "intValue": null,
+    "floatValue": null,
+    "innerModel": null,
+    "intArray": null
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    name: "Madge",
+    map: {
+      key: {
+        name: "InnerMadge"
+      }
     }
   }
-}
-```
-""")
+  ```
+  """)
 @doc("Test content-type: application/merge-patch+json with optional body")
 @route("/update/resource/optional")
 @patch

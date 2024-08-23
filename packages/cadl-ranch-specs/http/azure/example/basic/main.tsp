@@ -50,7 +50,7 @@ model ActionResponse is ActionRequest;
 
 interface ServiceOperationGroup {
   #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "scenario defined in client.tsp"
-  @route("/azure/example/basic/basic")
+  @route("/basic")
   @post
   basic(
     ...ApiVersionParameter,
