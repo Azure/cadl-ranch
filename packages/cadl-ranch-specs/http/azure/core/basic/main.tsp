@@ -1,11 +1,13 @@
-import "@azure-tools/typespec-azure-core";
 import "@azure-tools/cadl-ranch-expect";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-client-generator-core";
 import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/versioning";
 
 using Azure.Core;
 using global.Azure.Core.Traits;
+using global.Azure.Core.Foundations;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
@@ -214,3 +216,45 @@ op delete is ResourceOperations.ResourceDelete<User>;
   ```
   """)
 op export is ResourceOperations.ResourceAction<User, UserExportParams, User>;
+
+model UserList {
+  users: User[];
+}
+
+@scenario
+@doc("Exports all users")
+@summary("Exports all users.")
+@scenarioDoc("""
+  Should generate a model named User.
+  
+  Expected query parameter: format=json
+  Expected query parameter: api-version=2022-12-01-preview
+  
+  Expected response body:
+  ```json
+  {
+    "users":[
+      {
+        "id": 1,
+        "name": "Madge",
+        "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      },
+      {
+        "id": 2,
+        "name": "John",
+        "etag": "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      }
+    ]
+  }
+  ```
+  """)
+@collectionAction(User, "exportallusers")
+@post
+op exportAllUsers is ResourceOperations.ResourceCollectionAction<
+  User,
+  UserExportParams,
+  UserList,
+  {
+    apiVersion: "2022-12-01-preview";
+  }
+>;
