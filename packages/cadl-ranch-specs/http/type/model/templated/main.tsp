@@ -43,30 +43,30 @@ model FloatType extends NumericType<float> {
 
 @scenario
 @scenarioDoc("""
-Expected input body:
-```json
-{
-  "kind": "Int32Values",
-  "values": 
-  [
-    1234
-  ],
-  "value": 1234
-}
-```
-
-Expected response body:
-```json
-{
-  "kind": "Int32Values",
-  "values": 
-  [
-    1234
-  ],
-  "value": 1234
-}
-```
-""")
+  Expected input body:
+  ```json
+  {
+    "kind": "Int32Values",
+    "values": 
+    [
+      1234
+    ],
+    "value": 1234
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    "kind": "Int32Values",
+    "values": 
+    [
+      1234
+    ],
+    "value": 1234
+  }
+  ```
+  """)
 @route("/templatedType")
 @put
 op templatedType(@body input: Int32Type): Int32Type;
