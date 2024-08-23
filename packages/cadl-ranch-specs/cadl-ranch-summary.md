@@ -5592,16 +5592,18 @@ Expected response body:
 }
 ```
 
-### Type_Model_Visibility_headModel
+### Type_Model_Visibility_getModelWithQuery
 
-- Endpoint: `head /type/model/visibility`
+- Endpoint: `get /type/model/visibility/getwithquery`
 
-Generate abd send put model with query properties.
-Expected input body:
+Generate and receive output model with readonly properties.
+Expected header: "queryProp": "123"
+
+Expected response body:
 
 ```json
 {
-  "queryProp": 123
+  "readProp": "abc"
 }
 ```
 
