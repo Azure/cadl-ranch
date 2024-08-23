@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json, ValidationError } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -51,11 +51,36 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Page_AdditionalParameter = passOnSuccess(
-  mockapi.get("/azure/core/page/items-traits/test-runs/1/items/name/values", () => {
+Scenarios.Azure_Core_Page_list = passOnSuccess(
+  mockapi.get("/azure/core/page/users", (req) => {
+    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
+    req.expect.containsQueryParam("top", "5");
+    req.expect.containsQueryParam("skip", "10");
+    req.expect.containsQueryParam("orderby", "id");
+    req.expect.containsQueryParam("filter", "id lt 10");
+    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=etag")) {
+      throw new ValidationError(
+        "Expected query param select=id&select=orders&select=etag ",
+        "select=id&select=orders&select=etag",
+        req.originalRequest.originalUrl,
+      );
+    }
+    req.expect.containsQueryParam("expand", "orders");
     const responseBody = {
-      value: [{ value: ["Madge"] }],
-      nextLink: "/azure/core/page/items-traits/test-runs/1/items/name/values?page=1",
+      value: [
+        {
+          id: 1,
+          name: "Madge",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          orders: [{ id: 1, userId: 1, detail: "a recorder" }],
+        },
+        {
+          id: 2,
+          name: "John",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          orders: [{ id: 2, userId: 2, detail: "a TV" }],
+        },
+      ],
     };
     return { status: 200, body: json(responseBody) };
   }),

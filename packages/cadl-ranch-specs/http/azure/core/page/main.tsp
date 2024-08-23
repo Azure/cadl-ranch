@@ -9,6 +9,7 @@ using Azure.Core;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
+using global.Azure.Core.Traits;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "For spec"
 @doc("Illustrates bodies templated with Azure Core with paging support")
@@ -202,92 +203,45 @@ interface TwoModelsAsPageItem {
   listSecondItem is global.Azure.Core.Foundations.Operation<{}, global.Azure.Core.Page<SecondItem>>;
 }
 
-/**
- * The interval
- */
-union TimeInterval {
-  /**
-   * A string representing a custom interval.
-   */
-  string,
-
-  PT5S: "PT5S",
-  PT10S: "PT10S",
-  PT1M: "PT1M",
-  PT5M: "PT5M",
-  PT1H: "PT1H",
-}
-
-model QueryParameters {
-  /**
-   * The interval (i.e. timegrain) of the query.
-   */
-  @query
-  timeInterval?: TimeInterval;
-
-  /**
-   * The specific parameter name to be queried.
-   */
-  @query
-  parameterName?: string;
-
-  /**
-   * The namespace that the query is performed within.
-   */
-  @query
-  parameterNamespace: string;
-
-  /**
-   * The specific timespan for the query, defining the range of time for the data.
-   */
-  @query
-  timespan?: string;
-}
-
-@resource("values")
-@parentResource(Item)
-model ItemValues {
-  /**
-   * The array of values associated with the item.
-   */
-  @key
-  value: string[];
-}
-
-@resource("items")
-@parentResource(TestRuns)
-model Item {
-  @key
-  @path("name")
-  @visibility("query")
-  name: string;
-}
-
-/**
- * Test run model
- */
-@resource("test-runs")
-model TestRuns {
-  /**
-   * Unique identifier for the test run.
-   */
-  @key
-  @path
-  @visibility("read")
-  testRunId: string;
-}
+alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
+  NoRepeatableRequests &
+  NoClientRequestId>;
 
 @scenario
+@doc("Lists all Users")
+@summary("Lists all users.")
 @scenarioDoc("""
-  List the item values.
+  Should only generate models named User and UserOrder.
+  
+  Should not generate visible model like CustomPage.
+  
+  Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
+  
+  Expected response body:
+  ```json
+  {
+    "value":[
+       {
+          "id":1,
+          "name":"Madge",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          "orders": [{ "id": 1, "userId": 1, detail: "a recorder" }]
+       },
+       {
+          "id":2,
+          "name":"John",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
+       }
+    ]
+  }
+  ```
   """)
-interface AdditionalParameter {
-  /**
-   * List the item values.
-   */
-  @route("/items-traits")
-  listWithTraits is global.Azure.Core.ResourceList<
-    ItemValues,
-    global.Azure.Core.Traits.QueryParametersTrait<QueryParameters>
-  >;
-}
+op list is ResourceOperations.ResourceList<
+  User,
+  ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
+    global.Azure.Core.OrderByQueryParameter &
+    global.Azure.Core.FilterQueryParameter &
+    global.Azure.Core.SelectQueryParameter &
+    global.Azure.Core.ExpandQueryParameter>
+>;

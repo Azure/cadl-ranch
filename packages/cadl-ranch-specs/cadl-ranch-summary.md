@@ -332,37 +332,6 @@ Expected response body:
 }
 ```
 
-### Azure_Core_Basic_list
-
-- Endpoint: `get /azure/core/basic`
-
-Should only generate models named User and UserOrder.
-
-Should not generate visible model like CustomPage.
-
-Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
-
-Expected response body:
-
-```json
-{
-  "value": [
-    {
-      "id": 1,
-      "name": "Madge",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
-      "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
-    },
-    {
-      "id": 2,
-      "name": "John",
-      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
-      "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
-    }
-  ]
-}
-```
-
 ### Azure_Core_Lro_Rpc_longRunningRpc
 
 - Endpoint: `post /azure/core/lro/rpc/generations:submit`
@@ -612,11 +581,36 @@ Expected response body:
 
 Expect to send an embedding vector. Mock api expect to receive [0, 1, 2, 3, 4]
 
-### Azure_Core_Page_AdditionalParameter
+### Azure_Core_Page_list
 
-- Endpoint: `get /azure/core/page/items-traits`
+- Endpoint: `get /azure/core/page`
 
-List the item values.
+Should only generate models named User and UserOrder.
+
+Should not generate visible model like CustomPage.
+
+Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
+
+Expected response body:
+
+```json
+{
+  "value": [
+    {
+      "id": 1,
+      "name": "Madge",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+      "orders": [{ "id": 1, "userId": 1, "detail": "a recorder" }]
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+      "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
+    }
+  ]
+}
+```
 
 ### Azure_Core_Page_listWithCustomPageModel
 

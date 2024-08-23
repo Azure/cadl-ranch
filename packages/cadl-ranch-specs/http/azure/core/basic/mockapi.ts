@@ -40,41 +40,6 @@ Scenarios.Azure_Core_Basic_get = passOnSuccess(
   }),
 );
 
-Scenarios.Azure_Core_Basic_list = passOnSuccess(
-  mockapi.get("/azure/core/basic/users", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
-    req.expect.containsQueryParam("top", "5");
-    req.expect.containsQueryParam("skip", "10");
-    req.expect.containsQueryParam("orderby", "id");
-    req.expect.containsQueryParam("filter", "id lt 10");
-    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=etag")) {
-      throw new ValidationError(
-        "Expected query param select=id&select=orders&select=etag ",
-        "select=id&select=orders&select=etag",
-        req.originalRequest.originalUrl,
-      );
-    }
-    req.expect.containsQueryParam("expand", "orders");
-    const responseBody = {
-      value: [
-        {
-          id: 1,
-          name: "Madge",
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
-          orders: [{ id: 1, userId: 1, detail: "a recorder" }],
-        },
-        {
-          id: 2,
-          name: "John",
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
-          orders: [{ id: 2, userId: 2, detail: "a TV" }],
-        },
-      ],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
-
 Scenarios.Azure_Core_Basic_delete = passOnSuccess(
   mockapi.delete("/azure/core/basic/users/:id", (req) => {
     if (req.params.id !== "1") {

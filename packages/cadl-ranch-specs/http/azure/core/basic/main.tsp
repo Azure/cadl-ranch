@@ -146,45 +146,6 @@ op createOrReplace is ResourceOperations.ResourceCreateOrReplace<User>;
 op get is ResourceOperations.ResourceRead<User>;
 
 @scenario
-@doc("Lists all Users")
-@summary("Lists all users.")
-@scenarioDoc("""
-  Should only generate models named User and UserOrder.
-  
-  Should not generate visible model like CustomPage.
-  
-  Expected query parameter: api-version=2022-12-01-preview&top=5&skip=10&orderby=id&filter=id%20lt%2010&select=id&select=orders&select=etag&expand=orders
-  
-  Expected response body:
-  ```json
-  {
-    "value":[
-       {
-          "id":1,
-          "name":"Madge",
-          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
-          "orders": [{ "id": 1, "userId": 1, detail: "a recorder" }]
-       },
-       {
-          "id":2,
-          "name":"John",
-          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
-          "orders": [{ "id": 2, "userId": 2, "detail": "a TV" }]
-       }
-    ]
-  }
-  ```
-  """)
-op list is ResourceOperations.ResourceList<
-  User,
-  ListQueryParametersTrait<global.Azure.Core.StandardListQueryParameters &
-    global.Azure.Core.OrderByQueryParameter &
-    global.Azure.Core.FilterQueryParameter &
-    global.Azure.Core.SelectQueryParameter &
-    global.Azure.Core.ExpandQueryParameter>
->;
-
-@scenario
 @doc("Deletes a User")
 @summary("Deletes a user.")
 @scenarioDoc("""
