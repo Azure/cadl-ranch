@@ -117,7 +117,13 @@ const isBodyEmpty = (body: string | Buffer | undefined | null) => {
  * Check whether the request header contains the given name/value pair
  */
 export const validateHeader = (request: RequestExt, headerName: string, expected: string): void => {
-  const actual = request.headers[headerName];
+  let actual = request.headers[headerName];
+  // remove any whitespace following comma delimiter before comparison
+  // whitespace is optional per spec https://datatracker.ietf.org/doc/html/rfc7230#section-7
+  if (actual && typeof actual === "string") {
+    actual = actual.replace(/,\s+/g, ",");
+    expected = expected.replace(/,\s+/g, ",");
+  }
   if (actual !== expected) {
     throw new ValidationError(`Expected ${expected} but got ${actual}`, expected, actual);
   }

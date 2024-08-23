@@ -19,52 +19,52 @@ model Element {
 
 @scenario
 @scenarioDoc("""
-Send a PUT request with the following body:
-Expected input body:
-```json
-{
-  "level": 0,
-  "extension": [
-    {
-      "level": 1,
-      "extension": [
-        {
-          "level": 2
-        }
-      ]
-    },
-    {
-      "level": 1
-    }
-  ]
-}
-```
-""")
+  Send a PUT request with the following body:
+  Expected input body:
+  ```json
+  {
+    "level": 0,
+    "extension": [
+      {
+        "level": 1,
+        "extension": [
+          {
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 1
+      }
+    ]
+  }
+  ```
+  """)
 @put
 op put(@body input: Extension): void;
 
 @scenario
 @scenarioDoc("""
-Send a GET request which returns the following body:
-Expected response body:
-```json
-{
-  "level": 0,
-  "extension": [
-    {
-      "level": 1,
-      "extension": [
-        {
-          "level": 2
-        }
-      ]
-    },
-    {
-      "level": 1
-    }
-  ]
-}
-```
-""")
+  Send a GET request which returns the following body:
+  Expected response body:
+  ```json
+  {
+    "level": 0,
+    "extension": [
+      {
+        "level": 1,
+        "extension": [
+          {
+            "level": 2
+          }
+        ]
+      },
+      {
+        "level": 1
+      }
+    ]
+  }
+  ```
+  """)
 @get
 op get(): Extension;

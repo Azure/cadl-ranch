@@ -43,21 +43,21 @@ model ReadOnlyModel {
 
 @scenario
 @scenarioDoc("""
-Generate and receive output model with readonly properties.
-Expected input body:
-```json
-{
-  queryProp: 123,
-}
-```
-
-Expected response body:
-```json
-{
-  readProp: "abc",
-}
-```
-""")
+  Generate and receive output model with readonly properties.
+  Expected input body:
+  ```json
+  {
+    queryProp: 123,
+  }
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    readProp: "abc",
+  }
+  ```
+  """)
 @get
 op getModel(@body input: VisibilityModel): {
   @body
@@ -66,87 +66,87 @@ op getModel(@body input: VisibilityModel): {
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/create properties.
-Expected input body:
-```json
-{
-  queryProp: 123,
-}
-```
-""")
+  Generate abd send put model with write/create properties.
+  Expected input body:
+  ```json
+  {
+    queryProp: 123,
+  }
+  ```
+  """)
 @head
 op headModel(@body input: VisibilityModel): OkResponse;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/create/update properties.
-Expected input body:
-```json
-{
-  createProp: ["foo", "bar"],
-  updateProp: [1, 2],
-}
-```
-""")
+  Generate abd send put model with write/create/update properties.
+  Expected input body:
+  ```json
+  {
+    createProp: ["foo", "bar"],
+    updateProp: [1, 2],
+  }
+  ```
+  """)
 @put
 op putModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/update properties.
-Expected input body:
-```json
-{
-  updateProp: [1, 2],
-}
-```
-""")
+  Generate abd send put model with write/update properties.
+  Expected input body:
+  ```json
+  {
+    updateProp: [1, 2],
+  }
+  ```
+  """)
 @patch
 op patchModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/create properties.
-Expected input body:
-```json
-{
-  createProp: ["foo", "bar"],
-}
-```
-""")
+  Generate abd send put model with write/create properties.
+  Expected input body:
+  ```json
+  {
+    createProp: ["foo", "bar"],
+  }
+  ```
+  """)
 @post
 op postModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-Generate abd send put model with write/create properties.
-Expected input body:
-```json
-{
-  deleteProp: true,
-}
-```
-""")
+  Generate abd send put model with write/create properties.
+  Expected input body:
+  ```json
+  {
+    deleteProp: true,
+  }
+  ```
+  """)
 @delete
 op deleteModel(@body input: VisibilityModel): void;
 
 @route("/readonlyroundtrip")
 @scenario
 @scenarioDoc("""
-Generate and receive output model with readonly properties.
-
-Expected input body:
-```json
-{}
-```
-
-Expected response body:
-```json
-{
-  optionalNullableIntList: [1, 2, 3],
-  optionalStringRecord: { k1: "value1", k2: "value2" },
-}
-```
-""")
+  Generate and receive output model with readonly properties.
+  
+  Expected input body:
+  ```json
+  {}
+  ```
+  
+  Expected response body:
+  ```json
+  {
+    optionalNullableIntList: [1, 2, 3],
+    optionalStringRecord: { k1: "value1", k2: "value2" },
+  }
+  ```
+  """)
 @put
 op putReadOnlyModel(@body input: ReadOnlyModel): ReadOnlyModel;

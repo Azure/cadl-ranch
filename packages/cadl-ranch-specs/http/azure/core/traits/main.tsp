@@ -51,30 +51,30 @@ model User {
 @scenario
 @doc("Get a resource, sending and receiving headers.")
 @scenarioDoc("""
-SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
-Expected path parameter: id=1
-Expected query parameter: api-version=2022-12-01-preview
-Expected header parameters:
-- foo=123
-- if-match=valid
-- if-none-match=invalid
-- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
-- if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
-- x-ms-client-request-id=<any uuid string>
-
-Expected response header:
-- bar="456"
-- x-ms-client-request-id=<uuid string same with request header>
-- etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-
-Expected response body:
-```json
-{
-  "id": 1,
-  "name": "Madge"
-}
-```
-""")
+  SDK should not genreate `clientRequestId` paramerter but use policy to auto-set the header.
+  Expected path parameter: id=1
+  Expected query parameter: api-version=2022-12-01-preview
+  Expected header parameters:
+  - foo=123
+  - if-match=valid
+  - if-none-match=invalid
+  - if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
+  - if-modified-since=Thu, 26 Aug 2021 14:38:00 GMT
+  - x-ms-client-request-id=<any uuid string>
+  
+  Expected response header:
+  - bar="456"
+  - x-ms-client-request-id=<uuid string same with request header>
+  - etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  
+  Expected response body:
+  ```json
+  {
+    "id": 1,
+    "name": "Madge"
+  }
+  ```
+  """)
 op smokeTest is SmokeOperationsWithTraits.ResourceRead<
   User,
   RequestHeadersTrait<{
@@ -102,26 +102,26 @@ model UserActionResponse {
 @scenario
 @doc("Test for repeatable requests")
 @scenarioDoc("""
-Expected path parameter: id=1
-Expected header parameters:
-- repeatability-request-id=<any uuid>
-- repeatability-first-sent=<any HTTP header date>
-Expected request body:
-```json
-{
-  "userActionValue": "test"
-}
-```
-
-Expected response header:
-- repeatability-result=accepted
-Expected response body:
-```json
-{
-  "userActionResult": "test"
-}
-```
-""")
+  Expected path parameter: id=1
+  Expected header parameters:
+  - repeatability-request-id=<any uuid>
+  - repeatability-first-sent=<any HTTP header date>
+  Expected request body:
+  ```json
+  {
+    "userActionValue": "test"
+  }
+  ```
+  
+  Expected response header:
+  - repeatability-result=accepted
+  Expected response body:
+  ```json
+  {
+    "userActionResult": "test"
+  }
+  ```
+  """)
 op repeatableAction is RepeatableOperationsWithTraits.ResourceAction<
   User,
   BodyParameter<UserActionParam>,

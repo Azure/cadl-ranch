@@ -14,11 +14,11 @@ interface DictionaryOperations<TDict, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected dictionary response body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected dictionary response body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
@@ -29,11 +29,11 @@ interface DictionaryOperations<TDict, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected dictionary input body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected dictionary input body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
