@@ -37,6 +37,16 @@ Scenarios.Type_Model_Visibility_getModel = passOnSuccess(
   }),
 );
 
+Scenarios.Type_Model_Visibility_getModelWithQuery = passOnSuccess(
+  mockapi.get("/type/model/visibility/getwithquery", (req) => {
+    req.expect.containsQueryParam("queryProp", "123");
+    return {
+      status: 200,
+      body: json(genData(["readProp"])),
+    };
+  }),
+);
+
 Scenarios.Type_Model_Visibility_putModel = passOnSuccess(
   mockapi.put("/type/model/visibility", (req) => {
     req.expect.bodyEquals(genData(["createProp", "updateProp"]));

@@ -89,16 +89,22 @@ op getModel(@body input: QueryModel): {
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with query properties.
-  Expected input body:
+  Generate and receive output model with readonly properties.
+  Expected header: "queryProp": "123"
+  
+  Expected response body:
   ```json
   {
-    queryProp: 123,
+    readProp: "abc",
   }
   ```
   """)
-@head
-op headModel(@body input: QueryModel): OkResponse;
+@get
+@route("/getwithquery")
+op getModelWithQuery(@query queryProp: int32): {
+  @body
+  output: ReadModel;
+};
 
 @scenario
 @scenarioDoc("""
