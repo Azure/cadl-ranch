@@ -83,6 +83,18 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSucc
   }),
 );
 
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromReverseRequired = passOnSuccess(
+  createResilientMockApi({
+    path: "/add-optional-param/from-reverse-required",
+    verb: "get",
+    commonValidate: function validate(req: MockRequest): void {
+      req.expect.containsQueryParam("new-parameter", "required");
+    },
+    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
+    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
+  }),
+);
+
 Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSuccess(
   createResilientMockApi({
     path: "/add-optional-param/from-one-optional",
