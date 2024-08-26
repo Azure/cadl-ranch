@@ -13,12 +13,7 @@ namespace Azure.ResourceManager.Models.Resources;
 
 @resource("customExtensionResources")
 model CustomExtensionResource is ExtensionResource<CustomExtensionResourceProperties> {
-  @key("customExtensionResourceName")
-  @path
-  @segment("customExtensionResources")
-  @doc("arm custom extension resource name name for path")
-  @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
-  name: string;
+  ...ResourceNameParameter<CustomExtensionResource>;
 }
 
 /** CustomExtensionResource properties */
