@@ -5562,7 +5562,7 @@ Send a GET request which return the following body {requiredProp: "example-value
 
 - Endpoint: `delete /type/model/visibility`
 
-Generate abd send put model with delete properties.
+Generate and send put model with delete properties.
 Expected input body:
 
 ```json
@@ -5607,11 +5607,27 @@ Expected response body:
 }
 ```
 
+### Type_Model_Visibility_headModel
+
+- Endpoint: `head /type/model/visibility`
+
+Generate and send put model with visibility properties.
+Expected input body:
+
+```json
+{
+  "queryProp": 123,
+  "createProp": ["foo", "bar"],
+  "updateProp": [1, 2],
+  "deleteProp": true
+}
+```
+
 ### Type_Model_Visibility_patchModel
 
 - Endpoint: `patch /type/model/visibility`
 
-Generate abd send put model with write/update properties.
+Generate and send put model with write/update properties.
 Expected input body:
 
 ```json
@@ -5624,7 +5640,7 @@ Expected input body:
 
 - Endpoint: `post /type/model/visibility`
 
-Generate abd send put model with write/create properties.
+Generate and send put model with write/create properties.
 Expected input body:
 
 ```json
@@ -5637,7 +5653,7 @@ Expected input body:
 
 - Endpoint: `put /type/model/visibility`
 
-Generate abd send put model with write/create/update properties.
+Generate and send put model with write/create/update properties.
 Expected input body:
 
 ```json
