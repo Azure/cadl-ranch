@@ -22,7 +22,7 @@ function genData(keys: string[]): Record<string, any> {
 
 Scenarios.Type_Model_Visibility_headModel = passOnSuccess(
   mockapi.head("/type/model/visibility", (req) => {
-    req.expect.bodyEquals(genData(["queryProp"]));
+    req.expect.bodyEquals(genData(["queryProp", "createProp", "updateProp", "deleteProp"]));
     return { status: 200 };
   }),
 );

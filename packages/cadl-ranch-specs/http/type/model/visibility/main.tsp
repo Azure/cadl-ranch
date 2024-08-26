@@ -7,7 +7,7 @@ using TypeSpec.Http;
 @scenarioService("/type/model/visibility")
 namespace Type.Model.Visibility;
 
-@doc("Output model with visibility properties.")
+@doc("Input model with create/update properties.")
 model VisibilityModel {
   @doc("Required string[], illustrating a create property.")
   @visibility("create")
@@ -16,6 +16,25 @@ model VisibilityModel {
   @doc("Required int32[], illustrating a update property.")
   @visibility("update")
   updateProp: int32[];
+}
+
+@doc("Input model with visibility properties.")
+model HeadVisibilityModel {
+  @doc("Required int32, illustrating a query property.")
+  @visibility("query")
+  queryProp: int32;
+
+  @doc("Required string[], illustrating a create property.")
+  @visibility("create")
+  createProp: string[];
+
+  @doc("Required int32[], illustrating a update property.")
+  @visibility("update")
+  updateProp: int32[];
+
+  @doc("Required boolean, illustrating a delete property.")
+  @visibility("delete")
+  deleteProp: boolean;
 }
 
 /** Output model with readonly properties. */
@@ -66,6 +85,22 @@ model ReadOnlyModel {
 
 @scenario
 @scenarioDoc("""
+  Generate and send put model with visibility properties.
+  Expected input body:
+  ```json
+  {
+    queryProp: 123,
+    createProp: ["foo", "bar"],
+    updateProp: [1, 2],
+    deleteProp: true,
+  }
+  ```
+  """)
+@head
+op headModel(@body input: HeadVisibilityModel): OkResponse;
+
+@scenario
+@scenarioDoc("""
   Generate and receive output model with readonly properties.
   Expected input body:
   ```json
@@ -108,7 +143,7 @@ op getModelWithQuery(@query queryProp: int32): {
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create/update properties.
+  Generate and send put model with write/create/update properties.
   Expected input body:
   ```json
   {
@@ -122,7 +157,7 @@ op putModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/update properties.
+  Generate and send put model with write/update properties.
   Expected input body:
   ```json
   {
@@ -135,7 +170,7 @@ op patchModel(@body input: UpdateModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
+  Generate and send put model with write/create properties.
   Expected input body:
   ```json
   {
@@ -148,7 +183,7 @@ op postModel(@body input: CreateModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with delete properties.
+  Generate and send put model with delete properties.
   Expected input body:
   ```json
   {
