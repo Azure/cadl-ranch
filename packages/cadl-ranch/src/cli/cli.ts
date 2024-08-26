@@ -148,6 +148,27 @@ async function main() {
       },
     )
     .command(
+      "server-test <scenariosPath>",
+      "Executes the test cases against the service",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .positional("serverBasePath", {
+            description: "Path to the server",
+            type: "string",
+            demandOption: true,
+          });
+      },
+      async (args) => {
+        console.log(args.scenariosPath);
+        console.log(args.serverBasePath);
+      },
+    )
+    .command(
       "check-coverage <scenariosPath>",
       "Serve the mock api at the given paths.",
       (cmd) => {

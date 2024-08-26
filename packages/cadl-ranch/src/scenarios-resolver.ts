@@ -154,6 +154,7 @@ export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<M
   logger.debug(`Detected ${files.length} mock api files: ${files}`);
   const results: MockApiFile[] = [];
   for (const file of files) {
+    if (file.endsWith("spec.js")) continue;
     const result = await import(pathToFileURL(file).href);
     if (result.Scenarios) {
       logger.debug(`File '${file}' contains ${Object.keys(result.Scenarios).length} scenarios.`);
