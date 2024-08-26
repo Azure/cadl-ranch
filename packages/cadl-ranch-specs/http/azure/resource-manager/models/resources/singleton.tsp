@@ -23,12 +23,7 @@ model SingletonTrackedResource is TrackedResource<SingletonTrackedResourceProper
 
 @doc("Singleton Arm Resource Properties.")
 model SingletonTrackedResourceProperties {
-  @visibility("read")
-  @doc("The status of the last operation.")
-  provisioningState?: ProvisioningState;
-
-  @doc("The description of the resource.")
-  description?: string;
+  ...ResourceNameParameter<SingletonTrackedResource>;
 }
 
 @armResourceOperations
