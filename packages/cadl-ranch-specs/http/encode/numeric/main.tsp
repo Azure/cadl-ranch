@@ -38,6 +38,31 @@ namespace Property {
     value: safeint;
   }
 
+  @route("/uint32")
+  @scenario
+  @scenarioDoc("""
+    Test operation with request and response model contains property of uint32 type with string encode.
+    Expected request body:
+    ```json
+    {
+      "value": "1"
+    }
+    ```
+    Expected response body:
+    ```json
+    {
+      "value": "1"
+    }
+    ```
+    """)
+  @post
+  op uint32AsStringOptional(@body body: Uint32AsStringProperty): Uint32AsStringProperty;
+
+  model Uint32AsStringProperty {
+    @encode(string)
+    value?: uint32;
+  }
+
   @route("/uint8")
   @scenario
   @scenarioDoc("""

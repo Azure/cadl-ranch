@@ -2246,6 +2246,27 @@ Expected response body:
 }
 ```
 
+### Encode_Numeric_Property_uint32AsStringOptional
+
+- Endpoint: `post /encode/numeric/property/uint32`
+
+Test operation with request and response model contains property of uint32 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "1"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "1"
+}
+```
+
 ### Encode_Numeric_Property_uint8AsStringOptional
 
 - Endpoint: `post /encode/numeric/property/uint8`
