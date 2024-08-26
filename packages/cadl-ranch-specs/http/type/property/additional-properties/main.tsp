@@ -16,11 +16,11 @@ interface ModelOperations<TModel, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected response body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected response body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }
@@ -34,11 +34,11 @@ interface ModelOperations<TModel, TDoc extends string> {
   @scenario
   @scenarioDoc(
     """
-  Expected input body:
-  ```json
-  {doc}
-  ```
-  """,
+      Expected input body:
+      ```json
+      {doc}
+      ```
+      """,
     {
       doc: TDoc,
     }

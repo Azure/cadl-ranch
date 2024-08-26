@@ -46,18 +46,18 @@ interface AzureLocationScalar {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("""
-  Expect to send a model which has an azureLocation property.
-
-  Expected request body:
-  ```json
-  {"location": "eastus"}
-  ```
-
-  Expected response body:
-  ```json
-  {"location": "eastus"}
-  ```
-  """)
+    Expect to send a model which has an azureLocation property.
+    
+    Expected request body:
+    ```json
+    {"location": "eastus"}
+    ```
+    
+    Expected response body:
+    ```json
+    {"location": "eastus"}
+    ```
+    """)
   @scenarioDoc("Expect to send a model who has an azureLocation property. Mock api expect to receive '{location: eastus}'")
   @post
   @doc("post a model which has azureLocation property")
@@ -66,9 +66,9 @@ interface AzureLocationScalar {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("""
-  Expect to send a azureLocation value as header.
-  Expected header parameter: `region="eastus"`
-  """)
+    Expect to send a azureLocation value as header.
+    Expected header parameter: `region="eastus"`
+    """)
   @post
   @route("/header")
   @doc("azureLocation value header")
@@ -77,9 +77,9 @@ interface AzureLocationScalar {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "For testing"
   @scenario
   @scenarioDoc("""
-  Expect to send a azureLocation value as query.
-  Expected query parameter: `region="eastus"`
-  """)
+    Expect to send a azureLocation value as query.
+    Expected query parameter: `region="eastus"`
+    """)
   @post
   @doc("azureLocation value query")
   @route("/query")

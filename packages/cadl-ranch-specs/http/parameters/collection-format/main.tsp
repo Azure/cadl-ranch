@@ -15,23 +15,22 @@ namespace Parameters.CollectionFormat;
 namespace Query {
   @scenario
   @scenarioDoc("""
-This test is testing sending a multi collection format array query parameters
-""")
+    This test is testing sending a multi collection format array query parameters
+    """)
   @route("/multi")
   op multi(
     @doc("Possible values for colors are [blue,red,green]")
-    @query({
-      format: "multi",
-    })
+    @query(#{ explode: true })
     colors: string[],
   ): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
-This test is testing sending a ssv collection format array query parameters
-""")
+    This test is testing sending a ssv collection format array query parameters
+    """)
   @route("/ssv")
   op ssv(
+    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
     @query({
       format: "ssv",
@@ -41,10 +40,11 @@ This test is testing sending a ssv collection format array query parameters
 
   @scenario
   @scenarioDoc("""
-This test is testing sending a tsv collection format array query parameters
-""")
+    This test is testing sending a tsv collection format array query parameters
+    """)
   @route("/tsv")
   op tsv(
+    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
     @query({
       format: "tsv",
@@ -54,10 +54,11 @@ This test is testing sending a tsv collection format array query parameters
 
   @scenario
   @scenarioDoc("""
-This test is testing sending a pipes collection format array query parameters
-""")
+    This test is testing sending a pipes collection format array query parameters
+    """)
   @route("/pipes")
   op pipes(
+    #suppress "deprecated" "Deprecated in next release"
     @doc("Possible values for colors are [blue,red,green]")
     @query({
       format: "pipes",
@@ -67,14 +68,12 @@ This test is testing sending a pipes collection format array query parameters
 
   @scenario
   @scenarioDoc("""
-This test is testing sending a csv collection format array query parameters
-""")
+    This test is testing sending a csv collection format array query parameters
+    """)
   @route("/csv")
   op csv(
     @doc("Possible values for colors are [blue,red,green]")
-    @query({
-      format: "csv",
-    })
+    @query
     colors: string[],
   ): NoContentResponse;
 }
@@ -84,8 +83,8 @@ This test is testing sending a csv collection format array query parameters
 namespace Header {
   @scenario
   @scenarioDoc("""
-This test is testing sending a csv collection format array header parameters
-""")
+    This test is testing sending a csv collection format array header parameters
+    """)
   @route("/csv")
   op csv(
     @doc("Possible values for colors are [blue,red,green]")

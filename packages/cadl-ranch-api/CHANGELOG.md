@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.4.6
+
+### Patch Changes
+
+- c936cb2: Relaxed header validation to allow optional whitespace
+
+## 0.4.5
+
+### Patch Changes
+
+- 37c48cb: Upgrade dependencies
+
 ## 0.4.4
 
 ### Patch Changes
