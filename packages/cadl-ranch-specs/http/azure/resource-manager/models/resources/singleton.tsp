@@ -13,17 +13,17 @@ namespace Azure.ResourceManager.Models.Resources;
 
 @singleton("default")
 model SingletonTrackedResource is TrackedResource<SingletonTrackedResourceProperties> {
-  @key("singletonTrackedResourceName")
-  @path
-  @segment("singletonTrackedResources")
-  @doc("arm resource name for path")
-  @pattern("^[A-Za-z0-9]([A-Za-z0-9-_.]{0,62}[A-Za-z0-9])?$")
-  name: string;
+  ...ResourceNameParameter<SingletonTrackedResource>;
 }
 
 @doc("Singleton Arm Resource Properties.")
 model SingletonTrackedResourceProperties {
-  ...ResourceNameParameter<SingletonTrackedResource>;
+  @visibility("read")
+  @doc("The status of the last operation.")
+  provisioningState?: ProvisioningState;
+
+  @doc("The description of the resource.")
+  description?: string;
 }
 
 @armResourceOperations
