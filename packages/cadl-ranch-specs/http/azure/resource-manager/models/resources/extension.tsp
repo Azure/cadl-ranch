@@ -11,7 +11,7 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.Models.Resources;
 
-@resource("customExtensionResources")
+@parentResource(TopLevelTrackedResource)
 model CustomExtensionResource is ExtensionResource<CustomExtensionResourceProperties> {
   ...ResourceNameParameter<CustomExtensionResource>;
 }
@@ -31,15 +31,15 @@ interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension",
       "name": "extension",
-      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
+      "type": "extension",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -60,7 +60,7 @@ interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -74,9 +74,9 @@ interface CustomExtensionResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension",
       "name": "extension",
-      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
+      "type": "extension",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -97,7 +97,7 @@ interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource Patch operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -111,9 +111,9 @@ interface CustomExtensionResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension",
       "name": "extension",
-      "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
+      "type": "extension",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -134,7 +134,7 @@ interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
@@ -144,16 +144,16 @@ interface CustomExtensionResources {
   @scenario
   @scenarioDoc("""
     Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension",
         "name": "extension",
-        "type": "Azure.ResourceManager.Models.Resources/customExtensionResources",
+        "type": "extension",
         "properties":{
           "description": "valid",
           "provisioningState": "Succeeded"

@@ -43,9 +43,9 @@ const validNestedResource = {
 };
 
 const validExtensionResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/extension`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/customExtensionResources/extension`,
   name: "extension",
-  type: "Azure.ResourceManager.Models.Resources/customExtensionResources",
+  type: "extension",
   properties: {
     description: "valid",
     provisioningState: "Succeeded",
@@ -62,7 +62,7 @@ const validExtensionResource = {
 
 Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -70,6 +70,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_get = 
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       if (req.params.customExtensionName.toLowerCase() !== "extension") {
         throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
@@ -84,7 +87,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_get = 
 
 Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_createOrUpdate = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -92,6 +95,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_create
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       if (req.params.customExtensionName.toLowerCase() !== "extension") {
         throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
@@ -111,7 +117,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_create
 
 Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -119,6 +125,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_update
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       if (req.params.customExtensionName.toLowerCase() !== "extension") {
         throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
@@ -140,7 +149,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_update
 
 Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources/:customExtensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/customExtensionResources/:customExtensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -148,6 +157,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_delete
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       if (req.params.customExtensionName.toLowerCase() !== "extension") {
         throw new ValidationError("Unexpected custom extension name", "extension", req.params.customExtensionName);
@@ -161,7 +173,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_delete
 
 Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_listByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/customExtensionResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/customExtensionResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -169,6 +181,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_CustomExtensionResources_listBy
       }
       if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
         throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.topLevelResourceName.toLowerCase() !== "top") {
+        throw new ValidationError("Unexpected top level resource name", "top", req.params.topLevelResourceName);
       }
       return {
         status: 200,
