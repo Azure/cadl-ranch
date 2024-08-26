@@ -8561,12 +8561,24 @@ Expected request body:
 
 - Endpoint: `post /versioning/removed/api-version:{version}/v3`
 
+path: "/versioning/removed/api-version:v1/v3"
 Expected request body:
 
 ```json
-v1/V2:
 { "id": "123", "type": "foo" }
- beta:
+```
+
+path: "/versioning/removed/api-version:v2/v3"
+Expected request body:
+
+```json
+{ "id": "123", "type": "foo" }
+```
+
+path: "/versioning/removed/api-version:beta/v3"
+Expected request body:
+
+```json
 { "id": "123" }
 ```
 
