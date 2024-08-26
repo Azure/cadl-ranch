@@ -21,8 +21,8 @@ Scenarios.SpecialHeaders_ConditionalRequest_postIfNoneMatch = passOnSuccess(
   }),
 );
 
-Scenarios.SpecialHeaders_ConditionalRequest_postIfModifiedSince = passOnSuccess(
-  mockapi.post("/special-headers/conditional-request/if-modified-since", (req) => {
+Scenarios.SpecialHeaders_ConditionalRequest_headIfModifiedSince = passOnSuccess(
+  mockapi.head("/special-headers/conditional-request/if-modified-since", (req) => {
     req.expect.containsHeader("if-modified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
     return {
       status: 204,

@@ -3739,6 +3739,15 @@ A simple operation with query api-version, whose default value is defined as '20
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
+### SpecialHeaders_ConditionalRequest_headIfModifiedSince
+
+- Endpoint: `head /special-headers/conditional-request/if-modified-since`
+
+Check when only If-Modified-Since in header is defined.
+Expected header parameters:
+
+- if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
+
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
 - Endpoint: `post /special-headers/conditional-request/if-match`
@@ -3747,15 +3756,6 @@ Check when only If-Match in header is defined.
 Expected header parameters:
 
 - if-match="valid"
-
-### SpecialHeaders_ConditionalRequest_postIfModifiedSince
-
-- Endpoint: `post /special-headers/conditional-request/if-modified-since`
-
-Check when only If-Modified-Since in header is defined.
-Expected header parameters:
-
-- if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
 
 ### SpecialHeaders_ConditionalRequest_postIfNoneMatch
 

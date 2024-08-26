@@ -53,9 +53,9 @@ op postIfNoneMatch(
   Expected header parameters:
   - if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
   """)
-@post
+@head
 @route("/if-modified-since")
-op postIfModifiedSince(
+op headIfModifiedSince(
   @doc("""
     A timestamp indicating the last modified time of the resource known to the
     client. The operation will be performed only if the resource on the service has
