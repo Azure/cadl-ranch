@@ -116,13 +116,13 @@ op v1(@body body: ModelV1): ModelV1;
 
 @scenario
 @scenarioDoc("""
-This operation should be generated with latest version's signature.
-
-Expected request body:
-```json
-{ "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
-```
-""")
+  This operation should be generated with latest version's signature.
+  
+  Expected request body:
+  ```json
+  { "prop": "foo", "enumProp": "enumMemberV2", "unionProp": "bar" }
+  ```
+  """)
 @route("/v2")
 @post
 op v2(@body body: ModelV2, @removed(Versions.v2) @query param: string): ModelV2;
@@ -142,15 +142,25 @@ interface InterfaceV1 {
 /** This operation should be generated with the signatures of both the latest and the original versions, rather than beta version */
 @scenario
 @scenarioDoc("""
-
-Expected request body:
-```json
-v1/V2:
-{ "id": "123", "type": "foo" }
- beta:
-{ "id": "123" }
-```
-""")
+  
+  path: "/versioning/removed/api-version:v1/v3"
+  Expected request body:
+  ```json
+  { "id": "123", "type": "foo" }
+  ```
+  
+  path: "/versioning/removed/api-version:v2/v3"
+  Expected request body:
+  ```json
+  { "id": "123", "type": "foo" }
+  ```
+  
+  path: "/versioning/removed/api-version:beta/v3"
+  Expected request body:
+  ```json
+  { "id": "123"}
+  ```
+  """)
 @post
 @route("/v3")
 op v3(@body body: ModelV3): ModelV3;
