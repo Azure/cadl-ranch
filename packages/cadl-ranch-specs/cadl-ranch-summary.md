@@ -2954,7 +2954,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_complexWithHttpPart
+### Payload_MultiPart_FormData_HttpPartTest_complexWithHttpPart
 
 - Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
@@ -3005,7 +3005,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartOptionalContentType
 
 - Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
 
@@ -3024,7 +3024,7 @@ Content-Type: application/octet-stream
 --abcde12345
 ```
 
-### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
+### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartRequiredContentType
 
 - Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
 
@@ -3043,7 +3043,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
+### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartSpecificContentType
 
 - Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
 
@@ -3062,7 +3062,7 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_floatWithHttpPart
+### Payload_MultiPart_FormData_HttpPartTest_NonString_floatMethod
 
 - Endpoint: `post /multipart/form-data/non-string-float`
 

@@ -176,17 +176,19 @@ Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
   createMockApis("anonymous-model", [checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartSpecificContentType = passOnSuccess(
   createMockApis("check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
 );
 
-Scenarios.Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartRequiredContentType = passOnSuccess(
   createMockApis("check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
 );
-Scenarios.Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartOptionalContentType = passOnSuccess(
   createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
-Scenarios.Payload_MultiPart_FormData_complexWithHttpPart = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpPartTest_complexWithHttpPart = passOnSuccess(
   createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
-Scenarios.Payload_MultiPart_FormData_floatWithHttpPart = passOnSuccess(createMockApis("non-string", [checkFloat]));
+Scenarios.Payload_MultiPart_FormData_HttpPartTest_NonString_floatMethod = passOnSuccess(
+  createMockApis("non-string-float", [checkFloat]),
+);
