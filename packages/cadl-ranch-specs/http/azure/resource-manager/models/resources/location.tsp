@@ -32,14 +32,14 @@ interface LocationTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
-      "name": "location",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+      "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "eastus",
       "properties":{
@@ -62,7 +62,7 @@ interface LocationTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
@@ -76,8 +76,8 @@ interface LocationTrackedResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
-      "name": "location",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+      "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties": {
@@ -100,7 +100,7 @@ interface LocationTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource PATCH operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
@@ -114,8 +114,8 @@ interface LocationTrackedResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
-      "name": "location",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+      "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
       "location": "westus",
       "properties":{
@@ -138,7 +138,7 @@ interface LocationTrackedResources {
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
@@ -155,8 +155,8 @@ interface LocationTrackedResources {
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/location",
-        "name": "location",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+        "name": "resource",
         "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
         "location": "westus",
         "properties":{

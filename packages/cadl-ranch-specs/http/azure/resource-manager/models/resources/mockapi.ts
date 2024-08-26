@@ -44,8 +44,8 @@ const validNestedResource = {
 };
 
 const validLocationResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/location`,
-  name: "location",
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/resource`,
+  name: "resource",
   type: "Azure.ResourceManager.Models.Resources/locationTrackedResources",
   location: "westus",
   properties: {
@@ -76,8 +76,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_get = 
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "location") {
-        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
       }
       return {
         status: 200,
@@ -101,8 +101,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_create
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "location") {
-        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
       }
       req.expect.bodyEquals({
         location: "westus",
@@ -132,8 +132,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_update
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "location") {
-        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
       }
       req.expect.bodyEquals({
         location: "westus",
@@ -165,8 +165,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete
       if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
         throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
       }
-      if (req.params.locationResourceName.toLowerCase() !== "location") {
-        throw new ValidationError("Unexpected resource name", "location", req.params.locationResourceName);
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
       }
       return {
         status: 204,
