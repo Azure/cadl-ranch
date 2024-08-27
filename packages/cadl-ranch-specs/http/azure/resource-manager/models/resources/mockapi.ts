@@ -90,7 +90,7 @@ const validOperationStatus = {
 };
 
 // operation status
-Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getTenantStatus = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getStatus = passOnSuccess([
   mockapi.get(
     "/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
     (req) => {
@@ -133,7 +133,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getSubscripti
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getResourceGroupStatus = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getRgStatus = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
     (req) => {

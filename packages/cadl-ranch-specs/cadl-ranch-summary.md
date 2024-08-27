@@ -1056,7 +1056,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_OperationStatuses_getResourceGroupStatus
+### Azure_ResourceManager_Models_Resources_OperationStatuses_getRgStatus
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1069,6 +1069,40 @@ Expected response body:
   ```json
   {
     "name": "ResourceGroupOperation",
+    "startTime": <any date>,
+    "endTime": <any date>,
+    "percentComplete": 2,
+    "status": "Failed",
+    "ManagementError": {
+      "code": "404",
+      "message": "The error message of status test. ",
+      "target": "The target of status test.",
+      "details": [{
+        "code": "404",
+        "message": "The error message of status test. ",
+        "target": "The target of status test.",
+      }],
+      "additionalInfo": [{
+        "type": "additionalType",
+        "info": "additionalInfo"
+      }]
+    }
+  }
+  ```
+
+### Azure_ResourceManager_Models_Resources_OperationStatuses_getStatus
+
+- Endpoint: `get https://management.azure.com`
+
+  Resource GET operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+
+  ```json
+  {
+    "name": "TenantOperation",
     "startTime": <any date>,
     "endTime": <any date>,
     "percentComplete": 2,
@@ -1103,40 +1137,6 @@ Expected response body:
   ```json
   {
     "name": "SubscriptionOperation",
-    "startTime": <any date>,
-    "endTime": <any date>,
-    "percentComplete": 2,
-    "status": "Failed",
-    "ManagementError": {
-      "code": "404",
-      "message": "The error message of status test. ",
-      "target": "The target of status test.",
-      "details": [{
-        "code": "404",
-        "message": "The error message of status test. ",
-        "target": "The target of status test.",
-      }],
-      "additionalInfo": [{
-        "type": "additionalType",
-        "info": "additionalInfo"
-      }]
-    }
-  }
-  ```
-
-### Azure_ResourceManager_Models_Resources_OperationStatuses_getTenantStatus
-
-- Endpoint: `get https://management.azure.com`
-
-  Resource GET operation.
-  Expected path: /providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-
-  ```json
-  {
-    "name": "TenantOperation",
     "startTime": <any date>,
     "endTime": <any date>,
     "percentComplete": 2,

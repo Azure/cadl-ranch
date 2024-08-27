@@ -82,7 +82,7 @@ interface OperationStatuses {
       }
       ```
     """)
-  getTenantStatus is ArmResourceRead<TenantOperationStatus>;
+  getStatus is ArmResourceRead<TenantOperationStatus>;
 
   @scenario
   @scenarioDoc("""
@@ -148,5 +148,5 @@ interface OperationStatuses {
       }
       ```
     """)
-  getResourceGroupStatus is ArmResourceRead<ResourceGroupOperationStatus>;
+  getRgStatus is ArmResourceRead<ResourceGroupOperationStatus>;
 }
