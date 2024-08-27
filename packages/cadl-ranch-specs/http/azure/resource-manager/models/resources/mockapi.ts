@@ -4,7 +4,9 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+const OPERATION_ID_EXPECTED = "12345678-1234-1234-1234-123456789000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
+const LOCATION_EXPECTED = "westus";
 const validTopLevelResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
   name: "top",
@@ -60,6 +62,103 @@ const validSingletonResource = {
     lastModifiedByType: "User",
   },
 };
+
+const validOperationStatus = {
+  name: "TenantOperation",
+  startTime: new Date(),
+  endTime: new Date(),
+  percentComplete: 2,
+  status: "Failed",
+  ManagementError: {
+    code: "404",
+    message: "The error message of status test. ",
+    target: "The target of status test.",
+    details: [
+      {
+        code: "404",
+        message: "The error message of status test. ",
+        target: "The target of status test.",
+      },
+    ],
+    additionalInfo: [
+      {
+        type: "additionalType",
+        info: "additionalInfo",
+      },
+    ],
+  },
+};
+
+// operation status
+Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getTenantStatus = passOnSuccess([
+  mockapi.get(
+    "/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.location !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
+      }
+      return {
+        status: 200,
+        body: json(validOperationStatus),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getSubscriptionStatus = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
+      }
+      const resource = JSON.parse(JSON.stringify(validOperationStatus));
+      resource.name = "SubscriptionOperation";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getResourceGroupStatus = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      if (req.params.location !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
+      }
+      const resource = JSON.parse(JSON.stringify(validOperationStatus));
+      resource.name = "ResourceGroupOperation";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
 
 // singleton tracked resource
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
