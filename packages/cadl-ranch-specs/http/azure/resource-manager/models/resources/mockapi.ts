@@ -62,7 +62,7 @@ const validSingletonResource = {
 };
 
 const validExtensionsResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension`,
   name: "extension",
   type: "extension",
   properties: {
@@ -175,7 +175,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listB
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -200,7 +200,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_get = passO
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_createOrUpdate = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -230,7 +230,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_createOrUpd
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -262,7 +262,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_update = pa
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -286,7 +286,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_delete = pa
 
 Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_listByResourceGroup = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
