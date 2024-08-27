@@ -907,12 +907,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_LocationTrackedResources_createOrUpdate
+### Azure_ResourceManager_Models_Resources_LocationResources_createOrUpdate
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -929,9 +929,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
   "name": "resource",
-  "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
+  "type": "Azure.ResourceManager.Models.Resources/locationResources",
   "location": "westus",
   "properties": {
     "description": "valid",
@@ -948,31 +948,31 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete
+### Azure_ResourceManager_Models_Resources_LocationResources_delete
 
 - Endpoint: `delete https://management.azure.com`
 
 Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
 Expected query parameter: api-version=2023-12-01-preview
 
 ````
 Expected response status code: 204
 
-### Azure_ResourceManager_Models_Resources_LocationTrackedResources_get
+### Azure_ResourceManager_Models_Resources_LocationResources_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
   "name": "resource",
-  "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
+  "type": "Azure.ResourceManager.Models.Resources/locationResources",
   "location": "eastus",
   "properties":{
     "description": "valid",
@@ -989,12 +989,12 @@ Expected response body:
 }
 ````
 
-### Azure_ResourceManager_Models_Resources_LocationTrackedResources_listByLocation
+### Azure_ResourceManager_Models_Resources_LocationResources_listByLocation
 
 - Endpoint: `get https://management.azure.com`
 
 Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -1002,9 +1002,9 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
     "name": "resource",
-    "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
+    "type": "Azure.ResourceManager.Models.Resources/locationResources",
     "location": "westus",
     "properties":{
       "description": "valid",
@@ -1022,12 +1022,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_LocationTrackedResources_update
+### Azure_ResourceManager_Models_Resources_LocationResources_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1044,9 +1044,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationTrackedResources/resource",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
   "name": "resource",
-  "type": "Azure.ResourceManager.Models.Resources/locationTrackedResources",
+  "type": "Azure.ResourceManager.Models.Resources/locationResources",
   "location": "westus",
   "properties":{
     "description": "valid2",

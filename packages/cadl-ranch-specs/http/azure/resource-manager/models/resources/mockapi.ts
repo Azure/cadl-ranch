@@ -44,9 +44,9 @@ const validNestedResource = {
 };
 
 const validLocationResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationTrackedResources/resource`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationResources/resource`,
   name: "resource",
-  type: "Azure.ResourceManager.Models.Resources/locationTrackedResources",
+  type: "Azure.ResourceManager.Models.Resources/locationResources",
   location: "westus",
   properties: {
     description: "valid",
@@ -62,9 +62,9 @@ const validLocationResource = {
   },
 };
 
-Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationResources/:locationResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -87,9 +87,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_get = 
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_createOrUpdate = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_createOrUpdate = passOnSuccess([
   mockapi.put(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationResources/:locationResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -118,9 +118,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_create
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_update = passOnSuccess([
   mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationResources/:locationResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -151,9 +151,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_update
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_delete = passOnSuccess([
   mockapi.delete(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources/:locationResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationResources/:locationResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -175,9 +175,9 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_delete
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_LocationTrackedResources_listByLocation = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_listByLocation = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationTrackedResources",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/locationResources",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
