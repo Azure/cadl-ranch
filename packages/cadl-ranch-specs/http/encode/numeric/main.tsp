@@ -40,7 +40,7 @@ namespace Property {
 
   model Uint8AsStringProperty {
     @encode(string)
-    value?: uint8;
+    value: uint8;
   }
 
   interface SendIntAsString<IntType extends integer, StringValue extends string, Payload> {
