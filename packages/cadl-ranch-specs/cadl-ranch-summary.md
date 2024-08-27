@@ -1056,6 +1056,152 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+    "name": "default",
+    "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus2",
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus2",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
 
 - Endpoint: `post https://management.azure.com`
@@ -3760,6 +3906,15 @@ A simple operation with query api-version, whose default value is defined as '20
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
+### SpecialHeaders_ConditionalRequest_headIfModifiedSince
+
+- Endpoint: `head /special-headers/conditional-request/if-modified-since`
+
+Check when only If-Modified-Since in header is defined.
+Expected header parameters:
+
+- if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
+
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
 - Endpoint: `post /special-headers/conditional-request/if-match`
@@ -3777,6 +3932,15 @@ Check when only If-None-Match in header is defined.
 Expected header parameters:
 
 - if-nonematch="invalid"
+
+### SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince
+
+- Endpoint: `post /special-headers/conditional-request/if-unmodified-since`
+
+Check when only If-Unmodified-Since in header is defined.
+Expected header parameters:
+
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
