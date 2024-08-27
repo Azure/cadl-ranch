@@ -43,6 +43,25 @@ const validNestedResource = {
   },
 };
 
+const validSingletonResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+  name: "default",
+  type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  location: "eastus",
+  properties: {
+    provisioningState: "Succeeded",
+    description: "valid",
+  },
+  systemData: {
+    createdBy: "AzureSDK",
+    createdByType: "User",
+    createdAt: new Date(),
+    lastModifiedBy: "AzureSDK",
+    lastModifiedAt: new Date(),
+    lastModifiedByType: "User",
+  },
+};
+
 const validLocationResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locations/${LOCATION_EXPECTED}/locationResources/resource`,
   name: "resource",
@@ -193,6 +212,100 @@ Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_listByLocatio
         status: 200,
         body: json({
           value: [validLocationResource],
+        }),
+      };
+    },
+  ),
+]);
+
+// singleton tracked resource
+Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      return {
+        status: 200,
+        body: json(validSingletonResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate = passOnSuccess([
+  mockapi.put(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      req.expect.bodyEquals({
+        location: "eastus",
+        properties: {
+          description: "valid",
+        },
+      });
+      return {
+        status: 200,
+        body: json(validSingletonResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update = passOnSuccess([
+  mockapi.patch(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      req.expect.bodyEquals({
+        location: "eastus2",
+        properties: {
+          description: "valid2",
+        },
+      });
+      const resource = JSON.parse(JSON.stringify(validSingletonResource));
+      resource.location = "eastus2";
+      resource.properties.description = "valid2";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+      }
+      return {
+        status: 200,
+        body: json({
+          value: [validSingletonResource],
         }),
       };
     },
