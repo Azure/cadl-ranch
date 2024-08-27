@@ -13,78 +13,60 @@ namespace Encode.Numeric;
 @operationGroup
 @route("/property")
 namespace Property {
+  alias SendSafeIntAsString = SendIntAsString<safeint, "10000000000", SafeintAsStringProperty>;
+
   @route("/safeint")
-  @scenario
-  @scenarioDoc("""
-    Test operation with request and response model contains property of safeint type with string encode.
-    Expected request body:
-    ```json
-    {
-      "value": "10000000000"
-    }
-    ```
-    Expected response body:
-    ```json
-    {
-      "value": "10000000000"
-    }
-    ```
-    """)
-  @post
-  op safeintAsString(@body body: SafeintAsStringProperty): SafeintAsStringProperty;
+  op safeintAsString is SendSafeIntAsString.sendIntAsString;
 
   model SafeintAsStringProperty {
     @encode(string)
     value: safeint;
   }
 
+  alias SendUint32AsString = SendIntAsString<uint32, "1", Uint32AsStringProperty>;
+
   @route("/uint32")
-  @scenario
-  @scenarioDoc("""
-    Test operation with request and response model contains property of uint32 type with string encode.
-    Expected request body:
-    ```json
-    {
-      "value": "1"
-    }
-    ```
-    Expected response body:
-    ```json
-    {
-      "value": "1"
-    }
-    ```
-    """)
-  @post
-  op uint32AsStringOptional(@body body: Uint32AsStringProperty): Uint32AsStringProperty;
+  op uint32AsStringOptional is SendUint32AsString.sendIntAsString;
 
   model Uint32AsStringProperty {
     @encode(string)
     value?: uint32;
   }
 
+  alias SendUint8AsString = SendIntAsString<uint8, "255", Uint8AsStringProperty>;
+
   @route("/uint8")
-  @scenario
-  @scenarioDoc("""
-    Test operation with request and response model contains property of uint8 type with string encode.
-    Expected request body:
-    ```json
-    {
-      "value": "255"
-    }
-    ```
-    Expected response body:
-    ```json
-    {
-      "value": "255"
-    }
-    ```
-    """)
-  @post
-  op uint8AsStringOptional(@body body: Uint8AsStringProperty): Uint8AsStringProperty;
+  op uint8AsStringOptional is SendUint8AsString.sendIntAsString;
 
   model Uint8AsStringProperty {
     @encode(string)
     value?: uint8;
+  }
+
+  interface SendIntAsString<IntType extends integer, StringValue extends string, Payload> {
+    @scenario
+    @scenarioDoc(
+      """
+        Test operation with request and response model contains property of {type} type with string encode.
+        Expected request body:
+        ```json
+        {
+          "value": "{value}"
+        }
+        ```
+        Expected response body:
+        ```json
+        {
+          "value": "{value}"
+        }
+        ```
+        """,
+      {
+        type: IntType,
+        value: StringValue,
+      }
+    )
+    @post
+    sendIntAsString(@body value: Payload): Payload;
   }
 }
