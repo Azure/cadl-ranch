@@ -18,4 +18,4 @@ Scenarios.Encode_Numeric_Property_safeintAsString = passOnSuccess(createProperty
 
 Scenarios.Encode_Numeric_Property_uint32AsStringOptional = passOnSuccess(createPropertyMockApis("uint32", "1"));
 
-Scenarios.Encode_Numeric_Property_uint8AsStringOptional = passOnSuccess(createPropertyMockApis("uint8", "255"));
+Scenarios.Encode_Numeric_Property_uint8AsString = passOnSuccess(createPropertyMockApis("uint8", "255"));

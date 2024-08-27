@@ -2413,7 +2413,7 @@ Expected response body:
 }
 ```
 
-### Encode_Numeric_Property_uint8AsStringOptional
+### Encode_Numeric_Property_uint8AsString
 
 - Endpoint: `post /encode/numeric/property/uint8`
 

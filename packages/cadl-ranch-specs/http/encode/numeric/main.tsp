@@ -36,7 +36,7 @@ namespace Property {
   alias SendUint8AsString = SendIntAsString<uint8, "255", Uint8AsStringProperty>;
 
   @route("/uint8")
-  op uint8AsStringOptional is SendUint8AsString.sendIntAsString;
+  op uint8AsString is SendUint8AsString.sendIntAsString;
 
   model Uint8AsStringProperty {
     @encode(string)
