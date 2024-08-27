@@ -3151,7 +3151,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_HttpParts_contentType_imageJpegContentType
+### Payload_MultiPart_FormData_HttpParts_ContentType_imageJpegContentType
 
 - Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
 
@@ -3170,7 +3170,7 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_HttpParts_contentType_optionalContentType
+### Payload_MultiPart_FormData_HttpParts_ContentType_optionalContentType
 
 - Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
 
@@ -3189,7 +3189,7 @@ Content-Type: application/octet-stream
 --abcde12345
 ```
 
-### Payload_MultiPart_FormData_HttpParts_contentType_requiredContentType
+### Payload_MultiPart_FormData_HttpParts_ContentType_requiredContentType
 
 - Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
 

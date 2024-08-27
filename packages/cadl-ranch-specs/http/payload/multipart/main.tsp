@@ -331,7 +331,7 @@ namespace FormData {
   ): NoContentResponse;
 
   namespace HttpParts {
-    namespace contentType {
+    namespace ContentType {
       @scenario
       @scenarioDoc("""
         This case will check filename and specific content-type of file part, so expect request:

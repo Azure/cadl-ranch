@@ -176,14 +176,14 @@ Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
   createMockApis("anonymous-model", [checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_imageJpegContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_ContentType_imageJpegContentType = passOnSuccess(
   createMockApis("check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
 );
 
-Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_requiredContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_ContentType_requiredContentType = passOnSuccess(
   createMockApis("check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
 );
-Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_optionalContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_ContentType_optionalContentType = passOnSuccess(
   createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
 Scenarios.Payload_MultiPart_FormData_HttpParts_complex = passOnSuccess(
