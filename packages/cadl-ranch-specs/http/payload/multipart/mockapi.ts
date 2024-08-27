@@ -176,19 +176,19 @@ Scenarios.Payload_MultiPart_FormData_anonymousModel = passOnSuccess(
   createMockApis("anonymous-model", [checkProfileImage]),
 );
 
-Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartSpecificContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_imageJpegContentType = passOnSuccess(
   createMockApis("check-filename-and-specific-content-type-with-httppart", [checkFileNameAndContentType]),
 );
 
-Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartRequiredContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_requiredContentType = passOnSuccess(
   createMockApis("check-filename-and-required-content-type-with-httppart", [checkProfileImage]),
 );
-Scenarios.Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartOptionalContentType = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_contentType_optionalContentType = passOnSuccess(
   createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
-Scenarios.Payload_MultiPart_FormData_HttpPartTest_complexWithHttpPart = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_complex = passOnSuccess(
   createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
-Scenarios.Payload_MultiPart_FormData_HttpPartTest_NonString_floatMethod = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_NonString_float = passOnSuccess(
   createMockApis("non-string-float", [checkFloat]),
 );

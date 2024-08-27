@@ -2954,7 +2954,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_HttpPartTest_complexWithHttpPart
+### Payload_MultiPart_FormData_HttpParts_complex
 
 - Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
@@ -3005,45 +3005,7 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartOptionalContentType
-
-- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
-
-Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content of .jpg file…}
---abcde12345
-```
-
-### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartRequiredContentType
-
-- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
-
-This case will check required content-type of file part, so expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content of .jpg file…}
---abcde12345--
-```
-
-### Payload_MultiPart_FormData_HttpPartTest_fileWithHttpPartSpecificContentType
+### Payload_MultiPart_FormData_HttpParts_contentType_imageJpegContentType
 
 - Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
 
@@ -3062,7 +3024,45 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_HttpPartTest_NonString_floatMethod
+### Payload_MultiPart_FormData_HttpParts_contentType_optionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_HttpParts_contentType_requiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_HttpParts_NonString_float
 
 - Endpoint: `post /multipart/form-data/non-string-float`
 
