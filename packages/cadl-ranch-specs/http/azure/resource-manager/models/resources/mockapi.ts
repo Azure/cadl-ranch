@@ -75,7 +75,7 @@ const validAvailableOperations = {
 };
 
 // operation list
-Scenarios.Azure_ResourceManager_Models_Resources_ListingAvailableOperations_list = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_AvailableOperations_list = passOnSuccess([
   mockapi.get("/providers/Azure.ResourceManager.Models.Resources/operations", (req) => {
     req.expect.containsQueryParam("api-version", "2023-12-01-preview");
     return {

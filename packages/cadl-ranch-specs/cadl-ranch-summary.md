@@ -907,7 +907,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_ListingAvailableOperations_list
+### Azure_ResourceManager_Models_Resources_AvailableOperations_list
 
 - Endpoint: `get https://management.azure.com`
 

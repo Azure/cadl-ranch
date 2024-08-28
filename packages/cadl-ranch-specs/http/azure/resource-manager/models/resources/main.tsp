@@ -40,7 +40,7 @@ union ProvisioningState {
 }
 
 @armResourceOperations
-interface ListingAvailableOperations {
+interface AvailableOperations {
   @scenario
   @scenarioDoc("""
       Resource GET operation.
