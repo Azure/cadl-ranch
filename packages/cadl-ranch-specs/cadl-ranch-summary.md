@@ -2442,6 +2442,27 @@ Expected response body:
 }
 ```
 
+### Encode_Numeric_Property_uint8AsString
+
+- Endpoint: `post /encode/numeric/property/uint8`
+
+Test operation with request and response model contains property of uint8 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "255"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "255"
+}
+```
+
 ### Parameters_Basic_ExplicitBody_simple
 
 - Endpoint: `put /parameters/basic/explicit-body/simple`
