@@ -4,9 +4,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
-const OPERATION_ID_EXPECTED = "12345678-1234-1234-1234-123456789000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
-const LOCATION_EXPECTED = "westus";
 const validTopLevelResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
   name: "top",
