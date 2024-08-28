@@ -63,7 +63,7 @@ const validSingletonResource = {
 
 const validAvailableOperations = {
   name: "Microsoft.Compute/virtualMachines/write",
-  isDataAction: true,
+  isDataAction: false,
   display: {
     provider: "Microsoft Compute",
     resource: "Virtual Machines",
