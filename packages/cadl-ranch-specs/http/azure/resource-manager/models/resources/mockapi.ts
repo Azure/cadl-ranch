@@ -63,101 +63,30 @@ const validSingletonResource = {
   },
 };
 
-const validOperationStatus = {
-  name: "TenantOperation",
-  startTime: new Date(),
-  endTime: new Date(),
-  percentComplete: 2,
-  status: "Failed",
-  ManagementError: {
-    code: "404",
-    message: "The error message of status test. ",
-    target: "The target of status test.",
-    details: [
-      {
-        code: "404",
-        message: "The error message of status test. ",
-        target: "The target of status test.",
-      },
-    ],
-    additionalInfo: [
-      {
-        type: "additionalType",
-        info: "additionalInfo",
-      },
-    ],
+const validAvailableOperations = {
+  name: "Microsoft.Compute/virtualMachines/write",
+  isDataAction: true,
+  display: {
+    provider: "Microsoft Compute",
+    resource: "Virtual Machines",
+    operation: "Create or Update Virtual Machine.",
+    description: "Add or modify virtual machines.",
   },
+  origin: "user,system",
+  actionType: "Internal",
 };
 
-// operation status
-Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getStatus = passOnSuccess([
-  mockapi.get(
-    "/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.location !== LOCATION_EXPECTED) {
-        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
-      }
-      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
-      }
-      return {
-        status: 200,
-        body: json(validOperationStatus),
-      };
-    },
-  ),
-]);
-
-Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getSubscriptionStatus = passOnSuccess([
-  mockapi.get(
-    "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.location !== LOCATION_EXPECTED) {
-        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
-      }
-      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
-      }
-      const resource = JSON.parse(JSON.stringify(validOperationStatus));
-      resource.name = "SubscriptionOperation";
-      return {
-        status: 200,
-        body: json(resource),
-      };
-    },
-  ),
-]);
-
-Scenarios.Azure_ResourceManager_Models_Resources_OperationStatuses_getRgStatus = passOnSuccess([
-  mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/locations/:location/operationStatuses/:operationId",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.location !== LOCATION_EXPECTED) {
-        throw new ValidationError("Unexpected location", LOCATION_EXPECTED, req.params.location);
-      }
-      if (req.params.operationId !== OPERATION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected operationId", OPERATION_ID_EXPECTED, req.params.operationId);
-      }
-      const resource = JSON.parse(JSON.stringify(validOperationStatus));
-      resource.name = "ResourceGroupOperation";
-      return {
-        status: 200,
-        body: json(resource),
-      };
-    },
-  ),
+// operation list
+Scenarios.Azure_ResourceManager_Models_Resources_ListingAvailableOperations_list = passOnSuccess([
+  mockapi.get("/providers/Azure.ResourceManager.Models.Resources/operations", (req) => {
+    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+    return {
+      status: 200,
+      body: json({
+        value: [validAvailableOperations],
+      }),
+    };
+  }),
 ]);
 
 // singleton tracked resource

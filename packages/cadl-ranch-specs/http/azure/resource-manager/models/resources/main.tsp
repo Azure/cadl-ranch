@@ -39,114 +39,31 @@ union ProvisioningState {
   Accepted: "Accepted",
 }
 
-@resource("operationStatuses")
-@parentResource(TenantLocationResource)
-model TenantOperationStatus is ArmOperationStatus;
-
-@parentResource(SubscriptionLocationResource)
-model SubscriptionOperationStatus is ArmOperationStatus;
-
-@parentResource(ResourceGroupLocationResource)
-model ResourceGroupOperationStatus is ArmOperationStatus;
-
 @armResourceOperations
-interface OperationStatuses {
+interface ListingAvailableOperations {
   @scenario
   @scenarioDoc("""
       Resource GET operation.
-      Expected path: /providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
+      Expected path: /providers/Azure.ResourceManager.Models.Resources/operations
       Expected query parameter: api-version=2023-12-01-preview
     
       Expected response body:
       ```json
       {
-        "name": "TenantOperation",
-        "startTime": <any date>,
-        "endTime": <any date>,
-        "percentComplete": 2,
-        "status": "Failed",
-        "ManagementError": {
-          "code": "404",
-          "message": "The error message of status test. ",
-          "target": "The target of status test.",
-          "details": [{
-            "code": "404",
-            "message": "The error message of status test. ",
-            "target": "The target of status test.",
-          }],
-          "additionalInfo": [{
-            "type": "additionalType",
-            "info": "additionalInfo"
-          }]
-        }
+        "value": [{
+          "name": "Microsoft.Compute/virtualMachines/write",
+          "isDataAction": true,
+          "display": {
+            "provider": "Microsoft Compute",
+            "resource": "Virtual Machines",
+            "operation": "Create or Update Virtual Machine.",
+            "description": "Add or modify virtual machines."
+          },
+          "origin": "user,system",
+          "actionType": "Internal"
+        }]
       }
       ```
     """)
-  getStatus is ArmResourceRead<TenantOperationStatus>;
-
-  @scenario
-  @scenarioDoc("""
-      Resource GET operation.
-      Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-      Expected query parameter: api-version=2023-12-01-preview
-    
-      Expected response body:
-      ```json
-      {
-        "name": "SubscriptionOperation",
-        "startTime": <any date>,
-        "endTime": <any date>,
-        "percentComplete": 2,
-        "status": "Failed",
-        "ManagementError": {
-          "code": "404",
-          "message": "The error message of status test. ",
-          "target": "The target of status test.",
-          "details": [{
-            "code": "404",
-            "message": "The error message of status test. ",
-            "target": "The target of status test.",
-          }],
-          "additionalInfo": [{
-            "type": "additionalType",
-            "info": "additionalInfo"
-          }]
-        }
-      }
-      ```
-    """)
-  getSubscriptionStatus is ArmResourceRead<SubscriptionOperationStatus>;
-
-  @scenario
-  @scenarioDoc("""
-      Resource GET operation.
-      Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-      Expected query parameter: api-version=2023-12-01-preview
-    
-      Expected response body:
-      ```json
-      {
-        "name": "ResourceGroupOperation",
-        "startTime": <any date>,
-        "endTime": <any date>,
-        "percentComplete": 2,
-        "status": "Failed",
-        "ManagementError": {
-          "code": "404",
-          "message": "The error message of status test. ",
-          "target": "The target of status test.",
-          "details": [{
-            "code": "404",
-            "message": "The error message of status test. ",
-            "target": "The target of status test.",
-          }],
-          "additionalInfo": [{
-            "type": "additionalType",
-            "info": "additionalInfo"
-          }]
-        }
-      }
-      ```
-    """)
-  getRgStatus is ArmResourceRead<ResourceGroupOperationStatus>;
+  list is Operations.list;
 }

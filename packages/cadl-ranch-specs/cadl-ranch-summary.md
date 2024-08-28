@@ -907,6 +907,35 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_ListingAvailableOperations_list
+
+- Endpoint: `get https://management.azure.com`
+
+  Resource GET operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/operations
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+
+  ```json
+  {
+    "value": [
+      {
+        "name": "Microsoft.Compute/virtualMachines/write",
+        "isDataAction": true,
+        "display": {
+          "provider": "Microsoft Compute",
+          "resource": "Virtual Machines",
+          "operation": "Create or Update Virtual Machine.",
+          "description": "Add or modify virtual machines."
+        },
+        "origin": "user,system",
+        "actionType": "Internal"
+      }
+    ]
+  }
+  ```
+
 ### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
@@ -1055,108 +1084,6 @@ Expected response body:
   }
 }
 ```
-
-### Azure_ResourceManager_Models_Resources_OperationStatuses_getRgStatus
-
-- Endpoint: `get https://management.azure.com`
-
-  Resource GET operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-
-  ```json
-  {
-    "name": "ResourceGroupOperation",
-    "startTime": <any date>,
-    "endTime": <any date>,
-    "percentComplete": 2,
-    "status": "Failed",
-    "ManagementError": {
-      "code": "404",
-      "message": "The error message of status test. ",
-      "target": "The target of status test.",
-      "details": [{
-        "code": "404",
-        "message": "The error message of status test. ",
-        "target": "The target of status test.",
-      }],
-      "additionalInfo": [{
-        "type": "additionalType",
-        "info": "additionalInfo"
-      }]
-    }
-  }
-  ```
-
-### Azure_ResourceManager_Models_Resources_OperationStatuses_getStatus
-
-- Endpoint: `get https://management.azure.com`
-
-  Resource GET operation.
-  Expected path: /providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-
-  ```json
-  {
-    "name": "TenantOperation",
-    "startTime": <any date>,
-    "endTime": <any date>,
-    "percentComplete": 2,
-    "status": "Failed",
-    "ManagementError": {
-      "code": "404",
-      "message": "The error message of status test. ",
-      "target": "The target of status test.",
-      "details": [{
-        "code": "404",
-        "message": "The error message of status test. ",
-        "target": "The target of status test.",
-      }],
-      "additionalInfo": [{
-        "type": "additionalType",
-        "info": "additionalInfo"
-      }]
-    }
-  }
-  ```
-
-### Azure_ResourceManager_Models_Resources_OperationStatuses_getSubscriptionStatus
-
-- Endpoint: `get https://management.azure.com`
-
-  Resource GET operation.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/locations/westus/operationStatuses/00000000-0000-0000-0000-000000000000
-  Expected query parameter: api-version=2023-12-01-preview
-
-  Expected response body:
-
-  ```json
-  {
-    "name": "SubscriptionOperation",
-    "startTime": <any date>,
-    "endTime": <any date>,
-    "percentComplete": 2,
-    "status": "Failed",
-    "ManagementError": {
-      "code": "404",
-      "message": "The error message of status test. ",
-      "target": "The target of status test.",
-      "details": [{
-        "code": "404",
-        "message": "The error message of status test. ",
-        "target": "The target of status test.",
-      }],
-      "additionalInfo": [{
-        "type": "additionalType",
-        "info": "additionalInfo"
-      }]
-    }
-  }
-  ```
 
 ### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate
 
