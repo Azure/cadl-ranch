@@ -164,7 +164,10 @@ namespace FormData {
   @doc("Test content-type: multipart/form-data for mixed scenarios")
   @post
   @route("/complex-parts")
-  op complex(@header contentType: "multipart/form-data", @body body: ComplexPartsRequest): NoContentResponse;
+  op jsonArrayAndFileArrayAndOthers(
+    @header contentType: "multipart/form-data",
+    @body body: ComplexPartsRequest,
+  ): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -455,7 +458,7 @@ namespace FormData {
     @doc("Test content-type: multipart/form-data for mixed scenarios")
     @post
     @route("/complex-parts-with-httppart")
-    op complex(
+    op jsonArrayAndFileArrayAndOthers(
       @header contentType: "multipart/form-data",
       @multipartBody body: ComplexHttpPartsModelRequest,
     ): NoContentResponse;
