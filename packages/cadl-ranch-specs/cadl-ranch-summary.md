@@ -3828,6 +3828,366 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
+### Routes_fixed
+
+- Endpoint: `get /routes/fixed`
+
+Simple operation at a fixed in an interface
+Expected path: /routes/fixed
+
+### Routes_InInterface
+
+- Endpoint: `get /routes/in-interface/fixed`
+
+Simple operation at a fixed in an interface
+Expected path: /routes/in-interface/fixed
+
+### Routes_PathParameters_annotationOnly
+
+- Endpoint: `get /routes/path/annotation-only`
+
+Path parameter annotated with @path but not defined explicitly in the route
+Value: "a"
+Expected path: /routes/path/annotation-only/a
+
+### Routes_PathParameters_explicit
+
+- Endpoint: `get /routes/path/explicit/{param}`
+
+Path parameter defined explicitly
+Value: "a"
+Expected path: /routes/path/explicit/a
+
+### Routes_PathParameters_LabelExpansion_Explode_array
+
+- Endpoint: `get /routes/path/label/explode/array{.param*}`
+
+Test label expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/label/explode/array.a.b
+
+### Routes_PathParameters_LabelExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/label/explode/primitive{.param*}`
+
+Test label expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/label/explode/primitive.a
+
+### Routes_PathParameters_LabelExpansion_Explode_record
+
+- Endpoint: `get /routes/path/label/explode/record{.param*}`
+
+Test label expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/label/explode/record.a=1.b=2
+
+### Routes_PathParameters_LabelExpansion_Standard_array
+
+- Endpoint: `get /routes/path/label/standard/array{.param}`
+
+Test label expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/label/standard/array.a,b
+
+### Routes_PathParameters_LabelExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/label/standard/primitive{.param}`
+
+Test label expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/label/standard/primitive.a
+
+### Routes_PathParameters_LabelExpansion_Standard_record
+
+- Endpoint: `get /routes/path/label/standard/record{.param}`
+
+Test label expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/label/standard/record.a,1,b,2
+
+### Routes_PathParameters_MatrixExpansion_Explode_array
+
+- Endpoint: `get /routes/path/matrix/explode/array{;param*}`
+
+Test matrix expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/matrix/explode/array;a.b
+
+### Routes_PathParameters_MatrixExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/matrix/explode/primitive{;param*}`
+
+Test matrix expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/matrix/explode/primitive;a
+
+### Routes_PathParameters_MatrixExpansion_Explode_record
+
+- Endpoint: `get /routes/path/matrix/explode/record{;param*}`
+
+Test matrix expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/matrix/explode/record;a=1;b=2
+
+### Routes_PathParameters_MatrixExpansion_Standard_array
+
+- Endpoint: `get /routes/path/matrix/standard/array{;param}`
+
+Test matrix expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/matrix/standard/array;a,b
+
+### Routes_PathParameters_MatrixExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/matrix/standard/primitive{;param}`
+
+Test matrix expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/matrix/standard/primitive;a
+
+### Routes_PathParameters_MatrixExpansion_Standard_record
+
+- Endpoint: `get /routes/path/matrix/standard/record{;param}`
+
+Test matrix expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/matrix/standard/record;a,1,b,2
+
+### Routes_PathParameters_PathExpansion_Explode_array
+
+- Endpoint: `get /routes/path/path/explode/array{/param*}`
+
+Test path expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/path/explode/array/a/b
+
+### Routes_PathParameters_PathExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/path/explode/primitive{/param*}`
+
+Test path expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/path/explode/primitive/a
+
+### Routes_PathParameters_PathExpansion_Explode_record
+
+- Endpoint: `get /routes/path/path/explode/record{/param*}`
+
+Test path expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/path/explode/record/a=1/b=2
+
+### Routes_PathParameters_PathExpansion_Standard_array
+
+- Endpoint: `get /routes/path/path/standard/array{/param}`
+
+Test path expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/path/standard/array/a,b
+
+### Routes_PathParameters_PathExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/path/standard/primitive{/param}`
+
+Test path expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/path/standard/primitive/a
+
+### Routes_PathParameters_PathExpansion_Standard_record
+
+- Endpoint: `get /routes/path/path/standard/record{/param}`
+
+Test path expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/path/standard/record/a,1,b,2
+
+### Routes_PathParameters_ReservedExpansion_annotation
+
+- Endpoint: `get /routes/path/reserved-expansion/annotation`
+
+Defines a path parameter that shouldn't encode reserved characters. It should however still encode the other url characters.
+Param value: "foo/bar baz"
+Expected path: "/routes/path/reserved-expansion/annotation/foo/bar%20baz"
+
+### Routes_PathParameters_ReservedExpansion_template
+
+- Endpoint: `get /routes/path/reserved-expansion/template/{+param}`
+
+Defines a path parameter that shouldn't encode reserved characters. It should however still encode the other url characters.
+Param value: "foo/bar baz"
+Expected path: "/routes/path/reserved-expansion/template/foo/bar%20baz"
+
+### Routes_PathParameters_SimpleExpansion_Explode_array
+
+- Endpoint: `get /routes/path/simple/explode/array{param*}`
+
+Test simple expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/simple/explode/arraya.b
+
+### Routes_PathParameters_SimpleExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/simple/explode/primitive{param*}`
+
+Test simple expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/simple/explode/primitivea
+
+### Routes_PathParameters_SimpleExpansion_Explode_record
+
+- Endpoint: `get /routes/path/simple/explode/record{param*}`
+
+Test simple expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/simple/explode/recorda=1,b=2
+
+### Routes_PathParameters_SimpleExpansion_Standard_array
+
+- Endpoint: `get /routes/path/simple/standard/array{param}`
+
+Test simple expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/simple/standard/arraya,b
+
+### Routes_PathParameters_SimpleExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/simple/standard/primitive{param}`
+
+Test simple expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/simple/standard/primitivea
+
+### Routes_PathParameters_SimpleExpansion_Standard_record
+
+- Endpoint: `get /routes/path/simple/standard/record{param}`
+
+Test simple expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/simple/standard/recorda,1,b,2
+
+### Routes_PathParameters_templateOnly
+
+- Endpoint: `get /routes/path/template-only/{param}`
+
+Path parameter defined implicitly
+Value: "a"
+Expected path: /routes/path/template-only/a
+
+### Routes_QueryParameters_annotationOnly
+
+- Endpoint: `get /routes/query/annotation-only`
+
+Query parameter annotated with @query but not defined explicitly in the route
+
+### Routes_QueryParameters_explicit
+
+- Endpoint: `get /routes/query/explicit{?param}`
+
+Query parameter marked with explicit @query
+
+### Routes_QueryParameters_QueryContinuation_Explode_array
+
+- Endpoint: `get /routes/query/query-continuation/explode/array?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-continuation/explode/array?fixed=true&param=a&param=b
+
+### Routes_QueryParameters_QueryContinuation_Explode_primitive
+
+- Endpoint: `get /routes/query/query-continuation/explode/primitive?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-continuation/explode/primitive?fixed=true&param=a
+
+### Routes_QueryParameters_QueryContinuation_Explode_record
+
+- Endpoint: `get /routes/query/query-continuation/explode/record?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-continuation/explode/record?fixed=true&a=1&b=2
+
+### Routes_QueryParameters_QueryContinuation_Standard_array
+
+- Endpoint: `get /routes/query/query-continuation/standard/array?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-continuation/standard/array?fixed=true&param=a,b
+
+### Routes_QueryParameters_QueryContinuation_Standard_primitive
+
+- Endpoint: `get /routes/query/query-continuation/standard/primitive?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-continuation/standard/primitive?fixed=true&param=a
+
+### Routes_QueryParameters_QueryContinuation_Standard_record
+
+- Endpoint: `get /routes/query/query-continuation/standard/record?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-continuation/standard/record?fixed=true&param=a,1,b,2
+
+### Routes_QueryParameters_QueryExpansion_Explode_array
+
+- Endpoint: `get /routes/query/query-expansion/explode/array{?param*}`
+
+Test query expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-expansion/explode/array?param=a&param=b
+
+### Routes_QueryParameters_QueryExpansion_Explode_primitive
+
+- Endpoint: `get /routes/query/query-expansion/explode/primitive{?param*}`
+
+Test query expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-expansion/explode/primitive?param=a
+
+### Routes_QueryParameters_QueryExpansion_Explode_record
+
+- Endpoint: `get /routes/query/query-expansion/explode/record{?param*}`
+
+Test query expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-expansion/explode/record?a=1&b=2
+
+### Routes_QueryParameters_QueryExpansion_Standard_array
+
+- Endpoint: `get /routes/query/query-expansion/standard/array{?param}`
+
+Test query expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-expansion/standard/array?param=a,b
+
+### Routes_QueryParameters_QueryExpansion_Standard_primitive
+
+- Endpoint: `get /routes/query/query-expansion/standard/primitive{?param}`
+
+Test query expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-expansion/standard/primitive?param=a
+
+### Routes_QueryParameters_QueryExpansion_Standard_record
+
+- Endpoint: `get /routes/query/query-expansion/standard/record{?param}`
+
+Test query expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-expansion/standard/record?param=a,1,b,2
+
+### Routes_QueryParameters_templateOnly
+
+- Endpoint: `get /routes/query/template-only{?param}`
+
+Query parameter defined implicitly
+
 ### Serialization_EncodedName_Json_Property_get
 
 - Endpoint: `get /serialization/encoded-name/json/property`
