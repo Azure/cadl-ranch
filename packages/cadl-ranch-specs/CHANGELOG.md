@@ -1,5 +1,26 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.36.1
+
+### Patch Changes
+
+- 0cb765e: Bug fix on flatten-property mockapi.
+- cdb4a5f: Add test case for encode integer as string.
+- Updated dependencies [c936cb2]
+  - @azure-tools/cadl-ranch-api@0.4.6
+  - @azure-tools/cadl-ranch@0.14.3
+
+## 0.36.0
+
+### Minor Changes
+
+- dc9c981: Move `type/model/flatten` test to `azure/client-generator-core/flatten-property`
+
+### Patch Changes
+
+- 4a861c7: Minor change to avoid deprecated query parameter options.
+- 4022f01: Added tests for ARM, test case for resource action.
+
 ## 0.35.4
 
 ### Patch Changes
