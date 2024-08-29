@@ -79,7 +79,7 @@ namespace PathParameters {
   }
 
   @route("simple")
-  namespace Simple {
+  namespace SimpleExpansion {
     @route("standard")
     namespace Standard {
       @scenario
@@ -142,7 +142,7 @@ namespace PathParameters {
   }
 
   @route("path")
-  namespace Path {
+  namespace PathExpansion {
     @route("standard")
     namespace Standard {
       @scenario
@@ -205,7 +205,7 @@ namespace PathParameters {
   }
 
   @route("label")
-  namespace Label {
+  namespace LabelExpansion {
     @route("standard")
     namespace Standard {
       @scenario
@@ -268,7 +268,7 @@ namespace PathParameters {
   }
 
   @route("matrix")
-  namespace Matrix {
+  namespace MatrixExpansion {
     @route("standard")
     namespace Standard {
       @scenario

@@ -34,33 +34,33 @@ Scenarios.Routes_PathParameters_ReservedExpansion_annotation = defineUri(
   "/routes/path/reserved-expansion/annotation/foo/bar%20baz",
 );
 
-Scenarios.Routes_PathParameters_Simple_Standard_primitive = defineUri("/routes/simple/standard/primitivea");
-Scenarios.Routes_PathParameters_Simple_Standard_array = defineUri("/routes/simple/standard/arraya,b");
-Scenarios.Routes_PathParameters_Simple_Standard_record = defineUri("/routes/simple/standard/recorda,1,b,2");
-Scenarios.Routes_PathParameters_Simple_Explode_primitive = defineUri("/routes/simple/standard/primitivea");
-Scenarios.Routes_PathParameters_Simple_Explode_array = defineUri("/routes/simple/standard/arraya,b");
-Scenarios.Routes_PathParameters_Simple_Explode_record = defineUri("/routes/simple/standard/recorda=1,b=2");
+Scenarios.Routes_PathParameters_SimpleExpansion_Standard_primitive = defineUri("/routes/simple/standard/primitivea");
+Scenarios.Routes_PathParameters_SimpleExpansion_Standard_array = defineUri("/routes/simple/standard/arraya,b");
+Scenarios.Routes_PathParameters_SimpleExpansion_Standard_record = defineUri("/routes/simple/standard/recorda,1,b,2");
+Scenarios.Routes_PathParameters_SimpleExpansion_Explode_primitive = defineUri("/routes/simple/standard/primitivea");
+Scenarios.Routes_PathParameters_SimpleExpansion_Explode_array = defineUri("/routes/simple/standard/arraya,b");
+Scenarios.Routes_PathParameters_SimpleExpansion_Explode_record = defineUri("/routes/simple/standard/recorda=1,b=2");
 
-Scenarios.Routes_PathParameters_Path_Standard_primitive = defineUri("/routes/path/standard/primitive/a");
-Scenarios.Routes_PathParameters_Path_Standard_array = defineUri("/routes/path/standard/array/a,b");
-Scenarios.Routes_PathParameters_Path_Standard_record = defineUri("/routes/path/standard/record/a,1,b,2");
-Scenarios.Routes_PathParameters_Path_Explode_primitive = defineUri("/routes/path/standard/primitive/a");
-Scenarios.Routes_PathParameters_Path_Explode_array = defineUri("/routes/path/standard/array/a/b");
-Scenarios.Routes_PathParameters_Path_Explode_record = defineUri("/routes/path/standard/record/a=1/b=2");
+Scenarios.Routes_PathParameters_PathExpansion_Standard_primitive = defineUri("/routes/path/standard/primitive/a");
+Scenarios.Routes_PathParameters_PathExpansion_Standard_array = defineUri("/routes/path/standard/array/a,b");
+Scenarios.Routes_PathParameters_PathExpansion_Standard_record = defineUri("/routes/path/standard/record/a,1,b,2");
+Scenarios.Routes_PathParameters_PathExpansion_Explode_primitive = defineUri("/routes/path/standard/primitive/a");
+Scenarios.Routes_PathParameters_PathExpansion_Explode_array = defineUri("/routes/path/standard/array/a/b");
+Scenarios.Routes_PathParameters_PathExpansion_Explode_record = defineUri("/routes/path/standard/record/a=1/b=2");
 
-Scenarios.Routes_PathParameters_Label_Standard_primitive = defineUri("/routes/label/standard/primitive.a");
-Scenarios.Routes_PathParameters_Label_Standard_array = defineUri("/routes/label/standard/array.a,b");
-Scenarios.Routes_PathParameters_Label_Standard_record = defineUri("/routes/label/standard/record.a,1,b,2");
-Scenarios.Routes_PathParameters_Label_Explode_primitive = defineUri("/routes/label/standard/primitive.a");
-Scenarios.Routes_PathParameters_Label_Explode_array = defineUri("/routes/label/standard/array.a.b");
-Scenarios.Routes_PathParameters_Label_Explode_record = defineUri("/routes/label/standard/record.a=1.b=2");
+Scenarios.Routes_PathParameters_LabelExpansion_Standard_primitive = defineUri("/routes/label/standard/primitive.a");
+Scenarios.Routes_PathParameters_LabelExpansion_Standard_array = defineUri("/routes/label/standard/array.a,b");
+Scenarios.Routes_PathParameters_LabelExpansion_Standard_record = defineUri("/routes/label/standard/record.a,1,b,2");
+Scenarios.Routes_PathParameters_LabelExpansion_Explode_primitive = defineUri("/routes/label/standard/primitive.a");
+Scenarios.Routes_PathParameters_LabelExpansion_Explode_array = defineUri("/routes/label/standard/array.a.b");
+Scenarios.Routes_PathParameters_LabelExpansion_Explode_record = defineUri("/routes/label/standard/record.a=1.b=2");
 
-Scenarios.Routes_PathParameters_Matrix_Standard_primitive = defineUri("/routes/matrix/standard/primitive;a");
-Scenarios.Routes_PathParameters_Matrix_Standard_array = defineUri("/routes/matrix/standard/array;a,b");
-Scenarios.Routes_PathParameters_Matrix_Standard_record = defineUri("/routes/matrix/standard/record;a,1,b,2");
-Scenarios.Routes_PathParameters_Matrix_Explode_primitive = defineUri("/routes/matrix/standard/primitive;a");
-Scenarios.Routes_PathParameters_Matrix_Explode_array = defineUri("/routes/matrix/standard/array;a;b");
-Scenarios.Routes_PathParameters_Matrix_Explode_record = defineUri("/routes/matrix/standard/record;a=1;b=2");
+Scenarios.Routes_PathParameters_MatrixExpansion_Standard_primitive = defineUri("/routes/matrix/standard/primitive;a");
+Scenarios.Routes_PathParameters_MatrixExpansion_Standard_array = defineUri("/routes/matrix/standard/array;a,b");
+Scenarios.Routes_PathParameters_MatrixExpansion_Standard_record = defineUri("/routes/matrix/standard/record;a,1,b,2");
+Scenarios.Routes_PathParameters_MatrixExpansion_Explode_primitive = defineUri("/routes/matrix/standard/primitive;a");
+Scenarios.Routes_PathParameters_MatrixExpansion_Explode_array = defineUri("/routes/matrix/standard/array;a;b");
+Scenarios.Routes_PathParameters_MatrixExpansion_Explode_record = defineUri("/routes/matrix/standard/record;a=1;b=2");
 
 Scenarios.Routes_QueryParameters_templateOnly = defineUri("/routes/query/template-only?param=a");
 Scenarios.Routes_QueryParameters_explicit = defineUri("/routes/query/explicit?param=a");
