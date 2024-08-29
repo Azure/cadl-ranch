@@ -2,12 +2,14 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.ResourceManager.Models.Resources;
 
@@ -27,7 +29,8 @@ model SingletonTrackedResourceProperties {
 }
 
 @armResourceOperations
-interface SingletonTrackedResources {
+@clientName("SingletonTrackedResources")
+interface Singleton {
   @scenario
   @scenarioDoc("""
     Resource GET operation.

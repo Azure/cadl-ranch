@@ -12,6 +12,7 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
+using Azure.ClientGenerator.Core;
 
 @armProviderNamespace
 @service
@@ -47,7 +48,8 @@ model ManagedIdentityTrackedResourceProperties {
 }
 
 @armResourceOperations
-interface ManagedIdentityTrackedResources {
+@clientName("ManagedIdentityTrackedResources")
+interface CrudOperations {
   @scenario
   @scenarioDoc("""
     Resource GET operation.

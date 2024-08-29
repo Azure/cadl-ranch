@@ -62,7 +62,7 @@ const validSingletonResource = {
 };
 
 // singleton tracked resource
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Singleton_getByResourceGroup = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
@@ -81,7 +81,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getBy
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Singleton_createOrUpdate = passOnSuccess([
   mockapi.put(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
@@ -106,7 +106,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_creat
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Singleton_update = passOnSuccess([
   mockapi.patch(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
     (req) => {
@@ -134,7 +134,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_updat
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Singleton_listByResourceGroup = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
     (req) => {
@@ -155,7 +155,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listB
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_actionSync = passOnSuccess([
   mockapi.post(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/actionSync",
     (req) => {
@@ -181,7 +181,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_action
 ]);
 
 // top level tracked resource
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_get = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
@@ -203,7 +203,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = 
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_createOrReplace = passOnSuccess([
   mockapi.put(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
@@ -231,7 +231,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_create
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_update = passOnSuccess([
   mockapi.patch(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
@@ -258,7 +258,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_delete = passOnSuccess([
   mockapi.delete(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
     (req) => {
@@ -279,7 +279,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_listByResourceGroup = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
     (req) => {
@@ -300,7 +300,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBy
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevel_listBySubscription = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
     (req) => {
@@ -319,7 +319,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBy
 ]);
 
 // nested proxy resource
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Nested_get = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
@@ -344,7 +344,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_get = pass
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Nested_createOrReplace = passOnSuccess([
   mockapi.put(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
@@ -374,7 +374,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrRe
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Nested_update = passOnSuccess([
   mockapi.patch(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
@@ -406,7 +406,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = p
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Nested_delete = passOnSuccess([
   mockapi.delete(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
     (req) => {
@@ -418,7 +418,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = p
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_Nested_listByTopLevelTrackedResource = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
     (req) => {

@@ -63,7 +63,7 @@ const updateExpectedIdentity = {
 };
 
 // managed identity tracked resource
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_get = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
@@ -89,7 +89,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned =
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_createWithSystemAssigned =
   passOnSuccess([
     mockapi.put(
       "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
@@ -117,7 +117,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
     ),
   ]);
 
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned =
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_updateWithUserAssignedAndSystemAssigned =
   passOnSuccess([
     mockapi.patch(
       "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
