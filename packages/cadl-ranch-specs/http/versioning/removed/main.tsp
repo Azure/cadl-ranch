@@ -22,7 +22,7 @@ using TypeSpec.Rest;
     endpoint: url,
 
     /**
-     * Need to be set as 'v1' or 'v2' in client.
+     * Need to be set as 'v1', 'beta' or 'v2' in client.
      */
     version: Versions,
   }
@@ -77,8 +77,7 @@ model ModelV3 {
   id: string;
 
   @removed(Versions.beta)
-  @added(Versions.v2)
-  type: string;
+  enumProp: EnumV3;
 }
 
 enum EnumV2 {
@@ -86,6 +85,13 @@ enum EnumV2 {
   enumMemberV1,
 
   enumMemberV2,
+}
+
+enum EnumV3 {
+  @removed(Versions.beta)
+  enumMemberV1,
+
+  enumMemberBeta,
 }
 
 @removed(Versions.v2)
@@ -142,25 +148,34 @@ interface InterfaceV1 {
 /** This operation should be generated with the signatures of both the latest and the original versions, rather than beta version */
 @scenario
 @scenarioDoc("""
-  
   path: "/versioning/removed/api-version:v1/v3"
   Expected request body:
   ```json
-  { "id": "123", "type": "foo" }
-  ```
-  
-  path: "/versioning/removed/api-version:v2/v3"
-  Expected request body:
-  ```json
-  { "id": "123", "type": "foo" }
-  ```
-  
-  path: "/versioning/removed/api-version:beta/v3"
-  Expected request body:
-  ```json
-  { "id": "123"}
+  { "id": "123", "enumProp": "enumMemberV1" }
   ```
   """)
 @post
-@route("/v3")
-op v3(@body body: ModelV3): ModelV3;
+@route("/v3withv1")
+op modelV3WithV1(@body body: ModelV3): ModelV3;
+
+@scenario
+@scenarioDoc("""
+  Expected request body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberBeta"}
+  ```
+  """)
+@post
+@route("/v3withbeta")
+op modelV3WithBeta(@body body: ModelV3): ModelV3;
+
+@scenario
+@scenarioDoc("""
+  Expected request body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberV1" }
+  ```
+  """)
+@post
+@route("/v3withv2")
+op modelV3WithV2(@body body: ModelV3): ModelV3;
