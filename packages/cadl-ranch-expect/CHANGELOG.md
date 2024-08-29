@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.2
+
+### Patch Changes
+
+- 039ab07: fix(decorator): replace hard code url with `{endpoint}` in `@scenarioService`
+
 ## 0.15.1
 
 ### Patch Changes
