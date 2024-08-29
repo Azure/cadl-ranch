@@ -5540,19 +5540,46 @@ Expected input body:
 }
 ```
 
-### Type_Model_Templated_templatedType
+### Type_Model_Templated_TemplatedTypes_float32TemplatedType
 
-- Endpoint: `put /type/model/templated/templatedType`
+- Endpoint: `put /type/model/templated/float32ValuesType`
 
 Expected input body:
 
+````json
+{
+  "kind": "Float32Values",
+  "values":
+  [
+    1234
+  ],
+  "value": 1234
+}
+Expected response body:
+{
+  "kind": "Float32Values",
+  "values":
+  [
+    1234
+  ],
+  "value": 1234
+}
+
+### Type_Model_Templated_TemplatedTypes_int32TemplatedType
+
+- Endpoint: `put /type/model/templated/int32ValuesType`
+
+Expected input body:
 ```json
 {
   "kind": "Int32Values",
-  "values": [1234],
+  "values":
+  [
+    1234
+  ],
   "value": 1234
 }
-```
+````
 
 Expected response body:
 
@@ -5563,6 +5590,30 @@ Expected response body:
   "value": 1234
 }
 ```
+
+### Type_Model_Templated_TemplatedTypes_numericTemplatedType
+
+- Endpoint: `put /type/model/templated/numericType`
+
+Expected input body:
+
+````json
+{
+  "kind": "Int32Values",
+  "values":
+  [
+    1234
+  ],
+  "value": 1234
+}
+Expected response body:
+{
+  "values":
+  [
+    1234
+  ],
+  "value": 1234
+}
 
 ### Type_Model_Usage_input
 
@@ -5588,12 +5639,11 @@ Send a GET request which return the following body {requiredProp: "example-value
 
 Generate abd send put model with write/create properties.
 Expected input body:
-
 ```json
 {
-  "deleteProp": true
+  deleteProp: true,
 }
-```
+````
 
 ### Type_Model_Visibility_getModel
 

@@ -22,51 +22,105 @@ model NumericType<T extends numeric> {
 }
 
 /**
- * An instantiated type representing int32 type.
+ * An instantiated type representing int32 values type.
  */
-model Int32Type extends NumericType<int32> {
+model Int32ValuesType extends NumericType<int32> {
   /**
-   * The Kind of the Int32Type.
+   * The Kind of the Int32ValuesType.
    */
   kind: "Int32Values";
 }
 
 /**
- * An instantiated type representing float type.
+ * An instantiated type representing float32 values type.
  */
-model FloatType extends NumericType<float> {
+model Float32ValuesType extends NumericType<float32> {
   /**
-   * The Kind of the FloatType.
+   * The Kind of the Float32ValuesType.
    */
-  kind: "FloatValues";
+  kind: "Float32Values";
 }
 
-@scenario
-@scenarioDoc("""
-  Expected input body:
-  ```json
-  {
-    "kind": "Int32Values",
-    "values": 
-    [
-      1234
-    ],
-    "value": 1234
-  }
-  ```
-  
-  Expected response body:
-  ```json
-  {
-    "kind": "Int32Values",
-    "values": 
-    [
-      1234
-    ],
-    "value": 1234
-  }
-  ```
-  """)
-@route("/templatedType")
-@put
-op templatedType(@body input: Int32Type): Int32Type;
+@operationGroup("templatedTypes")
+namespace TemplatedTypes {
+  @scenario
+  @scenarioDoc("""
+    Expected input body:
+    ```json
+    {
+      "kind": "Int32Values",
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    Expected response body:
+    {
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    """)
+  @route("/numericType")
+  @put
+  op numericTemplatedType(@body input: NumericType<int32>): NumericType<int32>;
+
+  @scenario
+  @scenarioDoc("""
+    Expected input body:
+    ```json
+    {
+      "kind": "Float32Values",
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    Expected response body:
+    {
+      "kind": "Float32Values",
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    """)
+  @route("/float32ValuesType")
+  @put
+  op float32TemplatedType(@body input: Float32ValuesType): Float32ValuesType;
+
+  @scenario
+  @scenarioDoc("""
+    Expected input body:
+    ```json
+    {
+      "kind": "Int32Values",
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    ```
+    
+    Expected response body:
+    ```json
+    {
+      "kind": "Int32Values",
+      "values": 
+      [
+        1234
+      ],
+      "value": 1234
+    }
+    ```
+    """)
+  @route("/int32ValuesType")
+  @put
+  op int32TemplatedType(@body input: Int32ValuesType): Int32ValuesType;
+}
