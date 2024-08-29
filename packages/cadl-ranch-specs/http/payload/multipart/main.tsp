@@ -67,10 +67,6 @@ model BinaryArrayPartsRequest {
   pictures: bytes[];
 }
 
-model JsonArrayPartsRequest {
-  profileImage: bytes;
-}
-
 model MultiBinaryPartsRequest {
   profileImage: bytes;
   picture?: bytes;
@@ -164,10 +160,7 @@ namespace FormData {
   @doc("Test content-type: multipart/form-data for mixed scenarios")
   @post
   @route("/complex-parts")
-  op jsonArrayAndFileArrayAndOthers(
-    @header contentType: "multipart/form-data",
-    @body body: ComplexPartsRequest,
-  ): NoContentResponse;
+  op fileArrayAndBasic(@header contentType: "multipart/form-data", @body body: ComplexPartsRequest): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -458,7 +451,7 @@ namespace FormData {
     @doc("Test content-type: multipart/form-data for mixed scenarios")
     @post
     @route("/complex-parts-with-httppart")
-    op jsonArrayAndFileArrayAndOthers(
+    op jsonArrayAndFileArray(
       @header contentType: "multipart/form-data",
       @multipartBody body: ComplexHttpPartsModelRequest,
     ): NoContentResponse;

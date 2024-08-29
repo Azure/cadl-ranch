@@ -120,7 +120,7 @@ function createMockApis(route: string, checkList: ((param: MockRequest) => void)
 
 Scenarios.Payload_MultiPart_FormData_basic = passOnSuccess(createMockApis("mixed-parts", [checkId, checkProfileImage]));
 
-Scenarios.Payload_MultiPart_FormData_jsonArrayAndFileArrayAndOthers = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_fileArrayAndBasic = passOnSuccess(
   createMockApis("complex-parts", [checkId, checkAddress, checkAllFiles]),
 );
 
@@ -186,7 +186,7 @@ Scenarios.Payload_MultiPart_FormData_HttpParts_ContentType_requiredContentType =
 Scenarios.Payload_MultiPart_FormData_HttpParts_ContentType_optionalContentType = passOnSuccess(
   createMockApis("file-with-http-part-optional-content-type", [checkOptionalContentType]),
 );
-Scenarios.Payload_MultiPart_FormData_HttpParts_jsonArrayAndFileArrayAndOthers = passOnSuccess(
+Scenarios.Payload_MultiPart_FormData_HttpParts_jsonArrayAndFileArray = passOnSuccess(
   createMockApis("complex-parts-with-httppart", [checkId, checkAddress, checkPreviousAddresses, checkAllFiles]),
 );
 Scenarios.Payload_MultiPart_FormData_HttpParts_NonString_float = passOnSuccess(
