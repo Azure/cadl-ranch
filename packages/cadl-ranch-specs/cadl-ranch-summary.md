@@ -791,7 +791,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_createWithSystemAssigned
 
 - Endpoint: `put https://management.azure.com`
 
@@ -833,7 +833,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -861,7 +861,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned
+### Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_updateWithUserAssignedAndSystemAssigned
 
 - Endpoint: `patch https://management.azure.com`
 
@@ -907,7 +907,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
+### Azure_ResourceManager_Models_Resources_Nested_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
 
@@ -946,7 +946,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_NestedProxyResources_delete
+### Azure_ResourceManager_Models_Resources_Nested_delete
 
 - Endpoint: `delete https://management.azure.com`
 
@@ -955,7 +955,7 @@ Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup
 Expected query parameter: api-version=2023-12-01-preview
 Expected response status code: 204
 
-### Azure_ResourceManager_Models_Resources_NestedProxyResources_get
+### Azure_ResourceManager_Models_Resources_Nested_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -985,7 +985,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource
+### Azure_ResourceManager_Models_Resources_Nested_listByTopLevelTrackedResource
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1017,7 +1017,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_NestedProxyResources_update
+### Azure_ResourceManager_Models_Resources_Nested_update
 
 - Endpoint: `patch https://management.azure.com`
 
@@ -1056,7 +1056,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate
+### Azure_ResourceManager_Models_Resources_Singleton_createOrUpdate
 
 - Endpoint: `put https://management.azure.com`
 
@@ -1097,7 +1097,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup
+### Azure_ResourceManager_Models_Resources_Singleton_getByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1128,7 +1128,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup
+### Azure_ResourceManager_Models_Resources_Singleton_listByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1161,7 +1161,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update
+### Azure_ResourceManager_Models_Resources_Singleton_update
 
 - Endpoint: `patch https://management.azure.com`
 
@@ -1202,7 +1202,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
+### Azure_ResourceManager_Models_Resources_TopLevel_actionSync
 
 - Endpoint: `post https://management.azure.com`
 
@@ -1218,7 +1218,7 @@ Expected response body:
   }
   ```
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace
+### Azure_ResourceManager_Models_Resources_TopLevel_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
 
@@ -1259,7 +1259,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
+### Azure_ResourceManager_Models_Resources_TopLevel_delete
 
 - Endpoint: `delete https://management.azure.com`
 
@@ -1270,7 +1270,7 @@ Expected query parameter: api-version=2023-12-01-preview
 ````
 Expected response status code: 204
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get
+### Azure_ResourceManager_Models_Resources_TopLevel_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1300,7 +1300,7 @@ Expected response body:
 }
 ````
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup
+### Azure_ResourceManager_Models_Resources_TopLevel_listByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1333,7 +1333,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription
+### Azure_ResourceManager_Models_Resources_TopLevel_listBySubscription
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1366,7 +1366,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
+### Azure_ResourceManager_Models_Resources_TopLevel_update
 
 - Endpoint: `patch https://management.azure.com`
 
