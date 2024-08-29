@@ -155,8 +155,8 @@ interface InterfaceV1 {
   ```
   """)
 @post
-@route("/v3withv1")
-op modelV3WithV1(@body body: ModelV3): ModelV3;
+@route("/v3inversion1")
+op modelV3InVersionV1(@body body: ModelV3): ModelV3;
 
 @scenario
 @scenarioDoc("""
@@ -166,8 +166,8 @@ op modelV3WithV1(@body body: ModelV3): ModelV3;
   ```
   """)
 @post
-@route("/v3withbeta")
-op modelV3WithBeta(@body body: ModelV3): ModelV3;
+@route("/v3inversionbeta")
+op modelV2InVersionBeta(@body body: ModelV3): ModelV3;
 
 @scenario
 @scenarioDoc("""
@@ -177,5 +177,5 @@ op modelV3WithBeta(@body body: ModelV3): ModelV3;
   ```
   """)
 @post
-@route("/v3withv2")
-op modelV3WithV2(@body body: ModelV3): ModelV3;
+@route("/v3inversion2")
+op modelV3InVersionV2(@body body: ModelV3): ModelV3;
