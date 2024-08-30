@@ -115,7 +115,7 @@ const validTenantExtensionsResource = {
   },
 };
 
-Scenarios.Azure_ResourceManager_Models_Resources_Extensions_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_get = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
@@ -175,7 +175,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_Extensions_get = passOnSuccess(
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_Extensions_createOrUpdate = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_createOrUpdate = passOnSuccess([
   mockapi.put(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
@@ -240,7 +240,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_Extensions_createOrUpdate = pas
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_Extensions_update = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_update = passOnSuccess([
   mockapi.patch(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
@@ -321,7 +321,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_Extensions_update = passOnSucce
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_Extensions_delete = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_delete = passOnSuccess([
   mockapi.delete(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources/:extensionName",
     (req) => {
@@ -378,7 +378,7 @@ Scenarios.Azure_ResourceManager_Models_Resources_Extensions_delete = passOnSucce
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_Models_Resources_Extensions_listByParent = passOnSuccess([
+Scenarios.Azure_ResourceManager_Models_Resources_ExtensionsResources_listByParent = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/providers/Azure.ResourceManager.Models.Resources/extensionsResources",
     (req) => {

@@ -907,7 +907,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_Extensions_createOrUpdate
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_createOrUpdate
 
 - Endpoint: `put https://management.azure.com`
 
@@ -946,7 +946,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_Extensions_delete
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_delete
 
 - Endpoint: `delete https://management.azure.com`
 
@@ -957,7 +957,7 @@ Expected query parameter: api-version=2023-12-01-preview
 ````
 Expected response status code: 204
 
-### Azure_ResourceManager_Models_Resources_Extensions_get
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -986,7 +986,7 @@ Expected response body:
 }
 ````
 
-### Azure_ResourceManager_Models_Resources_Extensions_listByParent
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_listByParent
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1018,7 +1018,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_Extensions_update
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_update
 
 - Endpoint: `patch https://management.azure.com`
 
