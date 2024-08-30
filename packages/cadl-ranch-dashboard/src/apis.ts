@@ -1,8 +1,9 @@
 import {
   CadlRanchCoverageClient,
   ResolvedCoverageReport,
+  ScenarioData,
   ScenarioManifest,
-  GeneratorMode,
+  TableConfigs,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
 
 const storageAccountName = "azuresdkcadlranch";
@@ -57,11 +58,17 @@ export async function getCoverageSummaries(): Promise<CoverageSummary[]> {
     coverageClient.manifest.get(),
     loadReports(coverageClient, generatorNames),
   ]);
-  return GeneratorMode.map((mode) => ({
-    manifest,
-    generatorReports: generatorReports[mode],
-    mode,
-  }));
+  return TableConfigs.map((config) => {
+    const copiedManifest: ScenarioManifest = JSON.parse(JSON.stringify(manifest));
+    copiedManifest.scenarios = manifest.scenarios.filter((scenarioData: ScenarioData) =>
+      config.scenarioFilter ? config.scenarioFilter(scenarioData.name) : () => true,
+    );
+    return {
+      manifest: copiedManifest,
+      generatorReports: generatorReports[config.mode],
+      mode: config.mode,
+    };
+  });
 }
 
 async function loadReports(
@@ -69,11 +76,11 @@ async function loadReports(
   generatorNames: GeneratorNames[],
 ): Promise<{ [mode: string]: Record<GeneratorNames, ResolvedCoverageReport | undefined> }> {
   const results = await Promise.all(
-    GeneratorMode.map(async (mode): Promise<[string, Record<GeneratorNames, ResolvedCoverageReport | undefined>]> => {
+    TableConfigs.map(async (config): Promise<[string, Record<GeneratorNames, ResolvedCoverageReport | undefined>]> => {
       const items = await Promise.all(
         generatorNames.map(async (generatorName): Promise<[GeneratorNames, ResolvedCoverageReport | undefined]> => {
           try {
-            const report = await coverageClient.coverage.getLatestCoverageFor(generatorName, mode);
+            const report = await coverageClient.coverage.getLatestCoverageFor(generatorName, config.mode);
             return [generatorName, report];
           } catch (error) {
             // eslint-disable-next-line no-console
@@ -83,7 +90,7 @@ async function loadReports(
           }
         }),
       );
-      return [mode, Object.fromEntries(items) as any];
+      return [config.mode, Object.fromEntries(items) as any];
     }),
   );
 
