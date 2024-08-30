@@ -3,7 +3,7 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Type_Model_Templated_TemplatedTypes_numericTemplatedType = passOnSuccess(
+Scenarios.Type_Model_Templated_numericTemplatedType = passOnSuccess(
   mockapi.put("/type/model/templated/numericType", (req) => {
     const body = {
       kind: "Int32Values",
@@ -18,12 +18,12 @@ Scenarios.Type_Model_Templated_TemplatedTypes_numericTemplatedType = passOnSucce
   }),
 );
 
-Scenarios.Type_Model_Templated_TemplatedTypes_float32TemplatedType = passOnSuccess(
+Scenarios.Type_Model_Templated_float32TemplatedType = passOnSuccess(
   mockapi.put("/type/model/templated/float32ValuesType", (req) => {
     const body = {
       kind: "Float32Values",
-      values: [1234],
-      value: 1234,
+      values: [12.34],
+      value: 12.34,
     };
     req.expect.bodyEquals(body);
     return {
@@ -33,7 +33,7 @@ Scenarios.Type_Model_Templated_TemplatedTypes_float32TemplatedType = passOnSucce
   }),
 );
 
-Scenarios.Type_Model_Templated_TemplatedTypes_int32TemplatedType = passOnSuccess(
+Scenarios.Type_Model_Templated_int32TemplatedType = passOnSuccess(
   mockapi.put("/type/model/templated/int32ValuesType", (req) => {
     const body = {
       kind: "Int32Values",
