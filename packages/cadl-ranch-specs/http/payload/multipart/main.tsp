@@ -67,10 +67,6 @@ model BinaryArrayPartsRequest {
   pictures: bytes[];
 }
 
-model JsonArrayPartsRequest {
-  profileImage: bytes;
-}
-
 model MultiBinaryPartsRequest {
   profileImage: bytes;
   picture?: bytes;
@@ -164,7 +160,7 @@ namespace FormData {
   @doc("Test content-type: multipart/form-data for mixed scenarios")
   @post
   @route("/complex-parts")
-  op complex(@header contentType: "multipart/form-data", @body body: ComplexPartsRequest): NoContentResponse;
+  op fileArrayAndBasic(@header contentType: "multipart/form-data", @body body: ComplexPartsRequest): NoContentResponse;
 
   @scenario
   @scenarioDoc("""
@@ -330,131 +326,165 @@ namespace FormData {
     profileImage: MultiPartRequest.profileImage,
   ): NoContentResponse;
 
-  @scenario
-  @scenarioDoc("""
-    This case will check filename and specific content-type of file part, so expect request:
-    ```
-    POST /upload HTTP/1.1
-    Content-Length: 428
-    Content-Type: multipart/form-data; boundary=abcde12345
-    
-    --abcde12345
-    Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
-    Content-Type: image/jpg
-    
-    {…file content of .jpg file…}
-    --abcde12345--
-    ```
-    """)
-  @doc("Test content-type: multipart/form-data")
-  @post
-  @route("/check-filename-and-specific-content-type-with-httppart")
-  op fileWithHttpPartSpecificContentType(
-    @header contentType: "multipart/form-data",
-    @multipartBody body: FileWithHttpPartSpecificContentTypeRequest,
-  ): NoContentResponse;
+  namespace HttpParts {
+    namespace ContentType {
+      @scenario
+      @scenarioDoc("""
+        This case will check filename and specific content-type of file part, so expect request:
+        ```
+        POST /upload HTTP/1.1
+        Content-Length: 428
+        Content-Type: multipart/form-data; boundary=abcde12345
+        
+        --abcde12345
+        Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+        Content-Type: image/jpg
+        
+        {…file content of .jpg file…}
+        --abcde12345--
+        ```
+        """)
+      @doc("Test content-type: multipart/form-data")
+      @post
+      @route("/check-filename-and-specific-content-type-with-httppart")
+      op imageJpegContentType(
+        @header contentType: "multipart/form-data",
+        @multipartBody body: FileWithHttpPartSpecificContentTypeRequest,
+      ): NoContentResponse;
 
-  @scenario
-  @scenarioDoc("""
-    This case will check required content-type of file part, so expect request:
-    ```
-    POST /upload HTTP/1.1
-    Content-Length: 428
-    Content-Type: multipart/form-data; boundary=abcde12345
-    
-    --abcde12345
-    Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-    Content-Type: application/octet-stream
-    
-    {…file content of .jpg file…}
-    --abcde12345--
-    ```
-    """)
-  @doc("Test content-type: multipart/form-data")
-  @post
-  @route("/check-filename-and-required-content-type-with-httppart")
-  op fileWithHttpPartRequiredContentType(
-    @header contentType: "multipart/form-data",
-    @multipartBody body: FileWithHttpPartRequiredContentTypeRequest,
-  ): NoContentResponse;
+      @scenario
+      @scenarioDoc("""
+        This case will check required content-type of file part, so expect request:
+        ```
+        POST /upload HTTP/1.1
+        Content-Length: 428
+        Content-Type: multipart/form-data; boundary=abcde12345
+        
+        --abcde12345
+        Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+        Content-Type: application/octet-stream
+        
+        {…file content of .jpg file…}
+        --abcde12345--
+        ```
+        """)
+      @doc("Test content-type: multipart/form-data")
+      @post
+      @route("/check-filename-and-required-content-type-with-httppart")
+      op requiredContentType(
+        @header contentType: "multipart/form-data",
+        @multipartBody body: FileWithHttpPartRequiredContentTypeRequest,
+      ): NoContentResponse;
 
-  @scenario
-  @scenarioDoc("""
-    Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
-    ```
-    POST /upload HTTP/1.1
-    Content-Length: 428
-    Content-Type: multipart/form-data; boundary=abcde12345
-    
-    --abcde12345
-    Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-    Content-Type: application/octet-stream
-    
-    {…file content of .jpg file…}
-    --abcde12345
-    ```
-    """)
-  @doc("Test content-type: multipart/form-data for optional content type")
-  @post
-  @route("/file-with-http-part-optional-content-type")
-  op fileWithHttpPartOptionalContentType(
-    @header contentType: "multipart/form-data",
-    @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
-  ): NoContentResponse;
-
-  @scenario
-  @scenarioDoc("""
-    For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
-    content-type will be checked with value "application/octet-stream". Expect request:
-    ```
-    POST /upload HTTP/1.1
-    Content-Length: 428
-    Content-Type: multipart/form-data; boundary=abcde12345
-    
-    --abcde12345
-    Content-Disposition: form-data; name="id"
-    Content-Type: text/plain
-    
-    123
-    --abcde12345
-    Content-Disposition: form-data; name="address"
-    Content-Type: application/json
-    
-    {
-      "city": "X"
+      @scenario
+      @scenarioDoc("""
+        Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+        ```
+        POST /upload HTTP/1.1
+        Content-Length: 428
+        Content-Type: multipart/form-data; boundary=abcde12345
+        
+        --abcde12345
+        Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+        Content-Type: application/octet-stream
+        
+        {…file content of .jpg file…}
+        --abcde12345
+        ```
+        """)
+      @doc("Test content-type: multipart/form-data for optional content type")
+      @post
+      @route("/file-with-http-part-optional-content-type")
+      op optionalContentType(
+        @header contentType: "multipart/form-data",
+        @multipartBody body: FileWithHttpPartOptionalContentTypeRequest,
+      ): NoContentResponse;
     }
-    --abcde12345
-    Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-    Content-Type: application/octet-stream
-    
-    {…file content of .jpg file…}
-    --abcde12345--
-    Content-Disposition: form-data; name="previousAddresses"
-    Content-Type: application/json
-    
-    [{
-      "city": "Y"
-    },{
-      "city": "Z"
-    }]
-    --abcde12345
-    Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
-    Content-Type: application/octet-stream
-    
-    {…file content of .png file…}
-    --abcde12345
-    Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
-    Content-Type: application/octet-stream
-    
-    {…file content of .png file…}
-    --abcde12345--
-    ```
-    """)
-  @doc("Test content-type: multipart/form-data for mixed scenarios")
-  @post
-  @route("/complex-parts-with-httppart")
-  op complexWithHttpPart(
-    @header contentType: "multipart/form-data",
-    @multipartBody body: ComplexHttpPartsModelRequest,
-  ): NoContentResponse;
+    @scenario
+    @scenarioDoc("""
+      For File part, filename will not be checked but it is necessary otherwise cadl-ranch can't parse it;
+      content-type will be checked with value "application/octet-stream". Expect request:
+      ```
+      POST /upload HTTP/1.1
+      Content-Length: 428
+      Content-Type: multipart/form-data; boundary=abcde12345
+      
+      --abcde12345
+      Content-Disposition: form-data; name="id"
+      Content-Type: text/plain
+      
+      123
+      --abcde12345
+      Content-Disposition: form-data; name="address"
+      Content-Type: application/json
+      
+      {
+        "city": "X"
+      }
+      --abcde12345
+      Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+      Content-Type: application/octet-stream
+      
+      {…file content of .jpg file…}
+      --abcde12345--
+      Content-Disposition: form-data; name="previousAddresses"
+      Content-Type: application/json
+      
+      [{
+        "city": "Y"
+      },{
+        "city": "Z"
+      }]
+      --abcde12345
+      Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+      Content-Type: application/octet-stream
+      
+      {…file content of .png file…}
+      --abcde12345
+      Content-Disposition: form-data; name="pictures"; filename="<any-name-is-ok>"
+      Content-Type: application/octet-stream
+      
+      {…file content of .png file…}
+      --abcde12345--
+      ```
+      """)
+    @doc("Test content-type: multipart/form-data for mixed scenarios")
+    @post
+    @route("/complex-parts-with-httppart")
+    op jsonArrayAndFileArray(
+      @header contentType: "multipart/form-data",
+      @multipartBody body: ComplexHttpPartsModelRequest,
+    ): NoContentResponse;
+
+    namespace NonString {
+      @scenario
+      @scenarioDoc("""
+        Expect request:
+        ```
+        POST /upload HTTP/1.1
+        Content-Length: 428
+        Content-Type: multipart/form-data; boundary=abcde12345
+        
+        --abcde12345
+        Content-Disposition: form-data; name="temperature"
+        Content-Type: text/plain
+        
+        0.5
+        --abcde12345
+        ```
+        """)
+      @doc("Test content-type: multipart/form-data for non string")
+      @post
+      @route("/non-string-float")
+      op float(
+        @header contentType: "multipart/form-data",
+        @multipartBody body: {
+          temperature: HttpPart<{
+            @body body: float64;
+            @header contentType: "text/plain";
+          }>;
+        },
+      ): NoContentResponse;
+    }
+  }
 }
