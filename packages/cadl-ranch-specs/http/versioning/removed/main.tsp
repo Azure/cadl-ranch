@@ -77,6 +77,7 @@ model ModelV3 {
   id: string;
 
   @removed(Versions.beta)
+  @added(Versions.v2)
   enumProp: EnumV3;
 }
 
@@ -89,6 +90,7 @@ enum EnumV2 {
 
 enum EnumV3 {
   @removed(Versions.beta)
+  @added(Versions.v2)
   enumMemberV1,
 
   enumMemberBeta,
@@ -153,29 +155,17 @@ interface InterfaceV1 {
   ```json
   { "id": "123", "enumProp": "enumMemberV1" }
   ```
-  """)
-@post
-@route("/v3inversion1")
-op modelV3InVersion1(@body body: ModelV3): ModelV3;
-
-@scenario
-@scenarioDoc("""
+  
   Expected request body:
   ```json
   { "id": "123", "enumProp": "enumMemberBeta"}
   ```
-  """)
-@post
-@route("/v3inversionbeta")
-op modelV3InVersionBeta(@body body: ModelV3): ModelV3;
-
-@scenario
-@scenarioDoc("""
+  
   Expected request body:
   ```json
   { "id": "123", "enumProp": "enumMemberV1" }
   ```
   """)
 @post
-@route("/v3inversion2")
-op modelV3InVersion2(@body body: ModelV3): ModelV3;
+@route("/v3")
+op modelV3(@body body: ModelV3): ModelV3;

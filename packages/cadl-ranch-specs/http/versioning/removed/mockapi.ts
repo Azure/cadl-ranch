@@ -13,8 +13,8 @@ Scenarios.Versioning_Removed_v2 = passOnSuccess(
   }),
 );
 
-Scenarios.Versioning_Removed_modelV3InVersion1 = passOnSuccess(
-  mockapi.post("/versioning/removed/api-version:v1/v3inversion1", (req) => {
+Scenarios.Versioning_Removed_modelV3 = passOnSuccess(
+  mockapi.post("/versioning/removed/api-version:v1/v3", (req) => {
     req.expect.bodyEquals({ id: "123", enumProp: "enumMemberV1" });
     return {
       status: 200,
@@ -23,8 +23,8 @@ Scenarios.Versioning_Removed_modelV3InVersion1 = passOnSuccess(
   }),
 );
 
-Scenarios.Versioning_Removed_modelV3InVersionBeta = passOnSuccess(
-  mockapi.post("/versioning/removed/api-version:beta/v3inversionbeta", (req) => {
+Scenarios.Versioning_Removed_modelV3_beta = passOnSuccess(
+  mockapi.post("/versioning/removed/api-version:beta/v3", (req) => {
     req.expect.bodyEquals({ id: "123", enumProp: "enumMemberBeta" });
     return {
       status: 200,
@@ -33,8 +33,8 @@ Scenarios.Versioning_Removed_modelV3InVersionBeta = passOnSuccess(
   }),
 );
 
-Scenarios.Versioning_Removed_modelV3InVersion2 = passOnSuccess(
-  mockapi.post("/versioning/removed/api-version:v2/v3inversion2", (req) => {
+Scenarios.Versioning_Removed_modelV3_v2 = passOnSuccess(
+  mockapi.post("/versioning/removed/api-version:v2/v3", (req) => {
     req.expect.bodyEquals({ id: "123", enumProp: "enumMemberV1" });
     return {
       status: 200,
