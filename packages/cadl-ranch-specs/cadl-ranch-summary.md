@@ -954,7 +954,6 @@ Resource DELETE operation.
 Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
 Expected query parameter: api-version=2023-12-01-preview
 
-````
 Expected response status code: 204
 
 ### Azure_ResourceManager_Models_Resources_ExtensionsResources_get
@@ -966,6 +965,7 @@ Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/e
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
+
 ```json
 {
   "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
@@ -984,7 +984,7 @@ Expected response body:
     "lastModifiedByType": "User",
   }
 }
-````
+```
 
 ### Azure_ResourceManager_Models_Resources_ExtensionsResources_listByParent
 

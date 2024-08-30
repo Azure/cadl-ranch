@@ -135,7 +135,7 @@ interface ExtensionsResources {
     Resource DELETE operation.
     Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
     Expected query parameter: api-version=2023-12-01-preview
-    ```
+    
     Expected response status code: 204
     """)
   delete is ArmResourceDeleteSync<ExtensionsResource>;
