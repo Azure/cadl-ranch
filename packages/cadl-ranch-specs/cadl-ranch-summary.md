@@ -907,12 +907,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_createOrUpdate
+### Azure_ResourceManager_Models_Resources_Extensions_createOrUpdate
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected request body:
@@ -928,9 +928,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
   "name": "extension",
-  "type": "extension",
+  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -946,31 +946,31 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_delete
+### Azure_ResourceManager_Models_Resources_Extensions_delete
 
 - Endpoint: `delete https://management.azure.com`
 
 Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
 Expected query parameter: api-version=2023-12-01-preview
 
 ````
 Expected response status code: 204
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_get
+### Azure_ResourceManager_Models_Resources_Extensions_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
   "name": "extension",
-  "type": "extension",
+  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
   "properties":{
     "description": "valid",
     "provisioningState": "Succeeded"
@@ -986,12 +986,12 @@ Expected response body:
 }
 ````
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_listByResourceGroup
+### Azure_ResourceManager_Models_Resources_Extensions_listByParent
 
 - Endpoint: `get https://management.azure.com`
 
-Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionResources
+Resource LIST by parent url operation.
+Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionResources
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -999,9 +999,9 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
     "name": "extension",
-    "type": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
     "properties":{
       "description": "valid",
       "provisioningState": "Succeeded"
@@ -1018,12 +1018,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_update
+### Azure_ResourceManager_Models_Resources_Extensions_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource Patch operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected request body:
@@ -1039,9 +1039,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
   "name": "extension",
-  "type": "extension",
+  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
   "properties":{
     "description": "valid2",
     "provisioningState": "Succeeded"

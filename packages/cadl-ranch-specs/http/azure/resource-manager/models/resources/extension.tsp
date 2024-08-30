@@ -2,12 +2,14 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.ResourceManager.Models.Resources;
 
@@ -26,19 +28,20 @@ model ExtensionsResourceProperties {
 }
 
 @armResourceOperations
-interface ExtensionsResources {
+@clientName("ExtensionsResources")
+interface Extensions {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+    Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
       "name": "extension",
-      "type": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -59,7 +62,7 @@ interface ExtensionsResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+    Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -73,9 +76,9 @@ interface ExtensionsResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
       "name": "extension",
-      "type": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -96,7 +99,7 @@ interface ExtensionsResources {
   @scenario
   @scenarioDoc("""
     Resource Patch operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+    Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected request body:
@@ -110,9 +113,9 @@ interface ExtensionsResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
       "name": "extension",
-      "type": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -133,7 +136,7 @@ interface ExtensionsResources {
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+    Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
@@ -142,17 +145,17 @@ interface ExtensionsResources {
 
   @scenario
   @scenarioDoc("""
-    Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionResources
+    Resource LIST by parent url operation.
+    Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionResources
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+        "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
         "name": "extension",
-        "type": "extension",
+        "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
         "properties":{
           "description": "valid",
           "provisioningState": "Succeeded"
@@ -169,5 +172,5 @@ interface ExtensionsResources {
     }
     ```
     """)
-  listByResourceGroup is ArmResourceListByParent<ExtensionsResource>;
+  listByParent is ArmResourceListByParent<ExtensionsResource>;
 }
