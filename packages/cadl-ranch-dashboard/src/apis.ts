@@ -1,8 +1,10 @@
 import {
   CadlRanchCoverageClient,
+  GeneratorMode,
   ResolvedCoverageReport,
   ScenarioData,
   ScenarioManifest,
+  TableConfig,
   TableConfigs,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
 
@@ -36,7 +38,7 @@ const generatorNames: GeneratorNames[] = [
 export interface CoverageSummary {
   manifest: ScenarioManifest;
   generatorReports: Record<GeneratorNames, ResolvedCoverageReport | undefined>;
-  mode: string;
+  tableConfig: TableConfig;
 }
 
 let client: CadlRanchCoverageClient | undefined;
@@ -66,7 +68,7 @@ export async function getCoverageSummaries(): Promise<CoverageSummary[]> {
     return {
       manifest: copiedManifest,
       generatorReports: generatorReports[config.mode],
-      mode: config.mode,
+      tableConfig: config,
     };
   });
 }
@@ -76,22 +78,24 @@ async function loadReports(
   generatorNames: GeneratorNames[],
 ): Promise<{ [mode: string]: Record<GeneratorNames, ResolvedCoverageReport | undefined> }> {
   const results = await Promise.all(
-    TableConfigs.map(async (config): Promise<[string, Record<GeneratorNames, ResolvedCoverageReport | undefined>]> => {
-      const items = await Promise.all(
-        generatorNames.map(async (generatorName): Promise<[GeneratorNames, ResolvedCoverageReport | undefined]> => {
-          try {
-            const report = await coverageClient.coverage.getLatestCoverageFor(generatorName, config.mode);
-            return [generatorName, report];
-          } catch (error) {
-            // eslint-disable-next-line no-console
-            console.error("Error resolving report", error);
+    Object.keys(GeneratorMode).map(
+      async (mode): Promise<[string, Record<GeneratorNames, ResolvedCoverageReport | undefined>]> => {
+        const items = await Promise.all(
+          generatorNames.map(async (generatorName): Promise<[GeneratorNames, ResolvedCoverageReport | undefined]> => {
+            try {
+              const report = await coverageClient.coverage.getLatestCoverageFor(generatorName, mode);
+              return [generatorName, report];
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.error("Error resolving report", error);
 
-            return [generatorName, undefined];
-          }
-        }),
-      );
-      return [config.mode, Object.fromEntries(items) as any];
-    }),
+              return [generatorName, undefined];
+            }
+          }),
+        );
+        return [mode, Object.fromEntries(items) as any];
+      },
+    ),
   );
 
   return results.reduce<{ [mode: string]: Record<GeneratorNames, ResolvedCoverageReport | undefined> }>(

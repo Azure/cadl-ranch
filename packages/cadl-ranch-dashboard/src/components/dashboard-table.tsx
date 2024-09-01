@@ -144,9 +144,15 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRowProps> = ({ covera
     }
     return [language, getCompletedRatio(coverageSummary.manifest.scenarios, report), report];
   });
+  let tableHeader;
+  if (coverageSummary.tableConfig.name) {
+    tableHeader = <th>Scenario name ({coverageSummary.tableConfig.name})</th>;
+  } else {
+    tableHeader = <th>Scenario name ({coverageSummary.tableConfig.mode})</th>;
+  }
   return (
     <tr>
-      <th>Scenario name (mode: {coverageSummary.mode})</th>
+      {tableHeader}
       {data.map(([lang, status, report]) => (
         <GeneratorHeaderCell key={lang} status={status} report={report} language={lang} />
       ))}
