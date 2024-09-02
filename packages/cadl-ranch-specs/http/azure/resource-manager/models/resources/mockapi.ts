@@ -61,6 +61,61 @@ const validSingletonResource = {
   },
 };
 
+const validCheckNameAvailability = {
+  nameAvailable: true,
+  reason: "AlreadyExists",
+  message: "",
+};
+
+// Check Global Name Availability
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_checkGlobalNameAvailability = passOnSuccess([
+  mockapi.post(
+    "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/checkNameAvailability",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      req.expect.bodyEquals({
+        name: "checkName",
+        type: "global",
+      });
+      const resource = JSON.parse(JSON.stringify(validCheckNameAvailability));
+      resource.message = "This is a global name availability check message.";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
+// Check Local Name Availability
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_checkLocalNameAvailability = passOnSuccess([
+  mockapi.post(
+    "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/locations/:location/checkNameAvailability",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location !== "westus") {
+        throw new ValidationError("Unexpected subscriptionId", "westus", req.params.location);
+      }
+      req.expect.bodyEquals({
+        name: "checkName",
+        type: "local",
+      });
+      const resource = JSON.parse(JSON.stringify(validCheckNameAvailability));
+      resource.message = "This is a local name availability check message.";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
 // singleton tracked resource
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
   mockapi.get(
