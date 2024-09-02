@@ -1,45 +1,61 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import axios from "axios";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper.js";
 
-describe("Basic Rest Client", () => {
+import * as dotenv from "dotenv";
+dotenv.config();
+
+describe("parameters/body-optionality service endpoint", () => {
+  let serverBasePath: string | undefined;
+
+  beforeEach(() => {
+    serverBasePath = process.env["SERVER_BASE_PATH"];
+  });
+
   it("should support required-explicit body", async () => {
-    const requestBody = {
-      name: "foo",
-    };
-    const response = await axios.post(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/body-optionality/required-explicit",
-      requestBody,
-    );
+    const endPoint = `${serverBasePath}/parameters/body-optionality/required-explicit`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.post, {
+      endPoint,
+      options: {
+        requestBody: {
+          name: "foo",
+        },
+      },
+    });
     assert.strictEqual(response.status, 204);
   });
 
   it("should support optional-explicit body", async () => {
-    const requestBody = {
-      name: "foo",
-    };
-    const response = await axios.post(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/body-optionality/optional-explicit/set",
-      requestBody,
-    );
+    const endPoint = `${serverBasePath}/parameters/body-optionality/optional-explicit/set`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.post, {
+      endPoint,
+      options: {
+        requestBody: {
+          name: "foo",
+        },
+      },
+    });
     assert.strictEqual(response.status, 204);
   });
 
   it("should support optional-explicit omitted body", async () => {
-    const response = await axios.post(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/body-optionality/optional-explicit/omit",
-    );
+    const endPoint = `${serverBasePath}/parameters/body-optionality/optional-explicit/omit`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.post, {
+      endPoint,
+    });
     assert.strictEqual(response.status, 204);
   });
 
   it("should support required-implicit body", async () => {
-    const requestBody = {
-      name: "foo",
-    };
-    const response = await axios.post(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/body-optionality/required-implicit",
-      requestBody,
-    );
+    const endPoint = `${serverBasePath}/parameters/body-optionality/required-implicit`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.post, {
+      endPoint,
+      options: {
+        requestBody: {
+          name: "foo",
+        },
+      },
+    });
     assert.strictEqual(response.status, 204);
   });
 });

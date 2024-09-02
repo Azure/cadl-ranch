@@ -1,27 +1,40 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import axios from "axios";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper.js";
 
-describe("Basic Rest Client", () => {
+import * as dotenv from "dotenv";
+dotenv.config();
+
+describe("parameters/basic service endpoint", () => {
+  let serverBasePath: string | undefined;
+
+  beforeEach(() => {
+    serverBasePath = process.env["SERVER_BASE_PATH"];
+  });
+
   it("basic parameters explicit-body simple", async () => {
-    const requestBody = {
-      name: "foo",
-    };
-    const response = await axios.put(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/basic/explicit-body/simple",
-      requestBody,
-    );
+    const endPoint = `${serverBasePath}/parameters/basic/explicit-body/simple`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.put, {
+      endPoint,
+      options: {
+        requestBody: {
+          name: "foo",
+        },
+      },
+    });
     assert.strictEqual(response.status, 204);
   });
 
   it("basic parameters implicit-body simple", async () => {
-    const requestBody = {
-      name: "foo",
-    };
-    const response = await axios.put(
-      "https://studious-cod-xg474qgj53p7q9-3000.app.github.dev/parameters/basic/implicit-body/simple",
-      requestBody,
-    );
+    const endPoint = `${serverBasePath}/parameters/basic/implicit-body/simple`;
+    const response = await makeServiceCall(SERVICE_CALL_TYPE.put, {
+      endPoint,
+      options: {
+        requestBody: {
+          name: "foo",
+        },
+      },
+    });
     assert.strictEqual(response.status, 204);
   });
 });
