@@ -84,7 +84,7 @@ interface ExtensionsResources {
       Expected response body:
       ```json
       {
-        "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
         "name": "extension",
         "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
         "properties":{
