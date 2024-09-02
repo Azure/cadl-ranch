@@ -9109,9 +9109,9 @@ Expected request body:
 { "prop": "foo" }
 ```
 
-### Versioning_Removed_modelV3InVersion1
+### Versioning_Removed_modelV3
 
-- Endpoint: `post /versioning/removed/api-version:{version}/v3inversion1`
+- Endpoint: `post /versioning/removed/api-version:{version}/v3`
 
 path: "/versioning/removed/api-version:v1/v3"
 Expected request body:
@@ -9120,10 +9120,7 @@ Expected request body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
-### Versioning_Removed_modelV3InVersion2
-
-- Endpoint: `post /versioning/removed/api-version:{version}/v3inversion2`
-
+path: "/versioning/removed/api-version:v2/v3"
 Expected request body:
 
 ```json
@@ -9134,6 +9131,7 @@ Expected request body:
 
 - Endpoint: `post /versioning/removed/api-version:{version}/v3inversionbeta`
 
+path: "/versioning/removed/api-version:beta/v3"
 Expected request body:
 
 ```json
