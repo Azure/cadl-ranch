@@ -11,8 +11,8 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.Models.Resources;
 
-@parentResource(ResourceGroupLocationResource)
-model LocationResource is TrackedResource<LocationResourceProperties> {
+@locationResource
+model LocationResource is ProxyResource<LocationResourceProperties> {
   ...ResourceNameParameter<LocationResource>;
 }
 
@@ -31,16 +31,15 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationResources",
-      "location": "eastus",
       "properties":{
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -61,12 +60,11 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
     {
-      "location": "westus",
       "properties": {
         "description": "valid",
       }
@@ -75,10 +73,9 @@ interface LocationResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationResources",
-      "location": "westus",
       "properties": {
         "description": "valid",
         "provisioningState": "Succeeded"
@@ -94,17 +91,16 @@ interface LocationResources {
     }
     ```
     """)
-  createOrUpdate is ArmResourceCreateOrReplaceSync<LocationResource>;
+  createOrUpdate is ArmResourceCreateOrUpdateAsync<LocationResource>;
 
   @scenario
   @scenarioDoc("""
     Resource PATCH operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
     {
-      "location": "westus",
       "properties": {
         "description": "valid2",
       }
@@ -113,10 +109,9 @@ interface LocationResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Models.Resources/locationResources",
-      "location": "westus",
       "properties":{
         "description": "valid2",
         "provisioningState": "Succeeded"
@@ -137,7 +132,7 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
@@ -147,17 +142,16 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/locations/eastus/locationResources/resource",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Models.Resources/locationResources/resource",
         "name": "resource",
         "type": "Azure.ResourceManager.Models.Resources/locationResources",
-        "location": "westus",
         "properties":{
           "description": "valid",
           "provisioningState": "Succeeded"
@@ -174,5 +168,5 @@ interface LocationResources {
     }
     ```
     """)
-  listByLocation is ArmResourceListByParent<LocationResource>;
+  listByParent is ArmResourceListByParent<LocationResource>;
 }
