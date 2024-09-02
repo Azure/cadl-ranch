@@ -156,11 +156,7 @@ interface InterfaceV1 {
   { "id": "123", "enumProp": "enumMemberV1" }
   ```
   
-  Expected request body:
-  ```json
-  { "id": "123", "enumProp": "enumMemberBeta"}
-  ```
-  
+  path: "/versioning/removed/api-version:v2/v3"
   Expected request body:
   ```json
   { "id": "123", "enumProp": "enumMemberV1" }
@@ -169,3 +165,15 @@ interface InterfaceV1 {
 @post
 @route("/v3")
 op modelV3(@body body: ModelV3): ModelV3;
+
+@scenario
+@scenarioDoc("""
+  path: "/versioning/removed/api-version:beta/v3"
+  Expected request body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberBeta"}
+  ```
+  """)
+@post
+@route("/v3inversionbeta")
+op modelV3InVersionBeta(@body body: ModelV3): ModelV3;
