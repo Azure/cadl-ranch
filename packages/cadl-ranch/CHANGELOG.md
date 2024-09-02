@@ -1,5 +1,14 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.4
+
+### Patch Changes
+
+- Updated dependencies [039ab07]
+- Updated dependencies [cd9fdd6]
+  - @azure-tools/cadl-ranch-expect@0.15.2
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.4
+
 ## 0.14.3
 
 ### Patch Changes
