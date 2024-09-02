@@ -911,94 +911,194 @@ Expected response body:
 
 - Endpoint: `put https://management.azure.com`
 
-Resource PUT operation.
-Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
-Expected query parameter: api-version=2023-12-01-preview
+  Resource PUT operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
 
-Expected request body:
+  Expected request body:
 
-```json
-{
-  "properties":{
-    "description": "valid",
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
-  "name": "extension",
-  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
-  "properties":{
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
+  ```json
+  {
+    "properties":{
+      "description": "valid",
   }
-}
-```
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
+
+  Resource PUT operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected request body:
+
+  ```json
+  {
+    "properties":{
+      "description": "valid",
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
+
+  Resource PUT operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected request body:
+
+  ```json
+  {
+    "properties":{
+      "description": "valid",
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
 
 ### Azure_ResourceManager_Models_Resources_ExtensionsResources_delete
 
 - Endpoint: `delete https://management.azure.com`
 
-Resource DELETE operation.
-Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
-Expected query parameter: api-version=2023-12-01-preview
+  Resource DELETE operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected response status code: 204
 
-Expected response status code: 204
+  Resource DELETE operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected response status code: 204
+
+  Resource DELETE operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected response status code: 204
 
 ### Azure_ResourceManager_Models_Resources_ExtensionsResources_get
 
 - Endpoint: `get https://management.azure.com`
 
-Resource GET operation.
-Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
-Expected query parameter: api-version=2023-12-01-preview
+  Resource GET operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
 
-Expected response body:
+  Expected response body:
 
-```json
-{
-  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
-  "name": "extension",
-  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
-  "properties":{
-    "description": "valid",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
+  ```json
+  {
+    "id": "/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
   }
-}
-```
+  ```
 
-### Azure_ResourceManager_Models_Resources_ExtensionsResources_listByParent
+  Resource GET operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
 
-- Endpoint: `get https://management.azure.com`
+  Expected response body:
 
-Resource LIST by parent url operation.
-Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionResources
-Expected query parameter: api-version=2023-12-01-preview
+  ```json
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
 
-Expected response body:
+  Resource GET operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
 
-```json
-{
-  "value": [{
+  Expected response body:
+
+  ```json
+  {
     "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
     "name": "extension",
     "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
@@ -1014,48 +1114,205 @@ Expected response body:
       "lastModifiedAt": <any date>,
       "lastModifiedByType": "User",
     }
-  }]
-}
-```
+  }
+  ```
+
+### Azure_ResourceManager_Models_Resources_ExtensionsResources_listByParent
+
+- Endpoint: `get https://management.azure.com`
+
+  Resource LIST by parent url operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionResources
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+
+  ```json
+  {
+    "value": [{
+      "id": "/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+      "properties":{
+        "description": "valid",
+        "provisioningState": "Succeeded"
+      },
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": <any date>,
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": <any date>,
+        "lastModifiedByType": "User",
+      }
+    }]
+  }
+  ```
+
+  Resource LIST by parent url operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionResources
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+
+  ```json
+  {
+    "value": [{
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+      "properties":{
+        "description": "valid",
+        "provisioningState": "Succeeded"
+      },
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": <any date>,
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": <any date>,
+        "lastModifiedByType": "User",
+      }
+    }]
+  }
+  ```
+
+  Resource LIST by parent url operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionResources
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected response body:
+
+  ```json
+  {
+    "value": [{
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+      "name": "extension",
+      "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+      "properties":{
+        "description": "valid",
+        "provisioningState": "Succeeded"
+      },
+      "systemData": {
+        "createdBy": "AzureSDK",
+        "createdByType": "User",
+        "createdAt": <any date>,
+        "lastModifiedBy": "AzureSDK",
+        "lastModifiedAt": <any date>,
+        "lastModifiedByType": "User",
+      }
+    }]
+  }
+  ```
 
 ### Azure_ResourceManager_Models_Resources_ExtensionsResources_update
 
 - Endpoint: `patch https://management.azure.com`
 
-Resource Patch operation.
-Expected path: /<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
-Expected query parameter: api-version=2023-12-01-preview
+  Resource Patch operation.
+  Expected path: /providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
 
-Expected request body:
+  Expected request body:
 
-```json
-{
-  "properties":{
-    "description": "valid2",
-}
-```
-
-Expected response body:
-
-```json
-{
-  "id": "/<resourceUri>/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
-  "name": "extension",
-  "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
-  "properties":{
-    "description": "valid2",
-    "provisioningState": "Succeeded"
-  },
-  "systemData": {
-    "createdBy": "AzureSDK",
-    "createdByType": "User",
-    "createdAt": <any date>,
-    "lastModifiedBy": "AzureSDK",
-    "lastModifiedAt": <any date>,
-    "lastModifiedByType": "User",
+  ```json
+  {
+    "properties":{
+      "description": "valid2",
   }
-}
-```
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid2",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
+
+  Resource Patch operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected request body:
+
+  ```json
+  {
+    "properties":{
+      "description": "valid2",
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid2",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
+
+  Resource Patch operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension
+  Expected query parameter: api-version=2023-12-01-preview
+
+  Expected request body:
+
+  ```json
+  {
+    "properties":{
+      "description": "valid2",
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/extensionsResources/extension",
+    "name": "extension",
+    "type": "Azure.ResourceManager.Models.Resources/extensionsResources",
+    "properties":{
+      "description": "valid2",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }
+  ```
 
 ### Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace
 
