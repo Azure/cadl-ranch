@@ -13,7 +13,7 @@
 - e9cf998: Add ResourceCollectionAction operation and mockapi in azure/core/basic.
 - 697c3bc: Add test case for etag header `if-modified-since` and `if-unmodified-since`
 - 8f43108: Added tests for ARM, test case for SingletonResource.
-- cca6fdf: refactor(spec): add uint8 for int encoding and templatize
+- cca6fdf: refactor(spec): add uint8 for int encoding and template
 - Updated dependencies [039ab07]
   - @azure-tools/cadl-ranch-expect@0.15.2
   - @azure-tools/cadl-ranch@0.14.4
