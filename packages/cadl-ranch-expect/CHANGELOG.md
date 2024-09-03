@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.3
+
+### Patch Changes
+
+- 70b185a: Revert PR 598
+
 ## 0.15.2
 
 ### Patch Changes
