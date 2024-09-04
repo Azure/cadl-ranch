@@ -1,5 +1,17 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.3
+
+### Patch Changes
+
+- 70b185a: Revert PR 598
+
+## 0.15.2
+
+### Patch Changes
+
+- 039ab07: fix(decorator): replace hard code url with `{endpoint}` in `@scenarioService`
+
 ## 0.15.1
 
 ### Patch Changes

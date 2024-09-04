@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.8.4
+
+### Patch Changes
+
+- cd9fdd6: Remove inapplicable code in dashboard
+
 ## 0.8.3
 
 ### Patch Changes
