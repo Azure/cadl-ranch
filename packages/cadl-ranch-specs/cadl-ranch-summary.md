@@ -5725,7 +5725,7 @@ Expected input body:
 }
 ```
 
-### Type_Model_Templated_float32TemplatedType
+### Type_Model_Templated_float32Type
 
 - Endpoint: `put /type/model/templated/float32ValuesType`
 
@@ -5750,7 +5750,7 @@ Expected response body:
   "value": 12.34
 }
 
-### Type_Model_Templated_int32TemplatedType
+### Type_Model_Templated_int32Type
 
 - Endpoint: `put /type/model/templated/int32ValuesType`
 
@@ -5776,7 +5776,7 @@ Expected response body:
 }
 ```
 
-### Type_Model_Templated_numericTemplatedType
+### Type_Model_Templated_numericType
 
 - Endpoint: `put /type/model/templated/numericType`
 

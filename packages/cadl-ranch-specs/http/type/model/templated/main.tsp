@@ -64,7 +64,7 @@ model Float32ValuesType extends NumericType<float32> {
   """)
 @route("/numericType")
 @put
-op numericTemplatedType(@body input: NumericType<int32>): NumericType<int32>;
+op numericType(@body input: NumericType<int32>): NumericType<int32>;
 
 @scenario
 @scenarioDoc("""
@@ -90,7 +90,7 @@ op numericTemplatedType(@body input: NumericType<int32>): NumericType<int32>;
   """)
 @route("/float32ValuesType")
 @put
-op float32TemplatedType(@body input: Float32ValuesType): Float32ValuesType;
+op float32Type(@body input: Float32ValuesType): Float32ValuesType;
 
 @scenario
 @scenarioDoc("""
@@ -120,4 +120,4 @@ op float32TemplatedType(@body input: Float32ValuesType): Float32ValuesType;
   """)
 @route("/int32ValuesType")
 @put
-op int32TemplatedType(@body input: Int32ValuesType): Int32ValuesType;
+op int32Type(@body input: Int32ValuesType): Int32ValuesType;
