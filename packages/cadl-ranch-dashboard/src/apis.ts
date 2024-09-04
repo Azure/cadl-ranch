@@ -4,9 +4,8 @@ import {
   ResolvedCoverageReport,
   ScenarioData,
   ScenarioManifest,
-  TableConfig,
-  TableConfigs,
 } from "@azure-tools/cadl-ranch-coverage-sdk";
+import { TableConfig, TableConfigs } from "./constants.js";
 
 const storageAccountName = "azuresdkcadlranch";
 
