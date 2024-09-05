@@ -94,3 +94,8 @@ export async function makeHeadCall(request: ServiceRequest): Promise<AxiosRespon
   const response = await axios.head(request.endPoint, request.options?.config);
   return response;
 }
+
+type EncodingType = "utf-8" | "base64" | "base64url" | "hex";
+export function uint8ArrayToString(bytes: Uint8Array, format: EncodingType): string {
+  return Buffer.from(bytes).toString(format);
+}

@@ -16,7 +16,7 @@
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
     "serve": "cadl-ranch serve ./http",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "service-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./dist/http/parameters/**/mockclient.spec.js"
+    "service-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./dist/http/*/**/mockclient.spec.js"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -37,7 +37,8 @@
     "chai": "^5.1.1",
     "mocha": "^10.7.3",
     "axios": "^1.7.5",
-    "qs": "^6.13.0"
+    "qs": "^6.13.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@azure-tools/typespec-autorest": "0.45.0",

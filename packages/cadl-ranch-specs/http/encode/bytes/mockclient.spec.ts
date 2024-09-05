@@ -1,17 +1,9 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper.js";
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import { makeServiceCall, pngFile, SERVICE_CALL_TYPE, uint8ArrayToString } from "../../helper.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
-
-type EncodingType = "utf-8" | "base64" | "base64url" | "hex";
-
-function uint8ArrayToString(bytes: Uint8Array, format: EncodingType): string {
-  return Buffer.from(bytes).toString(format);
-}
 
 describe("encode/bytes endpoint", () => {
   let serverBasePath: string | undefined;
@@ -199,8 +191,6 @@ describe("encode/bytes endpoint", () => {
   });
 
   describe("request body", () => {
-    const pngFile = readFileSync(resolve("./image.png"));
-
     it(`should post bytes`, async () => {
       const endPoint = `${serverBasePath}/encode/bytes/body/request/default`;
       const response = await makeServiceCall(SERVICE_CALL_TYPE.post, {
@@ -283,8 +273,6 @@ describe("encode/bytes endpoint", () => {
   });
 
   describe("response body", () => {
-    const pngFile = readFileSync(resolve("./image.png")).toString();
-
     it(`should get bytes with base64 encoding by default`, async () => {
       const endPoint = `${serverBasePath}/encode/bytes/body/response/default`;
       const response = await makeServiceCall(SERVICE_CALL_TYPE.get, {
@@ -325,7 +313,7 @@ describe("encode/bytes endpoint", () => {
         },
       });
       assert.strictEqual(response.status, 200);
-      assert.strictEqual(uint8ArrayToString(response.data, "utf-8"), pngFile);
+      assert.strictEqual(uint8ArrayToString(response.data, "utf-8"), pngFile.toString());
     });
 
     it(`should get bytes with octet-stream content type`, async () => {
@@ -341,7 +329,7 @@ describe("encode/bytes endpoint", () => {
         },
       });
       assert.strictEqual(response.status, 200);
-      assert.strictEqual(uint8ArrayToString(response.data, "utf-8"), pngFile);
+      assert.strictEqual(uint8ArrayToString(response.data, "utf-8"), pngFile.toString());
     });
   });
 });
