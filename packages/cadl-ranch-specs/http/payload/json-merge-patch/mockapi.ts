@@ -2,47 +2,50 @@ import { passOnSuccess, ScenarioMockApi, mockapi, json, MockApi } from "@azure-t
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
-  const url = `/json-merge-patch/${route}`;
-  const expectedCreateBody = {
-    name: "Madge",
-    description: "desc",
-    map: {
-      key: {
-        name: "InnerMadge",
-        description: "innerDesc",
-      },
-    },
-    array: [
-      {
-        name: "InnerMadge",
-        description: "innerDesc",
-      },
-    ],
-    intValue: 1,
-    floatValue: 1.1,
-    innerModel: {
+export const expectedCreateBody = {
+  name: "Madge",
+  description: "desc",
+  map: {
+    key: {
       name: "InnerMadge",
       description: "innerDesc",
     },
-    intArray: [1, 2, 3],
-  };
-  const expectedUpdateBody = {
-    name: "Madge",
-    description: null,
-    map: {
-      key: {
-        name: "InnerMadge",
-        description: null,
-      },
-      key2: null,
+  },
+  array: [
+    {
+      name: "InnerMadge",
+      description: "innerDesc",
     },
-    array: null,
-    intValue: null,
-    floatValue: null,
-    innerModel: null,
-    intArray: null,
-  };
+  ],
+  intValue: 1,
+  floatValue: 1.1,
+  innerModel: {
+    name: "InnerMadge",
+    description: "innerDesc",
+  },
+  intArray: [1, 2, 3],
+};
+
+export const expectedUpdateBody = {
+  name: "Madge",
+  description: null,
+  map: {
+    key: {
+      name: "InnerMadge",
+      description: null,
+    },
+    key2: null,
+  },
+  array: null,
+  intValue: null,
+  floatValue: null,
+  innerModel: null,
+  intArray: null,
+};
+
+function createMockApis(route: string, isUpdateRequest: boolean): MockApi {
+  const url = `/json-merge-patch/${route}`;
+
   if (isUpdateRequest) {
     return mockapi.patch(url, (req) => {
       req.expect.deepEqual(req.body.description, expectedUpdateBody.description);

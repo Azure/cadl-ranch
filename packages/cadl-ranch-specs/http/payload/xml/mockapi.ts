@@ -3,14 +3,14 @@ import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const simpleModel = `
+export const simpleModel = `
 <SimpleModel>
   <name>foo</name>
   <age>123</age>
 </SimpleModel>
 `;
 
-const modelWithSimpleArrays = `
+export const modelWithSimpleArrays = `
 <ModelWithSimpleArrays>
   <colors>
     <string>red</string>
@@ -24,7 +24,7 @@ const modelWithSimpleArrays = `
 </ModelWithSimpleArrays>
 `;
 
-const modelWithArrayOfModel = `
+export const modelWithArrayOfModel = `
 <ModelWithArrayOfModel>
   <items>
     <SimpleModel>
@@ -39,19 +39,19 @@ const modelWithArrayOfModel = `
 </ModelWithArrayOfModel>
 `;
 
-const modelWithOptionalField = `
+export const modelWithOptionalField = `
 <ModelWithOptionalField>
   <item>widget</item>
 </ModelWithOptionalField>
 `;
 
-const modelWithAttributes = `
+export const modelWithAttributes = `
 <ModelWithAttributes id1="123" id2="foo">
   <enabled>true</enabled>
 </ModelWithAttributes>
 `;
 
-const modelWithUnwrappedArray = `
+export const modelWithUnwrappedArray = `
 <ModelWithUnwrappedArray>
   <colors>red</colors>
   <colors>green</colors>
@@ -63,7 +63,7 @@ const modelWithUnwrappedArray = `
 </ModelWithUnwrappedArray>
 `;
 
-const modelWithRenamedArrays = `
+export const modelWithRenamedArrays = `
 <ModelWithRenamedArrays>
   <Colors>red</Colors>
   <Colors>green</Colors>
@@ -75,7 +75,7 @@ const modelWithRenamedArrays = `
 </ModelWithRenamedArrays>
 `;
 
-const modelWithRenamedFields = `
+export const modelWithRenamedFields = `
 <ModelWithRenamedFieldsSrc>
   <InputData>
     <name>foo</name>
@@ -88,19 +88,19 @@ const modelWithRenamedFields = `
 </ModelWithRenamedFieldsSrc>
 `;
 
-const modelWithEmptyArray = `
+export const modelWithEmptyArray = `
 <ModelWithEmptyArray>
   <items />
 </ModelWithEmptyArray>
 `;
 
-const modelWithText = `
+export const modelWithText = `
 <ModelWithText language="foo">
   This is some text.
 </ModelWithText>
 `;
 
-const modelWithDictionary = `
+export const modelWithDictionary = `
 <ModelWithDictionary>
   <metadata>
     <Color>blue</Color>
@@ -110,7 +110,7 @@ const modelWithDictionary = `
 </ModelWithDictionary>
 `;
 
-const modelWithEncodedNames = `
+export const modelWithEncodedNames = `
 <ModelWithEncodedNamesSrc>
   <SimpleModelData>
     <name>foo</name>
