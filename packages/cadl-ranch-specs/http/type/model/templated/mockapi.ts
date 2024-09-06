@@ -22,8 +22,8 @@ Scenarios.Type_Model_Templated_float32Type = passOnSuccess(
   mockapi.put("/type/model/templated/float32ValuesType", (req) => {
     const body = {
       kind: "Float32Values",
-      values: [12.34],
-      value: 12.34,
+      values: [0.5],
+      value: 0.5,
     };
     req.expect.bodyEquals(body);
     return {

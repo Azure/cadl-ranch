@@ -53,7 +53,10 @@ model Float32ValuesType extends NumericType<float32> {
     ],
     "value": 1234
   }
+  ```
+  
   Expected response body:
+  ```json
   {
     "values": 
     [
@@ -61,6 +64,7 @@ model Float32ValuesType extends NumericType<float32> {
     ],
     "value": 1234
   }
+  ```
   """)
 @route("/numericType")
 @put
@@ -74,19 +78,23 @@ op numericType(@body input: NumericType<int32>): NumericType<int32>;
     "kind": "Float32Values",
     "values": 
     [
-      12.34
+      0.5
     ],
-    "value": 12.34
+    "value": 0.5
   }
+  ```
+  
   Expected response body:
+  ```json
   {
     "kind": "Float32Values",
     "values": 
     [
-      12.34
+      0.5
     ],
-    "value": 12.34
+    "value": 0.5
   }
+  ```
   """)
 @route("/float32ValuesType")
 @put
