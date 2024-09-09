@@ -12,7 +12,7 @@ const RESOURCE_GROUP_EXPECTED = "test-rg";
 const IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED = "SystemAssigned";
 const IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED = "SystemAssigned,UserAssigned";
 const validSystemAssignedManagedIdentityResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
   location: `${LOCATION_REGION_EXPECTED}`,
   tags: {
     tagKey1: "tagValue1",
@@ -28,7 +28,7 @@ const validSystemAssignedManagedIdentityResource = {
 };
 
 const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
   location: `${LOCATION_REGION_EXPECTED}`,
   tags: {
     tagKey1: "tagValue1",
@@ -65,7 +65,7 @@ const updateExpectedIdentity = {
 // managed identity tracked resource
 Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_get = passOnSuccess([
   mockapi.get(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
       req.expect.containsQueryParam("api-version", "2023-12-01-preview");
       if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -92,7 +92,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperation
 Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_createWithSystemAssigned =
   passOnSuccess([
     mockapi.put(
-      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
       (req) => {
         req.expect.containsQueryParam("api-version", "2023-12-01-preview");
         if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
@@ -120,7 +120,7 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperation
 Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_CrudOperations_updateWithUserAssignedAndSystemAssigned =
   passOnSuccess([
     mockapi.patch(
-      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
       (req) => {
         req.expect.containsQueryParam("api-version", "2023-12-01-preview");
         if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
