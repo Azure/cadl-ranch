@@ -16,7 +16,7 @@ using TypeSpec.OpenAPI;
 @service
 @versioned(Versions)
 @doc("Arm Managed Identity Provider management API.")
-namespace Azure.ResourceManager.CommonType;
+namespace Azure.ResourceManager.CommonType.ManagedIdentity;
 
 @doc("Azure API versions.")
 enum Versions {
@@ -46,7 +46,7 @@ model ManagedIdentityTrackedResourceProperties {
 }
 
 @armResourceOperations
-interface ManagedIdentity {
+interface Property {
   @scenario
   @scenarioDoc("""
     Resource GET operation.

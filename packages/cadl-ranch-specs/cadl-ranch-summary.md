@@ -791,7 +791,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_createWithSystemAssigned
+### Azure_ResourceManager_CommonType_ManagedIdentity_Property_createWithSystemAssigned
 
 - Endpoint: `put https://management.azure.com`
 
@@ -833,7 +833,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_get
+### Azure_ResourceManager_CommonType_ManagedIdentity_Property_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -861,7 +861,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_updateWithUserAssignedAndSystemAssigned
+### Azure_ResourceManager_CommonType_ManagedIdentity_Property_updateWithUserAssignedAndSystemAssigned
 
 - Endpoint: `patch https://management.azure.com`
 

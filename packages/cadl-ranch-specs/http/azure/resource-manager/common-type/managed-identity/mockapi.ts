@@ -63,7 +63,7 @@ const updateExpectedIdentity = {
 };
 
 // managed identity tracked resource
-Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_get = passOnSuccess([
+Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_Property_get = passOnSuccess([
   mockapi.get(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
@@ -89,7 +89,7 @@ Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_get = passOnSuccess([
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_createWithSystemAssigned = passOnSuccess([
+Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_Property_createWithSystemAssigned = passOnSuccess([
   mockapi.put(
     "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
     (req) => {
@@ -116,29 +116,30 @@ Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_createWithSystemAssig
   ),
 ]);
 
-Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_updateWithUserAssignedAndSystemAssigned = passOnSuccess([
-  mockapi.patch(
-    "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
-    (req) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-        throw new ValidationError(
-          "Unexpected managed identity resource name",
-          "identity",
-          req.params.managedIdentityResourceName,
-        );
-      }
-      req.expect.deepEqual(req.body["identity"], updateExpectedIdentity);
-      return {
-        status: 200,
-        body: json(validUserAssignedAndSystemAssignedManagedIdentityResource),
-      };
-    },
-  ),
-]);
+Scenarios.Azure_ResourceManager_CommonType_ManagedIdentity_Property_updateWithUserAssignedAndSystemAssigned =
+  passOnSuccess([
+    mockapi.patch(
+      "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+      (req) => {
+        req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+        if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+          throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+        }
+        if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+          throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+        }
+        if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
+          throw new ValidationError(
+            "Unexpected managed identity resource name",
+            "identity",
+            req.params.managedIdentityResourceName,
+          );
+        }
+        req.expect.deepEqual(req.body["identity"], updateExpectedIdentity);
+        return {
+          status: 200,
+          body: json(validUserAssignedAndSystemAssignedManagedIdentityResource),
+        };
+      },
+    ),
+  ]);
