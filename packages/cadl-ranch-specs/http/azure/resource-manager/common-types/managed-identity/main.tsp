@@ -4,7 +4,6 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
-import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -12,13 +11,12 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.ResourceManager;
 using TypeSpec.OpenAPI;
-using Azure.ClientGenerator.Core;
 
 @armProviderNamespace
 @service
 @versioned(Versions)
 @doc("Arm Managed Identity Provider management API.")
-namespace Azure.ResourceManager.CommonTypes.ManagedIdentity;
+namespace Azure.ResourceManager.CommonTypes;
 
 @doc("Azure API versions.")
 enum Versions {
@@ -48,8 +46,7 @@ model ManagedIdentityTrackedResourceProperties {
 }
 
 @armResourceOperations
-@clientName("ManagedIdentityTrackedResources")
-interface CrudOperations {
+interface ManagedIdentities {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
