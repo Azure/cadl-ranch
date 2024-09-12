@@ -9,15 +9,15 @@ using Azure.ClientGenerator.Core;
  * Describe client with `@clientInitialization`
  */
 @supportedBy("dpg")
-@scenarioService("/client/initialization")
+@scenarioService("/client/initialization/basic")
 @scenario
 @scenarioDoc("""
-  Testing that "SubClient" be initialized with "name" parameter,
-  and the "action" operation under "SubClient" does not take "name" parameter.
+  Testing that "SubClient" be initialized with "name" client property,
+  and that the "action" API under "SubClient" does not take "name" parameter in method signature.
   
-  Use "client1" as "name" parameter in test.
+  Use "subclient1" as "name" parameter in test.
   """)
-namespace Client.Initialization;
+namespace Client.Initialization.Basic;
 
 model SubClientOptions {
   name: string;
