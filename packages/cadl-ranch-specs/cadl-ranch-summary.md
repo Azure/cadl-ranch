@@ -1453,6 +1453,15 @@ Expected response body:
 }
 ```
 
+### Client_Initialization
+
+- Endpoint: `post /client/initialization/sub-client/{name}:action`
+
+Testing that "SubClient" be initialized with "name" parameter,
+and the "action" operation under "SubClient" does not take "name" parameter.
+
+Use "client1" as "name" parameter in test.
+
 ### Client_Naming_Header_request
 
 - Endpoint: `post /client/naming/header`
