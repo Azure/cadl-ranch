@@ -791,12 +791,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_Property_createWithSystemAssigned
+### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_createWithSystemAssigned
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -817,7 +817,7 @@ Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
@@ -833,19 +833,19 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_Property_get
+### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
@@ -861,12 +861,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonType_ManagedIdentity_Property_updateWithUserAssignedAndSystemAssigned
+### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_updateWithUserAssignedAndSystemAssigned
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -885,7 +885,7 @@ Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonType.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
@@ -907,12 +907,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Nested_createOrReplace
+### Azure_ResourceManager_Resources_Nested_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -928,7 +928,7 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
   "properties":{
@@ -946,28 +946,28 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Nested_delete
+### Azure_ResourceManager_Resources_Nested_delete
 
 - Endpoint: `delete https://management.azure.com`
 
 Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected response status code: 204
 
-### Azure_ResourceManager_Resource_Nested_get
+### Azure_ResourceManager_Resources_Nested_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
   "properties":{
@@ -985,12 +985,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Nested_listByTopLevelTrackedResource
+### Azure_ResourceManager_Resources_Nested_listByTopLevelTrackedResource
 
 - Endpoint: `get https://management.azure.com`
 
 Resource LIST by parent resource operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -998,7 +998,7 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
     "name": "nested",
     "type": "nested",
     "properties":{
@@ -1017,12 +1017,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Nested_update
+### Azure_ResourceManager_Resources_Nested_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1038,7 +1038,7 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/nestedProxyResources/nested",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
   "name": "nested",
   "type": "nested",
   "properties":{
@@ -1056,12 +1056,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Singleton_createOrUpdate
+### Azure_ResourceManager_Resources_Singleton_createOrUpdate
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1078,9 +1078,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   "name": "default",
-  "type": "Azure.ResourceManager.Resource/singletonTrackedResources",
+  "type": "Azure.ResourceManager.Resources/singletonTrackedResources",
   "location": "eastus",
   "properties": {
     "description": "valid",
@@ -1097,21 +1097,21 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Singleton_getByResourceGroup
+### Azure_ResourceManager_Resources_Singleton_getByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   "name": "default",
-  "type": "Azure.ResourceManager.Resource/singletonTrackedResources",
+  "type": "Azure.ResourceManager.Resources/singletonTrackedResources",
   "location": "eastus",
   "properties":{
     "description": "valid",
@@ -1128,12 +1128,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Singleton_listByResourceGroup
+### Azure_ResourceManager_Resources_Singleton_listByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
 Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -1141,9 +1141,9 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
     "name": "default",
-    "type": "Azure.ResourceManager.Resource/singletonTrackedResources",
+    "type": "Azure.ResourceManager.Resources/singletonTrackedResources",
     "location": "eastus",
     "properties":{
       "description": "valid",
@@ -1161,12 +1161,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_Singleton_update
+### Azure_ResourceManager_Resources_Singleton_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1183,9 +1183,9 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/singletonTrackedResources/default",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   "name": "default",
-  "type": "Azure.ResourceManager.Resource/singletonTrackedResources",
+  "type": "Azure.ResourceManager.Resources/singletonTrackedResources",
   "location": "eastus2",
   "properties":{
     "description": "valid2",
@@ -1202,12 +1202,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_TopLevel_actionSync
+### Azure_ResourceManager_Resources_TopLevel_actionSync
 
 - Endpoint: `post https://management.azure.com`
 
   Resource sync action.
-  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top/actionSync
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/actionSync
   Expected query parameter: api-version=2023-12-01-preview
   Expected request body:
 
@@ -1218,12 +1218,12 @@ Expected response body:
   }
   ```
 
-### Azure_ResourceManager_Resource_TopLevel_createOrReplace
+### Azure_ResourceManager_Resources_TopLevel_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1240,7 +1240,7 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
   "name": "top",
   "type": "topLevel",
   "location": "eastus",
@@ -1259,29 +1259,29 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_TopLevel_delete
+### Azure_ResourceManager_Resources_TopLevel_delete
 
 - Endpoint: `delete https://management.azure.com`
 
 Resource DELETE operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top
 Expected query parameter: api-version=2023-12-01-preview
 
 ````
 Expected response status code: 204
 
-### Azure_ResourceManager_Resource_TopLevel_get
+### Azure_ResourceManager_Resources_TopLevel_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
   "name": "top",
   "type": "topLevel",
   "location": "eastus",
@@ -1300,12 +1300,12 @@ Expected response body:
 }
 ````
 
-### Azure_ResourceManager_Resource_TopLevel_listByResourceGroup
+### Azure_ResourceManager_Resources_TopLevel_listByResourceGroup
 
 - Endpoint: `get https://management.azure.com`
 
 Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -1313,7 +1313,7 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
     "name": "top",
     "type": "topLevel",
     "location": "eastus",
@@ -1333,12 +1333,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_TopLevel_listBySubscription
+### Azure_ResourceManager_Resources_TopLevel_listBySubscription
 
 - Endpoint: `get https://management.azure.com`
 
 Resource LIST by subscription operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
@@ -1346,7 +1346,7 @@ Expected response body:
 ```json
 {
   "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
     "name": "top",
     "type": "topLevel",
     "location": "eastus",
@@ -1366,12 +1366,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Resource_TopLevel_update
+### Azure_ResourceManager_Resources_TopLevel_update
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -1387,7 +1387,7 @@ Expected response body:
 
 ```json
 {
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resource/topLevelTrackedResources/top",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
   "name": "top",
   "type": "topLevel",
   "location": "eastus",

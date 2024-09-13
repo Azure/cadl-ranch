@@ -20,7 +20,7 @@ using TypeSpec.OpenAPI;
 @service
 @versioned(Versions)
 @doc("Arm Resource Provider management API.")
-namespace Azure.ResourceManager.Resource;
+namespace Azure.ResourceManager.Resources;
 
 @doc("Azure API versions.")
 enum Versions {
