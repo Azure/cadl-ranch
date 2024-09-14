@@ -56,7 +56,7 @@ interface SingletonTrackedResources {
     }
     ```
     """)
-  getByResourceGroup is ArmResourceRead<SingletonTrackedResource>;
+  get is ArmResourceRead<SingletonTrackedResource>;
 
   @scenario
   @scenarioDoc("""
@@ -133,36 +133,4 @@ interface SingletonTrackedResources {
     ```
     """)
   update is ArmResourcePatchSync<SingletonTrackedResource, SingletonTrackedResourceProperties>;
-
-  @scenario
-  @scenarioDoc("""
-    Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources
-    Expected query parameter: api-version=2023-12-01-preview
-    
-    Expected response body:
-    ```json
-    {
-      "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
-        "name": "default",
-        "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
-        "location": "eastus",
-        "properties":{
-          "description": "valid",
-          "provisioningState": "Succeeded"
-        },
-        "systemData": {
-          "createdBy": "AzureSDK",
-          "createdByType": "User",
-          "createdAt": <any date>,
-          "lastModifiedBy": "AzureSDK",
-          "lastModifiedAt": <any date>,
-          "lastModifiedByType": "User",
-        }
-      }]
-    }
-    ```
-    """)
-  listByResourceGroup is ArmResourceListByParent<SingletonTrackedResource>;
 }

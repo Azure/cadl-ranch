@@ -1097,7 +1097,7 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_get
 
 - Endpoint: `get https://management.azure.com`
 
@@ -1125,39 +1125,6 @@ Expected response body:
     "lastModifiedAt": <any date>,
     "lastModifiedByType": "User",
   }
-}
-```
-
-### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup
-
-- Endpoint: `get https://management.azure.com`
-
-Resource LIST by resource group operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources
-Expected query parameter: api-version=2023-12-01-preview
-
-Expected response body:
-
-```json
-{
-  "value": [{
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
-    "name": "default",
-    "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
-    "location": "eastus",
-    "properties":{
-      "description": "valid",
-      "provisioningState": "Succeeded"
-    },
-    "systemData": {
-      "createdBy": "AzureSDK",
-      "createdByType": "User",
-      "createdAt": <any date>,
-      "lastModifiedBy": "AzureSDK",
-      "lastModifiedAt": <any date>,
-      "lastModifiedByType": "User",
-    }
-  }]
 }
 ```
 
