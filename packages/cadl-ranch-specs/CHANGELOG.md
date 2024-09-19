@@ -1,5 +1,25 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.2
+
+### Patch Changes
+
+- 5be049e: Bump typespec 0.60.0
+- 6272003: Added Type_Model_Templated_numericType test scenarios and corresponding Mock API implementations for type/model/templated.
+  Added Type_Model_Templated_float32Type test scenarios and corresponding Mock API implementations for type/model/templated.
+  Added Type_Model_Templated_int32Type test scenarios and corresponding Mock API implementations for type/model/templated.
+- Updated dependencies [5be049e]
+  - @azure-tools/cadl-ranch-expect@0.15.4
+  - @azure-tools/cadl-ranch@0.14.6
+
+## 0.37.1
+
+### Patch Changes
+
+- Updated dependencies [70b185a]
+  - @azure-tools/cadl-ranch-expect@0.15.3
+  - @azure-tools/cadl-ranch@0.14.5
+
 ## 0.37.0
 
 ### Minor Changes
