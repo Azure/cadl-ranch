@@ -1056,6 +1056,152 @@ Expected response body:
 }
 ```
 
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate
+
+- Endpoint: `put https://management.azure.com`
+
+Resource PUT operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus",
+  "properties": {
+    "description": "valid"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus",
+  "properties": {
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource GET operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus",
+  "properties":{
+    "description": "valid",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup
+
+- Endpoint: `get https://management.azure.com`
+
+Resource LIST by resource group operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources
+Expected query parameter: api-version=2023-12-01-preview
+
+Expected response body:
+
+```json
+{
+  "value": [{
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+    "name": "default",
+    "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    "location": "eastus",
+    "properties":{
+      "description": "valid",
+      "provisioningState": "Succeeded"
+    },
+    "systemData": {
+      "createdBy": "AzureSDK",
+      "createdByType": "User",
+      "createdAt": <any date>,
+      "lastModifiedBy": "AzureSDK",
+      "lastModifiedAt": <any date>,
+      "lastModifiedByType": "User",
+    }
+  }]
+}
+```
+
+### Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update
+
+- Endpoint: `patch https://management.azure.com`
+
+Resource PATCH operation.
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default
+Expected query parameter: api-version=2023-12-01-preview
+Expected request body:
+
+```json
+{
+  "location": "eastus2",
+  "properties": {
+    "description": "valid2"
+  }
+}
+```
+
+Expected response body:
+
+```json
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+  "name": "default",
+  "type": "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  "location": "eastus2",
+  "properties":{
+    "description": "valid2",
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdBy": "AzureSDK",
+    "createdByType": "User",
+    "createdAt": <any date>,
+    "lastModifiedBy": "AzureSDK",
+    "lastModifiedAt": <any date>,
+    "lastModifiedByType": "User",
+  }
+}
+```
+
 ### Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync
 
 - Endpoint: `post https://management.azure.com`
@@ -2267,6 +2413,27 @@ Expected response body:
 }
 ```
 
+### Encode_Numeric_Property_uint8AsString
+
+- Endpoint: `post /encode/numeric/property/uint8`
+
+Test operation with request and response model contains property of uint8 type with string encode.
+Expected request body:
+
+```json
+{
+  "value": "255"
+}
+```
+
+Expected response body:
+
+```json
+{
+  "value": "255"
+}
+```
+
 ### Parameters_Basic_ExplicitBody_simple
 
 - Endpoint: `put /parameters/basic/explicit-body/simple`
@@ -2898,7 +3065,7 @@ Content-Type: image/jpg
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_complex
+### Payload_MultiPart_FormData_fileArrayAndBasic
 
 - Endpoint: `post /multipart/form-data/complex-parts`
 
@@ -2954,7 +3121,64 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_complexWithHttpPart
+### Payload_MultiPart_FormData_HttpParts_ContentType_imageJpegContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
+
+This case will check filename and specific content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
+Content-Type: image/jpg
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_HttpParts_ContentType_optionalContentType
+
+- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+
+Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345
+```
+
+### Payload_MultiPart_FormData_HttpParts_ContentType_requiredContentType
+
+- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
+
+This case will check required content-type of file part, so expect request:
+
+```
+POST /upload HTTP/1.1
+Content-Length: 428
+Content-Type: multipart/form-data; boundary=abcde12345
+
+--abcde12345
+Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
+Content-Type: application/octet-stream
+
+{…file content of .jpg file…}
+--abcde12345--
+```
+
+### Payload_MultiPart_FormData_HttpParts_jsonArrayAndFileArray
 
 - Endpoint: `post /multipart/form-data/complex-parts-with-httppart`
 
@@ -3005,30 +3229,11 @@ Content-Type: application/octet-stream
 --abcde12345--
 ```
 
-### Payload_MultiPart_FormData_fileWithHttpPartOptionalContentType
+### Payload_MultiPart_FormData_HttpParts_NonString_float
 
-- Endpoint: `post /multipart/form-data/file-with-http-part-optional-content-type`
+- Endpoint: `post /multipart/form-data/non-string-float`
 
-Please send request twice, first time with no content-type and second time with content-type "application/octet-stream". Expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
---abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
-
-{…file content of .jpg file…}
---abcde12345
-```
-
-### Payload_MultiPart_FormData_fileWithHttpPartRequiredContentType
-
-- Endpoint: `post /multipart/form-data/check-filename-and-required-content-type-with-httppart`
-
-This case will check required content-type of file part, so expect request:
+Expect request:
 
 ```
 POST /upload HTTP/1.1
@@ -3036,30 +3241,11 @@ Content-Length: 428
 Content-Type: multipart/form-data; boundary=abcde12345
 
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="<any-name-is-ok>"
-Content-Type: application/octet-stream
+Content-Disposition: form-data; name="temperature"
+Content-Type: text/plain
 
-{…file content of .jpg file…}
---abcde12345--
-```
-
-### Payload_MultiPart_FormData_fileWithHttpPartSpecificContentType
-
-- Endpoint: `post /multipart/form-data/check-filename-and-specific-content-type-with-httppart`
-
-This case will check filename and specific content-type of file part, so expect request:
-
-```
-POST /upload HTTP/1.1
-Content-Length: 428
-Content-Type: multipart/form-data; boundary=abcde12345
-
+0.5
 --abcde12345
-Content-Disposition: form-data; name="profileImage"; filename="hello.jpg"
-Content-Type: image/jpg
-
-{…file content of .jpg file…}
---abcde12345--
 ```
 
 ### Payload_MultiPart_FormData_jsonPart
@@ -3642,6 +3828,366 @@ With the above two calls, we test the following configurations from this service
 
 Tests that we can grow up an operation from accepting one required parameter to accepting a required parameter and an optional parameter.
 
+### Routes_fixed
+
+- Endpoint: `get /routes/fixed`
+
+Simple operation at a fixed in an interface
+Expected path: /routes/fixed
+
+### Routes_InInterface
+
+- Endpoint: `get /routes/in-interface/fixed`
+
+Simple operation at a fixed in an interface
+Expected path: /routes/in-interface/fixed
+
+### Routes_PathParameters_annotationOnly
+
+- Endpoint: `get /routes/path/annotation-only`
+
+Path parameter annotated with @path but not defined explicitly in the route
+Value: "a"
+Expected path: /routes/path/annotation-only/a
+
+### Routes_PathParameters_explicit
+
+- Endpoint: `get /routes/path/explicit/{param}`
+
+Path parameter defined explicitly
+Value: "a"
+Expected path: /routes/path/explicit/a
+
+### Routes_PathParameters_LabelExpansion_Explode_array
+
+- Endpoint: `get /routes/path/label/explode/array{.param*}`
+
+Test label expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/label/explode/array.a.b
+
+### Routes_PathParameters_LabelExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/label/explode/primitive{.param*}`
+
+Test label expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/label/explode/primitive.a
+
+### Routes_PathParameters_LabelExpansion_Explode_record
+
+- Endpoint: `get /routes/path/label/explode/record{.param*}`
+
+Test label expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/label/explode/record.a=1.b=2
+
+### Routes_PathParameters_LabelExpansion_Standard_array
+
+- Endpoint: `get /routes/path/label/standard/array{.param}`
+
+Test label expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/label/standard/array.a,b
+
+### Routes_PathParameters_LabelExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/label/standard/primitive{.param}`
+
+Test label expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/label/standard/primitive.a
+
+### Routes_PathParameters_LabelExpansion_Standard_record
+
+- Endpoint: `get /routes/path/label/standard/record{.param}`
+
+Test label expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/label/standard/record.a,1,b,2
+
+### Routes_PathParameters_MatrixExpansion_Explode_array
+
+- Endpoint: `get /routes/path/matrix/explode/array{;param*}`
+
+Test matrix expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/matrix/explode/array;a.b
+
+### Routes_PathParameters_MatrixExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/matrix/explode/primitive{;param*}`
+
+Test matrix expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/matrix/explode/primitive;a
+
+### Routes_PathParameters_MatrixExpansion_Explode_record
+
+- Endpoint: `get /routes/path/matrix/explode/record{;param*}`
+
+Test matrix expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/matrix/explode/record;a=1;b=2
+
+### Routes_PathParameters_MatrixExpansion_Standard_array
+
+- Endpoint: `get /routes/path/matrix/standard/array{;param}`
+
+Test matrix expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/matrix/standard/array;a,b
+
+### Routes_PathParameters_MatrixExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/matrix/standard/primitive{;param}`
+
+Test matrix expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/matrix/standard/primitive;a
+
+### Routes_PathParameters_MatrixExpansion_Standard_record
+
+- Endpoint: `get /routes/path/matrix/standard/record{;param}`
+
+Test matrix expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/matrix/standard/record;a,1,b,2
+
+### Routes_PathParameters_PathExpansion_Explode_array
+
+- Endpoint: `get /routes/path/path/explode/array{/param*}`
+
+Test path expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/path/explode/array/a/b
+
+### Routes_PathParameters_PathExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/path/explode/primitive{/param*}`
+
+Test path expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/path/explode/primitive/a
+
+### Routes_PathParameters_PathExpansion_Explode_record
+
+- Endpoint: `get /routes/path/path/explode/record{/param*}`
+
+Test path expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/path/explode/record/a=1/b=2
+
+### Routes_PathParameters_PathExpansion_Standard_array
+
+- Endpoint: `get /routes/path/path/standard/array{/param}`
+
+Test path expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/path/standard/array/a,b
+
+### Routes_PathParameters_PathExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/path/standard/primitive{/param}`
+
+Test path expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/path/standard/primitive/a
+
+### Routes_PathParameters_PathExpansion_Standard_record
+
+- Endpoint: `get /routes/path/path/standard/record{/param}`
+
+Test path expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/path/standard/record/a,1,b,2
+
+### Routes_PathParameters_ReservedExpansion_annotation
+
+- Endpoint: `get /routes/path/reserved-expansion/annotation`
+
+Defines a path parameter that shouldn't encode reserved characters. It should however still encode the other url characters.
+Param value: "foo/bar baz"
+Expected path: "/routes/path/reserved-expansion/annotation/foo/bar%20baz"
+
+### Routes_PathParameters_ReservedExpansion_template
+
+- Endpoint: `get /routes/path/reserved-expansion/template/{+param}`
+
+Defines a path parameter that shouldn't encode reserved characters. It should however still encode the other url characters.
+Param value: "foo/bar baz"
+Expected path: "/routes/path/reserved-expansion/template/foo/bar%20baz"
+
+### Routes_PathParameters_SimpleExpansion_Explode_array
+
+- Endpoint: `get /routes/path/simple/explode/array{param*}`
+
+Test simple expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/simple/explode/arraya.b
+
+### Routes_PathParameters_SimpleExpansion_Explode_primitive
+
+- Endpoint: `get /routes/path/simple/explode/primitive{param*}`
+
+Test simple expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/simple/explode/primitivea
+
+### Routes_PathParameters_SimpleExpansion_Explode_record
+
+- Endpoint: `get /routes/path/simple/explode/record{param*}`
+
+Test simple expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/simple/explode/recorda=1,b=2
+
+### Routes_PathParameters_SimpleExpansion_Standard_array
+
+- Endpoint: `get /routes/path/simple/standard/array{param}`
+
+Test simple expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/simple/standard/arraya,b
+
+### Routes_PathParameters_SimpleExpansion_Standard_primitive
+
+- Endpoint: `get /routes/path/simple/standard/primitive{param}`
+
+Test simple expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/simple/standard/primitivea
+
+### Routes_PathParameters_SimpleExpansion_Standard_record
+
+- Endpoint: `get /routes/path/simple/standard/record{param}`
+
+Test simple expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/simple/standard/recorda,1,b,2
+
+### Routes_PathParameters_templateOnly
+
+- Endpoint: `get /routes/path/template-only/{param}`
+
+Path parameter defined implicitly
+Value: "a"
+Expected path: /routes/path/template-only/a
+
+### Routes_QueryParameters_annotationOnly
+
+- Endpoint: `get /routes/query/annotation-only`
+
+Query parameter annotated with @query but not defined explicitly in the route
+
+### Routes_QueryParameters_explicit
+
+- Endpoint: `get /routes/query/explicit{?param}`
+
+Query parameter marked with explicit @query
+
+### Routes_QueryParameters_QueryContinuation_Explode_array
+
+- Endpoint: `get /routes/query/query-continuation/explode/array?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-continuation/explode/array?fixed=true&param=a&param=b
+
+### Routes_QueryParameters_QueryContinuation_Explode_primitive
+
+- Endpoint: `get /routes/query/query-continuation/explode/primitive?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-continuation/explode/primitive?fixed=true&param=a
+
+### Routes_QueryParameters_QueryContinuation_Explode_record
+
+- Endpoint: `get /routes/query/query-continuation/explode/record?fixed=true{&param*}`
+
+Test query continuation expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-continuation/explode/record?fixed=true&a=1&b=2
+
+### Routes_QueryParameters_QueryContinuation_Standard_array
+
+- Endpoint: `get /routes/query/query-continuation/standard/array?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-continuation/standard/array?fixed=true&param=a,b
+
+### Routes_QueryParameters_QueryContinuation_Standard_primitive
+
+- Endpoint: `get /routes/query/query-continuation/standard/primitive?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-continuation/standard/primitive?fixed=true&param=a
+
+### Routes_QueryParameters_QueryContinuation_Standard_record
+
+- Endpoint: `get /routes/query/query-continuation/standard/record?fixed=true{&param}`
+
+Test query continuation expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-continuation/standard/record?fixed=true&param=a,1,b,2
+
+### Routes_QueryParameters_QueryExpansion_Explode_array
+
+- Endpoint: `get /routes/query/query-expansion/explode/array{?param*}`
+
+Test query expansion with explode: true when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-expansion/explode/array?param=a&param=b
+
+### Routes_QueryParameters_QueryExpansion_Explode_primitive
+
+- Endpoint: `get /routes/query/query-expansion/explode/primitive{?param*}`
+
+Test query expansion with explode: true when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-expansion/explode/primitive?param=a
+
+### Routes_QueryParameters_QueryExpansion_Explode_record
+
+- Endpoint: `get /routes/query/query-expansion/explode/record{?param*}`
+
+Test query expansion with explode: true when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-expansion/explode/record?a=1&b=2
+
+### Routes_QueryParameters_QueryExpansion_Standard_array
+
+- Endpoint: `get /routes/query/query-expansion/standard/array{?param}`
+
+Test query expansion with explode: false when passed an array value.
+Param value: ["a","b"]
+Expected path: /routes/query/query-expansion/standard/array?param=a,b
+
+### Routes_QueryParameters_QueryExpansion_Standard_primitive
+
+- Endpoint: `get /routes/query/query-expansion/standard/primitive{?param}`
+
+Test query expansion with explode: false when passed a primitive value.
+Param value: "a"
+Expected path: /routes/query/query-expansion/standard/primitive?param=a
+
+### Routes_QueryParameters_QueryExpansion_Standard_record
+
+- Endpoint: `get /routes/query/query-expansion/standard/record{?param}`
+
+Test query expansion with explode: false when passed a record value.
+Param value: {a: 1, b: 2}
+Expected path: /routes/query/query-expansion/standard/record?param=a,1,b,2
+
+### Routes_QueryParameters_templateOnly
+
+- Endpoint: `get /routes/query/template-only{?param}`
+
+Query parameter defined implicitly
+
 ### Serialization_EncodedName_Json_Property_get
 
 - Endpoint: `get /serialization/encoded-name/json/property`
@@ -3739,6 +4285,15 @@ A simple operation with query api-version, whose default value is defined as '20
 
 A simple operation with query api-version, that do NOT use the default but '2021-01-01-preview'. It's expected to be set at the client level. Expected url: '/with-old-query-api-version?api-version=2021-01-01-preview'.
 
+### SpecialHeaders_ConditionalRequest_headIfModifiedSince
+
+- Endpoint: `head /special-headers/conditional-request/if-modified-since`
+
+Check when only If-Modified-Since in header is defined.
+Expected header parameters:
+
+- if-modified-since=Fri, 26 Aug 2022 14:38:00 GMT
+
 ### SpecialHeaders_ConditionalRequest_postIfMatch
 
 - Endpoint: `post /special-headers/conditional-request/if-match`
@@ -3756,6 +4311,15 @@ Check when only If-None-Match in header is defined.
 Expected header parameters:
 
 - if-nonematch="invalid"
+
+### SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince
+
+- Endpoint: `post /special-headers/conditional-request/if-unmodified-since`
+
+Check when only If-Unmodified-Since in header is defined.
+Expected header parameters:
+
+- if-unmodified-since=Fri, 26 Aug 2022 14:38:00 GMT
 
 ### SpecialHeaders_Repeatability_immediateSuccess
 
@@ -5537,6 +6101,77 @@ Expected input body:
       "kind": "sparrow"
     }
   }
+}
+```
+
+### Type_Model_Templated_float32Type
+
+- Endpoint: `put /type/model/templated/float32ValuesType`
+
+Expected input body:
+
+```json
+{
+  "kind": "Float32Values",
+  "values": [0.5],
+  "value": 0.5
+}
+```
+
+Expected response body:
+
+```json
+{
+  "kind": "Float32Values",
+  "values": [0.5],
+  "value": 0.5
+}
+```
+
+### Type_Model_Templated_int32Type
+
+- Endpoint: `put /type/model/templated/int32ValuesType`
+
+Expected input body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
+}
+```
+
+Expected response body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
+}
+```
+
+### Type_Model_Templated_numericType
+
+- Endpoint: `put /type/model/templated/numericType`
+
+Expected input body:
+
+```json
+{
+  "kind": "Int32Values",
+  "values": [1234],
+  "value": 1234
+}
+```
+
+Expected response body:
+
+```json
+{
+  "values": [1234],
+  "value": 1234
 }
 ```
 

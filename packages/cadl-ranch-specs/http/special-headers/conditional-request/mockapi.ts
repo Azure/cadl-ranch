@@ -21,6 +21,24 @@ Scenarios.SpecialHeaders_ConditionalRequest_postIfNoneMatch = passOnSuccess(
   }),
 );
 
+Scenarios.SpecialHeaders_ConditionalRequest_headIfModifiedSince = passOnSuccess(
+  mockapi.head("/special-headers/conditional-request/if-modified-since", (req) => {
+    req.expect.containsHeader("if-modified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
+    return {
+      status: 204,
+    };
+  }),
+);
+
+Scenarios.SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince = passOnSuccess(
+  mockapi.post("/special-headers/conditional-request/if-unmodified-since", (req) => {
+    req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
+    return {
+      status: 204,
+    };
+  }),
+);
+
 Scenarios.Special_Headers_Conditional_Request_If_Match = passOnSuccess({
   uri: "/special-headers/conditional-request/if-match",
   mockMethods: [
