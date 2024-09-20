@@ -14,7 +14,7 @@ import {
   modelWithUnwrappedArray,
   simpleModel,
 } from "./mockapi.js";
-import { makeServiceCall, matrix, SERVICE_CALL_TYPE } from "../../helper.js";
+import { makeServiceCall, matrix, SERVICE_CALL_TYPE } from "../../helper-server-test.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();

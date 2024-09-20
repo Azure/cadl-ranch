@@ -10,6 +10,7 @@ import { generateScenarioSummary } from "../actions/generate-scenario-summary.js
 import { uploadScenarioManifest } from "../actions/upload-scenario-manifest.js";
 import { uploadCoverageReport } from "../actions/upload-coverage-report.js";
 import { getCommit } from "../utils/misc-utils.js";
+import { serverTest, serverTestWithCoverage } from "../actions/server-test.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -164,8 +165,27 @@ async function main() {
           });
       },
       async (args) => {
-        console.log(args.scenariosPath);
-        console.log(args.serverBasePath);
+        await serverTest(args.scenariosPath, args.serverBasePath);
+      },
+    )
+    .command(
+      "server-test-with-coverage <scenariosPath>",
+      "Executes the test cases against the service",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .positional("serverBasePath", {
+            description: "Path to the server",
+            type: "string",
+            demandOption: true,
+          });
+      },
+      async (args) => {
+        await serverTestWithCoverage(args.scenariosPath, args.serverBasePath);
       },
     )
     .command(

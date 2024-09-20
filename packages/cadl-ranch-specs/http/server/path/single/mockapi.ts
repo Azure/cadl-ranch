@@ -8,3 +8,16 @@ Scenarios.Server_Path_Single_myOp = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Server_Path_Single_MyOp = passOnSuccess({
+  uri: "/server/path/single/myOp",
+  mockMethods: [
+    {
+      method: "head",
+      request: {},
+      response: {
+        status: 200,
+      },
+    },
+  ],
+});

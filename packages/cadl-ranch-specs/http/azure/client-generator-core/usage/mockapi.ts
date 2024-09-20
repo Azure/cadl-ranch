@@ -22,3 +22,46 @@ Scenarios.Azure_ClientGenerator_Core_Usage_ModelInOperation = passOnSuccess([
     };
   }),
 ]);
+
+Scenarios.Azure_Client_Generator_Core_Usage_Input_To_Input = passOnSuccess({
+  uri: "/azure/client-generator-core/usage/inputToInputOutput",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: { name: "Madge" },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Client_Generator_Core_Usage_Output_To_Input = passOnSuccess({
+  uri: "/azure/client-generator-core/usage/outputToInputOutput",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: { name: "Madge" },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Client_Generator_Core_Usage_Model_In_ReadOnly = passOnSuccess({
+  uri: "/azure/client-generator-core/usage/modelInReadOnlyProperty",
+  mockMethods: [
+    {
+      method: "put",
+      request: {},
+      response: {
+        status: 200,
+        data: { result: { name: "Madge" } },
+      },
+    },
+  ],
+});

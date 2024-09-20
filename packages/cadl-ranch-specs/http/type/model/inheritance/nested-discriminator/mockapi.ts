@@ -102,3 +102,77 @@ Scenarios.Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator = pas
     return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
   }),
 );
+
+Scenarios.Type_Model_Inheritance_Nested_Discriminator_Model = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/model",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: validPolymorphicBody,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: validPolymorphicBody,
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Model_Inheritance_Nested_Discriminator_Recursive_Model = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/recursivemodel",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: validRecursiveBody,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: validRecursiveBody,
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Model_Inheritance_Nested_Discriminator_Missing_Discriminator = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/missingdiscriminator",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: { age: 1 },
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Model_Inheritance_Nested_Discriminator_Wrong_Discriminator = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/wrongdiscriminator",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: { age: 1, kind: "wrongKind" },
+      },
+    },
+  ],
+});

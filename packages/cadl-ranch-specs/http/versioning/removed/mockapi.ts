@@ -12,3 +12,27 @@ Scenarios.Versioning_Removed_v2 = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Versioning_Removed_API_Version_V2_V2 = passOnSuccess({
+  uri: `/versioning/removed/api-version:v2/v2`,
+  mockMethods: [
+    {
+      method: `post`,
+      request: {
+        body: {
+          prop: "foo",
+          enumProp: "enumMemberV2",
+          unionProp: "bar",
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          prop: "foo",
+          enumProp: "enumMemberV2",
+          unionProp: "bar",
+        },
+      },
+    },
+  ],
+});

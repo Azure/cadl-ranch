@@ -68,3 +68,60 @@ Scenarios.Azure_Core_Traits_repeatableAction = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Azure_Core_Traits_User = passOnSuccess({
+  uri: "/azure/core/traits/user/1",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          headers: {
+            "foo": "123",
+            "If-Match": '\\"valid\\"',
+            "If-None-Match": '\\"invalid\\"',
+            "If-Modified-Since": "Thu, 26 Aug 2021 14:38:00 GMT",
+            "If-Unmodified-Since": "Fri, 26 Aug 2022 14:38:00 GMT",
+            "x-ms-client-request-id": "any uuid",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUser,
+        headers: {
+          "bar": "456",
+          "etag": "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          "x-ms-client-request-id": "any uuid",
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Traits_User_Repeatable_Action = passOnSuccess({
+  uri: "/azure/core/traits/user/1:repeatableAction",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: {
+          userActionValue: "test",
+        },
+        config: {
+          headers: {
+            "Repeatability-Request-ID": "86aede1f-96fa-4e7f-b1e1-bf8a947cb804",
+            "Repeatability-First-Sent": "Mon, 27 Nov 2023 11:58:00 GMT",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { userActionResult: "test" },
+        headers: {
+          "repeatability-result": "accepted",
+        },
+      },
+    },
+  ],
+});

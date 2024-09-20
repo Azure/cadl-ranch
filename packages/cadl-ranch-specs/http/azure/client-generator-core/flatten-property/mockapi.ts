@@ -64,3 +64,65 @@ Scenarios.Azure_ClientGenerator_Core_FlattenProperty_putNestedFlattenModel = pas
     },
   ),
 );
+
+Scenarios.Azure_ClientGenerator_Core_Flatten_Property_FlattenModel = passOnSuccess({
+  uri: "/azure/client-generator-core/flatten-property/flattenModel",
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+          properties: {
+            description: "bar",
+            age: 10,
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          name: "test",
+          properties: {
+            description: "test",
+            age: 1,
+          },
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ClientGenerator_Core_Flatten_Property_Nested_FlattenModel = passOnSuccess({
+  uri: "/azure/client-generator-core/flatten-property/nestedFlattenModel",
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+          properties: {
+            summary: "bar",
+            properties: {
+              description: "test",
+              age: 10,
+            },
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          name: "test",
+          properties: {
+            summary: "test",
+            properties: {
+              description: "foo",
+              age: 1,
+            },
+          },
+        },
+      },
+    },
+  ],
+});

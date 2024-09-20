@@ -30,3 +30,43 @@ Scenarios.Type_Enum_Extensible_String_putUnknownValue = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+function createMockServerTests(uri: string, data: any) {
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "get",
+        request: {},
+        response: {
+          status: 200,
+          data: data,
+        },
+      },
+      {
+        method: "put",
+        request: {
+          body: data,
+          config: {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Enum_Extensible_String_Known_Value = createMockServerTests(
+  `/type/enum/extensible/string/known-value`,
+  "Monday",
+);
+
+Scenarios.Type_Enum_Extensible_String_UnKnown_Value = createMockServerTests(
+  `/type/enum/extensible/string/unknown-value`,
+  "Weekend",
+);

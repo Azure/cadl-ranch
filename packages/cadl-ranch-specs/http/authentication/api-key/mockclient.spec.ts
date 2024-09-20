@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper.js";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper-server-test.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -37,7 +37,7 @@ describe("authentication/api-key service endpoint", () => {
             "x-ms-api-key": "valid-key",
           },
           validateStatus: function (status: number) {
-            return (status >= 200 && status < 300) || status == 403;
+            return (status >= 200 && status < 300) || status === 403;
           },
         },
       },

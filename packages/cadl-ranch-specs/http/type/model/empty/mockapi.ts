@@ -24,3 +24,42 @@ Scenarios.Type_Model_Empty_postRoundTripEmpty = passOnSuccess(
     return { status: 200, body: json(body) };
   }),
 );
+
+Scenarios.Type_Model_Empty_Alone = passOnSuccess({
+  uri: "/type/model/empty/alone",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: body,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: body,
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Model_Empty_Round_Trip = passOnSuccess({
+  uri: "/type/model/empty/round-trip",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: body,
+      },
+      response: {
+        status: 200,
+        data: body,
+      },
+    },
+  ],
+});

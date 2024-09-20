@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, pngFile, SERVICE_CALL_TYPE, uint8ArrayToString } from "../../helper.js";
+import { makeServiceCall, SERVICE_CALL_TYPE, uint8ArrayToString } from "../../helper-server-test.js";
+import { pngFile } from "../../helper.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();

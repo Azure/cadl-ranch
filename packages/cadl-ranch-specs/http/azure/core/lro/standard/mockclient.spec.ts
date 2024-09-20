@@ -1,6 +1,5 @@
-import { assert } from "chai";
-import { describe } from "mocha";
-import { makeServiceCall, SERVICE_CALL_TYPE } from "../../../../helper.js";
+import { beforeEach, assert, describe, it } from "vitest";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../../../helper-server-test.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -29,7 +28,6 @@ describe("azure/core/lro/standard endpoint", () => {
     assert.isNotNull(response.headers["operation-location"]);
     assert.strictEqual(response.data.name, "madge");
     assert.strictEqual(response.data.role, "contributor");
-    console.log(response.headers["operation-location"]);
     let count = 0;
     endPoint = response.headers["operation-location"];
     do {

@@ -83,3 +83,209 @@ Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerAlias = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Parameters_Spread_Model_Request_Body = passOnSuccess({
+  uri: `/parameters/spread/model/request-body`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Model_Composite_Request_Only_With_Body = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-only-with-body`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Model_Composite_Request_Without_Body_Foo = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-without-body/foo`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        config: {
+          headers: {
+            "test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Model_Composite_Request_Foo = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request/foo`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+        },
+        config: {
+          headers: {
+            "test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Model_Composite_Request_Mix_Foo = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-mix/foo`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          prop: "foo",
+        },
+        config: {
+          headers: {
+            "test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Alias_Request_Body = passOnSuccess({
+  uri: `/parameters/spread/alias/request-body`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Alias_Request_Parameter_1 = passOnSuccess({
+  uri: `/parameters/spread/alias/request-parameter/1`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "foo",
+        },
+        config: {
+          headers: {
+            "x-ms-test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Alias_Multiple_Parameters_1 = passOnSuccess({
+  uri: `/parameters/spread/alias/multiple-parameters/1`,
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: {
+          requiredString: "foo",
+          optionalInt: 1,
+          requiredIntList: [1, 2],
+          optionalStringList: ["foo", "bar"],
+        },
+        config: {
+          headers: {
+            "x-ms-test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Alias_Inner_Model_Parameter_1 = passOnSuccess({
+  uri: `/parameters/spread/alias/inner-model-parameter/1`,
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: {
+          name: "foo",
+        },
+        config: {
+          headers: {
+            "x-ms-test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Spread_Alias_Inner_Alias_Parameter_1 = passOnSuccess({
+  uri: `/parameters/spread/alias/inner-alias-parameter/1`,
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: {
+          name: "foo",
+          age: 1,
+        },
+        config: {
+          headers: {
+            "x-ms-test-header": "bar",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

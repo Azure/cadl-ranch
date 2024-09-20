@@ -104,3 +104,158 @@ Scenarios.Azure_Core_Basic_exportAllUsers = passOnSuccess(
     return { status: 200, body: json(expectBody) };
   }),
 );
+
+Scenarios.Azure_Core_Basic_List = passOnSuccess({
+  uri: "/azure/core/basic/users?select=id&select=orders&select=etag",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "top": 5,
+            "skip": 10,
+            "orderby": "id",
+            "filter": "id lt 10",
+            "expand": "orders",
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [
+            {
+              id: 1,
+              name: "Madge",
+              etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+              orders: [{ id: 1, userId: 1, detail: "a recorder" }],
+            },
+            {
+              id: 2,
+              name: "John",
+              etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+              orders: [{ id: 2, userId: 2, detail: "a TV" }],
+            },
+          ],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Basic = passOnSuccess({
+  uri: "/azure/core/basic/users/1",
+  mockMethods: [
+    {
+      method: "patch",
+      request: {
+        body: {
+          name: "Madge",
+        },
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+          headers: {
+            "Content-Type": "application/merge-patch+json",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUser,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: {
+          name: "Madge",
+        },
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUser,
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUser,
+      },
+    },
+    {
+      method: "delete",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Basic_Export = passOnSuccess({
+  uri: "/azure/core/basic/users/1:export",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          params: {
+            "format": "json",
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUser,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Basic_Export_All_Users = passOnSuccess({
+  uri: "/azure/core/basic/users:exportallusers",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+            "format": "json",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: expectBody,
+      },
+    },
+  ],
+});

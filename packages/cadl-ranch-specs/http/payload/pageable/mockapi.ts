@@ -1,4 +1,4 @@
-import { mockapi, json, withKeys, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { mockapi, json, withKeys, ValidationError, passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -33,3 +33,61 @@ Scenarios.Payload_Pageable_list = withKeys(["firstPage", "secondPage"]).pass(
     }
   }),
 );
+
+Scenarios.Payload_Pageable = passOnSuccess({
+  uri: "/payload/pageable",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            maxpagesize: 3,
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [{ name: "user5" }, { name: "user6" }, { name: "user7" }],
+          nextLink: "/payload/pageable?skipToken=name-user7&maxpagesize=3",
+        },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            maxpagesize: 3,
+            skipToken: "name-user7",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { value: [{ name: "user8" }] },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            maxpagesize: 3,
+            skipToken: "name-user10",
+          },
+          validStatuses: [400],
+        },
+      },
+      response: {
+        status: 400,
+        data: {
+          message: "Unsupported skipToken query parameter",
+          expected: `Not provided for first page, "name-user7" for second page`,
+          actual: "name-user10",
+        },
+      },
+    },
+  ],
+});

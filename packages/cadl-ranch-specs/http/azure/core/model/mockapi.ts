@@ -26,3 +26,36 @@ Scenarios.Azure_Core_Model_AzureCoreEmbeddingVector_post = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Azure_Core_Model_Embedding_Vector = passOnSuccess({
+  uri: "/azure/core/model/embeddingVector",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: [0, 1, 2, 3, 4],
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: [0, 1, 2, 3, 4],
+      },
+      response: {
+        status: 204,
+      },
+    },
+    {
+      method: "post",
+      request: {
+        body: { embedding: [0, 1, 2, 3, 4] },
+      },
+      response: {
+        status: 200,
+        data: responseBody,
+      },
+    },
+  ],
+});

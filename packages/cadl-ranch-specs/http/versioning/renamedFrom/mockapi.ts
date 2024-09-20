@@ -23,3 +23,56 @@ Scenarios.Versioning_RenamedFrom_NewInterface = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Versioning_RenamedFrom_API_Version_V2_Test = passOnSuccess({
+  uri: `/versioning/renamed-from/api-version:v2/test`,
+  mockMethods: [
+    {
+      method: `post`,
+      request: {
+        body: {
+          newProp: "foo",
+          enumProp: "newEnumMember",
+          unionProp: 10,
+        },
+        config: {
+          params: {
+            newQuery: "bar",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          newProp: "foo",
+          enumProp: "newEnumMember",
+          unionProp: 10,
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Versioning_RenamedFrom_API_Version_V2_Interface_Test = passOnSuccess({
+  uri: `/versioning/renamed-from/api-version:v2/interface/test`,
+  mockMethods: [
+    {
+      method: `post`,
+      request: {
+        body: {
+          newProp: "foo",
+          enumProp: "newEnumMember",
+          unionProp: 10,
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          newProp: "foo",
+          enumProp: "newEnumMember",
+          unionProp: 10,
+        },
+      },
+    },
+  ],
+});

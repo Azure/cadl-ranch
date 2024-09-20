@@ -110,3 +110,158 @@ Scenarios.Resiliency_ServiceDriven_addOperation = passOnSuccess(
     };
   }),
 );
+
+function createMockServerTests_1(uri: string, configData?: any) {
+  let configObject: any;
+  if (configData) {
+    configObject = configData;
+  } else {
+    configObject = {};
+  }
+
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "head",
+        request: {
+          config: configObject,
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Resiliency_SRV_Driven_Add_Optional_Param_From_None_111 = createMockServerTests_1(
+  "/resiliency/service-driven/client:v1/service:v1/api-version:v1/add-optional-param/from-none",
+);
+Scenarios.Resiliency_SRV_Driven_Add_Optional_Param_From_None_121 = createMockServerTests_1(
+  "/resiliency/service-driven/client:v1/service:v2/api-version:v1/add-optional-param/from-none",
+);
+Scenarios.Resiliency_SRV_Driven_Add_Optional_Param_From_None_221 = createMockServerTests_1(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v1/add-optional-param/from-none",
+);
+Scenarios.Resiliency_SRV_Driven_Add_Optional_Param_From_None_222 = createMockServerTests_1(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v2/add-optional-param/from-none",
+  {
+    params: {
+      "new-parameter": "new",
+    },
+  },
+);
+
+function createMockServerTests_2(uri: string, configData?: any) {
+  let configObject: any;
+  if (configData) {
+    configObject = configData;
+  } else {
+    configObject = {};
+  }
+
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "get",
+        request: {
+          config: configObject,
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Resiliency_SRV_Driven_From_One_Required_111 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v1/service:v1/api-version:v1/add-optional-param/from-one-required",
+  {
+    params: {
+      parameter: "required",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Required_121 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v1/service:v2/api-version:v1/add-optional-param/from-one-required",
+  {
+    params: {
+      parameter: "required",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Required_221 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v1/add-optional-param/from-one-required",
+  {
+    params: {
+      parameter: "required",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Required_222 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v2/add-optional-param/from-one-required",
+  {
+    params: {
+      "new-parameter": "new",
+      "parameter": "required",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Optional_111 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v1/service:v1/api-version:v1/add-optional-param/from-one-optional",
+  {
+    params: {
+      parameter: "optional",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Optional_121 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v1/service:v2/api-version:v1/add-optional-param/from-one-optional",
+  {
+    params: {
+      parameter: "optional",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Optional_221 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v1/add-optional-param/from-one-optional",
+  {
+    params: {
+      parameter: "optional",
+    },
+  },
+);
+Scenarios.Resiliency_SRV_Driven_From_One_Optional_222 = createMockServerTests_2(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v2/add-optional-param/from-one-optional",
+  {
+    params: {
+      "new-parameter": "new",
+      "parameter": "optional",
+    },
+  },
+);
+
+function createMockServerTests_3(uri: string, configData?: any) {
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "delete",
+        request: {},
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Resiliency_SRV_Driven_Add_Operation_122 = createMockServerTests_3(
+  "/resiliency/service-driven/client:v1/service:v2/api-version:v2/add-operation",
+);
+Scenarios.Resiliency_SRV_Driven_Add_Operation_222 = createMockServerTests_3(
+  "/resiliency/service-driven/client:v2/service:v2/api-version:v2/add-operation",
+);

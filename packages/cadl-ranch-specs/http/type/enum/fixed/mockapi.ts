@@ -25,3 +25,52 @@ Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnCode(
     return { status: 500 };
   }),
 );
+
+Scenarios.Type_Enum_Fixed_String_Known_Value = passOnSuccess({
+  uri: "/type/enum/fixed/string/known-value",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: "Monday",
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: "Monday",
+        config: {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Enum_Fixed_String_Unknown_Value = passOnSuccess({
+  uri: "/type/enum/fixed/string/unknown-value",
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: "Weekend",
+        config: {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          validStatuses: [500],
+        },
+      },
+      response: {
+        status: 500,
+      },
+    },
+  ],
+});

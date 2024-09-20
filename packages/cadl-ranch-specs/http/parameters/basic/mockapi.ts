@@ -16,3 +16,25 @@ Scenarios.Parameters_Basic_ImplicitBody_simple = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+function createServerTests(uri: string) {
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "put",
+        request: {
+          body: {
+            name: "foo",
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Parameters_Basic_ExplicitBody_simple_server = createServerTests("/parameters/basic/explicit-body/simple");
+Scenarios.Parameters_Basic_ImplicitBody_simple_server = createServerTests("/parameters/basic/implicit-body/simple");

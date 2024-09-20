@@ -56,3 +56,107 @@ Scenarios.Parameters_CollectionFormat_Header_csv = passOnSuccess(
     };
   }),
 );
+
+const colors = ["blue", "red", "green"];
+
+Scenarios.Parameters_Collection_Format_Query_Multi = passOnSuccess({
+  uri: `/parameters/collection-format/query/multi`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: { colors: ["blue", "red", "green"] },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Collection_Format_Query_CSV = passOnSuccess({
+  uri: `/parameters/collection-format/query/csv`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: { colors: colors.join(",") },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Collection_Format_Query_SSV = passOnSuccess({
+  uri: `/parameters/collection-format/query/ssv`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: { colors: colors.join(" ") },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Collection_Format_Query_TSV = passOnSuccess({
+  uri: `/parameters/collection-format/query/tsv`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: { colors: colors.join("\t") },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Collection_Format_Query_Pipes = passOnSuccess({
+  uri: `/parameters/collection-format/query/pipes`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: { colors: colors.join("|") },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Parameters_Collection_Format_Header_CSV = passOnSuccess({
+  uri: `/parameters/collection-format/header/csv`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          headers: { colors: colors.join(",") },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

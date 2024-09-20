@@ -13,3 +13,29 @@ Scenarios.Server_Path_Multiple_withOperationPathParam = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Server_Path_Multiple_V10 = passOnSuccess({
+  uri: "/server/path/multiple/v1.0",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Server_Path_Multiple_V10_Test = passOnSuccess({
+  uri: "/server/path/multiple/v1.0/test",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

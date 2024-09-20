@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, pngFile, jpgFile, SERVICE_CALL_TYPE, uint8ArrayToString } from "../../helper.js";
+import { makeServiceCall, SERVICE_CALL_TYPE, uint8ArrayToString } from "../../helper-server-test.js";
+import { pngFile, jpgFile } from "../../helper.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -54,7 +55,7 @@ describe("payload/content-negotiation endpoint", () => {
             accept: "wrongAccept",
           },
           validateStatus: function (status: number) {
-            return (status >= 200 && status < 300) || status == 400;
+            return (status >= 200 && status < 300) || status === 400;
           },
         },
       },
@@ -107,7 +108,7 @@ describe("payload/content-negotiation endpoint", () => {
             accept: "wrongAccept",
           },
           validateStatus: function (status: number) {
-            return (status >= 200 && status < 300) || status == 400;
+            return (status >= 200 && status < 300) || status === 400;
           },
         },
       },

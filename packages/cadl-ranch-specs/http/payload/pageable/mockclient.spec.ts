@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper.js";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../helper-server-test.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -62,7 +62,7 @@ describe("payload/pageable service endpoint", () => {
             skipToken: "wrong value",
           },
           validateStatus: function (status: number) {
-            return (status >= 200 && status < 300) || status == 400;
+            return (status >= 200 && status < 300) || status === 400;
           },
         },
       },
@@ -91,7 +91,7 @@ describe("payload/pageable service endpoint", () => {
     });
     assert.strictEqual(initialResponse.status, 200);
 
-    let result: UserOutput[] = [];
+    const result: UserOutput[] = [];
     for await (const item of initialResponse.data.value) {
       result.push(item);
     }

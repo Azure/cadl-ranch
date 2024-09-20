@@ -50,3 +50,90 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
     return { status: 200, body: json(responseBody) };
   }),
 );
+
+Scenarios.Azure_Core_Page_Page = passOnSuccess({
+  uri: "/azure/core/page/page",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: {
+          value: [validUser],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Page_Parameters = passOnSuccess({
+  uri: "/azure/core/page/parameters",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          data: { inputName: "Madge" },
+          params: {
+            another: "Second",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [validUser],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Page_First_Item = passOnSuccess({
+  uri: "/azure/core/page/first-item",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: {
+          value: [{ id: 1 }],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Page_Second_Item = passOnSuccess({
+  uri: "/azure/core/page/second-item",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: {
+          value: [{ name: "Madge" }],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Page_Custom_Page = passOnSuccess({
+  uri: "/azure/core/page/custom-page",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: {
+          items: [validUser],
+        },
+      },
+    },
+  ],
+});

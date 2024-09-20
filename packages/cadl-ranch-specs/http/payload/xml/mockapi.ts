@@ -351,3 +351,67 @@ Scenarios.Payload_Xml_ModelWithEncodedNamesValue_put = passOnSuccess(
     };
   }),
 );
+
+function createServerTests(uri: string, data?: any) {
+  return passOnSuccess({
+    uri,
+    mockMethods: [
+      {
+        method: "get",
+        request: {},
+        response: {
+          status: 200,
+          data: xml(data),
+        },
+      },
+      {
+        method: "put",
+        request: {
+          body: data,
+          config: {
+            headers: {
+              "content-type": "application/xml",
+            },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Payload_Xml_SimpleModel = createServerTests("/payload/xml/simpleModel", simpleModel);
+Scenarios.Payload_Xml_ModelWithSimpleArrays = createServerTests(
+  "/payload/xml/modelWithSimpleArrays",
+  modelWithSimpleArrays,
+);
+Scenarios.Payload_Xml_ModelWithArrayOfModel = createServerTests(
+  "/payload/xml/modelWithArrayOfModel",
+  modelWithArrayOfModel,
+);
+Scenarios.Payload_Xml_ModelWithOptionalField = createServerTests(
+  "/payload/xml/modelWithOptionalField",
+  modelWithOptionalField,
+);
+Scenarios.Payload_Xml_ModelWithAttributes = createServerTests("/payload/xml/modelWithAttributes", modelWithAttributes);
+Scenarios.Payload_Xml_ModelWithUnwrappedArray = createServerTests(
+  "/payload/xml/modelWithUnwrappedArray",
+  modelWithUnwrappedArray,
+);
+Scenarios.Payload_Xml_ModelWithRenamedArrays = createServerTests(
+  "/payload/xml/modelWithRenamedArrays",
+  modelWithRenamedArrays,
+);
+Scenarios.Payload_Xml_ModelWithRenamedFields = createServerTests(
+  "/payload/xml/modelWithRenamedFields",
+  modelWithRenamedFields,
+);
+Scenarios.Payload_Xml_ModelWithEmptyArray = createServerTests("/payload/xml/modelWithEmptyArray", modelWithEmptyArray);
+Scenarios.Payload_Xml_ModelWithText = createServerTests("/payload/xml/modelWithText", modelWithText);
+Scenarios.Payload_Xml_ModelWithDictionary = createServerTests("/payload/xml/modelWithDictionary", modelWithDictionary);
+Scenarios.Payload_Xml_ModelWithEncodedNames = createServerTests(
+  "/payload/xml/modelWithEncodedNames",
+  modelWithEncodedNames,
+);

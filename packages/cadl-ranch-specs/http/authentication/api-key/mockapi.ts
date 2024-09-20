@@ -1,4 +1,4 @@
-import { MockRequest } from "@azure-tools/cadl-ranch-api";
+import { MockRequest, passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { getValidAndInvalidScenarios } from "../commonapi.js";
 
@@ -15,3 +15,45 @@ const validAndInvalidScenarios = getValidAndInvalidScenarios(
 Scenarios.Authentication_ApiKey_valid = validAndInvalidScenarios.valid;
 
 Scenarios.Authentication_ApiKey_invalid = validAndInvalidScenarios.invalid;
+
+Scenarios.Authentication_ApiKey_InValid_Server_Test = passOnSuccess({
+  uri: `/authentication/api-key/invalid`,
+  mockMethods: [
+    {
+      method: `get`,
+      request: {
+        config: {
+          headers: {
+            "x-ms-api-key": "valid-key",
+          },
+          validStatuses: [403],
+        },
+      },
+      response: {
+        status: 403,
+        data: {
+          error: "invalid-api-key",
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Authentication_ApiKey_Valid_Server_Test = passOnSuccess({
+  uri: `/authentication/api-key/valid`,
+  mockMethods: [
+    {
+      method: `get`,
+      request: {
+        config: {
+          headers: {
+            "x-ms-api-key": "valid-key",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

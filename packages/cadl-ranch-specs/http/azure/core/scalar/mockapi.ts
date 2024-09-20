@@ -43,3 +43,77 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_query = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Azure_Core_Scalar_Azure_Location_Query = passOnSuccess({
+  uri: "/azure/core/scalar/azureLocation/query",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          params: { region: "eastus" },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Scalar_Azure_Location_Header = passOnSuccess({
+  uri: "/azure/core/scalar/azureLocation/header",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          headers: {
+            region: "eastus",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_Scalar_Azure_Location = passOnSuccess({
+  uri: "/azure/core/scalar/azureLocation",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: "eastus",
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: "eastus",
+        config: {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+    {
+      method: "post",
+      request: {
+        body: { location: "eastus" },
+      },
+      response: {
+        status: 200,
+        data: azureLocation,
+      },
+    },
+  ],
+});

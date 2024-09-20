@@ -117,3 +117,160 @@ Scenarios.Type_Scalar_DecimalVerify_verify = passOnSuccess(DecimalVerifyMock.ver
 const Decimal128VerifyMock = createNumberTypesVerifyOperations("decimal128", [0.1, 0.1, 0.1], 0.3);
 Scenarios.Type_Scalar_Decimal128Verify_prepareVerify = passOnSuccess(Decimal128VerifyMock.prepareVerify);
 Scenarios.Type_Scalar_Decimal128Verify_verify = passOnSuccess(Decimal128VerifyMock.verify);
+
+function createGetSendServerTestScenario(url: string, value: unknown, content_type: string) {
+  return passOnSuccess({
+    uri: url,
+    mockMethods: [
+      {
+        method: `get`,
+        request: {},
+        response: {
+          status: 200,
+          data: value,
+        },
+      },
+      {
+        method: `put`,
+        request: {
+          body: value,
+          config: {
+            headers: {
+              "Content-Type": content_type,
+            },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Scalar_String = createGetSendServerTestScenario(`/type/scalar/string`, "test", "text/plain");
+Scenarios.Type_Scalar_Boolean = createGetSendServerTestScenario(
+  `/type/scalar/boolean`,
+  true,
+  "application/json; charset=utf-8",
+);
+Scenarios.Type_Scalar_Unknown = createGetSendServerTestScenario(`/type/scalar/unknown`, "test", "text/plain");
+
+function createModelMockResponseBodyServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    mockMethods: [
+      {
+        method: `get`,
+        request: {},
+        response: {
+          status: 200,
+          data: value,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Scalar_Decimal_Response_Body = createModelMockResponseBodyServerTests(
+  `/type/scalar/decimal/response_body`,
+  0.33333,
+);
+Scenarios.Type_Scalar_Decimal128_Response_Body = createModelMockResponseBodyServerTests(
+  `/type/scalar/decimal128/response_body`,
+  0.33333,
+);
+
+function createModelMockRequestBodyServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    mockMethods: [
+      {
+        method: `put`,
+        request: {
+          body: value,
+          config: {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Scalar_Decimal_Request_Body = createModelMockRequestBodyServerTests(
+  `/type/scalar/decimal/resquest_body`,
+  0.33333,
+);
+Scenarios.Type_Scalar_Decimal128_Request_Body = createModelMockRequestBodyServerTests(
+  `/type/scalar/decimal128/resquest_body`,
+  0.33333,
+);
+
+function createModelMockRequestParametersServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    mockMethods: [
+      {
+        method: `get`,
+        request: {
+          config: {
+            params: { value: value },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Scalar_Decimal_Request_Parameter = createModelMockRequestParametersServerTests(
+  `/type/scalar/decimal/request_parameter`,
+  0.33333,
+);
+Scenarios.Type_Scalar_Decimal128_Request_Parameter = createModelMockRequestParametersServerTests(
+  `/type/scalar/decimal128/request_parameter`,
+  0.33333,
+);
+
+Scenarios.Type_Scalar_Decimal_Prepare_Verify = createModelMockResponseBodyServerTests(
+  `/type/scalar/decimal/prepare_verify`,
+  [0.1, 0.1, 0.1],
+);
+
+Scenarios.Type_Scalar_Decimal128_Prepare_Verify = createModelMockResponseBodyServerTests(
+  `/type/scalar/decimal128/prepare_verify`,
+  [0.1, 0.1, 0.1],
+);
+
+function createModelMockVerifyServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    mockMethods: [
+      {
+        method: `post`,
+        request: {
+          body: value,
+          config: {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+          },
+        },
+        response: {
+          status: 204,
+        },
+      },
+    ],
+  });
+}
+
+Scenarios.Type_Scalar_Decimal_Verify = createModelMockVerifyServerTests(`/type/scalar/decimal/verify`, 0.3);
+Scenarios.Type_Scalar_Decimal128_Verify = createModelMockVerifyServerTests(`/type/scalar/decimal128/verify`, 0.3);

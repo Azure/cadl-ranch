@@ -20,3 +20,41 @@ Scenarios.SpecialHeaders_ConditionalRequest_postIfNoneMatch = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Special_Headers_Conditional_Request_If_Match = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-match",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          headers: {
+            "if-match": '\\"valid\\"',
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Special_Headers_Conditional_Request_If_None_Match = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-none-match",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          headers: {
+            "if-none-match": '\\"invalid\\"',
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

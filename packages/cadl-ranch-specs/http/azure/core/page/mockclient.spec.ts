@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { makeServiceCall, SERVICE_CALL_TYPE } from "../../../helper.js";
+import { makeServiceCall, SERVICE_CALL_TYPE } from "../../../helper-server-test.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -24,7 +24,7 @@ describe("azure/core/page endpoint", () => {
       endPoint,
     });
     assert.strictEqual(initialResponse.status, 200);
-    let result: UserOutput[] = [];
+    const result: UserOutput[] = [];
     for await (const item of initialResponse.data.value) {
       result.push(item);
     }
@@ -50,7 +50,7 @@ describe("azure/core/page endpoint", () => {
     });
     assert.strictEqual(initialResponse.status, 200);
     assert.isUndefined(initialResponse.data.nextLink);
-    let result: UserOutput[] = [];
+    const result: UserOutput[] = [];
     for await (const item of initialResponse.data.value) {
       result.push(item);
     }
@@ -70,7 +70,7 @@ describe("azure/core/page endpoint", () => {
     interface FirstItemOutput {
       id: number;
     }
-    let result1: FirstItemOutput[] = [];
+    const result1: FirstItemOutput[] = [];
     for await (const item of initialResponse1.data.value) {
       result1.push(item);
     }
@@ -84,7 +84,7 @@ describe("azure/core/page endpoint", () => {
     interface SecondItemOutput {
       name: string;
     }
-    let result2: SecondItemOutput[] = [];
+    const result2: SecondItemOutput[] = [];
     for await (const item of initialResponse2.data.value) {
       result2.push(item);
     }
@@ -101,7 +101,7 @@ describe("azure/core/page endpoint", () => {
     interface CustomUserOutput {
       items: UserOutput[];
     }
-    let result: CustomUserOutput = {
+    const result: CustomUserOutput = {
       items: initialResponse.data.items,
     };
     assert.strictEqual(result.items.length, 1);

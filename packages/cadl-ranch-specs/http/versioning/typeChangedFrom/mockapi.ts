@@ -13,3 +13,30 @@ Scenarios.Versioning_TypeChangedFrom_test = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Versioning_TypeChangedFrom_API_Version_V2_Test = passOnSuccess({
+  uri: `/versioning/type-changed-from/api-version:v2/test`,
+  mockMethods: [
+    {
+      method: `post`,
+      request: {
+        config: {
+          params: {
+            param: "baz",
+          },
+        },
+        body: {
+          prop: "foo",
+          changedProp: "bar",
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          prop: "foo",
+          changedProp: "bar",
+        },
+      },
+    },
+  ],
+});

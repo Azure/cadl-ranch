@@ -32,3 +32,26 @@ Scenarios.Type_Model_Inheritance_Recursive_get = passOnSuccess(
     return { status: 200, body: json(body) };
   }),
 );
+
+Scenarios.Type_Model_Inheritance_Recursive = passOnSuccess({
+  uri: "/type/model/inheritance/recursive",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: body,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: body,
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

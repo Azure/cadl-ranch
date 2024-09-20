@@ -144,3 +144,61 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
       },
     ),
   ]);
+
+Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validSystemAssignedManagedIdentityResource,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: {
+          identity: createExpectedIdentity,
+          location: LOCATION_REGION_EXPECTED,
+          tags: { tagKey1: "tagValue1" },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validSystemAssignedManagedIdentityResource,
+      },
+    },
+    {
+      method: "patch",
+      request: {
+        body: {
+          identity: updateExpectedIdentity,
+          location: LOCATION_REGION_EXPECTED,
+          tags: { tagKey1: "tagValue1" },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validUserAssignedAndSystemAssignedManagedIdentityResource,
+      },
+    },
+  ],
+});

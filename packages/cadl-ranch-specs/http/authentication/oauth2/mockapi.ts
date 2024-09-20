@@ -1,4 +1,4 @@
-import { MockRequest } from "@azure-tools/cadl-ranch-api";
+import { MockRequest, passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { getValidAndInvalidScenarios } from "../commonapi.js";
 
@@ -15,3 +15,42 @@ const validAndInvalidScenarios = getValidAndInvalidScenarios(
 Scenarios.Authentication_OAuth2_valid = validAndInvalidScenarios.valid;
 
 Scenarios.Authentication_OAuth2_invalid = validAndInvalidScenarios.invalid;
+
+Scenarios.Authentication_OAuth2_Valid_Server_Test = passOnSuccess({
+  uri: `/authentication/oauth2/valid`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          headers: {
+            authorization: "Bearer https://security.microsoft.com/.default",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Authentication_OAuth2_Invalid_Server_Test = passOnSuccess({
+  uri: `/authentication/oauth2/invalid`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          validStatuses: [403],
+        },
+      },
+      response: {
+        status: 403,
+        data: {
+          error: "invalid-grant",
+        },
+      },
+    },
+  ],
+});

@@ -35,6 +35,178 @@ Scenarios.Azure_Core_Lro_Standard_createOrReplace = passOnSuccess([
   }),
 ]);
 
+Scenarios.Azure_Core_LRO_Standard_Users = passOnSuccess({
+  uri: "/azure/core/lro/standard/users/madge",
+  mockMethods: [
+    {
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        data: validUser,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: { role: "contributor" },
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 201,
+        data: validUser,
+        headers: {
+          "operation-location": "/azure/core/lro/standard/users/madge/operations/operation1",
+        },
+      },
+    },
+    {
+      method: "delete",
+      request: {
+        body: { role: "contributor" },
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 202,
+        data: { id: "operation2", status: "InProgress" },
+        headers: {
+          "operation-location": `/azure/core/lro/standard/users/madge/operations/operation2`,
+        },
+      },
+    },
+  ],
+});
+Scenarios.Azure_Core_LRO_Standard_Users_Operation1 = passOnSuccess({
+  uri: "/azure/core/lro/standard/users/madge/operations/operation1",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation1", status: "InProgress" },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation1", status: "Succeeded" },
+      },
+    },
+  ],
+});
+Scenarios.Azure_Core_LRO_Standard_Users_Operation2 = passOnSuccess({
+  uri: "/azure/core/lro/standard/users/madge/operations/operation2",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation2", status: "InProgress" },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation2", status: "Succeeded" },
+      },
+    },
+  ],
+});
+Scenarios.Azure_Core_LRO_Standard_Users_Operation3 = passOnSuccess({
+  uri: "/azure/core/lro/standard/users/madge/operations/operation3",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation3", status: "InProgress" },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation3", status: "Succeeded", result: { name: "madge", resourceUri: "/users/madge" } },
+      },
+    },
+  ],
+});
+Scenarios.Azure_Core_LRO_Standard_Users_Export = passOnSuccess({
+  uri: "/azure/core/lro/standard/users/madge:export",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+            "format": "json",
+          },
+        },
+      },
+      response: {
+        status: 202,
+        data: { id: "operation3", status: "InProgress" },
+        headers: {
+          "operation-location": `/azure/core/lro/standard/users/madge/operations/operation3`,
+        },
+      },
+    },
+  ],
+});
+
 Scenarios.Azure_Core_Lro_Standard_delete = passOnSuccess([
   mockapi.delete("/azure/core/lro/standard/users/madge", (req) => {
     req.expect.containsQueryParam("api-version", "2022-12-01-preview");

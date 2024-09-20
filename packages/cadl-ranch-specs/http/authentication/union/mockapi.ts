@@ -16,3 +16,41 @@ Scenarios.Authentication_Union_validToken = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Authentication_Union_Valid_Key = passOnSuccess({
+  uri: `/authentication/union/validkey`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          headers: {
+            "x-ms-api-key": "valid-key",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Authentication_Union_Valid_Token = passOnSuccess({
+  uri: `/authentication/union/validtoken`,
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          headers: {
+            authorization: "Bearer https://security.microsoft.com/.default",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

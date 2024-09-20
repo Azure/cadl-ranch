@@ -76,3 +76,94 @@ Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess(
     return { status: 200, body: json(expectBody) };
   }),
 );
+
+Scenarios.Type_Model_Visibility_ReadOnlyRoundTrip = passOnSuccess({
+  uri: "/type/model/visibility/readonlyroundtrip",
+  mockMethods: [
+    {
+      method: "put",
+      request: {},
+      response: {
+        status: 200,
+        data: {
+          optionalNullableIntList: [1, 2, 3],
+          optionalStringRecord: { k1: "value1", k2: "value2" },
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Type_Model_Visibility = passOnSuccess({
+  uri: "/type/model/visibility",
+  mockMethods: [
+    {
+      method: "head",
+      request: {
+        config: {
+          data: { queryProp: 123 },
+        },
+      },
+      response: {
+        status: 200,
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          data: { queryProp: 123 },
+        },
+      },
+      response: {
+        status: 200,
+        data: { readProp: "abc" },
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: {
+          createProp: ["foo", "bar"],
+          updateProp: [1, 2],
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+    {
+      method: "patch",
+      request: {
+        body: {
+          updateProp: [1, 2],
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+    {
+      method: "post",
+      request: {
+        body: {
+          createProp: ["foo", "bar"],
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+    {
+      method: "delete",
+      request: {
+        config: {
+          data: { deleteProp: true },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});

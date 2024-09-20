@@ -328,3 +328,319 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopL
     },
   ),
 ]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTracked_Resources_ActionSync = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/actionSync",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: {
+          message: "Resource action at top level.",
+          urgent: true,
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+            "subscriptionId": "00000000-0000-0000-0000-000000000000",
+            "resourceGroup": "test-rg",
+            "topLevelResourceName": "top",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTracked_Resources = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validTopLevelResource,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: {
+          location: "eastus",
+          properties: {
+            description: "valid",
+          },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validTopLevelResource,
+      },
+    },
+    {
+      method: "patch",
+      request: {
+        body: {
+          properties: {
+            description: "valid2",
+          },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+          name: "top",
+          type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+          location: "eastus",
+          properties: {
+            provisioningState: "Succeeded",
+            description: "valid2",
+          },
+          systemData: {
+            createdBy: "AzureSDK",
+            createdByType: "User",
+            createdAt: new Date(),
+            lastModifiedBy: "AzureSDK",
+            lastModifiedAt: new Date(),
+            lastModifiedByType: "User",
+          },
+        },
+      },
+    },
+    {
+      method: "delete",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTracked_Resources_ListByRG = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [
+            {
+              id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+              name: "top",
+              type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+              location: "eastus",
+              properties: {
+                provisioningState: "Succeeded",
+                description: "valid",
+              },
+              systemData: {
+                createdBy: "AzureSDK",
+                createdByType: "User",
+                lastModifiedBy: "AzureSDK",
+                lastModifiedByType: "User",
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTracked_Resources_ListBySubscription = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [
+            {
+              id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+              name: "top",
+              type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+              location: "eastus",
+              properties: {
+                provisioningState: "Succeeded",
+                description: "valid",
+              },
+              systemData: {
+                createdBy: "AzureSDK",
+                createdByType: "User",
+                lastModifiedBy: "AzureSDK",
+                lastModifiedByType: "User",
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validNestedResource,
+      },
+    },
+    {
+      method: "put",
+      request: {
+        body: {
+          properties: {
+            description: "valid",
+          },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: validNestedResource,
+      },
+    },
+    {
+      method: "patch",
+      request: {
+        body: {
+          properties: {
+            description: "valid2",
+          },
+        },
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          id: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+          name: "nested",
+          type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+          properties: {
+            provisioningState: "Succeeded",
+            description: "valid2",
+          },
+          systemData: {
+            createdBy: "AzureSDK",
+            createdByType: "User",
+            lastModifiedBy: "AzureSDK",
+            lastModifiedByType: "User",
+          },
+        },
+      },
+    },
+    {
+      method: "delete",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 204,
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopResource = passOnSuccess({
+  uri: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2023-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          value: [
+            {
+              id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+              name: "nested",
+              type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+              properties: {
+                provisioningState: "Succeeded",
+                description: "valid",
+              },
+              systemData: {
+                createdBy: "AzureSDK",
+                createdByType: "User",
+                lastModifiedBy: "AzureSDK",
+                lastModifiedByType: "User",
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
+});

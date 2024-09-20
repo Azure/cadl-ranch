@@ -84,3 +84,65 @@ Scenarios.Payload_JsonMergePatch_updateResource = passOnSuccess(createMockApis("
 Scenarios.Payload_JsonMergePatch_updateOptionalResource = passOnSuccess(
   createMockApis("update/resource/optional", true),
 );
+
+Scenarios.Payload_JsonMergePatch_Create_Resource = passOnSuccess({
+  uri: "/json-merge-patch/create/resource",
+  mockMethods: [
+    {
+      method: "put",
+      request: {
+        body: expectedCreateBody,
+      },
+      response: {
+        status: 200,
+        data: expectedCreateBody,
+      },
+    },
+  ],
+});
+
+Scenarios.Payload_JsonMergePatch_Update_Resource = passOnSuccess({
+  uri: "/json-merge-patch/update/resource",
+  mockMethods: [
+    {
+      method: "patch",
+      request: {
+        body: expectedUpdateBody,
+      },
+      response: {
+        status: 200,
+        data: {
+          name: "Madge",
+          map: {
+            key: {
+              name: "InnerMadge",
+            },
+          },
+        },
+      },
+    },
+  ],
+});
+
+Scenarios.Payload_JsonMergePatch_Update_Resource_Optional = passOnSuccess({
+  uri: "/json-merge-patch/update/resource/optional",
+  mockMethods: [
+    {
+      method: "patch",
+      request: {
+        body: expectedUpdateBody,
+      },
+      response: {
+        status: 200,
+        data: {
+          name: "Madge",
+          map: {
+            key: {
+              name: "InnerMadge",
+            },
+          },
+        },
+      },
+    },
+  ],
+});

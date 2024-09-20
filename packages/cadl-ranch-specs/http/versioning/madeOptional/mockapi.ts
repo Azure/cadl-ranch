@@ -12,3 +12,23 @@ Scenarios.Versioning_MadeOptional_test = passOnSuccess(
     };
   }),
 );
+
+Scenarios.Versioning_MadeOptional_API_Version_V2_Test = passOnSuccess({
+  uri: `/versioning/made-optional/api-version:v2/test`,
+  mockMethods: [
+    {
+      method: `post`,
+      request: {
+        body: {
+          prop: "foo",
+        },
+      },
+      response: {
+        status: 200,
+        data: {
+          prop: "foo",
+        },
+      },
+    },
+  ],
+});

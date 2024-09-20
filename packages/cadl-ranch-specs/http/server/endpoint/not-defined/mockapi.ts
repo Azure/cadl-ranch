@@ -8,3 +8,16 @@ Scenarios.Server_Endpoint_NotDefined_valid = passOnSuccess(
     return { status: 200 };
   }),
 );
+
+Scenarios.Server_Endpoint_Not_Defined_Valid = passOnSuccess({
+  uri: "/server/endpoint/not-defined/valid",
+  mockMethods: [
+    {
+      method: "head",
+      request: {},
+      response: {
+        status: 200,
+      },
+    },
+  ],
+});
