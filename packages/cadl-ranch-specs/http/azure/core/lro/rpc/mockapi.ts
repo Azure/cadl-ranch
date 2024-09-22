@@ -28,3 +28,61 @@ Scenarios.Azure_Core_Lro_Rpc_longRunningRpc = passOnSuccess([
     return { status: 200, body: json(response) };
   }),
 ]);
+
+Scenarios.Azure_Core_LRO_RPC_Generations_Operations = passOnSuccess({
+  uri: "/azure/core/lro/rpc/generations/operations/operation1",
+  mockMethods: [
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation1", status: "InProgress" },
+      },
+    },
+    {
+      method: "get",
+      request: {
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 200,
+        data: { id: "operation1", status: "Succeeded", result: { data: "text data" } },
+      },
+    },
+  ],
+});
+
+Scenarios.Azure_Core_LRO_RPC_Generations = passOnSuccess({
+  uri: "/azure/core/lro/rpc/generations:submit",
+  mockMethods: [
+    {
+      method: "post",
+      request: {
+        body: { prompt: "text" },
+        config: {
+          params: {
+            "api-version": "2022-12-01-preview",
+          },
+        },
+      },
+      response: {
+        status: 202,
+        headers: {
+          "operation-location": `/azure/core/lro/rpc/generations/operations/operation1`,
+        },
+        data: { id: "operation1", status: "InProgress" },
+      },
+    },
+  ],
+});
