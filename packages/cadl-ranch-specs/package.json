@@ -15,8 +15,7 @@
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
     "serve": "cadl-ranch serve ./http",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "service-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./dist/http/*/**/mockclient.spec.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -34,10 +33,7 @@
   "dependencies": {
     "@azure-tools/cadl-ranch": "workspace:~",
     "@azure-tools/cadl-ranch-api": "workspace:~",
-    "chai": "^5.1.1",
-    "mocha": "^10.7.3",
     "axios": "^1.7.5",
-    "qs": "^6.13.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
@@ -48,14 +44,7 @@
     "@typespec/openapi": "~0.60.0",
     "@typespec/openapi3": "~0.60.0",
     "rimraf": "^6.0.1",
-    "typescript": "~5.5.4",
-    "cross-env": "^7.0.3",
-    "@types/mocha": "^10.0.7",
-    "@types/chai": "^4.3.17",
-    "@types/qs": "^6.9.15",
-    "vitest": "^2.1.0",
-    "@vitest/coverage-v8": "^2.1.0",
-    "@vitest/ui": "^2.1.0"
+    "typescript": "~5.5.4"
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
