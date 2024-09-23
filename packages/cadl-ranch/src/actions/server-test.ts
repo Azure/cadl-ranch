@@ -242,9 +242,6 @@ class ServerTestsGenerator {
         assertContent += `assert.deepEqual(response.data, \`${mockMethod.response.data.rawContent}\`);`;
       } else if (mockMethod.response.data.rawContent !== undefined) {
         assertContent += `assert.deepEqual(JSON.stringify(response.data), ${JSON.stringify(mockMethod.response.data.rawContent)});`;
-      } else if (mockMethod.response.data.value !== undefined) {
-        //testBlock += `assert.deepEqual(JSON.stringify(response.data), JSON.stringify(${JSON.stringify(mockMethod.response.data)}));`;
-        assertContent += `assert.deepEqual((response.data), ${JSON.stringify(mockMethod.response.data)});`;
       } else {
         assertContent += `assert.deepEqual((response.data), ${JSON.stringify(mockMethod.response.data)});`;
       }
@@ -304,7 +301,7 @@ function copyHelperFiles(directoryName: string, scenariosPath: string) {
   copyHelperFile(`${scenariosPath}/../assets/image.png`, `${directoryName}/image.png`);
 }
 
-export async function serverTestWithCoverage(scenariosPath: string, serverBasePath: string) {
+export async function serverTest(scenariosPath: string, serverBasePath: string) {
   const directoryName = "temp";
   // 1. Check and create temp folder
   createDirectory(directoryName);
@@ -327,10 +324,10 @@ export async function serverTestWithCoverage(scenariosPath: string, serverBasePa
   // 4. Copy the helper files to the temp
   copyHelperFiles(directoryName, scenariosPath);
   // 5. Execute the tests
-  await serverTest(path.resolve(`./${directoryName}`), serverBasePath);
+  await executeServerTest(path.resolve(`./${directoryName}`), serverBasePath);
 }
 
-export async function serverTest(testFolderPath: string, serverBasePath: string) {
+async function executeServerTest(testFolderPath: string, serverBasePath: string) {
   try {
     const command = `pnpm cross-env SERVER_BASE_PATH=${serverBasePath} TS_NODE_PROJECT=tsconfig.json vitest -r ${testFolderPath} --sequence.shuffle.tests=false run`;
     await executeCommand(command);

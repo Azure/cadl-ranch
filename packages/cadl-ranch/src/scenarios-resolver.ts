@@ -154,7 +154,6 @@ export async function loadScenarioMockApiFiles(scenariosPath: string): Promise<M
   logger.debug(`Detected ${files.length} mock api files: ${files}`);
   const results: MockApiFile[] = [];
   for (const file of files) {
-    if (file.endsWith("spec.js")) continue;
     const result = await import(pathToFileURL(file).href);
     if (result.Scenarios) {
       logger.debug(`File '${file}' contains ${Object.keys(result.Scenarios).length} scenarios.`);
@@ -195,25 +194,4 @@ export async function loadScenarioMockApis(scenariosPath: string): Promise<Recor
     }
   }
   return result;
-}
-
-export async function loadSpecsMockClient(scenariosPath: string, noDistCombine?: boolean): Promise<string[]> {
-  const files = await loadSpecsMockClientFiles(scenariosPath, noDistCombine);
-  return files;
-}
-
-export async function loadSpecsMockClientFiles(scenariosPath: string, noDistCombine?: boolean): Promise<string[]> {
-  const pattern = noDistCombine
-    ? normalizePath(join(scenariosPath, "/*.js"))
-    : normalizePath(join(scenariosPath, "../dist/**/*.js"));
-  logger.debug(`Looking for mock api files in ${pattern}`);
-  const files = await findFilesFromPattern(pattern);
-  logger.debug(`Detected ${files.length} mock api files: ${files}`);
-  const results: string[] = [];
-  for (const file of files) {
-    if (!file.endsWith("spec.js")) continue;
-    results.push(normalizePath(file));
-  }
-  logger.debug("result length: " + results.length);
-  return results;
 }
