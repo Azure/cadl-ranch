@@ -110,7 +110,7 @@ class ServerTestsGenerator {
     if (
       config &&
       config.headers &&
-      (config.headers["Content-Type"] === "image/png" || config.headers["Content-Type"] === "application/octet-stream")
+      ["image/png", "application/octet-stream"].includes(config.headers["Content-Type"])
     ) {
       return `requestBody: readFileSync(\`\${__dirname}/${requestBody}\`),`;
     }
@@ -231,8 +231,7 @@ class ServerTestsGenerator {
           mockMethod.request.config.headers["accept"] === "application/json") ||
         (mockMethod.request.config &&
           mockMethod.request.config.headers &&
-          (mockMethod.request.config.headers["accept"] === "image/png" ||
-            mockMethod.request.config.headers["accept"] === "image/jpeg"))
+          ["image/png", "image/jpeg"].includes(mockMethod.request.config.headers["accept"]))
       ) {
         assertContent += `assert.strictEqual(${mockMethod.response.data});`;
       } else if (
