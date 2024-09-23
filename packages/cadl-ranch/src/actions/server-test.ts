@@ -263,11 +263,12 @@ class ServerTestsGenerator {
   private getTestCasesContent(): string {
     if (!this.mockMethods) return "";
     let testCasesContent = "";
-    const counter = 0;
+    let counter = 0;
     for (const mockMethod of this.mockMethods) {
       testCasesContent += `it("Test Case ${counter + 1}", async () => {
         ${this.getTestCaseContent(mockMethod)}
       });`;
+      counter++;
     }
     return testCasesContent;
   }
