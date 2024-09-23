@@ -162,10 +162,23 @@ async function main() {
             description: "Path to the server",
             type: "string",
             demandOption: true,
+          })
+          .positional("runSingleScenario", {
+            description: "Single Scenario Case to run",
+            type: "string",
+            demandOption: false,
+          })
+          .positional("runScenariosFromFile", {
+            description: "File that has the Scenarios to run",
+            type: "string",
+            demandOption: false,
           });
       },
       async (args) => {
-        await serverTest(args.scenariosPath, args.serverBasePath);
+        await serverTest(args.scenariosPath, args.serverBasePath, {
+          runSingleScenario: args.runSingleScenario,
+          runScenariosFromFile: args.runScenariosFromFile,
+        });
       },
     )
     .command(

@@ -292,6 +292,14 @@ function createDirectory(directoryName: string) {
   }
 }
 
+function clearTestCases(directoryName: string) {
+  fs.readdirSync(path.resolve(`./${directoryName}`)).forEach((file) => {
+    if (file.endsWith(`.spec.js`)) {
+      fs.unlinkSync(path.resolve(`./${directoryName}/${file}`));
+    }
+  });
+}
+
 function copyHelperFile(sourceFile: string, destinationFile: string) {
   fs.copyFileSync(path.resolve(sourceFile), path.resolve(destinationFile));
 }
@@ -302,29 +310,51 @@ function copyHelperFiles(directoryName: string, scenariosPath: string) {
   copyHelperFile(`${scenariosPath}/../assets/image.png`, `${directoryName}/image.png`);
 }
 
-export async function serverTest(scenariosPath: string, serverBasePath: string) {
+export async function serverTest(
+  scenariosPath: string,
+  serverBasePath: string,
+  scenariosConfig: {
+    runSingleScenario: string | undefined;
+    runScenariosFromFile: string | undefined;
+  },
+) {
+  // 1. Get Testcases to run
+  const testCasesToRun: string[] = [];
+  if (scenariosConfig.runSingleScenario) {
+    testCasesToRun.push(scenariosConfig.runSingleScenario);
+  } else if (scenariosConfig.runScenariosFromFile) {
+    const data = fs.readFileSync(path.resolve(scenariosConfig.runScenariosFromFile), "utf8");
+    const lines = data.split("\n");
+    lines.forEach((line) => {
+      testCasesToRun.push(line.trim());
+    });
+  }
+  // 2. Check and create temp folder
   const directoryName = "temp";
-  // 1. Check and create temp folder
   createDirectory(directoryName);
-  // 2. Load all the scenarios
+  // 3. Clear all test cases in the temp folder
+  clearTestCases(directoryName);
+  // 4. Load all the scenarios
   const scenarios = await loadScenarioMockApis(scenariosPath);
-  // 3. For each scenario, generate the test files
+  // 5. For each scenario, generate the test files
   for (const [name, scenario] of Object.entries(scenarios)) {
     for (const endpoint of scenario.apis) {
       if (endpoint.method !== undefined) continue;
-      const obj: ServerTestsGenerator = new ServerTestsGenerator(
-        name,
-        endpoint.uri,
-        endpoint.mockMethods,
-        serverBasePath,
-        path.resolve(`./${directoryName}`),
-      );
-      await obj.generateFile();
+      if (testCasesToRun.length === 0 || testCasesToRun.includes(name)) {
+        const obj: ServerTestsGenerator = new ServerTestsGenerator(
+          name,
+          endpoint.uri,
+          endpoint.mockMethods,
+          serverBasePath,
+          path.resolve(`./${directoryName}`),
+        );
+        await obj.generateFile();
+      }
     }
   }
-  // 4. Copy the helper files to the temp
+  // 6. Copy the helper files to the temp
   copyHelperFiles(directoryName, scenariosPath);
-  // 5. Execute the tests
+  // 7. Execute the tests
   await executeServerTest(path.resolve(`./${directoryName}`), serverBasePath);
 }
 
