@@ -9191,6 +9191,12 @@ Expected request body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
+Expected response body:
+
+```json
+{ "id": "123", "enumProp": "enumMemberV1" }
+```
+
 path: "/versioning/removed/api-version:v2/v3"
 Expected request body:
 
@@ -9198,12 +9204,20 @@ Expected request body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
-### Versioning_Removed_modelV3InVersionBeta
+Expected response body:
 
-- Endpoint: `post /versioning/removed/api-version:{version}/v3inversionbeta`
+```json
+{ "id": "123", "enumProp": "enumMemberV1" }
+```
 
 path: "/versioning/removed/api-version:beta/v3"
 Expected request body:
+
+```json
+{ "id": "123", "enumProp": "enumMemberBeta" }
+```
+
+Expected response body:
 
 ```json
 { "id": "123", "enumProp": "enumMemberBeta" }
