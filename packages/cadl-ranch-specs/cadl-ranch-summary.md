@@ -791,12 +791,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_createWithSystemAssigned
+### Azure_ResourceManager_CommonProperties_ManagedIdentity_createWithSystemAssigned
 
 - Endpoint: `put https://management.azure.com`
 
 Resource PUT operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -817,7 +817,7 @@ Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
@@ -833,19 +833,19 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_get
+### Azure_ResourceManager_CommonProperties_ManagedIdentity_get
 
 - Endpoint: `get https://management.azure.com`
 
 Resource GET operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 
 Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
@@ -861,12 +861,12 @@ Expected response body:
 }
 ```
 
-### Azure_ResourceManager_CommonTypes_ManagedIdentity_Property_updateWithUserAssignedAndSystemAssigned
+### Azure_ResourceManager_CommonProperties_ManagedIdentity_updateWithUserAssignedAndSystemAssigned
 
 - Endpoint: `patch https://management.azure.com`
 
 Resource PATCH operation.
-Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
 Expected query parameter: api-version=2023-12-01-preview
 Expected request body:
 
@@ -885,7 +885,7 @@ Expected response body:
 
 ```json
 {
-  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity",
+  "id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity",
   "location": "eastus",
   "tags": {
     "tagKey1": "tagValue1"
