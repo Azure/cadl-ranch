@@ -1,5 +1,29 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.6
+
+### Patch Changes
+
+- 5be049e: Bump typespec 0.60.0
+- Updated dependencies [5be049e]
+  - @azure-tools/cadl-ranch-expect@0.15.4
+
+## 0.14.5
+
+### Patch Changes
+
+- Updated dependencies [70b185a]
+  - @azure-tools/cadl-ranch-expect@0.15.3
+
+## 0.14.4
+
+### Patch Changes
+
+- Updated dependencies [039ab07]
+- Updated dependencies [cd9fdd6]
+  - @azure-tools/cadl-ranch-expect@0.15.2
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.4
+
 ## 0.14.3
 
 ### Patch Changes
