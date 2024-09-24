@@ -2,9 +2,11 @@
 "@azure-tools/cadl-ranch-specs": minor
 ---
 
-Fix ARM test namespace.
+Reorganized ARM tests.
 
 Breaking changes:
-1. namespace `Azure.ResourceManager.Models.CommonTypes` has renamed to `Azure.ResourceManager.CommonTypes`.
-2. namespace `Azure.ResourceManager.Models.Resources` has renamed to `Azure.ResourceManager.Resources`.
-3. `ManagedIdentityTrackedResources` interface in `common-types/managed-identity` has renamed to `Property`.
+
+1. Renamed namespace `Azure.ResourceManager.Models.Resources` to `Azure.ResourceManager.Resources`.
+2. Renamed namespace `Azure.ResourceManager.Models.CommonTypes.ManagedIdentity` to `Azure.ResourceManager.CommonProperties`.
+3. Renamed folder `common-types/managed-identity` to `common-properties`.
+4. Renamed `ManagedIdentityTrackedResources` interface in `common-properties` to `ManagedIdentity`.
