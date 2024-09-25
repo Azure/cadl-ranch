@@ -22,7 +22,7 @@ using TypeSpec.Rest;
     endpoint: url,
 
     /**
-     * Need to be set as 'v1', 'v2Preview' or 'v2' in client.
+     * Need to be set as 'v1', 'v2preview' or 'v2' in client.
      */
     version: Versions,
   }
@@ -41,7 +41,7 @@ enum Versions {
   /**
    * The V2 Preview version.
    */
-  v2Preview: "v2Preview",
+  v2preview: "v2preview",
 
   /**
    * The latest version v2.
@@ -76,7 +76,7 @@ model ModelV2 {
 model ModelV3 {
   id: string;
 
-  @removed(Versions.v2Preview)
+  @removed(Versions.v2preview)
   @added(Versions.v2)
   enumProp: EnumV3;
 }
@@ -89,11 +89,11 @@ enum EnumV2 {
 }
 
 enum EnumV3 {
-  @removed(Versions.v2Preview)
+  @removed(Versions.v2preview)
   @added(Versions.v2)
   enumMemberV1,
 
-  enumMemberPreview,
+  enumMemberV2Preview,
 }
 
 @removed(Versions.v2)
@@ -176,12 +176,12 @@ interface InterfaceV1 {
   path: "/versioning/removed/api-version:v2preview/v3"
   Expected request body:
   ```json
-  { "id": "123", "enumProp": "enumMemberPreview" }
+  { "id": "123", "enumProp": "enumMemberV2Preview" }
   ```
   
     Expected response body:
   ```json
-  { "id": "123", "enumProp": "enumMemberPewview" }
+  { "id": "123", "enumProp": "enumMemberV2Preview" }
   ```
   
   """)

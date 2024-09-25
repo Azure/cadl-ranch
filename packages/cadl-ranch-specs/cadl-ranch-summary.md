@@ -9214,13 +9214,13 @@ path: "/versioning/removed/api-version:v2preview/v3"
 Expected request body:
 
 ```json
-{ "id": "123", "enumProp": "enumMemberPreview" }
+{ "id": "123", "enumProp": "enumMemberV2Preview" }
 ```
 
 Expected response body:
 
 ```json
-{ "id": "123", "enumProp": "enumMemberPewview" }
+{ "id": "123", "enumProp": "enumMemberV2Preview" }
 ```
 
 ### Versioning_Removed_v2
