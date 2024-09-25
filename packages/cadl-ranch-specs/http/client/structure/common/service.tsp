@@ -37,6 +37,7 @@ enum ClientType {
   MultiClient: "multi-client",
   RenamedOperation: "renamed-operation",
   TwoOperationGroup: "two-operation-group",
+  ClientOperationGroup: "client-operation-group",
 }
 
 #suppress "@azure-tools/cadl-ranch-expect/missing-scenario" "This is by design those operations get defined as scenarios in the client"
