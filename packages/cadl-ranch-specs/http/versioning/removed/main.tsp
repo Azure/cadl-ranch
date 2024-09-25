@@ -22,7 +22,7 @@ using TypeSpec.Rest;
     endpoint: url,
 
     /**
-     * Need to be set as 'v1', 'beta' or 'v2' in client.
+     * Need to be set as 'v1', 'v2Preview' or 'v2' in client.
      */
     version: Versions,
   }
@@ -39,9 +39,9 @@ enum Versions {
   v1: "v1",
 
   /**
-   * The beta version.
+   * The V2 Preview version.
    */
-  beta: "beta",
+  v2Preview: "v2Preview",
 
   /**
    * The latest version v2.
@@ -76,7 +76,7 @@ model ModelV2 {
 model ModelV3 {
   id: string;
 
-  @removed(Versions.beta)
+  @removed(Versions.v2Preview)
   @added(Versions.v2)
   enumProp: EnumV3;
 }
@@ -89,11 +89,11 @@ enum EnumV2 {
 }
 
 enum EnumV3 {
-  @removed(Versions.beta)
+  @removed(Versions.v2Preview)
   @added(Versions.v2)
   enumMemberV1,
 
-  enumMemberBeta,
+  enumMemberPreview,
 }
 
 @removed(Versions.v2)
@@ -147,7 +147,7 @@ interface InterfaceV1 {
   v1InInterface(@body body: ModelV1): ModelV1;
 }
 
-/** This operation should be generated with the signatures of both the latest and the original versions, rather than beta version */
+/** This operation should be generated with the signatures of both the latest and the original versions, rather than preview version */
 @scenario
 @scenarioDoc("""
   path: "/versioning/removed/api-version:v1/v3"
@@ -173,15 +173,15 @@ interface InterfaceV1 {
   ```
   
   
-  path: "/versioning/removed/api-version:beta/v3"
+  path: "/versioning/removed/api-version:v2preview/v3"
   Expected request body:
   ```json
-  { "id": "123", "enumProp": "enumMemberBeta" }
+  { "id": "123", "enumProp": "enumMemberPreview" }
   ```
   
     Expected response body:
   ```json
-  { "id": "123", "enumProp": "enumMemberBeta" }
+  { "id": "123", "enumProp": "enumMemberPewview" }
   ```
   
   """)

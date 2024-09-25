@@ -9210,17 +9210,17 @@ Expected response body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
-path: "/versioning/removed/api-version:beta/v3"
+path: "/versioning/removed/api-version:v2preview/v3"
 Expected request body:
 
 ```json
-{ "id": "123", "enumProp": "enumMemberBeta" }
+{ "id": "123", "enumProp": "enumMemberPreview" }
 ```
 
 Expected response body:
 
 ```json
-{ "id": "123", "enumProp": "enumMemberBeta" }
+{ "id": "123", "enumProp": "enumMemberPewview" }
 ```
 
 ### Versioning_Removed_v2

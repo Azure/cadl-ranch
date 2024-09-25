@@ -17,9 +17,9 @@ const pathsAndProperties = [
     status: 200,
   },
   {
-    path: "/versioning/removed/api-version:beta/v3",
-    expectedBody: { id: "123", enumProp: "enumMemberBeta" },
-    responseBody: { id: "123", enumProp: "enumMemberBeta" },
+    path: "/versioning/removed/api-version:v2preview/v3",
+    expectedBody: { id: "123", enumProp: "enumMemberPreview" },
+    responseBody: { id: "123", enumProp: "enumMemberPreview" },
     status: 200,
   },
 ];
