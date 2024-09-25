@@ -2549,30 +2549,30 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
-### Parameters_QueryOptionality_orderingWithOptionalStart
+### Parameters_QueryOptionality_OrderingWithOptionalStart
 
-- Endpoint: `head /parameters/query-optionality/fromoptional`
+- Endpoint: `head /parameters/query-optionality/startwithoptional`
 
 Test another existing scenario where the query optional parameter is placed before the required parameter, but in the generated code, the required parameter still appears before the optional parameter.
 
 Should generate an operation like below:
 
 ```
-fromoptional(end: string, start?: string)
+orderingWithOptionalStart(end: string, start?: string)
 ```
 
 Expected query parameter: end=required
 
-### Parameters_QueryOptionality_orderingWithRequiredStart
+### Parameters_QueryOptionality_OrderingWithRequiredStart
 
-- Endpoint: `head /parameters/query-optionality/fromrequired`
+- Endpoint: `head /parameters/query-optionality/startwithequired`
 
 Test scenarios for using a combination of required and optional query parameters.
 
 Should generate an operation like below:
 
 ```
-fromRequired(start: string, end?: string)
+orderingWithRequiredStart(start: string, end?: string)
 ```
 
 Expected query parameter: api-version=2022-12-01-preview

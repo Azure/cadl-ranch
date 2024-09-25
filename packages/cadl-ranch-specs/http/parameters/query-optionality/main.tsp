@@ -34,15 +34,15 @@ enum Versions {
   
   Should generate an operation like below:
     ```
-    fromRequired(start: string, end?: string)
+    orderingWithRequiredStart(start: string, end?: string)
     ```
   
   Expected query parameter: api-version=2022-12-01-preview
   Expected query parameter: start=required
   """)
-@route("/fromrequired")
+@route("/startwithequired")
 @head
-op orderingWithRequiredStart(@query start: string, @query end?: string, @query("api-version") apiVersion: string): void;
+op OrderingWithRequiredStart(@query start: string, @query end?: string, @query("api-version") apiVersion: string): void;
 
 @scenario
 @scenarioDoc("""
@@ -50,10 +50,10 @@ op orderingWithRequiredStart(@query start: string, @query end?: string, @query("
   
   Should generate an operation like below:
     ```
-    fromoptional(end: string, start?: string)
+    orderingWithOptionalStart(end: string, start?: string)
     ```
   Expected query parameter: end=required
   """)
-@route("/fromoptional")
+@route("/startwithoptional")
 @head
-op orderingWithOptionalStart(@query start?: string, @query end: string): void;
+op OrderingWithOptionalStart(@query start?: string, @query end: string): void;
