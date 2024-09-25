@@ -2553,7 +2553,7 @@ This test is testing sending a tsv collection format array query parameters
 
 - Endpoint: `head /parameters/query-optionality/startwithoptional`
 
-Test another existing scenario where the query optional parameter is placed before the required parameter, but in the generated code, the required parameter still appears before the optional parameter.
+Test scenarios for using a combination of optional query parameters first and required query parameters later
 
 Should generate an operation like below:
 
@@ -2567,7 +2567,7 @@ Expected query parameter: end=required
 
 - Endpoint: `head /parameters/query-optionality/startwithequired`
 
-Test scenarios for using a combination of required and optional query parameters.
+Test scenarios for using a combination of required query parameters first and optional query parameters later.
 
 Should generate an operation like below:
 

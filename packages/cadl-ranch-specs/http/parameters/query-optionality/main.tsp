@@ -30,7 +30,7 @@ enum Versions {
 
 @scenario
 @scenarioDoc("""
-  Test scenarios for using a combination of required and optional query parameters.
+  Test scenarios for using a combination of required query parameters first and optional query parameters later.
   
   Should generate an operation like below:
     ```
@@ -46,7 +46,7 @@ op OrderingWithRequiredStart(@query start: string, @query end?: string, @query("
 
 @scenario
 @scenarioDoc("""
-  Test another existing scenario where the query optional parameter is placed before the required parameter, but in the generated code, the required parameter still appears before the optional parameter.
+  Test scenarios for using a combination of optional query parameters first and required query parameters later
   
   Should generate an operation like below:
     ```
