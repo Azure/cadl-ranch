@@ -2549,7 +2549,7 @@ This test is testing sending a ssv collection format array query parameters
 
 This test is testing sending a tsv collection format array query parameters
 
-### Parameters_QueryOptionality_FromOptional
+### Parameters_QueryOptionality_orderingWithOptionalStart
 
 - Endpoint: `head /parameters/query-optionality/fromoptional`
 
@@ -2563,7 +2563,7 @@ fromoptional(end: string, start?: string)
 
 Expected query parameter: end=required
 
-### Parameters_QueryOptionality_FromRequired
+### Parameters_QueryOptionality_orderingWithRequiredStart
 
 - Endpoint: `head /parameters/query-optionality/fromrequired`
 

@@ -42,7 +42,7 @@ enum Versions {
   """)
 @route("/fromrequired")
 @head
-op FromRequired(@query start: string, @query end?: string, @query("api-version") apiVersion: string): void;
+op orderingWithRequiredStart(@query start: string, @query end?: string, @query("api-version") apiVersion: string): void;
 
 @scenario
 @scenarioDoc("""
@@ -56,4 +56,4 @@ op FromRequired(@query start: string, @query end?: string, @query("api-version")
   """)
 @route("/fromoptional")
 @head
-op FromOptional(@query start?: string, @query end: string): void;
+op orderingWithOptionalStart(@query start?: string, @query end: string): void;
