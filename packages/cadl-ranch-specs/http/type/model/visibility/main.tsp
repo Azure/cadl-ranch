@@ -18,8 +18,8 @@ model VisibilityModel {
   updateProp: int32[];
 }
 
-@doc("Input model with visibility properties.")
-model HeadVisibilityModel {
+@doc("Input model with visibility properties for opeation 'headmodel'.")
+model HeadInputModel {
   @doc("Required int32, illustrating a query property.")
   @visibility("query")
   queryProp: int32;
@@ -97,7 +97,7 @@ model ReadOnlyModel {
   ```
   """)
 @head
-op headModel(@body input: HeadVisibilityModel): OkResponse;
+op headModel(@body input: HeadInputModel): OkResponse;
 
 @scenario
 @scenarioDoc("""
