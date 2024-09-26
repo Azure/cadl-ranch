@@ -18,7 +18,7 @@ model VisibilityModel {
   updateProp: int32[];
 }
 
-@doc("Input model with visibility properties for opeation 'headmodel'.")
+@doc("Input model with visibility properties for operation 'headmodel'.")
 model HeadInputModel {
   @doc("Required int32, illustrating a query property.")
   @visibility("query")
