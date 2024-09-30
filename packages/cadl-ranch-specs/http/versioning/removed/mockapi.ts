@@ -1,28 +1,7 @@
-import { mockapi, passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
-
-const pathsAndProperties = [
-  {
-    path: "/versioning/removed/api-version:v1/v3",
-    expectedBody: { id: "123", enumProp: "enumMemberV1" },
-    responseBody: { id: "123", enumProp: "enumMemberV1" },
-    status: 200,
-  },
-  {
-    path: "/versioning/removed/api-version:v2/v3",
-    expectedBody: { id: "123", enumProp: "enumMemberV1" },
-    responseBody: { id: "123", enumProp: "enumMemberV1" },
-    status: 200,
-  },
-  {
-    path: "/versioning/removed/api-version:v2preview/v3",
-    expectedBody: { id: "123", enumProp: "enumMemberV2Preview" },
-    responseBody: { id: "123", enumProp: "enumMemberV2Preview" },
-    status: 200,
-  },
-];
 
 Scenarios.Versioning_Removed_v2 = passOnSuccess(
   mockapi.post("/versioning/removed/api-version:v2/v2", (req) => {
@@ -33,15 +12,3 @@ Scenarios.Versioning_Removed_v2 = passOnSuccess(
     };
   }),
 );
-
-const mockHandlers = pathsAndProperties.map(({ path, expectedBody, responseBody, status }) =>
-  mockapi.post(path, (req) => {
-    req.expect.bodyEquals(expectedBody);
-    return {
-      status,
-      body: json(responseBody),
-    };
-  }),
-);
-
-Scenarios.Versioning_Removed_modelV3 = passOnSuccess(mockHandlers);

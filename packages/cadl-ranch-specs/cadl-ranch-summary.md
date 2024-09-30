@@ -9109,49 +9109,6 @@ Expected request body:
 { "prop": "foo" }
 ```
 
-### Versioning_Removed_modelV3
-
-- Endpoint: `post /versioning/removed/api-version:{version}/v3`
-
-path: "/versioning/removed/api-version:v1/v3"
-Expected request body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV1" }
-```
-
-Expected response body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV1" }
-```
-
-path: "/versioning/removed/api-version:v2/v3"
-Expected request body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV1" }
-```
-
-Expected response body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV1" }
-```
-
-path: "/versioning/removed/api-version:v2preview/v3"
-Expected request body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV2Preview" }
-```
-
-Expected response body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV2Preview" }
-```
-
 ### Versioning_Removed_v2
 
 - Endpoint: `post /versioning/removed/api-version:{version}/v2`
