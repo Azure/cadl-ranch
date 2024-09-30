@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.4
+
+### Patch Changes
+
+- 73a096b: Revert the change for version remove
+- 4b31d3a: Revert change for template type
+
 ## 0.37.3
 
 ### Minor Changes
