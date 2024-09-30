@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.3
+
+### Minor Changes
+
+- fc4f046: Add a `client-operation-group` enum value to ClientType enum
+
+### Patch Changes
+
+- 92f3c4d: Add a test for the combination of @added and @removed in versioning/removed.
+
 ## 0.37.2
 
 ### Patch Changes
