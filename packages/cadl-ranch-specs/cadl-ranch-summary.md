@@ -128,6 +128,22 @@ Expected response body:
 }
 ```
 
+### Azure_ClientGenerator_Core_AccessNamespace_InternalOperation
+
+- Endpoint: `get /azure/client-generator-core/access-namespace/internal-output`
+
+This scenario contains access/usage on namespaces.
+`internalOutput` operation should be internal. `OutputModel` model should be internal + output.
+`Model1` and `Model2` models should be public + output.
+
+Expected response body:
+
+```json
+{
+  "name": <any string>
+}
+```
+
 ### Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel
 
 - Endpoint: `put /azure/client-generator-core/flatten-property/flattenModel`

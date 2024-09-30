@@ -16,10 +16,24 @@ model OutputModel {
 }
 
 // all the oprations and models within this interface should be access=internal
+@scenario
+@scenarioDoc("""
+  This scenario contains access/usage on namespaces.
+  `internalOutput` operation should be internal. `OutputModel` model should be internal + output.
+  `Model1` and `Model2` models should be public + output.
+  
+  Expected response body:
+  ```json
+  {
+    "name": <any string>
+  }
+  ```
+  """)
 @access(Access.internal)
-namespace InternalOperations {
+namespace InternalOperation {
+  @route("/internal-output")
   @get
-  op output(): OutputModel;
+  op internalOutput(): OutputModel;
 }
 
 // all the models within this namespace should be access=public and usage=output
