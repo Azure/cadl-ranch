@@ -5,6 +5,7 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
+const LOCATION_EXPECTED = "eastus";
 const validTopLevelResource = {
   id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
   name: "top",
@@ -60,6 +61,144 @@ const validSingletonResource = {
     lastModifiedByType: "User",
   },
 };
+
+const validLocationResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/locations/${LOCATION_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/locationResources/resource`,
+  name: "resource",
+  type: "Azure.ResourceManager.Models.Resources/locationResources",
+  properties: {
+    description: "valid",
+    provisioningState: "Succeeded",
+  },
+  systemData: {
+    createdBy: "AzureSDK",
+    createdByType: "User",
+    createdAt: new Date(),
+    lastModifiedBy: "AzureSDK",
+    lastModifiedAt: new Date(),
+    lastModifiedByType: "User",
+  },
+};
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_get = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Models.Resources/locationResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
+      }
+      return {
+        status: 200,
+        body: json(validLocationResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_createOrUpdate = passOnSuccess([
+  mockapi.put(
+    "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Models.Resources/locationResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
+      }
+      req.expect.bodyEquals({
+        properties: {
+          description: "valid",
+        },
+      });
+      return {
+        status: 200,
+        body: json(validLocationResource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_update = passOnSuccess([
+  mockapi.patch(
+    "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Models.Resources/locationResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
+      }
+      req.expect.bodyEquals({
+        properties: {
+          description: "valid2",
+        },
+      });
+      const resource = JSON.parse(JSON.stringify(validLocationResource));
+      resource.properties.description = "valid2";
+      return {
+        status: 200,
+        body: json(resource),
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_delete = passOnSuccess([
+  mockapi.delete(
+    "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Models.Resources/locationResources/:locationResourceName",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      if (req.params.locationResourceName.toLowerCase() !== "resource") {
+        throw new ValidationError("Unexpected resource name", "resource", req.params.locationResourceName);
+      }
+      return {
+        status: 204,
+      };
+    },
+  ),
+]);
+
+Scenarios.Azure_ResourceManager_Models_Resources_LocationResources_listByParent = passOnSuccess([
+  mockapi.get(
+    "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Models.Resources/locationResources",
+    (req) => {
+      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+      }
+      if (req.params.location.toLowerCase() !== LOCATION_EXPECTED) {
+        throw new ValidationError("Unexpected parent resource location", LOCATION_EXPECTED, req.params.location);
+      }
+      return {
+        status: 200,
+        body: json({
+          value: [validLocationResource],
+        }),
+      };
+    },
+  ),
+]);
 
 // singleton tracked resource
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
