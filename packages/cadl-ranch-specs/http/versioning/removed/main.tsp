@@ -187,6 +187,8 @@ interface InterfaceV1 {
   """)
 @post
 @route("/v3")
+@removed(Versions.v2preview)
+@added(Versions.v2)
 op modelV3(@body body: ModelV3): ModelV3;
 
 /** This operation should be only generated with the signatures of the preview version */
