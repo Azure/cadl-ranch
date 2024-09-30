@@ -15,7 +15,7 @@ model OutputModel {
   name: string;
 }
 
-// all the oprations and models within this interface should be access=internal
+// all the operations and models within this interface should be access=internal
 @scenario
 @scenarioDoc("""
   This scenario contains access/usage on namespaces.
