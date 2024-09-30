@@ -6,7 +6,6 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 Scenarios.Type_Model_Templated_numericType = passOnSuccess(
   mockapi.put("/type/model/templated/numericType", (req) => {
     const body = {
-      kind: "Int32Values",
       values: [1234],
       value: 1234,
     };

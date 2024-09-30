@@ -6160,7 +6160,6 @@ Expected input body:
 
 ```json
 {
-  "kind": "Int32Values",
   "values": [1234],
   "value": 1234
 }

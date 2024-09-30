@@ -46,7 +46,6 @@ model Float32ValuesType extends NumericType<float32> {
   Expected input body:
   ```json
   {
-    "kind": "Int32Values",
     "values": 
     [
       1234
