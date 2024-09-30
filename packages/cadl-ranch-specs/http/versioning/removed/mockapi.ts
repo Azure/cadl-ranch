@@ -16,12 +16,6 @@ const pathsAndProperties = [
     responseBody: { id: "123", enumProp: "enumMemberV1" },
     status: 200,
   },
-  {
-    path: "/versioning/removed/api-version:v2preview/v3",
-    expectedBody: { id: "123", enumProp: "enumMemberV2Preview" },
-    responseBody: { id: "123", enumProp: "enumMemberV2Preview" },
-    status: 200,
-  },
 ];
 
 Scenarios.Versioning_Removed_v2 = passOnSuccess(
@@ -45,3 +39,13 @@ const mockHandlers = pathsAndProperties.map(({ path, expectedBody, responseBody,
 );
 
 Scenarios.Versioning_Removed_modelV3 = passOnSuccess(mockHandlers);
+
+Scenarios.Versioning_Removed_preview = passOnSuccess(
+  mockapi.post("/versioning/removed/api-version:v2preview/pewview", (req) => {
+    req.expect.bodyEquals({ id: "123" });
+    return {
+      status: 200,
+      body: json({ id: "123" }),
+    };
+  }),
+);

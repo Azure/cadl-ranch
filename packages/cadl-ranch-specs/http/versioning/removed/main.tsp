@@ -188,3 +188,25 @@ interface InterfaceV1 {
 @post
 @route("/v3")
 op modelV3(@body body: ModelV3): ModelV3;
+
+/** This operation should be only generated with the signatures of the preview version */
+@scenario
+@scenarioDoc("""
+  
+  path: "/versioning/removed/api-version:v2preview/preview"
+  Expected request body:
+  ```json
+  { "id": "123"}
+  ```
+  
+    Expected response body:
+  ```json
+  { "id": "123"}
+  ```
+  
+  """)
+@post
+@route("/preview")
+@added(Versions.v2preview)
+@removed(Versions.v2)
+op preview(@body body: ModelV3): ModelV3;
