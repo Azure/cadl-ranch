@@ -1,24 +1,57 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 Scenarios.Azure_ClientGenerator_Core_Usage_ModelInOperation = passOnSuccess([
-  mockapi.post("/azure/client-generator-core/usage/inputToInputOutput", (req) => {
-    const validBody = { name: "Madge" };
-    req.expect.bodyEquals(validBody);
-    return { status: 204 };
-  }),
-  mockapi.get("/azure/client-generator-core/usage/outputToInputOutput", (req) => {
-    return {
+  {
+    uri: "/azure/client-generator-core/usage/inputToInputOutput",
+    method: "post",
+    request: {
+      body: {
+        name: "Madge",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      const validBody = { name: "Madge" };
+      req.expect.bodyEquals(validBody);
+      return { status: 204 };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: "/azure/client-generator-core/usage/outputToInputOutput",
+    method: "get",
+    request: {},
+    response: {
       status: 200,
       body: json({ name: "Madge" }),
-    };
-  }),
-  mockapi.put("/azure/client-generator-core/usage/modelInReadOnlyProperty", (req) => {
-    return {
+    },
+    handler: (req: MockRequest) => {
+      return {
+        status: 200,
+        body: json({ name: "Madge" }),
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: "/azure/client-generator-core/usage/modelInReadOnlyProperty",
+    method: "put",
+    request: {},
+    response: {
       status: 200,
       body: json({ result: { name: "Madge" } }),
-    };
-  }),
+    },
+    handler: (req: MockRequest) => {
+      return {
+        status: 200,
+        body: json({ result: { name: "Madge" } }),
+      };
+    },
+    kind: "MockApiDefinition",
+  },
 ]);

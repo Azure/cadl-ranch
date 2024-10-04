@@ -8,12 +8,15 @@
     "watch": "tsc -p ./tsconfig.build.json --watch",
     "build": "tsc -p ./tsconfig.build.json",
     "clean": "rimraf dist/ temp/",
+    "test:e2e": "pnpm validate-scenarios  && pnpm validate-mock-apis && pnpm validate-client-server",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
     "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
     "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName azuresdkcadlranch",
     "upload-coverage": "cadl-ranch upload-coverage --storageAccountName azuresdkcadlranch",
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
+    "validate-client-server": "concurrently \"cadl-ranch server start ./http\" \"npm run client\" && cadl-ranch server stop",
+    "client": "cadl-ranch server-test ./http",
     "serve": "cadl-ranch serve ./http",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -41,6 +44,7 @@
     "@types/node": "^22.1.0",
     "@typespec/openapi": "~0.60.0",
     "@typespec/openapi3": "~0.60.0",
+    "concurrently": "^9.0.1",
     "rimraf": "^6.0.1",
     "typescript": "~5.5.4"
   },

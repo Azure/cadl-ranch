@@ -1,10 +1,17 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Server_Path_Single_myOp = passOnSuccess(
-  mockapi.head("/server/path/single/myOp", (req) => {
+Scenarios.Server_Path_Single_myOp = passOnSuccess({
+  uri: "/server/path/single/myOp",
+  method: "head",
+  request: {},
+  response: {
+    status: 200,
+  },
+  handler: (req: MockRequest) => {
     return { status: 200 };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
