@@ -41,7 +41,7 @@ const mockHandlers = pathsAndProperties.map(({ path, expectedBody, responseBody,
 Scenarios.Versioning_Removed_modelV3 = passOnSuccess(mockHandlers);
 
 Scenarios.Versioning_Removed_preview = passOnSuccess(
-  mockapi.post("/versioning/removed/api-version:v2preview/pewview", (req) => {
+  mockapi.post("/versioning/removed/api-version:v2preview/preview", (req) => {
     req.expect.bodyEquals({ id: "123" });
     return {
       status: 200,

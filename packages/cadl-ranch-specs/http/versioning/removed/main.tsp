@@ -172,18 +172,6 @@ interface InterfaceV1 {
   { "id": "123", "enumProp": "enumMemberV1" }
   ```
   
-  
-  path: "/versioning/removed/api-version:v2preview/v3"
-  Expected request body:
-  ```json
-  { "id": "123", "enumProp": "enumMemberV2Preview" }
-  ```
-  
-    Expected response body:
-  ```json
-  { "id": "123", "enumProp": "enumMemberV2Preview" }
-  ```
-  
   """)
 @post
 @route("/v3")
