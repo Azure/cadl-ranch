@@ -1453,6 +1453,15 @@ Expected response body:
 }
 ```
 
+### Client_Initialization_Basic
+
+- Endpoint: `post /client/initialization/basic/sub-client/{name}:action`
+
+Testing that "SubClient" be initialized with "name" client property,
+and that the "action" API under "SubClient" does not take "name" parameter in method signature.
+
+Use "subclient1" as "name" parameter in test.
+
 ### Client_Naming_Header_request
 
 - Endpoint: `post /client/naming/header`
