@@ -9210,19 +9210,6 @@ Expected response body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
-path: "/versioning/removed/api-version:v2preview/v3"
-Expected request body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV2Preview" }
-```
-
-Expected response body:
-
-```json
-{ "id": "123", "enumProp": "enumMemberV2Preview" }
-```
-
 ### Versioning_Removed_preview
 
 - Endpoint: `post /versioning/removed/api-version:{version}/preview`
