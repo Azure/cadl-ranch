@@ -61,6 +61,32 @@ const validSingletonResource = {
   },
 };
 
+const validAvailableOperations = {
+  name: "Microsoft.Compute/virtualMachines/write",
+  isDataAction: false,
+  display: {
+    provider: "Microsoft Compute",
+    resource: "Virtual Machines",
+    operation: "Create or Update Virtual Machine.",
+    description: "Add or modify virtual machines.",
+  },
+  origin: "user,system",
+  actionType: "Internal",
+};
+
+// operation list
+Scenarios.Azure_ResourceManager_Models_Resources_ListAvailableOperations = passOnSuccess([
+  mockapi.get("/providers/Azure.ResourceManager.Models.Resources/operations", (req) => {
+    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+    return {
+      status: 200,
+      body: json({
+        value: [validAvailableOperations],
+      }),
+    };
+  }),
+]);
+
 // singleton tracked resource
 Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess([
   mockapi.get(
