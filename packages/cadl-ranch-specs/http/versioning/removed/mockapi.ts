@@ -5,15 +5,21 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 const pathsAndProperties = [
   {
-    path: "/versioning/removed/api-version:v1/v3",
+    path: "/versioning/removed/api-version[:]v1/v3",
     expectedBody: { id: "123", enumProp: "enumMemberV1" },
     responseBody: { id: "123", enumProp: "enumMemberV1" },
     status: 200,
   },
   {
-    path: "/versioning/removed/api-version:v2/v3",
+    path: "/versioning/removed/api-version[:]v2/v3",
     expectedBody: { id: "123", enumProp: "enumMemberV1" },
     responseBody: { id: "123", enumProp: "enumMemberV1" },
+    status: 200,
+  },
+  {
+    path: "/versioning/removed/api-version[:]v2preview/preview",
+    expectedBody: { id: "123" },
+    responseBody: { id: "123" },
     status: 200,
   },
 ];
@@ -39,13 +45,3 @@ const mockHandlers = pathsAndProperties.map(({ path, expectedBody, responseBody,
 );
 
 Scenarios.Versioning_Removed_modelV3 = passOnSuccess(mockHandlers);
-
-Scenarios.Versioning_Removed_preview = passOnSuccess(
-  mockapi.post("/versioning/removed/api-version:v2preview/preview", (req) => {
-    req.expect.bodyEquals({ id: "123" });
-    return {
-      status: 200,
-      body: json({ id: "123" }),
-    };
-  }),
-);

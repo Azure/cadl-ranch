@@ -147,10 +147,10 @@ interface InterfaceV1 {
   v1InInterface(@body body: ModelV1): ModelV1;
 }
 
-/** This operation should be generated with the signatures of both the latest and the original versions, rather than preview version */
+/** This operation will pass different paths and different request bodies based on different versions. */
 @scenario
 @scenarioDoc("""
-  path: "/versioning/removed/api-version:v1/v3"
+  path: "/versioning/removed/api-version[:]v1/v3"
   Expected request body:
   ```json
   { "id": "123", "enumProp": "enumMemberV1" }
@@ -161,7 +161,18 @@ interface InterfaceV1 {
   { "id": "123", "enumProp": "enumMemberV1" }
   ```
   
-  path: "/versioning/removed/api-version:v2/v3"
+  path: "/versioning/removed/api-version[:]v2preview/preview"
+  Expected request body:
+  ```json
+  { "id": "123"}
+  ```
+  
+    Expected response body:
+  ```json
+  { "id": "123"}
+  ```
+  
+  path: "/versioning/removed/api-version[:]v2/v3"
   Expected request body:
   ```json
   { "id": "123", "enumProp": "enumMemberV1" }
@@ -175,28 +186,4 @@ interface InterfaceV1 {
   """)
 @post
 @route("/v3")
-@removed(Versions.v2preview)
-@added(Versions.v2)
 op modelV3(@body body: ModelV3): ModelV3;
-
-/** This operation should be only generated with the signatures of the preview version */
-@scenario
-@scenarioDoc("""
-  
-  path: "/versioning/removed/api-version:v2preview/preview"
-  Expected request body:
-  ```json
-  { "id": "123"}
-  ```
-  
-    Expected response body:
-  ```json
-  { "id": "123"}
-  ```
-  
-  """)
-@post
-@route("/preview")
-@added(Versions.v2preview)
-@removed(Versions.v2)
-op preview(@body body: ModelV3): ModelV3;
