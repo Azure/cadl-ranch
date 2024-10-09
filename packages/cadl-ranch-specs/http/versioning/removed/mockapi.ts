@@ -17,7 +17,7 @@ const pathsAndProperties = [
     status: 200,
   },
   {
-    path: "/versioning/removed/api-version[:]v2preview/preview",
+    path: "/versioning/removed/api-version[:]v2preview/v3",
     expectedBody: { id: "123" },
     responseBody: { id: "123" },
     status: 200,
