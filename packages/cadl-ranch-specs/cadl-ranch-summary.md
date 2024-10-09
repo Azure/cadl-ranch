@@ -9126,7 +9126,7 @@ Expected response body:
 { "id": "123", "enumProp": "enumMemberV1" }
 ```
 
-path: "/versioning/removed/api-version[:]v2preview/preview"
+path: "/versioning/removed/api-version[:]v2preview/v3"
 Expected request body:
 
 ```json
