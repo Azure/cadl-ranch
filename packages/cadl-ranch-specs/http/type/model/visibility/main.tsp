@@ -7,12 +7,19 @@ using TypeSpec.Http;
 @scenarioService("/type/model/visibility")
 namespace Type.Model.Visibility;
 
-@doc("Output model with visibility properties.")
+@doc("Input model with create/update properties.")
 model VisibilityModel {
-  @doc("Required string, illustrating a readonly property.")
-  @visibility("read")
-  readProp: string;
+  @doc("Required string[], illustrating a create property.")
+  @visibility("create")
+  createProp: string[];
 
+  @doc("Required int32[], illustrating a update property.")
+  @visibility("update")
+  updateProp: int32[];
+}
+
+@doc("Input model with visibility properties for operation 'headmodel'.")
+model HeadInputModel {
   @doc("Required int32, illustrating a query property.")
   @visibility("query")
   queryProp: int32;
@@ -25,7 +32,42 @@ model VisibilityModel {
   @visibility("update")
   updateProp: int32[];
 
-  @doc("Required bool, illustrating a delete property.")
+  @doc("Required boolean, illustrating a delete property.")
+  @visibility("delete")
+  deleteProp: boolean;
+}
+
+/** Output model with readonly properties. */
+model ReadModel {
+  @doc("Required string, illustrating a readonly property.")
+  @visibility("read")
+  readProp: string;
+}
+
+/** Input model with readonly properties. */
+model QueryModel {
+  @doc("Required int32, illustrating a query property.")
+  @visibility("query")
+  queryProp: int32;
+}
+
+/** Input model with readonly properties. */
+model CreateModel {
+  @doc("Required string[], illustrating a create property.")
+  @visibility("create")
+  createProp: string[];
+}
+
+/** Input model with readonly properties. */
+model UpdateModel {
+  @doc("Required int32[], illustrating a update property.")
+  @visibility("update")
+  updateProp: int32[];
+}
+
+/** Input model with readonly properties. */
+model DeleteModel {
+  @doc("Required boolean, illustrating a delete property.")
   @visibility("delete")
   deleteProp: boolean;
 }
@@ -40,6 +82,22 @@ model ReadOnlyModel {
   @visibility("read")
   optionalStringRecord?: Record<string>;
 }
+
+@scenario
+@scenarioDoc("""
+  Generate and send put model with visibility properties.
+  Expected input body:
+  ```json
+  {
+    queryProp: 123,
+    createProp: ["foo", "bar"],
+    updateProp: [1, 2],
+    deleteProp: true,
+  }
+  ```
+  """)
+@head
+op headModel(@body input: HeadInputModel): OkResponse;
 
 @scenario
 @scenarioDoc("""
@@ -59,27 +117,33 @@ model ReadOnlyModel {
   ```
   """)
 @get
-op getModel(@body input: VisibilityModel): {
+op getModel(@body input: QueryModel): {
   @body
-  output: VisibilityModel;
+  output: ReadModel;
 };
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
-  Expected input body:
+  Generate and receive output model with readonly properties.
+  Expected header: "queryProp": "123"
+  
+  Expected response body:
   ```json
   {
-    queryProp: 123,
+    readProp: "abc",
   }
   ```
   """)
-@head
-op headModel(@body input: VisibilityModel): OkResponse;
+@get
+@route("/getwithquery")
+op getModelWithQuery(@query queryProp: int32): {
+  @body
+  output: ReadModel;
+};
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create/update properties.
+  Generate and send put model with write/create/update properties.
   Expected input body:
   ```json
   {
@@ -93,7 +157,7 @@ op putModel(@body input: VisibilityModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/update properties.
+  Generate and send put model with write/update properties.
   Expected input body:
   ```json
   {
@@ -102,11 +166,11 @@ op putModel(@body input: VisibilityModel): void;
   ```
   """)
 @patch
-op patchModel(@body input: VisibilityModel): void;
+op patchModel(@body input: UpdateModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
+  Generate and send put model with write/create properties.
   Expected input body:
   ```json
   {
@@ -115,11 +179,11 @@ op patchModel(@body input: VisibilityModel): void;
   ```
   """)
 @post
-op postModel(@body input: VisibilityModel): void;
+op postModel(@body input: CreateModel): void;
 
 @scenario
 @scenarioDoc("""
-  Generate abd send put model with write/create properties.
+  Generate and send put model with delete properties.
   Expected input body:
   ```json
   {
@@ -128,7 +192,7 @@ op postModel(@body input: VisibilityModel): void;
   ```
   """)
 @delete
-op deleteModel(@body input: VisibilityModel): void;
+op deleteModel(@body input: DeleteModel): void;
 
 @route("/readonlyroundtrip")
 @scenario
