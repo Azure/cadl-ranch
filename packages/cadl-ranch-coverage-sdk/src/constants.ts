@@ -1,1 +1,4 @@
-export const GeneratorMode: string[] = ["azure", "standard"];
+export enum GeneratorMode {
+  azure = "azure",
+  standard = "standard",
+}

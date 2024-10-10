@@ -38,6 +38,6 @@ export function createScenarioManifest(
       };
       return { name, scenarioDoc, location };
     }),
-    modes: GeneratorMode,
+    modes: Object.values(GeneratorMode),
   };
 }
