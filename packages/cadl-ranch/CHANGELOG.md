@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.7
+
+### Patch Changes
+
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-api@0.4.7
+
 ## 0.14.6
 
 ### Patch Changes

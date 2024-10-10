@@ -1,5 +1,15 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.5
+
+### Patch Changes
+
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- 23279d1: fix explode query check of mockapi for routes test case
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-api@0.4.7
+  - @azure-tools/cadl-ranch@0.14.7
+
 ## 0.37.4
 
 ### Patch Changes
