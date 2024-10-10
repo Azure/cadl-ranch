@@ -1,60 +1,191 @@
-import { passOnSuccess, mockapi, json, MockApi, CollectionFormat } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, CollectionFormat, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createQueryMockApis(route: string, value: any, collectionFormat?: CollectionFormat): MockApi {
-  const url = `/encode/duration/query/${route}`;
-  return mockapi.get(url, (req) => {
-    req.expect.containsQueryParam("input", value, collectionFormat);
-    return {
+function createQueryServerTests(uri: string, paramData: any, value: any, collectionFormat?: CollectionFormat) {
+  return passOnSuccess({
+    uri,
+    method: "get",
+    request: {
+      params: paramData,
+    },
+    response: {
       status: 204,
-    };
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("input", value, collectionFormat);
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
   });
 }
-
-function createPropertyMockApis(route: string, value: any): MockApi {
-  const url = `/encode/duration/property/${route}`;
-  return mockapi.post(url, (req) => {
-    req.expect.coercedBodyEquals({ value: value });
-    return {
+Scenarios.Encode_Duration_Query_default = createQueryServerTests(
+  "/encode/duration/query/default",
+  {
+    input: "P40D",
+  },
+  "P40D",
+);
+Scenarios.Encode_Duration_Query_iso8601 = createQueryServerTests(
+  "/encode/duration/query/iso8601",
+  {
+    input: "P40D",
+  },
+  "P40D",
+);
+Scenarios.Encode_Duration_Query_int32Seconds = createQueryServerTests(
+  "/encode/duration/query/int32-seconds",
+  {
+    input: 36,
+  },
+  "36",
+);
+Scenarios.Encode_Duration_Query_int32SecondsArray = createQueryServerTests(
+  "/encode/duration/query/int32-seconds-array",
+  {
+    input: [36, 47].join(","),
+  },
+  ["36", "47"],
+  "csv",
+);
+Scenarios.Encode_Duration_Query_floatSeconds = createQueryServerTests(
+  "/encode/duration/query/float-seconds",
+  {
+    input: 35.625,
+  },
+  "35.625",
+);
+Scenarios.Encode_Duration_Query_float64Seconds = createQueryServerTests(
+  "/encode/duration/query/float64-seconds",
+  {
+    input: 35.625,
+  },
+  "35.625",
+);
+function createBodyServerTests(uri: string, data: any, value: any) {
+  return passOnSuccess({
+    uri,
+    method: "post",
+    request: {
+      body: data,
+    },
+    response: {
       status: 200,
-      body: json({ value: value }),
-    };
+      body: json(data),
+    },
+    handler: (req: MockRequest) => {
+      req.expect.coercedBodyEquals({ value: value });
+      return {
+        status: 200,
+        body: json({ value: value }),
+      };
+    },
+    kind: "MockApiDefinition",
   });
 }
-
-function createHeaderMockApis(route: string, value: any): MockApi {
-  const url = `/encode/duration/header/${route}`;
-  return mockapi.get(url, (req) => {
-    req.expect.containsHeader("duration", value);
-    return {
+Scenarios.Encode_Duration_Property_default = createBodyServerTests(
+  "/encode/duration/property/default",
+  {
+    value: "P40D",
+  },
+  "P40D",
+);
+Scenarios.Encode_Duration_Property_iso8601 = createBodyServerTests(
+  "/encode/duration/property/iso8601",
+  {
+    value: "P40D",
+  },
+  "P40D",
+);
+Scenarios.Encode_Duration_Property_int32Seconds = createBodyServerTests(
+  "/encode/duration/property/int32-seconds",
+  {
+    value: 36,
+  },
+  36,
+);
+Scenarios.Encode_Duration_Property_floatSeconds = createBodyServerTests(
+  "/encode/duration/property/float-seconds",
+  {
+    value: 35.625,
+  },
+  35.625,
+);
+Scenarios.Encode_Duration_Property_float64Seconds = createBodyServerTests(
+  "/encode/duration/property/float64-seconds",
+  {
+    value: 35.625,
+  },
+  35.625,
+);
+Scenarios.Encode_Duration_Property_floatSecondsArray = createBodyServerTests(
+  "/encode/duration/property/float-seconds-array",
+  {
+    value: [35.625, 46.75],
+  },
+  [35.625, 46.75],
+);
+function createHeaderServerTests(uri: string, headersData: any, value: any) {
+  return passOnSuccess({
+    uri,
+    method: "get",
+    request: {
+      headers: headersData,
+    },
+    response: {
       status: 204,
-    };
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsHeader("duration", value);
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
   });
 }
-
-Scenarios.Encode_Duration_Query_default = passOnSuccess(createQueryMockApis("default", "P40D"));
-Scenarios.Encode_Duration_Query_iso8601 = passOnSuccess(createQueryMockApis("iso8601", "P40D"));
-Scenarios.Encode_Duration_Query_int32Seconds = passOnSuccess(createQueryMockApis("int32-seconds", "36"));
-Scenarios.Encode_Duration_Query_int32SecondsArray = passOnSuccess(
-  createQueryMockApis("int32-seconds-array", ["36", "47"], "csv"),
+Scenarios.Encode_Duration_Header_default = createHeaderServerTests(
+  "/encode/duration/header/default",
+  {
+    duration: "P40D",
+  },
+  "P40D",
 );
-Scenarios.Encode_Duration_Query_floatSeconds = passOnSuccess(createQueryMockApis("float-seconds", "35.625"));
-Scenarios.Encode_Duration_Query_float64Seconds = passOnSuccess(createQueryMockApis("float64-seconds", "35.625"));
-
-Scenarios.Encode_Duration_Property_default = passOnSuccess(createPropertyMockApis("default", "P40D"));
-Scenarios.Encode_Duration_Property_iso8601 = passOnSuccess(createPropertyMockApis("iso8601", "P40D"));
-Scenarios.Encode_Duration_Property_int32Seconds = passOnSuccess(createPropertyMockApis("int32-seconds", 36));
-Scenarios.Encode_Duration_Property_floatSeconds = passOnSuccess(createPropertyMockApis("float-seconds", 35.625));
-Scenarios.Encode_Duration_Property_float64Seconds = passOnSuccess(createPropertyMockApis("float64-seconds", 35.625));
-Scenarios.Encode_Duration_Property_floatSecondsArray = passOnSuccess(
-  createPropertyMockApis("float-seconds-array", [35.625, 46.75]),
+Scenarios.Encode_Duration_Header_iso8601 = createHeaderServerTests(
+  "/encode/duration/header/iso8601",
+  {
+    duration: "P40D",
+  },
+  "P40D",
 );
-
-Scenarios.Encode_Duration_Header_default = passOnSuccess(createHeaderMockApis("default", "P40D"));
-Scenarios.Encode_Duration_Header_iso8601 = passOnSuccess(createHeaderMockApis("iso8601", "P40D"));
-Scenarios.Encode_Duration_Header_iso8601Array = passOnSuccess(createHeaderMockApis("iso8601-array", "P40D,P50D"));
-Scenarios.Encode_Duration_Header_int32Seconds = passOnSuccess(createHeaderMockApis("int32-seconds", "36"));
-Scenarios.Encode_Duration_Header_floatSeconds = passOnSuccess(createHeaderMockApis("float-seconds", "35.625"));
-Scenarios.Encode_Duration_Header_float64Seconds = passOnSuccess(createHeaderMockApis("float64-seconds", "35.625"));
+Scenarios.Encode_Duration_Header_iso8601Array = createHeaderServerTests(
+  "/encode/duration/header/iso8601-array",
+  {
+    duration: ["P40D", "P50D"].join(","),
+  },
+  "P40D,P50D",
+);
+Scenarios.Encode_Duration_Header_int32Seconds = createHeaderServerTests(
+  "/encode/duration/header/int32-seconds",
+  {
+    duration: 36,
+  },
+  "36",
+);
+Scenarios.Encode_Duration_Header_floatSeconds = createHeaderServerTests(
+  "/encode/duration/header/float-seconds",
+  {
+    duration: 35.625,
+  },
+  "35.625",
+);
+Scenarios.Encode_Duration_Header_float64Seconds = createHeaderServerTests(
+  "/encode/duration/header/float64-seconds",
+  {
+    duration: 35.625,
+  },
+  "35.625",
+);

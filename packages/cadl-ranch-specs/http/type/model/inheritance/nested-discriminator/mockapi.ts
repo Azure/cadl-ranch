@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -8,19 +8,6 @@ const validPolymorphicBody = {
   kind: "shark",
   sharktype: "goblin",
 };
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_getModel = passOnSuccess(
-  mockapi.get("/type/model/inheritance/nested-discriminator/model", (req) => {
-    return { status: 200, body: json(validPolymorphicBody) };
-  }),
-);
-
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_putModel = passOnSuccess(
-  mockapi.put("/type/model/inheritance/nested-discriminator/model", (req) => {
-    req.expect.bodyEquals(validPolymorphicBody);
-    return { status: 204 };
-  }),
-);
-
 const validRecursiveBody = {
   age: 1,
   kind: "salmon",
@@ -78,27 +65,87 @@ const validRecursiveBody = {
     },
   },
 };
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel = passOnSuccess(
-  mockapi.get("/type/model/inheritance/nested-discriminator/recursivemodel", (req) => {
-    return { status: 200, body: json(validRecursiveBody) };
-  }),
-);
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getModel = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/model",
+  method: "get",
+  request: {},
+  response: {
+    status: 200,
+    body: json(validPolymorphicBody),
+  },
+  handler: (req: MockRequest) => {
+    return { status: 200, body: json(validPolymorphicBody) };
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_putModel = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/model",
+  method: "put",
+  request: {
+    body: validPolymorphicBody,
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
+    req.expect.bodyEquals(validPolymorphicBody);
+    return { status: 204 };
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel = passOnSuccess(
-  mockapi.put("/type/model/inheritance/nested-discriminator/recursivemodel", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getRecursiveModel = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/recursivemodel",
+  method: "get",
+  request: {},
+  response: {
+    status: 200,
+    body: json(validRecursiveBody),
+  },
+  handler: (req: MockRequest) => {
+    return { status: 200, body: json(validRecursiveBody) };
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_putRecursiveModel = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/recursivemodel",
+  method: "put",
+  request: {
+    body: validRecursiveBody,
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(validRecursiveBody);
     return { status: 204 };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator = passOnSuccess(
-  mockapi.get("/type/model/inheritance/nested-discriminator/missingdiscriminator", (req) => {
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getMissingDiscriminator = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/missingdiscriminator",
+  method: "get",
+  request: {},
+  response: {
+    status: 200,
+    body: json({ age: 1 }),
+  },
+  handler: (req: MockRequest) => {
     return { status: 200, body: json({ age: 1 }) };
-  }),
-);
-
-Scenarios.Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator = passOnSuccess(
-  mockapi.get("/type/model/inheritance/nested-discriminator/wrongdiscriminator", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Inheritance_NestedDiscriminator_getWrongDiscriminator = passOnSuccess({
+  uri: "/type/model/inheritance/nested-discriminator/wrongdiscriminator",
+  method: "get",
+  request: {},
+  response: {
+    status: 200,
+    body: json({ age: 1, kind: "wrongKind" }),
+  },
+  handler: (req: MockRequest) => {
     return { status: 200, body: json({ age: 1, kind: "wrongKind" }) };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
