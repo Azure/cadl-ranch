@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-specs",
-  "version": "0.37.4",
+  "version": "0.37.5",
   "description": "Cadl scenarios and mock apis",
   "main": "dist/index.js",
   "type": "module",
@@ -8,12 +8,15 @@
     "watch": "tsc -p ./tsconfig.build.json --watch",
     "build": "tsc -p ./tsconfig.build.json",
     "clean": "rimraf dist/ temp/",
+    "test:e2e": "pnpm validate-scenarios  && pnpm validate-mock-apis && pnpm validate-client-server",
     "validate-scenarios": "cadl-ranch validate-scenarios ./http",
     "generate-scenarios-summary": "cadl-ranch generate-scenarios-summary ./http",
     "upload-manifest": "cadl-ranch upload-manifest ./http --storageAccountName azuresdkcadlranch",
     "upload-coverage": "cadl-ranch upload-coverage --storageAccountName azuresdkcadlranch",
     "validate-mock-apis": "cadl-ranch validate-mock-apis ./http",
     "check-scenario-coverage": "cadl-ranch check-coverage ./http",
+    "validate-client-server": "concurrently \"cadl-ranch server start ./http\" \"npm run client\" && cadl-ranch server stop",
+    "client": "cadl-ranch server-test ./http",
     "serve": "cadl-ranch serve ./http",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,22 +38,23 @@
     "@azure-tools/cadl-ranch-api": "workspace:~"
   },
   "devDependencies": {
-    "@azure-tools/typespec-autorest": "0.46.0",
-    "@azure-tools/typespec-azure-resource-manager": "0.46.0",
-    "@azure-tools/typespec-client-generator-core": "0.46.0",
+    "@azure-tools/typespec-autorest": "0.47.0",
+    "@azure-tools/typespec-azure-resource-manager": "0.47.0",
+    "@azure-tools/typespec-client-generator-core": "0.47.1",
     "@types/node": "^22.1.0",
-    "@typespec/openapi": "~0.60.0",
-    "@typespec/openapi3": "~0.60.0",
+    "@typespec/openapi": "~0.61.0",
+    "@typespec/openapi3": "~0.61.0",
+    "concurrently": "^9.0.1",
     "rimraf": "^6.0.1",
     "typescript": "~5.5.4"
   },
   "peerDependencies": {
     "@azure-tools/cadl-ranch-expect": "workspace:~",
-    "@azure-tools/typespec-azure-core": "~0.46.0",
-    "@typespec/compiler": "~0.60.0",
-    "@typespec/http": "~0.60.0",
-    "@typespec/rest": "~0.60.0",
-    "@typespec/versioning": "~0.60.0",
-    "@typespec/xml": "~0.60.0"
+    "@azure-tools/typespec-azure-core": "~0.47.0",
+    "@typespec/compiler": "~0.61.0",
+    "@typespec/http": "~0.61.0",
+    "@typespec/rest": "~0.61.0",
+    "@typespec/versioning": "~0.61.0",
+    "@typespec/xml": "~0.61.0"
   }
 }
