@@ -38,10 +38,3 @@ Scenarios.Parameters_BodyOptionality_OptionalityOrdering = passOnSuccess([
     return { status: 204 };
   }),
 ]);
-
-Scenarios.Parameters_BodyOptionality_OrderingWithOptionalStart = passOnSuccess(
-  mockapi.head("/parameters/query-optionality/startwithoptional", (req) => {
-    req.expect.bodyEquals({ end: "required" });
-    return { status: 204 };
-  }),
-);
