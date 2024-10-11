@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- f1614e1: bump dependency to typespect 0.61.0
+- f1614e1: bump dependency to typespec 0.61.0
 - 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
 - Updated dependencies [f1614e1]
 - Updated dependencies [352934c]
