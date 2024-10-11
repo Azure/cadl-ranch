@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.6
+
+### Patch Changes
+
+- 311617f: fix wrong mock api introduced by #741
+
 ## 0.37.5
 
 ### Patch Changes
