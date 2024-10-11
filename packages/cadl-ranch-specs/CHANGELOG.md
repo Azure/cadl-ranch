@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.4
+
+### Patch Changes
+
+- 73a096b: Revert the change for version remove
+- 4b31d3a: Revert change for template type
+
+## 0.37.3
+
+### Minor Changes
+
+- fc4f046: Add a `client-operation-group` enum value to ClientType enum
+
+### Patch Changes
+
+- 92f3c4d: Add a test for the combination of @added and @removed in versioning/removed.
+
 ## 0.37.2
 
 ### Patch Changes
