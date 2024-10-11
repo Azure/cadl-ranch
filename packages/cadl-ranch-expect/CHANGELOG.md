@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- f1614e1: bump dependency to typespect 0.61.0
+- f1614e1: bump dependency to typespec 0.61.0
 
 ## 0.15.4
 
