@@ -217,11 +217,11 @@ Scenarios.Encode_Bytes_RequestBody_base64 = createRequestBodyServerTests(
 );
 Scenarios.Encode_Bytes_RequestBody_base64url = createRequestBodyServerTests(
   "/encode/bytes/body/request/base64url",
-  '"dGVzdA=="',
+  '"dGVzdA"',
   {
     "Content-Type": "application/json",
   },
-  '"dGVzdA=="',
+  '"dGVzdA"',
 );
 function createResponseBodyServerTests(
   uri: string,
