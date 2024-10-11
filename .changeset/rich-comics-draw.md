@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": minor
 ---
 
-Add test in parameters/query-optional.
+Add optional parameter ordering test in parameter\body-optionality.

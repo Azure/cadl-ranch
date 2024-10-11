@@ -27,3 +27,21 @@ Scenarios.Parameters_BodyOptionality_requiredImplicit = passOnSuccess(
     return { status: 204 };
   }),
 );
+
+Scenarios.Parameters_BodyOptionality_OptionalityOrdering = passOnSuccess([
+  mockapi.head("/parameters/body-optionality/optional-ordering/startwithequired", (req) => {
+    req.expect.bodyEquals({ start: "required" });
+    return { status: 204 };
+  }),
+  mockapi.head("/parameters/body-optionality/optional-ordering/startwithoptional", (req) => {
+    req.expect.bodyEquals({ end: "required" });
+    return { status: 204 };
+  }),
+]);
+
+Scenarios.Parameters_BodyOptionality_OrderingWithOptionalStart = passOnSuccess(
+  mockapi.head("/parameters/query-optionality/startwithoptional", (req) => {
+    req.expect.bodyEquals({ end: "required" });
+    return { status: 204 };
+  }),
+);

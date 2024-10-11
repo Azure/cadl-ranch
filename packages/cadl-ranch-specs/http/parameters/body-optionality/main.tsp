@@ -52,6 +52,44 @@ namespace OptionalExplicit {
 
 @scenario
 @scenarioDoc("""
+  Test scenario for using a combination of required parameters first and optional parameters later.
+  
+  Should generate an operation like below:
+    ```
+    orderingWithRequiredStart(start: string, end?: string)
+    ```
+  
+  Expected parameter: api-version=2022-12-01-preview
+  Expected request body:
+  ```json
+  { "start": "required" }
+  ```
+  
+  Another scenario using a combination of optional parameters first and required parameters later
+  
+  Should generate an operation like below:
+    ```
+    orderingWithOptionalStart(end: string, start?: string)
+    ```
+  Expected request body:
+  ```json
+  { "end": "required" }
+  ```
+  """)
+@operationGroup
+@route("/optional-ordering")
+namespace OptionalityOrdering {
+  @route("/startwithequired")
+  @head
+  op OrderingWithRequiredStart(start: string, end?: string): void;
+
+  @route("/startwithoptional")
+  @head
+  op OrderingWithOptionalStart(start?: string, end: string): void;
+}
+
+@scenario
+@scenarioDoc("""
   Scenario defining how an implicit required body parameter is specified.
     
   Expected request body:

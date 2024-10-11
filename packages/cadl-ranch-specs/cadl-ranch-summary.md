@@ -2489,6 +2489,41 @@ Expected request body for `set`
 
 Expected no request body for `omit`
 
+### Parameters_BodyOptionality_OptionalityOrdering
+
+- Endpoints:
+  - `head /parameters/body-optionality/optional-ordering/startwithequired`
+  - `head /parameters/body-optionality/optional-ordering/startwithoptional`
+
+Test scenario for using a combination of required parameters first and optional parameters later.
+
+Should generate an operation like below:
+
+```
+orderingWithRequiredStart(start: string, end?: string)
+```
+
+Expected parameter: api-version=2022-12-01-preview
+Expected request body:
+
+```json
+{ "start": "required" }
+```
+
+Another scenario using a combination of optional parameters first and required parameters later
+
+Should generate an operation like below:
+
+```
+orderingWithOptionalStart(end: string, start?: string)
+```
+
+Expected request body:
+
+```json
+{ "end": "required" }
+```
+
 ### Parameters_BodyOptionality_requiredExplicit
 
 - Endpoint: `post /parameters/body-optionality/required-explicit`
@@ -2548,35 +2583,6 @@ This test is testing sending a ssv collection format array query parameters
 - Endpoint: `get /parameters/collection-format/query/tsv`
 
 This test is testing sending a tsv collection format array query parameters
-
-### Parameters_QueryOptionality_OrderingWithOptionalStart
-
-- Endpoint: `head /parameters/query-optionality/startwithoptional`
-
-Test scenarios for using a combination of optional query parameters first and required query parameters later
-
-Should generate an operation like below:
-
-```
-orderingWithOptionalStart(end: string, start?: string)
-```
-
-Expected query parameter: end=required
-
-### Parameters_QueryOptionality_OrderingWithRequiredStart
-
-- Endpoint: `head /parameters/query-optionality/startwithequired`
-
-Test scenarios for using a combination of required query parameters first and optional query parameters later.
-
-Should generate an operation like below:
-
-```
-orderingWithRequiredStart(start: string, end?: string)
-```
-
-Expected query parameter: api-version=2022-12-01-preview
-Expected query parameter: start=required
 
 ### Parameters_Spread_Alias_spreadAsRequestBody
 
