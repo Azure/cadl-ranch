@@ -111,10 +111,10 @@ Scenarios.Azure_Core_Basic_list = passOnSuccess({
     req.expect.containsQueryParam("skip", "10");
     req.expect.containsQueryParam("orderby", "id");
     req.expect.containsQueryParam("filter", "id lt 10");
-    if (!req.originalRequest.originalUrl.includes("select[]=id&select[]=orders&select[]=etag")) {
+    if (!req.originalRequest.originalUrl.includes("select=id&select=orders&select=etag")) {
       throw new ValidationError(
-        "Expected query param select[]=id&select[]=orders&select[]=etag ",
-        "select[]=id&select[]=orders&select[]=etag",
+        "Expected query param select=id&select=orders&select=etag ",
+        "select=id&select=orders&select=etag",
         req.originalRequest.originalUrl,
       );
     }
