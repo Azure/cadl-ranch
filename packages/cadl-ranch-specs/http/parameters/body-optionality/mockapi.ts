@@ -107,17 +107,3 @@ Scenarios.Parameters_BodyOptionality_OptionalityOrdering = passOnSuccess([
     kind: "MockApiDefinition",
   },
 ]);
-
-Scenarios.Parameters_BodyOptionality_OptionalityOrdering_OrderingWithRequiredStart = passOnSuccess(
-  mockapi.head("/parameters/body-optionality/optional-ordering/startwithequired", (req) => {
-    req.expect.bodyEquals({ start: "required" });
-    return { status: 204 };
-  }),
-);
-
-Scenarios.Parameters_BodyOptionality_OptionalityOrdering_OrderingWithOptionalStart = passOnSuccess(
-  mockapi.head("/parameters/body-optionality/optional-ordering/startwithoptional", (req) => {
-    req.expect.bodyEquals({ end: "required" });
-    return { status: 204 };
-  }),
-);
