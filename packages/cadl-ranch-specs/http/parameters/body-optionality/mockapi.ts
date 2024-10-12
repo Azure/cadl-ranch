@@ -71,6 +71,43 @@ Scenarios.Parameters_BodyOptionality_requiredImplicit = createServerTests(
   },
 );
 
+Scenarios.Parameters_BodyOptionality_OptionalityOrdering = passOnSuccess([
+  {
+    uri: "/parameters/body-optionality/optional-ordering/startwithequired",
+    method: "head",
+    request: {
+      body: {
+        start: "required",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.bodyEquals({ start: "required" });
+      return { status: 204 };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: "/parameters/body-optionality/optional-ordering/startwithoptional",
+    method: "head",
+    request: {
+      body: {
+        end: "required",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.bodyEquals({ end: "required" });
+      return { status: 204 };
+    },
+    kind: "MockApiDefinition",
+  },
+]);
+
 Scenarios.Parameters_BodyOptionality_OptionalityOrdering_OrderingWithRequiredStart = passOnSuccess(
   mockapi.head("/parameters/body-optionality/optional-ordering/startwithequired", (req) => {
     req.expect.bodyEquals({ start: "required" });
