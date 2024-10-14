@@ -1,5 +1,12 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.7
+
+### Patch Changes
+
+- ecfd2f0: fix(test): adopt `coercedBodyEquals`
+- 86817b9: Fix explode array mockapi in routes.
+
 ## 0.37.6
 
 ### Patch Changes
