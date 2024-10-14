@@ -1,104 +1,208 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Client_Naming_Property_client = passOnSuccess(
-  mockapi.post("/client/naming/property/client", (req) => {
+Scenarios.Client_Naming_Property_client = passOnSuccess({
+  uri: "/client/naming/property/client",
+  method: "post",
+  request: {
+    body: { defaultName: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals({ defaultName: true });
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Property_language = passOnSuccess(
-  mockapi.post("/client/naming/property/language", (req) => {
+Scenarios.Client_Naming_Property_language = passOnSuccess({
+  uri: "/client/naming/property/language",
+  method: "post",
+  request: {
+    body: { defaultName: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals({ defaultName: true });
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Property_compatibleWithEncodedName = passOnSuccess(
-  mockapi.post("/client/naming/property/compatible-with-encoded-name", (req) => {
+Scenarios.Client_Naming_Property_compatibleWithEncodedName = passOnSuccess({
+  uri: `/client/naming/property/compatible-with-encoded-name`,
+  method: "post",
+  request: {
+    body: { wireName: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals({ wireName: true });
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_operation = passOnSuccess(
-  mockapi.post("/client/naming/operation", (req) => {
+Scenarios.Client_Naming_operation = passOnSuccess({
+  uri: `/client/naming/operation`,
+  method: "post",
+  request: {},
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_parameter = passOnSuccess(
-  mockapi.post("/client/naming/parameter", (req) => {
+Scenarios.Client_Naming_parameter = passOnSuccess({
+  uri: `/client/naming/parameter`,
+  method: "post",
+  request: {
+    params: { defaultName: "true" },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsQueryParam("defaultName", "true");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Header_request = passOnSuccess(
-  mockapi.post("/client/naming/header", (req) => {
+Scenarios.Client_Naming_Header_request = passOnSuccess({
+  uri: `/client/naming/header`,
+  method: "post",
+  request: {
+    headers: { "default-name": "true" },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsHeader("default-name", "true");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Header_response = passOnSuccess(
-  mockapi.get("/client/naming/header", (req) => {
+Scenarios.Client_Naming_Header_response = passOnSuccess({
+  uri: `/client/naming/header`,
+  method: "get",
+  request: {},
+  response: {
+    status: 204,
+    headers: {
+      "default-name": "true",
+    },
+  },
+  handler: (req: MockRequest) => {
     return {
       status: 204,
       headers: {
         "default-name": "true",
       },
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Model_client = passOnSuccess(
-  mockapi.post("/client/naming/model/client", (req) => {
+Scenarios.Client_Naming_Model_client = passOnSuccess({
+  uri: `/client/naming/model/client`,
+  method: "post",
+  request: {
+    body: { defaultName: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals({ defaultName: true });
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_Model_language = passOnSuccess(
-  mockapi.post("/client/naming/model/language", (req) => {
+Scenarios.Client_Naming_Model_language = passOnSuccess({
+  uri: `/client/naming/model/language`,
+  method: "post",
+  request: {
+    body: { defaultName: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals({ defaultName: true });
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_UnionEnum_unionEnumName = passOnSuccess(
-  mockapi.post("/client/naming/union-enum/union-enum-name", (req) => {
+Scenarios.Client_Naming_UnionEnum_unionEnumName = passOnSuccess({
+  uri: `/client/naming/union-enum/union-enum-name`,
+  method: "post",
+  request: {
+    body: "value1",
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals("value1");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Client_Naming_UnionEnum_unionEnumMemberName = passOnSuccess(
-  mockapi.post("/client/naming/union-enum/union-enum-member-name", (req) => {
+Scenarios.Client_Naming_UnionEnum_unionEnumMemberName = passOnSuccess({
+  uri: `/client/naming/union-enum/union-enum-member-name`,
+  method: "post",
+  request: {
+    body: "value1",
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals("value1");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});

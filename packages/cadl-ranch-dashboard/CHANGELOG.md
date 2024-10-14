@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.8.6
+
+### Patch Changes
+
+- cd9fdd6: Remove inapplicable code in dashboard
+- Updated dependencies [cd9fdd6]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.4
+
 ## 0.8.5
 
 ### Patch Changes

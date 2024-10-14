@@ -1,4 +1,11 @@
-import { Fail, KeyedMockResponse, MockResponse, PassByKeyScenario, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import {
+  Fail,
+  KeyedMockResponse,
+  MockResponse,
+  PassByKeyScenario,
+  PassByServiceKeyScenario,
+  ScenarioMockApi,
+} from "@azure-tools/cadl-ranch-api";
 import { logger } from "../logger.js";
 import { CoverageReport, ScenariosMetadata, ScenarioStatus } from "@azure-tools/cadl-ranch-coverage-sdk";
 import { writeFileSync } from "fs";
@@ -88,7 +95,7 @@ export class CoverageTracker {
       return "pass";
     }
 
-    function checkByKeys(scenario: PassByKeyScenario) {
+    function checkByKeys(scenario: PassByKeyScenario | PassByServiceKeyScenario) {
       for (const endpoint of scenario.apis) {
         const hits = scenarioHits?.get(endpoint.uri);
         if (hits === undefined) {

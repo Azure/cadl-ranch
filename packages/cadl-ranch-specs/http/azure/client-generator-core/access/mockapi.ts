@@ -1,54 +1,95 @@
-import { passOnSuccess, mockapi, ValidationError, json, MockApi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, ValidationError, json, MockApiDefinition, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createMockApis(route: string): MockApi {
-  const url = `/azure/client-generator-core/access/${route}`;
-  return mockapi.get(url, (req) => {
-    if (!("name" in req.query)) {
-      throw new ValidationError("Should submit name query", "any string", undefined);
-    }
-    return {
+function createMockApiDefinitions(route: string): MockApiDefinition {
+  return {
+    uri: `/azure/client-generator-core/access/${route}`,
+    method: "get",
+    request: {
+      params: {
+        name: "sample",
+      },
+    },
+    response: {
       status: 200,
-      body: json({ name: req.query["name"] }),
-    };
-  });
+      body: json({ name: "sample" }),
+    },
+    handler: (req: MockRequest) => {
+      if (!("name" in req.query)) {
+        throw new ValidationError("Should submit name query", "any string", undefined);
+      }
+      return {
+        status: 200,
+        body: json({ name: req.query["name"] }),
+      };
+    },
+    kind: "MockApiDefinition",
+  };
 }
 
 Scenarios.Azure_ClientGenerator_Core_Access_PublicOperation = passOnSuccess([
-  createMockApis("publicOperation/noDecoratorInPublic"),
-  createMockApis("publicOperation/publicDecoratorInPublic"),
+  createMockApiDefinitions("publicOperation/noDecoratorInPublic"),
+  createMockApiDefinitions("publicOperation/publicDecoratorInPublic"),
 ]);
 
 Scenarios.Azure_ClientGenerator_Core_Access_InternalOperation = passOnSuccess([
-  createMockApis("internalOperation/noDecoratorInInternal"),
-  createMockApis("internalOperation/internalDecoratorInInternal"),
-  createMockApis("internalOperation/publicDecoratorInInternal"),
+  createMockApiDefinitions("internalOperation/noDecoratorInInternal"),
+  createMockApiDefinitions("internalOperation/internalDecoratorInInternal"),
+  createMockApiDefinitions("internalOperation/publicDecoratorInInternal"),
 ]);
 
 Scenarios.Azure_ClientGenerator_Core_Access_SharedModelInOperation = passOnSuccess([
-  createMockApis("sharedModelInOperation/public"),
-  createMockApis("sharedModelInOperation/internal"),
+  createMockApiDefinitions("sharedModelInOperation/public"),
+  createMockApiDefinitions("sharedModelInOperation/internal"),
 ]);
 
 Scenarios.Azure_ClientGenerator_Core_Access_RelativeModelInOperation = passOnSuccess([
-  mockapi.get("/azure/client-generator-core/access/relativeModelInOperation/operation", (req) => {
-    if (!("name" in req.query)) {
-      throw new ValidationError("Should submit name query", "any string", undefined);
-    }
-    return {
+  {
+    uri: "/azure/client-generator-core/access/relativeModelInOperation/operation",
+    method: "get",
+    request: {
+      params: {
+        name: "Madge",
+      },
+    },
+    response: {
       status: 200,
       body: json({ name: "Madge", inner: { name: "Madge" } }),
-    };
-  }),
-  mockapi.get("/azure/client-generator-core/access/relativeModelInOperation/discriminator", (req) => {
-    if (!("kind" in req.query)) {
-      throw new ValidationError("Should submit name query", "any string", undefined);
-    }
-    return {
+    },
+    handler: (req: MockRequest) => {
+      if (!("name" in req.query)) {
+        throw new ValidationError("Should submit name query", "any string", undefined);
+      }
+      return {
+        status: 200,
+        body: json({ name: "Madge", inner: { name: "Madge" } }),
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: "/azure/client-generator-core/access/relativeModelInOperation/discriminator",
+    method: "get",
+    request: {
+      params: {
+        kind: "real",
+      },
+    },
+    response: {
       status: 200,
       body: json({ name: "Madge", kind: "real" }),
-    };
-  }),
+    },
+    handler: (req: MockRequest) => {
+      if (!("kind" in req.query)) {
+        throw new ValidationError("Should submit name query", "any string", undefined);
+      }
+      return {
+        status: 200,
+        body: json({ name: "Madge", kind: "real" }),
+      };
+    },
+    kind: "MockApiDefinition",
+  },
 ]);
