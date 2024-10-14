@@ -1,112 +1,270 @@
-import {
-  mockapi,
-  ValidationError,
-  MockApi,
-  MockRequest,
-  ScenarioMockApi,
-  passOnSuccess,
-} from "@azure-tools/cadl-ranch-api";
-import { HttpVerb } from "@typespec/http";
+import { ValidationError, MockRequest, ScenarioMockApi, passOnSuccess } from "@azure-tools/cadl-ranch-api";
 
 export const commonBase = "/resiliency/service-driven";
 
-type PassResiliencyOptions = {
-  path: string;
-  verb: HttpVerb;
-  commonValidate: (req: MockRequest) => void;
-  oldApiVersionNewClientValidate: (req: MockRequest) => void;
-  newApiVersionNewClientValidate: (req: MockRequest) => void;
-};
-
-function createResilientMockApi(options: PassResiliencyOptions): MockApi[] {
-  return [
-    mockapi.request(options.verb, `${commonBase}/client[:]v1/service[:]v1/api-version[:]v1${options.path}`, (req) => {
-      options.commonValidate(req);
-      return {
-        status: 204,
-      };
-    }),
-    mockapi.request(options.verb, `${commonBase}/client[:]v1/service[:]v2/api-version[:]v1${options.path}`, (req) => {
-      options.commonValidate(req);
-      return {
-        status: 204,
-      };
-    }),
-    mockapi.request(options.verb, `${commonBase}/client[:]v2/service[:]v2/api-version[:]v1${options.path}`, (req) => {
-      options.commonValidate(req);
-      options.oldApiVersionNewClientValidate(req);
-      return {
-        status: 204,
-      };
-    }),
-    mockapi.request(options.verb, `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2${options.path}`, (req) => {
-      options.commonValidate(req);
-      options.newApiVersionNewClientValidate(req);
-      return {
-        status: 204,
-      };
-    }),
-  ];
-}
-
-function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
-  if (req.params["new-parameter"] !== undefined) {
-    throw new ValidationError("Did not expect 'new-parameter'", undefined, req.params["new-parameter"]);
-  }
-}
-
-function addOptionalParamNewApiVersionNewClientValidate(req: MockRequest): void {
-  req.expect.containsQueryParam("new-parameter", "new");
-}
-
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess(
-  createResilientMockApi({
-    path: "/add-optional-param/from-none",
-    verb: "head",
-    commonValidate: function validate(req: MockRequest): void {},
-    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
-  }),
-);
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess([
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v1/api-version[:]v1/add-optional-param/from-none`,
+    method: "head",
+    request: {},
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v2/api-version[:]v1/add-optional-param/from-none`,
+    method: "head",
+    request: {},
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v1/add-optional-param/from-none`,
+    method: "head",
+    request: {},
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      if (req.params["new-parameter"] !== undefined) {
+        throw new ValidationError("Did not expect 'new-parameter'", undefined, req.params["new-parameter"]);
+      }
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-optional-param/from-none`,
+    method: "head",
+    request: {
+      params: {
+        "new-parameter": "new",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("new-parameter", "new");
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+]);
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSuccess(
-  createResilientMockApi({
-    path: "/add-optional-param/from-one-required",
-    verb: "get",
-    commonValidate: function validate(req: MockRequest): void {
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSuccess([
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v1/api-version[:]v1/add-optional-param/from-one-required`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "required",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
       req.expect.containsQueryParam("parameter", "required");
+      return {
+        status: 204,
+      };
     },
-    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
-  }),
-);
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v2/api-version[:]v1/add-optional-param/from-one-required`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "required",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "required");
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v1/add-optional-param/from-one-required`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "required",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "required");
+      if (req.params["new-parameter"] !== undefined) {
+        throw new ValidationError("Did not expect 'new-parameter'", undefined, req.params["new-parameter"]);
+      }
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-optional-param/from-one-required`,
+    method: "get",
+    request: {
+      params: {
+        "parameter": "required",
+        "new-parameter": "new",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "required");
+      req.expect.containsQueryParam("new-parameter", "new");
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+]);
 
-Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSuccess(
-  createResilientMockApi({
-    path: "/add-optional-param/from-one-optional",
-    verb: "get",
-    commonValidate: function validate(req: MockRequest): void {
+Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSuccess([
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v1/api-version[:]v1/add-optional-param/from-one-optional`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "optional",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
       req.expect.containsQueryParam("parameter", "optional");
+      return {
+        status: 204,
+      };
     },
-    oldApiVersionNewClientValidate: addOptionalParamOldApiVersionNewClientValidate,
-    newApiVersionNewClientValidate: addOptionalParamNewApiVersionNewClientValidate,
-  }),
-);
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v1/service[:]v2/api-version[:]v1/add-optional-param/from-one-optional`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "optional",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "optional");
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v1/add-optional-param/from-one-optional`,
+    method: "get",
+    request: {
+      params: {
+        parameter: "optional",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "optional");
+      if (req.params["new-parameter"] !== undefined) {
+        throw new ValidationError("Did not expect 'new-parameter'", undefined, req.params["new-parameter"]);
+      }
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-optional-param/from-one-optional`,
+    method: "get",
+    request: {
+      params: {
+        "parameter": "optional",
+        "new-parameter": "new",
+      },
+    },
+    response: {
+      status: 204,
+    },
+    handler: (req: MockRequest) => {
+      req.expect.containsQueryParam("parameter", "optional");
+      req.expect.containsQueryParam("new-parameter", "new");
+      return {
+        status: 204,
+      };
+    },
+    kind: "MockApiDefinition",
+  },
+]);
 
-Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess(
-  mockapi.delete(`${commonBase}/client[:]v1/service[:]v2/api-version[:]v2/add-operation`, (req) => {
+Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess({
+  uri: `${commonBase}/client[:]v1/service[:]v2/api-version[:]v2/add-operation`,
+  method: "delete",
+  request: {},
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Resiliency_ServiceDriven_addOperation = passOnSuccess(
-  mockapi.delete(`${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-operation`, (req) => {
+Scenarios.Resiliency_ServiceDriven_addOperation = passOnSuccess({
+  uri: `${commonBase}/client[:]v2/service[:]v2/api-version[:]v2/add-operation`,
+  method: "delete",
+  request: {},
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});

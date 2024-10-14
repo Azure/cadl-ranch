@@ -1,40 +1,84 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.SpecialHeaders_ConditionalRequest_postIfMatch = passOnSuccess(
-  mockapi.post("/special-headers/conditional-request/if-match", (req) => {
+Scenarios.SpecialHeaders_ConditionalRequest_postIfMatch = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-match",
+  method: "post",
+  request: {
+    headers: {
+      "if-match": '"valid"',
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsHeader("if-match", '"valid"');
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.SpecialHeaders_ConditionalRequest_postIfNoneMatch = passOnSuccess(
-  mockapi.post("/special-headers/conditional-request/if-none-match", (req) => {
+Scenarios.SpecialHeaders_ConditionalRequest_postIfNoneMatch = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-none-match",
+  method: "post",
+  request: {
+    headers: {
+      "if-none-match": '"invalid"',
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsHeader("if-none-match", '"invalid"');
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.SpecialHeaders_ConditionalRequest_headIfModifiedSince = passOnSuccess(
-  mockapi.head("/special-headers/conditional-request/if-modified-since", (req) => {
+Scenarios.SpecialHeaders_ConditionalRequest_headIfModifiedSince = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-modified-since",
+  method: "head",
+  request: {
+    headers: {
+      "if-modified-since": "Fri, 26 Aug 2022 14:38:00 GMT",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsHeader("if-modified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince = passOnSuccess(
-  mockapi.post("/special-headers/conditional-request/if-unmodified-since", (req) => {
+Scenarios.SpecialHeaders_ConditionalRequest_postIfUnmodifiedSince = passOnSuccess({
+  uri: "/special-headers/conditional-request/if-unmodified-since",
+  method: "post",
+  request: {
+    headers: {
+      "if-unmodified-since": "Fri, 26 Aug 2022 14:38:00 GMT",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.containsHeader("if-unmodified-since", "Fri, 26 Aug 2022 14:38:00 GMT");
     return {
       status: 204,
     };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});

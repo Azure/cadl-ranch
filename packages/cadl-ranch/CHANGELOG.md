@@ -1,5 +1,40 @@
 # @azure-tools/cadl-ranch
 
+## 0.14.7
+
+### Patch Changes
+
+- f1614e1: bump dependency to typespec 0.61.0
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- Updated dependencies [f1614e1]
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-expect@0.15.5
+  - @azure-tools/cadl-ranch-api@0.4.7
+
+## 0.14.6
+
+### Patch Changes
+
+- 5be049e: Bump typespec 0.60.0
+- Updated dependencies [5be049e]
+  - @azure-tools/cadl-ranch-expect@0.15.4
+
+## 0.14.5
+
+### Patch Changes
+
+- Updated dependencies [70b185a]
+  - @azure-tools/cadl-ranch-expect@0.15.3
+
+## 0.14.4
+
+### Patch Changes
+
+- Updated dependencies [039ab07]
+- Updated dependencies [cd9fdd6]
+  - @azure-tools/cadl-ranch-expect@0.15.2
+  - @azure-tools/cadl-ranch-coverage-sdk@0.8.4
+
 ## 0.14.3
 
 ### Patch Changes
