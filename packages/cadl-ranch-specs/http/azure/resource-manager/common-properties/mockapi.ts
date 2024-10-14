@@ -63,8 +63,7 @@ const updateExpectedIdentity = {
 };
 
 // managed identity tracked resource
-
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess({
+Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_get = passOnSuccess({
   uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
   method: "get",
   request: {
@@ -102,48 +101,48 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned =
-  passOnSuccess({
-    uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
-    method: "put",
-    request: {
-      body: {
-        identity: createExpectedIdentity,
-      },
-      params: {
-        "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
-        "resourceGroup": RESOURCE_GROUP_EXPECTED,
-        "managedIdentityResourceName": "identity",
-        "api-version": "2023-12-01-preview",
-      },
+Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_createWithSystemAssigned = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
+  method: "put",
+  request: {
+    body: {
+      identity: createExpectedIdentity,
     },
-    response: {
+    params: {
+      "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
+      "managedIdentityResourceName": "identity",
+      "api-version": "2023-12-01-preview",
+    },
+  },
+  response: {
+    status: 200,
+    body: json(validSystemAssignedManagedIdentityResource),
+  },
+  handler: (req: MockRequest) => {
+    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
+    if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
+      throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
+    }
+    if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
+      throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
+    }
+    if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
+      throw new ValidationError(
+        "Unexpected managed identity resource name",
+        "identity",
+        req.params.managedIdentityResourceName,
+      );
+    }
+    req.expect.deepEqual(req.body["identity"], createExpectedIdentity);
+    return {
       status: 200,
       body: json(validSystemAssignedManagedIdentityResource),
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-        throw new ValidationError(
-          "Unexpected managed identity resource name",
-          "identity",
-          req.params.managedIdentityResourceName,
-        );
-      }
-      req.expect.deepEqual(req.body["identity"], createExpectedIdentity);
-      return {
-        status: 200,
-        body: json(validSystemAssignedManagedIdentityResource),
-      };
-    },
-    kind: "MockApiDefinition",
-  });
+    };
+  },
+  kind: "MockApiDefinition",
+});
+
 Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_updateWithUserAssignedAndSystemAssigned =
   passOnSuccess({
     uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
