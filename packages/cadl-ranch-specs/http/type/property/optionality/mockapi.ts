@@ -30,7 +30,7 @@ function createServerTests(url: string, value: unknown) {
         status: 204,
       },
       handler: (req: MockRequest) => {
-        req.expect.bodyEquals(value);
+        req.expect.coercedBodyEquals(value);
         return {
           status: 204,
         };

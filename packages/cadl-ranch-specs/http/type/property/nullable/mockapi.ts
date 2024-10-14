@@ -36,7 +36,7 @@ function createServerTests(url: string, value: unknown, patchNullableProperty?: 
         status: 204,
       },
       handler: (req: MockRequest) => {
-        req.expect.bodyEquals({
+        req.expect.coercedBodyEquals({
           requiredProperty: "foo",
           nullableProperty: patchNullableProperty || null,
         });
