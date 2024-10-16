@@ -1,7 +1,6 @@
 import {
   KeyedMockApi,
   KeyedMockApiDefinition,
-  KeyedMockRequestHandler,
   MockApi,
   MockApiDefinition,
   PassByKeyScenario,
@@ -27,7 +26,7 @@ export function passOnSuccess(
  * @param code Status code all endpoint should return
  * @param apis Endpoint or List of endpoints for this scenario
  */
-export function passOnCode(code: number, apis: MockApi | readonly MockApi[]): PassOnCodeScenario {
+export function passOnCode(code: number, apis: MockApi | readonly MockApi[] | MockApiDefinition): PassOnCodeScenario {
   return {
     passCondition: "status-code",
     code,
