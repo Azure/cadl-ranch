@@ -2,4 +2,4 @@
 "@azure-tools/cadl-ranch-specs": patch
 ---
 
-fix(test): adopt `coercedBodyEquals`
+Back port fix on route mockapi.
