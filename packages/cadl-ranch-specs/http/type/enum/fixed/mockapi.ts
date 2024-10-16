@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockRequest, passOnCode } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -38,7 +38,7 @@ Scenarios.Type_Enum_Fixed_String_putKnownValue = passOnSuccess({
 });
 
 // Unknown values
-Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnSuccess({
+Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnCode(500, {
   uri: "/type/enum/fixed/string/unknown-value",
   method: "put",
   request: {
