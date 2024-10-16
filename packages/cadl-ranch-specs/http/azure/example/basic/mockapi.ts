@@ -1,6 +1,5 @@
 import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { Mock } from "node:test";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
