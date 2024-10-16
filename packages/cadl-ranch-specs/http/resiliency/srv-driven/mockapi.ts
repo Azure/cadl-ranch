@@ -12,11 +12,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess([
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
   {
@@ -25,11 +20,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess([
     request: {},
     response: {
       status: 204,
-    },
-    handler: (req: MockRequest) => {
-      return {
-        status: 204,
-      };
     },
     kind: "MockApiDefinition",
   },
@@ -61,12 +51,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromNone = passOnSuccess([
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("new-parameter", "new");
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
 ]);
@@ -83,12 +67,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSucc
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "required");
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
   {
@@ -101,12 +79,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSucc
     },
     response: {
       status: 204,
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "required");
-      return {
-        status: 204,
-      };
     },
     kind: "MockApiDefinition",
   },
@@ -144,13 +116,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneRequired = passOnSucc
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "required");
-      req.expect.containsQueryParam("new-parameter", "new");
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
 ]);
@@ -167,12 +132,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSucc
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "optional");
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
   {
@@ -185,12 +144,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSucc
     },
     response: {
       status: 204,
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "optional");
-      return {
-        status: 204,
-      };
     },
     kind: "MockApiDefinition",
   },
@@ -228,13 +181,6 @@ Scenarios.Resiliency_ServiceDriven_AddOptionalParam_fromOneOptional = passOnSucc
     response: {
       status: 204,
     },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("parameter", "optional");
-      req.expect.containsQueryParam("new-parameter", "new");
-      return {
-        status: 204,
-      };
-    },
     kind: "MockApiDefinition",
   },
 ]);
@@ -246,11 +192,6 @@ Scenarios.Resiliency_ServiceDriven_breakTheGlass = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    return {
-      status: 204,
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -260,11 +201,6 @@ Scenarios.Resiliency_ServiceDriven_addOperation = passOnSuccess({
   request: {},
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    return {
-      status: 204,
-    };
   },
   kind: "MockApiDefinition",
 });

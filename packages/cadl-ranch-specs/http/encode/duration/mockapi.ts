@@ -76,13 +76,6 @@ function createBodyServerTests(uri: string, data: any, value: any) {
       status: 200,
       body: json(data),
     },
-    handler: (req: MockRequest) => {
-      req.expect.coercedBodyEquals({ value: value });
-      return {
-        status: 200,
-        body: json({ value: value }),
-      };
-    },
     kind: "MockApiDefinition",
   });
 }
@@ -137,12 +130,6 @@ function createHeaderServerTests(uri: string, headersData: any, value: any) {
     },
     response: {
       status: 204,
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsHeader("duration", value);
-      return {
-        status: 204,
-      };
     },
     kind: "MockApiDefinition",
   });
