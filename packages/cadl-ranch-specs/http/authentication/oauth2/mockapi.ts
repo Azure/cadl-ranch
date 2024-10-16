@@ -1,4 +1,4 @@
-import { json, MockRequest, passOnSuccess } from "@azure-tools/cadl-ranch-api";
+import { json, MockRequest, passOnSuccess, passOnCode } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -21,7 +21,7 @@ Scenarios.Authentication_OAuth2_valid = passOnSuccess({
   kind: "MockApiDefinition",
 });
 
-Scenarios.Authentication_OAuth2_invalid = passOnSuccess({
+Scenarios.Authentication_OAuth2_invalid = passOnCode(403, {
   uri: `/authentication/oauth2/invalid`,
   method: "get",
   request: {
