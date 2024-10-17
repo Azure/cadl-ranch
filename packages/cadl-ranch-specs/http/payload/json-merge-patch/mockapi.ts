@@ -31,7 +31,7 @@ export const expectedUpdateBody = {
   description: null,
   map: {
     key: {
-      name: "InnerMadge",
+      // name: "InnerMadge",
       description: null,
     },
     key2: null,
