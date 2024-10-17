@@ -6,9 +6,9 @@ export const Scenarios: Record<string, ScenarioMockApi> = {};
 const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 const RESOURCE_GROUP_EXPECTED = "test-rg";
 const validTopLevelResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`,
   name: "top",
-  type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+  type: "Azure.ResourceManager.Resources/topLevelTrackedResources",
   location: "eastus",
   properties: {
     provisioningState: "Succeeded",
@@ -25,9 +25,9 @@ const validTopLevelResource = {
 };
 
 const validNestedResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
   name: "nested",
-  type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+  type: "Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources",
   properties: {
     provisioningState: "Succeeded",
     description: "valid",
@@ -43,9 +43,9 @@ const validNestedResource = {
 };
 
 const validSingletonResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default`,
   name: "default",
-  type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+  type: "Azure.ResourceManager.Resources/singletonTrackedResources",
   location: "eastus",
   properties: {
     provisioningState: "Succeeded",
@@ -62,8 +62,8 @@ const validSingletonResource = {
 };
 
 // singleton tracked resource
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getByResourceGroup = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+Scenarios.Azure_ResourceManager_Resources_Singleton_getByResourceGroup = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   method: "get",
   request: {
     params: {
@@ -92,8 +92,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_getBy
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_createOrUpdate = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+Scenarios.Azure_ResourceManager_Resources_Singleton_createOrUpdate = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   method: "put",
   request: {
     params: {
@@ -134,8 +134,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_creat
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_update = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+Scenarios.Azure_ResourceManager_Resources_Singleton_update = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   method: "patch",
   request: {
     params: {
@@ -189,8 +189,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_updat
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listByResourceGroup = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+Scenarios.Azure_ResourceManager_Resources_Singleton_listByResourceGroup = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/singletonTrackedResources",
   method: "get",
   request: {
     params: {
@@ -223,8 +223,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_SingletonTrackedResources_listB
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_actionSync = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/actionSync",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_actionSync = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/actionSync",
   method: "post",
   request: {
     params: {
@@ -264,8 +264,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_action
 });
 
 // top level tracked resource
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_get = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName",
   method: "get",
   request: {
     params: {
@@ -298,8 +298,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_get = 
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_createOrReplace = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_createOrReplace = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName",
   method: "put",
   request: {
     params: {
@@ -344,8 +344,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_create
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_update = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName",
   method: "patch",
   request: {
     params: {
@@ -397,8 +397,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_update
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_delete = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName",
   method: "delete",
   request: {
     params: {
@@ -429,8 +429,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_delete
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listByResourceGroup = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_listByResourceGroup = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources",
   method: "get",
   request: {
     params: {
@@ -463,8 +463,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBy
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBySubscription = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+Scenarios.Azure_ResourceManager_Resources_TopLevel_listBySubscription = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Resources/topLevelTrackedResources",
   method: "get",
   request: {
     params: {
@@ -494,8 +494,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_TopLevelTrackedResources_listBy
 });
 
 // nested proxy resource
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_get = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+Scenarios.Azure_ResourceManager_Resources_Nested_get = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
   method: "get",
   request: {
     params: {
@@ -532,8 +532,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_get = pass
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrReplace = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+Scenarios.Azure_ResourceManager_Resources_Nested_createOrReplace = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
   method: "put",
   request: {
     params: {
@@ -580,8 +580,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_createOrRe
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+Scenarios.Azure_ResourceManager_Resources_Nested_update = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
   method: "patch",
   request: {
     params: {
@@ -639,8 +639,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_update = p
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
+Scenarios.Azure_ResourceManager_Resources_Nested_delete = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources/:nestedResourceName",
   method: "delete",
   request: {
     params: {
@@ -663,8 +663,8 @@ Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_delete = p
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_Resources_NestedProxyResources_listByTopLevelTrackedResource = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
+Scenarios.Azure_ResourceManager_Resources_Nested_listByTopLevelTrackedResource = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/:topLevelResourceName/nestedProxyResources",
   method: "get",
   request: {
     params: {

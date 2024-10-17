@@ -144,9 +144,15 @@ const DashboardHeaderRow: FunctionComponent<DashboardHeaderRowProps> = ({ covera
     }
     return [language, getCompletedRatio(coverageSummary.manifest.scenarios, report), report];
   });
+  let tableHeader;
+  if (coverageSummary.tableConfig.name) {
+    tableHeader = <th>Scenario name ({coverageSummary.tableConfig.name})</th>;
+  } else {
+    tableHeader = <th>Scenario name ({coverageSummary.tableConfig.mode})</th>;
+  }
   return (
     <tr>
-      <th>Scenario name (mode: {coverageSummary.mode})</th>
+      {tableHeader}
       {data.map(([lang, status, report]) => (
         <GeneratorHeaderCell key={lang} status={status} report={report} language={lang} />
       ))}
@@ -286,5 +292,19 @@ function createTree(manifest: ScenarioManifest): ManifestTreeNode {
 
     current.scenario = scenario;
   }
-  return root;
+
+  return cutTillMultipleChildren(root);
+}
+
+function cutTillMultipleChildren(node: ManifestTreeNode): ManifestTreeNode {
+  let newRoot: ManifestTreeNode = node;
+  while (newRoot.children) {
+    if (Object.keys(newRoot.children).length === 1) {
+      newRoot = Object.values(newRoot.children)[0];
+    } else {
+      break;
+    }
+  }
+
+  return newRoot;
 }
