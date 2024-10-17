@@ -1,4 +1,4 @@
-import { passOnSuccess, CollectionFormat, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, CollectionFormat, MockRequest, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { resolvePath } from "@typespec/compiler";
 import { readFileSync } from "fs";
@@ -67,6 +67,7 @@ function createPropertyServerTests(uri: string, data: any, value: any) {
     },
     response: {
       status: 200,
+      body: json({ value: value }),
     },
     kind: "MockApiDefinition",
   });
