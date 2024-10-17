@@ -60,7 +60,7 @@ export class MockApiApp {
 }
 
 function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null;
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function createHandler(apiDefinition: MockApiDefinition) {
