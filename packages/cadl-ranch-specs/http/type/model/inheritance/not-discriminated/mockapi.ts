@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -14,10 +14,6 @@ Scenarios.Type_Model_Inheritance_NotDiscriminated_postValid = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(inheritanceValidBody);
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 Scenarios.Type_Model_Inheritance_NotDiscriminated_getValid = passOnSuccess({
@@ -27,9 +23,6 @@ Scenarios.Type_Model_Inheritance_NotDiscriminated_getValid = passOnSuccess({
   response: {
     status: 200,
     body: json(inheritanceValidBody),
-  },
-  handler: (req: MockRequest) => {
-    return { status: 200, body: json(inheritanceValidBody) };
   },
   kind: "MockApiDefinition",
 });
@@ -42,9 +35,6 @@ Scenarios.Type_Model_Inheritance_NotDiscriminated_putValid = passOnSuccess({
   response: {
     status: 200,
     body: json(inheritanceValidBody),
-  },
-  handler: (req: MockRequest) => {
-    return { status: 200, body: json(req.body) };
   },
   kind: "MockApiDefinition",
 });

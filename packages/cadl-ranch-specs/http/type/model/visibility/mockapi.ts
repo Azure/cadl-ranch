@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -31,10 +31,6 @@ Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess({
     status: 200,
     body: json(expectBody),
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({});
-    return { status: 200, body: json(expectBody) };
-  },
   kind: "MockApiDefinition",
 });
 Scenarios.Type_Model_Visibility_headModel = passOnSuccess({
@@ -45,10 +41,6 @@ Scenarios.Type_Model_Visibility_headModel = passOnSuccess({
   },
   response: {
     status: 200,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["queryProp"]));
-    return { status: 200 };
   },
   kind: "MockApiDefinition",
 });
@@ -61,13 +53,6 @@ Scenarios.Type_Model_Visibility_getModel = passOnSuccess({
   response: {
     status: 200,
     body: json(genData(["readProp"])),
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["queryProp"]));
-    return {
-      status: 200,
-      body: json(genData(["readProp"])),
-    };
   },
   kind: "MockApiDefinition",
 });
@@ -83,10 +68,6 @@ Scenarios.Type_Model_Visibility_putModel = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["createProp", "updateProp"]));
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 Scenarios.Type_Model_Visibility_patchModel = passOnSuccess({
@@ -99,10 +80,6 @@ Scenarios.Type_Model_Visibility_patchModel = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["updateProp"]));
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });
@@ -117,10 +94,6 @@ Scenarios.Type_Model_Visibility_postModel = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["createProp"]));
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess({
@@ -131,10 +104,6 @@ Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(genData(["deleteProp"]));
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });

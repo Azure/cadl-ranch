@@ -32,12 +32,6 @@ Scenarios.Parameters_CollectionFormat_Query_csv = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "csv");
-    return {
-      status: 204,
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -49,12 +43,6 @@ Scenarios.Parameters_CollectionFormat_Query_ssv = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "ssv");
-    return {
-      status: 204,
-    };
   },
   kind: "MockApiDefinition",
 });
@@ -68,12 +56,6 @@ Scenarios.Parameters_CollectionFormat_Query_tsv = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "tsv");
-    return {
-      status: 204,
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -86,12 +68,6 @@ Scenarios.Parameters_CollectionFormat_Query_pipes = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("colors", ["blue", "red", "green"], "pipes");
-    return {
-      status: 204,
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -103,12 +79,6 @@ Scenarios.Parameters_CollectionFormat_Header_csv = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("colors", "blue,red,green");
-    return {
-      status: 204,
-    };
   },
   kind: "MockApiDefinition",
 });

@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, passOnCode } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -11,9 +11,6 @@ Scenarios.Type_Enum_Fixed_String_getKnownValue = passOnSuccess({
   response: {
     status: 200,
     body: json("Monday"),
-  },
-  handler: (req: MockRequest) => {
-    return { status: 200, body: json("Monday") };
   },
   kind: "MockApiDefinition",
 });
@@ -30,15 +27,11 @@ Scenarios.Type_Enum_Fixed_String_putKnownValue = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals("Monday");
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
 // Unknown values
-Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnSuccess({
+Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnCode(500, {
   uri: "/type/enum/fixed/string/unknown-value",
   method: "put",
   request: {
@@ -50,10 +43,6 @@ Scenarios.Type_Enum_Fixed_String_putUnknownValue = passOnSuccess({
   },
   response: {
     status: 500,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals("Weekend");
-    return { status: 500 };
   },
   kind: "MockApiDefinition",
 });

@@ -1,4 +1,4 @@
-import { passOnSuccess, ValidationError, json, MockApiDefinition, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockApiDefinition } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -15,15 +15,6 @@ function createMockApiDefinitions(route: string): MockApiDefinition {
     response: {
       status: 200,
       body: json({ name: "sample" }),
-    },
-    handler: (req: MockRequest) => {
-      if (!("name" in req.query)) {
-        throw new ValidationError("Should submit name query", "any string", undefined);
-      }
-      return {
-        status: 200,
-        body: json({ name: req.query["name"] }),
-      };
     },
     kind: "MockApiDefinition",
   };
@@ -58,15 +49,6 @@ Scenarios.Azure_ClientGenerator_Core_Access_RelativeModelInOperation = passOnSuc
       status: 200,
       body: json({ name: "Madge", inner: { name: "Madge" } }),
     },
-    handler: (req: MockRequest) => {
-      if (!("name" in req.query)) {
-        throw new ValidationError("Should submit name query", "any string", undefined);
-      }
-      return {
-        status: 200,
-        body: json({ name: "Madge", inner: { name: "Madge" } }),
-      };
-    },
     kind: "MockApiDefinition",
   },
   {
@@ -80,15 +62,6 @@ Scenarios.Azure_ClientGenerator_Core_Access_RelativeModelInOperation = passOnSuc
     response: {
       status: 200,
       body: json({ name: "Madge", kind: "real" }),
-    },
-    handler: (req: MockRequest) => {
-      if (!("kind" in req.query)) {
-        throw new ValidationError("Should submit name query", "any string", undefined);
-      }
-      return {
-        status: 200,
-        body: json({ name: "Madge", kind: "real" }),
-      };
     },
     kind: "MockApiDefinition",
   },

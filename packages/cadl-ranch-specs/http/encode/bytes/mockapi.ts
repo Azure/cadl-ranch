@@ -1,4 +1,4 @@
-import { passOnSuccess, json, CollectionFormat, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, CollectionFormat, MockRequest, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 import { resolvePath } from "@typespec/compiler";
 import { readFileSync } from "fs";
@@ -67,13 +67,7 @@ function createPropertyServerTests(uri: string, data: any, value: any) {
     },
     response: {
       status: 200,
-    },
-    handler: (req: MockRequest) => {
-      req.expect.coercedBodyEquals({ value: value });
-      return {
-        status: 200,
-        body: json({ value: value }),
-      };
+      body: json({ value: value }),
     },
     kind: "MockApiDefinition",
   });
@@ -115,12 +109,6 @@ function createHeaderServerTests(uri: string, data: any, value: any) {
     },
     response: {
       status: 204,
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsHeader("value", value);
-      return {
-        status: 204,
-      };
     },
     kind: "MockApiDefinition",
   });

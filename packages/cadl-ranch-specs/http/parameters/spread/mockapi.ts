@@ -1,4 +1,4 @@
-import { passOnSuccess, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -14,10 +14,6 @@ Scenarios.Parameters_Spread_Model_spreadAsRequestBody = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -32,10 +28,6 @@ Scenarios.Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody = passOnSuc
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -49,10 +41,6 @@ Scenarios.Parameters_Spread_Model_spreadCompositeRequestWithoutBody = passOnSucc
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("test-header", "bar");
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });
@@ -71,11 +59,6 @@ Scenarios.Parameters_Spread_Model_spreadCompositeRequest = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -93,11 +76,6 @@ Scenarios.Parameters_Spread_Model_spreadCompositeRequestMix = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("test-header", "bar");
-    req.expect.bodyEquals({ prop: "foo" });
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -111,10 +89,6 @@ Scenarios.Parameters_Spread_Alias_spreadAsRequestBody = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });
@@ -132,11 +106,6 @@ Scenarios.Parameters_Spread_Alias_spreadAsRequestParameter = passOnSuccess({
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });
@@ -158,16 +127,6 @@ Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({
-      requiredString: "foo",
-      optionalInt: 1,
-      requiredIntList: [1, 2],
-      optionalStringList: ["foo", "bar"],
-    });
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -184,11 +143,6 @@ Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerModel = passOnSuccess(
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });
@@ -207,11 +161,6 @@ Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerAlias = passOnSuccess(
   },
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo", age: 1 });
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });

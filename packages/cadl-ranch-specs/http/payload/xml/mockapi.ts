@@ -1,4 +1,4 @@
-import { passOnSuccess, xml, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, xml } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -134,12 +134,6 @@ function createServerTests(uri: string, data?: any) {
         status: 200,
         body: xml(data),
       },
-      handler: (req: MockRequest) => {
-        return {
-          status: 200,
-          body: xml(data),
-        };
-      },
       kind: "MockApiDefinition",
     }),
     put: passOnSuccess({
@@ -153,13 +147,6 @@ function createServerTests(uri: string, data?: any) {
       },
       response: {
         status: 204,
-      },
-      handler: (req: MockRequest) => {
-        req.expect.containsHeader("content-type", "application/xml");
-        req.expect.xmlBodyEquals(data);
-        return {
-          status: 204,
-        };
       },
       kind: "MockApiDefinition",
     }),

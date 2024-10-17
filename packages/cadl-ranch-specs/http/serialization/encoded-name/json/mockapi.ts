@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -8,12 +8,6 @@ Scenarios.Serialization_EncodedName_Json_Property_send = passOnSuccess({
   method: "post",
   request: { body: { wireName: true } },
   response: { status: 204 },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ wireName: true });
-    return {
-      status: 204,
-    };
-  },
   kind: "MockApiDefinition",
 });
 Scenarios.Serialization_EncodedName_Json_Property_get = passOnSuccess({
@@ -23,12 +17,6 @@ Scenarios.Serialization_EncodedName_Json_Property_get = passOnSuccess({
   response: {
     status: 200,
     body: json({ wireName: true }),
-  },
-  handler: (req: MockRequest) => {
-    return {
-      status: 200,
-      body: json({ wireName: true }),
-    };
   },
   kind: "MockApiDefinition",
 });
