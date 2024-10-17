@@ -27,7 +27,7 @@ Scenarios.Versioning_Removed_v2 = passOnSuccess({
   kind: "MockApiDefinition",
 });
 
-Scenarios.Versioning_Removed_modelV3_V1 = passOnSuccess({
+Scenarios.Versioning_Removed_modelV3 = passOnSuccess({
   uri: `/versioning/removed/api-version[:]v1/v3`,
   method: "post",
   request: {
