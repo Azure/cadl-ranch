@@ -64,7 +64,9 @@ function createHandler(apiDefinition: MockApiDefinition) {
     // Validate body if present in the request
     if (apiDefinition.request.body) {
       if (apiDefinition.request.headers && apiDefinition.request.headers["Content-Type"] === "application/xml") {
-        req.expect.xmlBodyEquals(apiDefinition.request.body);
+        req.expect.xmlBodyEquals(
+          apiDefinition.request.body.rawContent.replace(`<?xml version='1.0' encoding='UTF-8'?>`, ""),
+        );
       } else {
         req.expect.coercedBodyEquals(apiDefinition.request.body);
       }
