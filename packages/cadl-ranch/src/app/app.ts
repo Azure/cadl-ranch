@@ -86,10 +86,18 @@ function createHandler(apiDefinition: MockApiDefinition) {
     // Validate query params if present in the request
     if (apiDefinition.request.params) {
       Object.entries(apiDefinition.request.params).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          req.expect.deepEqual(req.query[key], value);
+        if (!req.query[key]) {
+          if (Array.isArray(value)) {
+            req.expect.deepEqual(req.params[key], value);
+          } else {
+            req.expect.deepEqual(req.params[key], String(value));
+          }
         } else {
-          req.expect.containsQueryParam(key, String(value));
+          if (Array.isArray(value)) {
+            req.expect.deepEqual(req.query[key], value);
+          } else {
+            req.expect.containsQueryParam(key, String(value));
+          }
         }
       });
     }
