@@ -1,4 +1,4 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -19,60 +19,122 @@ function genData(keys: string[]): Record<string, any> {
   }
   return ret;
 }
-
-Scenarios.Type_Model_Visibility_headModel = passOnSuccess(
-  mockapi.head("/type/model/visibility", (req) => {
+const expectBody = {
+  optionalNullableIntList: [1, 2, 3],
+  optionalStringRecord: { k1: "value1", k2: "value2" },
+};
+Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess({
+  uri: "/type/model/visibility/readonlyroundtrip",
+  method: "put",
+  request: {},
+  response: {
+    status: 200,
+    body: json(expectBody),
+  },
+  handler: (req: MockRequest) => {
+    req.expect.bodyEquals({});
+    return { status: 200, body: json(expectBody) };
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_headModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "head",
+  request: {
+    body: { queryProp: 123 },
+  },
+  response: {
+    status: 200,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["queryProp"]));
     return { status: 200 };
-  }),
-);
-
-Scenarios.Type_Model_Visibility_getModel = passOnSuccess(
-  mockapi.get("/type/model/visibility", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_getModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "get",
+  request: {
+    body: { queryProp: 123 },
+  },
+  response: {
+    status: 200,
+    body: json(genData(["readProp"])),
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["queryProp"]));
     return {
       status: 200,
       body: json(genData(["readProp"])),
     };
-  }),
-);
-
-Scenarios.Type_Model_Visibility_putModel = passOnSuccess(
-  mockapi.put("/type/model/visibility", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_putModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "put",
+  request: {
+    body: {
+      createProp: ["foo", "bar"],
+      updateProp: [1, 2],
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["createProp", "updateProp"]));
     return { status: 204 };
-  }),
-);
-
-Scenarios.Type_Model_Visibility_patchModel = passOnSuccess(
-  mockapi.patch("/type/model/visibility", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_patchModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "patch",
+  request: {
+    body: {
+      updateProp: [1, 2],
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["updateProp"]));
     return { status: 204 };
-  }),
-);
-
-Scenarios.Type_Model_Visibility_postModel = passOnSuccess(
-  mockapi.post("/type/model/visibility", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_postModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "post",
+  request: {
+    body: {
+      createProp: ["foo", "bar"],
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["createProp"]));
     return { status: 204 };
-  }),
-);
-
-Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess(
-  mockapi.delete("/type/model/visibility", (req) => {
+  },
+  kind: "MockApiDefinition",
+});
+Scenarios.Type_Model_Visibility_deleteModel = passOnSuccess({
+  uri: "/type/model/visibility",
+  method: "delete",
+  request: {
+    body: { deleteProp: true },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
     req.expect.bodyEquals(genData(["deleteProp"]));
     return { status: 204 };
-  }),
-);
-
-const expectBody = {
-  optionalNullableIntList: [1, 2, 3],
-  optionalStringRecord: { k1: "value1", k2: "value2" },
-};
-
-Scenarios.Type_Model_Visibility_putReadOnlyModel = passOnSuccess(
-  mockapi.put("/type/model/visibility/readonlyroundtrip", (req) => {
-    req.expect.bodyEquals({});
-    return { status: 200, body: json(expectBody) };
-  }),
-);
+  },
+  kind: "MockApiDefinition",
+});

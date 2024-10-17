@@ -10,6 +10,7 @@ import { generateScenarioSummary } from "../actions/generate-scenario-summary.js
 import { uploadScenarioManifest } from "../actions/upload-scenario-manifest.js";
 import { uploadCoverageReport } from "../actions/upload-coverage-report.js";
 import { getCommit } from "../utils/misc-utils.js";
+import { serverTest } from "../actions/server-test.js";
 
 export const DEFAULT_PORT = 3000;
 
@@ -144,6 +145,38 @@ async function main() {
           scenariosPath: resolve(process.cwd(), args.scenariosPath),
           port: args.port,
           coverageFile: args.coverageFile,
+        });
+      },
+    )
+    .command(
+      "server-test <scenariosPath>",
+      "Executes the test cases against the service",
+      (cmd) => {
+        return cmd
+          .positional("scenariosPath", {
+            description: "Path to the scenarios and mock apis",
+            type: "string",
+            demandOption: true,
+          })
+          .option("baseUrl", {
+            description: "Path to the server",
+            type: "string",
+          })
+          .option("runSingleScenario", {
+            description: "Single Scenario Case to run",
+            type: "string",
+          })
+          .option("runScenariosFromFile", {
+            description: "File that has the Scenarios to run",
+            type: "string",
+          })
+          .demandOption("scenariosPath", "serverBasePath");
+      },
+      async (args) => {
+        await serverTest(args.scenariosPath, {
+          baseUrl: args.baseUrl,
+          runSingleScenario: args.runSingleScenario,
+          runScenariosFromFile: args.runScenariosFromFile,
         });
       },
     )

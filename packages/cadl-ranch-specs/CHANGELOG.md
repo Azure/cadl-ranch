@@ -1,5 +1,31 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.37.7
+
+### Patch Changes
+
+- ecfd2f0: fix(test): adopt `coercedBodyEquals`
+- 86817b9: Fix explode array mockapi in routes.
+
+## 0.37.6
+
+### Patch Changes
+
+- 311617f: fix wrong mock api introduced by #741
+
+## 0.37.5
+
+### Patch Changes
+
+- f1614e1: bump dependency to typespec 0.61.0
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- 23279d1: fix explode query check of mockapi for routes test case
+- Updated dependencies [f1614e1]
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-expect@0.15.5
+  - @azure-tools/cadl-ranch@0.14.7
+  - @azure-tools/cadl-ranch-api@0.4.7
+
 ## 0.37.4
 
 ### Patch Changes

@@ -1,24 +1,14 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
+import { createServerTests } from "../common/service.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
+
 Scenarios.Client_Structure_TwoOperationGroup = passOnSuccess([
-  mockapi.post("/client/structure/two-operation-group/one", (req) => {
-    return { status: 204 };
-  }),
-  mockapi.post("/client/structure/two-operation-group/two", (req) => {
-    return { status: 204 };
-  }),
-  mockapi.post("/client/structure/two-operation-group/three", (req) => {
-    return { status: 204 };
-  }),
-  mockapi.post("/client/structure/two-operation-group/four", (req) => {
-    return { status: 204 };
-  }),
-  mockapi.post("/client/structure/two-operation-group/five", (req) => {
-    return { status: 204 };
-  }),
-  mockapi.post("/client/structure/two-operation-group/six", (req) => {
-    return { status: 204 };
-  }),
+  createServerTests("/client/structure/two-operation-group/one"),
+  createServerTests("/client/structure/two-operation-group/two"),
+  createServerTests("/client/structure/two-operation-group/three"),
+  createServerTests("/client/structure/two-operation-group/four"),
+  createServerTests("/client/structure/two-operation-group/five"),
+  createServerTests("/client/structure/two-operation-group/six"),
 ]);

@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.5
+
+### Patch Changes
+
+- f1614e1: bump dependency to typespec 0.61.0
+
 ## 0.15.4
 
 ### Patch Changes
