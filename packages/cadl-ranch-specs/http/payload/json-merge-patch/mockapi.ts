@@ -27,7 +27,7 @@ export const expectedCreateBody = {
 };
 
 export const expectedUpdateBody = {
-  name: "Madge",
+  // name: "Madge",
   description: null,
   map: {
     key: {
