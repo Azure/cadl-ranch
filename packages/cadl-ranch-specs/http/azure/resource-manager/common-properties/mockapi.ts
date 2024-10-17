@@ -12,7 +12,7 @@ const RESOURCE_GROUP_EXPECTED = "test-rg";
 const IDENTITY_TYPE_SYSTEM_ASSIGNED_EXPECTED = "SystemAssigned";
 const IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED = "SystemAssigned,UserAssigned";
 const validSystemAssignedManagedIdentityResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
   location: `${LOCATION_REGION_EXPECTED}`,
   tags: {
     tagKey1: "tagValue1",
@@ -28,7 +28,7 @@ const validSystemAssignedManagedIdentityResource = {
 };
 
 const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
   location: `${LOCATION_REGION_EXPECTED}`,
   tags: {
     tagKey1: "tagValue1",
@@ -63,8 +63,8 @@ const updateExpectedIdentity = {
 };
 
 // managed identity tracked resource
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_get = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_get = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
   method: "get",
   request: {
     params: {
@@ -81,31 +81,30 @@ Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdenti
   kind: "MockApiDefinition",
 });
 
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_createWithSystemAssigned =
-  passOnSuccess({
-    uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
-    method: "put",
-    request: {
-      body: {
-        identity: createExpectedIdentity,
-      },
-      params: {
-        "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
-        "resourceGroup": RESOURCE_GROUP_EXPECTED,
-        "managedIdentityResourceName": "identity",
-        "api-version": "2023-12-01-preview",
-      },
+Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_createWithSystemAssigned = passOnSuccess({
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
+  method: "put",
+  request: {
+    body: {
+      identity: createExpectedIdentity,
     },
-    response: {
-      status: 200,
-      body: json(validSystemAssignedManagedIdentityResource),
+    params: {
+      "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
+      "managedIdentityResourceName": "identity",
+      "api-version": "2023-12-01-preview",
     },
-    kind: "MockApiDefinition",
-  });
+  },
+  response: {
+    status: 200,
+    body: json(validSystemAssignedManagedIdentityResource),
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Azure_ResourceManager_Models_CommonTypes_ManagedIdentity_ManagedIdentityTrackedResources_updateWithUserAssignedAndSystemAssigned =
+Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_updateWithUserAssignedAndSystemAssigned =
   passOnSuccess({
-    uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/:managedIdentityResourceName",
+    uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/:managedIdentityResourceName",
     method: "patch",
     request: {
       body: {
