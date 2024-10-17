@@ -59,6 +59,10 @@ export class MockApiApp {
   }
 }
 
+function isObject(value: any): boolean {
+  return typeof value === "object" && value !== null;
+}
+
 function createHandler(apiDefinition: MockApiDefinition) {
   return (req: MockRequest) => {
     // Validate body if present in the request
@@ -68,7 +72,13 @@ function createHandler(apiDefinition: MockApiDefinition) {
           apiDefinition.request.body.rawContent.replace(`<?xml version='1.0' encoding='UTF-8'?>`, ""),
         );
       } else {
-        req.expect.coercedBodyEquals(apiDefinition.request.body);
+        if (isObject(apiDefinition.request.body)) {
+          Object.entries(apiDefinition.request.body).forEach(([key, value]) => {
+            req.expect.deepEqual(req.body[key], value);
+          });
+        } else {
+          req.expect.coercedBodyEquals(apiDefinition.request.body);
+        }
       }
     }
 
