@@ -1,9 +1,11 @@
 import "@typespec/http";
 import "@azure-tools/cadl-ranch-expect";
 import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using TypeSpec.Rest;
 
 /**
  * Test for the `@removed` decorator.
@@ -20,7 +22,7 @@ using TypeSpec.Versioning;
     endpoint: url,
 
     /**
-     * Need to be set as 'v1' or 'v2' in client.
+     * Need to be set as 'v1', 'v2preview' or 'v2' in client.
      */
     version: Versions,
   }
@@ -32,12 +34,17 @@ namespace Versioning.Removed;
  */
 enum Versions {
   /**
-   * The version v1.
+   * The original version v1.
    */
   v1: "v1",
 
   /**
-   * The version v2.
+   * The V2 Preview version.
+   */
+  v2preview: "v2preview",
+
+  /**
+   * The latest version v2.
    */
   v2: "v2",
 }
@@ -66,11 +73,27 @@ model ModelV2 {
   unionProp: UnionV2;
 }
 
+model ModelV3 {
+  id: string;
+
+  @removed(Versions.v2preview)
+  @added(Versions.v2)
+  enumProp: EnumV3;
+}
+
 enum EnumV2 {
   @removed(Versions.v2)
   enumMemberV1,
 
   enumMemberV2,
+}
+
+enum EnumV3 {
+  @removed(Versions.v2preview)
+  @added(Versions.v2)
+  enumMemberV1,
+
+  enumMemberV2Preview,
 }
 
 @removed(Versions.v2)
@@ -123,3 +146,44 @@ interface InterfaceV1 {
   @route("/v1")
   v1InInterface(@body body: ModelV1): ModelV1;
 }
+
+/** This operation will pass different paths and different request bodies based on different versions. */
+@scenario
+@scenarioDoc("""
+  path: "/versioning/removed/api-version[:]v1/v3"
+  Expected request body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberV1" }
+  ```
+  
+  Expected response body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberV1" }
+  ```
+  
+  path: "/versioning/removed/api-version[:]v2preview/v3"
+  Expected request body:
+  ```json
+  { "id": "123"}
+  ```
+  
+    Expected response body:
+  ```json
+  { "id": "123"}
+  ```
+  
+  path: "/versioning/removed/api-version[:]v2/v3"
+  Expected request body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberV1" }
+  ```
+  
+    Expected response body:
+  ```json
+  { "id": "123", "enumProp": "enumMemberV1" }
+  ```
+  
+  """)
+@post
+@route("/v3")
+op modelV3(@body body: ModelV3): ModelV3;
