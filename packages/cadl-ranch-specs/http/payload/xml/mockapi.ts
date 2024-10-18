@@ -140,7 +140,7 @@ function createServerTests(uri: string, data?: any) {
       uri,
       method: "put",
       request: {
-        body: xml(data),
+        body: data,
         headers: {
           "content-type": "application/xml",
         },
