@@ -1,5 +1,16 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.0
+
+### Minor Changes
+
+- caa2290: Remove handler code and commonapi file
+
+### Patch Changes
+
+- Updated dependencies [caa2290]
+  - @azure-tools/cadl-ranch@0.16.0
+
 ## 0.38.0
 
 ### Minor Changes
