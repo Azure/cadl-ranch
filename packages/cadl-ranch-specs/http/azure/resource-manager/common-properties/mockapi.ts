@@ -1,4 +1,4 @@
-import { passOnSuccess, json, ValidationError, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -78,26 +78,6 @@ Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_get = passOnSuc
     status: 200,
     body: json(validSystemAssignedManagedIdentityResource),
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-    if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-      throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-    }
-    if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-      throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-    }
-    if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-      throw new ValidationError(
-        "Unexpected managed identity resource name",
-        "identity",
-        req.params.managedIdentityResourceName,
-      );
-    }
-    return {
-      status: 200,
-      body: json(validSystemAssignedManagedIdentityResource),
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -118,27 +98,6 @@ Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_createWithSyste
   response: {
     status: 200,
     body: json(validSystemAssignedManagedIdentityResource),
-  },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-    if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-      throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-    }
-    if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-      throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-    }
-    if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-      throw new ValidationError(
-        "Unexpected managed identity resource name",
-        "identity",
-        req.params.managedIdentityResourceName,
-      );
-    }
-    req.expect.deepEqual(req.body["identity"], createExpectedIdentity);
-    return {
-      status: 200,
-      body: json(validSystemAssignedManagedIdentityResource),
-    };
   },
   kind: "MockApiDefinition",
 });
@@ -164,27 +123,6 @@ Scenarios.Azure_ResourceManager_CommonProperties_ManagedIdentity_updateWithUserA
     response: {
       status: 200,
       body: json(validUserAssignedAndSystemAssignedManagedIdentityResource),
-    },
-    handler: (req: MockRequest) => {
-      req.expect.containsQueryParam("api-version", "2023-12-01-preview");
-      if (req.params.subscriptionId !== SUBSCRIPTION_ID_EXPECTED) {
-        throw new ValidationError("Unexpected subscriptionId", SUBSCRIPTION_ID_EXPECTED, req.params.subscriptionId);
-      }
-      if (req.params.resourceGroup.toLowerCase() !== RESOURCE_GROUP_EXPECTED) {
-        throw new ValidationError("Unexpected resourceGroup", RESOURCE_GROUP_EXPECTED, req.params.resourceGroup);
-      }
-      if (req.params.managedIdentityResourceName.toLowerCase() !== "identity") {
-        throw new ValidationError(
-          "Unexpected managed identity resource name",
-          "identity",
-          req.params.managedIdentityResourceName,
-        );
-      }
-      req.expect.deepEqual(req.body["identity"], updateExpectedIdentity);
-      return {
-        status: 200,
-        body: json(validUserAssignedAndSystemAssignedManagedIdentityResource),
-      };
     },
     kind: "MockApiDefinition",
   });

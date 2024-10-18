@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -9,9 +9,6 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_get = passOnSuccess({
   method: "get",
   request: {},
   response: { status: 200, body: json("eastus") },
-  handler: (req: MockRequest) => {
-    return { status: 200, body: json("eastus") };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -25,10 +22,6 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_put = passOnSuccess({
     },
   },
   response: { status: 204 },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals("eastus");
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -38,13 +31,6 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_post = passOnSuccess({
   method: "post",
   request: { body: azureLocation },
   response: { status: 200, body: json(azureLocation) },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ location: "eastus" });
-    return {
-      status: 200,
-      body: json(azureLocation),
-    };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -57,10 +43,6 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_header = passOnSuccess({
     },
   },
   response: { status: 204 },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("region", "eastus");
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -73,9 +55,5 @@ Scenarios.Azure_Core_Scalar_AzureLocationScalar_query = passOnSuccess({
     },
   },
   response: { status: 204 },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("region", "eastus");
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
