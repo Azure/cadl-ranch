@@ -1,4 +1,4 @@
-import { passOnSuccess, xml } from "@azure-tools/cadl-ranch-api";
+import { MockRequest, passOnSuccess, xml } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -144,6 +144,13 @@ function createServerTests(uri: string, data?: any) {
         headers: {
           "content-type": "application/xml",
         },
+      },
+      handler: (req: MockRequest) => {
+        req.expect.containsHeader("content-type", "application/xml");
+        req.expect.xmlBodyEquals(data);
+        return {
+          status: 204,
+        };
       },
       response: {
         status: 204,

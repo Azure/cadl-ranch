@@ -85,7 +85,7 @@ function createHandler(apiDefinition: MockApiDefinition) {
     // Validate headers if present in the request
     if (apiDefinition.request.headers) {
       Object.entries(apiDefinition.request.headers).forEach(([key, value]) => {
-        if (key !== "Content-Type") {
+        if (key.toLowerCase() !== "content-type") {
           if (Array.isArray(value)) {
             req.expect.deepEqual(req.headers[key], value);
           } else {
