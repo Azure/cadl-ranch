@@ -1,4 +1,4 @@
-import { passOnSuccess, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -9,9 +9,6 @@ Scenarios.Server_Endpoint_NotDefined_valid = passOnSuccess({
   request: {},
   response: {
     status: 200,
-  },
-  handler: (req: MockRequest) => {
-    return { status: 200 };
   },
   kind: "MockApiDefinition",
 });

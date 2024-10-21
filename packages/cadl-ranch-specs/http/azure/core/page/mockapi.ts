@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -9,12 +9,6 @@ Scenarios.Azure_Core_Page_listWithPage = passOnSuccess({
   method: "get",
   request: {},
   response: { status: 200, body: json({ value: [validUser] }) },
-  handler: (req: MockRequest) => {
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -28,17 +22,6 @@ Scenarios.Azure_Core_Page_listWithParameters = passOnSuccess({
     body: { inputName: "Madge" },
   },
   response: { status: 200, body: json({ value: [validUser] }) },
-  handler: (req: MockRequest) => {
-    req.expect.containsQueryParam("another", "Second");
-
-    const validBody = { inputName: "Madge" };
-    req.expect.bodyEquals(validBody);
-
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -48,12 +31,6 @@ Scenarios.Azure_Core_Page_TwoModelsAsPageItem = passOnSuccess([
     method: "get",
     request: {},
     response: { status: 200, body: json({ value: [{ id: 1 }] }) },
-    handler: (req: MockRequest) => {
-      const responseBody = {
-        value: [{ id: 1 }],
-      };
-      return { status: 200, body: json(responseBody) };
-    },
     kind: "MockApiDefinition",
   },
   {
@@ -61,12 +38,6 @@ Scenarios.Azure_Core_Page_TwoModelsAsPageItem = passOnSuccess([
     method: "get",
     request: {},
     response: { status: 200, body: json({ value: [{ name: "Madge" }] }) },
-    handler: (req: MockRequest) => {
-      const responseBody = {
-        value: [{ name: "Madge" }],
-      };
-      return { status: 200, body: json(responseBody) };
-    },
     kind: "MockApiDefinition",
   },
 ]);
@@ -76,11 +47,5 @@ Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess({
   method: "get",
   request: {},
   response: { status: 200, body: json({ items: [validUser] }) },
-  handler: (req: MockRequest) => {
-    const responseBody = {
-      items: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  },
   kind: "MockApiDefinition",
 });
