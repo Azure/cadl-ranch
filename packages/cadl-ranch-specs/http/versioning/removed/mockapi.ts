@@ -33,10 +33,6 @@ Scenarios.Versioning_Removed_modelV3 = passOnSuccess({
     status: 200,
     body: json({ id: "123", enumProp: "enumMemberV1" }),
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ id: "123", enumProp: "enumMemberV1" });
-    return { status: 200, body: json({ id: "123", enumProp: "enumMemberV1" }) };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -53,10 +49,6 @@ Scenarios.Versioning_Removed_modelV3_V2 = passOnSuccess({
     status: 200,
     body: json({ id: "123", enumProp: "enumMemberV1" }),
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ id: "123", enumProp: "enumMemberV1" });
-    return { status: 200, body: json({ id: "123", enumProp: "enumMemberV1" }) };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -71,10 +63,6 @@ Scenarios.Versioning_Removed_modelV3_V2preview = passOnSuccess({
   response: {
     status: 200,
     body: json({ id: "123" }),
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals({ id: "123" });
-    return { status: 200, body: json({ id: "123" }) };
   },
   kind: "MockApiDefinition",
 });
