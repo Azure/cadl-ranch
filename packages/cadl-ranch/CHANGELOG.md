@@ -1,5 +1,18 @@
 # @azure-tools/cadl-ranch
 
+## 0.15.0
+
+### Minor Changes
+
+- afce8be: Add dashboard for Azure Resource Manager.
+
+### Patch Changes
+
+- Updated dependencies [46e3022]
+- Updated dependencies [afce8be]
+  - @azure-tools/cadl-ranch-api@0.5.0
+  - @azure-tools/cadl-ranch-coverage-sdk@0.9.0
+
 ## 0.14.7
 
 ### Patch Changes

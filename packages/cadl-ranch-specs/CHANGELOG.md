@@ -1,5 +1,27 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.38.0
+
+### Minor Changes
+
+- 538eb76: Reorganized ARM tests.
+
+  Breaking changes:
+
+  1. Renamed namespace `Azure.ResourceManager.Models.Resources` to `Azure.ResourceManager.Resources`.
+  2. Renamed namespace `Azure.ResourceManager.Models.CommonTypes.ManagedIdentity` to `Azure.ResourceManager.CommonProperties`.
+  3. Renamed folder `common-types/managed-identity` to `common-properties`.
+  4. Renamed `ManagedIdentityTrackedResources` interface in `common-properties` to `ManagedIdentity`.
+
+### Patch Changes
+
+- a984aa0: Back port fix on route mockapi.
+- 46e3022: Fix mockapi in authentication scenarios.
+- Updated dependencies [46e3022]
+- Updated dependencies [afce8be]
+  - @azure-tools/cadl-ranch-api@0.5.0
+  - @azure-tools/cadl-ranch@0.15.0
+
 ## 0.37.7
 
 ### Patch Changes

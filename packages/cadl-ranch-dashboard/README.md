@@ -3,11 +3,11 @@
 ## Dev
 
 ```bash
-npm start
+npm run start
 # or
-npm dev
+npm run dev
 ```
 
 ## Show the test generator
 
-Add `?showtest=true` query parameter to url https://localhost:5173/?showtest=true
+Add `?showtest=true` query parameter to url http://localhost:5173/?showtest=true

@@ -1,4 +1,4 @@
-import { passOnSuccess, ScenarioMockApi, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
@@ -9,9 +9,6 @@ Scenarios.Server_Path_Multiple_noOperationParams = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -21,9 +18,6 @@ Scenarios.Server_Path_Multiple_withOperationPathParam = passOnSuccess({
   request: {},
   response: {
     status: 204,
-  },
-  handler: (req: MockRequest) => {
-    return { status: 204 };
   },
   kind: "MockApiDefinition",
 });

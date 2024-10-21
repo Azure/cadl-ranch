@@ -3,13 +3,6 @@ import { passOnSuccess, ScenarioMockApi, json, MockRequest } from "@azure-tools/
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
 function createServerTests(url: string, data: unknown, convertedToFn?: (_: any) => any) {
-  let property;
-  if (convertedToFn) {
-    property = convertedToFn(data);
-  } else {
-    property = data;
-  }
-
   return {
     get: passOnSuccess({
       uri: url,
@@ -19,29 +12,16 @@ function createServerTests(url: string, data: unknown, convertedToFn?: (_: any) 
         status: 200,
         body: json(data),
       },
-      handler: (req: MockRequest) => {
-        return {
-          status: 200,
-          body: json(data),
-        };
-      },
       kind: "MockApiDefinition",
     }),
     put: passOnSuccess({
       uri: url,
       method: `put`,
       request: {
-        body: property,
+        body: data,
       },
       response: {
         status: 204,
-      },
-      handler: (req: MockRequest) => {
-        const expectedBody = JSON.parse(JSON.stringify(property));
-        req.expect.coercedBodyEquals(expectedBody);
-        return {
-          status: 204,
-        };
       },
       kind: "MockApiDefinition",
     }),
@@ -148,7 +128,30 @@ const Type_Property_ValueTypes_Never = createServerTests(`/type/property/value-t
   property: undefined,
 });
 Scenarios.Type_Property_ValueTypes_Never_get = Type_Property_ValueTypes_Never.get;
-Scenarios.Type_Property_ValueTypes_Never_put = Type_Property_ValueTypes_Never.put;
+Scenarios.Type_Property_ValueTypes_Never_put = passOnSuccess({
+  uri: `/type/property/value-types/never`,
+  method: `put`,
+  request: {
+    body: {
+      property: undefined,
+    },
+  },
+  response: {
+    status: 204,
+  },
+  handler: (req: MockRequest) => {
+    const expectedBody = JSON.parse(
+      JSON.stringify({
+        property: undefined,
+      }),
+    );
+    req.expect.coercedBodyEquals(expectedBody);
+    return {
+      status: 204,
+    };
+  },
+  kind: "MockApiDefinition",
+});
 
 const Type_Property_ValueTypes_Unknown_String = createServerTests(`/type/property/value-types/unknown/string`, {
   property: "hello",

@@ -1,4 +1,4 @@
-import { passOnSuccess, json, MockRequest } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -14,10 +14,6 @@ Scenarios.Type_Model_Empty_putEmpty = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(body);
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
@@ -28,9 +24,6 @@ Scenarios.Type_Model_Empty_getEmpty = passOnSuccess({
   response: {
     status: 200,
     body: json(body),
-  },
-  handler: (req: MockRequest) => {
-    return { status: 200, body: json(body) };
   },
   kind: "MockApiDefinition",
 });
@@ -44,10 +37,6 @@ Scenarios.Type_Model_Empty_postRoundTripEmpty = passOnSuccess({
   response: {
     status: 200,
     body: json(body),
-  },
-  handler: (req: MockRequest) => {
-    req.expect.bodyEquals(body);
-    return { status: 200, body: json(body) };
   },
   kind: "MockApiDefinition",
 });

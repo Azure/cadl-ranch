@@ -1,4 +1,4 @@
-import { json, MockRequest, passOnSuccess } from "@azure-tools/cadl-ranch-api";
+import { json, passOnSuccess, passOnCode } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
@@ -14,19 +14,15 @@ Scenarios.Authentication_Http_Custom_valid = passOnSuccess({
   response: {
     status: 204,
   },
-  handler: (req: MockRequest) => {
-    req.expect.containsHeader("authorization", "SharedAccessKey valid-key");
-    return { status: 204 };
-  },
   kind: "MockApiDefinition",
 });
 
-Scenarios.Authentication_Http_Custom_invalid = passOnSuccess({
+Scenarios.Authentication_Http_Custom_invalid = passOnCode(403, {
   uri: `/authentication/http/custom/invalid`,
   method: "get",
   request: {
     headers: {
-      authorization: "SharedAccessKey valid-key",
+      authorization: "SharedAccessKey invalid-key",
     },
     status: 403,
   },
@@ -35,14 +31,6 @@ Scenarios.Authentication_Http_Custom_invalid = passOnSuccess({
     body: json({
       error: "invalid-api-key",
     }),
-  },
-  handler: (req: MockRequest) => {
-    return {
-      status: 403,
-      body: json({
-        error: "invalid-api-key",
-      }),
-    };
   },
   kind: "MockApiDefinition",
 });

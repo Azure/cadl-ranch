@@ -1,3 +1,5 @@
+import { GeneratorMode } from "@azure-tools/cadl-ranch-coverage-sdk";
+
 export const Colors = {
   bgSubtle: "#f7f7f7",
   borderDefault: "#f0f0f0",
@@ -38,3 +40,22 @@ export const ScenarioStatusColors = {
   notSupported: Colors.borderDefault,
   fail: Colors.error,
 };
+
+export const TableConfigs: TableConfig[] = [
+  {
+    mode: GeneratorMode.azure,
+    scenarioFilter: (name) => !name.startsWith("Azure_ResourceManager_"),
+    name: "Azure DPG",
+  },
+  { mode: GeneratorMode.azure, scenarioFilter: (name) => name.startsWith("Azure_ResourceManager_"), name: "Azure MPG" },
+  {
+    mode: GeneratorMode.standard,
+    scenarioFilter: (name) => !name.startsWith("Azure_ResourceManager_"),
+  },
+];
+
+export interface TableConfig {
+  mode: GeneratorMode;
+  scenarioFilter?: (scenarioName: string) => boolean;
+  name?: string;
+}

@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-api
 
+## 0.5.0
+
+### Minor Changes
+
+- 46e3022: Fix mockapi in authentication scenarios.
+
 ## 0.4.7
 
 ### Patch Changes
