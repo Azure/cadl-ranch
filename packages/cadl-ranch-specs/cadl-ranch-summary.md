@@ -1172,7 +1172,6 @@ Expected request body:
 
 ```json
 {
-  "location": "eastus2",
   "properties": {
     "description": "valid2"
   }
@@ -1186,7 +1185,7 @@ Expected response body:
   "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
   "name": "default",
   "type": "Azure.ResourceManager.Resources/singletonTrackedResources",
-  "location": "eastus2",
+  "location": "eastus",
   "properties":{
     "description": "valid2",
     "provisioningState": "Succeeded"
