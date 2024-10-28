@@ -124,7 +124,6 @@ Scenarios.Azure_ResourceManager_Resources_Singleton_update = passOnSuccess({
     status: 200,
     body: json({
       ...validSingletonResource,
-      location: "eastus",
       properties: {
         provisioningState: "Succeeded",
         description: "valid2",
