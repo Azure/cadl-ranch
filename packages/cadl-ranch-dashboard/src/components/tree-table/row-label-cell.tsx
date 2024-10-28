@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { TreeTableRow } from "./types.js";
+import { ManifestTreeNode, TreeTableRow } from "./types.js";
 import { Button, Popover, PopoverSurface, PopoverTrigger, Title3, Tooltip } from "@fluentui/react-components";
 import ReactMarkdown from "react-markdown";
 import { ScenarioData } from "@azure-tools/cadl-ranch-coverage-sdk";
@@ -17,6 +17,7 @@ const INDENT_SIZE = 14;
 export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
   const caret = row.hasChildren ? row.expanded ? <ChevronDown20Filled /> : <ChevronRight20Filled /> : null;
   const marginLeft = row.depth * INDENT_SIZE;
+  const rowLabel = getLabelForRow(row);
   return (
     <td
       css={[
@@ -42,7 +43,7 @@ export const RowLabelCell: FunctionComponent<RowLabelCellProps> = ({ row }) => {
             flex: 1,
           }}
         >
-          {row.item.name}
+          {rowLabel}
         </div>
         <div css={{}}>
           {row.item.scenario && <ScenarioInfoButton scenario={row.item.scenario} />}
@@ -97,4 +98,22 @@ const GotoSourceButton: FunctionComponent<ShowSourceButtonProps> = ({ scenario }
 
 function getGithubLineNumber(value: number): `L${number}` {
   return `L${value + 1}`;
+}
+
+function getLabelForRow(row: TreeTableRow): string {
+  const countLeafChildren = (node: ManifestTreeNode): number => {
+    if (Object.keys(node.children).length === 0) {
+      return 1;
+    }
+    return Object.values(node.children).reduce((acc, child) => acc + countLeafChildren(child), 0);
+  };
+
+  const { name } = row.item;
+
+  if (!row.hasChildren) {
+    return name;
+  }
+
+  const totalLeafChildren = countLeafChildren(row.item);
+  return `${name} (${totalLeafChildren} scenarios)`;
 }
