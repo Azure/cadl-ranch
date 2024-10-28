@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { ManifestTreeNode, TreeTableRow } from "./types.js";
 import { Button, Popover, PopoverSurface, PopoverTrigger, Title3, Tooltip } from "@fluentui/react-components";
 import ReactMarkdown from "react-markdown";
@@ -101,19 +101,22 @@ function getGithubLineNumber(value: number): `L${number}` {
 }
 
 function getLabelForRow(row: TreeTableRow): string {
-  const countLeafChildren = (node: ManifestTreeNode): number => {
-    if (Object.keys(node.children).length === 0) {
-      return 1;
+  return useMemo(() => {
+    const countLeafChildren = (node: ManifestTreeNode): number => {
+      if (Object.keys(node.children).length === 0) {
+        return 1;
+      }
+
+      return Object.values(node.children).reduce((acc, child) => acc + countLeafChildren(child), 0);
+    };
+
+    const { name } = row.item;
+
+    if (!row.hasChildren) {
+      return name;
     }
-    return Object.values(node.children).reduce((acc, child) => acc + countLeafChildren(child), 0);
-  };
 
-  const { name } = row.item;
-
-  if (!row.hasChildren) {
-    return name;
-  }
-
-  const totalLeafChildren = countLeafChildren(row.item);
-  return `${name} (${totalLeafChildren} scenarios)`;
+    const totalLeafChildren = countLeafChildren(row.item);
+    return `${name} (${totalLeafChildren} scenarios)`;
+  }, [row.item, row.hasChildren]);
 }
