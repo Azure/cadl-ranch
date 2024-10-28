@@ -1217,6 +1217,59 @@ Expected response body:
   }
   ```
 
+### Azure_ResourceManager_Resources_TopLevel_checkGlobalNameAvailability
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource POST operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Resources/checkNameAvailability
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+
+  ```json
+  {
+    "name": "checkName",
+    "type": "global"
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "nameAvailable": true,
+    "reason": "AlreadyExists",
+    "message": "This is a global name availability check message.."
+  }
+  ```
+
+### Azure_ResourceManager_Resources_TopLevel_checkLocalNameAvailability
+
+- Endpoint: `post https://management.azure.com`
+
+  Resource POST operation.
+  Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Azure.ResourceManager.Resources/locations/westus/checkNameAvailability
+  Expected query parameter: api-version=2023-12-01-preview
+  Expected request body:
+  Expected request body:
+
+  ```json
+  {
+    "name": "checkName",
+    "type": "local"
+  }
+  ```
+
+  Expected response body:
+
+  ```json
+  {
+    "nameAvailable": true,
+    "reason": "AlreadyExists",
+    "message": "This is a local name availability check message."
+  }
+  ```
+
 ### Azure_ResourceManager_Resources_TopLevel_createOrReplace
 
 - Endpoint: `put https://management.azure.com`
