@@ -17,7 +17,7 @@ const validAvailableOperations = {
 };
 
 // operation list
-Scenarios.Azure_ResourceManager_OperationTemplates_AvailableOperations_list = passOnSuccess({
+Scenarios.Azure_ResourceManager_OperationTemplates_ListAvailableOperations = passOnSuccess({
   uri: "/providers/Azure.ResourceManager.OperationTemplates/operations",
   method: "get",
   request: {

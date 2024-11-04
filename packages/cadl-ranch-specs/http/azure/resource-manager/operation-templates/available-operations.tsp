@@ -11,11 +11,10 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.OperationTemplates;
 
-interface AvailableOperations {
-  @scenario
-  @scenarioDoc("""
+@scenario("ListAvailableOperations")
+@scenarioDoc("""
     Resource GET operation.
-    Expected path: /providers/Azure.ResourceManager.OperationTemplates/operations
+    Expected path: /providers/Azure.ResourceManager.Models.Resources/operations
     Expected query parameter: api-version=2023-12-01-preview
     Expected response body:
     ```json
@@ -34,6 +33,5 @@ interface AvailableOperations {
       }]
     }
     ```
-    """)
-  list is Azure.ResourceManager.Operations.list;
-}
+  """)
+interface Operations extends Azure.ResourceManager.Operations {}
