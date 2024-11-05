@@ -61,7 +61,7 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/-00000001-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
     Expected query parameter: api-version=2022-12-01-preview
     Expected request body:
     ```json
@@ -74,7 +74,7 @@ interface LocationResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/-00000001-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Resources/locationResources",
       "properties": {
