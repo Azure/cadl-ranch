@@ -62,8 +62,8 @@ const validSingletonResource = {
   },
 };
 
-const validLocationResource = {
-  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/locations/${LOCATION_EXPECTED}/providers/Azure.ResourceManager.Resources/locationResources/resource`,
+const validResourceGroupLocationResource = {
+  id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/locations/${LOCATION_EXPECTED}/locationResources/resource`,
   name: "resource",
   type: "Azure.ResourceManager.Resources/locationResources",
   properties: {
@@ -80,13 +80,14 @@ const validLocationResource = {
   },
 };
 
-// location tracked resource
+// location resource
 Scenarios.Azure_ResourceManager_Resources_LocationResources_get = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Resources/locationResources/:locationResourceName",
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/locations/:location/locationResources/:locationResourceName",
   method: "get",
   request: {
     params: {
       "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
       "location": LOCATION_EXPECTED,
       "locationResourceName": "resource",
       "api-version": "2023-12-01-preview",
@@ -94,17 +95,18 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_get = passOnSuccess(
   },
   response: {
     status: 200,
-    body: json(validLocationResource),
+    body: json(validResourceGroupLocationResource),
   },
   kind: "MockApiDefinition",
 });
 
 Scenarios.Azure_ResourceManager_Resources_LocationResources_createOrUpdate = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Resources/locationResources/:locationResourceName",
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/locations/:location/locationResources/:locationResourceName",
   method: "put",
   request: {
     params: {
       "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
       "location": LOCATION_EXPECTED,
       "locationResourceName": "resource",
       "api-version": "2023-12-01-preview",
@@ -117,17 +119,18 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_createOrUpdate = pas
   },
   response: {
     status: 200,
-    body: json(validLocationResource),
+    body: json(validResourceGroupLocationResource),
   },
   kind: "MockApiDefinition",
 });
 
 Scenarios.Azure_ResourceManager_Resources_LocationResources_update = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Resources/locationResources/:locationResourceName",
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/locations/:location/locationResources/:locationResourceName",
   method: "patch",
   request: {
     params: {
       "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
       "location": LOCATION_EXPECTED,
       "locationResourceName": "resource",
       "api-version": "2023-12-01-preview",
@@ -144,7 +147,7 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_update = passOnSucce
   response: {
     status: 200,
     body: json({
-      ...validLocationResource,
+      ...validResourceGroupLocationResource,
       properties: {
         provisioningState: "Succeeded",
         description: "valid2",
@@ -155,11 +158,12 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_update = passOnSucce
 });
 
 Scenarios.Azure_ResourceManager_Resources_LocationResources_delete = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Resources/locationResources/:locationResourceName",
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/locations/:location/locationResources/:locationResourceName",
   method: "delete",
   request: {
     params: {
       "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
       "location": LOCATION_EXPECTED,
       "locationResourceName": "resource",
       "api-version": "2023-12-01-preview",
@@ -172,11 +176,12 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_delete = passOnSucce
 });
 
 Scenarios.Azure_ResourceManager_Resources_LocationResources_listByParent = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/locations/:location/providers/Azure.ResourceManager.Resources/locationResources",
+  uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/locations/:location/locationResources",
   method: "get",
   request: {
     params: {
       "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
+      "resourceGroup": RESOURCE_GROUP_EXPECTED,
       "location": LOCATION_EXPECTED,
       "api-version": "2023-12-01-preview",
     },
@@ -184,7 +189,7 @@ Scenarios.Azure_ResourceManager_Resources_LocationResources_listByParent = passO
   response: {
     status: 200,
     body: json({
-      value: [validLocationResource],
+      value: [validResourceGroupLocationResource],
     }),
   },
   kind: "MockApiDefinition",

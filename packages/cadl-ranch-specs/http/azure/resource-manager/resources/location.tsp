@@ -11,7 +11,8 @@ using TypeSpec.OpenAPI;
 
 namespace Azure.ResourceManager.Resources;
 
-@locationResource
+@resource("locationResources")
+@parentResource(ResourceGroupLocationResource)
 model LocationResource is ProxyResource<LocationResourceProperties> {
   ...ResourceNameParameter<LocationResource>;
 }
@@ -31,13 +32,13 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource GET operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Resources/locationResources",
       "properties":{
@@ -60,8 +61,8 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource PUT operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource
-    Expected query parameter: api-version=2023-12-01-preview
+    Expected path: /subscriptions/-00000001-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
+    Expected query parameter: api-version=2022-12-01-preview
     Expected request body:
     ```json
     {
@@ -73,12 +74,12 @@ interface LocationResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource",
+      "id": "/subscriptions/-00000001-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Resources/locationResources",
       "properties": {
         "description": "valid",
-        "provisioningState": "Succeeded"
+        "provisioningState": "Succeeded",
       },
       "systemData": {
         "createdBy": "AzureSDK",
@@ -96,7 +97,7 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource PATCH operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     Expected request body:
     ```json
@@ -109,7 +110,7 @@ interface LocationResources {
     Expected response body:
     ```json
     {
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
       "name": "resource",
       "type": "Azure.ResourceManager.Resources/locationResources",
       "properties":{
@@ -132,7 +133,7 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource DELETE operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource
     Expected query parameter: api-version=2023-12-01-preview
     ```
     Expected response status code: 204
@@ -142,14 +143,14 @@ interface LocationResources {
   @scenario
   @scenarioDoc("""
     Resource LIST by resource group operation.
-    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources
+    Expected path: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources
     Expected query parameter: api-version=2023-12-01-preview
     
     Expected response body:
     ```json
     {
       "value": [{
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/locations/eastus/providers/Azure.ResourceManager.Resources/locationResources/resource",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/locations/eastus/locationResources/resource",
         "name": "resource",
         "type": "Azure.ResourceManager.Resources/locationResources",
         "properties":{
