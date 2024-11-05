@@ -61,57 +61,6 @@ const validSingletonResource = {
   },
 };
 
-const validCheckNameAvailability = {
-  nameAvailable: true,
-  reason: "AlreadyExists",
-  message: "",
-};
-
-// Check Global Name Availability
-Scenarios.Azure_ResourceManager_Resources_TopLevel_checkGlobalNameAvailability = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Resources/checkNameAvailability",
-  method: "post",
-  request: {
-    params: {
-      "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
-      "name": "checkName",
-      "type": "global",
-      "api-version": "2023-12-01-preview",
-    },
-  },
-  response: {
-    status: 200,
-    body: json({
-      ...validCheckNameAvailability,
-      message: "This is a global name availability check message.",
-    }),
-  },
-  kind: "MockApiDefinition",
-});
-
-// Check Local Name Availability
-Scenarios.Azure_ResourceManager_Resources_TopLevel_checkLocalNameAvailability = passOnSuccess({
-  uri: "/subscriptions/:subscriptionId/providers/Azure.ResourceManager.Resources/locations/:location/checkNameAvailability",
-  method: "post",
-  request: {
-    params: {
-      "subscriptionId": SUBSCRIPTION_ID_EXPECTED,
-      "location": "westus",
-      "name": "checkName",
-      "type": "local",
-      "api-version": "2023-12-01-preview",
-    },
-  },
-  response: {
-    status: 200,
-    body: json({
-      ...validCheckNameAvailability,
-      message: "This is a global name availability check message.",
-    }),
-  },
-  kind: "MockApiDefinition",
-});
-
 // singleton tracked resource
 Scenarios.Azure_ResourceManager_Resources_Singleton_getByResourceGroup = passOnSuccess({
   uri: "/subscriptions/:subscriptionId/resourceGroups/:resourceGroup/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
