@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.11.0
+
+### Minor Changes
+
+- 9d65984: Added number of scenarios under each row
+
 ## 0.9.0
 
 ### Minor Changes

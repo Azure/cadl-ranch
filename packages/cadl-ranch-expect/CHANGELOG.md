@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-expect
 
+## 0.15.6
+
+### Patch Changes
+
+- fb1292d: Bump typespec 0.62.0
+
 ## 0.15.5
 
 ### Patch Changes
