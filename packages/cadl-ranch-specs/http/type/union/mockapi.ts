@@ -1,71 +1,94 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createGetSendScenario(url: string, value: unknown) {
-  return {
-    get: passOnSuccess(
-      mockapi.get(url, (req) => {
-        return { status: 200, body: json({ prop: value }) };
-      }),
-    ),
-    send: passOnSuccess(
-      mockapi.post(url, (req) => {
-        req.expect.bodyEquals({ prop: value });
-        return { status: 204 };
-      }),
-    ),
-  };
+function createGetServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    method: `get`,
+    request: {},
+    response: {
+      status: 200,
+      body: json({ prop: value }),
+    },
+    kind: "MockApiDefinition",
+  });
 }
-const Type_Union_StringsOnly = createGetSendScenario("/type/union/strings-only", "b");
-Scenarios.Type_Union_StringsOnly_get = Type_Union_StringsOnly.get;
-Scenarios.Type_Union_StringsOnly_send = Type_Union_StringsOnly.send;
 
-const Type_Union_StringExtensible = createGetSendScenario("/type/union/string-extensible", "custom");
-Scenarios.Type_Union_StringExtensible_get = Type_Union_StringExtensible.get;
-Scenarios.Type_Union_StringExtensible_send = Type_Union_StringExtensible.send;
+function createPostServerTests(url: string, value: unknown) {
+  return passOnSuccess({
+    uri: url,
+    method: `post`,
+    request: {
+      body: {
+        prop: value,
+      },
+    },
+    response: {
+      status: 204,
+    },
+    kind: "MockApiDefinition",
+  });
+}
 
-const Type_Union_StringExtensibleNamed = createGetSendScenario("/type/union/string-extensible-named", "custom");
-Scenarios.Type_Union_StringExtensibleNamed_get = Type_Union_StringExtensibleNamed.get;
-Scenarios.Type_Union_StringExtensibleNamed_send = Type_Union_StringExtensibleNamed.send;
+Scenarios.Type_Union_StringsOnly_get = createGetServerTests(`/type/union/strings-only`, "b");
+Scenarios.Type_Union_StringsOnly_send = createPostServerTests(`/type/union/strings-only`, "b");
 
-const Type_Union_IntsOnly = createGetSendScenario("/type/union/ints-only", 2);
-Scenarios.Type_Union_IntsOnly_get = Type_Union_IntsOnly.get;
-Scenarios.Type_Union_IntsOnly_send = Type_Union_IntsOnly.send;
+Scenarios.Type_Union_StringExtensible_get = createGetServerTests(`/type/union/string-extensible`, "custom");
+Scenarios.Type_Union_StringExtensible_send = createPostServerTests(`/type/union/string-extensible`, "custom");
 
-const Type_Union_FloatsOnly = createGetSendScenario("/type/union/floats-only", 2.2);
-Scenarios.Type_Union_FloatsOnly_get = Type_Union_FloatsOnly.get;
-Scenarios.Type_Union_FloatsOnly_send = Type_Union_FloatsOnly.send;
+Scenarios.Type_Union_StringExtensibleNamed_get = createGetServerTests(`/type/union/string-extensible-named`, "custom");
+Scenarios.Type_Union_StringExtensibleNamed_send = createPostServerTests(
+  `/type/union/string-extensible-named`,
+  "custom",
+);
 
-const Type_Union_ModelsOnly = createGetSendScenario("/type/union/models-only", { name: "test" });
-Scenarios.Type_Union_ModelsOnly_get = Type_Union_ModelsOnly.get;
-Scenarios.Type_Union_ModelsOnly_send = Type_Union_ModelsOnly.send;
+Scenarios.Type_Union_IntsOnly_get = createGetServerTests(`/type/union/ints-only`, 2);
+Scenarios.Type_Union_IntsOnly_send = createPostServerTests(`/type/union/ints-only`, 2);
 
-const Type_Union_EnumsOnly = createGetSendScenario("/type/union/enums-only", {
+Scenarios.Type_Union_FloatsOnly_get = createGetServerTests(`/type/union/floats-only`, 2.2);
+Scenarios.Type_Union_FloatsOnly_send = createPostServerTests(`/type/union/floats-only`, 2.2);
+
+Scenarios.Type_Union_ModelsOnly_get = createGetServerTests(`/type/union/models-only`, {
+  name: "test",
+});
+Scenarios.Type_Union_ModelsOnly_send = createPostServerTests(`/type/union/models-only`, {
+  name: "test",
+});
+
+Scenarios.Type_Union_EnumsOnly_get = createGetServerTests(`/type/union/enums-only`, {
   lr: "right",
   ud: "up",
 });
-Scenarios.Type_Union_EnumsOnly_get = Type_Union_EnumsOnly.get;
-Scenarios.Type_Union_EnumsOnly_send = Type_Union_EnumsOnly.send;
+Scenarios.Type_Union_EnumsOnly_send = createPostServerTests(`/type/union/enums-only`, {
+  lr: "right",
+  ud: "up",
+});
 
-const Type_Union_StringAndArray = createGetSendScenario("/type/union/string-and-array", {
+Scenarios.Type_Union_StringAndArray_get = createGetServerTests(`/type/union/string-and-array`, {
   string: "test",
   array: ["test1", "test2"],
 });
-Scenarios.Type_Union_StringAndArray_get = Type_Union_StringAndArray.get;
-Scenarios.Type_Union_StringAndArray_send = Type_Union_StringAndArray.send;
+Scenarios.Type_Union_StringAndArray_send = createPostServerTests(`/type/union/string-and-array`, {
+  string: "test",
+  array: ["test1", "test2"],
+});
 
-const Type_Union_MixedLiterals = createGetSendScenario("/type/union/mixed-literals", {
+Scenarios.Type_Union_MixedLiterals_get = createGetServerTests(`/type/union/mixed-literals`, {
   stringLiteral: "a",
   intLiteral: 2,
   floatLiteral: 3.3,
   booleanLiteral: true,
 });
-Scenarios.Type_Union_MixedLiterals_get = Type_Union_MixedLiterals.get;
-Scenarios.Type_Union_MixedLiterals_send = Type_Union_MixedLiterals.send;
+Scenarios.Type_Union_MixedLiterals_send = createPostServerTests(`/type/union/mixed-literals`, {
+  stringLiteral: "a",
+  intLiteral: 2,
+  floatLiteral: 3.3,
+  booleanLiteral: true,
+});
 
-const Type_Union_MixedTypes = createGetSendScenario("/type/union/mixed-types", {
+Scenarios.Type_Union_MixedTypes_get = createGetServerTests(`/type/union/mixed-types`, {
   model: {
     name: "test",
   },
@@ -81,5 +104,19 @@ const Type_Union_MixedTypes = createGetSendScenario("/type/union/mixed-types", {
     true,
   ],
 });
-Scenarios.Type_Union_MixedTypes_get = Type_Union_MixedTypes.get;
-Scenarios.Type_Union_MixedTypes_send = Type_Union_MixedTypes.send;
+Scenarios.Type_Union_MixedTypes_send = createPostServerTests(`/type/union/mixed-types`, {
+  model: {
+    name: "test",
+  },
+  literal: "a",
+  int: 2,
+  boolean: true,
+  array: [
+    {
+      name: "test",
+    },
+    "a",
+    2,
+    true,
+  ],
+});

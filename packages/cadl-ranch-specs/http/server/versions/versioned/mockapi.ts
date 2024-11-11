@@ -1,36 +1,66 @@
-import { passOnSuccess, mockapi, ValidationError } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, ValidationError, MockRequest } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Server_Versions_Versioned_withoutApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/versioned/without-api-version", (req) => {
-    if (Object.keys(req.query).length > 0) {
-      throw new ValidationError("Expected no query parameters including api-version", "No query parameters", req.query);
-    }
-    return { status: 200 };
-  }),
+function createServerTests(uri: string) {
+  return passOnSuccess({
+    uri,
+    method: "head",
+    request: {},
+    response: {
+      status: 200,
+    },
+    handler: (req: MockRequest) => {
+      if (Object.keys(req.query).length > 0) {
+        throw new ValidationError(
+          "Expected no query parameters including api-version",
+          "No query parameters",
+          req.query,
+        );
+      }
+      return { status: 200 };
+    },
+    kind: "MockApiDefinition",
+  });
+}
+
+function createAPIVersionTests(uri: string, requestData: any, serverData: string) {
+  return passOnSuccess({
+    uri,
+    method: "head",
+    request: requestData,
+    response: {
+      status: 200,
+    },
+    kind: "MockApiDefinition",
+  });
+}
+
+Scenarios.Server_Versions_Versioned_withoutApiVersion = createServerTests(
+  "/server/versions/versioned/without-api-version",
 );
 
-Scenarios.Server_Versions_Versioned_withQueryApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/versioned/with-query-api-version", (req) => {
-    req.expect.containsQueryParam("api-version", "2022-12-01-preview");
-    return { status: 200 };
-  }),
+Scenarios.Server_Versions_Versioned_withQueryApiVersion = createAPIVersionTests(
+  "/server/versions/versioned/with-query-api-version",
+  {
+    params: {
+      "api-version": "2022-12-01-preview",
+    },
+  },
+  "2022-12-01-preview",
 );
 
-Scenarios.Server_Versions_Versioned_withPathApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/versioned/with-path-api-version/2022-12-01-preview", (req) => {
-    if (Object.keys(req.query).length > 0) {
-      throw new ValidationError("Expected no query parameters including api-version", "No query parameters", req.query);
-    }
-    return { status: 200 };
-  }),
+Scenarios.Server_Versions_Versioned_withPathApiVersion = createServerTests(
+  "/server/versions/versioned/with-path-api-version/2022-12-01-preview",
 );
 
-Scenarios.Server_Versions_Versioned_withQueryOldApiVersion = passOnSuccess(
-  mockapi.head("/server/versions/versioned/with-query-old-api-version", (req) => {
-    req.expect.containsQueryParam("api-version", "2021-01-01-preview");
-    return { status: 200 };
-  }),
+Scenarios.Server_Versions_Versioned_withQueryOldApiVersion = createAPIVersionTests(
+  "/server/versions/versioned/with-query-old-api-version",
+  {
+    params: {
+      "api-version": "2021-01-01-preview",
+    },
+  },
+  "2021-01-01-preview",
 );

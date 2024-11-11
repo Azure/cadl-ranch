@@ -1,85 +1,166 @@
-import { passOnSuccess, mockapi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-Scenarios.Parameters_Spread_Model_spreadAsRequestBody = passOnSuccess(
-  mockapi.put("/parameters/spread/model/request-body", (req) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Model_spreadAsRequestBody = passOnSuccess({
+  uri: `/parameters/spread/model/request-body`,
+  method: "put",
+  request: {
+    body: {
+      name: "foo",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody = passOnSuccess(
-  mockapi.put("/parameters/spread/model/composite-request-only-with-body", (req) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestOnlyWithBody = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-only-with-body`,
+  method: "put",
+  request: {
+    body: {
+      name: "foo",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Model_spreadCompositeRequestWithoutBody = passOnSuccess(
-  mockapi.put("/parameters/spread/model/composite-request-without-body/foo", (req) => {
-    req.expect.containsHeader("test-header", "bar");
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestWithoutBody = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-without-body/foo`,
+  method: "put",
+  request: {
+    headers: {
+      "test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Model_spreadCompositeRequest = passOnSuccess(
-  mockapi.put("/parameters/spread/model/composite-request/foo", (req) => {
-    req.expect.containsHeader("test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Model_spreadCompositeRequest = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request/foo`,
+  method: "put",
+  request: {
+    body: {
+      name: "foo",
+    },
+    headers: {
+      "test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Model_spreadCompositeRequestMix = passOnSuccess(
-  mockapi.put("/parameters/spread/model/composite-request-mix/foo", (req) => {
-    req.expect.containsHeader("test-header", "bar");
-    req.expect.bodyEquals({ prop: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Model_spreadCompositeRequestMix = passOnSuccess({
+  uri: `/parameters/spread/model/composite-request-mix/foo`,
+  method: "put",
+  request: {
+    body: {
+      prop: "foo",
+    },
+    headers: {
+      "test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Alias_spreadAsRequestBody = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/request-body", (req) => {
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Alias_spreadAsRequestBody = passOnSuccess({
+  uri: `/parameters/spread/alias/request-body`,
+  method: "put",
+  request: {
+    body: {
+      name: "foo",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Alias_spreadAsRequestParameter = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/request-parameter/1", (req) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Alias_spreadAsRequestParameter = passOnSuccess({
+  uri: `/parameters/spread/alias/request-parameter/1`,
+  method: "put",
+  request: {
+    body: {
+      name: "foo",
+    },
+    headers: {
+      "x-ms-test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess(
-  mockapi.put("/parameters/spread/alias/multiple-parameters/1", (req) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({
+Scenarios.Parameters_Spread_Alias_spreadWithMultipleParameters = passOnSuccess({
+  uri: `/parameters/spread/alias/multiple-parameters/1`,
+  method: "put",
+  request: {
+    body: {
       requiredString: "foo",
       optionalInt: 1,
       requiredIntList: [1, 2],
       optionalStringList: ["foo", "bar"],
-    });
-    return { status: 204 };
-  }),
-);
+    },
+    headers: {
+      "x-ms-test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerModel = passOnSuccess(
-  mockapi.post("/parameters/spread/alias/inner-model-parameter/1", (req) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo" });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerModel = passOnSuccess({
+  uri: `/parameters/spread/alias/inner-model-parameter/1`,
+  method: "post",
+  request: {
+    body: {
+      name: "foo",
+    },
+    headers: {
+      "x-ms-test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerAlias = passOnSuccess(
-  mockapi.post("/parameters/spread/alias/inner-alias-parameter/1", (req) => {
-    req.expect.containsHeader("x-ms-test-header", "bar");
-    req.expect.bodyEquals({ name: "foo", age: 1 });
-    return { status: 204 };
-  }),
-);
+Scenarios.Parameters_Spread_Alias_spreadParameterWithInnerAlias = passOnSuccess({
+  uri: `/parameters/spread/alias/inner-alias-parameter/1`,
+  method: "post",
+  request: {
+    body: {
+      name: "foo",
+      age: 1,
+    },
+    headers: {
+      "x-ms-test-header": "bar",
+    },
+  },
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});

@@ -1,32 +1,49 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-// Known Values
-Scenarios.Type_Enum_Extensible_String_getKnownValue = passOnSuccess(
-  mockapi.get("/type/enum/extensible/string/known-value", (req) => {
-    return { status: 200, body: json("Monday") };
-  }),
-);
+function createMockServerTests(uri: string, data: any) {
+  return {
+    get: passOnSuccess({
+      uri,
+      method: "get",
+      request: {},
+      response: {
+        status: 200,
+        body: json(data),
+      },
+      kind: "MockApiDefinition",
+    }),
+    put: passOnSuccess({
+      uri,
+      method: "put",
+      request: {
+        body: data,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+      },
+      response: {
+        status: 204,
+      },
+      kind: "MockApiDefinition",
+    }),
+  };
+}
 
-Scenarios.Type_Enum_Extensible_String_putKnownValue = passOnSuccess(
-  mockapi.put("/type/enum/extensible/string/known-value", (req) => {
-    req.expect.bodyEquals("Monday");
-    return { status: 204 };
-  }),
+// Known Values
+const Type_Enum_Extensible_String_Known_Value = createMockServerTests(
+  `/type/enum/extensible/string/known-value`,
+  "Monday",
 );
+Scenarios.Type_Enum_Extensible_String_getKnownValue = Type_Enum_Extensible_String_Known_Value.get;
+Scenarios.Type_Enum_Extensible_String_putKnownValue = Type_Enum_Extensible_String_Known_Value.put;
 
 // Unknown values
-Scenarios.Type_Enum_Extensible_String_getUnknownValue = passOnSuccess(
-  mockapi.get("/type/enum/extensible/string/unknown-value", (req) => {
-    return { status: 200, body: json("Weekend") };
-  }),
+const Type_Enum_Extensible_String_UnKnown_Value = createMockServerTests(
+  `/type/enum/extensible/string/unknown-value`,
+  "Weekend",
 );
-
-Scenarios.Type_Enum_Extensible_String_putUnknownValue = passOnSuccess(
-  mockapi.put("/type/enum/extensible/string/unknown-value", (req) => {
-    req.expect.bodyEquals("Weekend");
-    return { status: 204 };
-  }),
-);
+Scenarios.Type_Enum_Extensible_String_getUnknownValue = Type_Enum_Extensible_String_UnKnown_Value.get;
+Scenarios.Type_Enum_Extensible_String_putUnknownValue = Type_Enum_Extensible_String_UnKnown_Value.put;

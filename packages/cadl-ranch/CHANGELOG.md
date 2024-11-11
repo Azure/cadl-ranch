@@ -1,5 +1,43 @@
 # @azure-tools/cadl-ranch
 
+## 0.16.1
+
+### Patch Changes
+
+- fb1292d: Bump typespec 0.62.0
+- Updated dependencies [fb1292d]
+  - @azure-tools/cadl-ranch-expect@0.15.6
+
+## 0.16.0
+
+### Minor Changes
+
+- caa2290: Remove handler code and commonapi file
+
+## 0.15.0
+
+### Minor Changes
+
+- afce8be: Add dashboard for Azure Resource Manager.
+
+### Patch Changes
+
+- Updated dependencies [46e3022]
+- Updated dependencies [afce8be]
+  - @azure-tools/cadl-ranch-api@0.5.0
+  - @azure-tools/cadl-ranch-coverage-sdk@0.9.0
+
+## 0.14.7
+
+### Patch Changes
+
+- f1614e1: bump dependency to typespec 0.61.0
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- Updated dependencies [f1614e1]
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-expect@0.15.5
+  - @azure-tools/cadl-ranch-api@0.4.7
+
 ## 0.14.6
 
 ### Patch Changes

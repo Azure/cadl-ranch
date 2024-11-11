@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-ranch-api",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "Cadl Ranch set of api to implement mock api",
   "main": "dist/index.js",
   "type": "module",
@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/Azure/cadl-ranch#readme",
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "deep-equal": "^2.2.0",
-    "express": "^4.19.2",
+    "express": "^4.20.0",
     "express-promise-router": "^4.1.1",
     "glob": "^11.0.0",
     "morgan": "^1.10.0",

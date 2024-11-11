@@ -1,5 +1,92 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.1
+
+### Patch Changes
+
+- fb1292d: Bump typespec 0.62.0
+- 3317017: Fix Issue In Versioning\Removed.
+- Updated dependencies [fb1292d]
+  - @azure-tools/cadl-ranch-expect@0.15.6
+  - @azure-tools/cadl-ranch@0.16.1
+
+## 0.39.0
+
+### Minor Changes
+
+- caa2290: Remove handler code and commonapi file
+
+### Patch Changes
+
+- 43638ce: Fixed ARM singleton resource mock test.
+- Updated dependencies [caa2290]
+  - @azure-tools/cadl-ranch@0.16.0
+
+## 0.38.0
+
+### Minor Changes
+
+- 538eb76: Reorganized ARM tests.
+
+  Breaking changes:
+
+  1. Renamed namespace `Azure.ResourceManager.Models.Resources` to `Azure.ResourceManager.Resources`.
+  2. Renamed namespace `Azure.ResourceManager.Models.CommonTypes.ManagedIdentity` to `Azure.ResourceManager.CommonProperties`.
+  3. Renamed folder `common-types/managed-identity` to `common-properties`.
+  4. Renamed `ManagedIdentityTrackedResources` interface in `common-properties` to `ManagedIdentity`.
+
+### Patch Changes
+
+- a984aa0: Back port fix on route mockapi.
+- 46e3022: Fix mockapi in authentication scenarios.
+- Updated dependencies [46e3022]
+- Updated dependencies [afce8be]
+  - @azure-tools/cadl-ranch-api@0.5.0
+  - @azure-tools/cadl-ranch@0.15.0
+
+## 0.37.7
+
+### Patch Changes
+
+- ecfd2f0: fix(test): adopt `coercedBodyEquals`
+- 86817b9: Fix explode array mockapi in routes.
+
+## 0.37.6
+
+### Patch Changes
+
+- 311617f: fix wrong mock api introduced by #741
+
+## 0.37.5
+
+### Patch Changes
+
+- f1614e1: bump dependency to typespec 0.61.0
+- 352934c: Backport the changes from typespec repository to migrate the scenarios to new model
+- 23279d1: fix explode query check of mockapi for routes test case
+- Updated dependencies [f1614e1]
+- Updated dependencies [352934c]
+  - @azure-tools/cadl-ranch-expect@0.15.5
+  - @azure-tools/cadl-ranch@0.14.7
+  - @azure-tools/cadl-ranch-api@0.4.7
+
+## 0.37.4
+
+### Patch Changes
+
+- 73a096b: Revert the change for version remove
+- 4b31d3a: Revert change for template type
+
+## 0.37.3
+
+### Minor Changes
+
+- fc4f046: Add a `client-operation-group` enum value to ClientType enum
+
+### Patch Changes
+
+- 92f3c4d: Add a test for the combination of @added and @removed in versioning/removed.
+
 ## 0.37.2
 
 ### Patch Changes

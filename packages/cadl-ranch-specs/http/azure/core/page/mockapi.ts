@@ -1,52 +1,51 @@
-import { passOnSuccess, mockapi, json } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 const validUser = { id: 1, name: "Madge", etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59" };
 
-Scenarios.Azure_Core_Page_listWithPage = passOnSuccess(
-  mockapi.get("/azure/core/page/page", (req) => {
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
+Scenarios.Azure_Core_Page_listWithPage = passOnSuccess({
+  uri: "/azure/core/page/page",
+  method: "get",
+  request: {},
+  response: { status: 200, body: json({ value: [validUser] }) },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Azure_Core_Page_listWithParameters = passOnSuccess(
-  mockapi.get("/azure/core/page/parameters", (req) => {
-    req.expect.containsQueryParam("another", "Second");
-
-    const validBody = { inputName: "Madge" };
-    req.expect.bodyEquals(validBody);
-
-    const responseBody = {
-      value: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
+Scenarios.Azure_Core_Page_listWithParameters = passOnSuccess({
+  uri: "/azure/core/page/parameters",
+  method: "get",
+  request: {
+    params: {
+      another: "Second",
+    },
+    body: { inputName: "Madge" },
+  },
+  response: { status: 200, body: json({ value: [validUser] }) },
+  kind: "MockApiDefinition",
+});
 
 Scenarios.Azure_Core_Page_TwoModelsAsPageItem = passOnSuccess([
-  mockapi.get("/azure/core/page/first-item", () => {
-    const responseBody = {
-      value: [{ id: 1 }],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-  mockapi.get("/azure/core/page/second-item", () => {
-    const responseBody = {
-      value: [{ name: "Madge" }],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
+  {
+    uri: "/azure/core/page/first-item",
+    method: "get",
+    request: {},
+    response: { status: 200, body: json({ value: [{ id: 1 }] }) },
+    kind: "MockApiDefinition",
+  },
+  {
+    uri: "/azure/core/page/second-item",
+    method: "get",
+    request: {},
+    response: { status: 200, body: json({ value: [{ name: "Madge" }] }) },
+    kind: "MockApiDefinition",
+  },
 ]);
 
-Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess(
-  mockapi.get("/azure/core/page/custom-page", () => {
-    const responseBody = {
-      items: [validUser],
-    };
-    return { status: 200, body: json(responseBody) };
-  }),
-);
+Scenarios.Azure_Core_Page_listWithCustomPageModel = passOnSuccess({
+  uri: "/azure/core/page/custom-page",
+  method: "get",
+  request: {},
+  response: { status: 200, body: json({ items: [validUser] }) },
+  kind: "MockApiDefinition",
+});

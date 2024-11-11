@@ -1,21 +1,27 @@
-import { passOnSuccess, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-function createPropertyMockApis(route: string, value: string): MockApi {
-  const url = `/encode/numeric/property/${route}`;
-  return mockapi.post(url, (req) => {
-    req.expect.coercedBodyEquals({ value: value });
-    return {
+function createTests(uri: string, value: any) {
+  return passOnSuccess({
+    uri,
+    method: "post",
+    request: {
+      body: {
+        value,
+      },
+    },
+    response: {
       status: 200,
-      body: json({ value: value }),
-    };
+      body: json({ value }),
+    },
+    kind: "MockApiDefinition",
   });
 }
 
-Scenarios.Encode_Numeric_Property_safeintAsString = passOnSuccess(createPropertyMockApis("safeint", "10000000000"));
+Scenarios.Encode_Numeric_Property_safeintAsString = createTests("/encode/numeric/property/safeint", "10000000000");
 
-Scenarios.Encode_Numeric_Property_uint32AsStringOptional = passOnSuccess(createPropertyMockApis("uint32", "1"));
+Scenarios.Encode_Numeric_Property_uint32AsStringOptional = createTests("/encode/numeric/property/uint32", "1");
 
-Scenarios.Encode_Numeric_Property_uint8AsString = passOnSuccess(createPropertyMockApis("uint8", "255"));
+Scenarios.Encode_Numeric_Property_uint8AsString = createTests("/encode/numeric/property/uint8", "255");

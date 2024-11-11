@@ -1,17 +1,36 @@
-import { MockRequest } from "@azure-tools/cadl-ranch-api";
+import { json, passOnCode, passOnSuccess } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
-import { getValidAndInvalidScenarios } from "../commonapi.js";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
 
-const validAndInvalidScenarios = getValidAndInvalidScenarios(
-  "api-key",
-  "invalid-api-key",
-  function addOptionalParamOldApiVersionNewClientValidate(req: MockRequest): void {
-    req.expect.containsHeader("x-ms-api-key", "valid-key");
+Scenarios.Authentication_ApiKey_valid = passOnSuccess({
+  uri: `/authentication/api-key/valid`,
+  method: `get`,
+  request: {
+    headers: {
+      "x-ms-api-key": "valid-key",
+    },
   },
-);
+  response: {
+    status: 204,
+  },
+  kind: "MockApiDefinition",
+});
 
-Scenarios.Authentication_ApiKey_valid = validAndInvalidScenarios.valid;
-
-Scenarios.Authentication_ApiKey_invalid = validAndInvalidScenarios.invalid;
+Scenarios.Authentication_ApiKey_invalid = passOnCode(403, {
+  uri: `/authentication/api-key/invalid`,
+  method: `get`,
+  request: {
+    headers: {
+      "x-ms-api-key": "invalid-key",
+    },
+    status: 403,
+  },
+  response: {
+    status: 403,
+    body: json({
+      error: "invalid-api-key",
+    }),
+  },
+  kind: "MockApiDefinition",
+});

@@ -1,10 +1,21 @@
-import { KeyedMockApi, MockApi, PassByKeyScenario, PassOnCodeScenario, PassOnSuccessScenario } from "./types.js";
+import {
+  KeyedMockApi,
+  KeyedMockApiDefinition,
+  MockApi,
+  MockApiDefinition,
+  PassByKeyScenario,
+  PassByServiceKeyScenario,
+  PassOnCodeScenario,
+  PassOnSuccessScenario,
+} from "./types.js";
 
 /**
  * Specify that the scenario should be a `pass` if all the endpoints are called and the API response with 2xx exit code.
  * @param apis Endpoint or List of endpoints for this scenario
  */
-export function passOnSuccess(apis: MockApi | readonly MockApi[]): PassOnSuccessScenario {
+export function passOnSuccess(
+  apis: MockApi | readonly MockApi[] | MockApiDefinition | readonly MockApiDefinition[],
+): PassOnSuccessScenario {
   return {
     passCondition: "response-success",
     apis: Array.isArray(apis) ? apis : [apis],
@@ -15,7 +26,7 @@ export function passOnSuccess(apis: MockApi | readonly MockApi[]): PassOnSuccess
  * @param code Status code all endpoint should return
  * @param apis Endpoint or List of endpoints for this scenario
  */
-export function passOnCode(code: number, apis: MockApi | readonly MockApi[]): PassOnCodeScenario {
+export function passOnCode(code: number, apis: MockApi | readonly MockApi[] | MockApiDefinition): PassOnCodeScenario {
   return {
     passCondition: "status-code",
     code,
@@ -38,6 +49,22 @@ export function withKeys<const K extends string>(keys: K[]): WithKeysScenarioExp
         passCondition: "by-key",
         keys,
         apis: [api],
+      };
+    },
+  };
+}
+
+export interface WithServiceKeysScenarioExpect<K extends string> {
+  pass(api: KeyedMockApiDefinition<K> | KeyedMockApiDefinition<K>[]): PassByServiceKeyScenario<K>;
+}
+
+export function withServiceKeys<const K extends string>(keys: K[]): WithServiceKeysScenarioExpect<K> {
+  return {
+    pass: (api: KeyedMockApiDefinition<K> | KeyedMockApiDefinition<K>[]) => {
+      return {
+        passCondition: "by-key",
+        keys,
+        apis: Array.isArray(api) ? api : [api],
       };
     },
   };

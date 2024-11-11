@@ -1,5 +1,22 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.11.0
+
+### Minor Changes
+
+- 9d65984: Added number of scenarios under each row
+
+## 0.9.0
+
+### Minor Changes
+
+- afce8be: Add dashboard for Azure Resource Manager.
+
+### Patch Changes
+
+- Updated dependencies [afce8be]
+  - @azure-tools/cadl-ranch-coverage-sdk@0.9.0
+
 ## 0.8.6
 
 ### Patch Changes

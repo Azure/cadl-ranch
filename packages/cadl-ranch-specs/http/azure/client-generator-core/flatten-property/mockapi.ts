@@ -1,26 +1,24 @@
-import { passOnSuccess, mockapi, json, MockApi } from "@azure-tools/cadl-ranch-api";
+import { passOnSuccess, json, MockApiDefinition } from "@azure-tools/cadl-ranch-api";
 import { ScenarioMockApi } from "@azure-tools/cadl-ranch-api";
 
 export const Scenarios: Record<string, ScenarioMockApi> = {};
-/**
- * Return the put operation.
- * @param route The route under /azure/client-generator-core/flatten-property for your function.
- * @param request The request body you are expecting and will return.
- * @param response The response body you are expecting and will return.
- */
-function createMockApis(route: string, request: any, response: any): MockApi {
-  const url = `/azure/client-generator-core/flatten-property/${route}`;
-  return mockapi.put(url, (req) => {
-    req.expect.bodyEquals(request);
-    return {
+function createMockApiDefinitions(route: string, request: any, response: any): MockApiDefinition {
+  return {
+    uri: `/azure/client-generator-core/flatten-property/${route}`,
+    method: "put",
+    request: {
+      body: request,
+    },
+    response: {
       status: 200,
       body: json(response),
-    };
-  });
+    },
+    kind: "MockApiDefinition",
+  };
 }
 
 Scenarios.Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel = passOnSuccess(
-  createMockApis(
+  createMockApiDefinitions(
     "flattenModel",
     {
       name: "foo",
@@ -40,7 +38,7 @@ Scenarios.Azure_ClientGenerator_Core_FlattenProperty_putFlattenModel = passOnSuc
 );
 
 Scenarios.Azure_ClientGenerator_Core_FlattenProperty_putNestedFlattenModel = passOnSuccess(
-  createMockApis(
+  createMockApiDefinitions(
     "nestedFlattenModel",
     {
       name: "foo",
