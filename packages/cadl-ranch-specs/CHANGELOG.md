@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.2
+
+### Patch Changes
+
+- bb6a2dd: Fix dotnet compatibility issues in MockApi
+
 ## 0.39.1
 
 ### Patch Changes
