@@ -26,7 +26,7 @@ namespace Client;
 interface ClientNamespaceFirstClient {
   get is First.get;
 }
-@@clientNamespace(FirstModel, "azure.clientgenerator.core.clientnamespace.firstt", "java");
+@@clientNamespace(FirstModel, "azure.clientgenerator.core.clientnamespace.first", "java");
 
 @client({
   name: "ClientNamespaceSecondClient",
