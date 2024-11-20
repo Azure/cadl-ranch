@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.3
+
+### Patch Changes
+
+- 6a2eafa: Fixed the expected path for routes scenarios
+
 ## 0.39.2
 
 ### Patch Changes
