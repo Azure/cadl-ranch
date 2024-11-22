@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.4
+
+### Patch Changes
+
+- 7719b7a: Set clientNamespace for java
+
 ## 0.39.3
 
 ### Patch Changes
