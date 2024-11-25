@@ -1,5 +1,33 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.4
+
+### Patch Changes
+
+- 7719b7a: Set clientNamespace for java
+
+## 0.39.3
+
+### Patch Changes
+
+- 6a2eafa: Fixed the expected path for routes scenarios
+
+## 0.39.2
+
+### Patch Changes
+
+- bb6a2dd: Fix dotnet compatibility issues in MockApi
+
+## 0.39.1
+
+### Patch Changes
+
+- fb1292d: Bump typespec 0.62.0
+- 3317017: Fix Issue In Versioning\Removed.
+- Updated dependencies [fb1292d]
+  - @azure-tools/cadl-ranch-expect@0.15.6
+  - @azure-tools/cadl-ranch@0.16.1
+
 ## 0.39.0
 
 ### Minor Changes

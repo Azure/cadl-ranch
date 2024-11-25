@@ -9,6 +9,9 @@ using Azure.ClientGenerator.Core;
 @route("/azure/example/basic")
 namespace Client;
 
+@@clientNamespace(Client, "azure.example.basic", "java");
+@@clientNamespace(_Specs_.Azure.Example.Basic, "azure.example.basic", "java");
+
 @client({
   name: "AzureExampleClient",
   service: _Specs_.Azure.Example.Basic,

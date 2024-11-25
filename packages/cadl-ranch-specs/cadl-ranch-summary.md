@@ -4013,7 +4013,7 @@ Expected path: /routes/path/explicit/a
 
 Test label expansion with explode: true when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/label/explode/array.a.b
+Expected path: /routes/path/label/explode/array.a.b
 
 ### Routes_PathParameters_LabelExpansion_Explode_primitive
 
@@ -4021,7 +4021,7 @@ Expected path: /routes/label/explode/array.a.b
 
 Test label expansion with explode: true when passed a primitive value.
 Param value: "a"
-Expected path: /routes/label/explode/primitive.a
+Expected path: /routes/path/label/explode/primitive.a
 
 ### Routes_PathParameters_LabelExpansion_Explode_record
 
@@ -4029,7 +4029,7 @@ Expected path: /routes/label/explode/primitive.a
 
 Test label expansion with explode: true when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/label/explode/record.a=1.b=2
+Expected path: /routes/path/label/explode/record.a=1.b=2
 
 ### Routes_PathParameters_LabelExpansion_Standard_array
 
@@ -4037,7 +4037,7 @@ Expected path: /routes/label/explode/record.a=1.b=2
 
 Test label expansion with explode: false when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/label/standard/array.a,b
+Expected path: /routes/path/label/standard/array.a,b
 
 ### Routes_PathParameters_LabelExpansion_Standard_primitive
 
@@ -4045,7 +4045,7 @@ Expected path: /routes/label/standard/array.a,b
 
 Test label expansion with explode: false when passed a primitive value.
 Param value: "a"
-Expected path: /routes/label/standard/primitive.a
+Expected path: /routes/path/label/standard/primitive.a
 
 ### Routes_PathParameters_LabelExpansion_Standard_record
 
@@ -4053,7 +4053,7 @@ Expected path: /routes/label/standard/primitive.a
 
 Test label expansion with explode: false when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/label/standard/record.a,1,b,2
+Expected path: /routes/path/label/standard/record.a,1,b,2
 
 ### Routes_PathParameters_MatrixExpansion_Explode_array
 
@@ -4061,7 +4061,7 @@ Expected path: /routes/label/standard/record.a,1,b,2
 
 Test matrix expansion with explode: true when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/matrix/explode/array;a.b
+Expected path: /routes/path/matrix/explode/array;a.b
 
 ### Routes_PathParameters_MatrixExpansion_Explode_primitive
 
@@ -4069,7 +4069,7 @@ Expected path: /routes/matrix/explode/array;a.b
 
 Test matrix expansion with explode: true when passed a primitive value.
 Param value: "a"
-Expected path: /routes/matrix/explode/primitive;a
+Expected path: /routes/path/matrix/explode/primitive;a
 
 ### Routes_PathParameters_MatrixExpansion_Explode_record
 
@@ -4077,7 +4077,7 @@ Expected path: /routes/matrix/explode/primitive;a
 
 Test matrix expansion with explode: true when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/matrix/explode/record;a=1;b=2
+Expected path: /routes/path/matrix/explode/record;a=1;b=2
 
 ### Routes_PathParameters_MatrixExpansion_Standard_array
 
@@ -4085,7 +4085,7 @@ Expected path: /routes/matrix/explode/record;a=1;b=2
 
 Test matrix expansion with explode: false when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/matrix/standard/array;a,b
+Expected path: /routes/path/matrix/standard/array;a,b
 
 ### Routes_PathParameters_MatrixExpansion_Standard_primitive
 
@@ -4093,7 +4093,7 @@ Expected path: /routes/matrix/standard/array;a,b
 
 Test matrix expansion with explode: false when passed a primitive value.
 Param value: "a"
-Expected path: /routes/matrix/standard/primitive;a
+Expected path: /routes/path/matrix/standard/primitive;a
 
 ### Routes_PathParameters_MatrixExpansion_Standard_record
 
@@ -4101,7 +4101,7 @@ Expected path: /routes/matrix/standard/primitive;a
 
 Test matrix expansion with explode: false when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/matrix/standard/record;a,1,b,2
+Expected path: /routes/path/matrix/standard/record;a,1,b,2
 
 ### Routes_PathParameters_PathExpansion_Explode_array
 
@@ -4173,7 +4173,7 @@ Expected path: "/routes/path/reserved-expansion/template/foo/bar%20baz"
 
 Test simple expansion with explode: true when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/simple/explode/arraya.b
+Expected path: /routes/path/simple/explode/arraya.b
 
 ### Routes_PathParameters_SimpleExpansion_Explode_primitive
 
@@ -4181,7 +4181,7 @@ Expected path: /routes/simple/explode/arraya.b
 
 Test simple expansion with explode: true when passed a primitive value.
 Param value: "a"
-Expected path: /routes/simple/explode/primitivea
+Expected path: /routes/path/simple/explode/primitivea
 
 ### Routes_PathParameters_SimpleExpansion_Explode_record
 
@@ -4189,7 +4189,7 @@ Expected path: /routes/simple/explode/primitivea
 
 Test simple expansion with explode: true when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/simple/explode/recorda=1,b=2
+Expected path: /routes/path/simple/explode/recorda=1,b=2
 
 ### Routes_PathParameters_SimpleExpansion_Standard_array
 
@@ -4197,7 +4197,7 @@ Expected path: /routes/simple/explode/recorda=1,b=2
 
 Test simple expansion with explode: false when passed an array value.
 Param value: ["a","b"]
-Expected path: /routes/simple/standard/arraya,b
+Expected path: /routes/path/simple/standard/arraya,b
 
 ### Routes_PathParameters_SimpleExpansion_Standard_primitive
 
@@ -4205,7 +4205,7 @@ Expected path: /routes/simple/standard/arraya,b
 
 Test simple expansion with explode: false when passed a primitive value.
 Param value: "a"
-Expected path: /routes/simple/standard/primitivea
+Expected path: /routes/path/simple/standard/primitivea
 
 ### Routes_PathParameters_SimpleExpansion_Standard_record
 
@@ -4213,7 +4213,7 @@ Expected path: /routes/simple/standard/primitivea
 
 Test simple expansion with explode: false when passed a record value.
 Param value: {a: 1, b: 2}
-Expected path: /routes/simple/standard/recorda,1,b,2
+Expected path: /routes/path/simple/standard/recorda,1,b,2
 
 ### Routes_PathParameters_templateOnly
 
