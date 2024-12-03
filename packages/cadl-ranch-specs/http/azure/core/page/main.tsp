@@ -142,7 +142,7 @@ model CustomPageModel<T> {
   @doc("List of items.")
   items: T[];
 
-  @global.Azure.Core.nextLink
+  @nextLink
   @doc("Link to fetch more items.")
   nextLink?: string;
 }
