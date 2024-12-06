@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.5
+
+### Patch Changes
+
+- cc8bbf7: Remove usage of `@global.Azure.Core.nextLink` as it is been removed
+
 ## 0.39.4
 
 ### Patch Changes
