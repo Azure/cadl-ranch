@@ -1,5 +1,13 @@
 # @azure-tools/cadl-ranch
 
+## 0.16.2
+
+### Patch Changes
+
+- ba6d20d: Update typespec to 0.63
+- Updated dependencies [ba6d20d]
+  - @azure-tools/cadl-ranch-expect@0.15.7
+
 ## 0.16.1
 
 ### Patch Changes
