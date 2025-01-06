@@ -15,6 +15,7 @@ export type GeneratorNames =
   | "typescript/modular"
   | "csharp"
   | "@typespec/http-client-csharp"
+  | "@azure-typespec/http-client-csharp"
   | "java"
   | "go"
   | "cpp"
@@ -27,6 +28,7 @@ const generatorNames: GeneratorNames[] = [
   "typescript/modular",
   "csharp",
   "@typespec/http-client-csharp",
+  "@azure-typespec/http-client-csharp",
   "java",
   "go",
   "cpp",
