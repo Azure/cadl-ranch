@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-dashboard
 
+## 0.11.1
+
+### Patch Changes
+
+- 30c3d78: Add new csharp package
+
 ## 0.11.0
 
 ### Minor Changes
