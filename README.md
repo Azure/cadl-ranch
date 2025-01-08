@@ -2,7 +2,9 @@
 
 # Disclaimer
 
-**Please do not create issues or pull requests in this repository.** 
+**Please do not create issues or pull requests in this repository.**
+
+If you are looking to contribute or need support, please use our active repository https://github.com/microsoft/typespec.
 
 For any inquiries, please contact us directly at azsdk-dpgdevs@microsoft.com.
 
