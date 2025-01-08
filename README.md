@@ -1,5 +1,11 @@
 # Cadl Ranch
 
+# Disclaimer
+
+**Please do not create issues or pull requests in this repository.** 
+
+For any inquiries, please contact us directly at azsdk-dpgdevs@microsoft.com.
+
 ## Requirements
 
 - Node 16+
