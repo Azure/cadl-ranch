@@ -1,5 +1,11 @@
 # @azure-tools/cadl-ranch-specs
 
+## 0.39.7
+
+### Patch Changes
+
+- ef3b495: added Rust to client naming tests
+
 ## 0.39.6
 
 ### Patch Changes
